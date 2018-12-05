@@ -1,0 +1,236 @@
+.bySinging{
+  background: #F8FAFC;
+  padding:20px 10px;
+  //overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  .statusParent{
+    display: inline-block;
+    font-size: 0;
+    .signedStatus{
+      display: inline-block;
+      width: 140px;
+      height: 140px;
+      margin: 10px;
+      text-align: center;
+      background: #FFFFFF;
+      border:1px solid transparent;
+      box-shadow: 0 1px 4px 0 rgba(0,0,0,0.10);
+      border-radius: 4px;
+      position: relative;
+      cursor: pointer;
+      img{
+        margin: 22px 0 0;
+      }
+      em{
+        position: absolute;
+        top:73px;
+        left: 63px;
+        font-size: 14px;
+      }
+      .waiteMeSign{
+        color: #F9C04D;
+      }
+      .waiteHeSign{
+        color: #FC8E00;
+      }
+      .cutOff{
+        color: #F95714;
+      }
+      .signed{
+        color: #5EC860;
+      }
+      p{
+        margin: 15px;
+        font-size: 14px;
+        color: #748093;
+        letter-spacing: 0;
+      }
+    }
+    .firstStatus:hover{
+      border: 1px solid #F9C04D;
+      p{
+        color: #F9C04D;
+      }
+    }
+    .secondStatus:hover{
+      border: 1px solid #FC8E00;
+      p{
+        color: #FC8E00;
+      }
+    }
+    .thirdStatus:hover{
+      border: 1px solid #F95714;
+      p{
+        color: #f95714;
+      }
+    }
+    .forthStatus:hover{
+      border: 1px solid #5EC860;
+      p{
+        color: #5ec860;
+      }
+    }
+  }
+  .middleline{
+    height: 60px;
+    margin:0 20px 0 10px;
+    border-left: 1px solid #e5e5e5;
+  }
+  .signedButton{
+    display: inline-block;
+    width:239px;
+    height: 60px;
+    //margin: 0 0 0 30px;
+    //margin: 40px 10px  0 0;
+    font-size: 0;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.10);
+    border-radius: 4px;
+    cursor: pointer;
+    //position: relative;
+    //float: right;
+    div{
+      display: inline-block;
+      width: 60px;
+      height: 60px;
+      vertical-align: top;
+      background: #fff;
+      text-align: center;
+      border-radius: 4px 0 0 4px;
+      img{
+        margin: 12.5px 0 0;
+      }
+    }
+    input{
+      display: inline-block;
+      width: 179px;
+      height:60px;
+      font-size: 18px;
+      background: #F95714;
+      border: none;
+      outline: none;
+      color: #fff;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+    }
+    input:hover{
+      background: #CA3B00;
+    }
+  }
+ /* .signedButton:before{
+    content: "";
+    width: 1px;
+    height: 60px;
+    left:-20px;
+    background: #E5E5E5;
+    position: absolute;
+
+  }*/
+}
+
+.advantages{
+  padding: 7px 10px;
+  font-size: 0;
+  .adv_son{
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+    div{
+      display: inline-block;
+      width: 30%;//286px;
+      height: 164px;
+      margin: 10px;
+      text-align: center;
+      border: 1px solid #E5E5E5;
+      border-radius: 4px;
+      p{
+        color: #394A66;
+        font-size: 16px;
+        height: 20px;
+        line-height: 20px;
+        margin: 8px 0 6px;
+      }
+      em{
+        color: #97a2b3;
+        font-size: 12px;
+        height: 16px;
+        line-height: 16px;
+      }
+    }
+  }
+
+}
+
+.el-dialog__header{
+  text-align: center;
+  height: 58px;
+  padding: 0;
+  border-bottom: 2px solid #E5E5E5;
+}
+
+.el-dialog__footer{
+  text-align: center!important;
+  height: 60px;
+  background: #FAFBFC;
+  border-top: 1px solid #E5E5E5;
+  button{
+    width: 106px;
+    height: 32px;
+    padding: 0;
+    border-radius: 2px;
+  }
+  .el-button--primary:hover{
+    background: #F95714!important;
+    border:none!important;
+  }
+  .cancel{
+    background: #FAFBFC;
+    border: 1px solid #E5E5E5;
+
+  }
+  .confirm{
+    background: #F95714!important;
+    border:none;
+  }
+}
+.el-dialog.signAlertCotent {
+  width: 540px;
+  height: 480px;
+}
+.el-dialog.Archive_folderCotent,.el-dialog.Archive_folder_btn{
+  width: 540px;
+  max-height: 426px;
+}
+.modelAlertCotent.el-dialog{
+  width: 800px;
+  height: 536px;
+}
+.modelAlertFolder.el-dialog,.el-dialog.modelAlert,.el-dialog.modelAlert_edit{
+  width:540px;
+}
+.Archive_folderCotent .el-dialog__body{ padding: 0!important;}
+.Archive_folder_btn .el-dialog__body{ padding: 0!important;}
+.modelAlert .swiper-container-android .swiper-slide, .swiper-wrapper{
+  padding: 0 28px;
+}
+.modelAlert .swiper-button-prev{
+  left: 0;
+}
+.modelAlert .swiper-button-next{
+  right: 0;
+}
+.Revoke_model.el-dialog {
+  width: 540px;
+  height: 272px;
+}
+.Revoke_model .el-dialog__body{
+  padding: 40px 80px;
+}
+.details_model.el-dialog {
+  width: 540px;
+  height: 580px;
+}
+.details_model .el-dialog__body{
+  padding: 20px 40px;
+}

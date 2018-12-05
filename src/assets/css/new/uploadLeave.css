@@ -1,0 +1,889 @@
+/*alert*/
+.alert {
+  /* .uploadLeaveConfirm {
+    text-align: center;
+    position: relative;
+    height: 85%;
+    .uploadLeaveContent {
+      font-size: 20px;
+      margin-top: 39px;
+    }
+    .uploadLeaveConfirmBtn {
+      position: absolute;
+      !* bottom: 0; *!
+      left: 0;
+      right: 0;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      margin-top: 33px;
+      background-color: #FAFBFC;
+      border-top: 1px solid #E5E5E5;
+      button:nth-child(3) {
+        color: #282828;
+        background: #FAFBFC;
+        margin-left: 10px;
+        border: 1px solid #E5E5E5;
+      }
+      button:nth-child(2) {
+        border: none;
+        margin-right: 10px;
+        background: #e86230;
+        color: #FFFFFF;
+      }
+      button {
+        height: 32px;
+        width: 106px;
+        opacity: 1;
+        font-weight: normal;
+        font-size: 14px;
+        margin-top: 14px;
+        border-radius: 2px;
+      }
+    }
+  }*/
+}
+.alert .modalTitle {
+  font-size: 20px;
+  color: #24324c;
+}
+.alert .uploadLeaveSearch {
+  line-height: 60px;
+  color: #394A66;
+}
+.alert .uploadLeaveSearch input {
+  height: 34px;
+  font-size: 14px;
+}
+.alert .uploadLeaveSearch input[type=text] {
+  text-indent: 20px;
+  width: 88%;
+  margin: 0 5px 0 0;
+  background: #FAFBFC;
+  border: 1px solid #E5E5E5;
+  outline: none;
+}
+.alert .uploadLeaveSearch .search {
+  width: 80px;
+  line-height: 34px;
+  outline: none;
+  border: none;
+  background-color: #F95714;
+  border-radius: 2px;
+  font-size: 14px;
+  color: #FFFFFF;
+  padding-left: 0;
+}
+.alert .uploadLeaveTable {
+  padding: 0 20px;
+}
+.alert .alert-body .no-result p {
+  margin: 0;
+  font-size: 14px;
+  color: #97A2B3;
+  border: none;
+}
+.alert .alert-body .add {
+  color: #507BE6;
+  cursor: pointer;
+}
+/*头部状态*/
+.uploadleave {
+  width: 100%;
+  height: 148px;
+  /* overflow: hidden;*/
+  background-color: #F8FAFC;
+}
+.uploadleave .uploadleave-status {
+  width: 800px;
+  margin: 0 auto;
+}
+.uploadleave .uploadleave-status img {
+  width: 48px;
+  height: 48px;
+  float: left;
+  margin: 29px 0  0;
+}
+.uploadleave .uploadleave-status .step_a {
+  height: 2px;
+  width: 138px;
+  float: left;
+  margin: 53px 0 0;
+  background-color: #DFE3E8;
+}
+.uploadleave .uploadleave-step {
+  width: 848px;
+  margin: 0 auto;
+  height: auto;
+  overflow: hidden;
+  font-size: 16px;
+  color: #394A66;
+  letter-spacing: 0;
+}
+.uploadleave .uploadleave-step dl {
+  width: 96px;
+  height: 42px;
+  margin-left: 90px ;
+  margin-top: 10px;
+  margin-bottom: 19px;
+  float: left;
+  text-align: center;
+}
+.uploadleave .uploadleave-step dl:first-child {
+  margin-left: 0;
+}
+h1 {
+  font-size: 24px;
+  color: #394A66;
+  letter-spacing: 0;
+  text-align: center;
+  margin: 20px 0 15px 0;
+}
+h3 {
+  font-size: 16px;
+  color: #748093;
+  letter-spacing: 0;
+  text-align: center;
+  margin-bottom: 20px;
+}
+textarea {
+  padding: 7px 0 0 0;
+  border: 1px solid #e5e5e5;
+}
+input[type=text],
+input[type=email],
+input[type=password],
+textarea {
+  text-indent: 12px;
+}
+select.education,
+select.workType,
+select.dismissionType {
+  width: 300px;
+  height: 34px;
+  background: #FAFBFC;
+  border: 1px solid #E5E5E5;
+  text-indent: 12px;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.tabs-left {
+  position: relative;
+}
+.tabs-left .nav-tabs {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  border-bottom: 0;
+}
+.tabs-left .nav-tabs li {
+  padding: 10px 7px;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 0;
+  width: 119px;
+  text-align: center;
+  border-right: 1px solid #e5e5e5;
+  color: #7A8699;
+}
+.tabs-left .nav-tabs li.active {
+  background: #fff;
+  border-left: 2px solid #F95714;
+  color: #F95714;
+  border-right: 0;
+}
+.tabs-left .tab-content {
+  padding: 0 10px 10px 40px;
+  border: 1px solid #FAFBFC;
+  height: 258px;
+  overflow: auto;
+  border-top: 0;
+}
+.tabs-left .tab-content input[type="checkbox"] {
+  -webkit-appearance: none;
+  /*清除复选框默认样式*/
+  background: url("../../img/dismission/check.svg") no-repeat;
+  background-size: contain;
+  height: 13px;
+  width: 13px;
+  vertical-align: middle;
+  outline: none;
+  /*border: 1px solid #E5E5E5;*/
+  border-radius: 2px;
+  top: -3px;
+}
+.tabs-left .tab-content input[type="checkbox"]:checked {
+  background: url("../../img/dismission/checked.svg") no-repeat;
+  background-size: contain;
+  border: none;
+}
+.tabs-left .tab-content input[type="radio"] {
+  -webkit-appearance: none;
+  /*清除复选框默认样式*/
+  height: 13px;
+  width: 13px;
+  background: url("../../img/dismission/ic_round.svg") no-repeat;
+  background-size: contain;
+  outline: none;
+  margin: -1px 10px 0;
+}
+.tabs-left .tab-content input[type="radio"]:checked {
+  background: url("../../img/dismission/ic_round_cb.svg") no-repeat;
+  background-size: contain;
+  border: none;
+}
+.tabs-left .tab-content,
+.tabs-left .tab-content .tab-pane.active {
+  background: #fff;
+  font-size: 14px;
+  color: #748093;
+}
+.uploadTitle {
+  margin: 30px 0 20px 20px;
+  border-left: 4px solid #f95714 ;
+  padding-left: 10px;
+  font-size: 16px;
+  color: #394A66;
+}
+.uploadLeaveInfo3,
+.uploadLeaveInfo4 {
+  background: #fafbfc;
+  border: 1px solid #e5e5e5;
+  color: #748093;
+  text-align: right;
+  margin: 0 21px;
+}
+.uploadLeaveSetup4 {
+  margin: 59px auto;
+  width: 400px;
+  height: 44px;
+  background: #97A2B3;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #FFFFFF;
+  letter-spacing: 0.19px;
+  border: 0;
+}
+.uploadLeaveSetup4.active {
+  background: #F95714;
+}
+.form {
+  margin: 20px 21px 24px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-align: left;
+  /*.el-date-editor .el-range__icon,.el-date-editor .el-range__close-icon{
+    display: none;
+  }*/
+}
+.form .inline {
+  width: 373px;
+  display: inline-block;
+  text-align: left;
+}
+.form input {
+  min-width: 300px;
+  width: 300px;
+  height: 34px;
+}
+.form .el-range-input {
+  width: auto;
+  min-width: 100px;
+}
+.form .item {
+  padding-bottom: 20px;
+  position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.form .item label {
+  margin-right: 10px;
+  height: 34px;
+  line-height: 34px;
+  text-align: right;
+  display: inline-block;
+}
+.form .danger-hint {
+  height: 15px;
+  cursor: pointer;
+  vertical-align: middle;
+  margin: 0 0 0 10px;
+  position: absolute;
+  right: -24px;
+  top: 66px;
+}
+.form .danger-hint:hover + .hover-info {
+  display: inline-block;
+}
+.form .danger-hint-info {
+  color: #97A2B3;
+  margin: 0 0 0 8.7px;
+}
+.form .hover-info {
+  display: none;
+  right: -323px;
+  top: 52px;
+  position: absolute;
+  margin: 6px 0 0 10px;
+  padding: 10px 15px;
+  font-size: 12px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+.form .hover-info .triangle-left {
+  position: absolute;
+  left: -6px;
+}
+.uploadLeaveSetp1 .leaveStyle {
+  margin-top: 20px;
+  padding: 0 20px;
+  min-height: 350px;
+}
+.uploadLeaveSetp1 .leaveStyle div {
+  position: relative;
+  height: 108px;
+  margin: 0 auto;
+}
+.uploadLeaveSetp1 .leaveStyle div img,
+.uploadLeaveSetp1 .leaveStyle div a {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.uploadLeaveSetp1 .leaveStyle div a {
+  line-height: 38px;
+  cursor: pointer;
+  right: 0;
+  width: 178px;
+  height: 38px;
+  font-size: 16px;
+  color: #394A66;
+  letter-spacing: 0;
+  background-color: #FAFBFC;
+  border: 1px solid #E5E5E5;
+  border-radius: 4px;
+  text-indent: 56px;
+}
+.uploadLeaveSetp1 .leaveStyle div a .uploadLeaveImg {
+  width: 18px;
+  height: 18px;
+  left: 26px;
+}
+.uploadLeaveSetp1 .leaveStyle .title {
+  left: 70px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  height: auto;
+  border: 0;
+  color: #748093;
+  letter-spacing: 0;
+}
+.uploadLeaveSetp1 .leaveStyle .apiStatus {
+  border: none;
+}
+.uploadLeaveSetp2 .uploadTitle:first-child {
+  margin: 50px 0 20px 20px;
+}
+.uploadLeaveSetp2 input,
+.uploadLeaveSetp2 select {
+  height: 34px;
+  line-height: 34px;
+  color: #394a66;
+  text-indent: 12px;
+  background: #fff;
+  border: 1px solid #E5E5E5;
+  outline: none;
+}
+.uploadLeaveSetp2 .uploadLeaveInfo {
+  background: #fafbfc;
+  border: 1px solid #e5e5e5;
+  margin: 0 21px;
+  padding: 30px 21px;
+}
+.uploadLeaveSetp2 .uploadLeaveInfo .imgBox {
+  display: inline-block;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  margin: auto 30px auto 0;
+}
+.uploadLeaveSetp2 .uploadLeaveInfo .imgBox img {
+  margin: auto 30px auto 0;
+}
+.uploadLeaveSetp2 .uploadLeaveInfo .contentBox {
+  display: inline-block;
+}
+.uploadLeaveSetp2 .uploadLeaveInfo .contentBox .left,
+.uploadLeaveSetp2 .uploadLeaveInfo .contentBox .right {
+  display: inline-block;
+  color: #748093;
+}
+.uploadLeaveSetp2 .uploadLeaveInfo .contentBox .left > div,
+.uploadLeaveSetp2 .uploadLeaveInfo .contentBox .right > div {
+  margin: 0 0 20px 0;
+  position: relative;
+}
+.uploadLeaveSetp2 .uploadLeaveInfo .contentBox .left > div input,
+.uploadLeaveSetp2 .uploadLeaveInfo .contentBox .right > div input {
+  width: 240px;
+  height: 34px;
+  padding: 0;
+  color: #394a66;
+  text-indent: 12px;
+  background: #fff;
+  border: 1px solid #E5E5E5;
+  outline: none;
+  border-radius: 0;
+}
+.uploadLeaveSetp2 .uploadLeaveInfo .contentBox .left {
+  margin: 0 60px 0 0;
+  display: inline-block;
+  font-size: 14px;
+  text-align: right;
+}
+.uploadLeaveSetp2 .uploadLeaveInfo .contentBox .right {
+  vertical-align: top;
+  text-align: right;
+}
+.uploadLeaveSetp2 .uploadLeaveInfo .contentBox .right .triangleBottom {
+  top: 14px;
+  right: 10px;
+}
+.uploadLeaveSetp2 .uploadLeaveInfo .contentBox .right .sex.active {
+  color: #FFFFFF;
+}
+.uploadLeaveSetp2 .uploadLeaveInfo .contentBox .right .sex {
+  display: inline-block;
+  width: 120px;
+  height: 32px;
+  font-size: 14px;
+  padding: 7px 42px 7px 60px;
+  color: #394A66;
+  border: 1px solid #E5E5E5;
+  cursor: pointer;
+  position: relative;
+}
+.uploadLeaveSetp2 .uploadLeaveInfo3 .form textarea,
+.uploadLeaveSetp2 .uploadLeaveInfo4 .form textarea {
+  width: 783px;
+  height: 107px;
+}
+.uploadLeaveSetp2 .uploadLeaveInfo3 .form .item,
+.uploadLeaveSetp2 .uploadLeaveInfo4 .form .item {
+  position: relative;
+}
+.uploadLeaveSetp2 .uploadLeaveInfo3 .form .item .el-date-editor .el-range-input,
+.uploadLeaveSetp2 .uploadLeaveInfo4 .form .item .el-date-editor .el-range-input,
+.uploadLeaveSetp2 .uploadLeaveInfo3 .form .item .el-date-editor .el-range-separator,
+.uploadLeaveSetp2 .uploadLeaveInfo4 .form .item .el-date-editor .el-range-separator {
+  text-align: left!important;
+  text-indent: 0;
+}
+.uploadLeaveSetp2 .uploadLeaveInfo3 .form .item .el-date-editor .el-range__icon,
+.uploadLeaveSetp2 .uploadLeaveInfo4 .form .item .el-date-editor .el-range__icon {
+  position: absolute!important;
+  right: 5px!important;
+}
+.uploadLeaveSetp2 .uploadLeaveInfo3 .form .item .triangleBottom,
+.uploadLeaveSetp2 .uploadLeaveInfo4 .form .item .triangleBottom {
+  right: 20px;
+  top: 14px;
+}
+.uploadLeaveSetp2 .uploadLeaveInfo3 .form .item input[type="checkbox"],
+.uploadLeaveSetp2 .uploadLeaveInfo4 .form .item input[type="checkbox"] {
+  -webkit-appearance: none;
+  /*清除复选框默认样式*/
+  background: url("../../img/dismission/check.svg") no-repeat;
+  background-size: contain;
+  height: 13px;
+  width: 13px;
+  vertical-align: middle;
+  outline: none;
+  border: none;
+}
+.uploadLeaveSetp2 .uploadLeaveInfo3 .form .item input[type="checkbox"]:checked,
+.uploadLeaveSetp2 .uploadLeaveInfo4 .form .item input[type="checkbox"]:checked {
+  background: url("../../img/dismission/checked.svg") no-repeat;
+  background-size: contain;
+  border: none;
+}
+.uploadLeaveSetp2 .uploadLeaveInfo3 > div:nth-child(1) {
+  text-align: left;
+  margin-left: 49px;
+  margin-top: 36px;
+}
+.hrTest {
+  font-size: 16px;
+  height: 44px;
+  width: 160px!important;
+  margin: 40px auto 30px;
+  background: #F95714;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+}
+.break-promise {
+  margin: 30px 0 21px;
+}
+.break-promise .break-promise-behavior {
+  padding: 19px 20px;
+  border: 1px solid transparent;
+  border-bottom: #E5E5E5;
+}
+.break-promise .break-promise-behavior .behavior-title {
+  font-size: 24px;
+  margin-bottom: 18px;
+}
+.break-promise .break-promise-behavior .behavior-title img {
+  margin-right: 15px;
+  vertical-align: middle;
+}
+.break-promise .break-promise-behavior .behavior-title .pull-right img {
+  display: none;
+}
+.break-promise .break-promise-behavior .behavior-describe em {
+  color: #97A2B3;
+  margin-right: 15px;
+  display: inline-block;
+}
+.break-promise .break-promise-behavior .behavior-describe p {
+  display: inline-block;
+  margin-left: 74px;
+  line-height: 24px;
+  margin-top: -19px;
+  font-size: 14px;
+  word-wrap: break-word;
+  width: 90%;
+}
+.break-promise .break-promise-behavior:hover {
+  border: 1px solid #F95714;
+}
+.break-promise .break-promise-behavior:hover .pull-right img {
+  display: inline-block;
+  cursor: pointer;
+}
+.report-basic {
+  background: #FAFBFC;
+  border: 1px solid #E5E5E5;
+  padding: 28px 0 45px;
+  text-align: center;
+  margin-top: 30px;
+}
+.report-basic .report-head-name {
+  margin: 15px auto;
+  font-size: 24px;
+}
+.report-basic .report-head-basic {
+  color: #97A2B3;
+  margin-right: 10px;
+}
+.uploadLeaveConfirm {
+  text-align: center;
+  position: relative;
+  height: 85%;
+}
+.uploadLeaveConfirm .uploadLeaveContent {
+  font-size: 20px;
+  margin-top: 39px;
+}
+.status_success {
+  position: relative;
+  width: 48px;
+  height: 67px;
+  float: left;
+}
+.status_success img {
+  cursor: pointer;
+}
+.status_success .hover-info {
+  position: absolute;
+  top: 33px;
+  left: 56px;
+  width: 200px;
+  height: 40px;
+  line-height: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  display: none;
+  z-index: 4;
+}
+.status_success .hover-info .triangle-left {
+  position: absolute;
+  top: 14px;
+  left: -6px;
+}
+.status_success .success:hover + .hover-info {
+  display: block;
+}
+/*exposure*/
+.exposure {
+  letter-spacing: 0;
+  font-size: 14px;
+  /*.inline:nth-child(2){
+    margin: 0 0 0 183px;
+  }*/
+}
+.exposure p {
+  color: #394A66;
+  height: 19px;
+  line-height: 19px;
+  margin-bottom: 20px;
+}
+.exposure .inline {
+  display: inline-block;
+  height: 19px;
+  line-height: 19px;
+  margin: 0 0 18px 0;
+  /* font-size: 0;*/
+}
+.exposure .inline span {
+  display: inline-block;
+  color: #748093;
+  text-align: right;
+}
+.exposure .inline span i {
+  color: #F95714;
+}
+.exposure .inline label {
+  position: relative;
+  width: 35px;
+  margin: 0 54px 0 0;
+}
+.exposure .inline label input {
+  opacity: 0;
+}
+.exposure .inline label em,
+.exposure .inline label input {
+  width: 12px;
+  height: 12px;
+  top: 4px;
+  position: absolute;
+  background: url(../../img/reg/ic_circle_unchecked.svg) no-repeat;
+  background-size: 12px 12px;
+}
+.exposure .inline label input:checked + em {
+  background: url(../../img/reg/ic_circle_checked.svg) no-repeat;
+  background-size: 12px 12px;
+}
+.exposure .inline label i {
+  margin: 0 0 0 21px;
+  color: #394A66;
+}
+.exposure .learnerShip {
+  margin: 0 0 0 104px;
+}
+.areaSearchBox {
+  position: relative;
+}
+.areaSearchBox .searchSelectBox {
+  width: 240px;
+  max-height: 200px;
+  overflow: auto;
+  background: #fff;
+  text-align: left;
+  text-indent: 12px;
+  padding: 8px 0;
+  position: absolute;
+  top: 36px;
+  right: 0;
+  z-index: 2;
+  border: 1px solid #e5e5e5;
+}
+.areaSearchBox .searchSelectBox li {
+  height: 30px;
+  line-height: 30px;
+}
+.areaSearchBox .searchSelectBox li:hover {
+  background: #F8FAFC;
+  color: #f95714;
+}
+.twoMethod {
+  padding: 0  20px 20px;
+  min-height: 600px;
+}
+.twoMethod .multipleMethod,
+.twoMethod .quickMethod {
+  height: 98px;
+  overflow: hidden;
+}
+.twoMethod .multipleMethod img,
+.twoMethod .quickMethod img {
+  margin: 0 15px 0 0;
+  padding: 24px 0;
+}
+.twoMethod .multipleMethod span,
+.twoMethod .quickMethod span {
+  display: inline-block;
+  height: 98px;
+  line-height: 98px;
+  font-size: 14px;
+  color: #748093;
+  letter-spacing: 0;
+  vertical-align: top;
+}
+.twoMethod .multipleMethod input,
+.twoMethod .quickMethod input {
+  width: 140px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  margin: 27px 0 0;
+  color: #394A66;
+  text-align: center;
+  background: #FAFBFC;
+  border: 1px solid #E5E5E5;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+.twoMethod .multipleMethod {
+  border-bottom: 1px solid #E5E5E5;
+}
+#test5,
+#test7 {
+  background: url(../../img/dismission/ic_calendar.svg) no-repeat 268px;
+}
+#leaveReason .step_blance {
+  margin: 30px 20px 24px;
+}
+.uploadLeaveInfo3 .step_blance {
+  margin: 30px 20px 24px;
+}
+.uploadLeaveInfo3 .step_blance .item div {
+  position: relative;
+}
+.uploadLeaveInfo3 .step_blance .item div .triangleBottom {
+  top: 14px;
+  right: 10px;
+}
+#rapidButton {
+  width: 400px;
+  height: 44px;
+  margin: 60px auto 40px;
+  background: #f95714;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+.uploadLeaveInfo,
+.uploadLeaveInfo3,
+.uploadLeaveInfo4 {
+  /* .el-icon-date:before {
+    content: "" !important;
+  }*/
+}
+.uploadLeaveInfo .el-date-editor--date,
+.uploadLeaveInfo3 .el-date-editor--date,
+.uploadLeaveInfo4 .el-date-editor--date {
+  margin: 0;
+}
+.uploadLeaveInfo .el-input__prefix,
+.uploadLeaveInfo3 .el-input__prefix,
+.uploadLeaveInfo4 .el-input__prefix {
+  display: none;
+}
+.uploadLeaveInfo .el-date-editor .el-range-separator,
+.uploadLeaveInfo3 .el-date-editor .el-range-separator,
+.uploadLeaveInfo4 .el-date-editor .el-range-separator {
+  display: none!important;
+}
+.uploadLeaveInfo .el-range-editor.is-active,
+.uploadLeaveInfo3 .el-range-editor.is-active,
+.uploadLeaveInfo4 .el-range-editor.is-active,
+.uploadLeaveInfo .el-range-editor.is-active:hover,
+.uploadLeaveInfo3 .el-range-editor.is-active:hover,
+.uploadLeaveInfo4 .el-range-editor.is-active:hover {
+  border-color: #E5E5E5!important;
+}
+.uploadLeaveInfo .el-range-input,
+.uploadLeaveInfo3 .el-range-input,
+.uploadLeaveInfo4 .el-range-input {
+  width: auto!important;
+}
+.uploadLeaveInfo .el-date-editor--daterange.el-input__inner,
+.uploadLeaveInfo3 .el-date-editor--daterange.el-input__inner,
+.uploadLeaveInfo4 .el-date-editor--daterange.el-input__inner {
+  width: 300px!important;
+}
+.uploadLeaveInfo .el-range-editor.el-input__inner,
+.uploadLeaveInfo3 .el-range-editor.el-input__inner,
+.uploadLeaveInfo4 .el-range-editor.el-input__inner {
+  border-radius: 0!important;
+}
+.uploadLeaveInfo .el-select .el-input__inner:focus,
+.uploadLeaveInfo3 .el-select .el-input__inner:focus,
+.uploadLeaveInfo4 .el-select .el-input__inner:focus {
+  border: 1px solid #E5E5E5!important;
+  border-radius: 0;
+}
+.uploadLeaveInfo .el-input--suffix .el-input__inner,
+.uploadLeaveInfo3 .el-input--suffix .el-input__inner,
+.uploadLeaveInfo4 .el-input--suffix .el-input__inner {
+  padding: 0!important;
+  border-radius: 0!important;
+  height: 34px!important;
+}
+.uploadLeaveInfo .el-input__inner::-webkit-input-placeholder,
+.uploadLeaveInfo3 .el-input__inner::-webkit-input-placeholder,
+.uploadLeaveInfo4 .el-input__inner::-webkit-input-placeholder,
+.uploadLeaveInfo .el-date-editor .el-range-input::-webkit-input-placeholder,
+.uploadLeaveInfo3 .el-date-editor .el-range-input::-webkit-input-placeholder,
+.uploadLeaveInfo4 .el-date-editor .el-range-input::-webkit-input-placeholder {
+  color: #97A2B3;
+}
+.uploadLeaveInfo .el-input__inner:-ms-input-placeholder,
+.uploadLeaveInfo3 .el-input__inner:-ms-input-placeholder,
+.uploadLeaveInfo4 .el-input__inner:-ms-input-placeholder,
+.uploadLeaveInfo .el-date-editor .el-range-input:-ms-input-placeholder,
+.uploadLeaveInfo3 .el-date-editor .el-range-input:-ms-input-placeholder,
+.uploadLeaveInfo4 .el-date-editor .el-range-input:-ms-input-placeholder {
+  color: #97A2B3;
+}
+.uploadLeaveInfo .el-input__inner::-ms-input-placeholder,
+.uploadLeaveInfo3 .el-input__inner::-ms-input-placeholder,
+.uploadLeaveInfo4 .el-input__inner::-ms-input-placeholder,
+.uploadLeaveInfo .el-date-editor .el-range-input::-ms-input-placeholder,
+.uploadLeaveInfo3 .el-date-editor .el-range-input::-ms-input-placeholder,
+.uploadLeaveInfo4 .el-date-editor .el-range-input::-ms-input-placeholder {
+  color: #97A2B3;
+}
+.uploadLeaveInfo .el-input__inner::placeholder,
+.uploadLeaveInfo3 .el-input__inner::placeholder,
+.uploadLeaveInfo4 .el-input__inner::placeholder,
+.uploadLeaveInfo .el-date-editor .el-range-input::placeholder,
+.uploadLeaveInfo3 .el-date-editor .el-range-input::placeholder,
+.uploadLeaveInfo4 .el-date-editor .el-range-input::placeholder {
+  color: #97A2B3;
+}
+.el-dialog.leaderAlertContent .el-dialog__header {
+  text-align: center;
+  height: 40px;
+  padding: 0;
+  border: none;
+}
+.el-dialog.leaderAlertContent {
+  width: 540px;
+  height: 272px;
+}

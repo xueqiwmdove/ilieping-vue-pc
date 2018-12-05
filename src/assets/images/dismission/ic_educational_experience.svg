@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_educational experience</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M30,60 C46.5685425,60 60,46.5685425 60,30 C60,13.4314575 46.5685425,0 30,0 C13.4314575,0 0,13.4314575 0,30 C0,46.5685425 13.4314575,60 30,60 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="60" height="60" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="60" height="60" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <circle id="path-5" cx="30" cy="30" r="27.2727273"></circle>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ic_educational-experience">
+            <g>
+                <mask id="mask-3" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Mask-Copy" stroke="#F9C04D" mask="url(#mask-2)" stroke-width="2" fill="#FFFFFF" opacity="0.4" stroke-dasharray="1,1">
+                    <use mask="url(#mask-4)" xlink:href="#path-1"></use>
+                </g>
+                <mask id="mask-6" fill="white">
+                    <use xlink:href="#path-5"></use>
+                </mask>
+                <use id="Mask" fill="#FC8E00" xlink:href="#path-5"></use>
+                <path d="M32.4484517,45.2739612 C34.9850657,44.1967179 38.4030982,42.4115246 42.1312211,40.7662652 L42.1312211,53.9854729 C42.1312211,53.9854729 37.3097087,59.2727419 28.8341804,59.2727419 C19.7070068,59.2727419 14.7757828,53.9854729 14.7757828,53.9854729 L14.7757828,41.6460277 C17.6539517,42.8549249 20.8844395,43.8944936 24.794311,45.2739612 C27.2050673,46.1574498 30.2637427,46.4634001 32.4484517,45.2739612 M51.1085246,33.7140891 L51.1085246,42.085288 L52.8175408,43.848539 L49.2533642,47.6747813 L45.643647,43.9628046 L48.1160901,41.6460277 L48.1160901,35.0355959 C37.6297352,39.4927832 34.2692495,40.8780468 31.9425365,41.9598442 C29.6178935,43.0412275 27.9428257,43.0370875 25.638055,42.1395227 C23.3316283,41.244028 12.3509504,37.1122494 6.90014903,34.4236952 C3.26145138,32.6285657 3.02795207,31.4892216 6.96183591,29.9656799 C12.0971648,27.9548534 20.5846993,24.7347157 25.0824591,22.9776747 C27.747001,21.866069 29.1537929,21.2607924 31.5989116,22.5259943 C35.9625336,24.3848807 45.9375912,28.2430015 50.8969676,30.3536034 C55.2121508,32.296533 52.3099696,32.9345161 51.1085246,33.7140891" id="Fill-1" fill="#FFFFFF" mask="url(#mask-6)"></path>
+            </g>
+        </g>
+    </g>
+</svg>

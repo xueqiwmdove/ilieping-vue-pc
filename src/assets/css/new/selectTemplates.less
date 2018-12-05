@@ -1,0 +1,297 @@
+.signStepContent{
+  padding: 0 30px;
+  .signFirst{
+    border-bottom: 1px dashed #E5E5E5;
+    padding-bottom: 30px;
+    .stepContent{
+      .contractBox,.contractInputs{
+        vertical-align: middle;
+      }
+      .contractBox{
+        width: 182px;
+        height: 208px;
+        background: #F8FAFC;
+        border: 1px solid #E5E5E5;
+        display: inline-block;
+        .imgBox{
+          width:100px;
+          height: 140px;
+          margin: 10px 40px;
+          border: 1px solid #F95714;
+          box-shadow: 0 0 1px 0 rgba(0,0,0,0.08);
+          background:url("../../../assets/img/contract/ic_xuanzhong.svg") #fff no-repeat bottom;
+          .title{
+            font-size: 12px;
+            transform: scale(0.9);
+            color: #394A66;
+            letter-spacing: 0;
+            margin: 10px 0 0;
+            padding: 0 20px;
+            text-align: center;
+          }
+        }
+        .contractDetail{
+          height: 48px;
+          background: #E5E5E5;
+          letter-spacing: 0;
+          text-indent: 8px;
+          p{
+            font-size: 14px;
+            height: 20px;
+            padding: 5px 0 0;
+            color: #394A66;
+          }
+          em{
+            display: block;
+            height: 15px;
+            font-size: 12px;
+            margin: 2px 0 0;
+            color: #97A2B3;
+          }
+        }
+
+      }
+      .contractInputs{
+        display: inline-block;
+        .inputBox{
+          margin:0 10px 20px 40px;
+          position: relative;
+          label{
+            display: inline-block;
+            width: 91px;
+            margin-right: 10px;
+            text-align: right;
+            font-size: 14px;
+            color: #748093;
+            i{
+              color: #f95714;
+            }
+          }
+          input{
+            width: 300px;
+            height: 34px;
+            text-indent: 12px;
+            background: #fff;
+            border-radius: 0;
+          }
+          input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {
+            color: #97A2B3;
+          }
+          input:-ms-input-placeholder,textarea:-ms-input-placeholder  {
+            color: #97A2B3;
+          }
+          input::-ms-input-placeholder,textarea::-ms-input-placeholder {
+            color: #97A2B3;
+          }
+          input::placeholder,textarea::placeholder {
+            color: #97A2B3;
+          }
+          .el-range-editor.el-input__inner{
+            border-radius: 0;
+          }
+          .el-input__prefix{
+            left: 300px;
+            right: 5px;
+            z-index: 0;
+          }
+          .el-date-editor .el-range-input:first-child{
+            width: 131px;
+          }
+          .el-range-input{
+            height: 26px;
+            width: 100px;
+            cursor: pointer;
+          }
+          .el-date-editor .el-range-separator{
+            opacity: 0!important;
+          }
+          .el-date-editor .el-range-input,.el-date-editor .el-range-separator{
+            text-align: left!important;
+            text-indent: 5px;
+          }
+          .el-input--prefix .el-input__inner{
+            padding: 0;
+            cursor: pointer;
+          }
+          .el-icon-date:before {
+            position: absolute;
+            right: 10px;
+            top: 11px;
+          }
+          .el-input__icon.el-range__icon.el-icon-date:first-child{
+            width: 0;
+          }
+        /*  .el-date-editor .el-range__icon,.el-input__icon{
+            position: absolute!important;
+            right: 5px!important;
+          }*/
+          .danger-hint{
+            cursor: pointer;
+            position: absolute;
+            top: 8px;
+            right: -25px;
+          }
+          .danger-hint:hover+.hover-info{
+            display: inline-block;
+          }
+          .hover-info{
+            display: none;
+            top: -7px;
+            right: -324px;
+            position: absolute;
+            margin: 6px 0 0 10px;
+            padding: 10px 15px;
+            font-size: 12px;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.5);
+            -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            .triangle-left{
+              position: absolute;
+              left: -6px;
+            }
+          }
+
+        }
+      }
+    }
+  }
+  .signSecond{
+    .stepContent{
+      .addSignedEmployees{
+        width: 200px;
+        height: 40px;
+        font-size: 16px;
+        text-indent: 24px;
+        color: #394A66;
+        background: url("../../../assets/img/contract/ic_tianjiayuangong.svg") #F8FAFC no-repeat 40px center;
+        border: 1px solid #E5E5E5;
+        border-radius: 4px;
+        outline: none;
+        cursor: pointer;
+      }
+      .addEmployeesDetail{
+        height: 120px;
+        line-height: 120px;
+        background: #F8FAFC;
+        border: 1px solid #E5E5E5;
+        font-size: 0;
+        .imgPhoto{
+          width: 80px;
+          height: 80px;
+          vertical-align: middle;
+          margin: 0 9px 0 22px;
+        }
+        label{
+          font-size: 14px;
+          color: #748093;
+          margin:0  10px 0 20px;
+          vertical-align: middle;
+        }
+        span{
+          display: inline-block;
+          width: 180px;
+          height: 34px;
+          line-height: 34px;
+          text-indent: 10px;
+          font-size: 14px;
+          color: #394A66;
+          background: #E5E5E5;
+          vertical-align: middle;
+        }
+        .certification{
+          background: none;
+          width: auto;
+          text-indent: 0;
+        }
+        .certificationStatus{
+          margin: 0 8px 0 60px;
+          vertical-align: middle;
+        }
+        .hover_show{
+          display: inline-block;
+          img{
+            cursor: pointer;
+          }
+          img:first-child{
+            margin: 0 20px 0 0;
+          }
+        }
+        .pull-right{
+          float: right;
+          margin-right: 20px;
+        }
+      }
+      .addNext{
+        width: 400px;
+        height: 40px;
+        border: none;
+        text-align: center;
+        display:block;
+        margin: 47px auto 42px;
+        color: #fff;
+        background: #f95714;
+        //opacity: 0.6;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    }
+  }
+  .stepTitle{
+    height:20px;
+    line-height: 20px;
+    margin: 30px 0;
+    font-size: 16px;
+    color: #394A66;
+    letter-spacing: 0;
+    text-indent: 10px;
+    border-left: 4px solid #f95714;
+  }
+}
+.el-dialog.signEmployeesDetailContent{
+  width: 540px;
+  height: 328px;
+}
+.offerTemplate{
+  .templateContent{
+
+    .newElement{
+      overflow: hidden;
+      .newSingle{
+        width: 700px;
+        float: left;
+        display: inline-block;
+        margin-bottom: 0;
+      }
+      .hover_show{
+        margin:0;
+        display: inline-block;
+        float: right;
+        width: 80px;
+        height: 100%;
+        .hover_replace,.hover_remove{
+          cursor: pointer;
+        }
+      }
+    }
+    .newElement:hover{
+      .hover_replace{
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        margin: 0 5px;
+        background: url(../../../assets/img/contract/ic_replace.svg) no-repeat center;
+      }
+      .hover_remove{
+        width: 16px;
+        height: 16px;
+        margin: 0 5px;
+        display: inline-block;
+        background: url(../../../assets/img/contract/faqi_ic_shanchu.svg) no-repeat center;
+      }
+    }
+  }
+}
+
+

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_success</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="账号管理8月" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="手机号修改成功" transform="translate(-589.000000, -302.000000)" fill="#5EC860">
+            <g id="Group-8-Copy-2" transform="translate(0.000000, 47.000000)">
+                <g id="Group" transform="translate(350.000000, 202.000000)">
+                    <g id="Group-4">
+                        <g id="ic_success" transform="translate(239.000000, 53.000000)">
+                            <path d="M26.9877966,37.7491525 L18.4413559,29.1010169 L12.8064407,34.4837288 C16.9047458,36.6905085 22.6464407,40.7155932 27.5644068,46.9576271 C31.0383051,40.4257627 41.7498305,27.0640678 46.9576271,25.8691525 C46.1166102,22.5010169 45.6427119,16.1786441 46.9576271,12.8064407 C36.2766102,19.8498305 26.9877966,37.7491525 26.9877966,37.7491525 M29.8820339,59.7630508 C13.3789831,59.7630508 0,46.3850847 0,29.8820339 C0,13.3789831 13.3789831,0 29.8820339,0 C46.3850847,0 59.7640678,13.3789831 59.7640678,29.8820339 C59.7640678,46.3850847 46.3850847,59.7630508 29.8820339,59.7630508" id="Fill-1"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

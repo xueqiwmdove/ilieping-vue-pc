@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="160px" height="64px" viewBox="0 0 160 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>moban/ic_xuanzhong</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="moban/ic_xuanzhong" fill="#F95714">
+            <g>
+                <path d="M0.3125,63.8433038 L0,13.451752 C23.9752791,8.76119458 47.2049442,11.9350344 69.6889952,22.9732714 C108.416069,38.9859529 138.330841,35.8121131 159.433313,13.451752 L159.745813,63.8433038 L0.3125,63.8433038 Z" id="Path-2" opacity="0.3"></path>
+                <path d="M0,63.2820077 L0,17.0215144 C29.3740032,36.6261005 54.8714115,36.6261005 76.4922249,17.0215144 C102.226874,-4.59738447 129.779207,-5.56467163 159.149222,14.1196529 L159.149222,63.2820077 L0,63.2820077 Z" id="Path-3" opacity="0.297961957"></path>
+            </g>
+        </g>
+    </g>
+</svg>

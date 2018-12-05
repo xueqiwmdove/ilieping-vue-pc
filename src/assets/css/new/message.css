@@ -1,0 +1,44 @@
+.messageContent {
+  /* padding: 0 20px 20px;*/
+}
+.messageContent #msgTabs {
+  padding: 20px 0 0 20px;
+  border-bottom: none;
+}
+.messageContent #msgTabs li {
+  width: 88px;
+  height: 34px;
+  line-height: 34px;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-align: center;
+  margin: 0 20px 0 0;
+}
+.messageContent #msgTabs li .active {
+  color: #FFFFFF;
+  background: #F95714;
+}
+.messageContent #msgTabs li a {
+  height: 34px;
+  line-height: 34px;
+  color: #394A66;
+  background: #FAFBFC;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #E5E5E5;
+  border-radius: 2px;
+}
+.messageContent .tab-content .tab-pane table {
+  width: 100%;
+}
+.messageContent .tab-content .tab-pane table td i {
+  display: inline-block;
+  width: 14px;
+  height: 10px;
+  margin: 0 8px 0 0;
+  background: url("../../img/account/ic_read.svg") no-repeat center;
+}
+.messageContent .tab-content .tab-pane table td i.no {
+  background: url("../../img/account/ic_unread.svg") no-repeat center;
+}

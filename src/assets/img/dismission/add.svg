@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>add</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="add" fill="#507BE6">
+            <g id="Fill-1">
+                <path d="M13.497075,9.89685 L9.897525,9.89685 L9.897525,13.497075 L8.0982,13.497075 L8.0982,9.89685 L4.49865,9.89685 L4.49865,8.098425 L8.0982,8.098425 L8.0982,4.497975 L9.897525,4.497975 L9.897525,8.098425 L13.497075,8.098425 L13.497075,9.89685 Z M8.998425,0 C4.0491,0 0,4.049325 0,8.99685 C0,13.946175 4.0491,17.995275 8.998425,17.995275 C13.946625,17.995275 17.995725,13.946175 17.995725,8.99685 C17.995725,4.049325 13.946625,0 8.998425,0 Z"></path>
+            </g>
+        </g>
+    </g>
+</svg>

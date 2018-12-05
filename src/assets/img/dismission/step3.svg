@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_step3</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ic_step3">
+            <g>
+                <circle id="Oval-3" fill="#97A2B3" opacity="0.3" cx="24" cy="24" r="24"></circle>
+                <circle id="Oval-3-Copy" fill="#97A2B3" cx="24" cy="24" r="19.2"></circle>
+                <text id="３" font-family="MicrosoftYaHei, Microsoft YaHei" font-size="20" font-weight="normal" fill="#FFFFFF">
+                    <tspan x="14" y="31">３</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

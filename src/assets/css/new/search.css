@@ -1,0 +1,512 @@
+.content {
+  font-size: 14px;
+  color: #394A66;
+}
+.content .leaveSearch {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 60px;
+  line-height: 60px;
+  background: #F8FAFC;
+  padding-left: 20px;
+  color: #394A66;
+  font-size: 0;
+}
+.content .searchResult {
+  background: #fff;
+  margin: 20px 20px 0;
+  padding: 20px 0 0;
+}
+.content .searchResult .el-input__inner,
+.content .searchResult .el-select-dropdown__list {
+  border-radius: 0!important;
+}
+.content .searchResult .search-num {
+  color: #748093;
+  margin-bottom: 20px;
+}
+.content .searchResult .search-num i {
+  font-style: normal;
+  color: #F95714;
+}
+.content .searchResult .no-result {
+  margin: 131px 0 ;
+  text-align: center;
+}
+.content .searchResult .no-result p {
+  margin: 30px 0 0;
+  font-size: 14px;
+  color: #97A2B3;
+  border: none;
+}
+.content .searchResult .single-data {
+  width: 100%;
+  height: 162px;
+  background: #FAFBFC;
+  border: 1px solid #E5E5E5;
+  margin: 0 0 20px 0;
+  padding: 19px 21px;
+}
+.content .searchResult .single-data .head-portrait {
+  width: 120px;
+  height: 120px;
+  margin: 3px 0 20px 0;
+}
+.content .searchResult .single-data .single-left {
+  margin-left: 15px;
+  width: 23%;
+  height: 100%;
+  display: inline-block;
+  vertical-align: top;
+}
+.content .searchResult .single-data .single-left .single-name {
+  font-size: 24px;
+}
+.content .searchResult .single-data .single-left p {
+  margin: 12px 0 0;
+}
+.content .searchResult .single-data .single-left p label {
+  color: #A7B2C0;
+  margin-right: 15px;
+}
+.content .searchResult .single-data .single-right {
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: right;
+}
+.content .searchResult .single-data .single-right .company {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #A7B2C0;
+  text-align: center;
+}
+.content .searchResult .single-data .single-right .company-name {
+  margin: 0 0 27px;
+  font-size: 16px;
+  position: relative;
+  cursor: pointer;
+  text-align: center;
+}
+.content .searchResult .single-data .single-right .company-name img {
+  vertical-align: middle;
+}
+.content .searchResult .single-data .single-right .company-name:hover + .hover-info {
+  display: inline-block;
+}
+.content .searchResult .single-data .single-right .hover-info {
+  display: none;
+  position: absolute;
+  right: 35px;
+  margin: -19px 0 0 -8px;
+  padding: 11px 23px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+.content .searchResult .single-data .single-right .triangle-up {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+}
+.content .searchResult .single-data .single-right .leaveReport {
+  display: inline-block;
+  width: 160px;
+  height: 40px;
+  line-height: 40px;
+  padding: 0;
+  text-align: center;
+  color: #F95714;
+  background: #FFFFFF;
+  border: 1px solid #F95714;
+  border-radius: 4px;
+}
+.content .searchResult .single-data .single-left:after {
+  content: "";
+  clear: both;
+}
+.content .pageContent {
+  margin: 30px 0  70px 20px;
+  color: #748093;
+  font-size: 12px;
+}
+.content .pageContent span,
+.content .pageContent select,
+.content .pageContent button {
+  margin-right: 8px;
+}
+.content .pageContent select {
+  text-indent: 6px;
+}
+.content .pageContent select,
+.content .pageContent button {
+  width: 60px;
+}
+.content .pageContent input {
+  width: 38px;
+  text-align: center;
+}
+.content .pageContent select,
+.content .pageContent input,
+.content .pageContent button {
+  height: 30px;
+  line-height: 30px;
+  font-size: 12px;
+  color: #748093;
+  border: 1px solid #E5E5E5;
+  background: #fff;
+  outline: none;
+}
+.content .pageContent .prev-page {
+  margin-right: 4px;
+}
+.searchBeforePage .search {
+  padding-bottom: 30px;
+  cursor: pointer;
+}
+.searchBeforePage .search,
+.searchBeforePage .dynamicQuery,
+.searchBeforePage .theNewestExposure {
+  -webkit-box-shadow: 0 0 2px 0 #e5e5e5;
+          box-shadow: 0 0 2px 0 #e5e5e5;
+  background: #fff;
+}
+.searchBeforePage h4 {
+  height: 100px;
+  line-height: 100px;
+  font-size: 30px;
+  color: #fff;
+  background: #C3CDDE;
+  letter-spacing: 0;
+  margin: 0 0 30px;
+}
+.searchBeforePage h4 i {
+  line-height: 40px;
+  text-decoration: underline;
+  font-weight: bold;
+}
+.searchBeforePage .danger {
+  background: #FFA86A;
+}
+.searchBeforePage .leaveSearchBefore {
+  max-width: 800px;
+  height: 158px;
+  margin: 30px auto 0px;
+  border: 1px solid #E5E5E5;
+  font-size: 0;
+}
+.searchBeforePage .leaveSearchBefore p {
+  width: 100%;
+  margin: 20px 0;
+  font-size: 16px;
+  color: #394A66;
+  letter-spacing: 0;
+}
+.searchBeforePage .leaveSearchBefore p span {
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+}
+.searchBeforePage .leaveSearchBefore p span.middleLine {
+  display: inline-block;
+  height: 19px;
+  border-left: 1px solid #97A2B3;
+  margin: 0 20px;
+  vertical-align: middle;
+}
+.searchBeforePage .leaveSearchBefore p i {
+  color: #F95714;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 20px;
+}
+.searchBeforePage .leaveSearchBefore .searchBox {
+  display: block;
+  width: 100%;
+}
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput {
+  display: inline-block;
+  width: 660px;
+  max-width: 660px;
+  font-size: 0;
+  border: 1px solid #E5E5E5;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 20px;
+  position: relative;
+}
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput .line {
+  display: inline-block;
+  height: 16px;
+  right: 0;
+  top: 12px;
+  border-left: 1px solid #E5E5E5;
+}
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput .area {
+  text-indent: 0;
+}
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput .area i {
+  text-indent: 20px;
+  display: inline-block;
+}
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput .industry,
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput .area {
+  display: inline-block;
+  position: relative;
+  width: 100px;
+  color: #21324E;
+}
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput .industry em,
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput .area em {
+  top: 18px;
+  right: 10px;
+  cursor: pointer;
+}
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput .industry {
+  width: 118px;
+  text-indent: 35px;
+  padding-right: 22px;
+}
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput .industry i {
+  color: #21324E;
+  width: 100px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput .industry:after {
+  left: 0;
+}
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput .industry:before,
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput .area:after {
+  content: "";
+  height: 16px;
+  right: 0;
+  top: 12px;
+  position: absolute;
+  border-left: 1px solid #E5E5E5;
+}
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput .industry,
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput .area {
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+}
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput .search-value {
+  width: 439px;
+  max-width: 439px;
+}
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput input[type=text] {
+  height: 38px;
+  font-size: 14px;
+  text-indent: 34px;
+  vertical-align: top;
+  background: #fff;
+  border: none;
+  outline: none;
+}
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput .areaDetail {
+  width: 100%;
+  padding: 10px;
+  position: absolute;
+  top: 44px;
+  left: 0;
+  z-index: 2;
+  background: #fff;
+  -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput .areaDetail span {
+  display: inline-block;
+  height: 38px;
+  line-height: 38px;
+  margin: 0 10px 0 0;
+  padding: 0 8px;
+  font-size: 14px;
+  cursor: pointer;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 1px solid transparent;
+}
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput .areaDetail .chosen {
+  color: #f95714;
+  background: #F9F9F9;
+  border-radius: 2px;
+}
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput .pulldown {
+  width: 220px;
+  padding: 0;
+  position: absolute;
+  top: 44px;
+  right: -100px;
+  font-size: 14px;
+  background: #FFFFFF;
+  color: #394A66;
+  letter-spacing: 0;
+  -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+  z-index: 8;
+}
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput .pulldown li {
+  width: 100%;
+  padding: 0 0 0 14px;
+  list-style: none;
+  height: 34px;
+  line-height: 34px;
+}
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput .pulldown li:hover,
+.searchBeforePage .leaveSearchBefore .searchBox .searchInput .pulldown .active {
+  background: #F9F9F9;
+  color: #f95714;
+  cursor: pointer;
+}
+.searchBeforePage .leaveSearchBefore .searchBox .search {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0;
+  width: 80px;
+  line-height: 40px;
+  outline: none;
+  border: none;
+  background: #F95714;
+  border-radius: 2px;
+  font-size: 14px;
+  color: #FFFFFF;
+}
+.searchBeforePage .leaveSearchBefore .searchBox .hotIndustry {
+  height: 20px;
+  line-height: 20px;
+  width: 650px;
+  margin: 17px 0 0 20px;
+  font-size: 14px;
+  color: #97A2B3;
+  letter-spacing: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.searchBeforePage .foot .dynamicQuery,
+.searchBeforePage .foot .theNewestExposure {
+  -webkit-box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.08);
+          box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.08);
+  margin: 20px 0 0;
+}
+.searchBeforePage .foot .dynamicQuery .headLine,
+.searchBeforePage .foot .theNewestExposure .headLine {
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  color: #21324E;
+  letter-spacing: 0;
+  border-bottom: 1px solid #E5E5E5;
+}
+.searchBeforePage .foot .dynamicQuery .headLine img,
+.searchBeforePage .foot .theNewestExposure .headLine img {
+  margin: 0 8px 0 20px;
+  vertical-align: middle;
+}
+.searchBeforePage .foot .dynamicQuery .headLine span,
+.searchBeforePage .foot .theNewestExposure .headLine span {
+  vertical-align: middle;
+}
+.searchBeforePage .foot .scrollingBox {
+  padding: 27px 0 0;
+  height: 75px;
+  /* 中间样式 */
+}
+.searchBeforePage .foot .scrollingBox #moocBot {
+  height: 10px;
+  overflow: hidden;
+  /* 这个一定要加上，内容超出的部分要隐藏，免得撑高底部结构 */
+}
+.searchBeforePage .foot .scrollingBox #moocBox {
+  height: 20px;
+  margin-left: 25px;
+  overflow: hidden;
+  /* 这个一定要加，超出的内容部分要隐藏，免得撑高中间部分 */
+}
+.searchBeforePage .foot .dynamicQueryContent {
+  height: 75px;
+  overflow: hidden;
+}
+.searchBeforePage .foot .dynamicQueryContent i {
+  display: inline-block;
+  color: #97A2B3;
+  margin: 0 10px;
+}
+.searchBeforePage .foot .dynamicQueryContent em {
+  color: #F95714;
+  letter-spacing: 0;
+}
+.searchBeforePage .foot .theNewestExposure .exposureContent {
+  height: 300px;
+}
+.searchBeforePage .foot .theNewestExposure .exposureContent .swiper-wrapper {
+  padding: 0;
+}
+.searchBeforePage .foot .theNewestExposure .exposureContent .singleExposure {
+  display: inline-block;
+  padding: 18px 0 0;
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #E5E5E5;
+  border-radius: 4px;
+  text-align: center;
+}
+.searchBeforePage .foot .theNewestExposure .exposureContent .singleExposure .people {
+  margin: 0 0 10px 0;
+}
+.searchBeforePage .foot .theNewestExposure .exposureContent .singleExposure p {
+  line-height: 25px;
+  font-size: 14px;
+}
+.searchBeforePage .foot .theNewestExposure .exposureContent .singleExposure p i {
+  color: #97A2B3;
+}
+.searchBeforePage .foot .theNewestExposure .exposureContent .singleExposure .address,
+.searchBeforePage .foot .theNewestExposure .exposureContent .singleExposure .describe {
+  background: #F5F5F5;
+}
+.searchBeforePage .foot .theNewestExposure .exposureContent .singleExposure .describe {
+  color: #97A2B3;
+  width: 100%;
+  height: 58px;
+  margin: 10px 0 0;
+  padding: 7px 10px;
+  text-align: left;
+  position: relative;
+}
+.searchBeforePage .foot .theNewestExposure .exposureContent .singleExposure .address {
+  text-align: left;
+  height: 34px;
+  line-height: 34px;
+}
+.searchBeforePage .foot .theNewestExposure .exposureContent .singleExposure .address img {
+  padding: 0 5px 0 10px;
+  height: 10px;
+}
+.searchBeforePage .foot .carouselBox {
+  width: 100%;
+  padding: 20px;
+  margin: 20px 0 20px;
+  background: #fff;
+  -webkit-box-shadow: 0 0 2px 0 #E5E5E5;
+          box-shadow: 0 0 2px 0 #E5E5E5;
+}
+.searchBeforePage .foot .carouselBox .carousel {
+  width: 100%;
+  height: 100%;
+}
+.searchBeforePage .foot .carouselBox .carousel img {
+  width: 100%;
+  height: 100%;
+}
+.searchBeforePage .foot .carouselBox .swiper-wrapper {
+  padding: 0;
+}

@@ -1,0 +1,240 @@
+
+/* duanyanhong
+2018/11/30 */
+
+/* 重置样式 */
+.el-tree-node__expand-icon.expanded {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    color: #7A8699;
+}
+.el-tree {
+    position: relative;
+    cursor: default;
+    background: #fff;
+    color: #7A8699;
+}
+.el-t.el-tree-node__content:hove {
+  color:red;
+}
+.el-tree-node__content {
+  height: 55px;;
+}
+/* .el-tree-node:hover {
+  color:red;
+} */
+.el-icon-arrow-up:before {
+  width:5px;
+  font-weight: bolder;
+}
+.el-form-item__label {
+    color: #394A66;
+}
+.el-input__inner {
+background: #FAFBFC;
+border: 1px solid #E5E5E5;
+border-radius:0px;
+height: 35px;
+}
+.el-table th>.cell {
+    color: #394A66;
+}
+/* .add_dialog .el-dialog__body {
+  padding: 30px 140px;
+} */
+.el-dialog {
+    position: relative;
+    margin: 0 auto 50px;
+    background: #fff;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.3);
+    box-shadow: 0 1px 3px rgba(0,0,0,.3);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 560px;
+}
+.sty_dialogc.el-dialog .el-dialog__body    {
+  height: 440px;
+  /* overflow-x: hidden;
+  overflow-y: auto; */
+}
+.sty_dialogcs .el-dialog .el-dialog__body    {
+  height: 280px;
+  /* overflow-x: hidden;
+  overflow-y: auto; */
+}
+.sty_delete .el-dialog .el-dialog__body {
+  height:155px;
+  padding-top: 4px;
+}
+.sty_delete .el-dialog .el-dialog__header {
+  border-bottom:0px;
+}
+.ly_change .add_dialog .el-dialog__body {
+  /* padding:30px 126px; */
+}
+
+.el-form-item__label {
+  font-size:15px;
+  color:#748093;
+}
+.el-icon-caret-bottom:before {
+  content: "\E60B";
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.form_tree {
+  width:280px;
+  height:280px;
+  border: 1px solid #E5E5E5;
+  overflow-x:hidden;
+  overflow-y:auto;
+  text-align:center;
+}
+.content {
+  min-width: 1100px;
+}
+.form .item label[data-v-3c129d46] {
+  width: 143px;
+}
+.reset .form-group .uploadFile {
+  display: inline-block;
+width: 80px;
+height: 36px;
+margin-left: 15px;
+background: none;
+position: relative;
+cursor: pointer;
+position: relative;
+}
+.reset .form-group .uploadFile #img-preview {
+width: 120px;
+height: 34px;
+position: absolute;
+/* opacity: 0; */
+
+}
+
+.sty_input {
+height: 35px;
+width:100%;
+}
+input[type=text], input[type=email], input[type=password], textarea {
+text-indent: 12px;
+background-color: #fff;
+}
+.sty_dialogc .tree_sty {
+position: absolute;
+z-index: 10000;
+height: auto;
+box-shadow: 0px 2px 0.1px 1px #eee;
+width: 100%;
+overflow-x: auto;
+overflow-y: hidden;
+min-width: 174px;
+}
+/* .add_dialog .el-dialog__body {
+  padding: 20px 50px 20px 80px;
+} */
+.el-dialog.sty_dialogc {
+  width: 540px !important;
+}
+
+.sty_dialogc .el-dropdown-menu__item {
+    list-style: none;
+    line-height: 36px;
+    padding: 0 20px;
+    margin: 0;
+    font-size: 14px;
+    color: #606266;
+    cursor: pointer;
+    outline: 0;
+    border-bottom: 1px solid #eee;
+}
+.sty_dialogc .el-dropdown-menu {
+    padding: 0px 0px;
+}
+.sty_dialogc .icon_sty {
+  color:red;
+  position:absolute;
+  left: 35px;
+  top: 15px;
+}
+.sty_dialogc .el-form-item.is-required .el-form-item__label:before {
+    content: '';
+    color: #f56c6c;
+    margin-right: -99px;
+}
+.sty_dialogc .el-form-item.is-required label::after{
+    content: '*';
+    margin-left:4px;
+    color: #F95714;
+} 
+.sty_dialogc .el-dialog  .el-icon-date:before {
+    content: "\E608";
+    position: absolute;
+    right: -178px;
+    top: 15px;
+}
+.sty_dialogcs .el-dialog  .el-icon-date:before {
+  content: "\E608";
+  position: absolute;
+  right: -178px;
+  top: 15px;
+}
+
+.sty_dialogc .el-input--prefix .el-input__inner {
+    padding-left: 4px !important;
+}
+.sty_dialogc .el-textarea__inner {
+    padding: 5px 2px;
+}
+.tree_style .add_dialog .el-dialog__body {
+    padding: 10% 14%;
+}
+#re_style .el-input__inner {
+    padding: 0 1px !important;
+    /* color:#97A2B3; */
+}
+#re_style .el-textarea__inner {
+  width:350px;
+}
+.el-icon-arrow-down:before {
+    content: "\E603";
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+ .sty_dialogc .el-scrollbar__wrap {
+  overflow-x: hidden !important;
+ }
+ .fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to  {
+  opacity: 0;
+}
+.el-dialog.sty_dialogs {
+  width: 540px;
+}
+
+.company_tit {
+  text-align: left;
+  margin-left:20px;
+}
+
+.sty_tree  .el-tree-node__expand-icon {
+  font-size:15px;
+}
+.sty_tree  .el-tree-node__content:hover {
+    background-color: #f5f7fa;
+    color: #F95714 ;
+}
+.sty_tree  .el-tree-node__expand-icon:hover {
+   color: #F95714 ;
+}
+.sty_tree .el-scrollbar__wrap {
+  overflow-x: hidden !important;
+ }

@@ -1,0 +1,73 @@
+/*
+<!-- 
+    Author:周双
+    日期：2018/11/27
+-->
+*/
+.icon_reset {
+    display: inline-block;
+    width:20px; 
+    height:20px;
+    border-radius: 50%;
+    background-color:#507BE6 ;
+    color:#fff;
+    text-align:center;
+    margin: 10px;
+    border: none;
+}
+.btn_resite {
+    display: inline-block;
+    font-size: 14px;
+    color:#fff;
+    height: 40px;
+    width: auto;
+    text-align: center;
+    border: 1px solid #E5E5E5;
+    background-color: #F95714;
+    border-radius: 4px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+.btn_resite:hover{
+    background-color: #F95714;
+    color:#fff;
+}
+.notice-red{
+    color:#F95714
+}
+.form{
+    font-size: 0;
+    margin: -10px 35px 20px;
+}
+.form .item{
+    display: inline-block !important;
+    width: 50%;
+    font-size: 14px;
+}
+.form .item label{
+    width: 120px;
+}
+.el-date-editor.el-input, .el-date-editor.el-input__inner{
+    width: calc(100% - 140px);
+    min-width: 180px;
+    max-width: 300px;
+}
+.form .item input,.form .item select{
+    width: calc(100% - 140px);
+    min-width: 180px;
+    max-width: 300px;
+}
+.uploadLeaveInfo3 > button{
+    visibility: hidden;
+}
+.uploadLeaveInfo3:hover > button{
+    visibility:visible;
+}
+@media (max-width: 1200px) {
+    .form .item{
+        width: 100%;
+    }
+    .el-form-item{
+        width: 100%;
+    }
+}

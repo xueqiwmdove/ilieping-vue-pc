@@ -1,0 +1,402 @@
+.headline a {
+  width: auto;
+  padding: 0 10px;
+}
+.updateReport {
+  padding: 30px 20px ;
+  font-size: 14px;
+}
+.updateReport .report-title {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 36px;
+}
+.updateReport .update-title {
+  font-size: 16px;
+  letter-spacing: 0;
+  color: #394A66;
+  border-left: 4px solid #F95714;
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
+.updateReport .update-content {
+  background: #FAFBFC;
+  border: 1px solid #E5E5E5;
+  padding: 30px 20px;
+  margin-bottom: 30px;
+}
+.updateReport .update-content .form-group.form-last {
+  margin: 0;
+  vertical-align: top;
+}
+.updateReport .update-content .form-group.credit-parent label,
+.updateReport .update-content .form-group.credit-parent .danger-hint {
+  vertical-align: unset;
+}
+.updateReport .update-content .form-group {
+  width: 49%;
+  font-size: 0;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+.updateReport .update-content .form-group label {
+  text-align: right;
+  color: #748093;
+  font-size: 14px;
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  padding: 9px 0 9px 20px;
+}
+.updateReport .update-content .form-group label i {
+  color: #F95714;
+}
+.updateReport .update-content .form-group label #rem {
+  opacity: 0;
+  height: auto;
+}
+.updateReport .update-content .form-group label #rem + em {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  left: 10px;
+  background: url("../../img/dismission/方形选中前.png") no-repeat;
+}
+.updateReport .update-content .form-group label #rem:checked + em {
+  background: url("../../img/dismission/方形选中后.png") no-repeat;
+}
+.updateReport .update-content .form-group input[type=text],
+.updateReport .update-content .form-group select {
+  width: 240px;
+  height: 34px;
+  font-size: 14px;
+  text-indent: 12px;
+}
+.updateReport .update-content .form-group select {
+  display: inline-block;
+  border-radius: 0;
+}
+.updateReport .update-content .form-group input[type=checkbox] {
+  margin: 0 8px 0 10px;
+}
+.updateReport .update-content .form-group .time {
+  background: url("../../img/dismission/日历.png") no-repeat 207px;
+}
+.updateReport .update-content .form-group span {
+  font-size: 14px;
+}
+.updateReport .update-content .form-group .danger-hint {
+  cursor: pointer;
+  vertical-align: middle;
+  margin: 0 0 0 10px;
+}
+.updateReport .update-content .form-group .danger-hint:hover + .hover-info {
+  display: inline-block;
+}
+.updateReport .update-content .form-group .danger-hint-info {
+  color: #97A2B3;
+  margin: 0 0 0 8.7px;
+}
+.updateReport .update-content .form-group .hover-info {
+  display: none;
+  position: absolute;
+  margin: 6px 0 0 10px;
+  padding: 5px 10px;
+  font-size: 12px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+.updateReport .update-content .form-group .hover-info .triangle-left {
+  position: absolute;
+  left: -6px;
+}
+.updateReport .update-content .form-group .credit {
+  cursor: pointer;
+  display: inline-block;
+  width: 160px;
+  height: 34px;
+  margin-left: 10px;
+  line-height: 34px;
+  border-radius: 4px;
+  text-indent: 52px;
+  color: #394A66;
+  background: url("../../img/dismission/add.png") #ffffff no-repeat 27px;
+  border: 1px solid #E5E5E5;
+}
+.updateReport .update-content .form-group .credit.disabled {
+  color: #97A2B3;
+  background: url("../../img/dismission/添加-灰.png") #e5e5e5 no-repeat 27px;
+}
+.updateReport .update-content .content-title {
+  font-size: 24px;
+  height: 31px;
+  line-height: 31px;
+  text-align: center;
+  margin-top: 8px;
+}
+.updateReport .update-content .check-button {
+  display: inline-block;
+  width: 160px;
+  height: 40px;
+  line-height: 40px;
+  margin: 40px 0 0;
+  text-align: center;
+  color: #F95714;
+  background: #FFFFFF;
+  border: 1px solid #F95714;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.updateReport .update-content .content-hint {
+  font-size: 14px;
+  color: #748093;
+  margin: 10px 0 40px;
+}
+.updateReport .update-content .break-promise-behavior {
+  padding: 19px 20px;
+}
+.updateReport .update-content .break-promise-behavior .behavior-title {
+  font-size: 24px;
+  margin-bottom: 18px;
+}
+.updateReport .update-content .break-promise-behavior .behavior-title img {
+  margin-right: 15px;
+  vertical-align: middle;
+}
+.updateReport .update-content .break-promise-behavior .behavior-title span {
+  display: none;
+}
+.updateReport .update-content .break-promise-behavior .behavior-title span img {
+  cursor: pointer;
+}
+.updateReport .update-content .break-promise-behavior .behavior-title span .edit {
+  content: "|";
+  border-right: 2px solid #e5e5e5;
+  margin: 0 10px 0 0 ;
+  padding-right: 10px;
+}
+.updateReport .update-content .break-promise-behavior .behavior-title span .delete {
+  margin: 0;
+}
+.updateReport .update-content .break-promise-behavior .behavior-describe {
+  display: flex;
+}
+.updateReport .update-content .break-promise-behavior .behavior-describe em {
+  color: #97A2B3;
+  margin-right: 15px;
+  display: inline-block;
+}
+.updateReport .update-content .break-promise-behavior .behavior-describe p {
+  width: 90%;
+  display: inline-block;
+  line-height: 24px;
+  margin: -4px 0 0;
+}
+.updateReport .update-content .break-promise-behavior:hover {
+  border: 1px solid #F95714;
+  margin: -1px;
+}
+.updateReport .update-content .break-promise-behavior:hover .behavior-title span {
+  display: inline-block;
+}
+.updateReport .basic-content {
+  display: flex;
+}
+.updateReport .basic-content img {
+  margin: 20px 0;
+}
+.updateReport .basic-content div {
+  display: inline-block;
+  margin: 20px 0 20px 30px;
+  /* margin-top: -176px;
+      vertical-align: middle;*/
+}
+.updateReport .basic-content div p {
+  width: 49%;
+  display: inline-block;
+  height: 19px;
+  line-height: 19px;
+  margin-bottom: 15px;
+  /* span{
+           display: inline-block;
+           width: 120px;
+           height: 34px;
+           line-height: 34px;
+           font-size: 14px;
+           text-align: center;
+           background: #FFFFFF;
+           border: 1px solid #E5E5E5;
+           cursor: pointer;
+         }
+         .female{
+           background: url(../../img/dismission/女性-选中后.png) #fff no-repeat 34px;
+           border-right: none;
+         }
+         .female.checked{
+           background: url(../../img/dismission/女-白.png) #F95714 no-repeat 34px;
+           color: #fff;
+         }
+         .male{
+           background: url(../../img/dismission/男-蓝.png) #fff no-repeat 34px;
+         }
+         .male.checked{
+           background: url(../../img/dismission/男-白.png) #F95714 no-repeat 34px;
+           color: #fff;
+         }*/
+}
+.updateReport .basic-content div p em {
+  display: inline-block;
+  width: 63px;
+  color: #97A2B3;
+  text-align: right;
+  margin-right: 15px;
+}
+.updateReport .work-experience span {
+  display: inline-block;
+  height: 19px;
+  line-height: 19px;
+}
+.updateReport .work-experience .company {
+  width: 100%;
+  display: block;
+}
+.updateReport .work-experience .company .company-name {
+  font-size: 14px;
+  color: #394A66;
+  margin-left: 0;
+}
+.updateReport .work-experience .company span {
+  font-size: 12px;
+  color: #97A2B3;
+  margin-left: 10px;
+}
+.updateReport .work-experience .company span img {
+  vertical-align: middle;
+  margin-right: 4px;
+}
+.updateReport .work-experience .company .active {
+  color: #FC8E00;
+}
+.updateReport .work-experience .company .activing {
+  color: #F95714;
+}
+.updateReport .work-experience .work-describe {
+  display: flex;
+}
+.updateReport .work-experience .work-describe .describe-data {
+  width: 90%;
+}
+.updateReport .work-experience .work-describe .describe-data p {
+  width: 100%;
+  line-height: 24px;
+}
+.updateReport .work-experience .work-describe .describe-data,
+.updateReport .work-experience .work-describe em {
+  display: inline-block;
+}
+.updateReport .work-experience .work-describe em {
+  width: 63px;
+  text-align: right;
+  color: #97A2B3;
+  margin-right: 15px;
+  vertical-align: top;
+}
+.updateReport .work-experience > p {
+  width: 49%;
+  display: inline-block;
+  height: 19px;
+  line-height: 19px;
+  margin-bottom: 15px;
+}
+.updateReport .work-experience > p em {
+  display: inline-block;
+  width: 63px;
+  color: #97A2B3;
+  text-align: right;
+  margin-right: 15px;
+}
+.updateReport .leave-reason {
+  padding: 30px 0;
+  /*  .reason-num:hover{
+      background: #fff;
+      border: 1px solid #F95714;
+      .pull-right{display: inline-block;}
+    }*/
+}
+.updateReport .leave-reason .form-group {
+  margin: 0;
+  width: auto;
+}
+.updateReport .leave-reason .add-leave-reason {
+  display: inline-block;
+  width: 160px;
+  height: 34px;
+  margin-left: 20px;
+  line-height: 34px;
+  border-radius: 4px;
+  text-indent: 52px;
+  vertical-align: top;
+  border: 1px solid #e5e5e5;
+  color: #394A66;
+  background: url("../../img/dismission/add.png") #fafbfc no-repeat 27px;
+  /* color: #97A2B3;
+      border: none;
+      background: url("../../img/dismission/添加-灰.png") #E5E5E5 no-repeat 27px;*/
+}
+.updateReport .leave-reason .optionValue {
+  margin: 14px 0 11px;
+}
+.updateReport .leave-reason .reason-num {
+  height: 34px;
+  line-height: 34px;
+  border: 1px solid #FAFBFC;
+  padding-left: 94px;
+  padding-right: 22px;
+}
+.updateReport .leave-reason .reason-num span img {
+  cursor: pointer;
+}
+.updateReport .leave-reason .reason-num span .edit {
+  content: "|";
+  border-right: 2px solid #e5e5e5;
+  margin: 0 10px 0 0 ;
+  padding-right: 10px;
+}
+.updateReport .leave-reason .reason-num .pull-right {
+  display: none;
+}
+.updateReport .leave-reason .detail-describe {
+  display: flex;
+  padding: 0 20px;
+}
+.updateReport .leave-reason .detail-describe label {
+  text-align: right;
+  color: #748093;
+}
+.updateReport .leave-reason .detail-describe textarea {
+  width: 92%;
+  height: 107px;
+  margin-left: 17px;
+  padding: 7px 20px 5px 12px;
+  border: 1px solid #e5e5e5;
+}
+.updateReport .leave-reason .describe-total {
+  color: #97a2b3;
+  margin: 13px 0 0;
+  padding-right: 21px;
+}
+.updateReport .submit-parent {
+  margin: 56px 0 0;
+}
+.updateReport .submit-parent .submit {
+  width: 400px;
+  height: 44px;
+  color: #fff;
+  background: #F95714;
+  border-radius: 4px;
+  margin: 0 auto;
+}

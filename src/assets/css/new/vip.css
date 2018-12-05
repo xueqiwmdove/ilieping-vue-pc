@@ -1,0 +1,295 @@
+.content > .open-recruit {
+  margin: 20px 0 0 ;
+}
+#vip .modal-content {
+  width: 800px;
+  height: 500px;
+  border-radius: 0;
+}
+.open-recruit {
+  background: #FFFFFF;
+  color: #21324E;
+}
+.open-recruit .title {
+  font-size: 16px;
+  height: 50px;
+  border-bottom: 1px solid #E5E5E5;
+  text-indent: 23px;
+  padding: 13px 0;
+}
+.open-recruit .two-kinds {
+  display: inline-block;
+  width: 340px;
+  height: 160px;
+  background: #F8FAFC;
+  border: 1px solid #E5E5E5;
+  border-radius: 4px;
+  padding: 26px 0  39px 20px;
+  text-align: center;
+}
+.open-recruit .two-kinds p:first-child {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #E5E5E5;
+}
+.open-recruit .two-kinds p:last-child {
+  margin: 20px auto auto;
+}
+.open-recruit .two-kinds p {
+  width: 174px;
+  font-size: 16px;
+  margin: 0 auto;
+}
+.open-recruit .two-kinds p span {
+  font-size: 36px;
+}
+.open-recruit .stair {
+  border: 1px solid #F95714;
+  margin: 15px 20px 0 20px;
+  color: #f95714;
+  background: url(../../img/company/payCheck.png) no-repeat right bottom;
+}
+.open-recruit .stair p:first-child {
+  border-bottom: 1px solid #f95714;
+}
+.open-recruit .payFor {
+  padding: 0 0 0 20px;
+}
+.open-recruit .payFor h4 {
+  text-align: left;
+  margin: 27px 0;
+  border-left: 4px solid #f95714;
+  padding-left: 14px;
+  font-size: 16px;
+}
+.open-recruit .payFor p {
+  width: 160px;
+  height: 48px;
+  display: inline-block;
+  border: 1px solid #E5E5E5;
+}
+.open-recruit .payFor .alipay {
+  margin: 0 20px 0 0;
+  background: url(../../img/company/payfor.png) no-repeat center;
+}
+.open-recruit .payFor .weChart {
+  background: url(../../img/company/WeChat.png) no-repeat center;
+}
+.open-recruit .join-in {
+  display: block;
+  width: 149px;
+  height: 36px;
+  outline: none;
+  border-radius: 2px;
+  color: #fff;
+  background: #f95714;
+  margin: 66px auto 31px;
+}
+.recruit {
+  background: url(../../img/company/bg.png) no-repeat center;
+  background-size: 100%;
+  height: 240px;
+  margin: 0!important;
+  padding: 0 41px 0 31px;
+  text-align: center;
+}
+.recruit img {
+  display: block;
+  margin: 0 auto ;
+  padding: 25px 0 0;
+}
+.recruit .marks {
+  display: inline-block;
+  font-size: 48px;
+  color: #F95714;
+  background: none;
+  margin: 0;
+}
+.recruit div {
+  margin: 25px 0 0;
+}
+.recruit div p {
+  font-size: 14px;
+  color: #21324E;
+  letter-spacing: 0;
+  line-height: 24px;
+  padding: 0 40px 0 31px;
+  text-indent: 20px;
+}
+.recruit h4 {
+  font-size: 30px;
+  color: #282828;
+  letter-spacing: 0;
+  padding: 40px 0 0;
+}
+.recruit p {
+  font-size: 16px;
+  color: #748093;
+  margin: 12px 0  0;
+}
+.recruit p span {
+  position: relative;
+  padding: 0 0 0 13px;
+}
+.recruit p span i {
+  color: #f95714;
+}
+.recruit p span:first-child {
+  margin: 0 20px 0 0;
+}
+.recruit input {
+  width: 160px;
+  height: 44px;
+  margin: 40px 0 0;
+  font-size: 24px;
+  letter-spacing: 0.28px;
+  color: #fff;
+  border: none;
+  background: #F95714;
+  border-radius: 4px;
+}
+.allianceBox {
+  margin: 30px 0 36px!important;
+  background: #FFFFFF;
+  border: 1px solid #E5E5E5;
+  -webkit-box-shadow: 0 0 2px 0 #e5e5e5;
+          box-shadow: 0 0 2px 0 #e5e5e5;
+}
+.allianceBox .headLine {
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  padding: 0 20px;
+  text-align: left;
+  color: #21324E;
+  letter-spacing: 0;
+  border-bottom: 1px solid #e5e5e5;
+  clear: both;
+  position: relative;
+}
+.allianceBox .headLine i {
+  color: #f95714;
+}
+.allianceBox .headLine em {
+  color: #748093;
+  font-size: 14px;
+}
+.allianceBox .headLine .pull-right {
+  color: #748093;
+  font-size: 14px;
+  position: relative;
+}
+.allianceBox .headLine .pull-right img {
+  margin-left: 6px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.allianceBox .headLine .pull-right img:hover + .info {
+  display: inline-block;
+}
+.allianceBox .headLine .pull-right .triangle-up {
+  top: -6px;
+  position: absolute;
+  right: 13px;
+}
+.allianceBox .headLine .pull-right .info {
+  position: absolute;
+  right: -11px;
+  top: 40px;
+  width: 220px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  display: none;
+}
+.allianceBox ul {
+  clear: both;
+  text-align: center;
+}
+.allianceBox ul li:nth-child(2) {
+  margin: 30px 0 30px 20px;
+}
+.allianceBox ul li {
+  display: inline-block;
+  width: 120px;
+  height: 32px;
+  line-height: 32px;
+  margin: 30px 0;
+  text-align: center;
+  border: 1px solid #E5E5E5;
+  color: #394A66;
+  border-radius: 0;
+  cursor: pointer;
+}
+.allianceBox ul li.active {
+  border: none;
+  background: #F95714;
+  color: #fff;
+}
+.allianceBox .introduce {
+  padding: 0 30px;
+  text-align: left;
+}
+.allianceBox .introduce .title {
+  margin: 30px auto 31px;
+  text-align: center;
+  font-size: 20px;
+  color: #394A66;
+  letter-spacing: 0;
+}
+.allianceBox .introduce p {
+  font-size: 14px;
+  color: #748093;
+  letter-spacing: 0;
+  line-height: 24px;
+  text-indent: 20px;
+}
+.allianceBox .introduce p:last-child {
+  margin: 16px auto 60px;
+}
+.allianceBox .rules {
+  text-align: left;
+  height: auto;
+  padding: 0 30px;
+  display: none;
+}
+.allianceBox .rules .title {
+  font-size: 20px;
+  color: #394A66;
+  letter-spacing: 0;
+  margin: 31px auto 10px;
+  text-align: center;
+}
+.allianceBox .rules .rules_content .rules_title {
+  font-size: 18px;
+  color: #394A66;
+  margin: 20px 0 10px;
+}
+.allianceBox .rules .rules_content h4,
+.allianceBox .rules .rules_content h6,
+.allianceBox .rules .rules_content p {
+  min-height: 32px;
+  letter-spacing: 0;
+  line-height: 30px;
+}
+.allianceBox .rules .rules_content h6 {
+  font-size: 14px;
+  color: #394A66;
+  margin: 10px 0 2px;
+}
+.allianceBox .rules .rules_content p {
+  font-size: 14px;
+  color: #748093;
+  margin-bottom: 2px;
+}
+.allianceBox .rules .rules_content p:last-child {
+  margin-bottom: 31px;
+}
+.el-dialog.isVipContent {
+  width: 450px!important;
+}

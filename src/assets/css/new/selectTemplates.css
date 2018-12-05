@@ -1,0 +1,229 @@
+.signStepContent {
+  padding: 0 30px;
+}
+.signStepContent .signFirst {
+  border-bottom: 1px dashed #E5E5E5;
+  padding-bottom: 30px;
+}
+.signStepContent .signFirst .stepContent .contractBox,
+.signStepContent .signFirst .stepContent .contractInputs {
+  vertical-align: middle;
+}
+.signStepContent .signFirst .stepContent .contractBox {
+  width: 182px;
+  height: 208px;
+  background: #F8FAFC;
+  border: 1px solid #E5E5E5;
+  display: inline-block;
+}
+.signStepContent .signFirst .stepContent .contractBox .imgBox {
+  width: 100px;
+  height: 140px;
+  margin: 10px 40px;
+  border: 1px solid #F95714;
+  -webkit-box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.08);
+          box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.08);
+  background: url("../../../assets/img/contract/ic_xuanzhong.svg") #ffffff no-repeat bottom;
+}
+.signStepContent .signFirst .stepContent .contractBox .imgBox .title {
+  font-size: 12px;
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+  color: #394A66;
+  letter-spacing: 0;
+  margin: 10px 0 0;
+  padding: 0 20px;
+  text-align: center;
+}
+.signStepContent .signFirst .stepContent .contractBox .contractDetail {
+  height: 48px;
+  background: #E5E5E5;
+  letter-spacing: 0;
+  text-indent: 8px;
+}
+.signStepContent .signFirst .stepContent .contractBox .contractDetail p {
+  font-size: 14px;
+  height: 20px;
+  padding: 5px 0 0;
+  color: #394A66;
+}
+.signStepContent .signFirst .stepContent .contractBox .contractDetail em {
+  display: block;
+  height: 15px;
+  font-size: 12px;
+  margin: 2px 0 0;
+  color: #97A2B3;
+}
+.signStepContent .signFirst .stepContent .contractInputs {
+  display: inline-block;
+}
+.signStepContent .signFirst .stepContent .contractInputs .inputBox {
+  margin: 0 10px 20px 40px;
+  position: relative;
+  /*  .el-date-editor .el-range__icon,.el-input__icon{
+            position: absolute!important;
+            right: 5px!important;
+          }*/
+}
+.signStepContent .signFirst .stepContent .contractInputs .inputBox label {
+  display: inline-block;
+  width: 91px;
+  margin-right: 10px;
+  text-align: right;
+  font-size: 14px;
+  color: #748093;
+}
+.signStepContent .signFirst .stepContent .contractInputs .inputBox label i {
+  color: #f95714;
+}
+.signStepContent .signFirst .stepContent .contractInputs .inputBox input {
+  width: 300px;
+  height: 34px;
+  text-indent: 12px;
+  background: #fff;
+  border-radius: 0;
+}
+.signStepContent .signFirst .stepContent .contractInputs .inputBox .el-range-editor.el-input__inner {
+  border-radius: 0;
+}
+.signStepContent .signFirst .stepContent .contractInputs .inputBox .el-input__prefix {
+  right: 0px!important;
+  z-index: 0;
+}
+.signStepContent .signFirst .stepContent .contractInputs .inputBox .el-range-input {
+  height: 26px;
+  width: 100px;
+}
+.signStepContent .signFirst .stepContent .contractInputs .inputBox .el-date-editor .el-range-separator {
+  opacity: 0!important;
+}
+.signStepContent .signFirst .stepContent .contractInputs .inputBox .el-date-editor .el-range-input,
+.signStepContent .signFirst .stepContent .contractInputs .inputBox .el-date-editor .el-range-separator {
+  text-align: left!important;
+  text-indent: 5px;
+}
+.signStepContent .signFirst .stepContent .contractInputs .inputBox .el-input--prefix .el-input__inner {
+  padding: 0;
+}
+.signStepContent .signFirst .stepContent .contractInputs .inputBox .el-icon-date:before {
+  position: absolute;
+  right: 10px;
+  top: 11px;
+}
+.signStepContent .signFirst .stepContent .contractInputs .inputBox .el-input__icon.el-range__icon.el-icon-date:first-child {
+  width: 0;
+}
+.signStepContent .signFirst .stepContent .contractInputs .inputBox .danger-hint {
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: -25px;
+}
+.signStepContent .signFirst .stepContent .contractInputs .inputBox .danger-hint:hover + .hover-info {
+  display: inline-block;
+}
+.signStepContent .signFirst .stepContent .contractInputs .inputBox .hover-info {
+  display: none;
+  top: -7px;
+  right: -324px;
+  position: absolute;
+  margin: 6px 0 0 10px;
+  padding: 10px 15px;
+  font-size: 12px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+.signStepContent .signFirst .stepContent .contractInputs .inputBox .hover-info .triangle-left {
+  position: absolute;
+  left: -6px;
+}
+.signStepContent .signSecond .stepContent .addSignedEmployees {
+  width: 200px;
+  height: 40px;
+  font-size: 16px;
+  text-indent: 24px;
+  color: #394A66;
+  background: url("../../../assets/img/contract/ic_tianjiayuangong.svg") #f8fafc no-repeat 40px center;
+  border: 1px solid #E5E5E5;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+.signStepContent .signSecond .stepContent .addEmployeesDetail {
+  height: 120px;
+  line-height: 120px;
+  background: #F8FAFC;
+  border: 1px solid #E5E5E5;
+  font-size: 0;
+}
+.signStepContent .signSecond .stepContent .addEmployeesDetail .imgPhoto {
+  width: 80px;
+  height: 80px;
+  vertical-align: middle;
+  margin: 0 9px 0 22px;
+}
+.signStepContent .signSecond .stepContent .addEmployeesDetail label {
+  font-size: 14px;
+  color: #748093;
+  margin: 0  10px 0 20px;
+}
+.signStepContent .signSecond .stepContent .addEmployeesDetail span {
+  display: inline-block;
+  width: 180px;
+  height: 34px;
+  line-height: 34px;
+  text-indent: 10px;
+  font-size: 14px;
+  color: #394A66;
+  background: #E5E5E5;
+}
+.signStepContent .signSecond .stepContent .addEmployeesDetail .certification {
+  background: none;
+  width: auto;
+  text-indent: 0;
+}
+.signStepContent .signSecond .stepContent .addEmployeesDetail .certificationStatus {
+  margin: 0 8px 0 60px;
+}
+.signStepContent .signSecond .stepContent .addEmployeesDetail .hover_show {
+  display: inline-block;
+}
+.signStepContent .signSecond .stepContent .addEmployeesDetail .hover_show img {
+  cursor: pointer;
+}
+.signStepContent .signSecond .stepContent .addEmployeesDetail .hover_show img:first-child {
+  margin: 0 20px 0 0;
+}
+.signStepContent .signSecond .stepContent .addEmployeesDetail .pull-right {
+  float: right;
+  margin-right: 20px;
+}
+.signStepContent .signSecond .stepContent .addNext {
+  width: 400px;
+  height: 40px;
+  border: none;
+  text-align: center;
+  display: block;
+  margin: 47px auto 42px;
+  color: #fff;
+  background: #f95714;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.signStepContent .stepTitle {
+  height: 20px;
+  line-height: 20px;
+  margin: 30px 0;
+  font-size: 16px;
+  color: #394A66;
+  letter-spacing: 0;
+  text-indent: 10px;
+  border-left: 4px solid #f95714;
+}
+.el-dialog.signEmployeesDetailContent {
+  width: 540px;
+  height: 328px;
+}

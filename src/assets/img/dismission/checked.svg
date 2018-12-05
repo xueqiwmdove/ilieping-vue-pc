@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_checkbox_cb</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ic_checkbox_cb">
+            <g>
+                <rect id="Rectangle-Copy-13" fill="#F95714" x="0" y="0" width="14" height="14" rx="2"></rect>
+                <path d="M9.89020125,4.20673462 C10.134409,3.94132934 10.5413877,3.92996076 10.7991748,4.18135453 C11.0569936,4.43274831 11.0680372,4.85171083 10.8238294,5.11710797 L6.52099688,9.79328104 C6.25620281,10.0810494 5.80673225,10.0663467 5.56024151,9.76183446 L3.14904345,6.78325653 C2.92171711,6.50241665 2.95856077,6.08504801 3.23137292,5.85102426 C3.50418507,5.61700865 3.90962334,5.65493647 4.13695758,5.93577635 L6.09224195,8.30909592 L9.89020125,4.20673462 Z" id="choose-copy-4" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

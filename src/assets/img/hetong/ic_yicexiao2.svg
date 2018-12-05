@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>hetong/ic_yicexiao2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0.00205882353 0.00933782378 13.8585588 0.00933782378 13.8585588 13.8677 0.00205882353 13.8677"></polygon>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="hetong/ic_yicexiao2">
+            <g>
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Clip-2"></g>
+                <path d="M6.16205882,9.99806806 L2.32605882,6.92918571 L6.16247059,3.09277394 L6.16247059,5.39453865 C8.64211765,5.68030335 11.5331176,6.70189159 11.5331176,9.99765629 C10.0330588,8.60630335 8.01541176,7.69547982 6.16247059,7.69547982 L6.16247059,9.99765629 L6.16205882,9.99765629 L6.16205882,9.99806806 Z M6.92917647,9.23504658e-06 C3.108,-0.00616723554 0.00576470588,3.08659747 0,6.90777394 L0,6.92918571 C0,10.7487151 3.10841176,13.8583622 6.92917647,13.8583622 C10.7491176,13.8583622 13.8583529,10.7487151 13.8583529,6.92918571 C13.8583529,3.108421 10.7491176,9.23504658e-06 6.92917647,9.23504658e-06 Z" id="Fill-1" fill="#FFFFFF" mask="url(#mask-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>

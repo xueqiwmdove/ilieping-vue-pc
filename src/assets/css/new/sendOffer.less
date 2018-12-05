@@ -1,0 +1,325 @@
+.sendOfferMain{
+  .personDataBox{
+    padding: 0 20px;
+    .personData{
+      .title{
+        font-size: 16px;
+        color: #394A66;
+        letter-spacing: 0;
+        border-left: 4px solid #f95714;
+        padding: 0 0 0 10px;
+        margin: 30px 0 20px;
+      }
+      .items{
+        position: relative;
+        .addBonus{
+          position: absolute;
+          vertical-align: middle;
+          cursor: pointer;
+          top: 28px;
+          left: 382px;
+        }
+      }
+      .inputBox{
+        width: 100%;
+        background: #FAFBFC;
+        border: 1px solid #E5E5E5;
+        padding: 30px 20px;
+        .input-group{
+          font-size:0;
+
+          .deleteBonus{
+            vertical-align: middle;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            margin: 0 0 0 10px;
+          }
+
+          label{
+            font-size: 14px;
+            color: #748093;
+            margin:0 10px 0 0;
+            vertical-align:middle;
+            i{
+              color: #f95714;
+            }
+          }
+          input{
+            width: 300px;
+            height: 34px;
+            font-size: 14px;
+            background: #FFFFFF;
+            border: 1px solid #E5E5E5;
+            text-indent: 12px;
+            border-radius: 0;
+          }
+          input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {
+            color: #97A2B3;
+          }
+          input:-ms-input-placeholder,textarea:-ms-input-placeholder  {
+            color: #97A2B3;
+          }
+          input::-ms-input-placeholder,textarea::-ms-input-placeholder {
+            color: #97A2B3;
+          }
+          input::placeholder,textarea::placeholder {
+            color: #97A2B3;
+          }
+          textarea{
+            width:100%;
+            height: 100px;
+            background: #FFFFFF;
+            border: 1px solid #E5E5E5;
+          }
+          .reportTime{
+            .el-input__icon{
+              position: absolute;
+              left: 263px;
+            }
+          }
+          .el-input__inner{
+            padding: 0;
+            color: #394A66;
+          }
+
+          .salary,.bonus{
+            width: 166px;
+            margin: 0 10px 0 0;
+          }
+          .salarySelect,.bonusSelect{
+            width: 124px;
+            border-radius: 0;
+            vertical-align: middle;
+            .el-input__inner{
+              width: 100%;
+              border-radius: 0;
+              padding: 0;
+              color: #394A66;
+            }
+          }
+        }
+        .items{
+          display: inline-block;
+          width: 49%;
+          vertical-align: top;
+          .special{
+            margin: 20px 0;
+          }
+          .input-group{
+            //display: inline-block;
+            label{
+              min-width: 50px;
+              text-align: right;
+            }
+          }
+        }
+        .special_textarea{
+          label{
+            vertical-align: top;
+          }
+          textarea{
+            width: 90%;
+          }
+        }
+        .departmentTreeBox{
+          position: relative;
+          .addDepartment{
+            cursor: pointer;
+            vertical-align: middle;
+            margin: 0 0 0 10px;
+          }
+          .department{
+            cursor: pointer;
+          }
+          .treePullDown{
+            position: absolute;
+            top: 36px;
+            left: 42px;
+            width: 300px;
+            height: 327px;
+            padding:0 0 4px 0;
+            background: #FFFFFF;
+            box-shadow: 0 0 4px 0 rgba(0,0,0,0.20);
+            z-index: 2;
+            .filterInput{
+              background: #F9F9F9;
+              padding: 7px 20px;
+              .el-input__inner{
+                width: 260px;
+              }
+            }
+            .departmentTree{
+              padding-left: 20px;
+              .el-tree-node.is-expanded.is-focusable{
+                /*.el-icon-caret-right:before{
+                  content: "\E60E";
+                }*/
+              }
+              .el-tree-node__content{
+                height: 34px;
+              }
+              .el-icon-caret-right:before{
+                font-size: 16px;
+                color: #c0c4cc;
+              }
+              .el-tree-node__content:hover{
+                background: #F9F9F9;
+                .el-icon-caret-right:before{
+                  color: #f95714;
+                  font-size: 16px;
+                }
+                .el-tree-node__label{
+                  color: #f95714;
+                }
+              }
+            }
+
+          }
+        }
+      }
+    }
+    .nextButton{
+      text-align: center;
+      margin: 45px 0 55px;
+      .sendOfferNext{
+        width: 400px;
+        height: 44px;
+        background: #F95714;
+        border-radius: 4px;
+        color: #fff;
+        cursor: pointer;
+        border: none;
+        outline: none;
+      }
+    }
+  }
+
+}
+.el-dialog.newDepartAlert_Content{
+  width: 540px;
+  height: 272px;
+  .department,.selectDepartment{
+    width: 280px;
+    height: 34px;
+    background: #fff;
+    border: 1px solid #E5E5E5;
+  }
+  .input-group{
+    text-align: center;
+    margin: 0 0 20px 0;
+    position: relative;
+    label{
+      margin: 0 20px 0 0;
+      font-size: 14px;
+      color: #748093;
+    }
+    .treePullDown{
+      position: absolute;
+      top: 36px;
+      left: 149px;
+      width: 280px;
+      height: 327px;
+      padding:0 0 4px 0;
+      background: #FFFFFF;
+      box-shadow: 0 0 4px 0 rgba(0,0,0,0.20);
+      z-index: 2;
+      .filterInput{
+        background: #F9F9F9;
+        padding: 7px 12px;
+        border-radius: 0;
+        .el-input__inner{
+          width: 256px;
+        }
+      }
+      .departmentTree{
+        text-indent: 12px;
+        .el-tree-node__content{
+          height: 34px;
+        }
+        .el-icon-caret-right:before{
+          font-size: 16px;
+        }
+        .el-tree-node__content:hover{
+          background: #F9F9F9;
+          .el-icon-caret-right:before{
+            color: #f95714;
+          }
+          .el-tree-node__label{
+            color: #f95714;
+          }
+          .el-tree-node__expand-icon.el-icon-caret-right.is-leaf{
+            content: "";
+          }
+        }
+        .el-tree-node__expand-icon.expanded{
+          margin-bottom: 10px;
+        }
+      }
+
+    }
+  }
+  .dialog-footer{
+    margin: 4px 0;
+    .el-button.el-button--primary{
+      background: #f95714;
+      border-color: #f95714;
+    }
+  }
+}
+.sendOfferSteps{
+  height: 148px;
+  text-align: center;
+  background: #F8FAFC;
+  .sendOffer-status{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 30px 0 0;
+    .step_a{
+      display: inline-block;
+      width:200px;
+      height: 3px;
+      background: #DFE3E8;
+      margin: 0 -4px 23px;
+    }
+    .sendOffer_one,.sendOffer_three,.sendOffer_two{
+      display: inline-block;
+      height: 88px;
+      text-align: left;
+      span{
+        display: inline-block;
+        text-indent: -8px;
+        margin: 20px 0 0;
+        font-size: 16px;
+        color: #394A66;
+        font-family: "MicrosoftYaHei";
+      }
+      /* div{
+         position: relative;
+       }
+       div:before{
+         content: '';
+         position: absolute;
+         top: 23px;
+         width:200px;
+         height: 3px;
+         background: #DFE3E8;
+       }*/
+    }
+    .sendOffer_three{
+
+      span{
+        width: 100%;
+      }
+    }
+  }
+}
+
+input[type=number] {
+  -moz-appearance:textfield;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
