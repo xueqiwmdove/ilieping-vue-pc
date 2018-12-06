@@ -17,11 +17,11 @@
                  <div class='content_pad'>
                   <div class="but_stys">
                     <p class="font_s">招聘中职位</p>
-                    <i class="num_s">24</i><em class="el-icon-upload icon_s"></em>
+                    <i class="num_s">24</i><em class=" icon_s"><img src="../../assets/img/zhiwei/zhiwei_ic_recruitment_pre.png" alt=""></em>
                   </div>
                    <div class="but_stys btn_s">
                     <p class="font_s">停止招聘</p>
-                    <i class="num_s">24</i><em class="el-icon-upload icon_s"></em>
+                    <i class="num_s">24</i><em class=" icon_s"><img src="../../assets/img/zhiwei/zhiwei_ic_notrecruitment.png" alt=""></em>
                   </div>
                   <div class="search">
                      <el-input  class="input_search" placeholder="输入你想搜索的内容" >
@@ -181,7 +181,7 @@ export default {
 }
 .content_pad .but_stys .icon_s {
   position: absolute;
-  top:51px;
+  top:20px;
   right:13px;
   font-size: 18px;
 }

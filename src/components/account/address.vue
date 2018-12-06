@@ -256,6 +256,7 @@ export default {
 							 that.$message.success(res.data.msg)
 								that.getaddress()
 								that.flag9=false
+								that.flag =false
             }else{
             that.$message.error(res.data.msg);
             }
