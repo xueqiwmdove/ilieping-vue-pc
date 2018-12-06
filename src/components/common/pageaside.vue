@@ -268,9 +268,9 @@ export default {
     		this.flag=a;
     		this.$router.push('/account');
       },
-      click_potion(){//职位管理
+      click_potion(a){//职位管理
         this.flag=a;
-    		this.$router.push('/account');
+    		this.$router.push('/jobmanageindex');
       },
       click_company(a) {//企业资料
       	this.flag=a;
@@ -435,6 +435,12 @@ export default {
 				that.isShow3=true;
 				that.before3=false;
 				that.after3=true;
+      }else if(loginUrl=='jobmanageindex'){
+				let that=this;
+        that.flag=6;
+				that.isShow6=true;
+				that.before6=false;
+				that.after6=true;
       }
 		},
 }

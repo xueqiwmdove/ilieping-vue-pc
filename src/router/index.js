@@ -80,6 +80,12 @@ import previewOffer from '@/components/entryManagement/previewOffer'//预览offe
 import sendSuccess from '@/components/entryManagement/sendSuccess'//发送成功
 import emailInfo from '@/components/entryManagement/emailInfo'//邮件接收成功
 
+//招聘管理
+import jobManageIndex from '@/components/jobManagement/index'//职位管理首页
+import createPosition from '@/components/jobManagement/CreatePosition'//职位管理首页
+
+
+
 //账号管理
 import businessManager from '@/components/account/businessManager'//企业经办人
 import businessCert from '@/components/account/certificate' //企业认证
@@ -422,11 +428,21 @@ const router =new Router({
       name: 'insertSuccess',
       component: insertSuccess,
     },
-	{
-      path: '/customContractTemplate',
-      name: 'customContractTemplate',
-      component: customContractTemplate,
-	}
+    {
+        path: '/customContractTemplate',
+        name: 'customContractTemplate',
+        component: customContractTemplate,
+    },
+    {//职位管理首页
+        path: '/jobmanageindex',
+        name: 'jobmanageindex',
+        component: jobManageIndex,
+    },
+     {//职位管理创建职位
+      path: '/createposition',
+      name: 'createposition',
+      component: createPosition,
+  },
   ]
 });
 
