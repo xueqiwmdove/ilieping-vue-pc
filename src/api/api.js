@@ -1,8 +1,8 @@
 // let Butterfly="http://101.132.66.158:8899/jersey/";
 // let Butterfly="http://127.0.0.1:8899/jersey/";
-let Butterfly="http://192.168.2.166:8891/jersey/";//测试ip
+let Butterfly="http://192.168.2.166:8899/jersey/";//测试ip
 //let Butterfly="http://192.168.6.6:8891/jersey/";//薛尧
-//  let Butterfly="http://192.168.6.209:8891/jersey/";//潘述钱ip
+ // let Butterfly="http://192.168.6.209:8899/jersey/";//潘述钱ip
 // let Butterfly="http://192.168.6.208:8891/jersey/";//郭峰ips
 // let Butterfly="http://192.168.6.207:8891/jersey/";//施玮ip
 

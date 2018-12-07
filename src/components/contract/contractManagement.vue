@@ -836,7 +836,9 @@
 	      if(that.selectfileValue===0){//点击逾期未签传当前时间值
 	      	nowTime=that.nowTimeStr;
 					that.selectfileValue="";
-	      }else{
+	      }else if(that.selectfileValue===1 || that.selectfileValue===2){//待员工、待我签
+					nowTime=that.nowTimeStr;
+				}else{
 	      	nowTime="";
 	      }
 	      let params={
