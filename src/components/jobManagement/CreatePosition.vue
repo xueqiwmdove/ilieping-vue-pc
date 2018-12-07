@@ -14,6 +14,7 @@
                     <span>添加招聘职位</span>
                 </p>
                 <el-row>
+              <!--创建职位左侧栏  -->
                   <el-col :span='5' >
                     <div class="asidePosition">
                         <h4>职位设置</h4>
@@ -72,60 +73,132 @@
                         </div>
                     </div>  
                   </el-col> 
+              <!--创建职位右边部分  -->
                   <el-col :span='19' >
                     <div class="positionTable">
                        <h4>职位信息</h4> 
-                          <el-form :model="makeNormal"  ref="makeNormal" id="re_style">
-                            <el-row class="row_sty">
-                                <span>职位名称<img src="../../assets/img/zhiwei/zhiwei_ic_bitian.png" alt="">
-                                    <el-input placeholder="请输入内容"></el-input>
-                                </span>
-                                <span>用人部门<img src="../../assets/img/zhiwei/zhiwei_ic_bitian.png" alt="">
-                                    <el-input placeholder="请输入内容"></el-input>
-                                </span>  
-                                <span>职位性质<img src="../../assets/img/zhiwei/zhiwei_ic_bitian.png" alt="">
-                                    <el-radio-group >
-                                        <el-radio-button label="全职"></el-radio-button>
-                                        <el-radio-button label="兼职"></el-radio-button>
-                                        <el-radio-button label="实习"></el-radio-button>
-                                    </el-radio-group>
-                                </span>
-                            </el-row>
-                            <el-row class="row_sty">
-                                <span>工作城市
-                                    <el-input placeholder="请输入内容"></el-input>
-                                </span>
-                                <span>薪资范围
-                                    <el-input placeholder="请输入内容"></el-input>
-                                </span>  
-                                <span>工作经验
-                                    <el-select v-model="makeNormal.region" placeholder="请选择活动区域">
-                                        <el-option label="应届毕业生" value="0"></el-option>
-                                        <el-option label="一年以下" value="1"></el-option>
-                                        <el-option label="1-3年" value="2"></el-option>
-                                        <el-option label="3-5年" value="3"></el-option>
-                                        <el-option label="5-10年" value="4"></el-option>
-                                        <el-option label="10年以上" value="4"></el-option>
-                                    </el-select>
-                                </span>
-                            </el-row>
+                        <el-form :model="makeNormal"  ref="makeNormal" id="re_style">
                               <el-row class="row_sty">
-                                <span>职位名称
-                                    <el-input placeholder="请输入内容"></el-input>
-                                </span>
-                                <span>用人部门
-                                    <el-input placeholder="请输入内容"></el-input>
-                                </span>  
-                            </el-row>
-                            <el-row>
-                              <el-form-item label="评价备注">
-                                    <el-input type="textarea" style="width:100%;" placeholder="请输入评价"></el-input>
-                               </el-form-item>
-                            </el-row>
-                            </el-form>
+                                  <el-col :span='6' >
+                                      <el-form-item label="">
+                                        <span>职位名称<img src="../../assets/img/zhiwei/zhiwei_ic_bitian.png" alt="">
+                                            <el-input placeholder="请输入职位名称"></el-input>
+                                        </span>
+                                    </el-form-item>
+                                  </el-col>
+                                  <el-col :span='6'  :offset="2">
+                                    <el-form-item label="" v-clickoutside="handleClose2">
+                                        <span>用人部门<img src="../../assets/img/zhiwei/zhiwei_ic_bitian.png" alt="">
+                                            <el-input v-model="makeNormal.detpart"  @click.native="treeClick"   class="el-icon-arrow-down"  placeholder="请输入内容"></el-input>
+                                             <div v-if="treeVisabled" class="form_tree" >
+                                                    <treeSearch  :tree-datas="treeDatas" v-on:treeHiden='getstatus' v-on:getId="getLabel" ></treeSearch>
+                                              </div>
+                                        </span>  
+                                    </el-form-item>
+                                  </el-col> 
+                                  <el-col :span='6'  :offset="2"> 
+                                      <el-form-item label="">
+                                          <span>职位性质<img src="../../assets/img/zhiwei/zhiwei_ic_bitian.png" alt="">
+                                            <el-radio-group v-model="radio" >
+                                                <el-radio-button label="0" >全职</el-radio-button>
+                                                <el-radio-button label="1">兼职</el-radio-button>
+                                                <el-radio-button label="2">实习</el-radio-button>
+                                            </el-radio-group>
+                                          </span>
+                                      </el-form-item>
+                                  </el-col>    
+                              </el-row>
+                              <el-row class="row_sty">
+                                 <el-col :span='6'>  
+                                    <el-form-item label="">
+                                        <span>工作城市
+                                              <el-select v-model="makeNormal.region1" placeholder="请选择活动区域">
+                                                <el-option label="上海陆家嘴" value="0"></el-option>
+                                                <el-option label="上海静安寺" value="1"></el-option>
+                                                <el-option label="上海松江" value="2"></el-option>
+                                            </el-select>
+                                        </span>
+                                        <i class="tixin"><img src="../../assets/img/zhiwei/cuowu.png" alt="">如果同个职位在多个城市招聘，请分开添加招聘职位</i>
+                                    </el-form-item>
+                                  </el-col> 
+                                  <el-col :span='6'  :offset="2">  
+                                      <el-form-item label="">   
+                                        <span>薪资范围 <br>
+                                            <el-input class="qian" style="width:130px" ></el-input><i style="color:#D8D8D8;"> — </i>
+                                            <el-input class="qian" style="width:130px" ></el-input>
+                                        </span>
+                                      </el-form-item>
+                                  </el-col>
+                                  <el-col :span='6'  :offset="2">  
+                                      <el-form-item label="">     
+                                        <span>工作经验
+                                            <el-select v-model="makeNormal.region" placeholder="请选择活动区域">
+                                                <el-option label="应届毕业生" value="0"></el-option>
+                                                <el-option label="一年以下" value="1"></el-option>
+                                                <el-option label="1-3年" value="2"></el-option>
+                                                <el-option label="3-5年" value="3"></el-option>
+                                                <el-option label="5-10年" value="4"></el-option>
+                                                <el-option label="10年以上" value="4"></el-option>
+                                            </el-select>
+                                        </span>
+                                      </el-form-item>
+                                  </el-col>
+                              </el-row>
+                              <el-row class="row_sty">
+                                 <el-col :span='6'>  
+                                    <el-form-item label="">
+                                      <span>学历要求
+                                            <el-select v-model="makeNormal.type" placeholder="请选择活动区域">
+                                              <el-option label="研究生（博士及以上）" value="0"></el-option>
+                                              <el-option label="研究生（MBA）" value="1"></el-option>
+                                              <el-option label="研究生（硕士）" value="2"></el-option>
+                                              <el-option label="本科" value="3"></el-option>
+                                              <el-option label="大专" value="4"></el-option>
+                                              <el-option label="高中（中专）及以学历" value="5"></el-option>
+                                          </el-select>
+                                      </span>
+                                    </el-form-item>
+                                  </el-col> 
+                                  <el-col :span='6'  :offset="2">  
+                                      <el-form-item label="">
+                                        <span>招聘人数
+                                            <el-input placeholder="请输入招聘人数"></el-input>
+                                        </span>
+                                      </el-form-item>
+                                  </el-col>  
+                              </el-row>
+                              <el-row class="area_sty">
+                                  <el-form-item label="职位描述"><br>
+                                        <el-input type="textarea" :rows='7' style="width:1050px;" placeholder="请输入职位描述"></el-input>
+                                  </el-form-item>
+                             </el-row>
+                             <el-row>
+                               <el-col>
+                                  <el-button class="createBut">创建职位</el-button>
+                               </el-col>
+                             </el-row>  
+                        </el-form>
                     </div>  
                   </el-col> 
                 </el-row>
+              <!-- 弹窗-添加招聘负责人 -->
+                  <el-dialog title="添加招聘负责人" width="540px" :visible.sync="cerateLd" class="create_dialog" custom-class="create_dialog" :before-close="closeCreate" >
+                          <el-form :model="cerateList"  ref="cerateList"  id="re_style">
+                              <el-row>
+                                    <el-form-item label="变更为" >
+                                      <el-input  @click.native="ldClick"  v-model="cerateList.region"  placeholder="选择招聘负责人"  class="el-icon-arrow-down"></el-input>
+                                            <div v-if="ldVisabled" class="form_tree tree_sty" >
+                                                <treeSelect  :tree-datas="treeDatas" v-on:getIds="getIds"></treeSelect>
+                                            </div>
+                                    </el-form-item>
+                              </el-row>
+                            </el-form>
+                            <div slot="footer" class="dialog-footer">
+                                  <el-button type="primary"   style="height:36px;">确 定</el-button>
+                                  <el-button  style="height:36px;">取 消</el-button>
+                            </div>
+                  </el-dialog>
+                <!-- end-->
             </div>
         </div>      
     </div>        
@@ -140,44 +213,118 @@
   import {format} from '@/assets/js/date.js'
   import pageheader from '@/components/common/pageheader';
   import pageaside from '@/components/common/pageaside';
-
+  import treeSearch from '@/components/common/treeSearch'
+// duanyanhong
+// 2018.12.2
+// 自定义控制员工架构下拉框点击空白处隐藏
+const clickoutside = {
+    // 初始化指令
+    bind(el, binding, vnode) {
+        function documentHandler(e) {
+            if (el.contains(e.target)) {
+                return false;
+            }
+            if (binding.expression) {
+                binding.value(e);
+            }
+        }
+        el.__vueClickOutside__ = documentHandler;
+        document.addEventListener('click', documentHandler);
+    },
+    update() {},
+    unbind(el, binding) {
+        // 解除事件监听
+        document.removeEventListener('click', el.__vueClickOutside__);
+        delete el.__vueClickOutside__;
+    },
+};
 export default {
   name: 'jobmanageindex',
 	components: {
-	pageheader,
+   	pageheader,
     pageaside,
+    treeSearch,
 	},
    data() {
       return {
        signs1:false,//左侧tab切换显示隐藏
        signs2:true,//左侧tab切换显示隐藏
        isShow:true,//招聘负责人显示隐藏
+       treeVisabled:false,//人事部门
+       cerateLd:false,//添加负责人弹窗
+       ldVisabled:false,
+       treeDatas:[],
+       cerateList:{
+         region:''
+       },
        makeNormal:{
-          region:'', 
+          region:'',
+          region:'',
+          type:'' ,
+          detpart:''
        },
        radio7: '1',
+       radio:'0'
       };
     },
     watch:{
        
       },
+   directives: {clickoutside},
     methods: {
+  // 获取员工架构
+      getTree() {
+          // that.$emit('updataTree')
+          let that = this
+          this.$http({
+            method:"get",
+            url:api.treeList,
+            headers:headers('application/json;charset=utf-8'),
+            cache:false
+          }).then(function(res){
+            if(res.data.code==10000 || res.data.data==null){
+              that.treeDatas = res.data.data
+            }else{
+            that.$message.error(res.data.msg);
+            }
+          });
+      },
+      handleClose2() {
+        this.treeVisabled=false
+      },
    //招聘
-   recruitPosition(val) {
-       console.log(val)
-     if(val=='0') {
-       this.signs1 = false
-       this.signs2 = true   
-     }else {
-       this.signs1 = true
-       this.signs2 = false     
-     }  
-   }     
+      recruitPosition(val) {
+          console.log(val)
+        if(val=='0') {
+          this.signs1 = false
+          this.signs2 = true   
+        }else {
+          this.signs1 = true
+          this.signs2 = false     
+        }  
+      }, 
+      positionS(val) {
+        console.log(val)
+      },
+      treeClick() {
+       this.treeVisabled=!this.treeVisabled
+      }, 
+      ldClick() {
+        this.cerateLd = !this.cerateLd
+      },
+    // 获取label
+      getLabel(val){
+        this.makeNormal.detpart=val.label
+      },
+      getstatus() {
+        this.treeVisabled = false
+      }   
     },
     mounted() {
+
     },
     created() {
-
+      this.getTree()
     }
 }
 </script>
@@ -279,8 +426,8 @@ export default {
        color: #394A66;
        font-size: 14px;
        line-height: 40px;
-       margin-right:124px;
-       margin-top: 30px;
+       /* margin-right:124px; */
+       margin-top: 15px;
    }
    .positionTable .row_sty span:nth-child(3) {
        margin-right: 0px;
@@ -300,6 +447,36 @@ export default {
    .content {
      min-width: 1366px;;  
    }
+   .row_sty .qian::before {
+     content: 'K';
+     position: absolute;
+     right:10px;
+   }
+   .row_sty .tixin {
+     font-size: 12px;
+     display: inline-block;
+     color:#F95714;
+   }
+   .createBut {
+     background: #F95714;
+     border-radius: 4px;
+     height: 40px;
+     width: 220px;
+     color: #fff;
+     margin-top: 100px;
+     margin-left:35%;
+   }
+   .form_tree {
+      width:300px;
+      height:280px;
+      border: 1px solid #E5E5E5;
+      text-align:center;
+      overflow-x: hidden;
+      overflow-y: auto;
+      z-index: 44;
+      position: absolute;
+      background-color: #fff;
+    }
 </style>
 <style>
 .date_sty .el-icon-date:before {
@@ -321,6 +498,22 @@ export default {
  .positionTable input[type=text], input[type=email], input[type=password], textarea {
     text-indent: 12px;
     padding-left: 0px;
+} 
+.row_sty .el-radio-button__orig-radio:checked+.el-radio-button__inner {
+  background-image: url('../../assets/img/zhiwei/zhiwei_ic_choose.png');
+  background-repeat:no-repeat;
+  background-position:100% 100%;
+  border-color:#F95714;
+  background-color: #fff;
+  color:#F95714;
+}
+#re_style .el-icon-arrow-down:before {
+    content: "\E603";
+    position: absolute;
+    top: 15px;
+    left: 265px;
+    color: #AAADB5;
+    cursor: pointer;
 }
 </style>
 

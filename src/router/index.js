@@ -82,7 +82,8 @@ import emailInfo from '@/components/entryManagement/emailInfo'//邮件接收成�
 
 //招聘管理
 import jobManageIndex from '@/components/jobManagement/index'//职位管理首页
-import createPosition from '@/components/jobManagement/CreatePosition'//职位管理首页
+import createPosition from '@/components/jobManagement/CreatePosition'//创建职位
+import searchPage from '@/components/jobManagement/searchPage'//职位管理搜索页
 
 
 
@@ -438,11 +439,16 @@ const router =new Router({
         name: 'jobmanageindex',
         component: jobManageIndex,
     },
-     {//职位管理创建职位
-      path: '/createposition',
-      name: 'createposition',
-      component: createPosition,
-  },
+    {//职位管理创建职位
+    path: '/createposition',  
+    name: 'createposition',
+    component: createPosition,
+    },
+     {//职位管理搜索页
+      path: '/searchPage',  
+      name: 'searchPage',
+      component: searchPage,
+      },
   ]
 });
 

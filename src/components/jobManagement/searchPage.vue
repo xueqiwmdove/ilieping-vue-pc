@@ -9,31 +9,20 @@
           </div>
           <!--右侧内容栏-->
         <div class="right-content pull-right">
-            <div class="content content_stys">
+            <div class="content content_sty">
                 <p class="headline">
                     <span>职位管理</span>
                 </p>
-              <div style="padding:5px 20px;">  
                 <!-- 搜索栏 -->
                  <div class='content_pad'>
-                    <div class="but_stys">
-                      <p class="font_s">招聘中职位</p>
-                      <i class="num_s">24</i><em class=" icon_s"><img src="../../assets/img/zhiwei/zhiwei_ic_recruitment_pre.png" alt=""></em>
-                    </div>
-                    <div class="but_stys btn_s">
-                      <p class="font_s">停止招聘</p>
-                      <i class="num_s">24</i><em class=" icon_s"><img src="../../assets/img/zhiwei/zhiwei_ic_notrecruitment.png" alt=""></em>
-                    </div>
-                    <div class="search">
-                      <el-input  class="input_search" placeholder="输入你想搜索的内容" >
-                        <i @click="searchPage" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
-                      </el-input>
-                      <el-button class="add_btn" @click="createPosition">添加招聘职位</el-button>
-                    </div>
+                    <el-input class="case_sty" style="width:260px;height:40px;" placeholder="请输入内容"  clearable>
+                          <i slot="prefix" class="el-input__icon delete_sty el-icon-close"></i>
+                    </el-input> <br>
+                    <p class="end_msg">已为您筛选到<i style="color:#F95714;">4</i>条结果</p>
                 </div>  
                <!--表格  -->
-                <div class="div_table_infor">
-                    <el-table :data="hrList" style="width: 100%">
+                <div class="div_table_infor ">
+                    <el-table  :data="hrList" style="width: 100%">
                       <el-table-column fixed prop="processNum" label="基本资料" header-align='center' align='center' width="200px"></el-table-column>
                       <el-table-column prop="employeeName" label="招聘负责人" header-align='center' align='center'></el-table-column>
                       <el-table-column prop="processTitle" label="招聘部门" header-align='center' align='center'></el-table-column>
@@ -56,11 +45,10 @@
                     </el-table>
 						   </div>
                			<!-- 分页  -->
-								<div class="bottom-pagination" v-if="totalCount > 5">
-									<el-pagination @current-change="changePage" @size-change="changeSize" :current-page="pageIndex" :page-size="pageSize" :page-sizes="[5,10, 25, 50, 100]" layout="total, prev, pager, next, sizes, jumper" :total="totalCount">
-									</el-pagination>
-								</div> 
-              </div>  
+                        <div class="bottom-pagination" v-if="totalCount > 5">
+                            <el-pagination @current-change="changePage" @size-change="changeSize" :current-page="pageIndex" :page-size="pageSize" :page-sizes="[5,10, 25, 50, 100]" layout="total, prev, pager, next, sizes, jumper" :total="totalCount">
+                            </el-pagination>
+                        </div> 
             </div>
         </div>      
     </div>        
@@ -131,14 +119,6 @@ export default {
 	  			}
 		    });
       },
-    //搜索
-    searchPage() {
-      this.$router.push({path:'/searchPage'})
-    }, 
-    //创建职位
-    createPosition() {
-      this.$router.push({path:'/createposition'}) 
-    },
     },
     mounted() {
       this.gethrList();
@@ -151,74 +131,24 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped >
+.content_sty {
+  padding: 5px 20px;  
+}
+.content_sty .div_table_infor .el-table {
+  border:none;  
+}
 .content_pad {
-  margin:11px;  
+  margin:20px;  
   height:80px;
   line-height:80px; 
-  margin-top: 0px;
-}
-.but_stys {
-  width:120px;
-  height:80px;
-  background-image: linear-gradient(-136deg, #FF8350 0%, #F95714 100%, #F95714 100%);
-  border-radius: 4px;  
-  display:inline-block;
-  color:#fff;
-  position: relative;
-  cursor: pointer;
-}
-.btn_s {
-  background: #FFFFFF;
-  box-shadow: 0 2px 4px 0 rgba(216,216,216,0.50);
-  border-radius: 4px;
-  color: #748093;
-  margin-left: 10px;
-}
-.content_pad .but_stys .font_s {
-  width: 100%;
-  height: 30px;
-  display: inline-block;
+  margin-top: -25px;;
+} 
+.content_pad .end_msg {
+  height: 20px;
   position: absolute;
-  top:-20px;
-  left:11px;
-}
-.content_pad .but_stys .num_s {
-  position: absolute;
-  top:18px;
-  left:13px;
-}
-.content_pad .but_stys .icon_s {
-  position: absolute;
-  top:20px;
-  right:13px;
-  font-size: 18px;
-}
-.content_pad .search {
-  float: right;
-  width: 400px;
-  height: 40px;
-  margin-top: 30px;
-  position: relative;
-}
-.content_pad .search .input_search {
-  width: 260px;
-  position: absolute;
-  top:-21px;
-  
-}
-.content_pad .search .input_search .se_icon {
-  position: absolute;
-  right:-244px;
-  height: 30px;
-  top: 25px;
-  font-size: 18px;
-  font-weight: 700;
-  border-left: 1px solid #E5E5E5;
-  color: #F95714;
-}
-.content_pad .search .el-icon-search:before {
-    content: "\E619";
-    margin-left: 5px;
+  top:91px;
+  color:#394A66;
+  font-size: 13px;
 }
 .div_table_infor .slot_sty   {
   display: inline-block;
@@ -238,18 +168,32 @@ export default {
   border-radius: 4px;
   color: #fff;
 }
-.content_pad .add_btn  {
-  background: #F95714;
-  border-radius: 4px;
-  width: 120px;
-  height: 100%;
-  color: #fff;
-  float: right;
+.case_sty .delete_sty {
+    position: absolute;
+    right: -243px;
+    top: 21px;
+    font-size: 16px;
+    cursor: pointer;
+    border-left:1px solid #D8D8D8;
 }
-.content_stys .div_table_infor .el-table {
-  border:none;  
+.case_sty .delete_sty:hover {
+    position: absolute;
+    right: -243px;
+    top: 21px;
+    font-size: 18px;
+    color:#F95714 ;
 }
 </style>
+<style>
+ .content_pad .el-input--suffix .el-input__inner {
+    padding-left:0px;  
+ }
+ .case_sty  .el-icon-close:before {
+    content: "\E60F";
+    margin-left: 6px;
+}
+</style>
+
 
 
 
