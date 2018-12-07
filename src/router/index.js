@@ -97,6 +97,10 @@ import HelloWorld from '@/components/reg/HelloWorld'
 /* 合同模板 */
 import customContractTemplate from '@/components/template/customContractTemplate'
 
+//候选人管理
+import candidateList from '@/components/candidate/candidateList'
+import addCandidate from '@/components/candidate/addCandidate'
+
 Vue.use(Router);
 const router =new Router({
   linkActiveClass:'active',
@@ -443,6 +447,17 @@ const router =new Router({
       name: 'createposition',
       component: createPosition,
   },
+    {//候选人管理列表
+      path: '/candidateList',
+      name: 'candidateList',
+      component: candidateList,
+    },
+    {//添加候选人弹窗
+      path: '/addCandidate',
+      name: 'addCandidate',
+      component: addCandidate,
+    },
+
   ]
 });
 
