@@ -133,7 +133,7 @@
 							    <el-table-column fixed prop="processNum" label="流程号" header-align='center' align='center' width="200px"></el-table-column>
 							    <el-table-column prop="employeeName" label="员工" header-align='center' align='center'></el-table-column>
 							    <el-table-column prop="processTitle" label="流程" header-align='center' align='center'></el-table-column>
-							    <el-table-column prop="status" label="状态" header-align='center' align='center'>
+							    <el-table-column label="状态" header-align='center' align='center'>
 								    <template slot-scope="scope">
 								    	<span v-if="scope.row.status === 0">已撤销</span>
 								      <span v-if="scope.row.status === 1">已生效</span>
