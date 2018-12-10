@@ -1,7 +1,7 @@
 <template>
   <!--添加候选人弹窗-->
-  <el-dialog title="添加候选人" :visible.sync="addVisible" custom-class="addCandidateAlert">
-    <img src="../../assets/img/candidate/tanchuang_ic_save.png" alt="">
+  <el-dialog title="添加候选人" :visible.sync="addVisible" custom-class="addCandidateAlert" >
+    <img src="../../assets/img/candidate/tanchuang_ic_save.png" class="save">
     <div class="addMain">
       <addCandidate_content></addCandidate_content>
       <addCandidate_right></addCandidate_right>
@@ -17,8 +17,6 @@
   import addCandidate_right from '@/components/common/candidate_public/addCandidate_right';
   import {checkMobile,compareDate,isNumber,isEmail} from '@/assets/js/common/verify.js'
   import {formatDate} from '@/assets/js/common/date_year.js';
-  import breadcrumb from '@/components/common/breadcrumb'
-  import {mapState,mapActions} from 'vuex'
 
 
     export default {
