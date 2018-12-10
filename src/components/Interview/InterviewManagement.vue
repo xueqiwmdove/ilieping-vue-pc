@@ -77,7 +77,7 @@
         <div class="border_none">
           <!--主体内容-->
           <div class="headline_title">
-            <div class="a">人事异动</div>
+            <div class="a">面试管理</div>
           </div>
          </div>
   			 <div class="conHr">
@@ -190,7 +190,7 @@
   import pageaside from '@/components/common/pageaside';
 
 export default {
-  name: 'hr',
+  name: 'InterviewManagement',
 	components: {
 	  pageheader,
 	  pageaside

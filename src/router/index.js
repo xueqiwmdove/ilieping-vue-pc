@@ -90,6 +90,8 @@ import HelloWorld from '@/components/reg/HelloWorld'
 
 /* 合同模板 */
 import customContractTemplate from '@/components/template/customContractTemplate'
+import InterviewManagement from '@/components/Interview/InterviewManagement' //面试管理
+
 
 Vue.use(Router);
 const router =new Router({
@@ -422,11 +424,17 @@ const router =new Router({
       name: 'insertSuccess',
       component: insertSuccess,
     },
-	{
-      path: '/customContractTemplate',
-      name: 'customContractTemplate',
-      component: customContractTemplate,
-	}
+		{
+				path: '/customContractTemplate',
+				name: 'customContractTemplate',
+				component: customContractTemplate,
+		},
+		{
+			path: '/InterviewManagement',
+			name: 'InterviewManagement',
+			component: InterviewManagement,
+		},
+		
   ]
 });
 
