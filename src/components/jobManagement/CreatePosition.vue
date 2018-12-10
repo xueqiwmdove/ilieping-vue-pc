@@ -26,7 +26,7 @@
                         <div class="manage_position">
                            <span class="ly_s">
                              <span>招聘负责人<img src="../../assets/img/zhiwei/zhiwei_ic_bitian.png" alt=""></span>
-                             <span ><img class="img_icons" src="../../assets/img/zhiwei/tanchuang_ic_screen.png" alt=""></span>   
+                             <span  @click="addInterview(0)"><img class="img_icons" src="../../assets/img/zhiwei/tanchuang_ic_screen.png" alt=""></span>   
                            </span> 
                            <ul v-if="isShow">
                                <li>
@@ -42,7 +42,7 @@
                         <div class="manage_position">
                            <span class="ly_s">
                              <span>面试官 </span>
-                             <span ><img class="img_icons" src="../../assets/img/zhiwei/tanchuang_ic_add.png" alt=""></span>   
+                             <span  @click="addInterview(1)"><img class="img_icons" src="../../assets/img/zhiwei/tanchuang_ic_add.png" alt=""></span>   
                            </span> 
                            <ul v-if="isShow">
                                <li>
@@ -183,19 +183,91 @@
                 </el-row>
               <!-- 弹窗-添加招聘负责人 -->
                   <el-dialog title="添加招聘负责人" width="540px" :visible.sync="cerateLd" class="create_dialog" custom-class="create_dialog" :before-close="closeCreate" >
-                          <el-form :model="cerateList"  ref="cerateList"  id="re_style">
-                              <el-row>
-                                    <el-form-item label="变更为" >
-                                      <el-input  @click.native="ldClick"  v-model="cerateList.region"  placeholder="选择招聘负责人"  class="el-icon-arrow-down"></el-input>
-                                            <div v-if="ldVisabled" class="form_tree tree_sty" >
-                                                <treeSelect  :tree-datas="treeDatas" v-on:getIds="getIds"></treeSelect>
-                                            </div>
-                                    </el-form-item>
-                              </el-row>
+                          <el-form :model="cerateList"  ref="cerateList" >
+                              <el-form-item  style="text-align:center;" >
+                                 <div v-if="isflag" class="manage_se">
+                                    <ul>
+                                        <li>
+                                          <span style="float:left;margin-left:50px;">招聘负责人</span>
+                                          <span class="name_f">李</span> 
+                                            <span style="float:left;">
+                                              <p>段小妹</p> 
+                                              <p>爱猎评事业部-HR</p>    
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <el-input v-else style="width:280px;height:40px;"  @click.native="ldClick"  v-model="cerateList.region"  placeholder="选择招聘负责人"  class="el-icon-arrow-down"></el-input>
+                                      <div v-if="ldVisabled" class="form_tree tree_sty manage_sty " >
+                                        <el-scrollbar style="height:100%" >   
+                                         <div style="height:100%">
+                                           <div class="search">
+                                              <el-input  class="input_search" placeholder="输入你想搜索的内容" >
+                                                <i  slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
+                                              </el-input>
+                                           </div>
+                                            <ul>
+                                                <li @click="selectItem">
+                                                  <span class="name_f">李</span> 
+                                                    <span style="float:left;">
+                                                      <p>段小妹</p> 
+                                                      <p>爱猎评事业部-HR</p>    
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                         </div>  
+                                        </el-scrollbar> 
+                                      </div>
+                              </el-form-item>
                             </el-form>
                             <div slot="footer" class="dialog-footer">
-                                  <el-button type="primary"   style="height:36px;">确 定</el-button>
-                                  <el-button  style="height:36px;">取 消</el-button>
+                                  <el-button type="primary"   style="height:36px;">提交</el-button>
+                                  <el-button  @click="closeCreate" style="height:36px;">取 消</el-button>
+                            </div>
+                  </el-dialog>
+                <!-- end-->
+                  <!-- 弹窗-添加面试官 -->
+                  <el-dialog title="添加面试官" width="540px" :visible.sync="inteview" class="create_dialog" custom-class="create_dialog" :before-close="closeInterview" >
+                          <el-form :model="cerateList"  ref="cerateList" >
+                              <el-form-item  style="text-align:center;" >
+                                 <div v-if="isflag" class="manage_se">
+                                    <ul>
+                                        <li>
+                                          <span style="float:left;margin-left:50px;">面试官</span>
+                                          <span class="name_f">李</span> 
+                                            <span style="float:left;">
+                                              <p>段小妹</p> 
+                                              <p>爱猎评事业部-HR</p>    
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <el-input v-else style="width:280px;height:40px;"  @click.native="ldClick"  v-model="cerateList.region"  placeholder="选择面试官"  class="el-icon-arrow-down"></el-input>
+                                      <div v-if="ldVisabled" class="form_tree tree_sty manage_sty " >
+                                        <el-scrollbar style="height:100%" >   
+                                         <div style="height:100%">
+                                           <div class="search">
+                                              <el-input  class="input_search" placeholder="输入你想搜索的内容" >
+                                                <i  slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
+                                              </el-input>
+                                           </div>
+                                            <ul>
+                                                <li @click="selectItem">
+                                                  <span class="name_f">李</span> 
+                                                    <span style="float:left;">
+                                                      <p>段小妹</p> 
+                                                      <p>爱猎评事业部-HR</p>    
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                         </div>  
+                                        </el-scrollbar> 
+                                      </div>
+                              </el-form-item>
+                            </el-form>
+                            <div slot="footer" class="dialog-footer">
+                                  <el-button type="primary"   style="height:36px;">提交</el-button>
+                                  <el-button  @click="closeInterview" style="height:36px;">取 消</el-button>
                             </div>
                   </el-dialog>
                 <!-- end-->
@@ -253,7 +325,9 @@ export default {
        treeVisabled:false,//人事部门
        cerateLd:false,//添加负责人弹窗
        ldVisabled:false,
+       inteview:false,//添加面试官弹窗
        treeDatas:[],
+       isflag:false,
        cerateList:{
          region:''
        },
@@ -292,7 +366,12 @@ export default {
       handleClose2() {
         this.treeVisabled=false
       },
-   //招聘
+     //选择招聘负责人 
+      selectItem() {
+        this.ldVisabled=false
+        this.isflag = true
+      },  
+   //招聘状态
       recruitPosition(val) {
           console.log(val)
         if(val=='0') {
@@ -306,12 +385,35 @@ export default {
       positionS(val) {
         console.log(val)
       },
+   //人事架构  
       treeClick() {
        this.treeVisabled=!this.treeVisabled
-      }, 
-      ldClick() {
-        this.cerateLd = !this.cerateLd
       },
+    //添加面试官  
+      addInterview(val) {
+        if(val =='0') {
+           this.cerateLd = true
+        }
+        if(val == '1') {
+          this.inteview = true
+        }
+      }, 
+    //关闭创建岗位弹窗
+    closeCreate() {
+      this.isflag = false
+      this.ldVisabled=false
+      this.cerateLd = false
+    }, 
+    //关闭面试官弹窗
+    closeInterview() {
+      this.isflag = false
+      this.ldVisabled=false
+      this.inteview = false
+    } ,
+  //招聘负责人  
+    ldClick() {
+      this.ldVisabled = !this.ldVisabled
+    },
     // 获取label
       getLabel(val){
         this.makeNormal.detpart=val.label
@@ -406,7 +508,64 @@ export default {
     .asidePosition .manage_position .ly_s .date_sty {
         margin-top: 15px; 
     }
-    
+    .manage_sty  ul li .name_f{
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color:#66ADFF ;
+      text-align: center;
+      line-height: 50px;
+      font-size: 20px;
+      color: #fff;
+      float: left;
+      margin-right: 10px;
+      margin-left:20px;
+   }
+    .manage_sty  ul {
+      padding-top:55px;
+    }
+   .manage_sty  ul li  p {
+     height: 30px;
+     text-align: left;
+     line-height: 30px;
+   }
+   .manage_sty ul li {
+       height: 60px;
+       width: 100%;
+       margin-top: 10px;
+       cursor: pointer;
+       line-height: 50px;
+   }
+    .manage_se  ul li .name_f{
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color:#66ADFF ;
+      text-align: center;
+      line-height: 50px;
+      font-size: 20px;
+      color: #fff;
+      float: left;
+      margin-right: 10px;
+      margin-left:30px;
+   }
+    /* .manage_se ul {
+      padding-top:0px;
+    } */
+   .manage_se ul li  p {
+     height: 30px;
+     text-align: left;
+     line-height: 30px;
+   }
+   .manage_se ul li {
+       height: 60px;
+       width: 100%;
+       margin-top: 10px;
+       cursor: pointer;
+       line-height: 50px;
+   }
    .positionTable {
      background-color: #fff;
       padding: 0px 25px;   
@@ -477,6 +636,49 @@ export default {
       position: absolute;
       background-color: #fff;
     }
+    .create_dialog .el-icon-arrow-down:before {
+      content: "\E603";
+      position: absolute;
+      top: 15px;
+      left: 253px;
+      color: #AAADB5;
+      cursor: pointer;
+}
+.create_dialog .manage_sty {
+    left: 22%;
+    width: 280px; 
+}
+.manage_sty .search {
+  float: right;
+  width: 400px;
+  height: 40px;
+  margin-top: 30px;
+  position: relative;
+  left: -70px;
+
+}
+.manage_sty .search .input_search {
+  width: 260px;
+  position: absolute;
+  top:-21px;
+  /* width: 260px; */
+  
+}
+.manage_sty .search .input_search .se_icon {
+  position: absolute;
+  right:-244px;
+  height: 30px;
+  top:8px;
+  font-size: 18px;
+  font-weight: 700;
+  border-left: 1px solid #E5E5E5;
+  color: #F95714;
+}
+.manage_sty .search .el-icon-search:before {
+    content: "\E619";
+    margin-left: 5px;
+}
+
 </style>
 <style>
 .date_sty .el-icon-date:before {
@@ -515,6 +717,15 @@ export default {
     color: #AAADB5;
     cursor: pointer;
 }
+ .create_dialog .manage_sty .el-scrollbar__wrap {
+  overflow-x: hidden !important;
+ }
+ .create_dialog .el-input--prefix .el-input__inner {
+   padding-left:0px;
+ }
+  .create_dialog .el-input--prefix .el-input__inner {
+   padding-left:0px;
+ }
 </style>
 
 
