@@ -33,12 +33,34 @@
       height: 765px;
       overflow: auto;
       border-top:1px solid rgba(229,229,229,1);
-      padding: 20px;
+      //padding: 20px;
+      .standard_status_active{
+        .headImg{
+          margin-top: -65px;
+          input{
+            width: 80px;
+            height: 80px;
+            margin-left: -80px;
+            margin-top: -80px;
+            opacity: 0;
+          }
+          p{
+            height:19px;
+            font-size:14px;
+            margin-top: 20px;
+            font-family:MicrosoftYaHei;
+            color:rgba(116,128,147,1);
+            line-height:19px;
+          }
+        }
+      }
       .tab_title{
         display: inline-block;
         width: 100%;
         height: 44px;
         overflow: auto;
+        margin: 20px 0;
+        padding: 0 20px;
         li{
           display: inline-block;
           width:100px;
@@ -65,7 +87,7 @@
           float: right;
         }
       }
-      div{
+      .original_resume{
         position: relative;
         .upload-demo{
           position: absolute;
@@ -92,6 +114,43 @@
         img{
           display: block;
           margin: 110px auto auto;
+        }
+      }
+      .standard_resume{
+        overflow-x:hidden;
+        padding: 0 20px 20px;
+        .headLine{
+          height:24px;
+          font-size:18px;
+          font-family:MicrosoftYaHei-Bold;
+          font-weight:bold;
+          color:rgba(57,74,102,1);
+          line-height:24px;
+          border-left: 4px solid #f95714;
+          text-indent: 10px;
+          margin-bottom: 20px;
+        }
+        .headLine:first-child{
+          margin-top: 18px;
+        }
+        .el-form-item__label{
+          line-height: 30px;
+          color: #394A66;
+        }
+        .el-input__inner{
+          padding-left: 0;
+          width: 220px;
+        }
+        .el-icon-date:before{
+          content: '';
+        }
+        .el-input__icon.el-range__icon.el-icon-date{
+          display: none;
+        }
+        .el-textarea__inner{
+          padding-left: 0;
+          height: 120px;
+          resize: none;
         }
       }
     }
@@ -147,4 +206,32 @@
   }
 
 
+}
+.el-dialog.addCandidateAlert.addCandidateAlert_add{
+  height: 1053px;
+}
+.standard_required{
+  height: 208px;
+  border-top:1px solid #e5e5e5;
+  .basic{
+    padding:27px 22px 15px;
+    .inputBox{
+      display: inline-block;
+      margin-bottom: 15px;
+      margin-right: 52px;
+      img{
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+      }
+      .el-input{
+        width: 220px;
+        display: inline-block;
+      }
+    }
+    .inputBox:nth-child(4),.inputBox:nth-child(8){
+      margin-right: 0;
+    }
+
+  }
 }
