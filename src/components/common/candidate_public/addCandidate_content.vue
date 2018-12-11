@@ -112,6 +112,10 @@
                  </el-row>
                </div>
                <p class="headLine">工作经历</p>
+               <div class="addButton">
+                 添加 <img src="../../../assets/img/candidate/tanchuang_ic_add.png" alt="">
+               </div>
+               <div class="clearfix"></div>
                <div class="work">
                  <el-row :gutter="80">
                    <el-col :lg="8" :md="8" :sm="8">
@@ -172,7 +176,10 @@
                  </el-row>
                </div>
                <p class="headLine">教育经历</p>
-               <button>添加</button>
+                <div class="addButton">
+                  添加 <img src="../../../assets/img/candidate/tanchuang_ic_add.png" alt="">
+                </div>
+               <div class="clearfix"></div>
                <div class="education">
                  <el-row :gutter="80">
                    <el-col :lg="8" :md="8" :sm="8">
