@@ -5,6 +5,7 @@ let Butterfly="http://192.168.2.166:8899/jersey/";//测试ip
  // let Butterfly="http://192.168.6.209:8899/jersey/";//潘述钱ip
 // let Butterfly="http://192.168.6.208:8891/jersey/";//郭峰ips
 // let Butterfly="http://192.168.6.207:8891/jersey/";//施玮ip
+// let Butterfly="http://192.168.6.195:8899/jersey/";//李博凯
 
 
 const api = {
@@ -94,7 +95,6 @@ const api = {
   getUpdatesAddress:Butterfly+'enterpriseDate/enterprise/address/get',//获取编辑对应id企业地址
   dot:Butterfly+'website/has/message',//信息点点
 
-
   hr_list:Butterfly+'process/list',//查询人事流程列表
   hr_revoke:Butterfly+'process/revoke',//查询人事流程 撤销人事流程
 
@@ -130,8 +130,13 @@ const api = {
   archivesDelFile:`${Butterfly}employee/delete/annexInfo`,//员工档案删除附件
   archivesLoadFile:`${Butterfly}/download/annex`,//员工档案下载附件
   getAuthCertData:`${Butterfly}enterpriseDate/enterprise/getCertification`, //获取企业认证数据
+  
+	//jing
+  interviewListToday:Butterfly+'interview/today/list/',//1.5版本面试管理 今天的面试
+  interviewListBefore:Butterfly+'interview/before/list/',//1.5版本面试管理 明天及之后的面试
+	interviewListAfter:Butterfly+'interview/after/list/',//1.5版本面试管理 昨天及之前的面试
 
-  logout:Butterfly+'logout'
+  logout:Butterfly+'logout',//退出接口
 
 };
 export default api;
