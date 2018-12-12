@@ -1,0 +1,453 @@
+.el-dialog.candidateSteps{
+  width: 1200px;
+  height: 1128px;
+  top:48px;
+  margin-top: 0!important;
+  .el-dialog__header{
+    border-bottom: none;
+    height: 80px;
+    .el-dialog__close.el-icon.el-icon-close{
+      width: 30px;
+      height: 30px;
+      background: url("../../../assets/img/candidate/tanchuang_ic_cancel.png");
+    }
+    .el-icon-close:before{
+      content: "";
+    }
+  }
+  .el-dialog__body{
+    padding: 0;
+    .save{
+      position: absolute;
+      right: 85px;
+      top: 22px;
+      cursor: pointer;
+    }
+  }
+  .addMain{
+    font-size: 0;
+    .personInfo{
+      width: 100%;
+      height:283px;
+      background:rgba(255,255,255,1);
+      border:1px solid rgba(229,229,229,1);
+      .primary{
+        font-size: 0;
+        padding: 0 0 0 30px;
+        margin: 20px 0 13px;
+        span{
+          display: inline-block;
+          font-size:16px;
+        }
+        .name{
+          font-size:30px;
+          font-family:MicrosoftYaHei-Bold;
+          font-weight:bold;
+          color:rgba(57,74,102,1);
+          line-height:40px;
+          margin-right: 19px;
+        }
+        .post{
+          font-family:MicrosoftYaHei;
+          color:rgba(57,74,102,1);
+          line-height:21px;
+          margin-right: 15px;
+        }
+        .tag{
+          height:24px;
+          line-height: 24px;
+          color: #fff;
+          background:rgba(102,173,255,1);
+          border-radius:4px;
+          padding: 0 10px;
+        }
+      }
+      .minor{
+        font-size: 0;
+        padding-left: 30px;
+        margin: 0 0 74px 0;
+        span{
+          display: inline-block;
+          font-size: 14px;
+          color: #97A2B3;
+          height: 20px;
+          line-height: 20px;
+          margin: 0 22px 0 0;
+
+        }
+        .phone{
+          text-indent: 24px;
+          background: url("../../../assets/img/candidate/tanchuang_ic_phnnenumber.png") no-repeat left;
+        }
+        .email{
+          text-indent: 27px;
+          background: url("../../../assets/img/candidate/tanchuang_ic_email.png") no-repeat left;
+        }
+        .sex{
+          text-indent: 23px;
+          background: url("../../../assets/img/candidate/tanchuang_ic_gender.png") no-repeat left;
+        }
+        .woekExpP{
+          text-indent: 30px;
+          background: url("../../../assets/img/candidate/tanchuang_ic_exp.png") no-repeat left;
+        }
+        .address{
+          text-indent: 31px;
+          background: url("../../../assets/img/candidate/tanchuang_ic_place.png") no-repeat left;
+        }
+      }
+      .fivesteps{
+        padding: 0 15px 0 27px;
+        display:flex;
+        justify-content: space-between;
+        .onStep{
+          .up{
+            background: #5EC860;
+            em{
+              border-top:1px dashed  #5EC860
+            }
+          }
+          .down{
+            color: #5EC860;
+          }
+        }
+        div{
+          display: inline-flex;
+          flex-direction: column;
+          align-items: center;
+          span{
+            display: inline-block;
+          }
+          .up{
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            font-size: 14px;
+            margin: 0 0 11px 0;
+            color: #fff;
+            line-height: 20px;
+            text-align: center;
+            background:rgba(94,200,96,0.5);
+            position: relative;
+            em{
+              position: absolute;
+              left: 20px;
+              top: 10px;
+              width: 262px;
+              height: 2px;
+              border-top:1px dashed  rgba(94,200,96,0.5);
+            }
+          }
+          .down{
+            color:#97A2B3;
+            font-size: 12px;
+          }
+        }
+      }
+      .change_tab_title{
+        display: inline-flex;
+        width: 860px;
+        margin-top: 40px;
+        justify-content: space-between;
+        li{
+          display: inline-block;
+          font-size:14px;
+          font-family:MicrosoftYaHei;
+          color:#394A66;
+          padding: 0 32px;
+          line-height:19px;
+          padding-bottom: 9px;
+          border-bottom: 4px solid transparent;
+          cursor: pointer;
+        }
+        li.active{
+          color: #f95714;
+          border-bottom: 4px solid #f95714;
+        }
+      }
+    }
+    .candidate_content{
+      font-size: 14px;
+      display: inline-block;
+      width: 860px;
+      height: 765px;
+      overflow: auto;
+      .basic_first{
+        .tab_title{
+          display: inline-block;
+          width: 100%;
+          height: 44px;
+          overflow: auto;
+          margin: 20px 0 0;
+          padding: 0 20px;
+          li{
+            display: inline-block;
+            width:100px;
+            height:40px;
+            line-height: 40px;
+            text-align: center;
+            color:rgba(171,181,197,1);
+            margin-right: 20px;
+            background:rgba(255,255,255,1);
+            box-shadow:0 2px 4px 0 rgba(0,0,0,0.2);
+            border-radius:4px;
+            cursor: pointer;
+            img{
+              vertical-align: middle;
+            }
+            .upload{
+              margin-right:27px;
+            }
+          }
+          li.active{
+            color:rgba(57,74,102,1);
+          }
+          .button{
+            float: right;
+          }
+        }
+        .original_resume{
+          padding: 10px;
+        }
+        .standard_resume{
+          .clearfix{
+            clear: both;
+          }
+          .personal{
+            height:140px;
+            background:linear-gradient(270deg,rgba(181,215,255,1) 0%,rgba(102,173,255,1) 48%,rgba(255,255,255,1) 100%);
+            text-align: center;
+            color: #fff;
+            font-size:14px;
+            .head-photo{
+              width: 80px;
+              height: 80px;
+              border-radius: 50%;
+              margin-top: -40px;
+            }
+            .userName{
+              font-weight:bold;
+              margin-top: 19px;
+            }
+            p{
+              margin-bottom: 10px;
+              line-height: 19px;
+              height: 19px;
+              span{
+                display: inline-block;
+                height: 19px;
+                line-height: 19px;
+              }
+
+              .sex{
+                text-indent: 25px;
+                background: url("../../../assets/img/candidate/man.png") no-repeat left;
+              }
+              .phone{
+                text-indent: 25px;
+                background: url("../../../assets/img/candidate/icon_phone.png") no-repeat left;
+              }
+              .email{
+                text-indent: 25px;
+                margin-left: 25px;
+                background: url("../../../assets/img/candidate/icon_mail.png") no-repeat left;
+              }
+            }
+          }
+          .resume_content{
+            padding: 20px;
+            .headLine{
+              height:24px;
+              font-size:18px;
+              font-family:MicrosoftYaHei-Bold;
+              font-weight:bold;
+              color:#394A66;
+              line-height:24px;
+              border-left: 4px solid #66ADFF;
+              text-indent: 10px;
+              margin-bottom: 20px;
+            }
+            .personInfos,.work,.education,.sel_description{
+              .line{
+                margin-bottom: 40px;
+                font-size: 14px;
+                color: #394A66;
+                p{
+                  height: 20px;
+                  line-height: 20px;
+                }
+                .label{
+                  color: #748093;
+                  margin-bottom: 10px;
+                }
+              }
+            }
+            .sel_description{
+
+              .line{
+                margin-bottom: 120px;
+                div{
+                  line-height:24px;
+                }
+              }
+            }
+          }
+
+
+        }
+
+
+      }
+
+
+
+
+
+    }
+    .candidate_right{
+      width: 340px;
+      height: 765px;
+      display: inline-block;
+      vertical-align: top;
+      background:rgba(242,243,245,1);
+      text-align: center;
+      .operating_button{
+        width: 280px;
+        position: relative;
+        margin: 41px 28px 0 32px;
+        .buttonRow{
+          width: 50px;
+          height:40px;
+          margin-left: 230px;
+          cursor: pointer;
+          background:#f95714;
+          border: none;
+          color: #fff;
+          .el-icon-caret-bottom:before {
+            right: 16px;
+          }
+        }
+        .button{
+          width:228px;
+          height:40px;
+          background:#f95714;
+          border-radius:4px;
+          cursor: pointer;
+          border: none;
+          font-size: 14px;
+          color: #fff;
+          position: absolute;
+          left:0;
+          top: 0;
+        }
+        .button_pullDown{
+          display: inline-block;
+          width: 280px;
+          height: 200px;
+          background:#fff;
+          box-shadow:0px 0px 4px 0px rgba(0,0,0,0.2);
+          border-radius:4px;
+          text-align: left;
+          ul{
+            width: 100%;
+            height: 100%;
+            font-size: 14px;
+            color: #394A66;
+            li{
+              display: inline-block;
+              text-indent: 13px;
+              width: 100%;
+              height: 40px;
+              line-height: 40px;
+              cursor: pointer;
+            }
+            .el-icon-success{
+              color: #f95714;
+            }
+            .el-icon-success:before {
+              content: "\E62D";
+              right: 20px;
+              position: absolute;
+              color: #f95714;
+            }
+            li:hover{
+              color: #f95714;
+              background: #F8FAFC;
+            }
+          }
+        }
+      }
+      .uploadButton{
+        width:280px;
+        height:40px;
+        margin: 40px 0 20px;
+        background:rgba(249,87,20,0.5);
+        border-radius:4px;
+        color: #fff;
+        border:none;
+      }
+      .uploadButton:hover{
+        background: #f95714;
+      }
+      .selectedBox{
+        text-align: left;
+        padding: 0 30px;
+        p{
+          width:70px;
+          height:19px;
+          font-size:14px;
+          color:rgba(57,74,102,1);
+          line-height:19px;
+          margin-bottom: 10px;
+        }
+        .selectDiv{
+          position: relative;
+          .selected{
+            width:280px;
+            height:40px;
+            background:rgba(255,255,255,1);
+            border-radius:4px;
+            border:1px solid rgba(229,229,229,1);
+          }
+          img{
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+          }
+        }
+
+      }
+    }
+  }
+
+
+}
+.el-dialog.addCandidateAlert.addCandidateAlert_add{
+  height: 1053px;
+}
+.standard_required{
+  height: 208px;
+  border-top:1px solid #e5e5e5;
+  .basic{
+    padding:27px 22px 15px;
+    .inputBox{
+      display: inline-block;
+      margin-bottom: 15px;
+      margin-right: 52px;
+      img{
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+      }
+      .el-input{
+        width: 220px;
+        display: inline-block;
+      }
+    }
+    .inputBox:nth-child(4),.inputBox:nth-child(8){
+      margin-right: 0;
+    }
+
+  }
+}

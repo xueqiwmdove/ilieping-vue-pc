@@ -80,6 +80,13 @@ import previewOffer from '@/components/entryManagement/previewOffer'//预览offe
 import sendSuccess from '@/components/entryManagement/sendSuccess'//发送成功
 import emailInfo from '@/components/entryManagement/emailInfo'//邮件接收成功
 
+//招聘管理
+import jobManageIndex from '@/components/jobManagement/index'//职位管理首页
+import createPosition from '@/components/jobManagement/CreatePosition'//创建职位
+import searchPage from '@/components/jobManagement/searchPage'//职位管理搜索页
+
+
+
 //账号管理
 import businessManager from '@/components/account/businessManager'//企业经办人
 import businessCert from '@/components/account/certificate' //企业认证
@@ -92,7 +99,10 @@ import HelloWorld from '@/components/reg/HelloWorld'
 import customContractTemplate from '@/components/template/customContractTemplate'
 import InterviewManagement from '@/components/Interview/InterviewManagement' //面试管理
 
-
+//候选人管理
+import candidateList from '@/components/candidate/candidateList'
+import addCandidate from '@/components/candidate/addCandidate'
+import candidateSteps from '@/components/candidate/candidateSteps'
 Vue.use(Router);
 const router =new Router({
   linkActiveClass:'active',
@@ -424,7 +434,43 @@ const router =new Router({
       name: 'insertSuccess',
       component: insertSuccess,
     },
-		{
+	},
+ 	{
+        path: '/customContractTemplate',
+        name: 'customContractTemplate',
+        component: customContractTemplate,
+    },
+    {//职位管理首页
+        path: '/jobmanageindex',
+        name: 'jobmanageindex',
+        component: jobManageIndex,
+    },
+    {//职位管理创建职位
+    path: '/createposition',
+    name: 'createposition',
+    component: createPosition,
+    },
+     {//职位管理搜索页
+      path: '/searchPage',
+      name: 'searchPage',
+      component: searchPage,
+      },
+    {//候选人管理列表
+      path: '/candidateList',
+      name: 'candidateList',
+      component: candidateList,
+    },
+    {//添加候选人弹窗
+      path: '/addCandidate',
+      name: 'addCandidate',
+      component: addCandidate,
+    },
+
+    {//候选人信息弹窗
+      path: '/candidateSteps',
+      name: 'candidateSteps',
+      component: candidateSteps,
+    },	{
 				path: '/customContractTemplate',
 				name: 'customContractTemplate',
 				component: customContractTemplate,
@@ -433,9 +479,7 @@ const router =new Router({
 			path: '/InterviewManagement',
 			name: 'InterviewManagement',
 			component: InterviewManagement,
-		},
-		
-  ]
+		}  ]
 });
 
 

@@ -282,7 +282,7 @@ export default {
       },
       click_potion(a){//职位管理
         this.flag=a;
-    		this.$router.push('/account');
+    		this.$router.push('/jobmanageindex');
       },
       click_company(a) {//企业资料
       	this.flag=a;
@@ -451,14 +451,20 @@ export default {
 				that.isShow3=true;
 				that.before3=false;
 				that.after3=true;
-      }else if(loginUrl=='InterviewManagement'){
+      }else if(loginUrl=='jobmanageindex'){
+				let that=this;
+        that.flag=6;
+				that.isShow6=true;
+				that.before6=false;
+				that.after6=true;
+ 	  }else if(loginUrl=='InterviewManagement'){
 				let that=this;
 				that.flag=30;
 				that.isShow9=true;
 				that.before9=false;
 				that.after9=true;
 			}
-		},
+		},		},
 }
 </script>
 

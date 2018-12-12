@@ -41,6 +41,8 @@ import '../src/assets/css/new/offerManage.less'
 import '../src/assets/css/new/hr.less'
 import '../src/assets/css/new/customContractTemplate.less'
 
+import '../src/assets/css/new/addCandidate.less'
+import '../src/assets/css/new/candidateSteps.less'
 
 //VueJsonp解决跨域
 import VueJsonp from 'vue-jsonp'
