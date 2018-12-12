@@ -463,8 +463,8 @@ export default {
 				that.isShow9=true;
 				that.before9=false;
 				that.after9=true;
-			}
-		},		},
+			}		
+	},
 }
 </script>
 

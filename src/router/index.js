@@ -434,7 +434,6 @@ const router =new Router({
       name: 'insertSuccess',
       component: insertSuccess,
     },
-	},
  	{
         path: '/customContractTemplate',
         name: 'customContractTemplate',
