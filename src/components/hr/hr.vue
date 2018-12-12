@@ -528,10 +528,15 @@ export default {
 	text-align: right;
 	margin: 20px 0;
 }
+.details_div .detail_con .exp_div{height: 40px; line-height: 40px;}
 .details_div .detail_con .exp_div .exp_title{
-	width: 100px;
+	min-width: 100px;
+	max-width: 200px;
 	display: inline-block;
 	float: left;
+  white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .details_div .detail_con .exp_div .exp{
 color: #1087F4;
