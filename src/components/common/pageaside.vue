@@ -122,7 +122,8 @@
                     </i>
                 </div>
                 <ul class="submenu" v-if="isShow6">
-                    <li @click="click_potion(21)" :class="flag==6?'active':''"><span>职位管理</span></li>
+                    <li @click="click_potion(21)" :class="flag==21?'active':''"><span>职位管理</span></li>
+                    <li @click="click_candidate(22)" :class="flag==22?'active':''"><span>候选人管理</span></li>
                 </ul>
             </li>
             
@@ -271,6 +272,10 @@ export default {
       click_potion(a){//职位管理
         this.flag=a;
     		this.$router.push('/jobmanageindex');
+      },
+       click_candidate(a){//候选人管理
+        this.flag=a;
+    		this.$router.push('/candidatindex');
       },
       click_company(a) {//企业资料
       	this.flag=a;

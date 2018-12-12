@@ -16,16 +16,24 @@
               <div style="padding:5px 20px;">  
                 <!-- 搜索栏 -->
                  <div class='content_pad'>
-                    <div class="but_stys">
+                    <div class="but_stys"  :class="signs1=='1'? 'btn_s':''"   @click="tagTable('1')">
                       <p class="font_s">招聘中职位</p>
-                      <i class="num_s">24</i><em class=" icon_s"><img src="../../assets/img/zhiwei/zhiwei_ic_recruitment_pre.png" alt=""></em>
+                      <i class="num_s">{{counts.recruitStatus1}}</i>
+                        <em class=" icon_s">
+                           <img v-if="signs1 == '1'" src="../../assets/img/zhiwei/zhiwei_ic_recruitment_pre.png" alt="">
+                           <img v-else src="../../assets/img/zhiwei/zhiwei_ic_recruitment.png" alt="">
+                        </em>
                     </div>
-                    <div class="but_stys btn_s">
+                    <div class="but_stys "  :class="signs1=='0'? 'btn_s':''" @click="tagTable('0')">
                       <p class="font_s">停止招聘</p>
-                      <i class="num_s">24</i><em class=" icon_s"><img src="../../assets/img/zhiwei/zhiwei_ic_notrecruitment.png" alt=""></em>
+                      <i class="num_s">{{counts.recruitStatus0}}</i>
+                      <em class=" icon_s">
+                           <img v-if="signs1 == '0'" src="../../assets/img/zhiwei/zhiwei_ic_notrecruitment_pre.png" alt="">
+                           <img v-else src="../../assets/img/zhiwei/zhiwei_ic_notrecruitment.png" alt="">
+                      </em>
                     </div>
                     <div class="search">
-                      <el-input  class="input_search" placeholder="输入你想搜索的内容" >
+                      <el-input  v-model="searchName" class="input_search" placeholder="输入你想搜索的内容" >
                         <i @click="searchPage" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                       </el-input>
                       <el-button class="add_btn" @click="createPosition">添加招聘职位</el-button>
@@ -33,26 +41,49 @@
                 </div>  
                <!--表格  -->
                 <div class="div_table_infor">
-                    <el-table :data="hrList" style="width: 100%">
-                      <el-table-column fixed prop="processNum" label="基本资料" header-align='center' align='center' width="200px"></el-table-column>
-                      <el-table-column prop="employeeName" label="招聘负责人" header-align='center' align='center'></el-table-column>
-                      <el-table-column prop="processTitle" label="招聘部门" header-align='center' align='center'></el-table-column>
-                      <el-table-column prop="employeeName" label="候选人总数" header-align='center' align='center'>
-                         <template slot-scope="scope">
-                           <span class="slot_sty">
-                              34
+                    <el-table  :key='signs1' :data="hrList" style="width: 100%">
+                      <el-table-column fixed prop="processNum" label="基本资料" header-align='center' align='left' width="280px">
+                          <template  slot-scope="scope">
+                              <span @click="updateData(scope.row)" class="basic_sty slots_sty">
+                                <span class="name_s">{{scope.row.name}} </span> 
+                                <p>{{scope.row.cityName}}{{scope.row.address}}<em class="bom_sty"></em><span>{{scope.row.deptName}}</span></p> 
+                              </span>
+                          </template> 
+                      </el-table-column>
+                      <el-table-column  prop="chargeName" label="招聘负责人" header-align='center' align='center'>
+                        <template slot-scope="scope">
+                         <span class="slots_sty"   @click="updateData(scope.row)" >{{scope.row.chargeName}}</span> 
+                        </template>
+                      </el-table-column>
+                      <el-table-column  prop="deptName" label="招聘部门" header-align='center' align='center'>
+                          <template slot-scope="scope">
+                            <span  class="slots_sty"  @click="updateData(scope.row)" >{{scope.row.deptName}}</span> 
+                         </template>
+                      </el-table-column>
+                      <el-table-column  prop="candidateCount" label="候选人总数" header-align='center' align='center'>
+                         <template  slot-scope="scope">
+                           <span @click="updateData(scope.row)" class="slot_sty slots_sty">
+                              {{scope.row.candidateCount}}
                            </span>
                         </template>
                       </el-table-column>
-                      <el-table-column prop="processTitle" label="入职人数" header-align='center' align='center'>
-                         <template slot-scope="scope">
-                             <span class="slot2_sty">
-                              34
+                      <el-table-column prop="cntryCount" label="入职人数" header-align='center' align='center'>
+                         <template  slot-scope="scope">
+                             <span @click="updateData(scope.row)" class="slot2_sty slots_sty">
+                              {{scope.row.cntryCount}}
                              </span>
                         </template>
                       </el-table-column>
-                      <el-table-column prop="effectiveDate" label="招聘人数" header-align='center' align='center'></el-table-column>
-                      <el-table-column prop="createDate" label="创建时间" header-align='center' align='center'></el-table-column>
+                      <el-table-column prop="number" label="招聘人数" header-align='center' align='center'>
+                         <template slot-scope="scope">
+                           <span  class="slots_sty"  @click="updateData(scope.row)" >{{scope.row.number}}</span> 
+                        </template>
+                      </el-table-column>
+                      <el-table-column prop="createTime" label="创建时间" header-align='center' align='center'>
+                          <template slot-scope="scope">
+                             <span  class="slots_sty" @click="updateData(scope.row)" >{{scope.row.createTime}}</span> 
+                         </template>
+                      </el-table-column>
                     </el-table>
 						   </div>
                			<!-- 分页  -->
@@ -85,9 +116,13 @@ export default {
    data() {
       return {
         hrList:[],
+        counts:{},
+        signs1:'1',
         totalCount:0,
         pageIndex: 1,
         pageSize: 10,
+        searchName:'',//搜索值
+        status1:'1'//控制列表状态
       };
     },
     watch:{
@@ -100,27 +135,31 @@ export default {
               return;
             }
             that.pageIndex = newPage;
-            that.gethrList();
+            that.getList();
           },
           changeSize(newSize) {
             let that=this;
             that.pageSize = newSize;
-            that.gethrList();
+            that.getList();
       },
-      gethrList(){
+      tagTable(val) {
+        this.signs1 = val
+        this.status1 =val
+        this.getList()
+      },
+      getList(){
 				let that=this;
-	      let currentPage=that.pageIndex || 1;
+	      let currPage=that.pageIndex || 1;
 	      let pageSize=that.pageSize || 5;
         that.$http({
 	  			method:"post",
-	  			url:api.hr_list,
+	  			url:api.getPosition+'/'+currPage+'/'+pageSize,
 	  			headers:headers('application/json;charset=utf-8'),
 	  			data:{
-				    "currPage":currentPage,
+				    "currPage":currPage,
 				    "pageSize":pageSize,
-				    'searchContent':that.searchContent,
-				    'type':that.select_process,
-				    'status':that.select_state
+				    'name':that.searchName,
+				    'recruitStatus':that.status1
 	  			}
 	  		}).then(function(res){
 	  			if(res.data.code==10000){
@@ -130,6 +169,24 @@ export default {
 	  				that.$message.error(res.data.msg);
 	  			}
 		    });
+      },
+   //统计各状态人数   
+      getCount() {
+        let that = this
+        that.$http({
+          methods:'get',
+          url:api.positionCount ,
+          	headers:headers('application/json;charset=utf-8'),
+	  		}).then(function(res){
+	  			if(res.data.code==10000){
+             that.counts = res.data.data;
+	  			}else{
+	  				that.$message.error(res.data.msg);
+	  			}
+        })
+      },
+      updateData(val) {
+        this.$router.push({path:'/positionupdate',query:{id:val.id}})
       },
     //搜索
     searchPage() {
@@ -141,7 +198,8 @@ export default {
     },
     },
     mounted() {
-      this.gethrList();
+      this.getList();
+      this.getCount()
     },
     created() {
 
@@ -160,18 +218,18 @@ export default {
 .but_stys {
   width:120px;
   height:80px;
-  background-image: linear-gradient(-136deg, #FF8350 0%, #F95714 100%, #F95714 100%);
-  border-radius: 4px;  
+   border-radius: 4px;  
   display:inline-block;
-  color:#fff;
   position: relative;
   cursor: pointer;
+  background: #FFFFFF;
+  color: #748093;
+  box-shadow: 0 2px 4px 0 rgba(216,216,216,0.50);
 }
 .btn_s {
-  background: #FFFFFF;
-  box-shadow: 0 2px 4px 0 rgba(216,216,216,0.50);
+  background-image: linear-gradient(-136deg, #FF8350 0%, #F95714 100%, #F95714 100%);
+  color:#fff;
   border-radius: 4px;
-  color: #748093;
   margin-left: 10px;
 }
 .content_pad .but_stys .font_s {
@@ -248,6 +306,32 @@ export default {
 }
 .content_stys .div_table_infor .el-table {
   border:none;  
+}
+.basic_sty .name_s {
+   font-size: 15px;
+   color:#394A66; 
+}
+.basic_sty .name_s em {
+  font-size: 12px;
+  color: #748093;  
+}
+.bom_sty {
+  width: 2px;
+  height: 2px;
+  background-color: #748093;  
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 4px;
+}
+.slots_sty {
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+}
+</style>
+<style>
+ .content_pad .search .el-input--prefix .el-input__inner {
+    padding-left: 1px;
 }
 </style>
 

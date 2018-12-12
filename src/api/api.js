@@ -7,6 +7,9 @@ let Butterfly="http://192.168.2.166:8899/jersey/";//测试ip
 // let Butterfly="http://192.168.6.207:8891/jersey/";//施玮ip
 
 
+// let Butterfly="http://192.168.6.188:8899/jersey/";//曹莉
+
+
 const api = {
   baseUrl:Butterfly,
   signContract:Butterfly+'sign/initiate/contract/',
@@ -130,6 +133,16 @@ const api = {
   archivesDelFile:`${Butterfly}employee/delete/annexInfo`,//员工档案删除附件
   archivesLoadFile:`${Butterfly}/download/annex`,//员工档案下载附件
   getAuthCertData:`${Butterfly}enterpriseDate/enterprise/getCertification`, //获取企业认证数据
+
+  getPosition:Butterfly+'positionInfo/getPosition',//职位列表
+  getAddress:Butterfly+'enterpriseDate/enterprise/address/get',//企业地址列表
+  structurePerson:Butterfly+'org/structure/',//人员架构列表
+  positionCount:Butterfly+'positionInfo/count',//不同岗位统计人数
+  getEmployeeList:Butterfly+'employee/getEmployeeList',//招聘负责人，面试官列表
+  insertOrUpdate:Butterfly+'positionInfo/insertOrUpdate',//添加，更新岗位
+  positionDetail:Butterfly+'positionInfo/detail',//添加，更新岗位
+
+
 
   logout:Butterfly+'logout'
 
