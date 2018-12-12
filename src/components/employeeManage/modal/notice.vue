@@ -3,14 +3,16 @@
     日期：2018/11/27
 -->
 <template>
-    <el-dialog :visible="visableModal" width="540px" center :before-close="hideModel">
+	<div class="notice_div">
+    <el-dialog :visible.sync="visableModal" width="540px" center :before-close="hideModel">
         <img src="../../../assets/img/staff/warning.png" class="warn-img" alt="警告图片">
         <p class="del-notice">删除后将清空该员工所有数据，您将无法查看该员工的所有历史信息。您确定要删除吗？</p>
         <span slot="footer" class="dialog-footer">
-            <el-button :plain="true" type="primary" @click="delEmployee()">确 定</el-button>
-            <el-button type="default" @click="hideModel">取消</el-button>
+					<el-button type="default" @click="hideModel">取消</el-button>
+          <el-button type="primary" @click="delEmployee()" style="background: #F95714;">确 定</el-button>
         </span>
     </el-dialog>
+	</div>
 </template>
 <script>
     import http from '@/http/http'
@@ -51,22 +53,6 @@
     };
 </script>
 <style scoped>
-    .el-dialog__header{
-        border-bottom: none !important;
-    }
-    .del-notice{
-        font-size: 16px;
-        color: #394A66;
-        letter-spacing: 0;
-        text-align: center;
-        line-height: 26px;
-        padding-left: 8.2%;
-        padding-right: 8.2%;
-    }
-    .warn-img{
-        display: block;
-        width: 60px;
-        height: 60px;
-        margin: 0 auto 20px;
-    }
+
+		
 </style>

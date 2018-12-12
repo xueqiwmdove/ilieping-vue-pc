@@ -5,7 +5,7 @@
 <template>
     <div>
 
-        <el-dialog title="转正" width="540px" :visible="visableModal" :before-close="hideModel">
+        <el-dialog title="提前转正" width="540px" :visible="visableModal" :before-close="hideModel" custom-class="change_sty">
 
             <el-form ref="form" :model="formData" :rules="rules">
                 <el-form-item label="转正员工" :label-width="formLabelWidth" >

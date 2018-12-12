@@ -133,7 +133,7 @@
 							    <el-table-column fixed prop="processNum" label="流程号" header-align='center' align='center' width="200px"></el-table-column>
 							    <el-table-column prop="employeeName" label="员工" header-align='center' align='center'></el-table-column>
 							    <el-table-column prop="processTitle" label="流程" header-align='center' align='center'></el-table-column>
-							    <el-table-column prop="status" label="状态" header-align='center' align='center'>
+							    <el-table-column label="状态" header-align='center' align='center'>
 								    <template slot-scope="scope">
 								    	<span v-if="scope.row.status === 0">已撤销</span>
 								      <span v-if="scope.row.status === 1">已生效</span>
@@ -190,7 +190,7 @@
   import pageaside from '@/components/common/pageaside';
 
 export default {
-  name: 'alliancevip',
+  name: 'hr',
 	components: {
 	  pageheader,
 	  pageaside
@@ -528,10 +528,15 @@ export default {
 	text-align: right;
 	margin: 20px 0;
 }
+.details_div .detail_con .exp_div{height: 40px; line-height: 40px;}
 .details_div .detail_con .exp_div .exp_title{
-	width: 100px;
+	min-width: 100px;
+	max-width: 200px;
 	display: inline-block;
 	float: left;
+  white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .details_div .detail_con .exp_div .exp{
 color: #1087F4;

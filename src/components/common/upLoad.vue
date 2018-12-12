@@ -11,13 +11,13 @@
     accept="image/jpg,image/png,image/jpeg" action="">
     <i class="el-icon-plus"></i>
   </el-upload>
-  
+
   </div>
 </template>
 
 <script>
 	import { uploadImgToBase64 } from '@/assets/js/common/utils.js' // 导入本地图片转base64的方法
-	
+
 export default {
   name: 'upLoad',
    data() {
@@ -32,7 +32,7 @@ export default {
     methods: {
    // 图片选择后 保存在 diaLogForm.imgBroadcastList 对象中
    imgBroadcastChange (file, fileList) {
-    const isLt5M = file.size / 1024 / 1024 < 5 // 上传头像图片大小不能超过 5MB
+    const isLt5M = file.size / 1024 / 1024 < 5 // 图片大小不能超过 5MB
     if (!isLt5M) {
      this.diaLogForm.imgBroadcastList = fileList.filter(v => v.uid !== file.uid)
      this.$message.error('图片选择失败，每张图片大小不能超过 5MB,请重新选择!')
@@ -63,10 +63,10 @@ export default {
     const res = await addCommodity(this.diaLogForm)       // 发请求提交表单
     if (res.status) {
      this.$message.success('添加商品成功')
-     // 一般提交成功后后端会处理，在需要展示商品地方会返回一个图片路径 
+     // 一般提交成功后后端会处理，在需要展示商品地方会返回一个图片路径
     }
    },
-     
+
     }
 }
 </script>

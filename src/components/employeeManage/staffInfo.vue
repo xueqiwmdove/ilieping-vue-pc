@@ -188,6 +188,7 @@
                             if(resData.code == 10000){
                                 that.employeeInfoDetail = resData.data.employeeInfoDetailResponse;
                                 that.employeeInfo = resData.data.employeeInfo;
+																
                                 that.personnelPromotionResponse = resData.data.personnelPromotionResponse;
 
                                 let profilePhotoUrl = resData.data.employeeInfo.profilePhotoUrl;

@@ -110,21 +110,31 @@
                 </ul>
             </li>
              <li>
-                <div class="link" @click="toggle6">
+                <div class="link" @click="toggle9">
                     <i class="fa fa-globe">
-                        <img src="../../assets/img/dismission/ic_account_number.svg" alt="" class="click-before"  v-if="before6">
-                        <img src="../../assets/img/dismission/ic_account_number_orange.svg" alt="" class="click-after" v-if="after6">
+                        <img src="../../assets/img/edition_1.5/houxuan_ic_recruitment.png" alt="" class="click-before"  v-if="before9">
+                        <img src="../../assets/img/edition_1.5/houxuan_ic_recruitment_pre.png" alt="" class="click-after" v-if="after9">
                     </i>
                    招聘管理
                     <i class="fa fa-chevron-down">
-                        <img src="../../assets/img/dismission/ic_top.svg" alt="" class="click-before" v-if="before6">
-                        <img src="../../assets/img/dismission/ic_down.svg" alt="" class="click-after fa_down" v-if="after6">
+                        <img src="../../assets/img/dismission/ic_top.svg" alt="" class="click-before" v-if="before9">
+                        <img src="../../assets/img/dismission/ic_down.svg" alt="" class="click-after fa_down" v-if="after9">
                     </i>
                 </div>
+<<<<<<< HEAD
                 <ul class="submenu" v-if="isShow6">
                     <li @click="click_potion(21)" :class="flag==21?'active':''"><span>职位管理</span></li>
                     <li @click="click_candidate(22)" :class="flag==22?'active':''"><span>候选人管理</span></li>
                 </ul>
+=======
+                <ul class="submenu" v-if="isShow9">
+                    <li @click="click_interviewMmanagement(30)" :class="flag==30?'active':''"><span>面试管理</span></li>
+                    <li @click="click_potion(21)" :class="flag==6?'active':''"><span>候选人管理</span></li>
+								    <li @click="click_potion(21)" :class="flag==6?'active':''"><span>职位管理</span></li>
+                    <li @click="click_potion(21)" :class="flag==6?'active':''"><span>人才库</span></li>
+                    <li @click="click_potion(21)" :class="flag==6?'active':''"><span>设置</span></li>
+								</ul>
+>>>>>>> 4fe0de2b6f1a88c1b3b935267e6042581b37559a
             </li>
             
         <!--  <li>
@@ -163,6 +173,7 @@ export default {
        isShow6:false,
        isShow7:false,
        isShow8:false,
+			 isShow9:false,
        before1:true,
        after1:false,
        before2:true,
@@ -180,6 +191,8 @@ export default {
        after7:false,
        before8:true,
        after8:false,
+       before9:true,
+       after9:false,
 				flag:"",
         nav: [
           {title: '离职查询', path: '/searchbefore1',sonList:[{title:'离职评价查询',path:'/searchbefore'},{title:'失信曝光查询',path:'/searchbefore2'}]},
@@ -235,6 +248,11 @@ export default {
         this.isShow8 = !this.isShow8;
         this.before8 = !this.before8;
         this.after8= !this.after8;
+      },
+      toggle9:function(){
+        this.isShow9 = !this.isShow9;
+        this.before9 = !this.before9;
+        this.after9= !this.after9;
       },
       click_searchbefore1(a){
          this.isActive=true;
@@ -326,6 +344,10 @@ export default {
         this.flag=a;
         this.$router.push('/businessCert');
       },
+			click_interviewMmanagement(a){
+        this.flag=a;
+        this.$router.push('/InterviewManagement');
+			}
     },
     mounted () {
       let a = window.location.href;
@@ -446,8 +468,14 @@ export default {
 				that.isShow6=true;
 				that.before6=false;
 				that.after6=true;
-      }
-		},
+ 	  }else if(loginUrl=='InterviewManagement'){
+				let that=this;
+				that.flag=30;
+				that.isShow9=true;
+				that.before9=false;
+				that.after9=true;
+			}		
+	},
 }
 </script>
 

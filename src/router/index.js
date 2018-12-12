@@ -102,11 +102,12 @@ import HelloWorld from '@/components/reg/HelloWorld'
 
 /* 合同模板 */
 import customContractTemplate from '@/components/template/customContractTemplate'
+import InterviewManagement from '@/components/Interview/InterviewManagement' //面试管理
 
 //候选人管理
 import candidateList from '@/components/candidate/candidateList'
 import addCandidate from '@/components/candidate/addCandidate'
-
+import candidateSteps from '@/components/candidate/candidateSteps'
 Vue.use(Router);
 const router =new Router({
   linkActiveClass:'active',
@@ -438,7 +439,7 @@ const router =new Router({
       name: 'insertSuccess',
       component: insertSuccess,
     },
-    {
+ 	  {
         path: '/customContractTemplate',
         name: 'customContractTemplate',
         component: customContractTemplate,
@@ -483,7 +484,22 @@ const router =new Router({
       name: 'searchCandidata',
       component: SearchCandidata,
     },
+     {//候选人信息弹窗
+      path: '/candidateSteps',
+      name: 'candidateSteps',
+      component: candidateSteps,
+    },	{
+				path: '/customContractTemplate',
+				name: 'customContractTemplate',
+				component: customContractTemplate,
+		},
+		{
+			path: '/InterviewManagement',
+			name: 'InterviewManagement',
+			component: InterviewManagement,
+		} 
   ]
+
 });
 
 
