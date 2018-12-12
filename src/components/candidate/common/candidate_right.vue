@@ -17,16 +17,10 @@
         </ul>
       </div>
     </div>
+    <!--淘汰弹窗-->
+    <weekOutAlert visableModal.sync=""></weekOutAlert>
     <!--备注弹窗-->
-    <el-dialog title="备注" :visible.sync="remarkAlert"  custom-class="remarkAlert">
-      <el-row>
-        <el-col :span="24">
-          <span>备注</span>
-          <textarea placeholder="备注"></textarea>
-        </el-col>
-      </el-row>
-    </el-dialog>
-
+    <remarkAlert visableModal.sync=""></remarkAlert>
     <button class="button weedOut" @click="weekOutAlert==true">淘汰</button>
     <button class="button remark" @click="remarkAlert==true">备注</button>
   </div>
@@ -44,7 +38,8 @@
             count:0,
             isShow:false,
             flag:1,
-            weekOutAlert:false
+            weekOutAlert:false,
+            remarkAlert:false,
           }
         },
       methods:{
