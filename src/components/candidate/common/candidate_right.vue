@@ -18,19 +18,54 @@
       </div>
     </div>
     <!--淘汰弹窗-->
-    <weekOutAlert visableModal.sync=""></weekOutAlert>
+    <weekOutAlert visableModal.sync="visable.weekOut"></weekOutAlert>
     <!--备注弹窗-->
-    <remarkAlert visableModal.sync=""></remarkAlert>
-    <button class="button weedOut" @click="weekOutAlert==true">淘汰</button>
-    <button class="button remark" @click="remarkAlert==true">备注</button>
+    <remarkAlert visableModal.sync="visable.remark"></remarkAlert>
+    <!--推荐给用人部门-->
+
+    <el-dialog title="推荐给用人部门" :visible.sync="visableModal" custom-class="recommend">
+      <el-row>
+        <el-col :span="24">
+          <div>
+            <label>推荐到</label>
+            <input type="text" placeholder="选择负责人">
+            <div class="recommendDown">
+
+            </div>
+          </div>
+          <div>
+            <label>推荐理由</label>
+            <textarea placeholder="请输入推荐理由（例如有名校经历等）"></textarea>
+          </div>
+          <div class="select_resume">
+            <label>使用简历</label>
+            <div>
+              <span>原始简历</span>
+              <span>标准简历</span>
+            </div>
+          </div>
+
+        </el-col>
+      </el-row>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="visableModal = false">保存</el-button>
+      </span>
+    </el-dialog>
+    <button class="button recommend" v-if="flag==1" @click="visableModal=true">推荐给用人部门</button>
+    <button class="button weedOut" @click="showmodel('weekOut')" >淘汰</button><!--@click="visable.weekOut==true"-->
+    <button class="button remark" @click="showmodel('remark')">备注</button><!--@click="visable.remark==true"-->
   </div>
 </template>
 
 <script>
+  import weekOutAlert from '@/components/candidate/common/weekOutAlert'
+  import remarkAlert from '@/components/candidate/common/remarkAlert'
+
     export default {
         name: "candidate_right",
         components:{
-
+          weekOutAlert,
+          remarkAlert
         },
         data(){
           return{
@@ -38,8 +73,11 @@
             count:0,
             isShow:false,
             flag:1,
-            weekOutAlert:false,
-            remarkAlert:false,
+            visable:{
+              weekOut:true,
+              remark:true
+            },
+            visableModal:false
           }
         },
       methods:{
@@ -61,7 +99,12 @@
           that.status="el-icon-caret-bottom";
 
           that.$emit("listento-flag",that.flag)
-        }
+        },
+        //显示弹窗
+        showmodel(param){
+          console.log("hello")
+          this.visable[param] = true;
+        },
       }
     }
 </script>

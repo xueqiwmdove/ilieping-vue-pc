@@ -1,6 +1,6 @@
 <template>
     <div>
-      <el-dialog title="备注" :visible.sync="remarkAlert"  custom-class="remarkAlert">
+      <el-dialog title="备注" :visible.sync="visableModal"  custom-class="remarkAlert">
         <el-row>
           <el-col :span="24">
             <span>备注</span>
@@ -13,7 +13,8 @@
 
 <script>
     export default {
-        name: '',
+        name: 'remarkAlert',
+       props:['visableModal'],
         components: {},
         data() {
             return {

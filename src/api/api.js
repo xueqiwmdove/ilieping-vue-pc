@@ -4,7 +4,7 @@ let Butterfly="http://192.168.2.166:8899/jersey/";//测试ip
 //let Butterfly="http://192.168.6.6:8891/jersey/";//薛尧
  // let Butterfly="http://192.168.6.209:8899/jersey/";//潘述钱ip
 // let Butterfly="http://192.168.6.208:8891/jersey/";//郭峰ips
-// let Butterfly="http://192.168.6.207:8891/jersey/";//施玮ip
+// let Butterfly="http://192.168.6.207:8899/jersey/";//施玮ip
 // let Butterfly="http://192.168.6.195:8899/jersey/";//李博凯
 
 
@@ -130,7 +130,7 @@ const api = {
   archivesDelFile:`${Butterfly}employee/delete/annexInfo`,//员工档案删除附件
   archivesLoadFile:`${Butterfly}/download/annex`,//员工档案下载附件
   getAuthCertData:`${Butterfly}enterpriseDate/enterprise/getCertification`, //获取企业认证数据
-  
+
 	//jing
   interviewListToday:Butterfly+'interview/today/list/',//1.5版本面试管理 今天的面试
   interviewListBefore:Butterfly+'interview/before/list/',//1.5版本面试管理 明天及之后的面试

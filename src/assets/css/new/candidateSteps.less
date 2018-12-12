@@ -172,6 +172,7 @@
       width: 860px;
       height: 765px;
       overflow: auto;
+      /*基本信息*/
       .basic_first{
         .tab_title{
           display: inline-block;
@@ -298,8 +299,161 @@
 
 
       }
+      /*面试*/
+      .interview_second{
+        .noInterviews,.noOps{
+          text-align: center;
+          img{
+            margin: 153px 0 0;
+          }
+          p{
+            height:19px;
+            font-size:14px;
+            color:rgba(57,74,102,1);
+            line-height:19px;
+          }
+          button{
+            width:220px;
+            height:40px;
+            background:rgba(249,87,20,1);
+            border-radius:4px;
+            cursor: pointer;
+            border: none;
+            color: #fff;
+            margin: 22px 0 0;
+          }
+        }
+      }
+      /*offer*/
+      .offer_third{
+        .noOps,.noOffer{
+          text-align: center;
+          img{
+            margin: 106px 0 0;
+          }
+          p{
+            height:19px;
+            font-size:14px;
+            color:rgba(57,74,102,1);
+            line-height:19px;
+          }
+          button{
+            width:220px;
+            height:40px;
+            background:rgba(249,87,20,1);
+            border-radius:4px;
+            cursor: pointer;
+            border: none;
+            color: #fff;
+            margin: 12px 0 0;
+          }
 
+        }
+      }
+      /*备注*/
+      .remark_forth{
+        .noOps{
+          text-align: center;
+          img{
+            margin:72px 0 0;
+          }
+          p{
+            height:19px;
+            font-size:14px;
+            color:rgba(57,74,102,1);
+            line-height:19px;
+          }
+          button{
+            width:220px;
+            height:40px;
+            background:rgba(249,87,20,1);
+            border-radius:4px;
+            cursor: pointer;
+            border: none;
+            color: #fff;
+            margin: 12px 0 0;
+          }
+        }
+      }
+      /*附件*/
+      .accessory_fifth{
+        .noOps{
+          text-align: center;
+          img{
+            margin:112px 0 0;
+          }
+          p{
+            height:19px;
+            font-size:14px;
+            color:rgba(57,74,102,1);
+            line-height:19px;
+            margin: 43px 0 25px;
+          }
+          .button{
+            width:220px;
+            height:40px;
+            background:rgba(249,87,20,1);
+            border-radius:4px;
+            cursor: pointer;
+            border: none;
+            color: #fff;
+            margin: 12px 0 0;
+          }
+        }
+      }
+      /*操作记录*/
+      .opsRecord_seventh{
+        .noOps{
+          text-align: center;
+          img{
+            margin:106px 0 0;
+          }
+          p{
+            height:19px;
+            font-size:14px;
+            color:rgba(57,74,102,1);
+            line-height:19px;
+            margin: 27px 0 0;
+          }
+        }
+        .records{
+          padding: 40px;
+          .record{
+            border-left: 1px dashed #f95714;
+            position: relative;
+            img{
+              position: absolute;
+              left: -10px;
+              top: 0;
+            }
+            p{
+              text-indent: 35px;
+              height:19px;
+              font-size:14px;
+              line-height:19px;
+              margin: 0 0 10px 0;
+            }
+            .time{
+              height:21px;
+              font-size:16px;
+              font-weight:bold;
+              color:rgba(57,74,102,1);
+              line-height:21px;
+              margin: 0 0 20px 0;
+            }
+            .ops,.remark{
+              color:rgba(57,74,102,1);
+            }
+            .ops_person{
+              font-size:14px;
+              color:#97A2B3;
+              line-height:19px;
+              margin: 0 0 10px 0;
+            }
+          }
 
+        }
+      }
 
 
 
@@ -377,7 +531,7 @@
           }
         }
       }
-      .weedOut,.remark{
+      .weedOut,.remark,.recommend{
         width:280px;
         height:40px;
         border-radius:4px;
@@ -392,7 +546,10 @@
       .weedOut{
         background: #fff;
         margin: 15px 0;
-
+      }
+      .recommend{
+        background: #fff;
+        margin: 15px 0 0;
       }
     }
   }
@@ -427,3 +584,10 @@
 
   }
 }
+
+.el-dialog.recommend{
+  width:540px;
+  height:400px;
+  background:rgba(255,255,255,1);
+}
+

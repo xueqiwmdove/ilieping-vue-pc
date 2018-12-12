@@ -1,6 +1,6 @@
 <template>
     <div>
-      <el-dialog title="淘汰" :visible.sync="weekOutAlert"  custom-class="weekOutAlert">
+      <el-dialog title="淘汰" :visible.sync="visableModal"  custom-class="weekOutAlert">
         <el-row>
           <el-col :span="24">
             <span>备注</span>
@@ -13,8 +13,8 @@
 
 <script>
     export default {
-        name: '',
-        props:['visables'],
+        name: 'weekOutAlert',
+        props:['visableModal'],
         components: {},
         data() {
             return {}
