@@ -121,17 +121,13 @@
                         <img src="../../assets/img/dismission/ic_down.svg" alt="" class="click-after fa_down" v-if="after9">
                     </i>
                 </div>
-                <ul class="submenu" v-if="isShow6">
+                <ul class="submenu" v-if="isShow9">
                     <li @click="click_potion(21)" :class="flag==21?'active':''"><span>职位管理</span></li>
                     <li @click="click_candidate(22)" :class="flag==22?'active':''"><span>候选人管理</span></li>
+                     <li @click="click_interviewMmanagement(30)" :class="flag==30?'active':''"><span>面试管理</span></li>
+                    <!-- <li @click="click_potion25(25)" :class="flag==25?'active':''"><span>人才库</span></li>
+                    <li @click="click_potion26(26)" :class="flag==26?'active':''"><span>设置</span></li> -->
                 </ul>
-                <ul class="submenu" v-if="isShow9">
-                    <li @click="click_interviewMmanagement(30)" :class="flag==30?'active':''"><span>面试管理</span></li>
-                    <li @click="click_potion(21)" :class="flag==6?'active':''"><span>候选人管理</span></li>
-								    <li @click="click_potion(21)" :class="flag==6?'active':''"><span>职位管理</span></li>
-                    <li @click="click_potion(21)" :class="flag==6?'active':''"><span>人才库</span></li>
-                    <li @click="click_potion(21)" :class="flag==6?'active':''"><span>设置</span></li>
-								</ul>
             </li>
             
         <!--  <li>
@@ -288,6 +284,14 @@ export default {
         this.flag=a;
     		this.$router.push('/jobmanageindex');
       },
+      //  click_potion25(a){//人才库
+      //   this.flag=a;
+    	// 	this.$router.push('/jobmanageindex');
+      // },
+      //  click_potion26(a){//设置
+      //   this.flag=a;
+    	// 	this.$router.push('/jobmanageindex');
+      // },
        click_candidate(a){//候选人管理
         this.flag=a;
     		this.$router.push('/candidatindex');
@@ -461,17 +465,23 @@ export default {
 				that.after3=true;
       }else if(loginUrl=='jobmanageindex'){
 				let that=this;
-        that.flag=6;
-				that.isShow6=true;
-				that.before6=false;
-				that.after6=true;
+        that.flag=9;
+				that.isShow9=true;
+				that.before9=false;
+				that.after9=true;
  	  }else if(loginUrl=='InterviewManagement'){
 				let that=this;
 				that.flag=30;
 				that.isShow9=true;
 				that.before9=false;
 				that.after9=true;
-			}		
+			}else if(loginUrl=='candidatindex') {
+        let that=this;
+				that.flag=9;
+				that.isShow9=true;
+				that.before9=false;
+				that.after9=true;
+      }		
 	},
 }
 </script>
