@@ -81,18 +81,18 @@
                  <el-row :gutter="80">
                    <el-col :lg="8" :md="8" :sm="8">
                      <el-form-item label="期望薪资">
-                       <el-input v-model="salary_start"></el-input>
-                       <span>-</span>
-                       <el-input v-model="salary_end"></el-input>
-                       <!--<el-row>
-                         <el-col :span="2">
-                           <el-input v-model="salary_start"></el-input>
-                         </el-col>
-                         <el-col class="line" :span="1">-</el-col>
-                         <el-col :span="2">
-                           <el-input v-model="salary_end"></el-input>
-                         </el-col>
-                       </el-row>-->
+                       <div>
+                         <el-row>
+                           <el-col :span="10">
+                             <el-input v-model="salary_start" class="salary_start"></el-input>
+                           </el-col>
+                           <el-col class="line" :span="2" style="color:#E5E5E5;">-</el-col>
+                           <el-col :span="10">
+                             <el-input v-model="salary_end" class="salary_end"></el-input>
+                           </el-col>
+                         </el-row>
+                       </div>
+
 
                      </el-form-item>
                    </el-col>

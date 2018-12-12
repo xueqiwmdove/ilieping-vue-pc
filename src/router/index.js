@@ -101,6 +101,7 @@ import customContractTemplate from '@/components/template/customContractTemplate
 //候选人管理
 import candidateList from '@/components/candidate/candidateList'
 import addCandidate from '@/components/candidate/addCandidate'
+import candidateSteps from '@/components/candidate/candidateSteps'
 
 Vue.use(Router);
 const router =new Router({
@@ -464,6 +465,11 @@ const router =new Router({
       component: addCandidate,
     },
 
+    {//候选人信息弹窗
+      path: '/candidateSteps',
+      name: 'candidateSteps',
+      component: candidateSteps,
+    },
   ]
 });
 
