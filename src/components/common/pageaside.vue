@@ -121,12 +121,10 @@
                         <img src="../../assets/img/dismission/ic_down.svg" alt="" class="click-after fa_down" v-if="after9">
                     </i>
                 </div>
-<<<<<<< HEAD
                 <ul class="submenu" v-if="isShow6">
                     <li @click="click_potion(21)" :class="flag==21?'active':''"><span>职位管理</span></li>
                     <li @click="click_candidate(22)" :class="flag==22?'active':''"><span>候选人管理</span></li>
                 </ul>
-=======
                 <ul class="submenu" v-if="isShow9">
                     <li @click="click_interviewMmanagement(30)" :class="flag==30?'active':''"><span>面试管理</span></li>
                     <li @click="click_potion(21)" :class="flag==6?'active':''"><span>候选人管理</span></li>
@@ -134,7 +132,6 @@
                     <li @click="click_potion(21)" :class="flag==6?'active':''"><span>人才库</span></li>
                     <li @click="click_potion(21)" :class="flag==6?'active':''"><span>设置</span></li>
 								</ul>
->>>>>>> 4fe0de2b6f1a88c1b3b935267e6042581b37559a
             </li>
             
         <!--  <li>

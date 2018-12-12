@@ -15,7 +15,7 @@
                 </p>
                 <el-row>
               <!--创建职位左侧栏  -->
-                  <el-col :span='5' >
+                  <el-col :span='4' >
                     <div class="asidePosition ad_input">
                         <h4><img class="img_shengfen" src="../../assets/img/zhiwei/shengfen.png" alt="">
                           <span  style="margin-left:30px;">招聘中的职位</span>
@@ -48,7 +48,7 @@
                     </div>  
                   </el-col> 
               <!--创建职位右边部分  -->
-                  <el-col :span='19' >
+                  <el-col :span='20' >
                     <div class="positionTable">
                           <div class='content_pad'>
                             <div class="but_stys" :class="signs=='0'? 'btn_s':''" @click="tagStyChange(0)">
@@ -284,7 +284,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped >
  .content {
-   min-width: 1209px;;  
+   min-width: 1520px;;  
  }
 .asidePosition {
     width: 340px;
@@ -296,7 +296,7 @@ export default {
     /* border-right: 1px solid #eee; */
 } 
 .asidePosition h4 {
-    font-family: MicrosoftYaHei-Bold;
+font-family: MicrosoftYaHei-Bold;
 font-size: 16px;
 color: #394A66;
 letter-spacing: 0;  
@@ -363,8 +363,8 @@ margin-left: 180px;
 .positionTable {
     background-color: #fff;
     padding: 0px 25px;   
-    margin-left: 30px;
-    min-width: 945px;
+    margin-left: 36px;
+    min-width: 1248px;
     padding-left: 0px;
 }
 .content_pad {
@@ -376,6 +376,7 @@ margin-left: 180px;
 .but_stys {
   width:120px;
   height:80px;
+  margin-right: 10px;
   border-radius: 4px;  
   display:inline-block;
   position: relative;
