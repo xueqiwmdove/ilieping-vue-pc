@@ -6,10 +6,7 @@ let Butterfly="http://192.168.2.166:8899/jersey/";//测试ip
 // let Butterfly="http://192.168.6.208:8891/jersey/";//郭峰ips
 // let Butterfly="http://192.168.6.207:8899/jersey/";//施玮ip
 // let Butterfly="http://192.168.6.195:8899/jersey/";//李博凯
-
-
 // let Butterfly="http://192.168.6.188:8899/jersey/";//曹莉
-
 
 const api = {
   baseUrl:Butterfly,
