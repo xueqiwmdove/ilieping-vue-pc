@@ -1,6 +1,11 @@
-<template>  
+<template>
   <div >
    <div class="main">
+     <!--候选人弹窗-->
+     <addCandidate :addVisible.sync="visables.add" @hideModel="hideChildModal"></addCandidate>
+     <!--候选人信息-->
+     <candidateSteps :addVisible.sync="visables.steps" @hideModel="hideChildModal"></candidateSteps>
+
           <!--顶部导航-->
         <pageheader class="pageheader"></pageheader>
           <!--侧边栏-->
@@ -20,33 +25,33 @@
                         <h4><img class="img_shengfen" src="../../assets/img/zhiwei/shengfen.png" alt="">
                           <span  style="margin-left:30px;">招聘中的职位</span>
                           <i style="color:#AAADB5;" class="el-icon-caret-bottom"></i>
-                        </h4> 
+                        </h4>
                          <div class="search" style="margin-top:30px;">
                             <el-input  class="input_search" placeholder="输入你想搜索的内容" >
                                 <i slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                             </el-input>
-                         </div>  
+                         </div>
                          <p>全部职位 <i><img src="../../assets/img/zhiwei/ic_chose.png" alt=""></i></p>
                          <div class="position_list">
-                             <el-scrollbar style="height:100%" >  
+                             <el-scrollbar style="height:100%" >
                                 <ul>
                                     <li>
-                                    产品经理  
+                                    产品经理
                                     </li>
                                     <li>
-                                    产品经理  
+                                    产品经理
                                     </li>
                                     <li>
-                                    产品经理  
+                                    产品经理
                                     </li>
                                     <li>
-                                    产品经理  
+                                    产品经理
                                     </li>
-                                </ul>  
-                             </el-scrollbar>   
+                                </ul>
+                             </el-scrollbar>
                          </div>
-                    </div>  
-                  </el-col> 
+                    </div>
+                  </el-col>
               <!--创建职位右边部分  -->
                   <el-col :span='20' >
                     <div class="positionTable">
@@ -93,7 +98,7 @@
                             </div>
                             <div class="but_stys "  :class="signs=='5'? 'btn_s':''"  @click="tagStyChange(5)">
                                 <p class="font_s">已淘汰</p>
-                                <i class="num_s">800</i> 
+                                <i class="num_s">800</i>
                                 <em class=" icon_s">
                                     <img v-if="signs == '5'" src="../../assets/img/zhiwei/houxuan_ic_pass_pre.png" alt="">
                                     <img v-else src="../../assets/img/zhiwei/houxuan_ic_pass.png" alt="">
@@ -103,18 +108,18 @@
                                 <el-input  class="input_search" placeholder="输入你想搜索的内容" >
                                     <i @click="searchList" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                                 </el-input>
-                                <el-button class="add_btn">添加候选人</el-button>
+                                <el-button class="add_btn" @click="addCandidateShow('add')">添加候选人</el-button>
                             </div>
-                          </div> 
+                          </div>
                 <!--表格  -->
                         <div class="div_table_infor">
                             <el-table :key='signs'  :data="hrList" style="width: 100%">
                                 <el-table-column fixed prop="processNum" label="基本资料" header-align='center' align='left' width="350px">
                                     <template slot-scope="scope">
-                                        <span class="basic_sty ">
-                                          <span class="name_s">张三 <em>男</em><em class="bom_sty"></em><em>六年工作经验</em></span> 
-                                          <p><img src="../../assets/img/zhiwei/houxuan_ic_work.png" alt="">上海滴滴科技有限公司<em class="bom_sty"></em><span>HR</span><span>2018~2019</span></p> 
-                                          <p><img src="../../assets/img/zhiwei/houxuan_ic_education.png" alt="">北京师范大学<em class="bom_sty"></em><span>人力资源管理中心</span><em class="bom_sty"></em><span>2012~至今</span></p> 
+                                        <span class="basic_sty " @click="addCandidateShow('steps')" style="cursor: pointer">
+                                          <span class="name_s">张三 <em>男</em><em class="bom_sty"></em><em>六年工作经验</em></span>
+                                          <p><img src="../../assets/img/zhiwei/houxuan_ic_work.png" alt="">上海滴滴科技有限公司<em class="bom_sty"></em><span>HR</span><span>2018~2019</span></p>
+                                          <p><img src="../../assets/img/zhiwei/houxuan_ic_education.png" alt="">北京师范大学<em class="bom_sty"></em><span>人力资源管理中心</span><em class="bom_sty"></em><span>2012~至今</span></p>
                                         </span>
                                     </template>
                                 </el-table-column>
@@ -135,11 +140,11 @@
                                 <el-table-column  v-if="signs =='2'" prop="status" label="面试状态" header-align='center' align='center'>
                                      <template slot-scope="scope">
                                         <span v-if="scope.row.status =='0'" style="cursor: pointer;">
-                                          <p>未安排面试</p>  
+                                          <p>未安排面试</p>
                                           <el-button size="small" style="color:#fff ;background-color:#F95714;">去安排</el-button>
                                         </span>
                                          <span v-if="scope.row.status == '1'" style="cursor: pointer;">
-                                          <p>已安排面试</p>  
+                                          <p>已安排面试</p>
                                           <el-button size="small" style="color:#fff ;background-color:#66ADFF;">去查看</el-button>
                                         </span>
                                     </template>
@@ -163,13 +168,13 @@
                             <div class="bottom-pagination" v-if="totalCount > 5">
                                 <el-pagination @current-change="changePage" @size-change="changeSize" :current-page="pageIndex" :page-size="pageSize" :page-sizes="[5,10, 25, 50, 100]" layout="total, prev, pager, next, sizes, jumper" :total="totalCount">
                                 </el-pagination>
-                            </div>  
-                    </div>    
-                  </el-col> 
+                            </div>
+                    </div>
+                  </el-col>
                 </el-row>
             </div>
-        </div>      
-    </div>        
+        </div>
+    </div>
   </div>
 </template>
 
@@ -182,6 +187,11 @@
   import pageheader from '@/components/common/pageheader';
   import pageaside from '@/components/common/pageaside';
   import treeSearch from '@/components/common/treeSearch'
+//  blance
+  import addCandidate from '@/components/candidate/addCandidate';
+  import candidateSteps from '@/components/candidate/candidateSteps';
+
+
 // duanyanhong
 // 2018.12.2
 // 自定义控制员工架构下拉框点击空白处隐藏
@@ -212,6 +222,8 @@ export default {
    	pageheader,
     pageaside,
     treeSearch,
+    addCandidate,
+    candidateSteps
 	},
    data() {
       return {
@@ -220,17 +232,33 @@ export default {
         totalCount:0,
         pageIndex: 1,
         pageSize: 5,
+        addVisible:false,
+        visables:{
+          add:false,
+          steps:false,
+        }
       };
     },
     watch:{
-       
+
       },
    directives: {clickoutside},
     methods: {
+    //展示候选人弹窗
+      addCandidateShow(param){
+        let that=this;
+        console.log(0)
+        that.visables[param] = true;
+      },
+    //关闭候选人弹窗
+      hideChildModal(param){
+        console.log('接收的子组件数据--------->'+param);
+        this.visables[param]= false;
+      },
     //状态切换
     tagStyChange(val) {
-      this.signs =val 
-      this.gethrList() 
+      this.signs =val
+      this.gethrList()
     },
       changePage(newPage) {
             let that=this;
@@ -270,11 +298,11 @@ export default {
 		    });
       },
       searchList() {
-        this.$router.push({path:'/searchCandidata'})  
+        this.$router.push({path:'/searchCandidata'})
       },
     },
     mounted() {
-     this.gethrList()   
+     this.gethrList()
     },
     created() {
     }
@@ -284,28 +312,28 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped >
  .content {
-   min-width: 1520px;;  
+   min-width: 1520px;;
  }
 .asidePosition {
     width: 340px;
     min-width: 340px;;
     height:948px;
     background: #fff;
-    margin-right: 15px; 
-    padding: 0px 25px; 
+    margin-right: 15px;
+    padding: 0px 25px;
     /* border-right: 1px solid #eee; */
-} 
+}
 .asidePosition h4 {
 font-family: MicrosoftYaHei-Bold;
 font-size: 16px;
 color: #394A66;
-letter-spacing: 0;  
+letter-spacing: 0;
 text-align: left;
 color: #F95714;
 position: relative;
 }
 .asidePosition h4 .img_shengfen {
-    position: absolute;  
+    position: absolute;
 }
 .ad_input .search {
 float: right;
@@ -338,8 +366,8 @@ color: #F95714;
 .ad_input p {
   width: 300px;
   height: 30px;
-  color: #F95714; 
-  margin-top:80px; 
+  color: #F95714;
+  margin-top:80px;
   /* background-color: #FAFBFC; */
 }
 .ad_input p i {
@@ -347,14 +375,14 @@ margin-left: 180px;
 }
 .position_list {
    height: 600px;
-   width: 300px;  
+   width: 300px;
 }
 .position_list ul {
-  width: 100%; 
+  width: 100%;
   height: 100%;
 }
 .position_list ul li {
-  height: 30px;  
+  height: 30px;
   color:rgba(57,74,102,1);
   line-height: 30px;
   margin-bottom:10px;
@@ -362,22 +390,22 @@ margin-left: 180px;
 
 .positionTable {
     background-color: #fff;
-    padding: 0px 25px;   
+    padding: 0px 25px;
     margin-left: 36px;
     min-width: 1248px;
     padding-left: 0px;
 }
 .content_pad {
-  margin:11px;  
+  margin:11px;
   height:80px;
-  line-height:80px; 
+  line-height:80px;
   margin-top: 0px;
 }
 .but_stys {
   width:120px;
   height:80px;
   margin-right: 10px;
-  border-radius: 4px;  
+  border-radius: 4px;
   display:inline-block;
   position: relative;
   cursor: pointer;
@@ -422,7 +450,7 @@ margin-left: 180px;
   width: 260px;
   position: absolute;
   top:-21px;
-  
+
 }
 .content_pad .search .input_search .se_icon {
   position: absolute;
@@ -448,25 +476,25 @@ margin-left: 180px;
 }
 .basic_sty .name_s {
    font-size: 15px;
-   color:#394A66; 
+   color:#394A66;
 }
 .basic_sty .name_s em {
   font-size: 12px;
-  color: #748093;  
+  color: #748093;
 }
 .bom_sty {
   width: 2px;
   height: 2px;
-  background-color: #748093;  
+  background-color: #748093;
   border-radius: 50%;
   display: inline-block;
   margin: 0 4px;
 }
 .div_table_infor {
-   margin-top: 10px; 
+   margin-top: 10px;
 }
 .positionTable   .div_table_infor .el-table {
-  border:none;  
+  border:none;
 }
 </style>
 <style>

@@ -1,6 +1,6 @@
 <template>
   <!--添加候选人弹窗-->
-  <el-dialog title="添加候选人" :visible.sync="addVisible"  :custom-class="flag==2?['addCandidateAlert_add','addCandidateAlert']:'addCandidateAlert'">
+  <el-dialog title="添加候选人" :visible="addVisible"  :custom-class='["addCandidateAlert",flag=="2"?"addCandidateAlert_add":""]' :before-close="hideModel">
     <img src="../../assets/img/candidate/tanchuang_ic_save.png" class="save">
     <div class="addMain">
       <!--标准简历才有-->
@@ -25,6 +25,7 @@
 
     export default {
         name: "addCandidate",
+        props:['addVisible'],
         components:{
           addCandidate_content,
           addCandidate_right,
@@ -32,17 +33,24 @@
         },
       data(){
           return{
-            addVisible:true,
-            flag:1
+            // addVisible:false,
+            flag:1,
+            add:'add',
           }
       },
       methods:{
         getMyEvent(flag){
           //接收的数据--------->我是子组件中的数据
           this.flag=flag;
-          console.log(this.flag)
-          console.log('接收的数据--------->'+flag)
-        }
+          // console.log('接收的数据--------->'+flag)
+        },
+        //  关闭弹窗
+        hideModel(){
+          let that=this;
+          // that.addVisible=false;
+          // console.log(that.add)
+          that.$emit('hideModel',that.add);//向父组件派发事件
+        },
       }
     }
 </script>

@@ -88,7 +88,7 @@ import positionUpdate from '@/components/jobManagement/positionUpdate'
 
 //候选人列表
 import  Candidatindex   from '@/components/CandidatManage/Candidatindex'
-import SearchCandidata from  '@/components/CandidatManage/searchCandidata'   
+import SearchCandidata from  '@/components/CandidatManage/searchCandidata'
 
 
 
@@ -105,7 +105,6 @@ import customContractTemplate from '@/components/template/customContractTemplate
 import InterviewManagement from '@/components/Interview/InterviewManagement' //面试管理
 
 //候选人管理
-import candidateList from '@/components/candidate/candidateList'
 import addCandidate from '@/components/candidate/addCandidate'
 import candidateSteps from '@/components/candidate/candidateSteps'
 Vue.use(Router);
@@ -464,11 +463,6 @@ const router =new Router({
     name: 'searchPage',
     component: searchPage,
     },
-    {//候选人管理列表
-      path: '/candidateList',
-      name: 'candidateList',
-      component: candidateList,
-    },
     {//添加候选人弹窗
       path: '/addCandidate',
       name: 'addCandidate',
@@ -497,7 +491,7 @@ const router =new Router({
 			path: '/InterviewManagement',
 			name: 'InterviewManagement',
 			component: InterviewManagement,
-		} 
+		}
   ]
 
 });
