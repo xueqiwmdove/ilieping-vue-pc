@@ -44,7 +44,7 @@
     <div class="inputBox">
       <div class="input-group" v-clickOutSide="handleClose">
         <label>选择员工</label>
-        <input type="text" placeholder="请选择部门名称" readonly class="selectDepartment" v-model="employee" @click.stop="isShow2=true;" ><!--@click="isShow2=!isShow2"-->
+        <input type="text" placeholder="请选择员工" readonly class="selectDepartment" v-model="employee" @click.stop="isShow2=true;" ><!--@click="isShow2=!isShow2"-->
         <div class="treePullDown" v-show="isShow2">
           <el-input
             placeholder="输入关键字进行过滤"
@@ -247,6 +247,11 @@ export default {
         document.removeEventListener('click',el._vueClickOutside_);
         delete el._vueClickOutside_;
       }
+    }
+  },
+  watch: {
+    filterText2(val) {
+      this.$refs.tree2.filter(val);
     }
   },
   computed:{
