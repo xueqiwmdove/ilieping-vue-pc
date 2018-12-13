@@ -120,7 +120,7 @@ export default {
         signs1:'1',
         totalCount:0,
         pageIndex: 1,
-        pageSize: 10,
+        pageSize: 5,
         searchName:'',//搜索值
         status1:'1'//控制列表状态
       };
@@ -130,18 +130,18 @@ export default {
       },
     methods: {
       changePage(newPage) {
-            let that=this;
-            if(that.pageIndex === newPage) {
-              return;
-            }
-            that.pageIndex = newPage;
-            that.getList();
-          },
-          changeSize(newSize) {
-            let that=this;
-            that.pageSize = newSize;
-            that.getList();
-      },
+          let that=this;
+          if(that.pageIndex === newPage) {
+            return;
+          }
+          that.pageIndex = newPage;
+          that.getList();
+        },
+        changeSize(newSize) {
+          let that=this;
+          that.pageSize = newSize;
+          that.getList();
+    },
       tagTable(val) {
         this.signs1 = val
         this.status1 =val
@@ -190,7 +190,7 @@ export default {
       },
     //搜索
     searchPage() {
-      this.$router.push({path:'/searchPage'})
+      this.$router.push({path:'/searchPage',query:{code:this.searchName,status:this.status1}})
     }, 
     //创建职位
     createPosition() {

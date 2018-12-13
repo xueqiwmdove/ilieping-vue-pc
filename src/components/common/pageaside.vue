@@ -44,7 +44,7 @@
                 <img src="../../assets/img/contract/ic_hetong.svg" alt="" class="click-before"  v-if="before4">
                 <img src="../../assets/img/contract/ic_hetong2.svg" alt="" class="click-after" v-if="after4">
               </i>
-              劳务合同管理
+              合同管理
               <i class="fa fa-chevron-down">
                 <img src="../../assets/img/dismission/ic_top.svg" alt="" class="click-before" v-if="before4">
                 <img src="../../assets/img/dismission/ic_down.svg" alt="" class="click-after fa_down" v-if="after4">
