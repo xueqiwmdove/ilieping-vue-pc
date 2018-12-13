@@ -172,7 +172,7 @@
                              </el-row>
                              <el-row>
                                <el-col>
-                                  <el-button :class="searchBtnClass" :disabled="searchDisabled" @click="createSubmit()" class="createBut">创建职位</el-button>
+                                  <el-button :class="searchBtnClass" :disabled="searchDisabled" @click="createSubmit()" class="createBut">保存</el-button>
                                </el-col>
                              </el-row>  
                         </el-form>
@@ -440,6 +440,44 @@ export default {
      },
    directives: {clickoutside},
     methods: {
+  //编辑时获取详情    
+    getdetail() {
+      this.isShow =true
+        let that = this
+        this.$http({
+          method:"get",
+          url:api.positionDetail+'/'+that.positionId,
+          headers:headers('application/json;charset=utf-8'),
+          cache:false
+        }).then(function(res){
+          if(res.data.code==10000 || res.data.data==null){
+            that.positionDetail = res.data.data
+            if(that.positionDetail.interviewerName) {
+                  that.isShow2 = true
+              }
+            that.startTime = that.positionDetail.startTime
+            that.endTime = that.positionDetail.endTime
+            that.makeNormal.name = that.positionDetail.name
+            that.makeNormal.detpart = that.positionDetail.deptName
+            that.makeNormal.type = that.positionDetail.type
+            that.makeNormal.cityShow = that.positionDetail.cityName+that.positionDetail.address
+            that.makeNormal.salaryLow = that.positionDetail.salaryLow
+            that.makeNormal.salaryHigh = that.positionDetail.salaryHigh
+            that.makeNormal.work = that.positionDetail.workExperience
+            that.makeNormal.education = that.positionDetail.education
+            that.makeNormal.number = that.positionDetail.number
+            that.makeNormal.positionDescribe = that.positionDetail.positionDescribe
+            that.pagelist.employeeName = that.positionDetail.chargeName
+            that.pagelist.deptName = that.positionDetail.deptName
+            that.pagelist.position = that.positionDetail.name
+            that.pagelist2.employeeName = that.positionDetail.interviewerName
+            // that.pagelist2.position = that.positionDetail.name
+
+          }else{
+          that.$message.error(res.data.msg);
+          }
+        });
+    },  
   // 获取员工架构
       getTree() {
           // that.$emit('updataTree')
@@ -556,22 +594,22 @@ export default {
     //创建岗位提交  
       createSubmit() {
         if(this.startTime !=='' || this.endTime !=='')  {
-            var timel =new Date().format("yyyy-MM-dd");
-                if(this.startTime <timel ) {
-                  this.$message({
-                      message: '开始招聘时间不能小于当前日期！',
-                      type: 'error'
-                  });
-                  this.startTime=''
-                  return
-                }else if(this.startTime > this.endTime) {
+           var timel =new Date().format("yyyy-MM-dd");
+            if(this.startTime <timel ) {
                 this.$message({
-                  message:'开始招聘时间应小于目标完成时间！',
-                  type:'error'
+                    message: '开始招聘时间不能小于当前日期！',
+                    type: 'error'
+                });
+                 this.startTime=''
+               return
+            }else if(this.startTime > this.endTime) {
+                this.$message({
+                message:'开始招聘时间应小于目标完成时间！',
+                type:'error'
                 })
                 return
             }
-         }
+        }
           this.$refs.makeNormal.validate((valid) => {
               if (valid) {
               let that = this
