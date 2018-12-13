@@ -1,6 +1,6 @@
 <template>
   <!--候选人信息弹窗-->
-  <el-dialog title="候选人信息" :visible.sync="addVisible"  custom-class="candidateSteps">
+  <el-dialog title="候选人信息" :visible="addVisible"  custom-class="candidateSteps" :before-close="hideModel">
     <img src="../../assets/img/candidate/tanchuang_ic_save.png" class="save">
     <div class="addMain">
       <div class="personInfo">
@@ -81,7 +81,8 @@
   import {checkMobile,compareDate,isNumber,isEmail} from '@/assets/js/common/verify.js'
   import {formatDate} from '@/assets/js/common/date_year.js';
     export default {
-        name: "addCandidate",
+        name: "candidateSteps",
+        props:['addVisible'],
         components:{
           candidate_content,
           basic_first,
@@ -97,7 +98,7 @@
         },
       data(){
           return{
-            addVisible:true,
+            // addVisible:true,
             step:1,
           }
       },
@@ -108,7 +109,14 @@
         getFlag(flag){
           this.step=flag;//子组件穿过的flag值，赋值给step；
           // console.log('接收的数据--------->'+flag)
-        }
+        },
+        //  关闭弹窗
+        hideModel(){
+          let that=this;
+          // that.addVisible=false;
+          // console.log(that.add)
+          that.$emit('hideModel','steps');//向父组件派发事件
+        },
 
       }
     }
