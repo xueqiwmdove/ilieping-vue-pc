@@ -143,7 +143,9 @@ const api = {
   positionCount:Butterfly+'positionInfo/count',//不同岗位统计人数
   getEmployeeList:Butterfly+'employee/getEmployeeList',//招聘负责人，面试官列表
   insertOrUpdate:Butterfly+'positionInfo/insertOrUpdate',//添加，更新岗位
-  positionDetail:Butterfly+'positionInfo/detail',//添加，更新岗位  logout:Butterfly+'logout',//退出接口
+  positionDetail:Butterfly+'positionInfo/detail',//添加，更新岗位  
+	
+	logout:Butterfly+'logout',//退出接口
 
 };
 export default api;
