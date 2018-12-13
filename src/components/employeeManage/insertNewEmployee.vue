@@ -143,11 +143,10 @@
                                 <div class="input-group departmentTreeBox" v-clickOutSide="outterClose" :class="workType==1||workType==2?'special_department':''">
                                   <label>任职部门<i>*</i></label>
                                   <input type="text"  v-model="department" readonly="readonly" class="department special" placeholder="请选择任职部门" @click.stop="isShow=true;companyStructure()" maxlength="0">
-                                  <img src="../../assets/img/dismission/add.svg"  class="addDepartment" @click="newDepartments=true;parentDepartment=enterpriseName">
                                   <div class="treePullDown" v-show="isShow">
                                       <el-input
                                       placeholder="输入关键字进行过滤"
-                                      v-model="filterText" class="filterInput">
+                                      v-model="filterText" class="filterInput el-icon-search">
                                       </el-input>
                                       <el-tree
                                       class="filter-tree departmentTree"
@@ -161,6 +160,10 @@
                                       ref="tree"
                                       @node-click="getParent">
                                       </el-tree>
+                                    <div id="addDepartment">
+                                      <img src="../../assets/img/dismission/new_add.png"  class="addDepartment" @click="newDepartments=true;parentDepartment=enterpriseName">
+                                      添加新部门
+                                    </div>
                                   </div>
                                 </div>
                                 <div class="input-group departmentTreeBox" v-show="workType==0">
@@ -638,9 +641,26 @@ export default {
     right: -75px !important;
 }
 .departmentTree{
-    height: 279px;
+    /*height: 279px;*/
+    height: 244px;
     overflow: auto;
   }
+.filterInput.el-icon-search:before{
+  content: "\E619";
+  position: absolute;
+  right: 26px;
+  top: 18px;
+  color: #f95714;
+  font-weight: 600;
+}
+#addDepartment{
+  height: 34px;
+  background: #F9F9F9;
+  color: #394A66;
+  font-size: 14px;
+  text-align: center;
+  line-height: 34px;
+ }
   /*.sendOfferMain .el-dialog.newDepartAlert_Content .input-group .treePullDown{*/
       /*width: 275px !important;*/
       /*left: 170px !important;*/
