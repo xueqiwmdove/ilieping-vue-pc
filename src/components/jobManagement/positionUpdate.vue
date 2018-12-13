@@ -172,7 +172,7 @@
                              </el-row>
                              <el-row>
                                <el-col>
-                                  <el-button :class="searchBtnClass" :disabled="searchDisabled" @click="createSubmit()" class="createBut">保存</el-button>
+                                  <el-button  @click="createSubmit()" class="createBut">保存</el-button>
                                </el-col>
                              </el-row>  
                         </el-form>
@@ -468,10 +468,11 @@ export default {
             that.makeNormal.number = that.positionDetail.number
             that.makeNormal.positionDescribe = that.positionDetail.positionDescribe
             that.pagelist.employeeName = that.positionDetail.chargeName
-            that.pagelist.deptName = that.positionDetail.deptName
-            that.pagelist.position = that.positionDetail.name
+            that.pagelist.deptName = that.positionDetail.chargeDeptname
+            that.pagelist.position = that.positionDetail.chargePosition
             that.pagelist2.employeeName = that.positionDetail.interviewerName
-            // that.pagelist2.position = that.positionDetail.name
+            that.pagelist2.deptName = that.positionDetail.interviewerDeptname
+            that.pagelist2.position = that.positionDetail.interviewerPosition
 
           }else{
           that.$message.error(res.data.msg);
@@ -610,6 +611,13 @@ export default {
                 return
             }
         }
+        if(this.pagelist.id == '' || this.positionDetail.chargeId == '' ) {
+             this.$message({
+                message:'招聘负责人不能为空！',
+                type:'error'
+                })
+                return
+        } 
           this.$refs.makeNormal.validate((valid) => {
               if (valid) {
               let that = this
@@ -620,14 +628,14 @@ export default {
                     data:{
                     "id":that.positionId || '',
                     "recruitStatus":that.recruitStatus,
-                    "chargeId":that.pagelist.id,
-                    'interviewerId':that.pagelist2.id,
+                    "chargeId":that.pagelist.id || that.positionDetail.chargeId,
+                    'interviewerId':that.pagelist2.id ||that.positionDetail.interviewerId,
                     'startTime':that.startTime,
                     'endTime':that.endTime,
                     'name':that.makeNormal.name,
-                    'deptId':that.dptId,
+                    'deptId':that.dptId || that.positionDetail.deptId ,
                     'type':that.makeNormal.type,
-                    'cityId':that.cityId,
+                    'cityId':that.cityId || that.positionDetail.cityId,
                     'salaryLow':that.makeNormal.salaryLow,
                     'salaryHigh':that.makeNormal.salaryHigh,
                     'workExperience':that.makeNormal.work,

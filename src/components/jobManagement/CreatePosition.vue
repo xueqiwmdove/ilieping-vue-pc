@@ -112,8 +112,8 @@
                                  <el-col :span='6'>  
                                     <el-form-item label="">
                                         <span>工作城市
-                                            <el-select v-model="makeNormal.cityShow" placeholder="请选择活动区域" @change="checkInput">
-                                                <el-option v-for="item in addressList" :key='item.id'  :value="item.city">{{item.city}}{{item.address}}</el-option>
+                                            <el-select v-model="makeNormal.city" placeholder="请选择活动区域" @change="checkInput">
+                                                <el-option v-for="item in addressList" :key='item.id' :value="item.cityAddress">{{item.city}}{{item.address}}</el-option>
                                             </el-select>
                                         </span>
                                         <i class="tixin"><img src="../../assets/img/zhiwei/cuowu.png" alt="">如果同个职位在多个城市招聘，请分开添加招聘职位</i>
@@ -483,10 +483,11 @@ export default {
             }).then(function(res){
               if(res.data.code==10000 || res.data.data==null){
                 that.addressList = res.data.data
-                 that.addressList.forEach(function(ele,index) {
-                   if(ele.city==that.citys) {
+                 that.addressList.forEach((ele,index) => {
+                   if((ele.city+ele.address) ==that.citys) {
                      that.cityId = ele.id
                    }
+                   ele['cityAddress'] = ele.city+ele.address
                  })
               }else{
               that.$message.error(res.data.msg);
@@ -572,6 +573,13 @@ export default {
                 return
             }
          }
+          if(this.pagelist.id == '' ) {
+             this.$message({
+                message:'招聘负责人不能为空！',
+                type:'error'
+                })
+                return
+          } 
           this.$refs.makeNormal.validate((valid) => {
               if (valid) {
               let that = this
@@ -671,12 +679,12 @@ export default {
       }   
     },
     mounted() {
-      //页面一加载就调用
-        let that=this;
-      that.getaddress()
+
     },
     created() {
+        //页面一加载就调用
       let this_ = this
+      this_.getaddress()
       this_.getTree()
       this_.positionId = this_.$route.query.id
       if(this_.positionId) {

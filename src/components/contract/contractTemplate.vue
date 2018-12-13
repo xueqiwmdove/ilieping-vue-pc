@@ -16,7 +16,7 @@
           </p>
 
           <div class="templates">
-            <div class="signTemplate" v-for="item in templateData"  @click="previewPdf(item.templateAddress)">
+            <div class="signTemplate" v-for="(item,index) in templateData" :key="index" @click="previewPdf(item.templateAddress)">
               <p>{{item.templateName}}</p>
             </div>
           </div>

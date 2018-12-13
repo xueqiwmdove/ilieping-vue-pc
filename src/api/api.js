@@ -79,6 +79,7 @@ const api = {
   clickSign:Butterfly+'sign/save/check',//点击签约
   detailContract:Butterfly+'sign/detail/',//员工合同管理取消归档合同 接口
   countContract:Butterfly+'sign/count',//员工合同管理统计各类合同的数量
+   // duan
   employeeList:Butterfly+'employee/getEmployeeList',//员工列表
   treeList:Butterfly+'org/structure',//员工架构
   addpartment:Butterfly+'org/insertDept',//员工列表新增部门
@@ -138,7 +139,7 @@ const api = {
   interviewListToday:Butterfly+'interview/today/list/',//1.5版本面试管理 今天的面试
   interviewListBefore:Butterfly+'interview/before/list/',//1.5版本面试管理 明天及之后的面试
 	interviewListAfter:Butterfly+'interview/after/list/',//1.5版本面试管理 昨天及之前的面试
-
+  // duan
   getPosition:Butterfly+'positionInfo/getPosition',//职位列表
   getAddress:Butterfly+'enterpriseDate/enterprise/address/get',//企业地址列表
   structurePerson:Butterfly+'org/structure/',//人员架构列表
