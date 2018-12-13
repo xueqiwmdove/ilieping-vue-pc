@@ -62,13 +62,13 @@ export default {
     		let that=this;
 	      that.$http({
 	  			method:"get",
-	  			url:api.user,
+	  			url:api.getphone,
 	  			headers:headers("application/json;charset=utf-8"),
 	  			cache:false
 	  		}).then(function(res){
 	  			if(res.data.code==10000 && res.data!=""){
-	  				let mobile=res.data.data.enterprisePhone;
-	  				window.localStorage.setItem("oldPhone",res.data.data.enterprisePhone);
+	  				let mobile=res.data.data;
+	  				window.localStorage.setItem("oldPhone",res.data.data);
 //	  				that.phoneUser=res.data.enterprisePhone;
 	  				//前3后4，中间用*代替
 	  				let num=mobile.substr(0,3)+"****"+mobile.substr(7,4);
