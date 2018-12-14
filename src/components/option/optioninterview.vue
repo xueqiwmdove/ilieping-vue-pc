@@ -134,6 +134,18 @@
   import candidateSteps from '@/components/candidate/candidateSteps';
   import recommend_depart from '@/components/candidate/common/recommend_depart';
   
+  export default {
+  name: 'jobmanageindex',
+	components: {
+   	pageheader,
+    pageaside,
+	},
+    methods: {
+    	click_optioninterview(){
+        this.$router.push('/optioninterview');
+      },
+    },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
