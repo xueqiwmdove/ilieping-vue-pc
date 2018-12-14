@@ -363,17 +363,77 @@
             color:rgba(57,74,102,1);
             line-height:19px;
           }
+        }
+        button{
+          width:220px;
+          height:40px;
+          background:rgba(249,87,20,1);
+          border-radius:4px;
+          cursor: pointer;
+          border: none;
+          color: #fff;
+          margin: 12px 0 0;
+        }
+        .remarkList{
           button{
-            width:220px;
-            height:40px;
-            background:rgba(249,87,20,1);
-            border-radius:4px;
+            display: inherit;
+            margin: 30px auto;
             cursor: pointer;
-            border: none;
-            color: #fff;
-            margin: 12px 0 0;
+          }
+          .remark_box{
+            padding: 0 20px;
+            border-top: 1px solid #e5e5e5;
+            .remark{
+              border-bottom: 1px solid #e5e5e5;
+              padding: 20px 0;
+              .ops_person{
+                overflow: auto;
+                span{
+                  display: inline-block;
+                  width: 40px;
+                  height: 40px;
+                  line-height: 40px;
+                  margin: 0 10px 0 18px;
+                  border-radius: 50%;
+                  text-align: center;
+                  font-weight:bold;
+                  background: #5CDBD3;
+                  color: #fff;
+                }
+                i{
+                  height:19px;
+                  font-size:14px;
+                  line-height:19px;
+                }
+                .hrName{
+                  color:rgba(57,74,102,1);
+                }
+                .time{
+                 color:#748093;
+                  float: right;
+                }
+              }
+              .ops_content{
+                padding-left: 70px;
+                height:19px;
+                font-size:14px;
+                line-height:19px;
+                color:#394A66;
+              }
+              .ops{
+                overflow: auto;
+                i{
+                  float: right;
+                  color:#FF001F;
+                  height: 19px;
+                  cursor: pointer;
+                }
+              }
+            }
           }
         }
+
+
       }
       /*附件*/
       .accessory_fifth{
@@ -389,6 +449,38 @@
             line-height:19px;
             margin: 43px 0 25px;
           }
+          .uploadFile{
+            position: relative;
+            height: 40px;
+            width:220px;
+            margin: 12px auto auto;
+
+            input {
+              opacity: 0;
+              width:220px;
+              height:40px;
+              z-index: 10000;
+              border:1px solid #ccc;
+              position: absolute;
+              left: 0;
+              top:0;
+            }
+            span {
+              position: absolute;
+              left: 0;
+              top:0;
+              font-size: 14px;
+              text-align: center;
+              line-height: 34px;
+              width:220px;
+              height:40px;
+              background:rgba(249,87,20,1);
+              border-radius:4px;
+              cursor: pointer;
+              border: none;
+              color: #fff;
+            }
+          }
           .button{
             width:220px;
             height:40px;
@@ -398,6 +490,57 @@
             border: none;
             color: #fff;
             margin: 12px 0 0;
+          }
+        }
+        .fileList{
+          padding: 20px;
+          .headLine{
+            height:24px;
+            font-size:18px;
+            font-family:MicrosoftYaHei-Bold;
+            font-weight:bold;
+            color:#394A66;
+            line-height:24px;
+            border-left: 4px solid #f95714;
+            text-indent: 10px;
+            margin-bottom: 20px;
+          }
+          .file_text_box{
+            border: 1px solid #e5e5e5;
+            border-radius:4px;
+            .file_text{
+              border-bottom:1px solid #e5e5e5;
+              .file{
+                height: 40px;
+                line-height: 40px;
+                padding: 0 21px 0 24px;
+                overflow: hidden;
+                .filename{
+                  color:#394A66;
+                  display: inline-block;
+                  text-indent: 26px;
+                  background: url("../../../assets/img/candidate/fujian.png") no-repeat left;
+                }
+                div{
+                  float: right;
+                  .downLoad{
+                    margin: 0 20px;
+                  }
+                  .detail,.downLoad{
+                    color:#66ADFF ;
+                    cursor: pointer;
+                  }
+                  .delete{
+                    cursor: pointer;
+                    color: #FF001F;
+                  }
+                }
+
+              }
+            }
+            .file_text:last-child{
+              border-bottom:none;
+            }
           }
         }
       }

@@ -11,7 +11,7 @@
       <div class="right-content pull-right">
         <div class="content">
             <p class="headline">
-                <span>员工列表</span>
+                <span @click="personChanges()">员工列表</span>
             </p>
             <ul class="nav-tabs nav" id="uploadTabs"></ul>
             <el-row>
@@ -139,7 +139,7 @@
                   <!-- end-->
                   <!-- end-->
                 <!-- 弹窗-人事变更  -->
-                  <el-dialog title="人事变更" width="540px" :visible.sync="dialogChange" custom-class="sty_dialogc" class="add_dialog  sty_dialogc " :before-close="closeChange">
+                  <el-dialog title="人事变更" width="540px" :visible.sync="dialogChange" :class="{some_dia: !flag11}" custom-class="sty_dialogc" class="add_dialog  sty_dialogc" :before-close="closeChange">
                           <el-scrollbar style="height:100%" >  
                           <el-form :model="personChange" :rules="rules" ref="personChange" id="re_style" >
                               <el-row>
@@ -202,7 +202,7 @@
                                   </el-form-item>
                               </el-col>
                             </el-row>
-                              <el-row>
+                              <el-row v-if="flag11">
                               <el-col :span='8'>
                                   <el-form-item label="工作地点" :label-width="formLabelWidth"><i class="icon_sty" style="left:-10px;top:-0px;">*</i>
                                     <span class="span_dialog">{{personChange.place}}</span>
@@ -213,7 +213,19 @@
                                      <el-input  class="sty_input" type="text" placeholder="请输入工作地点" v-model="personChange.placeholder"></el-input>
                                   </el-form-item>
                               </el-col>
-                            </el-row>
+                            </el-row >
+                              <el-row  v-else>
+                                <el-col :span='12'>
+                                    <el-form-item label="工作地点" :label-width="formLabelWidth"><i class="icon_sty" style="left:-10px;top:-0px;">*</i>
+                                      <span class="span_dialog">{{personChange.place}}</span>
+                                    </el-form-item>
+                                </el-col>
+                                <el-col :span='14'>
+                                    <el-form-item label="变更为" :label-width="formLabelWidth">
+                                      <el-input style="width:220px;" class="sty_input" type="text" placeholder="请输入工作地点" v-model="personChange.placeholder"></el-input>
+                                    </el-form-item>
+                                </el-col>
+                              </el-row>
                             <el-row>
                               <el-form-item label="生效日期" :label-width="formLabelWidth" prop="raldate">
                                     <el-date-picker v-model="personChange.raldate"  value-format="yyyy-MM-dd" type="date" placeholder="选择日期"></el-date-picker>
@@ -396,6 +408,7 @@ export default {
         dialogFormal:false,//转正
         fileList:[],//上传文件集合数组
         treeDatas:[],
+        flag11:true,
         // resetImg:'',
         grouping:'',//分组
         status:'',//是否离职
@@ -815,6 +828,9 @@ export default {
         this.personChange.position=val.position
         this.personChange.workType=val.workType=='0'?'全职':val.workType=='1'?'兼职':val.workType=='2'?'实习':''
         this.personChange.Superior=val.directlySuperior
+        if(parseInt(val.workAddress) > 6) {
+          this.flag11 = false
+        }
         this.personChange.place =val.workAddress
       },
  //人事变更弹窗关闭
@@ -925,6 +941,12 @@ created() {
 </style>
 <style>
 @import url("./common/indexList/index.css");
+.some_dia .span_dialog {
+  width:348px
+}
+.some_di .sty_input {
+  width:220px;
+}
 </style>
 
 

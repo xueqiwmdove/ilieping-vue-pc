@@ -1,6 +1,6 @@
 <template>
     <div>
-      <el-dialog title="淘汰" :visible.sync="visableModal"  custom-class="weekOutAlert">
+      <el-dialog title="淘汰" :visible="visableModal"  custom-class="weekOutAlert">
         <el-row>
           <el-col :span="24">
             <span>备注</span>
