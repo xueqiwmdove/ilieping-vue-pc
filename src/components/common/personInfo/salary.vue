@@ -9,38 +9,64 @@
             <button class="el-icon-edit icon_reset" @click="tag_revise(4)"></button>
             <div class="form">
                 <div class="item">
-                    <label>基本工资</label>
+                    <label>基本工资<i class="notice-red">*</i></label>
                     <input v-if="flag3"  type="number" placeholder="请输入基本工资" v-model="employeeSalary.basicWage">
                     <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.basicWage ? employeeSalary.basicWage : '') :''}}</span>
                 </div>
-
                 <div class="item">
-                    <label>工资卡号</label>
-                    <input v-if="flag3"  type="number" placeholder="请输入工资卡号" v-model="employeeSalary.salaryCardNumber" required>
-                    <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.salaryCardNumber ? employeeSalary.salaryCardNumber : '') :''}}</span>
-                </div>
-
-                <div class="item">
-                    <label>社保账号</label>
-                    <input v-if="flag3"  type="number" placeholder="请输入社保账号" v-model="employeeSalary.socialSecurityAccount" required>
-                    <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.socialSecurityAccount ? employeeSalary.socialSecurityAccount : '') :''}}</span>
-                </div>  
-
-                <div class="item">
-                    <label>绩效工资</label>
+                    <label>绩效工资<i class="notice-red">*</i></label>
                     <input v-if="flag3"  type="number" placeholder="请输入绩效工资" v-model="employeeSalary.performancePay" required>
                     <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.performancePay ? employeeSalary.performancePay : '') :''}}</span>
                 </div>
+
                 <div class="item">
-                    <label>工资卡开户行</label>
-                    <input v-if="flag3"  type="text" placeholder="请输入工资卡开户行" v-model="employeeSalary.salaryBank" required>
-                    <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.salaryBank ? employeeSalary.salaryBank : '') :''}}</span>
-                </div>
+                    <label>社保账号<i class="notice-red">*</i></label>
+                    <input v-if="flag3"  type="number" placeholder="请输入社保账号" v-model="employeeSalary.socialSecurityAccount" required>
+                    <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.socialSecurityAccount ? employeeSalary.socialSecurityAccount : '') :''}}</span>
+                </div> 
+
                 <div class="item">
-                    <label>公积金账号</label>
+                    <label>公积金号<i class="notice-red">*</i></label>
                     <input v-if="flag3"  type="number" placeholder="请输入公积金账号" v-model="employeeSalary.providentFundAccount" required>
                     <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.providentFundAccount ? employeeSalary.providentFundAccount : '') :''}}</span>
                 </div>
+								
+                <div class="item">
+                    <label>工资卡1<i class="notice-red">*</i></label>
+                    <input v-if="flag3"  type="number" placeholder="请输入工资卡号" v-model="employeeSalary.salaryCardNumber" required>
+                    <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.salaryCardNumber ? employeeSalary.salaryCardNumber : '') :''}}</span>
+                </div> 
+								
+                <div class="item">
+                    <label>工资卡开户行<i class="notice-red">*</i></label>
+                    <input v-if="flag3"  type="text" placeholder="请输入工资卡开户行" v-model="employeeSalary.salaryBank" required>
+                    <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.salaryBank ? employeeSalary.salaryBank : '') :''}}</span>
+                </div>
+								<div v-for="(items,index) in insertData" :key="index">
+								<div class="item">
+										<label>工资卡{{index+1+1}}<i class="notice-red">*</i></label>
+										<input v-if="flag3"  type="number" :id="cardId(index)" placeholder="请输入工资卡号" required>
+										<span v-else class="font_sty">{{employeeSalary ? (employeeSalary.salaryCardNumber ? employeeSalary.salaryCardNumber : '') :''}}</span>
+								</div> 
+								
+                <div class="item">
+                    <label>工资卡开户行<i class="notice-red">*</i></label>
+                    <input v-if="flag3" :id="bankId(index)" type="text" placeholder="请输入工资卡开户行" required>
+                    <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.salaryBank ? employeeSalary.salaryBank : '') :''}}</span>
+                   <div class="delete_div"><img src="../../../assets/img/dismission/deleteH34.png" class="delete" @click="deleteDimissiom(index+1)"></div>
+								</div>
+								</div>
+								<div class="addNewPaycard">
+									<div @click="breakPromiseFun" class="click_font">
+									<div class="addNewPaycardIcon"><img src="../../../assets/img/dismission/addNewPayCard.png"  class="addDepartment"></div>
+								  <span style="font-size: 14px;">添加工资卡</span>
+								</div>
+								<div class="paycard_warning" v-if="isDimissionAll_count">
+								<div class="warning5"><img style="vertical-align: middle;" src="../../../assets/img/reg/info.svg" alt="" class="img_dismissal"></div>
+								<span style="color: #97A2B3;font-size: 14px;">最多可添加五张银行卡</span>
+								</div>
+								</div>
+								
                 <div v-if="flag3" style="text-align:center;">
                     <el-button :plain="true" class="btn_resite" @click="updateSalary()">保存</el-button>
                     <el-button class="btn-default" @click="tag_revise(4)" >取消</el-button>
@@ -63,10 +89,36 @@
           socialSecurityAccount:'',
           performancePay:'',
           salaryBank:'',
-          providentFundAccount:''
+          providentFundAccount:'',
+					insertData:[],
+					isDimissionAll_count:false,
+					liHtml:'',
         }  
       },
       methods: {
+				cardId(index){//银行卡ID
+					return 'cardId_'+index
+				},
+				bankId(index){//开户行ID
+					return 'bankId_'+index
+				},
+			deleteDimissiom(index){//删除银行卡html
+				console.log(index)
+				let that=this;
+			  that.insertData.splice(--index,1);
+				if(index!=4){
+					that.isDimissionAll_count=false;
+				}
+			},
+				breakPromiseFun(){//添加银行卡html
+					let that=this;
+					if(that.insertData.length==4){
+						that.isDimissionAll_count=true;
+						return false;
+					}else{
+						that.insertData.push(that.liHtml);
+					}
+				},
        //修改切换 
         tag_revise(val) {
           if(val=='4') {
@@ -104,4 +156,12 @@
 </script>
 <style scoped>
   @import './base.css';
+	.addNewPaycard{ height: 40px; clear: both; margin-bottom: 10px;line-height: 18px;}
+	.addNewPaycard .addNewPaycardIcon img{float: left;display: inline-block;vertical-align: middle; margin: 0 5px;}
+	.addNewPaycard .click_font{float: left; display: inline-block; cursor: pointer;width: 160px;}
+	.warning_div{height: 40px; line-height: 40px;font-size: 14px; color: #F95714;}
+	.warning_div .warning_img{float: left;display: inline-block;vertical-align: middle; margin: 0 5px;}
+	.paycard_warning{float: left;display: inline-block; margin-left: 100px;}
+	.warning5{float: left;display: inline-block;vertical-align: middle; margin: 0 5px;}
+	.delete_div{display: inline-block;vertical-align: middle;}
 </style>
