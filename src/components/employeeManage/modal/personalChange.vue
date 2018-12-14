@@ -1,4 +1,4 @@
-<!-- 
+<!--
     Author:周双
     日期：2018/11/27
 -->
@@ -45,19 +45,19 @@
                     <el-input type="text" v-model="formData.directlySuperior" placeholder="请输入直属上级"></el-input>
                 </el-form-item>
 
-                <el-form-item class="inline" label="工作地点" :label-width="formLabelWidth" required>
+                <el-form-item  label="工作地点" :label-width="formLabelWidth" required>
                     <p>{{employeeInfo.workAddress}}</p>
                 </el-form-item>
-                <el-form-item class="inline" label="变更为" :label-width="formLabelWidth">
+                <el-form-item  label="变更为" :label-width="formLabelWidth" >
                     <el-input type="text" v-model="formData.workAddress" placeholder="请输入工作地点"></el-input>
                 </el-form-item>
 
                 <el-form-item label="生效日期" :label-width="formLabelWidth" prop="effectiveDate" >
-                    <el-date-picker v-model="formData.effectiveDate" type="date" placeholder="请选择生效日期"></el-date-picker>
+                    <el-date-picker v-model="formData.effectiveDate" type="date" placeholder="请选择生效日期" style="width: 100%"></el-date-picker>
                 </el-form-item>
 
                 <el-form-item label="变更备注" :label-width="formLabelWidth" prop="remarks" >
-                    <el-input type="textarea" v-model="formData.remarks" placeholder="请输入变更备注"></el-input>
+                    <el-input type="textarea" v-model="formData.remarks" placeholder="请输入变更备注" style=" resize: none;"></el-input>
                 </el-form-item>
 
                 <el-form-item label="上传附件" :label-width="formLabelWidth" >
@@ -326,4 +326,7 @@
     .el-select{
         width: 100%;
     }
+  .el-textarea__inner{
+    resize: none;
+  }
 </style>

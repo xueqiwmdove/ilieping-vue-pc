@@ -1,4 +1,4 @@
-<!-- 
+<!--
     Author:周双
     日期：2018/11/27
 -->
@@ -14,7 +14,7 @@
   		<!--右侧内容栏-->
         <div class="right-content pull-right">
             <div class="content"><!--主体内容-->
-            
+
                 <p class="headline">
                     <span @click="closeCurPage" style="cursor:pointer">员工列表</span>
                     <span class="sub-tit">员工资料
@@ -24,7 +24,7 @@
 
                 <div class="base-info-box">
                     <img :src="employeeInfo.profilePhotoUrl" class="head-photo" alt="头像图片">
-               
+
                     <div class="base-info">
                         <h3 class="staff-name">{{employeeInfoDetail.employeeName}}</h3>
                         <dl class="job-info">
@@ -38,20 +38,28 @@
                             <dd>{{employeeInfoDetail.employeePhone}}</dd>
                             <dt><i class="email-icon"></i></dt>
                             <dd>{{employeeInfoDetail.employeeEmail}}</dd>
-                        </dl>                        
+                        </dl>
                     </div>
                 </div>
 
                 <div class="btn-group">
+                  <!--serviceSituation;//、0 试用期   1  已转正-->
+                  <!--status;//0 在职   1  离职-->
+                  <!--//是否签订合同 isSign 0  未签    1  已签-->
+
                     <a href="javascript:void(0)" @click="modalVisable('person')">人事变更</a>
                     <!-- <a href="javascript:void(0)" @click="routeToArchive">编辑资料</a> -->
                     <router-link :to="{path:'/archives',query: { id:id}}">编辑资料</router-link>
-                    <a href="javascript:void(0)" v-if="employeeInfo.workType == 0" @click="modalVisable('positive')">提前转正</a>
-                    <a href="javascript:void(0)" @click="modalVisable('resignation')">办理离职</a>
+                    <a href="javascript:void(0)" v-if="employeeInfo.workType == 0 && serviceSituation== 0 && status == 0" @click="modalVisable('positive')" >提前转正</a>
+                    <a href="javascript:void(0)" @click="modalVisable('resignation')" v-if="status== 0" >办理离职</a>
                     <a href="javascript:void(0)" @click="modalVisable('del')">删除员工</a>
 
-                    <router-link :to="{path:'/contractManagement',query: { id: id }}" v-if='employeeInfo.isSign == 1'>查看合同</router-link>
-                    <router-link :to="{path:'/bySinging',query: { id: id }}" v-else>签署合同</router-link>
+                    <router-link :to="{path:'/contractManagement',query: { id: id }}" v-if='isSign == 1 && status== 0'>查看合同</router-link>
+                    <router-link :to="{path:'/bySinging',query: { id: id }}" v-if='isSign == 0 && status== 0'>签署合同</router-link>
+
+                  <router-link :to="{path:'/quickUpload'}" v-if='status== 1'>快速评价离职</router-link>
+                  <router-link :to="{path:'/uploadOne'}" v-if='status== 1'>多维度离职评价</router-link>
+                  <router-link :to="{path:'/exposure'}" v-if=' status== 1'>离职失信曝光</router-link>
                 </div>
 
                 <div class="staff-box">
@@ -66,7 +74,7 @@
                                 <dd>{{employeeInfo.employeeNumber}}</dd>
                                 <dt>工作类型</dt>
                                 <dd>{{employeeInfo.workType == 0 ? '全职' : employeeInfo.workType == 1 ? ' 兼职' : '实习'}}</dd>
-                                <dt v-if="!personnelPromotionResponse.flag && employeeInfo.workType == 0">预计转正日期</dt>
+                                <dt v-if="!personnelPromotionResponse.flag && employeeInfo.workType == 0 && serviceSituation == 0">预计转正日期</dt>
                                 <dd v-if="!personnelPromotionResponse.flag && employeeInfo.workType == 0">{{personnelPromotionResponse.expectedTurnTome}}</dd>
                                 <dt v-if="personnelPromotionResponse.flag && employeeInfo.workType == 0">实际转正日期</dt>
                                 <dd v-if="personnelPromotionResponse.flag && employeeInfo.workType == 0">{{employeeInfo.turnPositiveTime}}</dd>
@@ -90,7 +98,7 @@
                                 <dt>{{ personProcess ? (personProcess.processTitle ? personProcess.processTitle : '') : ''}} </dt>
                                 <dd>{{personProcess ? (personProcess.status == 0 ? '已撤销': personProcess.status == 1 ? '已生效' : '即将生效') : ''}}</dd>
                             </dl>
-                        </div>                      
+                        </div>
                     </div>
                 </div>
 
@@ -143,7 +151,10 @@
                     del:false,
                 },
                 process:[],
-                processLen:0
+                processLen:0,
+                serviceSituation:'',
+                status:'',
+                isSign:''
             }
         },
         created(){
@@ -188,7 +199,23 @@
                             if(resData.code == 10000){
                                 that.employeeInfoDetail = resData.data.employeeInfoDetailResponse;
                                 that.employeeInfo = resData.data.employeeInfo;
-																
+                                //serviceSituation;/、0 试用期   1  已转正
+                                // status;// 在职   1离职
+                                that.serviceSituation = resData.data.employeeInfo. serviceSituation;
+                                          that.status = resData.data.employeeInfo. status;
+                                          that.isSign = resData.data.employeeInfo.isSign;
+                                //员工状态
+                                /*  ①文字按钮；②根据员工状态判断部分按钮状态
+
+                                    试用期员工：人事变更；编辑资料；转正；员工离职；删除员工；签署合同
+
+                                    //是否签订合同 isSign 0  未签    1  已签
+                                    已转正员工：人事变更；编辑资料；员工离职；删除员工；签署合同；查看合同
+
+                                    已离职员工：人事变更；编辑资料；快速评离职价；多维度离职评价；离职失信曝光；
+
+                                    离职评价规则和员工列表中已离职员工操作按钮规则相同；*/
+
                                 that.personnelPromotionResponse = resData.data.personnelPromotionResponse;
 
                                 let profilePhotoUrl = resData.data.employeeInfo.profilePhotoUrl;
@@ -197,12 +224,12 @@
                                 }else{
                                     that.employeeInfo.profilePhotoUrl = profilePhotoUrl;
                                 }
-        
+
                                 //当前时间
                                 that.setIsTurn();
 
                             }else{
-                                that.$message.error(resData.msg);                                
+                                that.$message.error(resData.msg);
                             }
 
                         }).catch(function (error) {
@@ -254,19 +281,19 @@
                             that.$message.error(error);
                         });
             },
-            getAge(birthday){   
+            getAge(birthday){
                 //根据生日计算年龄
                 let age;
                 let birthTime = new Date(birthday);
                 let birthYear = birthTime.getFullYear();
                 let birthMonth = birthTime.getMonth() + 1;
                 let birthDay = birthTime.getDate();
-                
+
                 let d = new Date();
                 var nowYear = d.getFullYear();
                 var nowMonth = d.getMonth() + 1;
                 var nowDay = d.getDate();
-                
+
                 if(nowYear == birthYear){//如果当前年份等于出生年份
                     age = 0;
                 }else{
@@ -341,14 +368,14 @@
             //设置等高
             const info1H = this.$refs.info1.offsetHeight;
             const info2H = this.$refs.info2.offsetHeight;
-            info1H > info2H?this.infoH = `${info1H}px`:this.infoH = `${info2H}px`;  
+            info1H > info2H?this.infoH = `${info1H}px`:this.infoH = `${info2H}px`;
 
             //当窗口大小改变时重新设置组件宽度
             let that = this;
             window.onresize = () => {
                 that.$refs.processtag.getTransWidth(that.process);
             }
-            
+
         }
     }
 </script>
@@ -365,7 +392,7 @@
     .base-info-box{
         padding-top: 10px;
         background: #FAFBFC;
-        border-bottom: 1px solid #E5E5E5; 
+        border-bottom: 1px solid #E5E5E5;
     }
     .base-info{
         display: inline-block;
@@ -426,13 +453,13 @@
         width: calc(50% - 13px);
         vertical-align: top;
         margin-top: 30px;
-        margin-right:20px; 
+        margin-right:20px;
         margin-bottom: 30px;
         min-width: 300px;
         /* box-sizing: border-box; */
     }
     .staff-box>div:last-child{
-        margin-right:0; 
+        margin-right:0;
     }
     .staff-tit{
         display: flex;

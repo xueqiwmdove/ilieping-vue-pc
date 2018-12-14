@@ -1,4 +1,4 @@
-<!-- 
+<!--
     Author:周双
     日期：2018/11/27
 -->
@@ -10,19 +10,19 @@
             <el-form ref="form" :model="formData" :rules="rules">
                 <el-form-item label="转正员工" :label-width="formLabelWidth" >
                     <p>{{employeeInfo.employeeName}}</p>
-                </el-form-item>    
+                </el-form-item>
 
                 <el-form-item label="入职日期" :label-width="formLabelWidth" >
                     <p>{{employeeInfo.entryTime}}</p>
-                </el-form-item>  
+                </el-form-item>
 
                 <el-form-item label="试用期月数" :label-width="formLabelWidth" >
-                    <p>{{employeeInfo.probation}}</p>
-                </el-form-item>  
+                    <p>{{employeeInfo.probation}}个月</p>
+                </el-form-item>
 
                 <el-form-item label="预计转正时间" :label-width="formLabelWidth" >
                     <p>{{employeeInfo.turnPositiveTime}}</p>
-                </el-form-item>  
+                </el-form-item>
 
                 <el-form-item label="实际转正日期" :label-width="formLabelWidth" prop="effectiveDate">
                     <el-date-picker v-model="formData.effectiveDate" type="date" placeholder="请输入实际转正日期"></el-date-picker>
@@ -32,17 +32,17 @@
                     <el-input type="textarea" v-model="formData.remarks" placeholder="请输入评价"></el-input>
                 </el-form-item>
 
-                <el-form-item label="上传附件" :label-width="formLabelWidth">        
+                <el-form-item label="上传附件" :label-width="formLabelWidth">
                     <fileupload v-on:getfile="getUploadFiles"></fileupload>
-                </el-form-item>          
+                </el-form-item>
 
             </el-form>
-            
+
             <div slot="footer" class="dialog-footer">
                 <el-button type="primary" :disabled="disableType" @click="confirmPositive()">确 定</el-button>
                 <el-button @click="hideModel">取 消</el-button>
             </div>
-            
+
         </el-dialog>
 
     </div>
@@ -91,7 +91,7 @@
                     });
                 },
                 deep:true
-            }            
+            }
         },
         methods:{
             hideModel(){
@@ -127,7 +127,7 @@
                     }
                     return `${year}-${month}-${day}`;
                 }
-            },            
+            },
             confirmPositive(){
                 //提交表单
                 let that = this;
@@ -144,8 +144,8 @@
                         formData.append('remarks',this.formData.remarks);
                         that.formData.fileList.forEach((file,index) => {
                             formData.append('files', file.file)
-                        });       
-                        
+                        });
+
                         this.$http({
                                     url:`${api.staffTurnPositive}`,
                                     method:'POST',
@@ -162,14 +162,14 @@
 
                                 }).catch(function (error) {
                                     that.$message.error(error);
-                                });    
+                                });
 
                     // } else {
                     //     that.$message.error('请完整填写表单');
                     //     return false;
                     // }
 
-                // })                 
+                // })
             },
         }
   };
