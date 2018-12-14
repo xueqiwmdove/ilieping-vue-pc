@@ -53,6 +53,7 @@ export default {
         }
         },
         fileAdd(file){
+          let that=this;
             console.log(file.size,'<======file')
             var files_size=file.size;
             var isLt5M= files_size / 1024 / 1024 < 3;
@@ -67,8 +68,8 @@ export default {
                 if(this.imgList.length>4) {
                     this.$message({
                         message:'上传文件不能超过5张',
-                        type:'error'  
-                    }) 
+                        type:'error'
+                    })
                 this.flag=true
                 return
             }else {
@@ -77,16 +78,17 @@ export default {
                 this.vue.imgList.push({
                     file
                 });
-            } 
             }
-            this.$emit('getfile',this.imgList)
             }
-        
+            console.log(that.imgList);
+            that.$emit('getfile',that.imgList)
+            }
+
         },
         // 删除文件
         fileDel(index){
             this.imgList.splice(index, 1);
-        },   
+        },
     },
     computed:{
         resetImg(){
@@ -170,7 +172,7 @@ color: #2064F5;
     overflow: hidden;
     white-space: nowrap;
     display: inline-block;
-    width: 200px;   
+    width: 200px;
     cursor: pointer;
 		max-width: 100px;
 }

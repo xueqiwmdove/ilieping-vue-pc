@@ -1,4 +1,4 @@
-<!-- 
+<!--
     Author:周双
     日期：2018/11/27
 -->
@@ -31,12 +31,12 @@
                     <basicinfo :employeeInfo="employeeInfo" @updateEmployeeInfo="updateEmployeeInfo" @changeHeadPhoto="changeHeadPhoto"></basicinfo>
                     <!--岗位信息  -->
                     <p class="uploadTitle">岗位信息（员工类型，部门，职位，直属上级，工作地点 需通过<span @click="modalVisable('person')" style="color:#F95714 ; cursor: pointer;">人事变更</span>来修改）</p>
-                    <postinfo :employeeInfo="employeeInfo" :employeeInfoDetail="employeeInfoDetail" :personnelPromotionResponse="personnelPromotionResponse" @updateEmployeeInfo="updateEmployeeInfo"></postinfo>       
+                    <postinfo :employeeInfo="employeeInfo" :employeeInfoDetail="employeeInfoDetail" :personnelPromotionResponse="personnelPromotionResponse" @updateEmployeeInfo="updateEmployeeInfo"></postinfo>
                       <!--联系人  -->
                     <!-- <lianxi :employeeInfo="employeeInfo" @updateEmployeeInfo="updateEmployeeInfo"></lianxi> -->
                     <!-- 薪资福利 -->
-                    <salary :employeeSalary="employeeSalary" @updateSalary="updateSalary"></salary> 
-										
+                    <salary :employeeSalary="employeeSalary" @updateSalary="updateSalary"></salary>
+
                     <!-- 附件 -->
                     <p class="uploadTitle">附件</p>
                     <div class="uploadLeaveInfo3" >
@@ -46,35 +46,35 @@
                             </el-form-item>  -->
                             <el-form-item label="身份证反面照片" :label-width="formLabelWidth">
                                 <fileupload @getfile="getCardBackFiles" ref="cardBackUpload" :fileUrled='employeeInfo.reversePhotoUrl' :imgName="'reversePhotoUrl'"></fileupload>
-                            </el-form-item> 
-														
+                            </el-form-item>
+
                             <el-form-item label="身份证正面照片" :label-width="formLabelWidth">
                                 <fileupload @getfile="getCardFaceFiles" ref="cardFaceUpload" :fileUrled='employeeInfo.protraitPhotoUrl' :imgName="'protraitPhotoUrl'"></fileupload>
-                            </el-form-item> 
-														 
+                            </el-form-item>
+
                             <el-form-item label="学历证明" :label-width="formLabelWidth">
                                 <fileupload @getfile="getEducationFiles" ref="educationUpload" :fileUrled='annexEducation.httpUrl' :fileName='annexEducation.fileName' :fileId='annexEducation.id'></fileupload>
                             </el-form-item>
-														
+
                             <el-form-item label="简历" :label-width="formLabelWidth">
                                 <fileupload @getfile="getResumeFiles" ref="resumeUpload" :fileUrled='annexResume.httpUrl' :fileName='annexResume.fileName' :fileId='annexResume.id'></fileupload>
-                            </el-form-item>   
+                            </el-form-item>
 
                             <el-form-item label="入职体检" :label-width="formLabelWidth">
 															<fileupload @getfile="getEntryExamination" ref="EntryExaminationUpload" :fileUrled='annexEntryExamination.httpUrl' :fileName='annexEntryExamination.fileName' :fileId='annexEntryExamination.id'></fileupload>
-                            </el-form-item>  
-														
+                            </el-form-item>
+
                             <el-form-item label="上家离职证明" :label-width="formLabelWidth">
                                 <fileupload @getfile="getResignCertFiles" ref="resignCertUpload" :fileUrled='annexResignCert.httpUrl' :fileName='annexResignCert.fileName' :fileId='annexResignCert.id'></fileupload>
-                            </el-form-item> 
-														
+                            </el-form-item>
+
 														<el-form-item label="照片" :label-width="formLabelWidth">
 															<fileuploadList @getfile="getPhoto" ref="PhotoUpload" :fileUrled='PhotoList.httpUrl' :fileName='PhotoList.fileName' :fileId='PhotoList.id'></fileuploadList>
 														</el-form-item>
                         </el-form>
                     </div>
                 </div>
-            </div>	
+            </div>
 			<!--主体内容end-->
 
             <!-- 弹窗-人事变更  -->
@@ -141,10 +141,10 @@
         created(){
             let that = this;
             var employeeId = this.$route.query.id;
-            this.getStaffData(that, employeeId);    
+            this.getStaffData(that, employeeId);
         },
         methods: {
-            //修改切换 
+            //修改切换
             tag_revise(val) {
                 if(val=='1') {
                     this.flag = !this.flag
@@ -152,7 +152,7 @@
             },
             closeCurPage(){
                 this.$router.push('/indexList');
-            },    
+            },
             modalVisable(param){
                 this.visables[param] = true;
             },
@@ -174,19 +174,19 @@
                     return `${year}-${month}-${day}`;
                 }
             },
-            getAge(birthday){   
+            getAge(birthday){
                 //根据生日计算年龄
                 let age;
                 let birthTime = new Date(birthday);
                 let birthYear = birthTime.getFullYear();
                 let birthMonth = birthTime.getMonth() + 1;
                 let birthDay = birthTime.getDate();
-                
+
                 let d = new Date();
                 var nowYear = d.getFullYear();
                 var nowMonth = d.getMonth() + 1;
                 var nowDay = d.getDate();
-                
+
                 if(nowYear == birthYear){//如果当前年份等于出生年份
                     age = 0;
                 }else{
@@ -273,11 +273,11 @@
 
                                 let data = resData.data;
                                 that.employeeInfoDetail = data.employeeInfoDetailResponse;
-                                // that.employeeInfo = data.employeeInfo;
-																that.employeeInfo = data.employeeSalaryResponse;
-																
+                                that.employeeInfo = data.employeeInfo;
+																// that.employeeInfo = data.employeeSalaryResponse;
+
 																console.log(JSON.stringify(data.employeeSalaryResponse.employeeSalaryCardList)+"***");
-																
+
                                 if(!data.employeeSalaryResponse){
                                     that.employeeSalary = {
                                         employeeId:employeeId,
@@ -291,9 +291,9 @@
                                     }
                                 }else{
                                     that.employeeSalary = data.employeeSalaryResponse;
-																		
+
                                 }
-                                
+
                                 that.personnelPromotionResponse = data.personnelPromotionResponse;
                                 let annexInfoArr = data.annexInfoResponseList;
                                 annexInfoArr.forEach(element => {
@@ -314,7 +314,7 @@
                                 }else{
                                     that.employeeInfo.profilePhotoUrl = data.employeeInfo.profilePhotoUrl;
                                 }
-      
+
                             }else{
                                 that.$message.error(resData.msg);
                             }
@@ -401,7 +401,7 @@
                     socialSecurityAccount:this.employeeSalary.socialSecurityAccount,
                     providentFundAccount:this.employeeSalary.providentFundAccount,
 										employeeSalaryCardList:this.employeeSalary.employeeSalaryCardList,
-										
+
                 };
                 this.$http({
                             url:`${api.updateSalary}`,
@@ -425,7 +425,7 @@
             },
             getHeadImg(fileList){
                 //上传头像
-                let that = this; 
+                let that = this;
                 let formData = new FormData();
                 formData.append('employeeId',this.$route.query.id);
                 // formData.append('enterpriseId',this.employeeInfo.enterpriseId);
@@ -448,12 +448,12 @@
                             }
                         }).catch(function (error) {
                             that.$message.error(error);
-                        });    
+                        });
             },
             getHeadFiles(fileList){
                 //获取上传证件照
                 // console.log(fileList,'<================head');
-                let that = this; 
+                let that = this;
                 let formData = new FormData();
                 formData.append('employeeId',this.$route.query.id);
                 // formData.append('enterpriseId',this.employeeInfo.enterpriseId);
@@ -476,8 +476,8 @@
                             }
                         }).catch(function (error) {
                             that.$message.error(error);
-                        });             
-            }, 
+                        });
+            },
             getCardFaceFiles(fileList){
                 //获取上传身份证正面照
                 // console.log(fileList,'<================cardFace');
@@ -486,7 +486,7 @@
                 formData.append('employeeId',this.$route.query.id);
                 // formData.append('enterpriseId',this.employeeInfo.enterpriseId);
                 formData.append('protraitPhotoUrl',fileList);
-                
+
                 this.$http({
                             url:api.archivesUploadPhoto,
                             method:'POST',
@@ -504,8 +504,8 @@
                             }
                         }).catch(function (error) {
                             that.$message.error(error);
-                        });  
-            }, 
+                        });
+            },
             getCardBackFiles(fileList){
                 //获取上传身份证反面照
                 // console.log(fileList,'<================cardBack');
@@ -531,8 +531,8 @@
                             }
                         }).catch(function (error) {
                             that.$message.error(error);
-                        });  
-            },  
+                        });
+            },
 						getEntryExamination(fileList){//入职体检
                 let that = this;
                 let formData = new FormData();
@@ -557,7 +557,7 @@
 										}
 								}).catch(function (error) {
 										that.$message.error(error);
-								});  
+								});
 						},
             getResumeFiles(fileList){
                 //获取上传简历
@@ -586,8 +586,8 @@
                             }
                         }).catch(function (error) {
                             that.$message.error(error);
-                        });  
-            },    
+                        });
+            },
             getEducationFiles(fileList){
                 //获取上传学历
                 // console.log(fileList,'<================education');
@@ -614,16 +614,17 @@
                             }
                         }).catch(function (error) {
                             that.$message.error(error);
-                        }); 
-            },   
+                        });
+            },
 						getPhoto(fileList){//照片
                 let that = this;
                 let formData = new FormData();
                 formData.append('type','6');
                 formData.append('employeeId',this.$route.query.id);
                 // formData.append('enterpriseId',this.employeeInfo.enterpriseId);
-                formData.append('file',fileList);
+                formData.append('files',fileList);
 
+                console.log("hh"+formData+JSON.stringify(fileList));
                 this.$http({
 										url:api.archivesUploadFileList,
 										method:'POST',
@@ -640,7 +641,7 @@
 										}
 								}).catch(function (error) {
 										that.$message.error(error);
-								}); 
+								});
 						},
             getResignCertFiles(fileList){
                 //获取上传离职证明
@@ -668,8 +669,8 @@
 										}
 								}).catch(function (error) {
 										that.$message.error(error);
-								}); 
-            },        
+								});
+            },
         },
       mounted(){
 
