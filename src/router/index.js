@@ -90,8 +90,9 @@ import positionUpdate from '@/components/jobManagement/positionUpdate'
 import  Candidatindex   from '@/components/CandidatManage/Candidatindex'
 import SearchCandidata from  '@/components/CandidatManage/searchCandidata'
 
-
-
+//设置
+import option from  '@/components/option/option'
+import optioninterview from  '@/components/option/optioninterview'
 //账号管理
 import businessManager from '@/components/account/businessManager'//企业经办人
 import businessCert from '@/components/account/certificate' //企业认证
@@ -477,6 +478,16 @@ const router =new Router({
       path: '/searchCandidata',
       name: 'searchCandidata',
       component: SearchCandidata,
+    },
+    {//设置
+      path: '/option',
+      name: 'option',
+      component: option,
+    },
+    {//设置邀约
+      path: '/option',
+      name: 'optioninterview',
+      component: optioninterview,
     },
      {//候选人信息弹窗
       path: '/candidateSteps',

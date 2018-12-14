@@ -8,6 +8,7 @@
         <div class="uploadLeaveInfo3" >
             <button class="el-icon-edit icon_reset" @click="tag_revise(4)"></button>
             <div class="form">
+							  
                 <div class="item">
                     <label>基本工资<i class="notice-red">*</i></label>
                     <input v-if="flag3"  type="number" placeholder="请输入基本工资" v-model="employeeSalary.basicWage">
@@ -31,32 +32,34 @@
                     <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.providentFundAccount ? employeeSalary.providentFundAccount : '') :''}}</span>
                 </div>
 								
-                <div class="item">
+   <!--            <div class="item">
                     <label>工资卡1<i class="notice-red">*</i></label>
-                    <input v-if="flag3"  type="number" placeholder="请输入工资卡号" v-model="employeeSalary.salaryCardNumber" required>
-                    <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.salaryCardNumber ? employeeSalary.salaryCardNumber : '') :''}}</span>
-                </div> 
-								
-                <div class="item">
-                    <label>工资卡开户行<i class="notice-red">*</i></label>
-                    <input v-if="flag3"  type="text" placeholder="请输入工资卡开户行" v-model="employeeSalary.salaryBank" required>
-                    <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.salaryBank ? employeeSalary.salaryBank : '') :''}}</span>
+                    <input v-if="flag3"  type="number" placeholder="请输入工资卡号" v-model="employeeSalary.employeeSalaryCardList.salaryCardNumber" required>
+                    <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.employeeSalaryCardList.salaryCardNumber ? employeeSalary.employeeSalaryCardList.salaryCardNumber : '') :''}}</span>
                 </div>
+								
+               <div class="item">
+                    <label>工资卡开户行<i class="notice-red">*</i></label>
+                    <input v-if="flag3"  type="text" placeholder="请输入工资卡开户行" v-model="employeeSalary.employeeSalaryCardList.salaryBank" required>
+                    <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.employeeSalaryCardList.salaryBank ? employeeSalary.employeeSalaryCardList.salaryBank : '') :''}}</span>
+                </div> -->
 								<div v-for="(items,index) in insertData" :key="index">
+									{{insertData}}
 								<div class="item">
-										<label>工资卡{{index+1+1}}<i class="notice-red">*</i></label>
-										<input v-if="flag3"  type="number" :id="cardId(index)" placeholder="请输入工资卡号" required>
-										<span v-else class="font_sty">{{employeeSalary ? (employeeSalary.salaryCardNumber ? employeeSalary.salaryCardNumber : '') :''}}</span>
+										<label>工资卡{{index+1}}<i class="notice-red">*</i></label>
+										<input v-if="flag3" type="number" :id="cardId(index)" :value="insertData.salaryCardNumber" placeholder="请输入工资卡号" required>
+										<span v-else class="font_sty">{{employeeSalary ? (insertData.salaryCardNumber ? insertData.salaryCardNumber : '') :''}}</span>
 								</div> 
 								
                 <div class="item">
                     <label>工资卡开户行<i class="notice-red">*</i></label>
-                    <input v-if="flag3" :id="bankId(index)" type="text" placeholder="请输入工资卡开户行" required>
-                    <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.salaryBank ? employeeSalary.salaryBank : '') :''}}</span>
+                    <input v-if="flag3" :id="bankId(index)" type="text" :value="insertData.salaryBank" placeholder="请输入工资卡开户行" required>
+                    <span v-else class="font_sty">{{employeeSalary ? (insertData.salaryBank ? insertData.salaryBank : '') :''}}</span>
                    <div class="delete_div"><img src="../../../assets/img/dismission/deleteH34.png" class="delete" @click="deleteDimissiom(index+1)"></div>
 								</div>
+								
 								</div>
-								<div class="addNewPaycard">
+								<div class="addNewPaycard" v-if="flag3">
 									<div @click="breakPromiseFun" class="click_font">
 									<div class="addNewPaycardIcon"><img src="../../../assets/img/dismission/addNewPayCard.png"  class="addDepartment"></div>
 								  <span style="font-size: 14px;">添加工资卡</span>
@@ -96,14 +99,14 @@
         }  
       },
       methods: {
-				cardId(index){//银行卡ID
-					return 'cardId_'+index
-				},
-				bankId(index){//开户行ID
-					return 'bankId_'+index
-				},
+			
+			cardId(index){//银行卡ID
+				return 'cardId_'+index
+			},
+			bankId(index){//开户行ID
+				return 'bankId_'+index
+			},
 			deleteDimissiom(index){//删除银行卡html
-				console.log(index)
 				let that=this;
 			  that.insertData.splice(--index,1);
 				if(index!=4){
@@ -121,9 +124,11 @@
 				},
        //修改切换 
         tag_revise(val) {
+					console.log(JSON.stringify(this.employeeSalary));
+					console.log(JSON.stringify(this.employeeSalary.employeeSalaryCardList));
           if(val=='4') {
-            // console.log(this.employeeSalary);
             if(this.employeeSalary){
+							
                 if(this.flag3 == false){//获取表单原始值
                     this.basicWage = this.employeeSalary.basicWage;
                     this.salaryCardNumber = this.employeeSalary.salaryCardNumber;
@@ -131,7 +136,8 @@
                     this.performancePay = this.employeeSalary.performancePay;
                     this.salaryBank = this.employeeSalary.salaryBank;
                     this.providentFundAccount = this.employeeSalary.providentFundAccount;
-                    
+										this.insertData=this.employeeSalary.employeeSalaryCardList;
+										
                 }else{//重置表单
                     this.employeeSalary.basicWage = this.basicWage;
                     this.employeeSalary.salaryCardNumber = this.salaryCardNumber;
@@ -139,6 +145,7 @@
                     this.employeeSalary.performancePay = this.performancePay;
                     this.employeeSalary.salaryBank = this.salaryBank;
                     this.employeeSalary.providentFundAccount = this.providentFundAccount;
+										this.insertData=this.employeeSalary.employeeSalaryCardList;
                 }
             }
             this.flag3 = !this.flag3
@@ -147,10 +154,10 @@
         updateSalary(){
           let isSuccess = this.$emit('updateSalary');
           if(isSuccess){
-              this.flag3 = false;
+            this.flag3 = false;
           }          
-        }
-      }
+        },
+      },
 
     }
 </script>

@@ -4,14 +4,12 @@
 -->
 <template>
     <div >
-
         <div class="uploadFile" v-show="uploadBtnShow">
             <span>上传</span>
             <input :disabled='flag' class="el-icon-upload" type="file"  @change="getFile($event)" id='file' accept="image/*,application/*" action=""/>
         </div>
 
         <div class="file_text" v-show="imgList != '' || fileUrled != '' ">
-
             <div class="load-del" v-show="!uploadBtnShow">
                 {{fileName ? fileName : imgList.name ? imgList.name :'' }}
                 <img src="../../assets/img/staff/ic_atta.png" alt="" class="upload-icon">

@@ -36,6 +36,7 @@
                     <!-- <lianxi :employeeInfo="employeeInfo" @updateEmployeeInfo="updateEmployeeInfo"></lianxi> -->
                     <!-- 薪资福利 -->
                     <salary :employeeSalary="employeeSalary" @updateSalary="updateSalary"></salary> 
+										
                     <!-- 附件 -->
                     <p class="uploadTitle">附件</p>
                     <div class="uploadLeaveInfo3" >
@@ -68,7 +69,7 @@
                             </el-form-item> 
 														
 														<el-form-item label="照片" :label-width="formLabelWidth">
-																<fileupload @getfile="getPhoto" ref="PhotoUpload" :fileUrled='PhotoList.httpUrl' :fileName='PhotoList.fileName' :fileId='PhotoList.id'></fileupload>
+															<fileuploadList @getfile="getPhoto" ref="PhotoUpload" :fileUrled='PhotoList.httpUrl' :fileName='PhotoList.fileName' :fileId='PhotoList.id'></fileuploadList>
 														</el-form-item>
                         </el-form>
                     </div>
@@ -93,6 +94,8 @@
     import salary from '@/components/common/personInfo/salary';
     import personalChange from '@/components/employeeManage/modal/personalChange';
     import fileupload from '@/components/common/fileUploadFile';
+		import fileuploadList from '@/components/common/fileUploadFileList';
+
     import fileUploadHeadImg from '@/components/common/fileUploadHeadImg';
 
     import http from '@/http/http';
@@ -109,7 +112,8 @@
             // lianxi,
             salary,
             personalChange,
-            fileupload,fileUploadHeadImg
+            fileupload,fileUploadHeadImg,
+						fileuploadList,
         },
         data(){
             return {
@@ -131,6 +135,7 @@
                     name:'',
                     region:'',
                 },
+								imgList:[],
             };
         },
         created(){
@@ -268,8 +273,12 @@
 
                                 let data = resData.data;
                                 that.employeeInfoDetail = data.employeeInfoDetailResponse;
-                                that.employeeInfo = data.employeeInfo;
-                                if(!data.employeeSalary){
+                                // that.employeeInfo = data.employeeInfo;
+																that.employeeInfo = data.employeeSalaryResponse;
+																
+																console.log(JSON.stringify(data.employeeSalaryResponse.employeeSalaryCardList)+"***");
+																
+                                if(!data.employeeSalaryResponse){
                                     that.employeeSalary = {
                                         employeeId:employeeId,
                                         basicWage:'',
@@ -277,10 +286,12 @@
                                         socialSecurityAccount:'',
                                         performancePay:'',
                                         salaryBank:'',
-                                        providentFundAccount:''
+                                        providentFundAccount:'',
+																				employeeSalaryCardList:{}
                                     }
                                 }else{
-                                    that.employeeSalary = data.employeeSalary;
+                                    that.employeeSalary = data.employeeSalaryResponse;
+																		
                                 }
                                 
                                 that.personnelPromotionResponse = data.personnelPromotionResponse;
@@ -389,6 +400,8 @@
                     salaryCardNumber:this.employeeSalary.salaryCardNumber,
                     socialSecurityAccount:this.employeeSalary.socialSecurityAccount,
                     providentFundAccount:this.employeeSalary.providentFundAccount,
+										employeeSalaryCardList:this.employeeSalary.employeeSalaryCardList,
+										
                 };
                 this.$http({
                             url:`${api.updateSalary}`,
@@ -415,7 +428,7 @@
                 let that = this; 
                 let formData = new FormData();
                 formData.append('employeeId',this.$route.query.id);
-                formData.append('enterpriseId',this.employeeInfo.enterpriseId);
+                // formData.append('enterpriseId',this.employeeInfo.enterpriseId);
                 formData.append('profilePhotoUrl',fileList);
                 this.$http({
                             url:api.archivesUploadPhoto,
@@ -443,7 +456,7 @@
                 let that = this; 
                 let formData = new FormData();
                 formData.append('employeeId',this.$route.query.id);
-                formData.append('enterpriseId',this.employeeInfo.enterpriseId);
+                // formData.append('enterpriseId',this.employeeInfo.enterpriseId);
                 formData.append('crownlessPhotoUrl',fileList);
                 this.$http({
                             url:api.archivesUploadPhoto,
@@ -471,7 +484,7 @@
                 let that = this;
                 let formData = new FormData();
                 formData.append('employeeId',this.$route.query.id);
-                formData.append('enterpriseId',this.employeeInfo.enterpriseId);
+                // formData.append('enterpriseId',this.employeeInfo.enterpriseId);
                 formData.append('protraitPhotoUrl',fileList);
                 
                 this.$http({
@@ -499,7 +512,7 @@
                 let that = this;
                 let formData = new FormData();
                 formData.append('employeeId',this.$route.query.id);
-                formData.append('enterpriseId',this.employeeInfo.enterpriseId);
+                // formData.append('enterpriseId',this.employeeInfo.enterpriseId);
                 formData.append('reversePhotoUrl',fileList);
 
                 this.$http({
@@ -525,7 +538,7 @@
                 let formData = new FormData();
                 formData.append('type','7');
                 formData.append('employeeId',this.$route.query.id);
-                formData.append('enterpriseId',this.employeeInfo.enterpriseId);
+                // formData.append('enterpriseId',this.employeeInfo.enterpriseId);
                 formData.append('file',fileList);
 
                 this.$http({
@@ -553,7 +566,7 @@
                 let formData = new FormData();
                 formData.append('type','3');
                 formData.append('employeeId',this.$route.query.id);
-                formData.append('enterpriseId',this.employeeInfo.enterpriseId);
+                // formData.append('enterpriseId',this.employeeInfo.enterpriseId);
                 formData.append('file',fileList);
 
                 this.$http({
@@ -582,7 +595,7 @@
                 let formData = new FormData();
                 formData.append('type','4');
                 formData.append('employeeId',this.$route.query.id);
-                formData.append('enterpriseId',this.employeeInfo.enterpriseId);
+                // formData.append('enterpriseId',this.employeeInfo.enterpriseId);
                 formData.append('file',fileList);
 
                 this.$http({
@@ -608,26 +621,26 @@
                 let formData = new FormData();
                 formData.append('type','6');
                 formData.append('employeeId',this.$route.query.id);
-                formData.append('enterpriseId',this.employeeInfo.enterpriseId);
+                // formData.append('enterpriseId',this.employeeInfo.enterpriseId);
                 formData.append('file',fileList);
 
                 this.$http({
-                            url:api.archivesUploadFile,
-                            method:'POST',
-                            headers:headers('multipart/form-data'),
-                            data: formData,
-                        }).then(function (res) {
+										url:api.archivesUploadFileList,
+										method:'POST',
+										headers:headers('multipart/form-data'),
+										data: formData,
+								}).then(function (res) {
 
-                            let result=res.data;
-                            if(result.code == 10000){
-                                that.$refs.PhotoUpload.getFileUrl(result.data);
-                                that.$message(result.msg);
-                            }else{
-                                that.$message.error(result.code + result.msg);
-                            }
-                        }).catch(function (error) {
-                            that.$message.error(error);
-                        }); 
+										let result=res.data;
+										if(result.code == 10000){
+												that.$refs.PhotoUpload.getFileUrl(result.data);
+												that.$message(result.msg);
+										}else{
+												that.$message.error(result.code + result.msg);
+										}
+								}).catch(function (error) {
+										that.$message.error(error);
+								}); 
 						},
             getResignCertFiles(fileList){
                 //获取上传离职证明
@@ -636,26 +649,26 @@
                 let formData = new FormData();
                 formData.append('type','5');
                 formData.append('employeeId',this.$route.query.id);
-                formData.append('enterpriseId',this.employeeInfo.enterpriseId);
+                // formData.append('enterpriseId',this.employeeInfo.enterpriseId);
                 formData.append('file',fileList);
 
                 this.$http({
-                            url:api.archivesUploadFile,
-                            method:'POST',
-                            headers:headers('multipart/form-data'),
-                            data: formData,
-                        }).then(function (res) {
+										url:api.archivesUploadFile,
+										method:'POST',
+										headers:headers('multipart/form-data'),
+										data: formData,
+								}).then(function (res) {
 
-                            let result=res.data;
-                            if(result.code == 10000){
-                                that.$refs.resignCertUpload.getFileUrl(result.data);
-                                that.$message(result.msg);
-                            }else{
-                                that.$message.error(result.code + result.msg);
-                            }
-                        }).catch(function (error) {
-                            that.$message.error(error);
-                        }); 
+										let result=res.data;
+										if(result.code == 10000){
+												that.$refs.resignCertUpload.getFileUrl(result.data);
+												that.$message(result.msg);
+										}else{
+												that.$message.error(result.code + result.msg);
+										}
+								}).catch(function (error) {
+										that.$message.error(error);
+								}); 
             },        
         },
       mounted(){

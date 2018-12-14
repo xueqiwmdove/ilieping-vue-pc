@@ -128,8 +128,9 @@ const api = {
   updateSalary:`${Butterfly}employee/update/salary`,//更新员工薪资
   archivesUploadPhoto:`${Butterfly}employee/upload/photo`,//员工档案图片上传
   archivesUploadFile:`${Butterfly}employee/upload/annexInfo`,//员工档案文件上传
+	archivesUploadFileList:`${Butterfly}employee/upload/annexInfoMore`,//上传多张照片
   archivesDelFile:`${Butterfly}employee/delete/annexInfo`,//员工档案删除附件
-  archivesLoadFile:`${Butterfly}/download/annex`,//员工档案下载附件
+  archivesLoadFile:`${Butterfly}download/annex`,//员工档案下载附件
   getAuthCertData:`${Butterfly}enterpriseDate/enterprise/getCertification`, //获取企业认证数据
 
 	//jing
