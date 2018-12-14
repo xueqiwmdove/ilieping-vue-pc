@@ -4,34 +4,35 @@
     <div >
            <div class="certificate-content reset ">
                  <div class="form-group">
-                    <div class="uploadFile">
+                    <div class="uploadFile" v-if="sendData.length<5">
                         <span class="title_bg">照片上传</span>
                         <input :disabled='flag' class="el-icon-upload" type="file" ref="fileTag"  @change="getFile($event)" id='file' accept="image/bmp,image/jpg,image/png,image/jpeg" action=""/>
                     </div>
                  </div>
             </div>
             <!-- 上传列表 -->
-            <div v-show="imgList.length!=0 || fileUrled != '' ">
-                <div v-for="(item,index) of imgList" :key="index" >
-                <div class="file_text">
-                    <div class="load-del">
-											<i class="name_sty" :title="item.file.name"> {{item.file.name}}</i>
-											<i class="ic_atta"></i>
-											<span class="upload-txt">已上传</span>
-											<i class="file_del" @click="fileDel(index)">预览</i>
-											<i class="file_del" @click="fileDel(index)">下载</i>
-                      <i class="file_del" @click="fileDel(index)">删除</i>
-                    </div>
-                </div>
-                </div>
+
+          <div v-for="(item,index) in sendData" :key="index" >
+            <div class="file_text" style="padding: 0">
+              <div class="load-del">
+                <i class="name_sty" > {{item.fileName}}</i>
+                <i class="ic_atta"></i>
+                <i class="file_del" @click="showImage(item)">预览</i>
+                <i class="file_del" @click="getLoad(item)">下载</i>
+                <i class="file_del" @click="fileDel(index,item)">删除</i>
+              </div>
             </div>
+          </div>
     </div>
 </template>
 <script>
 import store from '@/store/store';
+import http from '@/http/http'
+import api from '@/api/api.js';
+import {headers} from '@/assets/js/common/lp.js'
 export default {
     name:'fileuploadList',
-		props:['fileUrled','fileName','fileId','imgName'],
+		props:['fileUrled','fileName','fileId','imgName','sendData'],
     data() {
       return {
         imgList:[],
@@ -52,43 +53,98 @@ export default {
                 this.fileAdd(files[i]);
         }
         },
-        fileAdd(file){
-          let that=this;
-            console.log(file.size,'<======file')
-            var files_size=file.size;
-            var isLt5M= files_size / 1024 / 1024 < 3;
-            console.log(isLt5M,'<=======isLt5M')
-            if (!isLt5M) {
-                this.$message.error('图片选择失败，每张图片大小不能超过 3MB,请重新选择!');
-                return false;
-            }else {
-                let reader = new FileReader();
-                reader.vue = this;
-                reader.readAsDataURL(file);
-                if(this.imgList.length>4) {
-                    this.$message({
-                        message:'上传文件不能超过5张',
-                        type:'error'
-                    })
-                this.flag=true
-                return
-            }else {
-                reader.onload = function () {
-                file.src = this.result;
-                this.vue.imgList.push({
-                    file
-                });
-            }
-            }
-            console.log(that.imgList);
-            that.$emit('getfile',that.imgList)
+        fileAdd(file) {
+          let that = this;
+          console.log(file.size, '<======file')
+          var files_size = file.size;
+          var isLt5M = files_size / 1024 / 1024 < 3;
+          console.log(isLt5M, '<=======isLt5M')
+          if (!isLt5M) {
+            this.$message.error('图片选择失败，每张图片大小不能超过 3MB,请重新选择!');
+            return false;
+          } else {
+            let reader = new FileReader();
+            reader.vue = this;
+            reader.readAsDataURL(file);
+            if (this.sendData.length > 4) {
+              this.$message({
+                message: '上传文件不能超过5张',
+                type: 'error'
+              })
+              this.flag = true
+              return
+            } else {
+              that.$emit('getfile', file);
             }
 
+          }
         },
         // 删除文件
-        fileDel(index){
-            this.imgList.splice(index, 1);
+        fileDel(index,item){
+
+
+
+          let that = this;
+
+          var data = {
+            annexId: parseInt(item.id)
+          };
+
+
+          this.$http({
+            url:api.archivesDelFile,
+            method:'post',
+            headers:headers('application/json;charset=utf-8'),
+            data:data
+          }).then(function (res) {
+            let resData = res.data;
+            if(resData.code == 10000){
+              that.sendData.splice(index, 1);
+              that.$message(resData.msg);
+            }else{
+              that.$message.error(resData.msg);
+            }
+
+          }).catch(function (error) {
+            that.$message.error(error);
+          });
         },
+      showImage(item){
+        window.open(item.httpUrl);
+      },
+      //下载文件
+      getLoad(item){
+
+        let fileTye = item.httpUrl.match(/.+\/(.+)$/)[1];
+        let that = this;
+
+        let formData = new FormData();
+        formData.append('fileUrl',item.httpUrl);
+
+        this.$http({
+          url:api.archivesLoadFile,
+          method:'POST',
+          headers:headers('multipart/form-data'),
+          responseType: 'blob',
+          data: formData,
+        }).then(function (res) {
+
+          let result=res.data;
+
+          let url =  window.URL.createObjectURL(new Blob([result]));
+          let link = document.createElement('a');
+          link.style.display = 'none';
+          link.href = url;
+
+          link.download = fileTye;
+          document.body.appendChild(link);
+          link.click();
+
+
+        }).catch(function (error) {
+          that.$message.error(error);
+        });
+      }
     },
     computed:{
         resetImg(){
@@ -122,7 +178,7 @@ export default {
     margin-bottom: 0px;
 }
 .certificate-content {
-padding: 7px 20px 0;
+padding: 7px 5px 0;
 }
 .certificate-content .form-group .uploadFile {
   display: block;

@@ -1,4 +1,4 @@
-<!-- 
+<!--
     Author:周双
     日期：2018/11/27
 -->
@@ -48,7 +48,7 @@
                     }
                     this.uploadBtnShow = false;
                     return newVal;
-                }  
+                }
             }
         },
         methods:{
@@ -83,9 +83,9 @@
 
                         that.imgList = file;
                         that.$emit('getfile',that.imgList)
-                    }                
+                    }
                 }
-            
+
             },
             //下载文件
             getLoad(url,imgName){
@@ -118,7 +118,7 @@
 
                         }).catch(function (error) {
                             that.$message.error(error);
-                        });       
+                        });
             },
             // 删除文件
             fileDel(){
@@ -135,7 +135,7 @@
                 }else{
                     this.$message.error('删除参数出错');
                 }
-                           
+
                 this.$http({
                             url:api.archivesDelFile,
                             method:'post',
@@ -155,9 +155,9 @@
 
                         }).catch(function (error) {
                             that.$message.error(error);
-                        });            
+                        });
 
-            },  
+            },
             getFileUrl(url){
                 this.fileUrled = url;
             }
@@ -200,13 +200,14 @@
     .file_text {
         position: relative;
         text-align: left;
+        padding:0;
         background-color: #FAFBFC;
     }
     .file_text a{
         display: inline-block;
         font-size: 14px;
         color: #2569F6;
-        
+
     }
     .file_del {
         position:absolute;

@@ -68,8 +68,8 @@
                                 <fileupload @getfile="getResignCertFiles" ref="resignCertUpload" :fileUrled='annexResignCert.httpUrl' :fileName='annexResignCert.fileName' :fileId='annexResignCert.id'></fileupload>
                             </el-form-item>
 
-														<el-form-item label="照片" :label-width="formLabelWidth">
-															<fileuploadList @getfile="getPhoto" ref="PhotoUpload" :fileUrled='PhotoList.httpUrl' :fileName='PhotoList.fileName' :fileId='PhotoList.id'></fileuploadList>
+														<el-form-item label="照片" :label-width="formLabelWidth" style="width: 100%;padding-left: 54px;">
+															<fileuploadList @getfile="getPhoto" ref="PhotoUpload" :sendData="sendData" :fileUrled='PhotoList.httpUrl' :fileName='PhotoList.fileName' :fileId='PhotoList.id'></fileuploadList>
 														</el-form-item>
                         </el-form>
                     </div>
@@ -136,6 +136,8 @@
                     region:'',
                 },
 								imgList:[],
+                sendData:[],
+
             };
         },
         created(){
@@ -303,7 +305,10 @@
                                         that.annexEducation = element;
                                     }else if(element.type == 5){//离职
                                         that.annexResignCert = element;
-                                    }else if(element.type == 7){//入职体检
+                                    }else if(element.type == 6){//入职体检
+                                      that.sendData.push(element);
+                                    }
+                                    else if(element.type == 7){//入职体检
 																			that.annexEntryExamination = element;
 																		}
                                 });
@@ -634,8 +639,11 @@
 
 										let result=res.data;
 										if(result.code == 10000){
-												that.$refs.PhotoUpload.getFileUrl(result.data);
-												that.$message(result.msg);
+
+										  debugger
+                        that.sendData.push(result.data[0]);
+										  	/*that.$refs.PhotoUpload.getFileUrl(result.data);
+												that.$message(result.msg);*/
 										}else{
 												that.$message.error(result.code + result.msg);
 										}
@@ -652,7 +660,6 @@
                 formData.append('employeeId',this.$route.query.id);
                 // formData.append('enterpriseId',this.employeeInfo.enterpriseId);
                 formData.append('file',fileList);
-
                 this.$http({
 										url:api.archivesUploadFile,
 										method:'POST',
