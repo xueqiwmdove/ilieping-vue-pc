@@ -116,8 +116,9 @@
           添加签约员工
         </div>
         <div class="right" v-show="!buttonIsShow">
-          <img src="../../assets/img/dismission/women_19_32.svg" alt="icon" class="female" width="80px" height="80px" v-show="employeeSex=='女'"><!-- 女19-32 -->
-          <img src="../../assets/img/dismission/men_19_32.svg" alt="icon" class="female" width="80px" height="80px" v-show="employeeSex=='男'">
+          <img :src="profilePhotoUrl" alt="加载失败" v-show="profilePhotoUrl != null" width="80px" height="80px" style="border-radius: 50%;">
+          <img src="../../assets/img/dismission/women_19_32.svg" alt="icon" class="female" width="80px" height="80px" v-show="employeeSex=='女' && profilePhotoUrl == null"><!-- 女19-32 -->
+          <img src="../../assets/img/dismission/men_19_32.svg" alt="icon" class="female" width="80px" height="80px" v-show="employeeSex=='男' && profilePhotoUrl == null">
           <div>
             <p class="userName">{{userName}}</p>
             <p class="department">{{department}}</p>
@@ -225,6 +226,7 @@ export default {
           },
         },
         contractName:'',
+        profilePhotoUrl:''//头像
     }
   },
   directives : {
@@ -353,6 +355,7 @@ export default {
           that.post=res.data.data.position;
           that.department=res.data.data.deptName;
           that.employeeSex=res.data.data.employeeSex;
+          that.profilePhotoUrl=res.data.data.profilePhotoUrl;
 
           for(let i in that.returnEmployeeData) {
             if(document.getElementById(i) !=null){

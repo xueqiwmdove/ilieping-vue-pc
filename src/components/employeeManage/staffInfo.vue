@@ -74,10 +74,15 @@
                                 <dd>{{employeeInfo.employeeNumber}}</dd>
                                 <dt>工作类型</dt>
                                 <dd>{{employeeInfo.workType == 0 ? '全职' : employeeInfo.workType == 1 ? ' 兼职' : '实习'}}</dd>
-                                <dt v-if="!personnelPromotionResponse.flag && employeeInfo.workType == 0 && serviceSituation == 0">预计转正日期</dt>
-                                <dd v-if="!personnelPromotionResponse.flag && employeeInfo.workType == 0">{{personnelPromotionResponse.expectedTurnTome}}</dd>
-                                <dt v-if="personnelPromotionResponse.flag && employeeInfo.workType == 0">实际转正日期</dt>
-                                <dd v-if="personnelPromotionResponse.flag && employeeInfo.workType == 0">{{employeeInfo.turnPositiveTime}}</dd>
+                                <dt v-if="employeeInfo.workType == 0 && serviceSituation == 0 && status == 0">预计转正日期</dt><!--!personnelPromotionResponse.flag && -->
+                                <dd v-if="employeeInfo.workType == 0 && serviceSituation == 0 && status == 0">{{employeeInfo.turnPositiveTime}}</dd>
+
+                                <dt v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0">实际转正日期</dt><!--!personnelPromotionResponse.flag && -->
+                                <dd v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0">{{personnelProcessResponse.effectiveDate}}</dd>
+
+                                <!--<dd v-if="!personnelPromotionResponse.flag && employeeInfo.workType == 0">{{personnelPromotionResponse.expectedTurnTome}}</dd>-->
+                                <!--<dt v-if="personnelPromotionResponse.flag && employeeInfo.workType == 0">实际转正日期</dt>-->
+                                <!--<dd v-if="personnelPromotionResponse.flag && employeeInfo.workType == 0">{{employeeInfo.turnPositiveTime}}</dd>-->
                                 <dt>直属上级</dt>
                                 <dd>{{employeeInfo.directlySuperior}}</dd>
                                 <dt>入职日期</dt>
@@ -154,7 +159,8 @@
                 processLen:0,
                 serviceSituation:'',
                 status:'',
-                isSign:''
+                isSign:'',
+              personnelProcessResponse:{},
             }
         },
         created(){
@@ -227,6 +233,8 @@
 
                                 //当前时间
                                 that.setIsTurn();
+
+                              that.personnelProcessResponse=resData.data.personnelProcessResponse;
 
                             }else{
                                 that.$message.error(resData.msg);
