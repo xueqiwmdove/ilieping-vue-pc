@@ -1,4 +1,4 @@
-<template>  
+<template>
   <div >
    <div class="main">
           <!--顶部导航-->
@@ -87,7 +87,7 @@
 																	操作选项
 															 </span>
 																<el-dropdown-menu slot="dropdown" class="options_div">
-																  <el-dropdown-item v-if="scope.row.status=='0'" @click.native="personDetail(scope.row)">员工资料</el-dropdown-item>
+																  <el-dropdown-item  @click.native="personDetail(scope.row)">员工资料</el-dropdown-item>
 																  <el-dropdown-item v-if="(scope.row.isSign=='1')&&(scope.row.status =='0')" @click.native="checkSign(scope.row)">查看合同</el-dropdown-item>
 																  <el-dropdown-item v-if="scope.row.isSign=='0'&&(scope.row.status =='0')"  @click.native="makeSign(scope.row)">签署合同</el-dropdown-item>
 																  <el-dropdown-item v-if="(scope.row.serviceSituation =='0')&& (scope.row.status =='0') &&(scope.row.workType=='0')" @click.native="personRegular(scope.row)">提前转正</el-dropdown-item>
@@ -140,7 +140,7 @@
                   <!-- end-->
                 <!-- 弹窗-人事变更  -->
                   <el-dialog title="人事变更" width="540px" :visible.sync="dialogChange" :class="{some_dia: !flag11}" custom-class="sty_dialogc" class="add_dialog  sty_dialogc" :before-close="closeChange">
-                          <el-scrollbar style="height:100%" >  
+                          <el-scrollbar style="height:100%" >
                           <el-form :model="personChange" :rules="rules" ref="personChange" id="re_style" >
                               <el-row>
                                   <el-form-item label="变更员工" :label-width="formLabelWidth">
@@ -198,7 +198,7 @@
                               </el-col>
                               <el-col :span='14'>
                                   <el-form-item label="变更为" :label-width="formLabelWidth">
-                                     <el-input  class="sty_input"  type="text" placeholder="请输入直属上级" v-model="personChange.newSuperior" ></el-input> 
+                                     <el-input  class="sty_input"  type="text" placeholder="请输入直属上级" v-model="personChange.newSuperior" ></el-input>
                                   </el-form-item>
                               </el-col>
                             </el-row>
@@ -252,7 +252,7 @@
                   <!-- end-->
                 <!-- 弹窗-办理离职 -->
                   <el-dialog title="办理离职" width="540px" :visible.sync="dialogQuit" class="add_dialog sty_dialogcs " custom-class="sty_dialogc" :before-close="closeQuit" >
-                           <el-scrollbar style="height:100%" > 
+                           <el-scrollbar style="height:100%" >
                           <el-form :model="makequit" :rules="rules" ref="makequit"  id="re_style">
                             <el-row>
                                   <el-form-item label="转正员工" :label-width="formLabelWidth">
@@ -284,7 +284,7 @@
                 <!-- end-->
                 <!-- 弹窗-转正 -->
                   <el-dialog title="转正" width="540px" :visible.sync="dialogFormal" class="add_dialog sty_dialogc" custom-class="sty_dialogc" :before-close="closeFormal" >
-                         <el-scrollbar style="height:100%">  
+                         <el-scrollbar style="height:100%">
                           <el-form :model="makeNormal" :rules="rules" ref="makeNormal" id="re_style">
                             <el-row>
                                   <el-form-item label="转正员工" :label-width="formLabelWidth" >
@@ -496,7 +496,7 @@ export default {
     methods: {
      handleClose2(e) {
         this.treeVisabled=false
-      },    
+      },
   //鼠标移入移出
       enter(index){
         this.seen = true;

@@ -47,7 +47,7 @@
                   <!--status;//0 在职   1  离职-->
                   <!--//是否签订合同 isSign 0  未签    1  已签-->
 
-                    <a href="javascript:void(0)" @click="modalVisable('person')">人事变更</a>
+                    <a href="javascript:void(0)" @click="modalVisable('person')" v-if="status != 0">人事变更</a>
                     <!-- <a href="javascript:void(0)" @click="routeToArchive">编辑资料</a> -->
                     <router-link :to="{path:'/archives',query: { id:id}}">编辑资料</router-link>
                     <a href="javascript:void(0)" v-if="employeeInfo.workType == 0 && serviceSituation== 0 && status == 0" @click="modalVisable('positive')" >提前转正</a>
