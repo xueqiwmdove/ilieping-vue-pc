@@ -8,7 +8,7 @@
         <div class="uploadLeaveInfo3" >
             <button class="el-icon-edit icon_reset" @click="tag_revise(4)"></button>
             <div class="form">
-							  
+							  <input type="hidden" v-model="employeeSalary.id">
                 <div class="item">
                     <label>基本工资<i class="notice-red">*</i></label>
                     <input v-if="flag3"  type="number" placeholder="请输入基本工资" v-model="employeeSalary.basicWage">
@@ -32,33 +32,35 @@
                     <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.providentFundAccount ? employeeSalary.providentFundAccount : '') :''}}</span>
                 </div>
 								
-   <!--            <div class="item">
+<!--             <div class="item">
                     <label>工资卡1<i class="notice-red">*</i></label>
-                    <input v-if="flag3"  type="number" placeholder="请输入工资卡号" v-model="employeeSalary.employeeSalaryCardList.salaryCardNumber" required>
-                    <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.employeeSalaryCardList.salaryCardNumber ? employeeSalary.employeeSalaryCardList.salaryCardNumber : '') :''}}</span>
+                    <input v-if="flag3"  type="number" placeholder="请输入工资卡号" v-model="employeeSalary.employeeSalaryCardList[0].salaryCardNumber" required>
+                    <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.employeeSalaryCardList[0].salaryCardNumber ? employeeSalary.employeeSalaryCardList[0].salaryCardNumber : '') :''}}</span>
                 </div>
 								
                <div class="item">
                     <label>工资卡开户行<i class="notice-red">*</i></label>
-                    <input v-if="flag3"  type="text" placeholder="请输入工资卡开户行" v-model="employeeSalary.employeeSalaryCardList.salaryBank" required>
-                    <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.employeeSalaryCardList.salaryBank ? employeeSalary.employeeSalaryCardList.salaryBank : '') :''}}</span>
+                    <input v-if="flag3"  type="text" placeholder="请输入工资卡开户行" v-model="employeeSalary.employeeSalaryCardList[0].salaryBank" required>
+                    <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.employeeSalaryCardList[0].salaryBank ? employeeSalary.employeeSalaryCardList[0].salaryBank : '') :''}}</span>
                 </div> -->
-								<div v-for="(items,index) in insertData" :key="index">
-									{{insertData}}
-								<div class="item">
-										<label>工资卡{{index+1}}<i class="notice-red">*</i></label>
-										<input v-if="flag3" type="number" :id="cardId(index)" :value="insertData.salaryCardNumber" placeholder="请输入工资卡号" required>
-										<span v-else class="font_sty">{{employeeSalary ? (insertData.salaryCardNumber ? insertData.salaryCardNumber : '') :''}}</span>
-								</div> 
-								
-                <div class="item">
-                    <label>工资卡开户行<i class="notice-red">*</i></label>
-                    <input v-if="flag3" :id="bankId(index)" type="text" :value="insertData.salaryBank" placeholder="请输入工资卡开户行" required>
-                    <span v-else class="font_sty">{{employeeSalary ? (insertData.salaryBank ? insertData.salaryBank : '') :''}}</span>
-                   <div class="delete_div"><img src="../../../assets/img/dismission/deleteH34.png" class="delete" @click="deleteDimissiom(index+1)"></div>
+								<!-- <div v-if="employeeSalary.employeeSalaryCardList.length!=0"> -->
+									<div v-if="employeeSalary.employeeSalaryCardList.length!=0">
+									<div v-for="(items,index) in employeeSalary.employeeSalaryCardList" :key="index">
+										<div class="item">
+												<label>工资卡{{index+1}}</label>
+												<input v-if="flag3" type="number" :id="cardId(index+1)" class="cardClass" :value="items.salaryCardNumber" placeholder="请输入工资卡号" required>
+												<span v-else class="font_sty">{{employeeSalary ? (items.salaryCardNumber ? items.salaryCardNumber : '') :''}}</span>
+										</div> 
+										
+										<div class="item">
+												<label>工资卡开户行</label>
+												<input v-if="flag3" :id="bankId(index)" type="text" class="bankClass" :value="items.salaryBank" placeholder="请输入工资卡开户行" required>
+												<span v-else class="font_sty">{{employeeSalary ? (items.salaryBank ? items.salaryBank : '') :''}}</span>
+											<div v-if="flag3 && index!=0" class="delete_div"><img src="../../../assets/img/dismission/deleteH34.png" class="delete" @click="deleteDimissiom(index+1)"></div>
+										</div>
+									</div>
 								</div>
 								
-								</div>
 								<div class="addNewPaycard" v-if="flag3">
 									<div @click="breakPromiseFun" class="click_font">
 									<div class="addNewPaycardIcon"><img src="../../../assets/img/dismission/addNewPayCard.png"  class="addDepartment"></div>
@@ -87,6 +89,7 @@
         return {
           flag3:false,//判断是否为编辑状态
           formLabelWidth: '120px',
+					id:'',
           basicWage:'',
           salaryCardNumber:'',
           socialSecurityAccount:'',
@@ -99,7 +102,6 @@
         }  
       },
       methods: {
-			
 			cardId(index){//银行卡ID
 				return 'cardId_'+index
 			},
@@ -108,53 +110,103 @@
 			},
 			deleteDimissiom(index){//删除银行卡html
 				let that=this;
-			  that.insertData.splice(--index,1);
-				if(index!=4){
+				let length= this.employeeSalary.employeeSalaryCardList.length;
+				this.test_test1(length);
+			  that.employeeSalary.employeeSalaryCardList.splice(--index,1);
+				if(index!=5){
 					that.isDimissionAll_count=false;
 				}
 			},
 				breakPromiseFun(){//添加银行卡html
-					let that=this;
-					if(that.insertData.length==4){
-						that.isDimissionAll_count=true;
+				
+				let length= this.employeeSalary.employeeSalaryCardList.length;
+				if(length==0){
+					this.employeeSalary.employeeSalaryCardList.push({});
+					return;
+				}
+				
+				if(!this.test_test(length)){
+					return false;
+				}
+				
+				this.test_test1(length);
+					
+				if(this.employeeSalary.employeeSalaryCardList.length==5){
+					this.isDimissionAll_count=true;										
+					return false;
+				}
+				
+				this.employeeSalary.employeeSalaryCardList.push({});
+				return true;
+					
+				},
+				test_test(length){			
+					let nowLenght = length-1;															
+					let cardList = document.getElementsByClassName("cardClass");
+					let bankList = document.getElementsByClassName("bankClass");
+					let salaryCardNumber = cardList[nowLenght].value;
+					let salaryBank = bankList[nowLenght].value;
+					if(!salaryCardNumber||!salaryBank){
+						this.$message.error('银行卡开户行不能为空');
 						return false;
-					}else{
-						that.insertData.push(that.liHtml);
+					}
+					return true;
+				},
+				test_test1(length){
+					
+					let cardList = document.getElementsByClassName("cardClass");
+					let bankList = document.getElementsByClassName("bankClass");
+					
+					let arr = this.employeeSalary.employeeSalaryCardList;
+					debugger
+					for(let i =0;i<length;i++){
+						let obj = {
+							"salaryCardNumber":cardList[i].value,
+							"salaryBank":bankList[i].value
+						}
+						arr[i]=obj;
 					}
 				},
        //修改切换 
         tag_revise(val) {
-					console.log(JSON.stringify(this.employeeSalary));
-					console.log(JSON.stringify(this.employeeSalary.employeeSalaryCardList));
+					let that=this;
           if(val=='4') {
-            if(this.employeeSalary){
+            if(that.employeeSalary){
 							
-                if(this.flag3 == false){//获取表单原始值
-                    this.basicWage = this.employeeSalary.basicWage;
-                    this.salaryCardNumber = this.employeeSalary.salaryCardNumber;
-                    this.socialSecurityAccount = this.employeeSalary.socialSecurityAccount;
-                    this.performancePay = this.employeeSalary.performancePay;
-                    this.salaryBank = this.employeeSalary.salaryBank;
-                    this.providentFundAccount = this.employeeSalary.providentFundAccount;
-										this.insertData=this.employeeSalary.employeeSalaryCardList;
+                if(that.flag3 == false){//获取表单原始值
+								    that.employeeSalary.id=that.employeeSalary.id;
+                    that.basicWage = that.employeeSalary.basicWage;
+                    
+                    that.socialSecurityAccount = that.employeeSalary.socialSecurityAccount;
+                    that.performancePay = that.employeeSalary.performancePay;
+//                     that.salaryBank = that.employeeSalary.employeeSalaryCardList[0].salaryBank;
+// 										that.salaryCardNumber = that.employeeSalary.employeeSalaryCardList[0].salaryCardNumber;
+
+                    that.providentFundAccount = that.employeeSalary.providentFundAccount;
+								
+										 that.insertData=that.employeeSalary.employeeSalaryCardList;
 										
                 }else{//重置表单
-                    this.employeeSalary.basicWage = this.basicWage;
-                    this.employeeSalary.salaryCardNumber = this.salaryCardNumber;
-                    this.employeeSalary.socialSecurityAccount = this.socialSecurityAccount;
-                    this.employeeSalary.performancePay = this.performancePay;
-                    this.employeeSalary.salaryBank = this.salaryBank;
-                    this.employeeSalary.providentFundAccount = this.providentFundAccount;
-										this.insertData=this.employeeSalary.employeeSalaryCardList;
+                    that.employeeSalary.basicWage = that.basicWage;
+                    that.employeeSalary.salaryCardNumber = that.salaryCardNumber;
+                    that.employeeSalary.socialSecurityAccount = that.socialSecurityAccount;
+                    that.employeeSalary.performancePay = that.performancePay;
+                    that.employeeSalary.salaryBank = that.salaryBank;
+                    that.employeeSalary.providentFundAccount = that.providentFundAccount;
+										
+										that.insertData=that.employeeSalary.employeeSalaryCardList;
                 }
             }
-            this.flag3 = !this.flag3
+            that.flag3 = !that.flag3
           }
         },
         updateSalary(){
-          let isSuccess = this.$emit('updateSalary');
+					let length= this.employeeSalary.employeeSalaryCardList.length;
+					this.test_test1(length);
+					let that=this;
+          let isSuccess = that.$emit('updateSalary');
           if(isSuccess){
-            this.flag3 = false;
+            that.flag3 = false;
           }          
         },
       },

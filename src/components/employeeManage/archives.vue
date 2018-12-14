@@ -138,6 +138,7 @@
 								imgList:[],
                 sendData:[],
 
+								employeeInfoSalary:{},//薪资福利
             };
         },
         created(){
@@ -276,12 +277,14 @@
                                 let data = resData.data;
                                 that.employeeInfoDetail = data.employeeInfoDetailResponse;
                                 that.employeeInfo = data.employeeInfo;
-																// that.employeeInfo = data.employeeSalaryResponse;
 
-																console.log(JSON.stringify(data.employeeSalaryResponse.employeeSalaryCardList)+"***");
+								that.employeeInfoSalary = data.employeeSalaryResponse;
+
+								console.log(JSON.stringify(data.employeeSalaryResponse.employeeSalaryCardList)+"***");
 
                                 if(!data.employeeSalaryResponse){
                                     that.employeeSalary = {
+																			  id:id,
                                         employeeId:employeeId,
                                         basicWage:'',
                                         salaryCardNumber:'',
@@ -375,57 +378,57 @@
                 };
 
                 this.$http({
-                            url:`${api.updataEmployee}`,
-                            method:'PUT',
-                            headers:headers('application/json;charset=utf-8'),
-                            data:JSON.stringify(baseInfo),
-                        }).then(function (res) {
+										url:`${api.updataEmployee}`,
+										method:'PUT',
+										headers:headers('application/json;charset=utf-8'),
+										data:JSON.stringify(baseInfo),
+								}).then(function (res) {
 
-                            let resData = res.data;
-                            if(resData.code == 10000){
-                                 that.$message(resData.msg);
-                                 return true;
-                            }else{
-                                that.$message.error(resData.msg);
-                            }
+										let resData = res.data;
+										if(resData.code == 10000){
+												 that.$message(resData.msg);
+												 return true;
+										}else{
+												that.$message.error(resData.msg);
+										}
 
-                        }).catch(function (error) {
-                            that.$message.error(error);
-                        });
+								}).catch(function (error) {
+										that.$message.error(error);
+								});
 
             },
             updateSalary(){
                 //更新员工薪资信息
                 let that = this;
                 let salaryInfo = {
-                    basicWage:this.employeeSalary.basicWage,
-                    performancePay:this.employeeSalary.performancePay,
-                    employeeId:this.employeeSalary.employeeId || this.$route.query.id,
-                    salaryBank:this.employeeSalary.salaryBank,
-                    salaryCardNumber:this.employeeSalary.salaryCardNumber,
-                    socialSecurityAccount:this.employeeSalary.socialSecurityAccount,
-                    providentFundAccount:this.employeeSalary.providentFundAccount,
-										employeeSalaryCardList:this.employeeSalary.employeeSalaryCardList,
-
+									employeeSalary:{
+										id:this.employeeSalary.id,
+										basicWage:this.employeeSalary.basicWage,
+										performancePay:this.employeeSalary.performancePay,
+										employeeId:this.employeeSalary.employeeId || this.$route.query.id,
+										socialSecurityAccount:this.employeeSalary.socialSecurityAccount,
+										providentFundAccount:this.employeeSalary.providentFundAccount,
+									},
+									employeeSalaryCardList:this.employeeSalary.employeeSalaryCardList,
                 };
                 this.$http({
-                            url:`${api.updateSalary}`,
-                            method:'PUT',
-                            headers:headers('application/json;charset=utf-8'),
-                            data:JSON.stringify(salaryInfo)
-                        }).then(function (res) {
+										url:`${api.updateSalary}`,
+										method:'PUT',
+										headers:headers('application/json;charset=utf-8'),
+										data:salaryInfo
+								}).then(function (res) {
 
-                            let resData = res.data;
-                            if(resData.code == 10000){
-                                 that.$message(resData.msg);
-                                 return true;
-                            }else{
-                                that.$message.error(resData.msg);
-                            }
+										let resData = res.data;
+										if(resData.code == 10000){
+												 that.$message(resData.msg);
+												 return true;
+										}else{
+												that.$message.error(resData.msg);
+										}
 
-                        }).catch(function (error) {
-                            that.$message.error(error);
-                        });
+								}).catch(function (error) {
+										that.$message.error(error);
+								});
 
             },
             getHeadImg(fileList){
@@ -629,28 +632,26 @@
                 // formData.append('enterpriseId',this.employeeInfo.enterpriseId);
                 formData.append('files',fileList);
 
-                console.log("hh"+formData+JSON.stringify(fileList));
-                this.$http({
-										url:api.archivesUploadFileList,
-										method:'POST',
-										headers:headers('multipart/form-data'),
-										data: formData,
-								}).then(function (res) {
+                  this.$http({
+                            url:api.archivesUploadFileList,
+                            method:'POST',
+                            headers:headers('multipart/form-data'),
+                            data: formData,
+                    }).then(function (res) {
 
-										let result=res.data;
-										if(result.code == 10000){
+                            let result=res.data;
+                            if(result.code == 10000){
 
-										  debugger
-                        that.sendData.push(result.data[0]);
-										  	/*that.$refs.PhotoUpload.getFileUrl(result.data);
-												that.$message(result.msg);*/
-										}else{
-												that.$message.error(result.code + result.msg);
-										}
-								}).catch(function (error) {
-										that.$message.error(error);
-								});
-						},
+                            that.sendData.push(result.data[0]);
+                                /*that.$refs.PhotoUpload.getFileUrl(result.data);
+                                    that.$message(result.msg);*/
+                            }else{
+                                    that.$message.error(result.code + result.msg);
+                            }
+                    }).catch(function (error) {
+                            that.$message.error(error);
+                    });
+                  },
             getResignCertFiles(fileList){
                 //获取上传离职证明
                 // console.log(fileList,'<================resignCert');
@@ -660,6 +661,7 @@
                 formData.append('employeeId',this.$route.query.id);
                 // formData.append('enterpriseId',this.employeeInfo.enterpriseId);
                 formData.append('file',fileList);
+
                 this.$http({
 										url:api.archivesUploadFile,
 										method:'POST',
