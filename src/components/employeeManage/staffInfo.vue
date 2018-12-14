@@ -78,8 +78,8 @@
                                 <dd v-if="employeeInfo.workType == 0 && serviceSituation == 0 && status == 0">{{employeeInfo.turnPositiveTime}}</dd>
 
                                 <dt v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0">实际转正日期</dt><!--!personnelPromotionResponse.flag && -->
-                                <dd v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0">{{personnelProcessResponse.effectiveDate}}</dd>
-
+                                <dd v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0 && personnelProcessResponse != null ">{{personnelProcessResponse.effectiveDate}}</dd>
+                              <dd v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0 && personnelProcessResponse == null ">{{employeeInfo.entryTime}}</dd>
                                 <!--<dd v-if="!personnelPromotionResponse.flag && employeeInfo.workType == 0">{{personnelPromotionResponse.expectedTurnTome}}</dd>-->
                                 <!--<dt v-if="personnelPromotionResponse.flag && employeeInfo.workType == 0">实际转正日期</dt>-->
                                 <!--<dd v-if="personnelPromotionResponse.flag && employeeInfo.workType == 0">{{employeeInfo.turnPositiveTime}}</dd>-->

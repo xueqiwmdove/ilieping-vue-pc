@@ -443,6 +443,8 @@ export default {
         let that=this;
         that.parentDepartment=data.label;
         that.parentDepartmentId=data.id;
+        that.deptId=data.id;
+        console.log(data.label,data.id);
         this.isShow2=false;
       },
         filterNode(value, data) {
@@ -456,10 +458,10 @@ export default {
             url:api.addDepartment,
             method:'post',
             headers:headers(),
-            data:{
+              data:{
                 deptName:that.newDepartment,
-                parentId:that.deptId
-            }
+                parentId:that.deptId//that.parentDepartmentId
+              }
             }).then((res)=>{
             // console.log(res);
             if(res.data.code=10000){

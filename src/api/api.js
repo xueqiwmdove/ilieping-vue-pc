@@ -1,8 +1,8 @@
-// let Butterfly="http://101.132.66.158:8899/jersey/";
+let Butterfly="http://101.132.66.158:8899/jersey/";
 // let Butterfly="http://127.0.0.1:8899/jersey/";
-let Butterfly="http://192.168.2.166:8899/jersey/";//测试ip
+//let Butterfly="http://192.168.2.166:8899/jersey/";//测试ip
 // let Butterfly="http://192.168.6.6:8899/jersey/";//薛尧
- // let Butterfly="http://192.168.6.209:8899/jersey/";//潘述钱ip
+// let Butterfly="http://192.168.6.209:8899/jersey/";//潘述钱ip
 // let Butterfly="http://192.168.6.208:8891/jersey/";//郭峰ips
 // let Butterfly="http://192.168.6.207:8899/jersey/";//施玮ip
 // let Butterfly="http://192.168.6.195:8899/jersey/";//李博凯
@@ -137,7 +137,7 @@ const api = {
   interviewListToday:Butterfly+'interview/today/list/',//1.5版本面试管理 今天的面试
   interviewListBefore:Butterfly+'interview/before/list/',//1.5版本面试管理 明天及之后的面试
 	interviewListAfter:Butterfly+'interview/after/list/',//1.5版本面试管理 昨天及之前的面试
- 
+
   interviewListAfter:Butterfly+'interview/after/list/',//1.5版本面试管理 昨天及之前的面试
   getphone:Butterfly+'current/login/phone',//账户信息获取手机号
  // duan
@@ -147,9 +147,9 @@ const api = {
   positionCount:Butterfly+'positionInfo/count',//不同岗位统计人数
   getEmployeeList:Butterfly+'employee/getEmployeeList',//招聘负责人，面试官列表
   insertOrUpdate:Butterfly+'positionInfo/insertOrUpdate',//添加，更新岗位
-  positionDetail:Butterfly+'positionInfo/detail',//添加，更新岗位  
-  getPosition:Butterfly+'positionInfo/getPosition',//查询职位列表  
-	
+  positionDetail:Butterfly+'positionInfo/detail',//添加，更新岗位
+  getPosition:Butterfly+'positionInfo/getPosition',//查询职位列表
+
 	logout:Butterfly+'logout',//退出接口
 
 };
