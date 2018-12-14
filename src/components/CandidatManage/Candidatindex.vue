@@ -5,9 +5,11 @@
      <addCandidate :addVisible.sync="visables.add" @hideModel="hideChildModal"></addCandidate>
      <!--候选人信息-->
      <candidateSteps :addVisible.sync="visables.steps" @hideModel="hideChildModal"></candidateSteps>
+     <!-- 推荐人弹窗  -->
+     <recommendDia :addVisible.sync="visables.recommend" @hideModel="hideChildModal"></recommendDia>
 
      <!--推荐给用人部门-->
-     <recommend_depart :addVisible.sync="visables.recommend" @hideModel="hideChildModal"></recommend_depart>
+     <!-- <recommend_depart :addVisible.sync="visables.recommend" @hideModel="hideChildModal"></recommend_depart> -->
 
           <!--顶部导航-->
         <pageheader class="pageheader"></pageheader>
@@ -190,10 +192,11 @@
   import pageheader from '@/components/common/pageheader';
   import pageaside from '@/components/common/pageaside';
   import treeSearch from '@/components/common/treeSearch'
+  import recommendDia from '@/components/candidate/common/recommendDia'
 //  blance
   import addCandidate from '@/components/candidate/addCandidate';
   import candidateSteps from '@/components/candidate/candidateSteps';
-  import recommend_depart from '@/components/candidate/common/recommend_depart';
+  // import recommend_depart from '@/components/candidate/common/recommend_depart';
 
 
 
@@ -229,7 +232,8 @@ export default {
     treeSearch,
     addCandidate,
     candidateSteps,
-    recommend_depart
+    recommendDia,
+    // recommend_depart
 	},
    data() {
       return {
@@ -254,7 +258,7 @@ export default {
     //展示候选人弹窗
       addCandidateShow(param){
         let that=this;
-        console.log(0)
+        console.log()
         that.visables[param] = true;
       },
     //关闭候选人弹窗

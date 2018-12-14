@@ -125,6 +125,7 @@
                     <li @click="click_potion(21)" :class="flag==21?'active':''"><span>职位管理</span></li>
                     <li @click="click_candidate(22)" :class="flag==22?'active':''"><span>候选人管理</span></li>
                      <li @click="click_interviewMmanagement(30)" :class="flag==30?'active':''"><span>面试管理</span></li>
+                     <li @click="click_option(31)" :class="flag==31?'active':''"><span>设置</span></li>
                     <!-- <li @click="click_potion25(25)" :class="flag==25?'active':''"><span>人才库</span></li>
                     <li @click="click_potion26(26)" :class="flag==26?'active':''"><span>设置</span></li> -->
                 </ul>
@@ -348,6 +349,10 @@ export default {
 			click_interviewMmanagement(a){
         this.flag=a;
         this.$router.push('/InterviewManagement');
+      },
+      click_option(a){
+        this.flag=a;
+        this.$router.push('/option');
 			}
     },
     mounted () {
@@ -469,7 +474,7 @@ export default {
 				that.isShow9=true;
 				that.before9=false;
 				that.after9=true;
- 	  }else if(loginUrl=='InterviewManagement'){
+ 	    }else if(loginUrl=='InterviewManagement'){
 				let that=this;
 				that.flag=30;
 				that.isShow9=true;
@@ -478,6 +483,12 @@ export default {
 			}else if(loginUrl=='candidatindex') {
         let that=this;
 				that.flag=9;
+				that.isShow9=true;
+				that.before9=false;
+				that.after9=true;
+      }	else if(loginUrl=='option'){
+        let that=this;
+				that.flag=31;
 				that.isShow9=true;
 				that.before9=false;
 				that.after9=true;
