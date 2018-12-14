@@ -232,8 +232,8 @@ export default {
     treeSearch,
     addCandidate,
     candidateSteps,
-    // recommendDia,
-    recommend_depart
+    recommendDia,
+    // recommend_depart
 	},
    data() {
       return {
