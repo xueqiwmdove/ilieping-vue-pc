@@ -22,95 +22,39 @@
                           <span  style="margin-left:30px;">模板</span>
                         </h4>
                         <p class="ad_change">全部职位 <i><img src="../../assets/img/zhiwei/ic_chose.png" alt=""></i></p>
-						<p @click="click_optioninterview">面试邀约模板 <i></i></p>
+						<p @click="click_optioninterview()">面试邀约模板 <i></i></p>
 						<p>offer模板<i></i></p>
                     </div>
 					<div class="option-left">
-						<div class="optionTop">
+						<div class="optioninterviewTop">
 							<ul>
-								<li>
-									<img src="../../assets/img/zhiwei/shezhi_ic_diyibu.png"/>
-									<h1>第一步：打印二维码</h1>
-									<h2>打印二维码放到前台，供员工扫码</h2>
-								</li>
-								<li>
-									<img src="../../assets/img/zhiwei/shezhi_ic_diyibu.png"/>
-									<h1>第二步：候选人扫码</h1>
-									<h2>候选人扫码自助填写面试登记表</h2>
-								</li>
-								<li>
-									<img src="../../assets/img/zhiwei/shezhi_ic_diyibu.png"/>
-									<h1>第三步：HR面试提醒</h1>
-									<h2>候选人提交登记表后HR收到提醒</h2>
-								</li>
+                                <li>offer邮件模板</li>
+                                <li>+自定义（升级企业用户）</li>
 							</ul>
 						</div>
-						<div class="optionBottom">
-							<h1>面试登录表<i></i></h1>
-							<ul>
-								<li>应聘岗位:</li>
-								<li>面试时间:</li>
-							</ul>
-							<div class="option_baseinfo" style="height:548px;">
-								<h2>基本信息</h2>
-								<span>姓名</span>
-								<span>性别</span>
-								<span>出生年月</span>
-								<span>年龄</span>
-								<span>邮箱</span>
-								<span>手机</span>
-								<span>政治面貌</span>
-								<span>籍贯</span>
-								<span>婚姻状况</span>
-								<span>身份证号码</span>
-								<span>生育状况</span>
-								<span>现住地址</span>
-								<span>所在行业</span>
-								<span>期望行业</span>
-								<span>目前工作状态</span>
-								<span>当前薪酬</span>
-								<span>最快到岗时间</span>
-								<span>期望薪酬</span>
-								<span>工作城市</span>
-								<span>技能标签</span>
-							</div>
-							<div class="workExp" style="height:264px;">
-								<h2>工作经历</h2>
-								<span>任职时间</span>
-								<span>公司名称</span>
-								<span>岗位</span>
-								<span>薪资</span>
-								<span>离职原因</span>
-								<span>证明人</span>
-								<span>联系方式</span>
-							</div>	
-							<div class="eduExp"  style="height:264px;">
-								<h2>教育经历</h2>
-								<span>就读时间</span>
-								<span>学校名称</span>
-								<span>专业</span>
-								<span>学历</span>
-								<span>学位</span>
-								<span>是否全日制</span>
-								<span>其他</span>
-							</div>
-							<div class="personSpacial"  style="height:264px;">
-								<h2>个人特质</h2>
-								<span>特长爱好</span>
-								<span>英语水平</span>
-								<span>计算机水平</span>
-								<span>证书</span>
-								<span style="width:100%;">公司内部是否有您的亲戚朋友</span>
-								<span>应聘途径</span>
-							</div>
-							<div class="getNotice"  style="height:165px;">
-								<h2>入职声明</h2>
-								<strong>入职声明： 本人已准确理解、并接受上述各项目内容及要求，保证所填内容属实，并同意公司进行核实，如有不实之处，本人无条件接受公司辞退处分，并承担相应责任。</strong>
-								<ul>
-									<li>申请人:</li>
-									<li>日期:</li>
-								</ul>
-							</div>
+						<div class="optioninterviewBottom">
+                            <div>
+                                <h1>尊敬的 候选人，您好！</h1>
+                                <span>感谢您对公司的认可，非常荣幸地通知您，您已被我司正式录用。</span>
+                                <span>欢迎您加入 上海棋至文化有限公司</span>
+                                <span>入职部门：</span>
+                                <span>入职岗位：</span>
+                                <span>入职时间：</span>
+                                <span>岗位薪酬：</span>
+                                <span>试用期：</span>
+                                <span>入职地点</span>
+                                <span>入职所需的材料和证件 </span>
+                                <span>1. 原单位离职证明（加盖原单位公章）1份 </span>
+                                <span>2. 身份证原件</span>
+                                <span>3. 学位证、毕业证原件</span>
+                                <span>4. 相关资格证书原件 </span>
+                                <span>5. 入职体检证明 </span>
+                                <span>联系人：王力宏</span>
+                                <span>联系电话：13262255555 </span>
+                                <span>联系人邮箱： abc@abc.com</span>
+                                <span>请您仔细阅读此录用通知书并及时保存。请您在收到录用通知书后，请您点击底部按钮进行回复确认，在规定日期内报到办理入职。</span>
+                                <span>如有问题请用以上联系方式及时与我们沟通，谢谢！（系统邮件，请勿直接回复）</span>
+                            </div>
 						</div>
 					</div>
                 </el-row>
