@@ -7,6 +7,10 @@
      <candidateSteps :addVisible.sync="visables.steps" @hideModel="hideChildModal"></candidateSteps>
      <!-- 推荐人弹窗  -->
      <recommendDia :addVisible.sync="visables.recommend" @hideModel="hideChildModal"></recommendDia>
+
+     <!--推荐给用人部门-->
+     <!-- <recommend_depart :addVisible.sync="visables.recommend" @hideModel="hideChildModal"></recommend_depart> -->
+
           <!--顶部导航-->
         <pageheader class="pageheader"></pageheader>
           <!--侧边栏-->
@@ -192,6 +196,8 @@
 //  blance
   import addCandidate from '@/components/candidate/addCandidate';
   import candidateSteps from '@/components/candidate/candidateSteps';
+  // import recommend_depart from '@/components/candidate/common/recommend_depart';
+
 
 
 // duanyanhong
@@ -226,7 +232,8 @@ export default {
     treeSearch,
     addCandidate,
     candidateSteps,
-    recommendDia
+    // recommendDia,
+    recommend_depart
 	},
    data() {
       return {

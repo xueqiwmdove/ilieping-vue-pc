@@ -49,19 +49,18 @@
                                 <input type="text" class="department" v-model="newDepartment" placeholder="请输入部门名称" maxlength="32" >
                             </div>
                             <div class="inputBox">
-                                <div class="input-group" v-clickOutSide="outterClose">
+                                <div class="input-group" v-clickOutSide="outterClose2">
                                     <label>上级部门</label>
                                     <input type="text" placeholder="请选择部门名称" class="selectDepartment" v-model="parentDepartment" @click.stop="isShow2=true;companyStructure()" readonly="readonly">
                                   <div class="treePullDown" v-show="isShow2"   >
                                       <el-input
                                       placeholder="输入关键字进行过滤"
-                                      v-model="filterText2" class="filterInput">
+                                      v-model="filterText2" class="filterInput" @click.native="isShow2=true">
                                       </el-input>
                                       <el-tree
                                       class="filter-tree departmentTree"
                                       :data="data2"
                                       :props="defaultProps"
-                                      :empty-text="emptyText"
                                       :filter-node-method="filterNode"
                                       :expand-on-click-node=false
                                       @node-click="getParent2"
@@ -142,7 +141,7 @@
                                 </div>
                                 <div class="input-group departmentTreeBox" v-clickOutSide="outterClose" :class="workType==1||workType==2?'special_department':''">
                                   <label>任职部门<i>*</i></label>
-                                  <input type="text"  v-model="department" readonly="readonly" class="department special" placeholder="请选择任职部门" @click.stop="isShow=true;companyStructure()" maxlength="0">
+                                  <input type="text"  v-model="department" readonly="readonly" class="department special" placeholder="请选择任职部门" @click="isShow=true;companyStructure()" maxlength="0" suffix-icon="el-icon-date">
                                   <div class="treePullDown" v-show="isShow">
                                       <el-input
                                       placeholder="输入关键字进行过滤"
@@ -153,15 +152,13 @@
                                       :data="data2"
                                       node-key="id"
                                       :props="defaultProps"
-                                      :empty-text="emptyText"
-                                      default-expand-all
                                       :filter-node-method="filterNode"
                                       :expand-on-click-node=false
                                       ref="tree"
                                       @node-click="getParent">
                                       </el-tree>
                                     <div id="addDepartment">
-                                      <img src="../../assets/img/dismission/new_add.png"  class="addDepartment" @click="newDepartments=true;parentDepartment=enterpriseName">
+                                      <img src="../../assets/img/dismission/new_add.png"  class="addDepartment" @click="newDepartments=true;parentDepartment=enterpriseName;isShow=false;">
                                       添加新部门
                                     </div>
                                   </div>
@@ -399,6 +396,8 @@ export default {
       },
       outterClose(){
         this.isShow=false;
+      },
+      outterClose2(){
         this.isShow2=false;
       },
       getParent(data) {
@@ -502,21 +501,21 @@ export default {
   			url:api.employInsert,
   			headers:headers("application/json;charset=utf-8"),
   			data:{
-                    accountNature:that.accountNature,//户口性质
-                    deptId:that.deptId,//部门ID
-                    directlySuperior:that.directlySuperior,//直属上级
-                    enterpriseEmail:that.enterpriseEmail,//企业分配员工的邮箱
-                    employeeIdCard:that.employeeIdCard,//员工身份证号
-                    employeeName:that.employeeName,//员工姓名
-                    employeeNumber:that.employeeNumber,//员工工号
-                    employeePhone:that.employeePhone,//员工手机号
-                    entryTime:that.entryTime, //入职时间
-                    highestEducation:that.highestEducation,//最高学历
-                    position:that.position,//职位
-                    probation:that.probation,//试用期
-                    workAddress:that.workAddress,//工作地点
-                    workType:that.workType, // 工作类型
-                    employeeEmail:that.employeeEmail//个人邮箱
+					accountNature:that.accountNature,//户口性质
+					deptId:that.deptId,//部门ID
+					directlySuperior:that.directlySuperior,//直属上级
+					enterpriseEmail:that.enterpriseEmail,//企业分配员工的邮箱
+					employeeIdCard:that.employeeIdCard,//员工身份证号
+					employeeName:that.employeeName,//员工姓名
+					employeeNumber:that.employeeNumber,//员工工号
+					employeePhone:that.employeePhone,//员工手机号
+					entryTime:that.entryTime, //入职时间
+					highestEducation:that.highestEducation,//最高学历
+					position:that.position,//职位
+					probation:that.probation,//试用期
+					workAddress:that.workAddress,//工作地点
+					workType:that.workType, // 工作类型
+					employeeEmail:that.employeeEmail//个人邮箱
   			},
   			cache:false
   		}).then(function(res){
