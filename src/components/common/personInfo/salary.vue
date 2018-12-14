@@ -10,24 +10,24 @@
             <div class="form">
 							  <input type="hidden" v-model="employeeSalary.id">
                 <div class="item">
-                    <label>基本工资<i class="notice-red">*</i></label>
+                    <label>基本工资</label>
                     <input v-if="flag3"  type="number" placeholder="请输入基本工资" v-model="employeeSalary.basicWage">
                     <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.basicWage ? employeeSalary.basicWage : '') :''}}</span>
                 </div>
                 <div class="item">
-                    <label>绩效工资<i class="notice-red">*</i></label>
+                    <label>绩效工资</label>
                     <input v-if="flag3"  type="number" placeholder="请输入绩效工资" v-model="employeeSalary.performancePay" required>
                     <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.performancePay ? employeeSalary.performancePay : '') :''}}</span>
                 </div>
 
                 <div class="item">
-                    <label>社保账号<i class="notice-red">*</i></label>
+                    <label>社保账号</label>
                     <input v-if="flag3"  type="number" placeholder="请输入社保账号" v-model="employeeSalary.socialSecurityAccount" required>
                     <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.socialSecurityAccount ? employeeSalary.socialSecurityAccount : '') :''}}</span>
                 </div> 
 
                 <div class="item">
-                    <label>公积金号<i class="notice-red">*</i></label>
+                    <label>公积金号</label>
                     <input v-if="flag3"  type="number" placeholder="请输入公积金账号" v-model="employeeSalary.providentFundAccount" required>
                     <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.providentFundAccount ? employeeSalary.providentFundAccount : '') :''}}</span>
                 </div>
@@ -44,7 +44,6 @@
                     <span v-else class="font_sty">{{employeeSalary ? (employeeSalary.employeeSalaryCardList[0].salaryBank ? employeeSalary.employeeSalaryCardList[0].salaryBank : '') :''}}</span>
                 </div> -->
 								<!-- <div v-if="employeeSalary.employeeSalaryCardList.length!=0"> -->
-									<div v-if="employeeSalary.employeeSalaryCardList.length!=0">
 									<div v-for="(items,index) in employeeSalary.employeeSalaryCardList" :key="index">
 										<div class="item">
 												<label>工资卡{{index+1}}</label>
@@ -59,7 +58,7 @@
 											<div v-if="flag3 && index!=0" class="delete_div"><img src="../../../assets/img/dismission/deleteH34.png" class="delete" @click="deleteDimissiom(index+1)"></div>
 										</div>
 									</div>
-								</div>
+								<!-- </div> -->
 								
 								<div class="addNewPaycard" v-if="flag3">
 									<div @click="breakPromiseFun" class="click_font">
@@ -146,8 +145,8 @@
 					let bankList = document.getElementsByClassName("bankClass");
 					let salaryCardNumber = cardList[nowLenght].value;
 					let salaryBank = bankList[nowLenght].value;
-					if(!salaryCardNumber||!salaryBank){
-						this.$message.error('银行卡开户行不能为空');
+					if(!salaryCardNumber){
+						this.$message.error('银行卡号不能为空');
 						return false;
 					}
 					return true;
@@ -176,15 +175,10 @@
                 if(that.flag3 == false){//获取表单原始值
 								    that.employeeSalary.id=that.employeeSalary.id;
                     that.basicWage = that.employeeSalary.basicWage;
-                    
                     that.socialSecurityAccount = that.employeeSalary.socialSecurityAccount;
                     that.performancePay = that.employeeSalary.performancePay;
-//                     that.salaryBank = that.employeeSalary.employeeSalaryCardList[0].salaryBank;
-// 										that.salaryCardNumber = that.employeeSalary.employeeSalaryCardList[0].salaryCardNumber;
-
                     that.providentFundAccount = that.employeeSalary.providentFundAccount;
-								
-										 that.insertData=that.employeeSalary.employeeSalaryCardList;
+										that.insertData=that.employeeSalary.employeeSalaryCardList;
 										
                 }else{//重置表单
                     that.employeeSalary.basicWage = that.basicWage;
@@ -193,7 +187,6 @@
                     that.employeeSalary.performancePay = that.performancePay;
                     that.employeeSalary.salaryBank = that.salaryBank;
                     that.employeeSalary.providentFundAccount = that.providentFundAccount;
-										
 										that.insertData=that.employeeSalary.employeeSalaryCardList;
                 }
             }
