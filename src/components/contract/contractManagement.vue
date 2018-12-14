@@ -471,9 +471,10 @@
 				          type: 'success'
 				        });
 				        /* 刷新列表数据 */
-				  			that.pageIndex=1;
-				  			that.pageSize=5;
-			      		that.getDataSearchAgreementList(folderId);
+// 				  			that.pageIndex=1;
+// 				  			that.pageSize=5;
+// 			      		that.getDataSearchAgreementList(folderId);
+                  window.location.reload();
 			  			}else{
 			  				that.$message.error(res.message || res.data.msg);
 			  			}
@@ -529,7 +530,8 @@
 				          message: '恭喜你，操作成功',
 				          type: 'success'
 				        });
-								that.agreementDetail(agreementId,docNumber);
+								window.location.reload();
+								// that.agreementDetail(agreementId,docNumber);
 			  			}else{
 			  				that.$message.error(res.message || res.data.msg);
 			  			}
@@ -552,7 +554,8 @@
 				          message: '恭喜你，操作成功',
 				          type: 'success'
 				        });
-				        that.getDataSearchAgreementList();
+								window.location.reload();
+				        // that.getDataSearchAgreementList();
 			  			}else{
 			  				that.$message.error(res.message || res.data.msg);
 			  			}
@@ -591,6 +594,7 @@
 				          message: '恭喜你，操作成功',
 				          type: 'success'
 				        });
+								window.location.reload();
 			  			}else{
 			  				that.$message.error(res.message || res.data.msg);
 			  			}
@@ -629,6 +633,7 @@
 								  message: '恭喜你，操作成功',
 								  type: 'success'
 								});
+								window.location.reload();
 	              that.Archive_folder_btn=false;
 	              that.getDataSearchAgreementList();
 			  			}else{
