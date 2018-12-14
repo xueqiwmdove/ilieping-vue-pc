@@ -129,7 +129,7 @@
                     <li @click="click_potion26(26)" :class="flag==26?'active':''"><span>设置</span></li> -->
                 </ul>
             </li>
-            
+
         <!--  <li>
             <div class="link" @click="toggle7">
               <i class="fa fa-globe">
@@ -481,7 +481,7 @@ export default {
 				that.isShow9=true;
 				that.before9=false;
 				that.after9=true;
-      }		
+      }
 	},
 }
 </script>
