@@ -144,7 +144,7 @@
 						<el-col :span="5"><div class="grid-content m_t"><p class="p_title color_str">{{item.deadlineForSignatureStr | formatDate}}&nbsp;截止签约</p><p class="p_title">{{item.createTimeStr | formatDate}}&nbsp;发起签约</p></div></el-col>
 					  <el-col :span="5">
 					  	<div class="grid-content line_h">
-					  		<p v-if="nowTimeStr >= item.deadlineForSignatureStr || item.status===0">逾期未签 <span v-if="item.status === 5" class="span_f95714">已公正</span></p>
+					  		<p v-if="nowTimeStr > item.deadlineForSignatureStr || item.status===0">逾期未签 <span v-if="item.status === 5" class="span_f95714">已公正</span></p>
 					  		<p v-else-if="nowTimeStr >= item.endTimeStr">已到期 <span v-if="item.status === 5" class="span_f95714">已公正</span></p><!-- 已到期   -->
 					  		<p v-else-if="item.status===1">待员工签</p>
 					  		<p v-else-if="item.status===2">待我签</p>
@@ -165,7 +165,7 @@
 		      					<ul v-if="item.isArchive===0">
 		      						<li v-if="item.status===1" @click="getdataremind(item.id,item.employeePhone,item.agreementName,item.deadlineForSignatureStr)">提醒</li>
 		      						<li v-if="item.status===1 || item.status===2" @click="getcancel(item.id)">撤销</li>
-		      						<li v-if="item.status===2" @click="getsignAgreement(item.id)">签署</li>
+		      						<li v-if="item.status===2" @click="getsignAgreement(item.id,item.docNumber)">签署</li>
 
 		      						<li v-if="item.status===3 || item.status===4 || item.status===0 || item.status===5" @click="click_Archive_folder_btn(item.id)">归档</li>
 		      						<li v-if="item.status===5" @click="getExportContract(item.id,item.docNumber)">下载</li>
@@ -259,7 +259,7 @@
                  		<el-row>
                  		 <el-button v-if="dataDetail.status===1" @click="getdataremind(dataDetail.id,dataDetail.employeePhone,dataDetail.agreementName,dataDetail.deadlineForSignature)">提醒</el-button>
                  		 <el-button v-if="dataDetail.status===1 || dataDetail.status===2" @click="getcancel(dataDetail.id)">撤销</el-button>
-                 		 <el-button v-if="dataDetail.status===2" @click="getsignAgreement(dataDetail.id)">签署</el-button>
+                 		 <el-button v-if="dataDetail.status===2" @click="getsignAgreement(dataDetail.id,dataDetail.docNumber)">签署</el-button>
                  		 <el-button v-if="dataDetail.status===3 || dataDetail.status===4 || dataDetail.status===0 || dataDetail.status===5" class="divselect btn_default" @click="click_Archive_folder_btn(dataDetail.id)">归档</el-button>
                  		 <el-button v-if="dataDetail.status===5" @click="getExportContract(dataDetail.id,dataDetail.docNumber)">下载</el-button>
                  		</el-row> 
@@ -510,7 +510,7 @@
 		        
       		}
       	},
-      	getsignAgreement(agreementId){
+      	getsignAgreement(agreementId,docNumber){
           let that=this;
       		if(agreementId==''){
       			that.$message.error('合同id不能为空');
@@ -529,7 +529,7 @@
 				          message: '恭喜你，操作成功',
 				          type: 'success'
 				        });
-
+								that.agreementDetail(agreementId,docNumber);
 			  			}else{
 			  				that.$message.error(res.message || res.data.msg);
 			  			}

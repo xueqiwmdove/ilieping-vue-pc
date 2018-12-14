@@ -100,9 +100,9 @@
                     <div class="nextButton">
                         <input type="button" class="sendOfferNext" value="下一步" :disabled="nextDisabled" :class="nextClass" @click="confirm"> <!-- :disabled="nextDisabled" :class="nextClass"  -->
                     </div>
-                   <!-- <div class="skipSalary" @click="insertSuccess">
+                   <div class="skipSalary" @click="insertSuccess">
                         暂不填写，跳过
-                    </div> -->
+                    </div>
                 </div>
                 </div>
   			</div>
