@@ -36,7 +36,18 @@
 <script>
     export default {
         name: "recommend_depart",
-        props:['addVisible']
+        props:['addVisible'],
+        data(){
+          return{
+
+          }
+        },
+        methods:{
+          hideModel(){
+            let that=this;
+            that.$emit("hideModel",'recommend')
+          }
+        }
     }
 </script>
 

@@ -22,10 +22,12 @@
     <weekOutAlert visableModal.sync="visable.weekOut"></weekOutAlert>
     <!--备注弹窗-->
     <remarkAlert visableModal.sync="visable.remark"></remarkAlert>
+    <el-dialog title="推荐给用人部门" :visible.sync="visableModal" custom-class="recommend" :before-close="hideModel">
+
+    </el-dialog>
 
 
-
-    <button class="button recommend" v-if="flag==1" @click="visableModal=true">推荐给用人部门</button>
+    <button class="button recommend" v-if="flag==1" @click="visableModal=true">推荐给用人部门</button><!--@click="addCandidateShow('recommend')"-->
     <button class="button weedOut" @click="showmodel('weekOut')" >淘汰</button><!--@click="visable.weekOut==true"-->
     <button class="button remark" @click="showmodel('remark')">备注</button><!--@click="visable.remark==true"-->
   </div>
@@ -78,6 +80,12 @@
         showmodel(param){
           console.log("hello")
           this.visable[param] = true;
+        },
+        //展示候选人弹窗
+        addCandidateShow(param){
+          let that=this;
+          console.log(0)
+          that.visables[param] = true;
         },
       }
     }
