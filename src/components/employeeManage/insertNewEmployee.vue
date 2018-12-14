@@ -501,21 +501,21 @@ export default {
   			url:api.employInsert,
   			headers:headers("application/json;charset=utf-8"),
   			data:{
-                    accountNature:that.accountNature,//户口性质
-                    deptId:that.deptId,//部门ID
-                    directlySuperior:that.directlySuperior,//直属上级
-                    enterpriseEmail:that.enterpriseEmail,//企业分配员工的邮箱
-                    employeeIdCard:that.employeeIdCard,//员工身份证号
-                    employeeName:that.employeeName,//员工姓名
-                    employeeNumber:that.employeeNumber,//员工工号
-                    employeePhone:that.employeePhone,//员工手机号
-                    entryTime:that.entryTime, //入职时间
-                    highestEducation:that.highestEducation,//最高学历
-                    position:that.position,//职位
-                    probation:that.probation,//试用期
-                    workAddress:that.workAddress,//工作地点
-                    workType:that.workType, // 工作类型
-                    employeeEmail:that.employeeEmail//个人邮箱
+					accountNature:that.accountNature,//户口性质
+					deptId:that.deptId,//部门ID
+					directlySuperior:that.directlySuperior,//直属上级
+					enterpriseEmail:that.enterpriseEmail,//企业分配员工的邮箱
+					employeeIdCard:that.employeeIdCard,//员工身份证号
+					employeeName:that.employeeName,//员工姓名
+					employeeNumber:that.employeeNumber,//员工工号
+					employeePhone:that.employeePhone,//员工手机号
+					entryTime:that.entryTime, //入职时间
+					highestEducation:that.highestEducation,//最高学历
+					position:that.position,//职位
+					probation:that.probation,//试用期
+					workAddress:that.workAddress,//工作地点
+					workType:that.workType, // 工作类型
+					employeeEmail:that.employeeEmail//个人邮箱
   			},
   			cache:false
   		}).then(function(res){

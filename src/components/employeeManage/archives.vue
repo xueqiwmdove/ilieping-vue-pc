@@ -23,12 +23,10 @@
             </p>
             <div class="uploadLeaveSetp2" >
                 <div>
-
                     <div class="head-img">
                             <fileUploadHeadImg @getfile="getHeadImg" ref="headImg" :employeeInfo="employeeInfo"></fileUploadHeadImg>
                         <p>{{employeeInfo.employeeName}}</p>
                     </div>
-
                     <!-- 基本信息 -->
                     <basicinfo :employeeInfo="employeeInfo" @updateEmployeeInfo="updateEmployeeInfo" @changeHeadPhoto="changeHeadPhoto"></basicinfo>
                     <!--岗位信息  -->
@@ -42,29 +40,36 @@
                     <p class="uploadTitle">附件</p>
                     <div class="uploadLeaveInfo3" >
                         <el-form>
-                            <el-form-item label="一寸免冠照" :label-width="formLabelWidth">
+<!--                            <el-form-item label="一寸免冠照" :label-width="formLabelWidth">
                                 <fileupload @getfile="getHeadFiles" ref="headUpload" :fileUrled='employeeInfo.crownlessPhotoUrl' :imgName="'crownlessPhotoUrl'"></fileupload>
-                            </el-form-item>  
-
-                            <el-form-item label="身份证正面照片" :label-width="formLabelWidth">
-                                <fileupload @getfile="getCardFaceFiles" ref="cardFaceUpload" :fileUrled='employeeInfo.protraitPhotoUrl' :imgName="'protraitPhotoUrl'"></fileupload>
-                            </el-form-item>  
-
+                            </el-form-item>  -->
                             <el-form-item label="身份证反面照片" :label-width="formLabelWidth">
                                 <fileupload @getfile="getCardBackFiles" ref="cardBackUpload" :fileUrled='employeeInfo.reversePhotoUrl' :imgName="'reversePhotoUrl'"></fileupload>
                             </el-form-item> 
-
-                            <el-form-item label="简历" :label-width="formLabelWidth">
-                                <fileupload @getfile="getResumeFiles" ref="resumeUpload" :fileUrled='annexResume.httpUrl' :fileName='annexResume.fileName' :fileId='annexResume.id'></fileupload>
+														
+                            <el-form-item label="身份证正面照片" :label-width="formLabelWidth">
+                                <fileupload @getfile="getCardFaceFiles" ref="cardFaceUpload" :fileUrled='employeeInfo.protraitPhotoUrl' :imgName="'protraitPhotoUrl'"></fileupload>
                             </el-form-item> 
-
+														 
                             <el-form-item label="学历证明" :label-width="formLabelWidth">
                                 <fileupload @getfile="getEducationFiles" ref="educationUpload" :fileUrled='annexEducation.httpUrl' :fileName='annexEducation.fileName' :fileId='annexEducation.id'></fileupload>
-                            </el-form-item>  
+                            </el-form-item>
+														
+                            <el-form-item label="简历" :label-width="formLabelWidth">
+                                <fileupload @getfile="getResumeFiles" ref="resumeUpload" :fileUrled='annexResume.httpUrl' :fileName='annexResume.fileName' :fileId='annexResume.id'></fileupload>
+                            </el-form-item>   
 
+                            <el-form-item label="入职体检" :label-width="formLabelWidth">
+															<fileupload @getfile="getEntryExamination" ref="EntryExaminationUpload" :fileUrled='annexEntryExamination.httpUrl' :fileName='annexEntryExamination.fileName' :fileId='annexEntryExamination.id'></fileupload>
+                            </el-form-item>  
+														
                             <el-form-item label="上家离职证明" :label-width="formLabelWidth">
                                 <fileupload @getfile="getResignCertFiles" ref="resignCertUpload" :fileUrled='annexResignCert.httpUrl' :fileName='annexResignCert.fileName' :fileId='annexResignCert.id'></fileupload>
                             </el-form-item> 
+														
+														<el-form-item label="照片" :label-width="formLabelWidth">
+																<fileupload @getfile="getPhoto" ref="PhotoUpload" :fileUrled='PhotoList.httpUrl' :fileName='PhotoList.fileName' :fileId='PhotoList.id'></fileupload>
+														</el-form-item>
                         </el-form>
                     </div>
                 </div>
@@ -115,8 +120,10 @@
                 employeeSalary:{},
                 personnelPromotionResponse:{},
                 annexResume:{},
+								annexEntryExamination:{},
                 annexEducation:{},
                 annexResignCert:{},
+								PhotoList:{},//照片
                 visables:{
                     person:false
                 },
@@ -285,7 +292,9 @@
                                         that.annexEducation = element;
                                     }else if(element.type == 5){//离职
                                         that.annexResignCert = element;
-                                    }
+                                    }else if(element.type == 7){//入职体检
+																			that.annexEntryExamination = element;
+																		}
                                 });
 
                                 //根据性别，年龄切花头像
@@ -511,6 +520,32 @@
                             that.$message.error(error);
                         });  
             },  
+						getEntryExamination(fileList){//入职体检
+                let that = this;
+                let formData = new FormData();
+                formData.append('type','7');
+                formData.append('employeeId',this.$route.query.id);
+                formData.append('enterpriseId',this.employeeInfo.enterpriseId);
+                formData.append('file',fileList);
+
+                this.$http({
+										url:api.archivesUploadFile,
+										method:'POST',
+										headers:headers('multipart/form-data'),
+										data: formData,
+								}).then(function (res) {
+										let result=res.data;
+										if(result.code == 10000){
+												// console.log(result);
+												that.$refs.EntryExaminationUpload.getFileUrl(result.data);
+												that.$message(result.msg);
+										}else{
+												that.$message.error(result.code + result.msg);
+										}
+								}).catch(function (error) {
+										that.$message.error(error);
+								});  
+						},
             getResumeFiles(fileList){
                 //获取上传简历
                 // console.log(fileList,'<================resume');
@@ -568,6 +603,32 @@
                             that.$message.error(error);
                         }); 
             },   
+						getPhoto(fileList){//照片
+                let that = this;
+                let formData = new FormData();
+                formData.append('type','6');
+                formData.append('employeeId',this.$route.query.id);
+                formData.append('enterpriseId',this.employeeInfo.enterpriseId);
+                formData.append('file',fileList);
+
+                this.$http({
+                            url:api.archivesUploadFile,
+                            method:'POST',
+                            headers:headers('multipart/form-data'),
+                            data: formData,
+                        }).then(function (res) {
+
+                            let result=res.data;
+                            if(result.code == 10000){
+                                that.$refs.PhotoUpload.getFileUrl(result.data);
+                                that.$message(result.msg);
+                            }else{
+                                that.$message.error(result.code + result.msg);
+                            }
+                        }).catch(function (error) {
+                            that.$message.error(error);
+                        }); 
+						},
             getResignCertFiles(fileList){
                 //获取上传离职证明
                 // console.log(fileList,'<================resignCert');
