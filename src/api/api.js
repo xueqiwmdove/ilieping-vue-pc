@@ -148,6 +148,7 @@ const api = {
   getEmployeeList:Butterfly+'employee/getEmployeeList',//招聘负责人，面试官列表
   insertOrUpdate:Butterfly+'positionInfo/insertOrUpdate',//添加，更新岗位
   positionDetail:Butterfly+'positionInfo/detail',//添加，更新岗位  
+  getPosition:Butterfly+'positionInfo/getPosition',//查询职位列表  
 	
 	logout:Butterfly+'logout',//退出接口
 

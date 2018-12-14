@@ -28,29 +28,35 @@
                   <el-col :span='4' >
                     <div class="asidePosition ad_input">
                         <h4><img class="img_shengfen" src="../../assets/img/zhiwei/shengfen.png" alt="">
-                          <span  style="margin-left:30px;">招聘中的职位</span>
-                          <i style="color:#AAADB5;" class="el-icon-caret-bottom"></i>
+                          <span @click="check"  style="margin-left:30px;cursor: pointer;">{{texts}}</span>
+                          <i  @click="check"  v-if="showList" style="color:#AAADB5;" class="el-icon-caret-bottom"></i>
+                          <i  @click="check"  v-else style="color:#AAADB5;" class="el-icon-caret-right"></i>
                         </h4>
+                          <transition 
+                              name="fade"
+                              enter-class="fade-in-enter"
+                              enter-active-class="fade-in-active"
+                              leave-class="fade-out-enter"
+                              leave-active-class="fade-out-active"
+                            >
+                                <div v-if="showList" class="select_position_sty">
+                                  <ul>
+                                    <li @click="checkItem('1')">招聘中的职位</li>
+                                    <li @click="checkItem('0')">停止招聘</li>
+                                  </ul>
+                                </div>
+                          </transition>  
                          <div class="search" style="margin-top:30px;">
-                            <el-input  class="input_search" placeholder="输入你想搜索的内容" >
-                                <i slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
+                            <el-input v-model="names"  class="input_search" placeholder="输入你想搜索的内容" >
+                                <i @click="getPosition" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                             </el-input>
                          </div>
                          <p>全部职位 <i><img src="../../assets/img/zhiwei/ic_chose.png" alt=""></i></p>
                          <div class="position_list">
                              <el-scrollbar style="height:100%" >
                                 <ul>
-                                    <li>
-                                    产品经理
-                                    </li>
-                                    <li>
-                                    产品经理
-                                    </li>
-                                    <li>
-                                    产品经理
-                                    </li>
-                                    <li>
-                                    产品经理
+                                    <li v-for="(item,index) in personList " :key="index">
+                                        {{item.name}}
                                     </li>
                                 </ul>
                              </el-scrollbar>
@@ -198,8 +204,6 @@
   import candidateSteps from '@/components/candidate/candidateSteps';
   // import recommend_depart from '@/components/candidate/common/recommend_depart';
 
-
-
 // duanyanhong
 // 2018.12.2
 // 自定义控制员工架构下拉框点击空白处隐藏
@@ -238,8 +242,13 @@ export default {
    data() {
       return {
         signs:'0' ,
-        hrList:[],
+        hrList:[],//列表
+        personList:[],//人员数据
+        names:'',//搜素关键字
         totalCount:0,
+        texts:'招聘中的职位',
+        recruitStatus:'1',
+        showList:false,
         pageIndex: 1,
         pageSize: 5,
         addVisible:false,
@@ -255,6 +264,25 @@ export default {
       },
    directives: {clickoutside},
     methods: {
+    //获取职位列表
+    getPosition() {
+      let that=this;
+        that.$http({
+	  			method:"post",
+	  			url:api.getPosition,
+	  			headers:headers('application/json;charset=utf-8'),
+	  			data:{
+				    "name":that.names,
+				    "recruitStatus":that.recruitStatus || '1',
+	  			}
+	  		}).then(function(res){
+	  			if(res.data.code==10000){
+             that.personList=res.data.data;
+	  			}else{
+	  				that.$message.error(res.data.msg);
+	  			}
+		    });
+    },
     //展示候选人弹窗
       addCandidateShow(param){
         let that=this;
@@ -271,49 +299,64 @@ export default {
       this.signs =val
       this.gethrList()
     },
-      changePage(newPage) {
-            let that=this;
-            if(that.pageIndex === newPage) {
-              return;
-            }
-            that.pageIndex = newPage;
-            that.gethrList();
-          },
-          changeSize(newSize) {
-            let that=this;
-            that.pageSize = newSize;
-            that.gethrList();
-      },
-      gethrList(){
-		  let that=this;
-	      let currentPage=that.pageIndex || 1;
-	      let pageSize=that.pageSize || 5;
-        that.$http({
-	  			method:"post",
-	  			url:api.hr_list,
-	  			headers:headers('application/json;charset=utf-8'),
-	  			data:{
-				    "currPage":currentPage,
-				    "pageSize":pageSize,
-				    'searchContent':that.searchContent,
-				    'type':that.select_process,
-				    'status':that.select_state
-	  			}
-	  		}).then(function(res){
-	  			if(res.data.code==10000){
-             that.hrList=res.data.data;
-             that.totalCount=res.data.count;
-	  			}else{
-	  				that.$message.error(res.data.msg);
-	  			}
-		    });
-      },
-      searchList() {
-        this.$router.push({path:'/searchCandidata'})
-      },
+    //选择招聘状态
+    checkItem(val) {
+      this.recruitStatus=val
+      this.showList =false
+      if(val == '0') {
+        this.texts = '停止招聘'
+      }else {
+        this.texts = '招聘中的职位'
+      }
+      this.getPosition()
+    },
+    check() {
+      this.showList = !this.showList
+    },
+    changePage(newPage) {
+          let that=this;
+          if(that.pageIndex === newPage) {
+            return;
+          }
+          that.pageIndex = newPage;
+          that.gethrList();
+        },
+        changeSize(newSize) {
+          let that=this;
+          that.pageSize = newSize;
+          that.gethrList();
+    },
+    gethrList(){
+      let that=this;
+      let currentPage=that.pageIndex || 1;
+      let pageSize=that.pageSize || 5;
+      that.$http({
+        method:"post",
+        url:api.hr_list,
+        headers:headers('application/json;charset=utf-8'),
+        data:{
+          "currPage":currentPage,
+          "pageSize":pageSize,
+          'searchContent':that.searchContent,
+          'type':that.select_process,
+          'status':that.select_state
+        }
+      }).then(function(res){
+        if(res.data.code==10000){
+            that.hrList=res.data.data;
+            that.totalCount=res.data.count;
+        }else{
+          that.$message.error(res.data.msg);
+        }
+      });
+    },
+    searchList() {
+      this.$router.push({path:'/searchCandidata'})
+    },
     },
     mounted() {
      this.gethrList()
+     this.getPosition()
     },
     created() {
     }
@@ -345,6 +388,43 @@ position: relative;
 }
 .asidePosition h4 .img_shengfen {
     position: absolute;
+}
+.select_position_sty {
+  position: absolute;
+  top: 28px;
+  left:50px;
+  width:100px;
+  height: 112px;
+  background-color: #FAFBFC;
+  border: 1px solid #FAFBFC;
+  z-index: 10;
+  box-shadow: 0 2px 4px 0 rgba(216,216,216,0.50);
+}
+.select_position_sty::after {
+  content: '';
+  width :0;
+  height:0 ;
+  /* border-bottom:10px solid #ffff;
+  border-left:10px solid transparent;
+  border-right:10px solid transparent;
+  border-style:solid; */
+  border-style: solid;
+  border-width: 0 10px 10px 10px;
+  border-color: transparent transparent #FAFBFC transparent;
+  left: 39px;
+  top: -10px;
+  position: absolute;
+  z-index: 10;
+
+}
+.select_position_sty ul li  {
+  padding: 20px 5px;
+  text-align: center;
+  border-bottom: 1px solid #FAFBFC;
+  cursor: pointer;
+}
+.select_position_sty ul li:hover {
+  color: #F95714;
 }
 .ad_input .search {
 float: right;
@@ -385,8 +465,8 @@ color: #F95714;
 margin-left: 180px;
 }
 .position_list {
-   height: 600px;
-   width: 300px;
+   height:500px;
+   width: 260px;
 }
 .position_list ul {
   width: 100%;
@@ -395,10 +475,16 @@ margin-left: 180px;
 .position_list ul li {
   height: 30px;
   color:rgba(57,74,102,1);
+  font-size: 15px;
   line-height: 30px;
   margin-bottom:10px;
+  padding-left: 10px;
+  cursor: pointer;
 }
-
+.position_list ul li:hover {
+  color: #F95714;
+  padding-left: 15px;
+}
 .positionTable {
     background-color: #fff;
     padding: 0px 25px;
@@ -507,6 +593,15 @@ margin-left: 180px;
 .positionTable   .div_table_infor .el-table {
   border:none;
 }
+.fade-in-active, .fade-out-active {
+  transition: all 0.4s ease ; 
+}
+     
+.fade-in-enter, .fade-out-active {
+  opacity: 0 ;
+}
+
+
 </style>
 <style>
 .position_list .el-scrollbar__wrap {
