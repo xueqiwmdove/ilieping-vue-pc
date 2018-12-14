@@ -239,7 +239,7 @@
 						      		<div class="detailVice_title">合同状态</div>
 						      		<div class="div_con">
 						      			<div style="text-align: left;padding-left: 20px;">
-										  		<span v-if="nowTimeStr >= dataDetail.deadlineForSignatureStr && dataDetail.status===0">逾期未签 <span v-if="dataDetail.status === 5" class="span_f95714">已公正</span></span>
+										  		<span v-if="nowTimeStr > dataDetail.deadlineForSignatureStr && dataDetail.status===0">逾期未签 <span v-if="dataDetail.status === 5" class="span_f95714">已公正</span></span>
 										  		<span v-else-if="nowTimeStr <= dataDetail.endTimeStr">已到期 <span v-if="dataDetail.status === 5" class="span_f95714">已公正</span></span><!-- 已到期   -->
 										  		<span v-else-if="dataDetail.expiring == 1">即将到期<span v-if="dataDetail.status === 5" class="span_f95714">已公正</span></span>
 										  		<span v-else-if="dataDetail.status===2">待我签</span>
