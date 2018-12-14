@@ -5,7 +5,8 @@
      <addCandidate :addVisible.sync="visables.add" @hideModel="hideChildModal"></addCandidate>
      <!--候选人信息-->
      <candidateSteps :addVisible.sync="visables.steps" @hideModel="hideChildModal"></candidateSteps>
-
+     <!-- 推荐人弹窗  -->
+     <recommendDia :addVisible.sync="visables.recommend" @hideModel="hideChildModal"></recommendDia>
           <!--顶部导航-->
         <pageheader class="pageheader"></pageheader>
           <!--侧边栏-->
@@ -187,6 +188,7 @@
   import pageheader from '@/components/common/pageheader';
   import pageaside from '@/components/common/pageaside';
   import treeSearch from '@/components/common/treeSearch'
+  import recommendDia from '@/components/candidate/common/recommendDia'
 //  blance
   import addCandidate from '@/components/candidate/addCandidate';
   import candidateSteps from '@/components/candidate/candidateSteps';
@@ -223,7 +225,8 @@ export default {
     pageaside,
     treeSearch,
     addCandidate,
-    candidateSteps
+    candidateSteps,
+    recommendDia
 	},
    data() {
       return {
@@ -236,6 +239,7 @@ export default {
         visables:{
           add:false,
           steps:false,
+          recommend:false,
         }
       };
     },
@@ -247,7 +251,7 @@ export default {
     //展示候选人弹窗
       addCandidateShow(param){
         let that=this;
-        console.log(0)
+        console.log()
         that.visables[param] = true;
       },
     //关闭候选人弹窗
