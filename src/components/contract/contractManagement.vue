@@ -474,7 +474,7 @@
 // 				  			that.pageIndex=1;
 // 				  			that.pageSize=5;
 // 			      		that.getDataSearchAgreementList(folderId);
-                  window.location.reload();
+									setTimeout('window.location.reload()',1000);
 			  			}else{
 			  				that.$message.error(res.message || res.data.msg);
 			  			}
@@ -530,7 +530,7 @@
 				          message: '恭喜你，操作成功',
 				          type: 'success'
 				        });
-								window.location.reload();
+								setTimeout('window.location.reload()',1000);
 								// that.agreementDetail(agreementId,docNumber);
 			  			}else{
 			  				that.$message.error(res.message || res.data.msg);
@@ -554,7 +554,7 @@
 				          message: '恭喜你，操作成功',
 				          type: 'success'
 				        });
-								window.location.reload();
+								setTimeout('window.location.reload()',1000);
 				        // that.getDataSearchAgreementList();
 			  			}else{
 			  				that.$message.error(res.message || res.data.msg);
@@ -594,7 +594,7 @@
 				          message: '恭喜你，操作成功',
 				          type: 'success'
 				        });
-								window.location.reload();
+								setTimeout('window.location.reload()',1000);
 			  			}else{
 			  				that.$message.error(res.message || res.data.msg);
 			  			}
@@ -633,9 +633,9 @@
 								  message: '恭喜你，操作成功',
 								  type: 'success'
 								});
-								window.location.reload();
-	              that.Archive_folder_btn=false;
-	              that.getDataSearchAgreementList();
+								setTimeout('window.location.reload()',1000);
+// 	              that.Archive_folder_btn=false;
+// 	              that.getDataSearchAgreementList();
 			  			}else{
 			  				that.$message.error(res.message || res.data.msg);
 			  			}
