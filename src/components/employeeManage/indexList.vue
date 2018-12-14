@@ -678,7 +678,7 @@ export default {
  //获取上传文件
       getFiles(val) {
        this.imgList=val
-      console.group("label");
+       console.group("label");
       },
   //提前转正
       personRegular(val) {
