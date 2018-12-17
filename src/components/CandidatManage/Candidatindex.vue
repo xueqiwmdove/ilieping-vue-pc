@@ -21,7 +21,7 @@
         <div class="right-content pull-right">
             <div class="content">
                 <p class="headline">
-                    <span>候选人管理</span>
+                    <span >候选人管理</span>
                 </p>
                 <el-row>
               <!--创建职位左侧栏  -->
@@ -32,13 +32,7 @@
                           <i  @click="check"  v-if="showList" style="color:#AAADB5;" class="el-icon-caret-bottom"></i>
                           <i  @click="check"  v-else style="color:#AAADB5;" class="el-icon-caret-right"></i>
                         </h4>
-                          <transition 
-                              name="fade"
-                              enter-class="fade-in-enter"
-                              enter-active-class="fade-in-active"
-                              leave-class="fade-out-enter"
-                              leave-active-class="fade-out-active"
-                            >
+                          <transition name="fade" enter-class="fade-in-enter" enter-active-class="fade-in-active" leave-class="fade-out-enter" leave-active-class="fade-out-active">
                                 <div v-if="showList" class="select_position_sty">
                                   <ul>
                                     <li @click="checkItem('1')">招聘中的职位</li>
@@ -51,7 +45,7 @@
                                 <i @click="getPosition" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                             </el-input>
                          </div>
-                         <p>全部职位 <i><img src="../../assets/img/zhiwei/ic_chose.png" alt=""></i></p>
+                         <p>全部职位 <i   @click="getItems" v-if="flags"><img src="../../assets/img/zhiwei/ic_chose.png" alt=""></i><i v-else style="background-color:#ccc;" class="el-icon-circle-check"></i></p>
                          <div class="position_list">
                              <el-scrollbar style="height:100%" >
                                 <ul>
@@ -249,6 +243,7 @@ export default {
         texts:'招聘中的职位',
         recruitStatus:'1',
         showList:false,
+        flags:true,
         pageIndex: 1,
         pageSize: 5,
         addVisible:false,
@@ -353,6 +348,10 @@ export default {
     searchList() {
       this.$router.push({path:'/searchCandidata'})
     },
+    getItems() {
+      this.flags = !this.flags
+      console.log(1)
+    }
     },
     mounted() {
      this.gethrList()
@@ -422,6 +421,9 @@ position: relative;
   text-align: center;
   border-bottom: 1px solid #FAFBFC;
   cursor: pointer;
+}
+.select_position_sty ul li .activeP {
+   color: #F95714;
 }
 .select_position_sty ul li:hover {
   color: #F95714;
