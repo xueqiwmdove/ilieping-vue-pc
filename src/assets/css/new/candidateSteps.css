@@ -1,0 +1,714 @@
+.el-dialog.candidateSteps {
+  width: 1200px;
+  height: 1128px;
+  top: 48px;
+  margin-top: 0!important;
+}
+.el-dialog.candidateSteps .el-dialog__header {
+  border-bottom: none;
+  height: 80px;
+}
+.el-dialog.candidateSteps .el-dialog__header .el-dialog__close.el-icon.el-icon-close {
+  width: 30px;
+  height: 30px;
+  background: url("../../../assets/img/candidate/tanchuang_ic_cancel.png");
+}
+.el-dialog.candidateSteps .el-dialog__header .el-icon-close:before {
+  content: "";
+}
+.el-dialog.candidateSteps .el-dialog__body {
+  padding: 0;
+}
+.el-dialog.candidateSteps .el-dialog__body .save {
+  position: absolute;
+  right: 85px;
+  top: 22px;
+  cursor: pointer;
+}
+.el-dialog.candidateSteps .addMain {
+  font-size: 0;
+}
+.el-dialog.candidateSteps .addMain .personInfo {
+  width: 100%;
+  height: 283px;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+}
+.el-dialog.candidateSteps .addMain .personInfo .primary {
+  font-size: 0;
+  padding: 0 0 0 30px;
+  margin: 20px 0 13px;
+}
+.el-dialog.candidateSteps .addMain .personInfo .primary span {
+  display: inline-block;
+  font-size: 16px;
+}
+.el-dialog.candidateSteps .addMain .personInfo .primary .name {
+  font-size: 30px;
+  font-family: MicrosoftYaHei-Bold;
+  font-weight: bold;
+  color: #394a66;
+  line-height: 40px;
+  margin-right: 19px;
+}
+.el-dialog.candidateSteps .addMain .personInfo .primary .post {
+  font-family: MicrosoftYaHei;
+  color: #394a66;
+  line-height: 21px;
+  margin-right: 15px;
+}
+.el-dialog.candidateSteps .addMain .personInfo .primary .tag {
+  height: 24px;
+  line-height: 24px;
+  color: #fff;
+  background: #66adff;
+  border-radius: 4px;
+  padding: 0 10px;
+}
+.el-dialog.candidateSteps .addMain .personInfo .minor {
+  font-size: 0;
+  padding-left: 30px;
+  margin: 0 0 74px 0;
+}
+.el-dialog.candidateSteps .addMain .personInfo .minor span {
+  display: inline-block;
+  font-size: 14px;
+  color: #97A2B3;
+  height: 20px;
+  line-height: 20px;
+  margin: 0 22px 0 0;
+}
+.el-dialog.candidateSteps .addMain .personInfo .minor .phone {
+  text-indent: 24px;
+  background: url("../../../assets/img/candidate/tanchuang_ic_phnnenumber.png") no-repeat left;
+}
+.el-dialog.candidateSteps .addMain .personInfo .minor .email {
+  text-indent: 27px;
+  background: url("../../../assets/img/candidate/tanchuang_ic_email.png") no-repeat left;
+}
+.el-dialog.candidateSteps .addMain .personInfo .minor .sex {
+  text-indent: 23px;
+  background: url("../../../assets/img/candidate/tanchuang_ic_gender.png") no-repeat left;
+}
+.el-dialog.candidateSteps .addMain .personInfo .minor .woekExpP {
+  text-indent: 30px;
+  background: url("../../../assets/img/candidate/tanchuang_ic_exp.png") no-repeat left;
+}
+.el-dialog.candidateSteps .addMain .personInfo .minor .address {
+  text-indent: 31px;
+  background: url("../../../assets/img/candidate/tanchuang_ic_place.png") no-repeat left;
+}
+.el-dialog.candidateSteps .addMain .personInfo .fivesteps {
+  padding: 0 15px 0 27px;
+  display: flex;
+  justify-content: space-between;
+}
+.el-dialog.candidateSteps .addMain .personInfo .fivesteps .onStep .up {
+  background: #5EC860;
+}
+.el-dialog.candidateSteps .addMain .personInfo .fivesteps .onStep .up em {
+  border-top: 1px dashed #5EC860;
+}
+.el-dialog.candidateSteps .addMain .personInfo .fivesteps .onStep .down {
+  color: #5EC860;
+}
+.el-dialog.candidateSteps .addMain .personInfo .fivesteps div {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+.el-dialog.candidateSteps .addMain .personInfo .fivesteps div span {
+  display: inline-block;
+}
+.el-dialog.candidateSteps .addMain .personInfo .fivesteps div .up {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 14px;
+  margin: 0 0 11px 0;
+  color: #fff;
+  line-height: 20px;
+  text-align: center;
+  background: rgba(94, 200, 96, 0.5);
+  position: relative;
+}
+.el-dialog.candidateSteps .addMain .personInfo .fivesteps div .up em {
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  width: 262px;
+  height: 2px;
+  border-top: 1px dashed rgba(94, 200, 96, 0.5);
+}
+.el-dialog.candidateSteps .addMain .personInfo .fivesteps div .down {
+  color: #97A2B3;
+  font-size: 12px;
+}
+.el-dialog.candidateSteps .addMain .personInfo .change_tab_title {
+  display: inline-flex;
+  width: 860px;
+  margin-top: 40px;
+  justify-content: space-between;
+}
+.el-dialog.candidateSteps .addMain .personInfo .change_tab_title li {
+  display: inline-block;
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #394A66;
+  padding: 0 32px;
+  line-height: 19px;
+  padding-bottom: 9px;
+  border-bottom: 4px solid transparent;
+  cursor: pointer;
+}
+.el-dialog.candidateSteps .addMain .personInfo .change_tab_title li.active {
+  color: #f95714;
+  border-bottom: 4px solid #f95714;
+}
+.el-dialog.candidateSteps .addMain .candidate_content {
+  font-size: 14px;
+  display: inline-block;
+  width: 860px;
+  height: 765px;
+  /*基本信息*/
+  /*面试*/
+  /*offer*/
+  /*备注*/
+  /*附件*/
+  /*操作记录*/
+}
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .tab_title {
+  display: inline-block;
+  width: 100%;
+  height: 44px;
+  overflow: auto;
+  margin: 20px 0 0;
+  padding: 0 20px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .tab_title li {
+  display: inline-block;
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: #abb5c5;
+  margin-right: 20px;
+  background: #ffffff;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .tab_title li img {
+  vertical-align: middle;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .tab_title li .upload {
+  margin-right: 27px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .tab_title li.active {
+  color: #394a66;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .tab_title .button {
+  float: right;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .original_resume {
+  padding: 10px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .clearfix {
+  clear: both;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .personal {
+  height: 140px;
+  background: linear-gradient(270deg, #b5d7ff 0%, #66adff 48%, #ffffff 100%);
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .personal .head-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-top: -40px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .personal .userName {
+  font-weight: bold;
+  margin-top: 19px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .personal p {
+  margin-bottom: 10px;
+  line-height: 19px;
+  height: 19px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .personal p span {
+  display: inline-block;
+  height: 19px;
+  line-height: 19px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .personal p .sex {
+  text-indent: 25px;
+  background: url("../../../assets/img/candidate/man.png") no-repeat left;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .personal p .phone {
+  text-indent: 25px;
+  background: url("../../../assets/img/candidate/icon_phone.png") no-repeat left;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .personal p .email {
+  text-indent: 25px;
+  margin-left: 25px;
+  background: url("../../../assets/img/candidate/icon_mail.png") no-repeat left;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .resume_content {
+  padding: 20px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .resume_content .headLine {
+  height: 24px;
+  font-size: 18px;
+  font-family: MicrosoftYaHei-Bold;
+  font-weight: bold;
+  color: #394A66;
+  line-height: 24px;
+  border-left: 4px solid #66ADFF;
+  text-indent: 10px;
+  margin-bottom: 20px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .resume_content .personInfos .line,
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .resume_content .work .line,
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .resume_content .education .line,
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .resume_content .sel_description .line {
+  margin-bottom: 40px;
+  font-size: 14px;
+  color: #394A66;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .resume_content .personInfos .line p,
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .resume_content .work .line p,
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .resume_content .education .line p,
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .resume_content .sel_description .line p {
+  height: 20px;
+  line-height: 20px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .resume_content .personInfos .line .label,
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .resume_content .work .line .label,
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .resume_content .education .line .label,
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .resume_content .sel_description .line .label {
+  color: #748093;
+  margin-bottom: 10px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .resume_content .sel_description .line {
+  margin-bottom: 120px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .resume_content .sel_description .line div {
+  line-height: 24px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .noInterviews,
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .noOps {
+  text-align: center;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .noInterviews img,
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .noOps img {
+  margin: 153px 0 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .noInterviews p,
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .noOps p {
+  height: 19px;
+  font-size: 14px;
+  color: #394a66;
+  line-height: 19px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .noInterviews button,
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .noOps button {
+  width: 220px;
+  height: 40px;
+  background: #f95714;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  margin: 22px 0 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .offer_third .noOps,
+.el-dialog.candidateSteps .addMain .candidate_content .offer_third .noOffer {
+  text-align: center;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .offer_third .noOps img,
+.el-dialog.candidateSteps .addMain .candidate_content .offer_third .noOffer img {
+  margin: 106px 0 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .offer_third .noOps p,
+.el-dialog.candidateSteps .addMain .candidate_content .offer_third .noOffer p {
+  height: 19px;
+  font-size: 14px;
+  color: #394a66;
+  line-height: 19px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .offer_third .noOps button,
+.el-dialog.candidateSteps .addMain .candidate_content .offer_third .noOffer button {
+  width: 220px;
+  height: 40px;
+  background: #f95714;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  margin: 12px 0 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .remark_forth .noOps {
+  text-align: center;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .remark_forth .noOps img {
+  margin: 72px 0 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .remark_forth .noOps p {
+  height: 19px;
+  font-size: 14px;
+  color: #394a66;
+  line-height: 19px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .remark_forth button {
+  width: 220px;
+  height: 40px;
+  background: #f95714;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  margin: 12px 0 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .remark_forth .remarkList button {
+  display: inherit;
+  margin: 30px auto;
+  cursor: pointer;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .remark_forth .remarkList .remark_box {
+  padding: 0 20px;
+  border-top: 1px solid #e5e5e5;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .remark_forth .remarkList .remark_box .remark {
+  border-bottom: 1px solid #e5e5e5;
+  padding: 20px 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .remark_forth .remarkList .remark_box .remark .ops_person {
+  overflow: auto;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .remark_forth .remarkList .remark_box .remark .ops_person span {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 10px 0 18px;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: bold;
+  background: #5CDBD3;
+  color: #fff;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .remark_forth .remarkList .remark_box .remark .ops_person i {
+  height: 19px;
+  font-size: 14px;
+  line-height: 19px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .remark_forth .remarkList .remark_box .remark .ops_person .hrName {
+  color: #394a66;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .remark_forth .remarkList .remark_box .remark .ops_person .time {
+  color: #748093;
+  float: right;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .remark_forth .remarkList .remark_box .remark .ops_content {
+  padding-left: 70px;
+  height: 19px;
+  font-size: 14px;
+  line-height: 19px;
+  color: #394A66;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .remark_forth .remarkList .remark_box .remark .ops {
+  overflow: auto;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .remark_forth .remarkList .remark_box .remark .ops i {
+  float: right;
+  color: #FF001F;
+  height: 19px;
+  cursor: pointer;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .noOps {
+  text-align: center;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .noOps img {
+  margin: 112px 0 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .noOps p {
+  height: 19px;
+  font-size: 14px;
+  color: #394a66;
+  line-height: 19px;
+  margin: 43px 0 25px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .noOps .uploadFile {
+  position: relative;
+  height: 40px;
+  width: 220px;
+  margin: 12px auto auto;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .noOps .uploadFile input {
+  opacity: 0;
+  width: 220px;
+  height: 40px;
+  z-index: 10000;
+  border: 1px solid #ccc;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .noOps .uploadFile span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 14px;
+  text-align: center;
+  line-height: 34px;
+  width: 220px;
+  height: 40px;
+  background: #f95714;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .noOps .button {
+  width: 220px;
+  height: 40px;
+  background: #f95714;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  margin: 12px 0 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .fileList {
+  padding: 20px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .fileList .headLine {
+  height: 24px;
+  font-size: 18px;
+  font-family: MicrosoftYaHei-Bold;
+  font-weight: bold;
+  color: #394A66;
+  line-height: 24px;
+  border-left: 4px solid #f95714;
+  text-indent: 10px;
+  margin-bottom: 20px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .fileList .file_text_box {
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .fileList .file_text_box .file_text {
+  border-bottom: 1px solid #e5e5e5;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .fileList .file_text_box .file_text .file {
+  height: 40px;
+  line-height: 40px;
+  padding: 0 21px 0 24px;
+  overflow: hidden;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .fileList .file_text_box .file_text .file .filename {
+  color: #394A66;
+  display: inline-block;
+  text-indent: 26px;
+  background: url("../../../assets/img/candidate/fujian.png") no-repeat left;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .fileList .file_text_box .file_text .file div {
+  float: right;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .fileList .file_text_box .file_text .file div .downLoad {
+  margin: 0 20px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .fileList .file_text_box .file_text .file div .detail,
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .fileList .file_text_box .file_text .file div .downLoad {
+  color: #66ADFF ;
+  cursor: pointer;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .fileList .file_text_box .file_text .file div .delete {
+  cursor: pointer;
+  color: #FF001F;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .fileList .file_text_box .file_text:last-child {
+  border-bottom: none;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .opsRecord_seventh .noOps {
+  text-align: center;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .opsRecord_seventh .noOps img {
+  margin: 106px 0 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .opsRecord_seventh .noOps p {
+  height: 19px;
+  font-size: 14px;
+  color: #394a66;
+  line-height: 19px;
+  margin: 27px 0 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .opsRecord_seventh .records {
+  padding: 40px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .opsRecord_seventh .records .record {
+  border-left: 1px dashed #f95714;
+  position: relative;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .opsRecord_seventh .records .record img {
+  position: absolute;
+  left: -10px;
+  top: 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .opsRecord_seventh .records .record p {
+  text-indent: 35px;
+  height: 19px;
+  font-size: 14px;
+  line-height: 19px;
+  margin: 0 0 10px 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .opsRecord_seventh .records .record .time {
+  height: 21px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #394a66;
+  line-height: 21px;
+  margin: 0 0 20px 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .opsRecord_seventh .records .record .ops,
+.el-dialog.candidateSteps .addMain .candidate_content .opsRecord_seventh .records .record .remark {
+  color: #394a66;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .opsRecord_seventh .records .record .ops_person {
+  font-size: 14px;
+  color: #97A2B3;
+  line-height: 19px;
+  margin: 0 0 10px 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_right {
+  width: 340px;
+  height: 765px;
+  display: inline-block;
+  vertical-align: top;
+  background: #f2f3f5;
+  text-align: center;
+}
+.el-dialog.candidateSteps .addMain .candidate_right .operating_button {
+  width: 280px;
+  position: relative;
+  margin: 41px 28px 0 32px;
+}
+.el-dialog.candidateSteps .addMain .candidate_right .operating_button .buttonRow {
+  width: 50px;
+  height: 40px;
+  margin-left: 230px;
+  cursor: pointer;
+  background: #f95714;
+  border: none;
+  color: #fff;
+}
+.el-dialog.candidateSteps .addMain .candidate_right .operating_button .buttonRow .el-icon-caret-bottom:before {
+  right: 16px;
+}
+.el-dialog.candidateSteps .addMain .candidate_right .operating_button .button {
+  width: 228px;
+  height: 40px;
+  background: #f95714;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  font-size: 14px;
+  color: #fff;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_right .operating_button .button_pullDown {
+  display: inline-block;
+  width: 280px;
+  height: 200px;
+  background: #fff;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  text-align: left;
+}
+.el-dialog.candidateSteps .addMain .candidate_right .operating_button .button_pullDown ul {
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  color: #394A66;
+}
+.el-dialog.candidateSteps .addMain .candidate_right .operating_button .button_pullDown ul li {
+  display: inline-block;
+  text-indent: 13px;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+}
+.el-dialog.candidateSteps .addMain .candidate_right .operating_button .button_pullDown ul .el-icon-success {
+  color: #f95714;
+}
+.el-dialog.candidateSteps .addMain .candidate_right .operating_button .button_pullDown ul .el-icon-success:before {
+  content: "\E62D";
+  right: 20px;
+  position: absolute;
+  color: #f95714;
+}
+.el-dialog.candidateSteps .addMain .candidate_right .operating_button .button_pullDown ul li:hover {
+  color: #f95714;
+  background: #F8FAFC;
+}
+.el-dialog.candidateSteps .addMain .candidate_right .weedOut,
+.el-dialog.candidateSteps .addMain .candidate_right .remark,
+.el-dialog.candidateSteps .addMain .candidate_right .recommend {
+  width: 280px;
+  height: 40px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #748093;
+  border: none;
+  cursor: pointer;
+}
+.el-dialog.candidateSteps .addMain .candidate_right .remark {
+  background: #97A2B3;
+}
+.el-dialog.candidateSteps .addMain .candidate_right .weedOut {
+  background: #fff;
+  margin: 15px 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_right .recommend {
+  background: #fff;
+  margin: 15px 0 0;
+}
+.el-dialog.addCandidateAlert.addCandidateAlert_add {
+  height: 1053px;
+}
+.standard_required {
+  height: 208px;
+  border-top: 1px solid #e5e5e5;
+}
+.standard_required .basic {
+  padding: 27px 22px 15px;
+}
+.standard_required .basic .inputBox {
+  display: inline-block;
+  margin-bottom: 15px;
+  margin-right: 52px;
+}
+.standard_required .basic .inputBox img {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.standard_required .basic .inputBox .el-input {
+  width: 220px;
+  display: inline-block;
+}
+.standard_required .basic .inputBox:nth-child(4),
+.standard_required .basic .inputBox:nth-child(8) {
+  margin-right: 0;
+}
+.el-dialog.recommend {
+  width: 540px;
+  height: 400px;
+  background: #ffffff;
+}

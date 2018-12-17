@@ -42,14 +42,14 @@
                           </transition>  
                          <div class="search" style="margin-top:30px;">
                             <el-input v-model="names"  class="input_search" placeholder="输入你想搜索的内容" >
-                                <i @click="getPosition" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
+                                <i @click="getCandidate" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                             </el-input>
                          </div>
                          <p>全部职位 <i   @click="getItems" v-if="flags"><img src="../../assets/img/zhiwei/ic_chose.png" alt=""></i><i v-else style="background-color:#ccc;" class="el-icon-circle-check"></i></p>
                          <div class="position_list">
                              <el-scrollbar style="height:100%" >
                                 <ul>
-                                    <li v-for="(item,index) in personList " :key="index">
+                                    <li @click="getCandidateList(item)" v-for="(item,index) in personList " :key="index">
                                         {{item.name}}
                                     </li>
                                 </ul>
@@ -61,51 +61,51 @@
                   <el-col :span='20' >
                     <div class="positionTable">
                           <div class='content_pad'>
-                            <div class="but_stys" :class="signs=='0'? 'btn_s':''" @click="tagStyChange(0)">
+                            <div class="but_stys" :class="signs=='2'? 'btn_s':''" @click="tagStyChange(2)">
                                 <p class="font_s">初筛</p>
-                                <i class="num_s">12k</i>
+                                <i class="num_s">12</i>
                                 <em class=" icon_s">
-                                  <img v-if="signs == '0'" src="../../assets/img/zhiwei/houxuan_ic_filter_pre.png" alt="">
+                                  <img v-if="signs == '2'" src="../../assets/img/zhiwei/houxuan_ic_filter_pre.png" alt="">
                                   <img v-else src="../../assets/img/zhiwei/houxuan_ic_filter.png" alt="">
                                 </em>
                             </div>
-                            <div class="but_stys "  :class="signs=='1'? 'btn_s':''" @click="tagStyChange(1)">
+                            <div class="but_stys "  :class="signs=='3'? 'btn_s':''" @click="tagStyChange(3)">
                                 <p class="font_s">用人部门筛选</p>
                                 <i class="num_s">24</i>
                                 <em class=" icon_s">
-                                    <img v-if="signs == '1'" src="../../assets/img/zhiwei/houxuan_ic_department_pre.png" alt="">
+                                    <img v-if="signs == '3'" src="../../assets/img/zhiwei/houxuan_ic_department_pre.png" alt="">
                                     <img v-else src="../../assets/img/zhiwei/houxuan_ic_department.png" alt="">
-                                </em>
-                            </div>
-                               <div class="but_stys"  :class="signs=='2'? 'btn_s':''" @click="tagStyChange(2)">
-                                <p class="font_s">面试</p>
-                                <i class="num_s">124</i>
-                                <em class=" icon_s">
-                                    <img v-if="signs == '2'" src="../../assets/img/zhiwei/houxuan_ic_interview_pre.png" alt="">
-                                    <img v-else src="../../assets/img/zhiwei/houxuan_ic_department.png" alt="">
-                                </em>
-                            </div>
-                            <div class="but_stys "  :class="signs=='3'? 'btn_s':''" @click="tagStyChange(3)">
-                                <p class="font_s">沟通Offer</p>
-                                <i class="num_s">24</i>
-                                <em class=" icon_s">
-                                    <img v-if="signs == '3'" src="../../assets/img/zhiwei/houxuan_ic_contact_pre.png" alt="">
-                                    <img v-else src="../../assets/img/zhiwei/houxuan_ic_contact.png" alt="">
                                 </em>
                             </div>
                                <div class="but_stys"  :class="signs=='4'? 'btn_s':''" @click="tagStyChange(4)">
+                                <p class="font_s">面试</p>
+                                <i class="num_s">124</i>
+                                <em class=" icon_s">
+                                    <img v-if="signs == '4'" src="../../assets/img/zhiwei/houxuan_ic_interview_pre.png" alt="">
+                                    <img v-else src="../../assets/img/zhiwei/houxuan_ic_department.png" alt="">
+                                </em>
+                            </div>
+                            <div class="but_stys "  :class="signs=='5'? 'btn_s':''" @click="tagStyChange(5)">
+                                <p class="font_s">沟通Offer</p>
+                                <i class="num_s">24</i>
+                                <em class=" icon_s">
+                                    <img v-if="signs == '5'" src="../../assets/img/zhiwei/houxuan_ic_contact_pre.png" alt="">
+                                    <img v-else src="../../assets/img/zhiwei/houxuan_ic_contact.png" alt="">
+                                </em>
+                            </div>
+                               <div class="but_stys"  :class="signs=='6'? 'btn_s':''" @click="tagStyChange(6)">
                                 <p class="font_s">待入职</p>
                                 <i class="num_s">5</i>
                                 <em class=" icon_s">
-                                    <img v-if="signs == '4'" src="../../assets/img/zhiwei/houxuan_ic_wait_pre.png" alt="">
+                                    <img v-if="signs == '6'" src="../../assets/img/zhiwei/houxuan_ic_wait_pre.png" alt="">
                                     <img v-else src="../../assets/img/zhiwei/houxuan_ic_wait.png" alt="">
                                 </em>
                             </div>
-                            <div class="but_stys "  :class="signs=='5'? 'btn_s':''"  @click="tagStyChange(5)">
+                            <div class="but_stys "  :class="signs=='0'? 'btn_s':''"  @click="tagStyChange(0)">
                                 <p class="font_s">已淘汰</p>
                                 <i class="num_s">800</i>
                                 <em class=" icon_s">
-                                    <img v-if="signs == '5'" src="../../assets/img/zhiwei/houxuan_ic_pass_pre.png" alt="">
+                                    <img v-if="signs == '0'" src="../../assets/img/zhiwei/houxuan_ic_pass_pre.png" alt="">
                                     <img v-else src="../../assets/img/zhiwei/houxuan_ic_pass.png" alt="">
                                 </em>
                             </div>
@@ -118,55 +118,55 @@
                           </div>
                 <!--表格  -->
                         <div class="div_table_infor">
-                            <el-table :key='signs'  :data="hrList" style="width: 100%">
+                            <el-table :key='signs'  :data="candidateList" style="width: 100%">
                                 <el-table-column fixed prop="processNum" label="基本资料" header-align='center' align='left' width="350px">
                                     <template slot-scope="scope">
                                         <span class="basic_sty " @click="addCandidateShow('steps')" style="cursor: pointer">
-                                          <span class="name_s">张三 <em>男</em><em class="bom_sty"></em><em>六年工作经验</em></span>
-                                          <p><img src="../../assets/img/zhiwei/houxuan_ic_work.png" alt="">上海滴滴科技有限公司<em class="bom_sty"></em><span>HR</span><span>2018~2019</span></p>
-                                          <p><img src="../../assets/img/zhiwei/houxuan_ic_education.png" alt="">北京师范大学<em class="bom_sty"></em><span>人力资源管理中心</span><em class="bom_sty"></em><span>2012~至今</span></p>
+                                          <span class="name_s">{{scope.row.candidateName}} <em>{{scope.row.candidateSex}}</em><em class="bom_sty"></em><em>{{scope.row.candidateExperience}}</em></span>
+                                          <p><img src="../../assets/img/zhiwei/houxuan_ic_work.png" alt=""><span>{{scope.row.workExperience}}</span></p>
+                                          <p><img src="../../assets/img/zhiwei/houxuan_ic_education.png" alt=""><span>{{scope.row.educationExperience}}</span></p>
                                         </span>
                                     </template>
                                 </el-table-column>
                                 <el-table-column prop="employeeName" label="候选人负责人" header-align='center' align='center'></el-table-column>
-                                <el-table-column prop="processTitle" label="招聘职位" header-align='center' align='center'></el-table-column>
-                                <el-table-column prop="effectiveDate" label="招聘渠道" header-align='center' align='center'></el-table-column>
-                                <el-table-column  v-if="signs =='0'" prop="createDate" label="添加日期" header-align='center' align='center'></el-table-column>
-                                <el-table-column  v-if="signs =='1'" prop="status" label="状态" header-align='center' align='center'>
+                                <el-table-column prop="postStr" label="招聘职位" header-align='center' align='center'></el-table-column>
+                                <el-table-column prop="resumeChannel" label="招聘渠道" header-align='center' align='center'></el-table-column>
+                                <el-table-column  v-if="signs =='0'" prop="createTime" label="添加日期" header-align='center' align='center'></el-table-column>
+                                <el-table-column  v-if="signs =='1'" prop="screeningStatus" label="状态" header-align='center' align='center'>
                                     <template slot-scope="scope">
                                         <span style="cursor: pointer;">
-                                         <i v-if="scope.row.status == '0'" style="color:#66ADFF;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_no feedback.png" alt="">未反馈</i>
-                                         <i v-if="scope.row.status =='1'" style="color:#FF001F;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_disagree.png" alt="">不同意</i>
-                                         <i v-if="scope.row.status == '2'" style="color:#5EC860;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_agree.png" alt="">同意</i>
-                                         <i v-if="scope.row.status == '3'" style="color:#FF001F;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not recommendde.png" alt="">未推荐</i>
+                                         <i v-if="scope.row.screeningStatus == '0'" style="color:#66ADFF;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_no feedback.png" alt="">未反馈</i>
+                                         <i v-if="scope.row.screeningStatus =='1'" style="color:#FF001F;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_disagree.png" alt="">不同意</i>
+                                         <i v-if="scope.row.screeningStatus == '2'" style="color:#5EC860;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_agree.png" alt="">同意</i>
+                                         <i v-if="scope.row.screeningStatus == '3'" style="color:#FF001F;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not recommendde.png" alt="">未推荐</i>
                                         </span>
                                     </template>
                                 </el-table-column>
-                                <el-table-column  v-if="signs =='2'" prop="status" label="面试状态" header-align='center' align='center'>
+                                <el-table-column  v-if="signs =='2'" prop="interviewStatus" label="面试状态" header-align='center' align='center'>
                                      <template slot-scope="scope">
-                                        <span v-if="scope.row.status =='0'" style="cursor: pointer;">
+                                        <span v-if="scope.row.interviewStatus =='0'" style="cursor: pointer;">
                                           <p>未安排面试</p>
                                           <el-button size="small" style="color:#fff ;background-color:#F95714;">去安排</el-button>
                                         </span>
-                                         <span v-if="scope.row.status == '1'" style="cursor: pointer;">
+                                         <span v-if="scope.row.interviewStatus == '1'" style="cursor: pointer;">
                                           <p>已安排面试</p>
                                           <el-button size="small" style="color:#fff ;background-color:#66ADFF;">去查看</el-button>
                                         </span>
                                     </template>
                                 </el-table-column>
-                                <el-table-column  v-if="signs =='3'" prop="status" label="Offer状态" header-align='center' align='center'>
+                                <el-table-column  v-if="signs =='3'" prop="offerStatus" label="Offer状态" header-align='center' align='center'>
                                      <template slot-scope="scope">
                                         <span style="cursor: pointer;">
-                                         <i v-if="scope.row.status == '0'" ><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_notcreate.png" alt="">未创建</i>
-                                         <i v-if="scope.row.status == '1'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not receive.png" alt="">未接收</i>
-                                         <i v-if="scope.row.status == '2'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_receive.png" alt="">已接收</i>
-                                         <i v-if="scope.row.status == '3'" ><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_refused.png" alt="">已拒绝</i>
-                                         <i v-if="scope.row.status == '4'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not recommendde.png" alt="">未推荐</i>
+                                         <i v-if="scope.row.offerStatus == '0'" ><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_notcreate.png" alt="">未创建</i>
+                                         <i v-if="scope.row.offerStatus == '1'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not receive.png" alt="">未接收</i>
+                                         <i v-if="scope.row.offerStatus == '2'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_receive.png" alt="">已接收</i>
+                                         <i v-if="scope.row.offerStatus == '3'" ><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_refused.png" alt="">已拒绝</i>
+                                         <i v-if="scope.row.offerStatus == '4'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not recommendde.png" alt="">未推荐</i>
                                         </span>
                                     </template>
                                 </el-table-column>
                                 <el-table-column  v-if="signs =='4'" prop="createDate" label="预计入职时间" header-align='center' align='center'></el-table-column>
-                                <el-table-column  v-if="signs =='5'" prop="createDate" label="淘汰原因" header-align='center' align='center'></el-table-column>
+                                <el-table-column  v-if="signs =='5'" prop="archivingReason" label="淘汰原因" header-align='center' align='center'></el-table-column>
                             </el-table>
                         </div>
                			<!-- 分页  -->
@@ -235,12 +235,15 @@ export default {
 	},
    data() {
       return {
-        signs:'0' ,
-        hrList:[],//列表
+        signs:'2' ,
+        candidateList:[],//列表
         personList:[],//人员数据
+        counts:{},
         names:'',//搜素关键字
+        postId:'',//职位id
         totalCount:0,
         texts:'招聘中的职位',
+        candidatestatus:'',
         recruitStatus:'1',
         showList:false,
         flags:true,
@@ -260,24 +263,32 @@ export default {
    directives: {clickoutside},
     methods: {
     //获取职位列表
-    getPosition() {
+    getCandidate() {
       let that=this;
+      let currPage=that.pageIndex || 1;
+      let pageSize=that.pageSize || 5;
         that.$http({
 	  			method:"post",
-	  			url:api.getPosition,
+	  			url:api.candidateList,
 	  			headers:headers('application/json;charset=utf-8'),
 	  			data:{
-				    "name":that.names,
-				    "recruitStatus":that.recruitStatus || '1',
+				    "postId":that.postId || '',
+				    "candidateName":that.names,
+				    "candidateStatus":that.candidatestatus || '2',
+				    "pageCurrent":currPage,
+				    "pageSize ":pageSize,
 	  			}
 	  		}).then(function(res){
 	  			if(res.data.code==10000){
-             that.personList=res.data.data;
+             that.candidateList=res.data.data;
 	  			}else{
 	  				that.$message.error(res.data.msg);
 	  			}
 		    });
     },
+      getCandidateList(val) {
+        this.postId = val.id
+      },
     //展示候选人弹窗
       addCandidateShow(param){
         let that=this;
@@ -292,7 +303,9 @@ export default {
     //状态切换
     tagStyChange(val) {
       this.signs =val
-      this.gethrList()
+      this.candidatestatus = val
+      this.getCandidate()
+
     },
     //选择招聘状态
     checkItem(val) {
@@ -303,7 +316,7 @@ export default {
       }else {
         this.texts = '招聘中的职位'
       }
-      this.getPosition()
+      this.getCandidate()
     },
     check() {
       this.showList = !this.showList
@@ -314,14 +327,15 @@ export default {
             return;
           }
           that.pageIndex = newPage;
-          that.gethrList();
+          that.getCandidate();
         },
         changeSize(newSize) {
           let that=this;
           that.pageSize = newSize;
-          that.gethrList();
+          that.getCandidate();
     },
-    gethrList(){
+  //获取左侧职位列表  
+    getPosition(){
       let that=this;
       let currentPage=that.pageIndex || 1;
       let pageSize=that.pageSize || 5;
@@ -338,7 +352,7 @@ export default {
         }
       }).then(function(res){
         if(res.data.code==10000){
-            that.hrList=res.data.data;
+            that.personList=res.data.data;
             that.totalCount=res.data.count;
         }else{
           that.$message.error(res.data.msg);
@@ -351,11 +365,27 @@ export default {
     getItems() {
       this.flags = !this.flags
       console.log(1)
+    },
+    getCount() {
+      let that=this;
+        that.$http({
+	  			method:"post",
+	  			url:api.getGrouping,
+	  			headers:headers('application/json;charset=utf-8'),
+	  		}).then(function(res){
+	  			if(res.data.code==10000){
+             that.counts=res.data.data;
+
+	  			}else{
+	  				that.$message.error(res.data.msg);
+	  			}
+		    });
     }
     },
     mounted() {
-     this.gethrList()
+     this.getCandidate()
      this.getPosition()
+     this.getCount()
     },
     created() {
     }
@@ -581,14 +611,7 @@ margin-left: 180px;
   font-size: 12px;
   color: #748093;
 }
-.bom_sty {
-  width: 2px;
-  height: 2px;
-  background-color: #748093;
-  border-radius: 50%;
-  display: inline-block;
-  margin: 0 4px;
-}
+/*  */
 .div_table_infor {
    margin-top: 10px;
 }

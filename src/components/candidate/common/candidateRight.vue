@@ -38,7 +38,7 @@
   import remarkAlert from '@/components/candidate/common/remarkAlert'
 
     export default {
-        name: "candidate_right",
+        name: "candidateRight",
         components:{
           weekOutAlert,
           remarkAlert

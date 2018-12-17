@@ -1,8 +1,8 @@
 // let Butterfly="http://101.132.66.158:8899/jersey/";
 // let Butterfly="http://127.0.0.1:8899/jersey/";
-let Butterfly="http://192.168.2.166:8899/jersey/";//测试ip
+// let Butterfly="http://192.168.2.166:8899/jersey/";//测试ip
 // let Butterfly="http://192.168.6.6:8899/jersey/";//薛尧
-//  let Butterfly="http://192.168.6.209:8899/jersey/";//潘述钱ip
+ let Butterfly="http://192.168.6.209:8891/jersey/";//潘述钱ip
 // let Butterfly="http://192.168.6.208:8891/jersey/";//郭峰ips
 // let Butterfly="http://192.168.6.207:8899/jersey/";//施玮ip
 // let Butterfly="http://192.168.6.195:8899/jersey/";//李博凯
@@ -149,7 +149,10 @@ const api = {
   insertOrUpdate:Butterfly+'positionInfo/insertOrUpdate',//添加，更新岗位
   positionDetail:Butterfly+'positionInfo/detail',//添加，更新岗位  
   getPosition:Butterfly+'positionInfo/getPosition',//查询职位列表  
-	
+  candidateList:Butterfly+'candidate/search/list',//查询候选人列表  
+  getGrouping:Butterfly+'candidate/get/status/grouping',//查询候选人分组人数  
+  
+  
 	logout:Butterfly+'logout',//退出接口
 
 };

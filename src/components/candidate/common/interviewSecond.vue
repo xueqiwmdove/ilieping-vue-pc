@@ -15,11 +15,20 @@
 </template>
 
 <script>
-    export default {
-        name: "interview_second"
+  export default {
+    name: "interviewSecond",
+    data() {
+      return {
+      }
+    },
+    methods:{
+   
+    }
     }
 </script>
 
 <style scoped>
-
+  .interview_second {
+    margin-bottom: 20px;
+  }
 </style>

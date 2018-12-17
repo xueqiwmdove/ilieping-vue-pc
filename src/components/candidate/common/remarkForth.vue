@@ -30,7 +30,7 @@
 
 <script>
     export default {
-        name: "remark_forth"
+        name: "remarkForth"
     }
 </script>
 
