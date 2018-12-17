@@ -56,7 +56,7 @@
           <remarkForth v-show="step==4"></remarkForth>
           <accessoryFifth v-show="step==5"></accessoryFifth>
           <opsRecordSeventh v-show="step==6"></opsRecordSeventh>
-       </el-scrollbar> 
+       </el-scrollbar>
       </div>
       <!--<candidateContent></candidateContent>-->
       <candidateRight @listento-flag="getFlag"></candidateRight>

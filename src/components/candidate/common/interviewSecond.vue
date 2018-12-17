@@ -106,7 +106,17 @@
 
             <div class="interview_modal">
               <p class="title"></p>
-              <p></p>
+              <p><i>谭迎港</i>您好</p>
+              <p>感谢关注上海棋至文化有限公司！我是该公司的HR。很高兴收到您的简历。面试安排如下：</p>
+              <P>面试时间：<i>2018/09/09 14:30</i></P>
+              <p>面试形式：<i>视频面试</i></p>
+              <p>面试地点：<i>未知</i></p>
+              <p>联系方式：<i>联系方式</i><i>12367889900</i></p>
+            </div>
+
+            <div class="interview_button">
+              <el-button>保存</el-button>
+              <el-button>取消</el-button>
             </div>
           </el-form>
 
