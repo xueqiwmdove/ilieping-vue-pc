@@ -34,7 +34,7 @@
 
 <script>
     export default {
-        name: "accessory_fifth",
+        name: "accessoryFifth",
         components:{
 
         },

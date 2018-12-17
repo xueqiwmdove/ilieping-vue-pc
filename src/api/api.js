@@ -147,6 +147,12 @@ const api = {
   positionCount:Butterfly+'positionInfo/count',//不同岗位统计人数
   getEmployeeList:Butterfly+'employee/getEmployeeList',//招聘负责人，面试官列表
   insertOrUpdate:Butterfly+'positionInfo/insertOrUpdate',//添加，更新岗位
+  positionDetail:Butterfly+'positionInfo/detail',//添加，更新岗位  
+  getPosition:Butterfly+'positionInfo/getPosition',//查询职位列表  
+  candidateList:Butterfly+'candidate/search/list',//查询候选人列表  
+  getGrouping:Butterfly+'candidate/get/status/grouping',//查询候选人分组人数  
+
+  
   positionDetail:Butterfly+'positionInfo/detail',//添加，更新岗位
   getPosition:Butterfly+'positionInfo/getPosition',//查询职位列表
 

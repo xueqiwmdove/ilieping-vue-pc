@@ -137,5 +137,7 @@
 </script>
 
 <style scoped>
-
+  .interview_second {
+    margin-bottom: 20px;
+  }
 </style>

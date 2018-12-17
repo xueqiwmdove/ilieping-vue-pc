@@ -218,7 +218,7 @@
 
 <script>
     export default {
-        name: "basic_first",
+        name: "basicFirst",
         components:{
 
         },
