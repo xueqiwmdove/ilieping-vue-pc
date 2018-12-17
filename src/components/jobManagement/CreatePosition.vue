@@ -134,7 +134,7 @@
                                   <el-col :span='6'  :offset="2">  
                                       <el-form-item label="">     
                                         <span>工作经验
-                                            <el-select v-model="makeNormal.work" placeholder="请选择活动区域">
+                                            <el-select v-model="makeNormal.work" placeholder="请选择工作经验">
                                                 <el-option label="应届毕业生" value="0"></el-option>
                                                 <el-option label="一年以下" value="1"></el-option>
                                                 <el-option label="1-3年" value="2"></el-option>
