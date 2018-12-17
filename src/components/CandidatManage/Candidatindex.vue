@@ -128,7 +128,7 @@
                                         </span>
                                     </template>
                                 </el-table-column>
-                                <el-table-column prop="employeeName" label="候选人负责人" header-align='center' align='center'></el-table-column>
+                                <el-table-column prop="departmentHeads" label="候选人负责人" header-align='center' align='center'></el-table-column>
                                 <el-table-column prop="postStr" label="招聘职位" header-align='center' align='center'></el-table-column>
                                 <el-table-column prop="resumeChannel" label="招聘渠道" header-align='center' align='center'></el-table-column>
                                 <el-table-column  v-if="signs =='0'" prop="createTime" label="添加日期" header-align='center' align='center'></el-table-column>

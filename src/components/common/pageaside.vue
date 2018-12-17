@@ -129,7 +129,7 @@
                     <li @click="click_potion25(25)" :class="flag==25?'active':''"><span>人才库</span></li>
                     <li @click="click_potion26(26)" :class="flag==26?'active':''"><span>设置</span></li>
                 </ul>
-            </li>
+            </li> -->
 
         <!--  <li>
             <div class="link" @click="toggle7">
