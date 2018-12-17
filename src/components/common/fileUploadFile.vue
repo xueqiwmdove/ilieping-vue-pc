@@ -1,17 +1,15 @@
-<!-- 
+<!--
     Author:周双
     日期：2018/11/27
 -->
 <template>
     <div >
-
         <div class="uploadFile" v-show="uploadBtnShow">
             <span>上传</span>
             <input :disabled='flag' class="el-icon-upload" type="file"  @change="getFile($event)" id='file' accept="image/*,application/*" action=""/>
         </div>
 
         <div class="file_text" v-show="imgList != '' || fileUrled != '' ">
-
             <div class="load-del" v-show="!uploadBtnShow">
                 {{fileName ? fileName : imgList.name ? imgList.name :'' }}
                 <img src="../../assets/img/staff/ic_atta.png" alt="" class="upload-icon">
@@ -50,7 +48,7 @@
                     }
                     this.uploadBtnShow = false;
                     return newVal;
-                }  
+                }
             }
         },
         methods:{
@@ -85,9 +83,9 @@
 
                         that.imgList = file;
                         that.$emit('getfile',that.imgList)
-                    }                
+                    }
                 }
-            
+
             },
             //下载文件
             getLoad(url,imgName){
@@ -120,7 +118,7 @@
 
                         }).catch(function (error) {
                             that.$message.error(error);
-                        });       
+                        });
             },
             // 删除文件
             fileDel(){
@@ -137,7 +135,7 @@
                 }else{
                     this.$message.error('删除参数出错');
                 }
-                           
+
                 this.$http({
                             url:api.archivesDelFile,
                             method:'post',
@@ -157,9 +155,9 @@
 
                         }).catch(function (error) {
                             that.$message.error(error);
-                        });            
+                        });
 
-            },  
+            },
             getFileUrl(url){
                 this.fileUrled = url;
             }
@@ -202,13 +200,14 @@
     .file_text {
         position: relative;
         text-align: left;
+        padding:0;
         background-color: #FAFBFC;
     }
     .file_text a{
         display: inline-block;
         font-size: 14px;
         color: #2569F6;
-        
+
     }
     .file_del {
         position:absolute;

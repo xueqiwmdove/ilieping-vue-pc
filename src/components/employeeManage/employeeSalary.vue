@@ -46,37 +46,37 @@
                         <div class="inputBox">
                             <div class="items">
                                 <div class="input-group">
-                                    <label>基本工资<i>*</i></label>
+                                    <label>基本工资</label>
                                     <input type="tel" v-model="basicWage" placeholder="请输入基本工资" maxlength="10">
                                 </div>
                                 <div class="input-group special">
-                                    <label>社保账号<i>*</i></label>
+                                    <label>社保账号</label>
                                     <input type="tel"  v-model="socialSecurityAccount"  placeholder="请输入社保账号">
                                 </div>
                                 <div class="input-group special">
-                                    <label>工资卡1<i>*</i></label>
-                                    <input type="tel"  v-model="salaryCardNumber"  placeholder="请输入工资卡号" maxlength="16">
+                                    <label>工资卡1</label>
+                                    <input type="tel" v-model="salaryCardNumber" placeholder="请输入工资卡号" maxlength="20">
                                 </div>
 																<div class="input-group special" v-for="(items,index) in insertData" :key="index">
-																		<label>工资卡{{index+1+1}}<i>*</i></label>
-																		<input type="tel" :id="cardId(index)" class="cardClass" placeholder="请输入工资卡号" maxlength="16">
+																		<label>工资卡{{index+1+1}}</label>
+																		<input type="tel" :id="cardId(index)" class="cardClass" placeholder="请输入工资卡号" maxlength="20">
 																</div>
                             </div>
                             <div class="items">
                                 <div class="input-group">
-                                    <label>绩效工资<i>*</i></label>
+                                    <label>绩效工资</label>
                                     <input type="tel"  v-model="performancePay" placeholder="请输入绩效工资" maxlength="10">
                                 </div>
                                 <div class="input-group special">
-                                    <label>公积金号<i>*</i></label>
+                                    <label>公积金号</label>
                                     <input type="tel" v-model="providentFund"  placeholder="请输入公积金号">
                                 </div>
                                 <div class="input-group special">
-                                    <label class="position">工资开户行<i>*</i></label>
+                                    <label class="position">工资开户行</label>
                                     <input type="text" v-model="salaryBank" placeholder="请输入工资开户行">
                                 </div>
                                 <div class="input-group special" v-for="(items,index) in insertData" :key="index">
-                                    <label class="position">工资开户行<i>*</i></label>
+                                    <label class="position">工资开户行</label>
                                     <input type="text" :id="bankId(index)" class="bankClass" placeholder="请输入工资开户行">
 																		<div class="delete_div"><img src="../../assets/img/dismission/deleteH34.png" class="delete" @click="deleteDimissiom(index+1)"></div>
                                 </div>
@@ -100,9 +100,9 @@
                     <div class="nextButton">
                         <input type="button" class="sendOfferNext" value="下一步" :disabled="nextDisabled" :class="nextClass" @click="confirm"> <!-- :disabled="nextDisabled" :class="nextClass"  -->
                     </div>
-                   <!-- <div class="skipSalary" @click="insertSuccess">
+                   <div class="skipSalary" @click="insertSuccess">
                         暂不填写，跳过
-                    </div> -->
+                    </div>
                 </div>
                 </div>
   			</div>
@@ -156,10 +156,16 @@ export default {
 			},
 			breakPromiseFun(){//添加银行卡号
 				let that=this;
-				if(that.insertData.length==4){
+				let inserTDataLength=that.insertData.length;
+				if(inserTDataLength==4){
 					that.isDimissionAll_count=true;
 					return false;
-				}else{
+				}
+				if(that.salaryCardNumber==""){
+          that.$message.error('请先输入工资卡1');
+					return false;
+				}
+				else{
 					that.insertData.push(that.liHtml);
 				}
 			},
@@ -168,25 +174,25 @@ export default {
       },
       confirm(){
     	let that=this;
-			if(that.basicWage==""){
-				this.$message.error('请输入基本工资');
-				return false;
-			}else if(that.socialSecurityAccount==""){
-				this.$message.error('请输入社保账号');
-				return false;
-			}else if(that.salaryCardNumber==""){
-				this.$message.error('请输入工资卡号');
-				return false;
-			}else if(that.performancePay==""){
-					this.$message.error('请输入绩效工资');
-					return false;
-			}else if(that.providentFund==""){
-					this.$message.error('请输入公积金号');
-					return false;
-			}else if(that.salaryBank==""){
-					this.$message.error('请输入工资开户行');
-					return false;
-			}else{
+// 			if(that.basicWage==""){
+// 				this.$message.error('请输入基本工资');
+// 				return false;
+// 			}else if(that.socialSecurityAccount==""){
+// 				this.$message.error('请输入社保账号');
+// 				return false;
+// 			}else if(that.salaryCardNumber==""){
+// 				this.$message.error('请输入工资卡号');
+// 				return false;
+// 			}else if(that.performancePay==""){
+// 					this.$message.error('请输入绩效工资');
+// 					return false;
+// 			}else if(that.providentFund==""){
+// 					this.$message.error('请输入公积金号');
+// 					return false;
+// 			}else if(that.salaryBank==""){
+// 					this.$message.error('请输入工资开户行');
+// 					return false;
+// 			}else{
 				let jsonstr="[{'salaryCardNumber':'"+that.salaryCardNumber+"','salaryBank':'"+that.salaryBank+"'},]";
 				let jsonarray = eval('('+jsonstr+')');
 				let cardList = document.getElementsByClassName("cardClass");
@@ -222,7 +228,7 @@ export default {
                 return
   			}
   		});
-			}
+			// }
       },
     },
      watch: {
