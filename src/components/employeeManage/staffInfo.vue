@@ -47,7 +47,7 @@
                   <!--status;//0 在职   1  离职-->
                   <!--//是否签订合同 isSign 0  未签    1  已签-->
 
-                    <a href="javascript:void(0)" @click="modalVisable('person')">人事变更</a>
+                    <a href="javascript:void(0)" @click="modalVisable('person')" v-if="status != 0">人事变更</a>
                     <!-- <a href="javascript:void(0)" @click="routeToArchive">编辑资料</a> -->
                     <router-link :to="{path:'/archives',query: { id:id}}">编辑资料</router-link>
                     <a href="javascript:void(0)" v-if="employeeInfo.workType == 0 && serviceSituation== 0 && status == 0" @click="modalVisable('positive')" >提前转正</a>
@@ -78,8 +78,8 @@
                                 <dd v-if="employeeInfo.workType == 0 && serviceSituation == 0 && status == 0">{{employeeInfo.turnPositiveTime}}</dd>
 
                                 <dt v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0">实际转正日期</dt><!--!personnelPromotionResponse.flag && -->
-                                <dd v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0">{{personnelProcessResponse.effectiveDate}}</dd>
-
+                                <dd v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0 && personnelProcessResponse != null ">{{personnelProcessResponse.effectiveDate}}</dd>
+                              <dd v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0 && personnelProcessResponse == null ">{{employeeInfo.entryTime}}</dd>
                                 <!--<dd v-if="!personnelPromotionResponse.flag && employeeInfo.workType == 0">{{personnelPromotionResponse.expectedTurnTome}}</dd>-->
                                 <!--<dt v-if="personnelPromotionResponse.flag && employeeInfo.workType == 0">实际转正日期</dt>-->
                                 <!--<dd v-if="personnelPromotionResponse.flag && employeeInfo.workType == 0">{{employeeInfo.turnPositiveTime}}</dd>-->

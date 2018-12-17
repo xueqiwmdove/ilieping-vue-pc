@@ -154,7 +154,7 @@
 
               <!--<p v-else-if="item.status===3">已归档</p>-->
 					  	</div>
-					  </el-col>	
+					  </el-col>
 						<el-col :span="5"><div class="grid-content line_h"><p v-if='item.folderName!=null && item.folderId !=null'>归档文件夹:{{item.folderName}}</p></div></el-col>
 	          </div>
 	          <el-col :span="3">
@@ -169,7 +169,7 @@
 
 		      						<li v-if="item.status===3 || item.status===4 || item.status===0 || item.status===5" @click="click_Archive_folder_btn(item.id)">归档</li>
 		      						<li v-if="item.status===5" @click="getExportContract(item.id,item.docNumber)">下载</li>
-		      						
+
 		      					</ul>
 		      					<ul v-if="item.isArchive===1">
 		      						<li @click="getExportContract(item.id,item.docNumber)">下载</li>
@@ -239,7 +239,7 @@
 						      		<div class="detailVice_title">合同状态</div>
 						      		<div class="div_con">
 						      			<div style="text-align: left;padding-left: 20px;">
-										  		<span v-if="nowTimeStr >= dataDetail.deadlineForSignatureStr && dataDetail.status===0">逾期未签 <span v-if="dataDetail.status === 5" class="span_f95714">已公正</span></span>
+										  		<span v-if="nowTimeStr > dataDetail.deadlineForSignatureStr && dataDetail.status===0">逾期未签 <span v-if="dataDetail.status === 5" class="span_f95714">已公正</span></span>
 										  		<span v-else-if="nowTimeStr <= dataDetail.endTimeStr">已到期 <span v-if="dataDetail.status === 5" class="span_f95714">已公正</span></span><!-- 已到期   -->
 										  		<span v-else-if="dataDetail.expiring == 1">即将到期<span v-if="dataDetail.status === 5" class="span_f95714">已公正</span></span>
 										  		<span v-else-if="dataDetail.status===2">待我签</span>
@@ -253,7 +253,7 @@
 						      			<div class="f_l r_con">{{dataDetail.deadlineForSignature}}</div>
 						      		</div>
 						      		<div class="div_con">
-						      			
+
                  <div class="grid-content " v-if="divfileValue === 1 ">
                  	<div v-if="dataDetail.isArchive===0">
                  		<el-row>
@@ -262,7 +262,7 @@
                  		 <el-button v-if="dataDetail.status===2" @click="getsignAgreement(dataDetail.id,dataDetail.docNumber)">签署</el-button>
                  		 <el-button v-if="dataDetail.status===3 || dataDetail.status===4 || dataDetail.status===0 || dataDetail.status===5" class="divselect btn_default" @click="click_Archive_folder_btn(dataDetail.id)">归档</el-button>
                  		 <el-button v-if="dataDetail.status===5" @click="getExportContract(dataDetail.id,dataDetail.docNumber)">下载</el-button>
-                 		</el-row> 
+                 		</el-row>
                  	</div>
                  	<div v-if="dataDetail.isArchive===1">
 										<el-row>
@@ -398,10 +398,10 @@
           isFile:'',//判断是否归档（1表示归档）其它未归档
           datacountContract:[],//员工合同管理统计各类合同的数量 data
           Isul:false,
-          
+
 	       seen:false,
 	       current:0,
-          
+
          }
       },
       methods: {
@@ -449,7 +449,7 @@
 			  			}
       			});
       		}
-        
+
       	},
       	getCancelArchive(agreementId,folderId){//取消归档
           let that=this;
@@ -471,9 +471,10 @@
 				          type: 'success'
 				        });
 				        /* 刷新列表数据 */
-				  			that.pageIndex=1;
-				  			that.pageSize=5;
-			      		that.getDataSearchAgreementList(folderId);
+// 				  			that.pageIndex=1;
+// 				  			that.pageSize=5;
+// 			      		that.getDataSearchAgreementList(folderId);
+									setTimeout('window.location.reload()',1000);
 			  			}else{
 			  				that.$message.error(res.message || res.data.msg);
 			  			}
@@ -507,7 +508,7 @@
 						　　document.body.appendChild(link);
 						　　link.click();
       			});
-		        
+
       		}
       	},
       	getsignAgreement(agreementId,docNumber){
@@ -529,7 +530,8 @@
 				          message: '恭喜你，操作成功',
 				          type: 'success'
 				        });
-								that.agreementDetail(agreementId,docNumber);
+								setTimeout('window.location.reload()',1000);
+								// that.agreementDetail(agreementId,docNumber);
 			  			}else{
 			  				that.$message.error(res.message || res.data.msg);
 			  			}
@@ -552,7 +554,8 @@
 				          message: '恭喜你，操作成功',
 				          type: 'success'
 				        });
-				        that.getDataSearchAgreementList();
+								setTimeout('window.location.reload()',1000);
+				        // that.getDataSearchAgreementList();
 			  			}else{
 			  				that.$message.error(res.message || res.data.msg);
 			  			}
@@ -591,6 +594,7 @@
 				          message: '恭喜你，操作成功',
 				          type: 'success'
 				        });
+								setTimeout('window.location.reload()',1000);
 			  			}else{
 			  				that.$message.error(res.message || res.data.msg);
 			  			}
@@ -629,8 +633,9 @@
 								  message: '恭喜你，操作成功',
 								  type: 'success'
 								});
-	              that.Archive_folder_btn=false;
-	              that.getDataSearchAgreementList();
+								setTimeout('window.location.reload()',1000);
+// 	              that.Archive_folder_btn=false;
+// 	              that.getDataSearchAgreementList();
 			  			}else{
 			  				that.$message.error(res.message || res.data.msg);
 			  			}
