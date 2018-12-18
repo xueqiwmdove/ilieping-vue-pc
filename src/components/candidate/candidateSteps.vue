@@ -1,6 +1,6 @@
 <template>
   <!--候选人信息弹窗-->
-  <el-dialog title="候选人信息" :visible.sync="addVisible"  custom-class="candidateSteps" :before-close="hideModel">
+  <el-dialog title="候选人信息" :visible="addVisible"  custom-class="candidateSteps" :before-close="hideModel">
     <img src="../../assets/img/candidate/tanchuang_ic_save.png" class="save">
     <div class="addMain">
       <div class="personInfo">
@@ -85,7 +85,7 @@
   import {formatDate} from '@/assets/js/common/date_year.js';
     export default {
         name: "candidateSteps",
-        // props:['addVisible'],
+        props:['addVisible'],
         components:{
           candidateContent,
           basicFirst,
@@ -101,7 +101,7 @@
         },
       data(){
           return{
-            addVisible:true,
+            // addVisible:true,
             step:1,
           }
       },

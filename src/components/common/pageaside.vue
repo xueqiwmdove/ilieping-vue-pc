@@ -109,30 +109,30 @@
                     <!-- <li @click="click_alliancevip(8)" :class="flag==8?'active':''"><span>联盟会员</span></li> -->
                 </ul>
             </li>
-              <li>
-                <div class="link" @click="toggle9">
-                    <i class="fa fa-globe">
-                        <img src="../../assets/img/edition_1.5/houxuan_ic_recruitment.png" alt="" class="click-before"  v-if="before9">
-                        <img src="../../assets/img/edition_1.5/houxuan_ic_recruitment_pre.png" alt="" class="click-after" v-if="after9">
-                    </i>
-                   招聘管理
-                    <i class="fa fa-chevron-down">
-                        <img src="../../assets/img/dismission/ic_top.svg" alt="" class="click-before" v-if="before9">
-                        <img src="../../assets/img/dismission/ic_down.svg" alt="" class="click-after fa_down" v-if="after9">
-                    </i>
-                </div>
-                <ul class="submenu" v-if="isShow9">
-                    <li @click="click_potion(21)" :class="flag==21?'active':''"><span>职位管理</span></li>
-                    <li @click="click_candidate(22)" :class="flag==22?'active':''"><span>候选人管理</span></li>
-                     <li @click="click_interviewMmanagement(30)" :class="flag==30?'active':''"><span>面试管理</span></li>
-                     <li @click="click_option(31)" :class="flag==31?'active':''"><span>设置</span></li>
-                    <li @click="click_potion25(25)" :class="flag==25?'active':''"><span>人才库</span></li>
-                    <!-- <li @click="click_potion26(26)" :class="flag==26?'active':''"><span>设置</span></li> -->
-                </ul>
-            </li>
+              <!--<li>-->
+                <!--<div class="link" @click="toggle9">-->
+                    <!--<i class="fa fa-globe">-->
+                        <!--<img src="../../assets/img/edition_1.5/houxuan_ic_recruitment.png" alt="" class="click-before"  v-if="before9">-->
+                        <!--<img src="../../assets/img/edition_1.5/houxuan_ic_recruitment_pre.png" alt="" class="click-after" v-if="after9">-->
+                    <!--</i>-->
+                   <!--招聘管理-->
+                    <!--<i class="fa fa-chevron-down">-->
+                        <!--<img src="../../assets/img/dismission/ic_top.svg" alt="" class="click-before" v-if="before9">-->
+                        <!--<img src="../../assets/img/dismission/ic_down.svg" alt="" class="click-after fa_down" v-if="after9">-->
+                    <!--</i>-->
+                <!--</div>-->
+                <!--<ul class="submenu" v-if="isShow9">-->
+                    <!--<li @click="click_potion(21)" :class="flag==21?'active':''"><span>职位管理</span></li>-->
+                    <!--<li @click="click_candidate(22)" :class="flag==22?'active':''"><span>候选人管理</span></li>-->
+                     <!--<li @click="click_interviewMmanagement(30)" :class="flag==30?'active':''"><span>面试管理</span></li>-->
+                     <!--<li @click="click_option(31)" :class="flag==31?'active':''"><span>设置</span></li>-->
+                    <!--<li @click="click_potion25(25)" :class="flag==25?'active':''"><span>人才库</span></li>-->
+                    <!--&lt;!&ndash; <li @click="click_potion26(26)" :class="flag==26?'active':''"><span>设置</span></li> &ndash;&gt;-->
+                <!--</ul>-->
+            <!--</li>-->
 
 
-        <!--  <li>
+       <!-- <li>
             <div class="link" @click="toggle7">
               <i class="fa fa-globe">
                 <img src="../../assets/img/entryManagement/ic_ruzhiguanli.svg" alt="" class="click-before"  v-if="before7">
@@ -149,7 +149,7 @@
               <li @click="click_offerManage(19)" :class="flag==19?'active':''"><span>offer管理</span></li>
               <li @click="click_setupTemplate(20)" :class="flag==20?'active':''"><span>offer模板设置</span></li>
             </ul>
-          </li>
+          </li>-->
         </ul>
     </div>
   </div>

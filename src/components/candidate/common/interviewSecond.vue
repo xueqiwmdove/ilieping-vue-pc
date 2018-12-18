@@ -170,8 +170,8 @@
             <p><label>面试地点：</label><i>未知</i></p>
             <p><label>面试负责人：</label><i>李乾坤</i><i>12345678912</i></p>
             <p><label>面试信息：</label>09:00开始 <em class="interview_status">初试</em></p>
-            <p><label>面试登记表：</label><img src="../../../assets/img/candidate/tanchuang_ic_bumanyi_pre.png" alt="">暂未检测到（候选人填写完提交后显示相关数据）</p>
-            <p><label>面试反馈：</label><img src="../../../assets/img/candidate/tanchuang_ic_bumanyi_pre.png" alt="">暂无反馈(用户签到后可填写面试反馈) <em class="interview_feedbook" @click="feedbook_form=true">填写面试反馈表</em></p>
+            <p v-show="no_feedBook"><label>面试登记表：</label><img src="../../../assets/img/candidate/tanchuang_ic_bumanyi_pre.png" alt="">暂未检测到（候选人填写完提交后显示相关数据）</p>
+            <p v-show="no_feedBook"><label>面试反馈：</label><img src="../../../assets/img/candidate/tanchuang_ic_bumanyi_pre.png" alt="">暂无反馈(用户签到后可填写面试反馈) <em class="interview_feedbook" @click="feedbook_form=true">填写面试反馈表</em></p>
             <div class="feedbook_form" v-show="feedbook_form">
               <div class="form-group">
                 <label>反馈内容：</label>
@@ -189,6 +189,23 @@
                 <input type="button" class="button cancel" value="取消">
               </div>
             </div>
+            <!--已反馈-->
+            <p v-show="!no_feedBook"><label>面试登记表：</label><i>已填写</i> <span class="look_Download"><i>查看</i> <i>下载</i></span></p>
+            <p v-show="!no_feedBook">
+              <label>面试反馈：</label>
+              <span class="yawp">不满意</span>
+              <em class="interview_feedbook el-icon-caret-bottom">查看面试反馈表 </em>
+            </p>
+
+            <!--查看面试反馈-->
+            <div class="feedbook_form_pullDown">
+              <h4>李乾坤 ·HR 2018/10/20 11:30反馈</h4>
+              <p>反馈内容：<i>候选人实际工作经验与岗位不符合</i></p>
+              <p>
+                反馈评价：<span class="yawp active">不满意</span>
+              </p>
+            </div>
+
           </div>
         </div>
       </div>
@@ -210,11 +227,17 @@
             interviewTime:'',
             checkList:[],
             feedbook_form:false,
+            no_feedBook:true,
           }
         },
-      methods:{
-          /*
+      methods: {
+        /*保存面试登记表
           * */
+        saveFeedbookForm() {
+          let that=this;
+          that.feedbook_form=false;
+          that.no_feedBook=false;
+        }
       }
     }
 </script>
