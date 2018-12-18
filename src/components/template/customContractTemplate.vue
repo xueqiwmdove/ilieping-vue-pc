@@ -221,9 +221,9 @@ export default {
         startEndTime:[],
         //验证时间范围 小于当前时间不可选中
         pickerOptions:{
-          disabledDate:(time)=>{
+          /*disabledDate:(time)=>{
             return time.getTime() < Date.now() - 8.64e7;
-          },
+          },*/
         },
         contractName:'',
         profilePhotoUrl:''//头像

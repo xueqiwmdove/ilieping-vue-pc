@@ -127,11 +127,12 @@
                      <li @click="click_interviewMmanagement(30)" :class="flag==30?'active':''"><span>面试管理</span></li>
                      <li @click="click_option(31)" :class="flag==31?'active':''"><span>设置</span></li>
                     <li @click="click_potion25(25)" :class="flag==25?'active':''"><span>人才库</span></li>
-                    <li @click="click_potion26(26)" :class="flag==26?'active':''"><span>设置</span></li>
+                    <!-- <li @click="click_potion26(26)" :class="flag==26?'active':''"><span>设置</span></li> -->
                 </ul>
             </li>
 
-        <!--  <li>
+
+          <!-- <li>
             <div class="link" @click="toggle7">
               <i class="fa fa-globe">
                 <img src="../../assets/img/entryManagement/ic_ruzhiguanli.svg" alt="" class="click-before"  v-if="before7">
@@ -359,7 +360,6 @@ export default {
       let a = window.location.href;
       let b = a.indexOf("#");
       let loginUrl = a.substring(b+2);
-//       console.log(loginUrl)
 			if(loginUrl=='searchbefore'){
     		let that=this;
 				that.isShow1=true;
