@@ -402,7 +402,7 @@ export default {
         parentId:'',//部门上级id
         deptId:'',//部门id
         dialogDelete:false,//删除部门
-        dialogChange:true,//人事变更
+        dialogChange:false,//人事变更
         dialogQuit:false,//办理离职
         dialogDeletePerson:false,//删除员工
         dialogFormal:false,//转正

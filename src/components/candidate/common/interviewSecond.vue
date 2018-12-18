@@ -153,15 +153,42 @@
       <button>继续添加面试</button>
       <div class="interview_list">
         <div class="interview">
-          <h4 class="title">2018/09/08（星期一）· 现场面试
-            <i>...</i>
+          <img src="../../../assets/img/candidate/tanhcuang_ic_tag.png" alt="" class="img_status">
+          <h4 class="title">
+            <i>2018/09/08（星期一）· 现场面试</i>
+            <el-dropdown trigger="click">
+              <span class="el-dropdown-link">
+                ...
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item>取消面试</el-dropdown-item>
+                <el-dropdown-item>修改面试</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
           </h4>
           <div>
-            <p>面试地点：<i>未知</i></p>
-            <p>面试负责人：<i>李乾坤</i><i>12345678912</i></p>
-            <p>面试信息：09:00开始 <em>初试</em></p>
-            <p>面试登记表：<img src="../../../assets/img/candidate/tanchuang_ic_bumanyi_pre.png" alt="">暂未检测到（候选人填写完提交后显示相关数据）</p>
-            <p>面试反馈：<img src="../../../assets/img/candidate/tanchuang_ic_bumanyi_pre.png" alt="">暂无反馈(用户签到后可填写面试反馈) </p>
+            <p><label>面试地点：</label><i>未知</i></p>
+            <p><label>面试负责人：</label><i>李乾坤</i><i>12345678912</i></p>
+            <p><label>面试信息：</label>09:00开始 <em class="interview_status">初试</em></p>
+            <p><label>面试登记表：</label><img src="../../../assets/img/candidate/tanchuang_ic_bumanyi_pre.png" alt="">暂未检测到（候选人填写完提交后显示相关数据）</p>
+            <p><label>面试反馈：</label><img src="../../../assets/img/candidate/tanchuang_ic_bumanyi_pre.png" alt="">暂无反馈(用户签到后可填写面试反馈) <em class="interview_feedbook" @click="feedbook_form=true">填写面试反馈表</em></p>
+            <div class="feedbook_form" v-show="feedbook_form">
+              <div class="form-group">
+                <label>反馈内容：</label>
+                <textarea placeholder="请对候选人本次面试填写面试反馈，请务必填写周全、客观。"></textarea>
+              </div>
+             <div class="form-group">
+               <label>反馈评价：</label>
+               <span class="yawp active" >不满意</span>
+               <span class="common">一般</span>
+               <span class="satisfactory">较满意</span>
+               <span class="great_satisfaction">非常满意</span>
+             </div>
+              <div class="form-group vertical">
+                <input type="button" class="button" value="保存" @click="saveFeedbookForm">
+                <input type="button" class="button cancel" value="取消">
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -182,9 +209,13 @@
             provinceData:[],
             interviewTime:'',
             checkList:[],
-
+            feedbook_form:false,
           }
-        }
+        },
+      methods:{
+          /*
+          * */
+      }
     }
 </script>
 
