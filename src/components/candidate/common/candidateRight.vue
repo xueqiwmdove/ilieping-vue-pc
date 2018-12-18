@@ -22,9 +22,22 @@
     <weekOutAlert visableModal.sync="visable.weekOut"></weekOutAlert>
     <!--备注弹窗-->
     <remarkAlert visableModal.sync="visable.remark"></remarkAlert>
-    <el-dialog title="推荐给用人部门" :visible.sync="visableModal" custom-class="recommend" :before-close="hideModel">
-
-    </el-dialog>
+      <el-dialog title="淘汰候选人" :visible.sync="visableModal" custom-class="recommend">
+            <el-form :model="cerateList"  ref="cerateList" id="re_styles">
+                  <el-form-item label="淘汰原因">
+                        <el-select v-model="cerateList.type" placeholder="请选择淘汰经验">
+                              <el-option label="胜任力" value="0"></el-option>
+                              <el-option label="没有回应" value="1"></el-option>
+                        </el-select>
+                  </el-form-item> 
+                          <el-form-item label="具体淘汰原因（选填）" >
+                               <textarea placeholder="请输入原因"></textarea>
+                          </el-form-item>
+              </el-form>
+              <div slot="footer" class="dialog-footer">
+                      <el-button  type="primary"  style="height:36px;" >保存</el-button>
+              </div>
+      </el-dialog>
 
 
     <button class="button recommend" v-if="flag==1" @click="visableModal=true">推荐给用人部门</button><!--@click="addCandidateShow('recommend')"-->
@@ -53,7 +66,10 @@
               weekOut:true,
               remark:true
             },
-            visableModal:false
+            cerateList:{
+              type:'',
+            },
+            visableModal:true
           }
         },
       methods:{
