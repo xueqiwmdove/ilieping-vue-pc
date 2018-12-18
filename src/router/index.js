@@ -91,8 +91,8 @@ import  Candidatindex   from '@/components/CandidatManage/Candidatindex'
 import SearchCandidata from  '@/components/CandidatManage/searchCandidata'
 
 //设置
-import option from  '@/components/option/option'
-import optioninterview from  '@/components/option/optioninterview'
+import option from  '@/components/option/option'//设置页面
+import optioninterview from  '@/components/option/optioninterview'//面试模板
 //账号管理
 import businessManager from '@/components/account/businessManager'//企业经办人
 import businessCert from '@/components/account/certificate' //企业认证
