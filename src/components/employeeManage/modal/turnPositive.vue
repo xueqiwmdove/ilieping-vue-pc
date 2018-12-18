@@ -154,7 +154,7 @@
                                 }).then(function (res) {
                                     let resData = res.data;
                                     if(resData.code == 10000){
-                                        that.$message(resData.msg);
+                                        that.$message(resData.msg||resData.data);
                                         that.hideModel();
                                     }else{
                                         that.$message.error(resData.msg);

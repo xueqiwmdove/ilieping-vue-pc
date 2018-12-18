@@ -109,7 +109,7 @@
                     <!-- <li @click="click_alliancevip(8)" :class="flag==8?'active':''"><span>联盟会员</span></li> -->
                 </ul>
             </li>
-             <li>
+              <li>
                 <div class="link" @click="toggle9">
                     <i class="fa fa-globe">
                         <img src="../../assets/img/edition_1.5/houxuan_ic_recruitment.png" alt="" class="click-before"  v-if="before9">

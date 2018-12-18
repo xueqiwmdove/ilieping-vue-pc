@@ -71,6 +71,7 @@
                 var isLt3M= files_size / 1024 / 1024 < 3;
                 console.log(isLt3M,'<=======isLt3M')
                 if (!isLt3M) {
+                    this.uploadBtnShow = true;
                     this.$message.error('图片选择失败，每张图片大小不能超过 3MB,请重新选择!');
                     return false;
                 }else {
@@ -82,7 +83,8 @@
                         file.src = this.result;
 
                         that.imgList = file;
-                        that.$emit('getfile',that.imgList)
+                        // that.$emit('getfile',that.imgList)
+                      that.$emit('getfile',file)
                     }
                 }
 
