@@ -46,6 +46,7 @@
                   <!--serviceSituation;//、0 试用期   1  已转正-->
                   <!--status;//0 在职   1  离职-->
                   <!--//是否签订合同 isSign 0  未签    1  已签-->
+                  <!--probation >6 有试用期-->
 
                     <a href="javascript:void(0)" @click="modalVisable('person')" >人事变更</a>
                     <!-- <a href="javascript:void(0)" @click="routeToArchive">编辑资料</a> -->
@@ -75,11 +76,14 @@
                                 <dt>工作类型</dt>
                                 <dd>{{employeeInfo.workType == 0 ? '全职' : employeeInfo.workType == 1 ? ' 兼职' : '实习'}}</dd>
                                 <dt v-if="employeeInfo.workType == 0 && serviceSituation == 0 && status == 0">预计转正日期</dt><!--!personnelPromotionResponse.flag && -->
-                                <dd v-if="employeeInfo.workType == 0 && serviceSituation == 0 && status == 0">{{employeeInfo.turnPositiveTime}}</dd>
+                                <dd v-if="employeeInfo.workType == 0 && serviceSituation == 0 && status == 0 && personnelProcessResponse == null">{{employeeInfo.turnPositiveTime}}</dd>
 
-                                <dt v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0">实际转正日期</dt><!--!personnelPromotionResponse.flag && -->
-                                <dd v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0 && personnelProcessResponse != null ">{{personnelProcessResponse.effectiveDate}}</dd>
-                              <dd v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0 && personnelProcessResponse == null ">{{employeeInfo.entryTime}}</dd>
+                                <dt v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0">实际转正日期</dt>
+                               <!-- <dd v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0 && personnelProcessResponse != null ">{{personnelProcessResponse.effectiveDate}}</dd>
+                              <dd v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0 && personnelProcessResponse == null ">{{employeeInfo.entryTime}}</dd>-->
+                              <dd v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0 && probation>6">{{personnelProcessResponse.effectiveDate}}</dd>
+                              <dd v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0 &&  probation<6">{{employeeInfo.entryTime}}</dd>
+
                                 <!--<dd v-if="!personnelPromotionResponse.flag && employeeInfo.workType == 0">{{personnelPromotionResponse.expectedTurnTome}}</dd>-->
                                 <!--<dt v-if="personnelPromotionResponse.flag && employeeInfo.workType == 0">实际转正日期</dt>-->
                                 <!--<dd v-if="personnelPromotionResponse.flag && employeeInfo.workType == 0">{{employeeInfo.turnPositiveTime}}</dd>-->
@@ -160,6 +164,7 @@
                 serviceSituation:'',
                 status:'',
                 isSign:'',
+              probation:'',//有无试用期
               personnelProcessResponse:{},
             }
         },
@@ -210,6 +215,7 @@
                                 that.serviceSituation = resData.data.employeeInfo. serviceSituation;
                                           that.status = resData.data.employeeInfo. status;
                                           that.isSign = resData.data.employeeInfo.isSign;
+                                       that.probation = resData.data.employeeInfo.probation;
                                 //员工状态
                                 /*  ①文字按钮；②根据员工状态判断部分按钮状态
 
