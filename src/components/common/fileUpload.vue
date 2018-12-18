@@ -9,7 +9,7 @@
                  <div class="form-group">
                     <div class="uploadFile">
                         <span style="color:#F95714 ;border-radius: 4px;background: #FAFBFC;border: 1px solid #E5E5E5;" class="el-icon-upload">上传附件</span>
-                        <input :disabled='flag' class="el-icon-upload" type="file" ref="fileTag"  @change="getFile($event)" id='file' accept="image/bmp,image/jpg,image/png,image/jpeg" action=""/>
+                        <input :disabled='flagDia' class="el-icon-upload" type="file" ref="fileTag"  @change="getFile($event)" id='file' accept="image/bmp,image/jpg,image/png,image/jpeg" action=""/>
                     </div>
                  </div>
             </div>
@@ -30,6 +30,7 @@
 import store from '@/store/store';
 export default {
     name:'fileupload',
+    props:['flagDia'],
     data() {
       return {
         imgList:[],
@@ -66,7 +67,9 @@ export default {
                         message:'上传文件不能超过5张',
                         type:'error'  
                     }) 
-                this.flag=true
+                  if(this.imgList !=[]) {
+                      this.flagDia =true
+                  }
                 return
             }else {
                 reader.onload = function () {
