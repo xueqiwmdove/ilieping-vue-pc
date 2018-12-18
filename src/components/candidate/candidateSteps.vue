@@ -165,6 +165,25 @@
             </div>
         </div>
       </div>
+
+      <!--取消面试弹窗-->
+     <!-- <div class = "cov"  v-clickoutside="handleClose2">
+        <div class = "con create_dialog" style="height:340px;">
+          <p class = "ptitle">取消面试 <i @click="hideModel2" class="el-icon-close closes_s"></i></p>
+          <div class="rescs beires" style="height:220px;">
+            <el-form>
+              <el-form :model="cerateList"  ref="cerateList" id="re_styles">
+                <span class="title_bei">请填写取消面试原因</span>
+                <el-input :rows="4" type="textarea" v-model="text" style="width:460px;margin-left:60px;" placeholder="请输入内容"></el-input>
+              </el-form>
+            </el-form>
+          </div>
+          <div slot="footer" class="dialog-footer">
+            <el-button  type="primary"    style="height:36px;" >保存</el-button>
+          </div>
+        </div>
+      </div>-->
+
     </div>
 
   </el-dialog>
