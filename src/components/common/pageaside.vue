@@ -127,9 +127,10 @@
                      <li @click="click_interviewMmanagement(30)" :class="flag==30?'active':''"><span>面试管理</span></li>
                      <li @click="click_option(31)" :class="flag==31?'active':''"><span>设置</span></li>
                     <li @click="click_potion25(25)" :class="flag==25?'active':''"><span>人才库</span></li>
-                    <li @click="click_potion26(26)" :class="flag==26?'active':''"><span>设置</span></li>
+                    <!-- <li @click="click_potion26(26)" :class="flag==26?'active':''"><span>设置</span></li> -->
                 </ul>
             </li>
+
 
         <!--  <li>
             <div class="link" @click="toggle7">
@@ -148,7 +149,7 @@
               <li @click="click_offerManage(19)" :class="flag==19?'active':''"><span>offer管理</span></li>
               <li @click="click_setupTemplate(20)" :class="flag==20?'active':''"><span>offer模板设置</span></li>
             </ul>
-          </li> -->
+          </li>
         </ul>
     </div>
   </div>
