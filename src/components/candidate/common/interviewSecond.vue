@@ -185,7 +185,7 @@
                <span class="great_satisfaction">非常满意</span>
              </div>
               <div class="form-group vertical">
-                <input type="button" class="button" value="保存" @click="saveFeedbookForm">
+                <input type="button" class="button" value="保存" >
                 <input type="button" class="button cancel" value="取消">
               </div>
             </div>

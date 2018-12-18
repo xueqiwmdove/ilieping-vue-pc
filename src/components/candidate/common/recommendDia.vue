@@ -149,7 +149,7 @@
 </script>
 
 <style scoped>
-.create_dialog .el-icon-arrow-down:before {
+/* .create_dialog .el-icon-arrow-down:before {
     content: "\E603";
     position: absolute;
     top: 15px;
@@ -272,10 +272,10 @@
 }
 #re_styles .el-radio-button, .el-radio-button__inner:nth-child(2) {
     border-left: 1px solid #E5E5E5;
-}
+} */
 </style>
 <style>
-.create_dialog .el-dialog__body {
+/* .create_dialog .el-dialog__body {
     padding: 30px 70px;
     color: #606266;
     font-size: 14px;
@@ -297,6 +297,6 @@
  }
  #re_styles .el-input__inner {
      margin-left:-29px;  
- }    
+ }     */
 </style>
 
