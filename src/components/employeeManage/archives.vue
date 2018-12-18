@@ -45,11 +45,11 @@
                                 <fileupload @getfile="getHeadFiles" ref="headUpload" :fileUrled='employeeInfo.crownlessPhotoUrl' :imgName="'crownlessPhotoUrl'"></fileupload>
                             </el-form-item>  -->
                             <el-form-item label="身份证反面照片" :label-width="formLabelWidth">
-                                <fileupload @getfile="getCardBackFiles" ref="cardBackUpload" :fileUrled='employeeInfo.reversePhotoUrl' :imgName="'reversePhotoUrl'"></fileupload>
+                                <fileupload @getfile="getCardBackFiles" ref="cardBackUpload"  :fileUrled='employeeInfo.reversePhotoUrl' :imgName="'reversePhotoUrl'"></fileupload>
                             </el-form-item>
 
                             <el-form-item label="身份证正面照片" :label-width="formLabelWidth">
-                                <fileupload @getfile="getCardFaceFiles" ref="cardFaceUpload" :fileUrled='employeeInfo.protraitPhotoUrl' :imgName="'protraitPhotoUrl'"></fileupload>
+                                <fileupload @getfile="getCardFaceFiles" ref="cardFaceUpload"  :fileUrled='employeeInfo.protraitPhotoUrl' :imgName="'protraitPhotoUrl'"></fileupload>
                             </el-form-item>
 
                             <el-form-item label="学历证明" :label-width="formLabelWidth">
@@ -57,15 +57,15 @@
                             </el-form-item>
 
                             <el-form-item label="简历" :label-width="formLabelWidth">
-                                <fileupload @getfile="getResumeFiles" ref="resumeUpload" :fileUrled='annexResume.httpUrl' :fileName='annexResume.fileName' :fileId='annexResume.id'></fileupload>
+                                <fileupload @getfile="getResumeFiles" ref="resumeUpload"  :fileUrled='annexResume.httpUrl' :fileName='annexResume.fileName' :fileId='annexResume.id'></fileupload>
                             </el-form-item>
 
                             <el-form-item label="入职体检" :label-width="formLabelWidth">
-															<fileupload @getfile="getEntryExamination" ref="EntryExaminationUpload" :fileUrled='annexEntryExamination.httpUrl' :fileName='annexEntryExamination.fileName' :fileId='annexEntryExamination.id'></fileupload>
+															<fileupload @getfile="getEntryExamination" ref="EntryExaminationUpload"  :fileUrled='annexEntryExamination.httpUrl' :fileName='annexEntryExamination.fileName' :fileId='annexEntryExamination.id'></fileupload>
                             </el-form-item>
 
                             <el-form-item label="上家离职证明" :label-width="formLabelWidth">
-                                <fileupload @getfile="getResignCertFiles" ref="resignCertUpload" :fileUrled='annexResignCert.httpUrl' :fileName='annexResignCert.fileName' :fileId='annexResignCert.id'></fileupload>
+                                <fileupload @getfile="getResignCertFiles" ref="resignCertUpload"  :fileUrled='annexResignCert.httpUrl' :fileName='annexResignCert.fileName' :fileId='annexResignCert.id'></fileupload>
                             </el-form-item>
 
 														<el-form-item label="照片" :label-width="formLabelWidth" style="width: 100%;padding-left: 54px;">
@@ -137,7 +137,7 @@
                 },
 								imgList:[],
                 sendData:[],
-
+                sendData1:[],
 								employeeInfoSalary:{},//薪资福利
             };
         },

@@ -11,7 +11,7 @@
       <div class="right-content pull-right">
         <div class="content">
             <p class="headline">
-                <span @click="personChanges()">员工列表</span>
+                <span>员工列表</span>
             </p>
             <ul class="nav-tabs nav" id="uploadTabs"></ul>
             <el-row>
@@ -140,7 +140,7 @@
                   <!-- end-->
                 <!-- 弹窗-人事变更  -->
                   <el-dialog title="人事变更" width="540px" :visible.sync="dialogChange" :class="{some_dia: !flag11}" custom-class="sty_dialogc" class="add_dialog  sty_dialogc" :before-close="closeChange">
-                          <el-scrollbar style="height:100%" >
+                          <!-- <el-scrollbar style="height:100%" > -->
                           <el-form :model="personChange" :rules="rules" ref="personChange" id="re_style" >
                               <el-row>
                                   <el-form-item label="变更员工" :label-width="formLabelWidth">
@@ -238,11 +238,11 @@
                             </el-row>
                             <el-row  >
                                   <el-form-item :label-width="formLabelWidth" label="上传附件">
-                                      <fileUpload v-on:getfile='getFiles'></fileUpload>
+                                      <fileUpload :flagDia='flagDia' v-on:getfile='getFiles'></fileUpload>
                                   </el-form-item>
                              </el-row>
                             </el-form>
-                          </el-scrollbar>
+                          <!-- </el-scrollbar> -->
                              <div slot="footer" class="dialog-footer">
                                  <el-button  type="primary"  @click="submitChange('personChange')" :disabled="disableType">确 定</el-button>
                                   <el-button @click="closeChange(personChange)">取 消</el-button>
@@ -402,12 +402,13 @@ export default {
         parentId:'',//部门上级id
         deptId:'',//部门id
         dialogDelete:false,//删除部门
-        dialogChange:false,//人事变更
+        dialogChange:true,//人事变更
         dialogQuit:false,//办理离职
         dialogDeletePerson:false,//删除员工
         dialogFormal:false,//转正
         fileList:[],//上传文件集合数组
         treeDatas:[],
+        flagDia:false,
         flag11:true,
         // resetImg:'',
         grouping:'',//分组
@@ -819,6 +820,7 @@ export default {
       },
   //人事变更
       personChanges(val) {
+        this.flagDia = false
         this.$store.commit('resetImgInit');
         this.dialogChange =!this.dialogChange
         this.idPerson = val.id

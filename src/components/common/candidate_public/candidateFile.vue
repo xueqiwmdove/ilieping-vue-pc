@@ -8,13 +8,13 @@
            <div class="certificate-content reset ">
                  <div class="form-group">
                     <div class="uploadFile">
-                        <span style="color:#F95714 ;border-radius: 4px;background: #FAFBFC;border: 1px solid #E5E5E5;" class="el-icon-upload">上传附件</span>
-                        <input :disabled='flagDia' class="el-icon-upload" type="file" ref="fileTag"  @change="getFile($event)" id='file' accept="image/bmp,image/jpg,image/png,image/jpeg" action=""/>
+                        <span style="color:#66ADFF;margin-left: 60px;" >上传附件</span>
+                        <input  class="el-icon-upload" type="file" ref="fileTag"  @change="getFile($event)" id='file' accept="image/bmp,image/jpg,image/png,image/jpeg" action=""/>
                     </div>
                  </div>
             </div>
             <!-- 上传列表 -->
-            <div v-show="imgList.length!=0"   >
+            <!-- <div v-show="imgList.length!=0"   >
                 <div v-for="(item,index) of imgList" :key="index" >
                 <div class="file_text">
                     <div class="notext">
@@ -23,18 +23,16 @@
                     </div>
                 </div>
                 </div>
-            </div>
+            </div> -->
     </div>
 </template>
 <script>
 import store from '@/store/store';
 export default {
-    name:'fileupload',
-    props:['flagDia'],
+    name:'candidateFile',
     data() {
       return {
         imgList:[],
-        flag:false
         }
       },
     methods:{
@@ -67,9 +65,7 @@ export default {
                         message:'上传文件不能超过5张',
                         type:'error'  
                     }) 
-                  if(this.imgList !=[]) {
-                      this.flagDia =true
-                  }
+                this.flag=true
                 return
             }else {
                 reader.onload = function () {

@@ -105,8 +105,40 @@
             </div>
 
             <div class="interview_modal">
-              <p class="title"></p>
-              <p></p>
+              <h4 class="title"></h4>
+              <div>
+                <p><i>谭迎港</i>您好</p>
+                <p>感谢关注上海棋至文化有限公司！我是该公司的HR。很高兴收到您的简历。面试安排如下：</p>
+                <P>面试时间：<i>2018/09/09 14:30</i></P>
+                <p>面试形式：<i>视频面试</i></p>
+                <p>面试地点：<i>未知</i></p>
+                <p>联系方式：<i>联系方式</i><i>12367889900</i></p>
+              </div>
+
+            </div>
+
+            <div class="selectedModel">
+              <el-row :gutter="40">
+                <el-col :lg="12" :md="12" :sm="12">
+                  <el-form-item label="选择通知模版">
+                    <el-select v-model="province" placeholder="选择通知模版">
+                      <el-option v-for="item in provinceData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                    </el-select>
+                  </el-form-item>
+                </el-col>
+                <el-col :lg="12" :md="12" :sm="12">
+                  <el-form-item label="面试登记表模版">
+                    <el-select v-model="province" placeholder="面试登记表模版">
+                      <el-option v-for="item in provinceData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                    </el-select>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+            </div>
+
+            <div class="interview_button">
+              <el-button class="button">保存</el-button>
+              <el-button class="button cancel">取消</el-button>
             </div>
           </el-form>
 
@@ -115,6 +147,26 @@
       </el-row>
 
     </div>
+
+    <!--面试列表以及状态-->
+    <div class="interview_list_status">
+      <button>继续添加面试</button>
+      <div class="interview_list">
+        <div class="interview">
+          <h4 class="title">2018/09/08（星期一）· 现场面试
+            <i>...</i>
+          </h4>
+          <div>
+            <p>面试地点：<i>未知</i></p>
+            <p>面试负责人：<i>李乾坤</i><i>12345678912</i></p>
+            <p>面试信息：09:00开始 <em>初试</em></p>
+            <p>面试登记表：<img src="../../../assets/img/candidate/tanchuang_ic_bumanyi_pre.png" alt="">暂未检测到（候选人填写完提交后显示相关数据）</p>
+            <p>面试反馈：<img src="../../../assets/img/candidate/tanchuang_ic_bumanyi_pre.png" alt="">暂无反馈(用户签到后可填写面试反馈) </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -137,5 +189,7 @@
 </script>
 
 <style scoped>
-
+  .interview_second {
+    margin-bottom: 20px;
+  }
 </style>

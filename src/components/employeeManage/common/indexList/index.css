@@ -55,8 +55,8 @@ height: 35px;
 }
 .sty_dialogc.el-dialog .el-dialog__body    {
   height: 440px;
-  /* overflow-x: hidden;
-  overflow-y: auto; */
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .sty_dialogcs .el-dialog .el-dialog__body    {
   height: 280px;
