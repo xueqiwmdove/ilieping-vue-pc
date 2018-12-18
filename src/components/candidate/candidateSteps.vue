@@ -214,7 +214,7 @@ const clickoutside = {
 };
     export default {
         name: "candidateSteps",
-        // props:['addVisible'],
+        props:['addVisible'],
         components:{
           candidateContent,
           basicFirst,
@@ -230,7 +230,7 @@ const clickoutside = {
         },
       data(){
           return{
-            addVisible:true,
+            // addVisible:false,
             step:1,
             conShow:false,//推荐人
             beizhu:false,//备注

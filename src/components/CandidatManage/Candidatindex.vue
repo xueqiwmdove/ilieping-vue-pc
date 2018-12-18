@@ -21,7 +21,7 @@
         <div class="right-content pull-right">
             <div class="content">
                 <p class="headline">
-                    <span  >候选人管理</span>
+                    <span  @click="addCandidateShow('steps')" >候选人管理</span>
                 </p>
                 <el-row>
               <!--创建职位左侧栏  -->
@@ -232,7 +232,7 @@ export default {
     candidateSteps,
     recommendDia,
     // recommend_depart
-	},
+  },
    data() {
       return {
         signs:'2' ,
