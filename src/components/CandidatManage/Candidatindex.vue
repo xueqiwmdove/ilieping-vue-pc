@@ -21,7 +21,7 @@
         <div class="right-content pull-right">
             <div class="content">
                 <p class="headline">
-                    <span >候选人管理</span>
+                    <span  >候选人管理</span>
                 </p>
                 <el-row>
               <!--创建职位左侧栏  -->
@@ -63,7 +63,7 @@
                           <div class='content_pad'>
                             <div class="but_stys" :class="signs=='2'? 'btn_s':''" @click="tagStyChange(2)">
                                 <p class="font_s">初筛</p>
-                                <i class="num_s">12</i>
+                                <i class="num_s">{{count2}}</i>
                                 <em class=" icon_s">
                                   <img v-if="signs == '2'" src="../../assets/img/zhiwei/houxuan_ic_filter_pre.png" alt="">
                                   <img v-else src="../../assets/img/zhiwei/houxuan_ic_filter.png" alt="">
@@ -71,7 +71,7 @@
                             </div>
                             <div class="but_stys "  :class="signs=='3'? 'btn_s':''" @click="tagStyChange(3)">
                                 <p class="font_s">用人部门筛选</p>
-                                <i class="num_s">24</i>
+                                <i class="num_s">{{count3}}</i>
                                 <em class=" icon_s">
                                     <img v-if="signs == '3'" src="../../assets/img/zhiwei/houxuan_ic_department_pre.png" alt="">
                                     <img v-else src="../../assets/img/zhiwei/houxuan_ic_department.png" alt="">
@@ -79,7 +79,7 @@
                             </div>
                                <div class="but_stys"  :class="signs=='4'? 'btn_s':''" @click="tagStyChange(4)">
                                 <p class="font_s">面试</p>
-                                <i class="num_s">124</i>
+                                <i class="num_s">{{count4}}</i>
                                 <em class=" icon_s">
                                     <img v-if="signs == '4'" src="../../assets/img/zhiwei/houxuan_ic_interview_pre.png" alt="">
                                     <img v-else src="../../assets/img/zhiwei/houxuan_ic_department.png" alt="">
@@ -87,7 +87,7 @@
                             </div>
                             <div class="but_stys "  :class="signs=='5'? 'btn_s':''" @click="tagStyChange(5)">
                                 <p class="font_s">沟通Offer</p>
-                                <i class="num_s">24</i>
+                                <i class="num_s">{{count5}}</i>
                                 <em class=" icon_s">
                                     <img v-if="signs == '5'" src="../../assets/img/zhiwei/houxuan_ic_contact_pre.png" alt="">
                                     <img v-else src="../../assets/img/zhiwei/houxuan_ic_contact.png" alt="">
@@ -95,7 +95,7 @@
                             </div>
                                <div class="but_stys"  :class="signs=='6'? 'btn_s':''" @click="tagStyChange(6)">
                                 <p class="font_s">待入职</p>
-                                <i class="num_s">5</i>
+                                <i class="num_s">{{count6}}</i>
                                 <em class=" icon_s">
                                     <img v-if="signs == '6'" src="../../assets/img/zhiwei/houxuan_ic_wait_pre.png" alt="">
                                     <img v-else src="../../assets/img/zhiwei/houxuan_ic_wait.png" alt="">
@@ -103,7 +103,7 @@
                             </div>
                             <div class="but_stys "  :class="signs=='0'? 'btn_s':''"  @click="tagStyChange(0)">
                                 <p class="font_s">已淘汰</p>
-                                <i class="num_s">800</i>
+                                <i class="num_s">{{count0}}</i>
                                 <em class=" icon_s">
                                     <img v-if="signs == '0'" src="../../assets/img/zhiwei/houxuan_ic_pass_pre.png" alt="">
                                     <img v-else src="../../assets/img/zhiwei/houxuan_ic_pass.png" alt="">
@@ -131,18 +131,18 @@
                                 <el-table-column prop="departmentHeads" label="候选人负责人" header-align='center' align='center'></el-table-column>
                                 <el-table-column prop="postStr" label="招聘职位" header-align='center' align='center'></el-table-column>
                                 <el-table-column prop="resumeChannel" label="招聘渠道" header-align='center' align='center'></el-table-column>
-                                <el-table-column  v-if="signs =='0'" prop="createTime" label="添加日期" header-align='center' align='center'></el-table-column>
-                                <el-table-column  v-if="signs =='1'" prop="screeningStatus" label="状态" header-align='center' align='center'>
+                                <el-table-column  v-if="signs =='2'" prop="createTime" label="添加日期" header-align='center' align='center'></el-table-column>
+                                <el-table-column  v-if="signs =='3'" prop="screeningStatus" label="状态" header-align='center' align='center'>
                                     <template slot-scope="scope">
                                         <span style="cursor: pointer;">
-                                         <i v-if="scope.row.screeningStatus == '0'" style="color:#66ADFF;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_no feedback.png" alt="">未反馈</i>
-                                         <i v-if="scope.row.screeningStatus =='1'" style="color:#FF001F;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_disagree.png" alt="">不同意</i>
+                                         <i v-if="scope.row.screeningStatus == '1'" style="color:#66ADFF;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_no feedback.png" alt="">未反馈</i>
+                                         <i v-if="scope.row.screeningStatus =='3'" style="color:#FF001F;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_disagree.png" alt="">不同意</i>
                                          <i v-if="scope.row.screeningStatus == '2'" style="color:#5EC860;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_agree.png" alt="">同意</i>
-                                         <i v-if="scope.row.screeningStatus == '3'" style="color:#FF001F;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not recommendde.png" alt="">未推荐</i>
+                                         <i v-if="scope.row.screeningStatus == '0'" style="color:#FF001F;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not recommendde.png" alt="">未推荐</i>
                                         </span>
                                     </template>
                                 </el-table-column>
-                                <el-table-column  v-if="signs =='2'" prop="interviewStatus" label="面试状态" header-align='center' align='center'>
+                                <el-table-column  v-if="signs =='4'" prop="interviewStatus" label="面试状态" header-align='center' align='center'>
                                      <template slot-scope="scope">
                                         <span v-if="scope.row.interviewStatus =='0'" style="cursor: pointer;">
                                           <p>未安排面试</p>
@@ -154,19 +154,19 @@
                                         </span>
                                     </template>
                                 </el-table-column>
-                                <el-table-column  v-if="signs =='3'" prop="offerStatus" label="Offer状态" header-align='center' align='center'>
+                                <el-table-column  v-if="signs =='5'" prop="offerStatus" label="Offer状态" header-align='center' align='center'>
                                      <template slot-scope="scope">
                                         <span style="cursor: pointer;">
                                          <i v-if="scope.row.offerStatus == '0'" ><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_notcreate.png" alt="">未创建</i>
-                                         <i v-if="scope.row.offerStatus == '1'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not receive.png" alt="">未接收</i>
-                                         <i v-if="scope.row.offerStatus == '2'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_receive.png" alt="">已接收</i>
+                                         <!-- <i v-if="scope.row.offerStatus == '1'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not receive.png" alt="">未接收</i> -->
+                                         <i v-if="scope.row.offerStatus == '2'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_receive.png" alt="">同意</i>
                                          <i v-if="scope.row.offerStatus == '3'" ><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_refused.png" alt="">已拒绝</i>
-                                         <i v-if="scope.row.offerStatus == '4'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not recommendde.png" alt="">未推荐</i>
+                                         <i v-if="scope.row.offerStatus == '1'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not receive.png" alt="">待接收</i>
                                         </span>
                                     </template>
                                 </el-table-column>
-                                <el-table-column  v-if="signs =='4'" prop="createDate" label="预计入职时间" header-align='center' align='center'></el-table-column>
-                                <el-table-column  v-if="signs =='5'" prop="archivingReason" label="淘汰原因" header-align='center' align='center'></el-table-column>
+                                <el-table-column  v-if="signs =='6'" prop="createDate" label="预计入职时间" header-align='center' align='center'></el-table-column>
+                                <el-table-column  v-if="signs =='0'" prop="archivingReason" label="淘汰原因" header-align='center' align='center'></el-table-column>
                             </el-table>
                         </div>
                			<!-- 分页  -->
@@ -245,6 +245,13 @@ export default {
         texts:'招聘中的职位',
         candidatestatus:'',
         recruitStatus:'1',
+        isflag:false,
+        count0:'',
+        count2:'',
+        count3:'',
+        count4:'',
+        count5:'',
+        count6:'',
         showList:false,
         flags:true,
         pageIndex: 1,
@@ -281,6 +288,7 @@ export default {
 	  		}).then(function(res){
 	  			if(res.data.code==10000){
              that.candidateList=res.data.data;
+            that.totalCount=res.data.count;
 	  			}else{
 	  				that.$message.error(res.data.msg);
 	  			}
@@ -353,7 +361,6 @@ export default {
       }).then(function(res){
         if(res.data.code==10000){
             that.personList=res.data.data;
-            that.totalCount=res.data.count;
         }else{
           that.$message.error(res.data.msg);
         }
@@ -366,15 +373,34 @@ export default {
       this.flags = !this.flags
       console.log(1)
     },
+  //获取状态数据  
     getCount() {
       let that=this;
         that.$http({
 	  			method:"post",
 	  			url:api.getGrouping,
-	  			headers:headers('application/json;charset=utf-8'),
+          headers:headers('application/json;charset=utf-8'),
+          data:{
+            "postId":that.postId || ''
+          }
 	  		}).then(function(res){
 	  			if(res.data.code==10000){
              that.counts=res.data.data;
+           for(var i in  that.counts) {
+             if(that.counts[i].status =='0') {
+               that.count0 = that.counts[i].count
+             }else if(that.counts[i].status =='2') {
+               that.count2 = that.counts[i].count
+             }else if(that.counts[i].status =='3') {
+               that.count3 = that.counts[i].count
+             }else if(that.counts[i].status =='4') {
+                that.count4 = that.counts[i].count
+             }else if(that.counts[i].status =='5') {
+                that.count5 = that.counts[i].count
+             }else if(that.counts[i].status =='6') {
+                that.count6 = that.counts[i].count
+             }
+           }
 
 	  			}else{
 	  				that.$message.error(res.data.msg);
@@ -632,5 +658,6 @@ margin-left: 180px;
 .position_list .el-scrollbar__wrap {
   overflow-x: hidden !important;
  }
+
 </style>
 
