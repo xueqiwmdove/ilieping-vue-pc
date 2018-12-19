@@ -109,7 +109,7 @@
                     <!-- <li @click="click_alliancevip(8)" :class="flag==8?'active':''"><span>联盟会员</span></li> -->
                 </ul>
             </li>
-              <li>
+              <!-- <li>
                 <div class="link" @click="toggle9">
                     <i class="fa fa-globe">
                         <img src="../../assets/img/edition_1.5/houxuan_ic_recruitment.png" alt="" class="click-before"  v-if="before9">
@@ -127,9 +127,9 @@
                      <li @click="click_interviewMmanagement(30)" :class="flag==30?'active':''"><span>面试管理</span></li>
                      <li @click="click_option(31)" :class="flag==31?'active':''"><span>设置</span></li>
                     <li @click="click_potion25(25)" :class="flag==25?'active':''"><span>人才库</span></li>
-                    <!-- <li @click="click_potion26(26)" :class="flag==26?'active':''"><span>设置</span></li> -->
+                    <li @click="click_potion26(26)" :class="flag==26?'active':''"><span>设置</span></li>
                 </ul>
-            </li>
+            </li> -->
 
 
           <!-- <li>
@@ -150,6 +150,7 @@
               <li @click="click_setupTemplate(20)" :class="flag==20?'active':''"><span>offer模板设置</span></li>
             </ul>
           </li> -->
+
         </ul>
     </div>
   </div>
@@ -168,7 +169,7 @@ export default {
        isShow6:false,
        isShow7:false,
        isShow8:false,
-			 isShow9:false,
+	   isShow9:false,
        before1:true,
        after1:false,
        before2:true,
@@ -523,4 +524,5 @@ export default {
   color: #F95714;
 }
 </style>
+
 
