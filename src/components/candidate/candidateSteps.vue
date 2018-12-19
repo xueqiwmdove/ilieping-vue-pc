@@ -165,6 +165,8 @@
             </div>  
         </div>
       </div>
+      <div class="close_div">
+      </div>
     </div>
          
   </el-dialog>
@@ -339,6 +341,7 @@ const clickoutside = {
             }
             });
         },
+    //   显示弹窗  
         showmodel1() {
           this.conShow=true
         },
@@ -348,8 +351,8 @@ const clickoutside = {
         showmodel3() {
           this.quitdia=true
         },
-       handleClose2() {//点击空白处收起弹窗
-       console.log(333)
+    //点击空白处收起弹窗
+       handleClose2() {
         this.conShow=false
         this.beizhu=false
         this.quitdia=false
@@ -399,15 +402,22 @@ const clickoutside = {
 .modal_open {
     position: fixed;
  }
+ .close_div {
+   	width:1900px;
+    height:1200px;  
+    z-index:10000;
+    position: absolute;
+    left: -415;
+ }
 .cov{
 	width:1900px;
 	height:1200px;
 	background-color:rgba(0, 0, 0, 0.2);
 	z-index:100000;
-  /* display:none; */
-  left: -351px;
-  top: 0;
-	position:absolute;
+    /* display:none; */
+    left: -351px;
+    top: 0;
+	position: relative;;
 	text-align:center;
 	font-size: 16px;
 	box-shadow:0px 0px 5px black;
@@ -419,8 +429,9 @@ const clickoutside = {
 	background-color:white;
 	position:fixed;
 	right:36%;
-	top:30%;
-	position:fixed;
+    top:30%;
+	box-shadow:0px 0px 5px #ddd;
+    
 }
 .ptitle{
 	width:100%;
