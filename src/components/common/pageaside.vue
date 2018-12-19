@@ -132,7 +132,7 @@
             </li> -->
 
 
-        <!--  <li>
+          <!-- <li>
             <div class="link" @click="toggle7">
               <i class="fa fa-globe">
                 <img src="../../assets/img/entryManagement/ic_ruzhiguanli.svg" alt="" class="click-before"  v-if="before7">
@@ -149,7 +149,8 @@
               <li @click="click_offerManage(19)" :class="flag==19?'active':''"><span>offer管理</span></li>
               <li @click="click_setupTemplate(20)" :class="flag==20?'active':''"><span>offer模板设置</span></li>
             </ul>
-          </li>-->
+          </li> -->
+
         </ul>
     </div>
   </div>
@@ -168,7 +169,7 @@ export default {
        isShow6:false,
        isShow7:false,
        isShow8:false,
-			 isShow9:false,
+	   isShow9:false,
        before1:true,
        after1:false,
        before2:true,
@@ -360,7 +361,6 @@ export default {
       let a = window.location.href;
       let b = a.indexOf("#");
       let loginUrl = a.substring(b+2);
-//       console.log(loginUrl)
 			if(loginUrl=='searchbefore'){
     		let that=this;
 				that.isShow1=true;
@@ -524,4 +524,5 @@ export default {
   color: #F95714;
 }
 </style>
+
 

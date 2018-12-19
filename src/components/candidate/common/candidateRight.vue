@@ -19,30 +19,13 @@
       </div>
     </div>
     <!--淘汰弹窗-->
-    <weekOutAlert visableModal.sync="visable.weekOut"></weekOutAlert>
+    <!-- <weekOutAlert visableModal.sync="visable.weekOut"></weekOutAlert> -->
     <!--备注弹窗-->
-    <remarkAlert visableModal.sync="visable.remark"></remarkAlert>
-      <el-dialog title="淘汰候选人" :visible.sync="visableModal" custom-class="recommend">
-            <el-form :model="cerateList"  ref="cerateList" id="re_styles">
-                  <el-form-item label="淘汰原因">
-                        <el-select v-model="cerateList.type" placeholder="请选择淘汰经验">
-                              <el-option label="胜任力" value="0"></el-option>
-                              <el-option label="没有回应" value="1"></el-option>
-                        </el-select>
-                  </el-form-item> 
-                          <el-form-item label="具体淘汰原因（选填）" >
-                               <textarea placeholder="请输入原因"></textarea>
-                          </el-form-item>
-              </el-form>
-              <div slot="footer" class="dialog-footer">
-                      <el-button  type="primary"  style="height:36px;" >保存</el-button>
-              </div>
-      </el-dialog>
+    <!-- <remarkAlert visableModal.sync="visable.remark"></remarkAlert> -->
 
-
-    <button class="button recommend" v-if="flag==1" @click="visableModal=true">推荐给用人部门</button><!--@click="addCandidateShow('recommend')"-->
-    <button class="button weedOut" @click="showmodel('weekOut')" >淘汰</button><!--@click="visable.weekOut==true"-->
-    <button class="button remark" @click="showmodel('remark')">备注</button><!--@click="visable.remark==true"-->
+    <button class="button recommend" v-if="flag==1" @click="showmodel1">推荐给用人部门</button><!--@click="addCandidateShow('recommend')"-->
+    <button class="button weedOut" @click="showmodel3" >淘汰</button><!--@click="visable.weekOut==true"-->
+    <button class="button remark" @click="showmodel2">备注</button><!--@click="visable.remark==true"-->
   </div>
 </template>
 
@@ -64,12 +47,13 @@
             flag:1,
             visable:{
               weekOut:true,
-              remark:true
+              remark:true,
+              recommend:false,
             },
             cerateList:{
               type:'',
             },
-            visableModal:true
+            visableModal:false
           }
         },
       methods:{
@@ -93,9 +77,15 @@
           that.$emit("listento-flag",that.flag)
         },
         //显示弹窗
-        showmodel(param){
-          console.log("hello")
-          this.visable[param] = true;
+        showmodel1(){
+          this.$emit('showmodel1')
+        },
+        showmodel2(){
+          console.log(55555)
+          this.$emit('showmodel2')
+        },
+        showmodel3(){
+          this.$emit('showmodel3')
         },
         //展示候选人弹窗
         addCandidateShow(param){
@@ -108,5 +98,7 @@
 </script>
 
 <style scoped>
-
+ 
 </style>
+
+
