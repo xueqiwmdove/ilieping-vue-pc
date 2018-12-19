@@ -64,10 +64,10 @@
 
     <!-- 弹窗推荐人 -->
         <div v-if="conShow" style="width:100%;" @click="handleClose2">
-            <div  class = "cov"  v-clickoutside="handleClose2">
-                <div class = "con create_dialog">
-                    <p class = "ptitle">推荐给用人部门 <i @click="hideModel2" class="el-icon-close closes_s"></i></p>
-                    <div class="rescs">
+            <div  class = "cov">
+                <div class = "con create_dialog" >
+                    <p class = "ptitle">推荐给用人部门 <i  class="el-icon-close closes_s"></i></p>
+                    <div class="rescs" @click="clickHide">
                         <el-form :model="cerateList"  ref="cerateList" id="re_styles">
                                 <el-form-item label="推荐到" style="text-align:center;" >
                                 <!-- <span style="margin-right:23px;"></span> -->
@@ -124,16 +124,16 @@
         </div >
       <!-- 弹窗备注 -->
         <div v-if="beizhu" style="width:100%;" @click="handleClose2">
-            <div  class = "cov"  v-clickoutside="handleClose2">
+            <div  class = "cov" >
                 <div class = "con create_dialog" style="height:340px;">
-                    <p class = "ptitle">备注 <i @click="hideModel2" class="el-icon-close closes_s"></i></p>
-                    <div class="rescs beires" style="height:220px;">
-                    <el-form>
-                        <el-form :model="cerateList"  ref="cerateList" id="re_styles">
-                            <span class="title_bei">输入对该候选人的备注</span>
-                            <el-input :rows="4" type="textarea" v-model="text" style="width:460px;margin-left:60px;" placeholder="请输入内容"></el-input>
+                    <p class = "ptitle">备注 <i  class="el-icon-close closes_s"></i></p>
+                    <div class="rescs beires"  @click="clickHide2" style="height:220px;">
+                        <el-form>
+                            <el-form :model="cerateList"  ref="cerateList" id="re_styles">
+                                <span class="title_bei">输入对该候选人的备注</span>
+                                <el-input :rows="4" type="textarea" v-model="text" style="width:460px;margin-left:60px;" placeholder="请输入内容"></el-input>
+                            </el-form>
                         </el-form>
-                    </el-form>
                     </div>
                     <div slot="footer" class="dialog-footer">
                             <el-button  type="primary" :class="searchBtnClass2" :disabled="searchDisabled2"   style="height:36px;" >保存</el-button>
@@ -143,10 +143,10 @@
         </div>
       <!-- 弹窗-淘汰候选人 -->
         <div v-if="quitdia" style="width:100%;" @click="handleClose2">
-            <div  class = "cov"  v-clickoutside="handleClose2">
-                <div class = "con create_dialog" style="height:400px;">
-                    <p class = "ptitle">淘汰候选人 <i @click="hideModel2" class="el-icon-close closes_s"></i></p>
-                    <div class="rescs beires" style="height:220px;">
+            <div  class = "cov" >
+                <div class = "con create_dialog"  style="height:400px;">
+                    <p class = "ptitle">淘汰候选人 <i class="el-icon-close closes_s"></i></p>
+                    <div class="rescs beires" @click="clickHide3" style="height:220px;">
                         <el-form :model="cerateList"  ref="cerateList" id="re_styles reset_styless">
                             <span class="title_quit"><i><img src="../../assets/img/zhiwei/cuowu.png" alt=""></i> 此候选人将被归档到人才库，请选择归档原因</span>
                             <el-form-item label="淘汰原因" style="margin-left:31px;" >
@@ -318,8 +318,19 @@ const clickoutside = {
           }, 
       },
       directives: {clickoutside},
-      methods:{
-         
+      methods:{    
+        clickHide(e)  {
+          this.conShow=true
+          e.stopPropagation();//阻止冒泡
+        },
+        clickHide2(e)  {
+          this.beizhu=true
+          e.stopPropagation();//阻止冒泡
+        },
+        clickHide3(e)  {
+          this.quitdia=true
+          e.stopPropagation();//阻止冒泡
+        },
     //获取面试官，负责人列表  
         getEmployeeList() {
             let that = this
@@ -359,6 +370,7 @@ const clickoutside = {
         this.conShow=false
         this.beizhu=false
         this.quitdia=false
+        this.showList=[]
       },
     //选择招聘负责人 
         selectItem(val) {
@@ -387,12 +399,6 @@ const clickoutside = {
           this.conShow=false
           let that=this;
           that.$emit('hideModel','steps');//向父组件派发事件
-        },
-        hideModel2(){
-          this.conShow=false
-          this.beizhu = false
-          this.quitdia =false
-          this.showList=[]
         },
       }
     }
@@ -656,5 +662,11 @@ color: #F95714 ;
 .beires #re_styles .title_quit .el-input__suffix {
   right: 50px !important  ;
 }
+.rescs #reset_styless .el-form-item .el-form-item__content .el-select {
+    display: inline-block;
+    position: relative;
+    left: -22px;
+}
+
 </style>
 
