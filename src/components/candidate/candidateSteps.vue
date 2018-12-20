@@ -5,7 +5,7 @@
     <div class="addMain">
       <div class="personInfo">
         <p class="primary ">
-          <span class="name">张三</span>
+          <span  class="name">张三</span>
           <span class="post">测试工程师.拉钩（主动搜索）</span>
           <span class="tag">内推</span>
         </p>
@@ -63,129 +63,134 @@
       <!--右边-->
 
     <!-- 弹窗推荐人 -->
-       <div v-if="conShow" class = "cov"  v-clickoutside="handleClose2">
-        <div class = "con create_dialog">
-            <p class = "ptitle">推荐给用人部门 <i @click="hideModel2" class="el-icon-close closes_s"></i></p>
-             <div class="rescs">
-                <el-form :model="cerateList"  ref="cerateList" id="re_styles">
-                        <el-form-item label="推荐到" style="text-align:center;" >
-                          <!-- <span style="margin-right:23px;"></span> -->
-                            <div v-if="isflag" class="manage_se">
-                                <ul>
-                                    <li>
-                                        <span class="name_f">{{showList.employeeName?showList.employeeName.substr(0, 1):''}}</span>
-                                        <span style="float:left;">
-                                            <p>{{showList.employeeName}}</p>
-                                            <p>{{showList.deptName}}-{{showList.position}}</p>
-                                        </span>
-                                    </li>
-                                </ul>
-                          </div>
-                        <el-input v-else style="width:280px;height:40px;"  @click.native="ldClick"  v-model="cerateList.name"  placeholder="选择招聘负责人"  class="el-icon-arrow-down"></el-input>
-                                <div v-if="ldVisabled" class="form_tree tree_sty manage_sty " >
-                                    <el-scrollbar style="height:100%" >
-                                        <div style="height:100%">
-                                        <div class="search">
-                                            <el-input  class="input_search" v-model="names" placeholder="输入你想搜索的内容" >
-                                                <i @click="searchName()" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
-                                            </el-input>
-                                        </div>
+        <div v-if="conShow" style="width:100%;" @click="handleClose2">
+            <div  class = "cov">
+                <div class = "con create_dialog" >
+                    <p class = "ptitle">推荐给用人部门 <i  class="el-icon-close closes_s"></i></p>
+                    <div class="rescs" @click="clickHide">
+                        <el-form :model="cerateList"  ref="cerateList" id="re_styles">
+                                <el-form-item label="推荐到" style="text-align:center;" >
+                                <!-- <span style="margin-right:23px;"></span> -->
+                                    <div v-if="isflag" class="manage_se">
                                         <ul>
-                                            <li @click="selectItem(item)" v-for="(item,index) in employeeList" :key='index'>
-                                                <span class="name_f">{{item.employeeName.substr(0, 1)}}</span>
+                                            <li>
+                                                <span class="name_f">{{showList.employeeName?showList.employeeName.substr(0, 1):''}}</span>
                                                 <span style="float:left;">
-                                                    <p>{{item.employeeName}}</p>
-                                                    <p>{{item.deptName}}-{{item.position}}</p>
+                                                    <p>{{showList.employeeName}}</p>
+                                                    <p>{{showList.deptName}}-{{showList.position}}</p>
                                                 </span>
                                             </li>
                                         </ul>
-                                        </div>
-                                    </el-scrollbar>
                                 </div>
-                        </el-form-item>
-                        <el-form-item label="推荐理由">
-                            <el-input :rows="3" type="textarea" style="width:280px;margin-left:20px;" placeholder="请输入推荐理由（如名校经历等）"></el-input>
-                        </el-form-item>
-                        <el-form-item label="使用简历" >
-                          <!-- <span style="margin-right:23px;">使用简历</span> -->
-                            <el-radio-group v-model="type">
-                                <el-radio-button label="0" >原始简历</el-radio-button>
-                                <el-radio-button label="1">标准简历</el-radio-button>
-                            </el-radio-group>
-                        </el-form-item>
-              </el-form>
-             </div>
-            <div slot="footer" class="dialog-footer">
-                    <el-button  type="primary" :class="searchBtnClass1" :disabled="searchDisabled1"   style="height:36px;" >保存</el-button>
+                                <el-input v-else style="width:280px;height:40px;"  @click.native="ldClick"  v-model="cerateList.name"  placeholder="选择招聘负责人"  class="el-icon-arrow-down"></el-input>
+                                        <div v-if="ldVisabled" class="form_tree tree_sty manage_sty " >
+                                            <el-scrollbar style="height:100%" >
+                                                <div style="height:100%">
+                                                <div class="search">
+                                                    <el-input  class="input_search" v-model="names" placeholder="输入你想搜索的内容" >
+                                                        <i @click="searchName()" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
+                                                    </el-input>
+                                                </div>
+                                                <ul>
+                                                    <li @click="selectItem(item)" v-for="(item,index) in employeeList" :key='index'>
+                                                        <span class="name_f">{{item.employeeName.substr(0, 1)}}</span>
+                                                        <span style="float:left;">
+                                                            <p>{{item.employeeName}}</p>
+                                                            <p>{{item.deptName}}-{{item.position}}</p>
+                                                        </span>
+                                                    </li>
+                                                </ul>
+                                                </div>
+                                            </el-scrollbar>
+                                        </div>
+                                </el-form-item>
+                                <el-form-item label="推荐理由">
+                                    <el-input :rows="3" type="textarea" style="width:280px;margin-left:20px;" placeholder="请输入推荐理由（如名校经历等）"></el-input>
+                                </el-form-item>
+                                <el-form-item label="使用简历" >
+                                <!-- <span style="margin-right:23px;">使用简历</span> -->
+                                    <el-radio-group v-model="type">
+                                        <el-radio-button label="0" >原始简历</el-radio-button>
+                                        <el-radio-button label="1">标准简历</el-radio-button>
+                                    </el-radio-group>
+                                </el-form-item>
+                    </el-form>
+                    </div>
+                    <div slot="footer" class="dialog-footer">
+                            <el-button  type="primary" :class="searchBtnClass1" :disabled="searchDisabled1"   style="height:36px;" >保存</el-button>
+                    </div>
+                </div>
             </div>
-        </div>
-      </div>
+        </div >
       <!-- 弹窗备注 -->
-      <div v-if="beizhu" class = "cov"  v-clickoutside="handleClose2">
-        <div class = "con create_dialog" style="height:340px;">
-            <p class = "ptitle">备注 <i @click="hideModel2" class="el-icon-close closes_s"></i></p>
-             <div class="rescs beires" style="height:220px;">
-               <el-form>
-                  <el-form :model="cerateList"  ref="cerateList" id="re_styles">
-                    <span class="title_bei">输入对该候选人的备注</span>
-                     <el-input :rows="4" type="textarea" v-model="text" style="width:460px;margin-left:60px;" placeholder="请输入内容"></el-input>
-                </el-form>
-               </el-form>
-             </div>
-            <div slot="footer" class="dialog-footer">
-                    <el-button  type="primary" :class="searchBtnClass2" :disabled="searchDisabled2"   style="height:36px;" >保存</el-button>
+        <div v-if="beizhu" style="width:100%;" @click="handleClose2">
+            <div  class = "cov" >
+                <div class = "con create_dialog" style="height:340px;">
+                    <p class = "ptitle">备注 <i  class="el-icon-close closes_s"></i></p>
+                    <div class="rescs beires"  @click="clickHide2" style="height:220px;">
+                        <el-form>
+                            <el-form :model="cerateList"  ref="cerateList" id="re_styles">
+                                <span class="title_bei">输入对该候选人的备注</span>
+                                <el-input :rows="4" type="textarea" v-model="text" style="width:460px;margin-left:60px;" placeholder="请输入内容"></el-input>
+                            </el-form>
+                        </el-form>
+                    </div>
+                    <div slot="footer" class="dialog-footer">
+                            <el-button  type="primary" :class="searchBtnClass2" :disabled="searchDisabled2"   style="height:36px;" >保存</el-button>
+                    </div>
+                </div>
             </div>
         </div>
-      </div>
-
       <!-- 弹窗-淘汰候选人 -->
-       <div v-if="quitdia" class = "cov"  v-clickoutside="handleClose2">
-        <div class = "con create_dialog" style="height:400px;">
-            <p class = "ptitle">淘汰候选人 <i @click="hideModel2" class="el-icon-close closes_s"></i></p>
-             <div class="rescs beires" style="height:220px;">
-                <el-form :model="cerateList"  ref="cerateList" id="re_styles reset_styless">
-                    <span class="title_quit"><i><img src="../../assets/img/zhiwei/cuowu.png" alt=""></i> 此候选人将被归档到人才库，请选择归档原因</span>
-                     <el-form-item label="淘汰原因" style="margin-left:31px;" >
-                          <el-select style="width:280px;height:40px;" v-model="text" placeholder="请选择工作经验">
-                              <el-option label="胜任力不足" value="0"></el-option>
-                              <el-option label="没有回应" value="1"></el-option>
-                              <el-option label="淘汰" value="2"></el-option>
-                              <el-option label="与公司文化不符合" value="2"></el-option>
-                              <el-option label="福利待遇不匹配" value="2"></el-option>
-                              <el-option label="待定" value="2"></el-option>
-                          </el-select>
-                     </el-form-item>
-                     <el-form-item label="具体原因(选填)" >
-                        <el-input :rows="4" type="textarea" v-model="text" style="width:280px;margin-left:-4px;" placeholder="请输入内容"></el-input>
-                     </el-form-item>
-               </el-form>
-             </div>
-            <div slot="footer" class="dialog-footer">
-                 <el-button  type="primary" :class="searchBtnClass3" :disabled="searchDisabled3"   style="height:36px;" >保存</el-button>
+        <div v-if="quitdia" style="width:100%;" @click="handleClose2">
+            <div  class = "cov" >
+                <div class = "con create_dialog"  style="height:400px;">
+                    <p class = "ptitle">淘汰候选人 <i class="el-icon-close closes_s"></i></p>
+                    <div class="rescs beires" @click="clickHide3" style="height:220px;">
+                        <el-form :model="cerateList"  ref="cerateList" id="re_styles reset_styless">
+                            <span class="title_quit"><i><img src="../../assets/img/zhiwei/cuowu.png" alt=""></i> 此候选人将被归档到人才库，请选择归档原因</span>
+                            <el-form-item label="淘汰原因" style="margin-left:31px;" >
+                                <el-select style="width:280px;height:40px;" v-model="text" placeholder="请选择工作经验">
+                                    <el-option label="胜任力不足" value="0"></el-option>
+                                    <el-option label="没有回应" value="1"></el-option>
+                                    <el-option label="淘汰" value="2"></el-option>
+                                    <el-option label="与公司文化不符合" value="2"></el-option>
+                                    <el-option label="福利待遇不匹配" value="2"></el-option>
+                                    <el-option label="待定" value="2"></el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="具体原因(选填)" >
+                                <el-input :rows="4" type="textarea" v-model="text" style="width:280px;margin-left:-4px;" placeholder="请输入内容"></el-input>
+                            </el-form-item>
+                    </el-form>
+                    </div>
+                    <div slot="footer" class="dialog-footer">
+                        <el-button  type="primary" :class="searchBtnClass3" :disabled="searchDisabled3"   style="height:36px;" >保存</el-button>
+                    </div>
+                </div>
             </div>
         </div>
-      </div>
 
       <!--取消面试弹窗-->
-     <!-- <div class = "cov"  v-clickoutside="handleClose2">
-        <div class = "con create_dialog" style="height:340px;">
-          <p class = "ptitle">取消面试 <i @click="hideModel2" class="el-icon-close closes_s"></i></p>
-          <div class="rescs beires" style="height:220px;">
-            <el-form>
-              <el-form :model="cerateList"  ref="cerateList" id="re_styles">
-                <span class="title_bei">请填写取消面试原因</span>
-                <el-input :rows="4" type="textarea" v-model="text" style="width:460px;margin-left:60px;" placeholder="请输入内容"></el-input>
-              </el-form>
-            </el-form>
-          </div>
-          <div slot="footer" class="dialog-footer">
-            <el-button  type="primary"    style="height:36px;" >保存</el-button>
-          </div>
-        </div>
-      </div>-->
+      <!-- <div class = "cov"  v-clickoutside="handleClose2">
+         <div class = "con create_dialog" style="height:340px;">
+           <p class = "ptitle">取消面试 <i @click="hideModel2" class="el-icon-close closes_s"></i></p>
+           <div class="rescs beires" style="height:220px;">
+             <el-form>
+               <el-form :model="cerateList"  ref="cerateList" id="re_styles">
+                 <span class="title_bei">请填写取消面试原因</span>
+                 <el-input :rows="4" type="textarea" v-model="text" style="width:460px;margin-left:60px;" placeholder="请输入内容"></el-input>
+               </el-form>
+             </el-form>
+           </div>
+           <div slot="footer" class="dialog-footer">
+             <el-button  type="primary"    style="height:36px;" >保存</el-button>
+           </div>
+         </div>
+       </div>-->
+
 
     </div>
-
   </el-dialog>
 </template>
 
@@ -200,7 +205,7 @@
   import remarkForth from '@/components/candidate/common/remarkForth';
   import accessoryFifth from '@/components/candidate/common/accessoryFifth'
   import opsRecordSeventh from '@/components/candidate/common/opsRecordSeventh'
-  // import addreviews from '@/components/candidate/commons/addreviews';//段
+  // import addreviews from '@/components/candidate/commons/addreviews';
   // import weekOutAlert from '@/components/candidate/common/weekOutAlert'
   // import remarkAlert from '@/commponents/candidate/common/remarkAlert'
 
@@ -265,9 +270,9 @@ const clickoutside = {
                 region:'',
                 name:''
             },
-            //   cerateList:{
-            //   type:'',
-            // },
+              cerateList:{
+              type:'',
+            },
           }
       },
       computed:{
@@ -334,6 +339,18 @@ const clickoutside = {
       },
       directives: {clickoutside},
       methods:{
+        clickHide(e)  {
+          this.conShow=true
+          e.stopPropagation();//阻止冒泡
+        },
+        clickHide2(e)  {
+          this.beizhu=true
+          e.stopPropagation();//阻止冒泡
+        },
+        clickHide3(e)  {
+          this.quitdia=true
+          e.stopPropagation();//阻止冒泡
+        },
     //获取面试官，负责人列表
         getEmployeeList() {
             let that = this
@@ -358,6 +375,7 @@ const clickoutside = {
             }
             });
         },
+    //   显示弹窗
         showmodel1() {
           this.conShow=true
         },
@@ -367,11 +385,12 @@ const clickoutside = {
         showmodel3() {
           this.quitdia=true
         },
-       handleClose2() {//点击空白处收起弹窗
-       console.log(333)
+    //点击空白处收起弹窗
+       handleClose2() {
         this.conShow=false
         this.beizhu=false
         this.quitdia=false
+        this.showList=[]
       },
     //选择招聘负责人
         selectItem(val) {
@@ -411,7 +430,7 @@ const clickoutside = {
     }
 </script>
 
-<style scoped>
+<style  scoped>
 .candidate_content {
   height: 765px;
 }
@@ -423,10 +442,10 @@ const clickoutside = {
 	height:1200px;
 	background-color:rgba(0, 0, 0, 0.2);
 	z-index:100000;
-  /* display:none; */
-  left: -351px;
-  top: 0;
-	position:absolute;
+    /* display:none; */
+    left: 0px;
+    top: 0;
+	position: fixed;;
 	text-align:center;
 	font-size: 16px;
 	box-shadow:0px 0px 5px black;
@@ -438,8 +457,9 @@ const clickoutside = {
 	background-color:white;
 	position:fixed;
 	right:36%;
-	top:30%;
-	position:fixed;
+    top:30%;
+	box-shadow:0px 0px 5px #ddd;
+
 }
 .ptitle{
 	width:100%;
@@ -668,5 +688,11 @@ color: #F95714 ;
 .beires #re_styles .title_quit .el-input__suffix {
   right: 50px !important  ;
 }
+.rescs #reset_styless .el-form-item .el-form-item__content .el-select {
+    display: inline-block;
+    position: relative;
+    left: -22px;
+}
+
 </style>
 
