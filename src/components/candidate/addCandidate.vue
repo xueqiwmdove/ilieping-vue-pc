@@ -1,383 +1,401 @@
 <template>
   <!--添加候选人弹窗-->
-  <el-dialog title="添加候选人" :visible="addVisible"  :custom-class='["addCandidateAlert",flag=="2"?"addCandidateAlert_add":""]' :before-close="hideModel">
-    <img src="../../assets/img/candidate/tanchuang_ic_save.png" class="save">
-    <div class="addMain">
-      <!--标准简历才有-->
-      <!--<standardBasic v-if="flag==2"></standardBasic>-->
+  <div>
+    <el-dialog title="添加候选人" :visible="addVisible"  :custom-class='["addCandidateAlert",flag=="2"?"addCandidateAlert_add":""]' :before-close="hideModel">
+      <img src="../../assets/img/candidate/tanchuang_ic_save.png" class="save">
+      <div class="addMain">
+        <!--标准简历才有-->
+        <!--<standardBasic v-if="flag==2"></standardBasic>-->
 
-      <!--<addCandidate_content @my-event="getMyEvent"></addCandidate_content>-->
-      <!--父组件中通过监测my-event事件执行一个方法，然后取到子组件中传递过来的值-->
-      <!--<addCandidate_right></addCandidate_right>-->
+        <!--<addCandidate_content @my-event="getMyEvent"></addCandidate_content>-->
+        <!--父组件中通过监测my-event事件执行一个方法，然后取到子组件中传递过来的值-->
+        <!--<addCandidate_right></addCandidate_right>-->
 
-      <!--标准简历才有-->
-      <div class="standard_required" v-if="flag==2">
-        <div class="basic">
-          <div class="inputBox">
-            <img src="../../assets/img/candidate/tanchuang_ic_name.png" alt="">
-            <el-input v-model="name" placeholder="请输入候选人姓名"></el-input>
-          </div>
-          <div class="inputBox">
-            <img src="../../assets/img/candidate/tanchuang_ic_jobs.png" alt="">
-            <el-select v-model="post1" placeholder="选择岗位">
-              <el-option v-for="item in post1Data" :key="item.value" :label="item.label" :value="item.value"></el-option>
-            </el-select>
-          </div>
-          <div class="inputBox">
-            <img src="../../assets/img/candidate/tanchuang_ic_channel.png" alt="">
-            <el-select v-model="channels" placeholder="面试渠道">
-              <el-option v-for="item in channelsData" :key="item.value" :label="item.label" :value="item.value"></el-option>
-            </el-select>
-          </div>
-          <div class="inputBox">
-            <img src="../../assets/img/candidate/tanchuang_ic_source.png" alt="">
-            <el-select v-model="resoure" placeholder="选择来源">
-              <el-option v-for="item in resoureData" :key="item.value" :label="item.label" :value="item.value"></el-option>
-            </el-select>
-          </div>
+        <!--标准简历才有-->
+        <div class="standard_required" v-if="flag==2">
+          <div class="basic">
+            <div class="inputBox">
+              <img src="../../assets/img/candidate/tanchuang_ic_name.png" alt="">
+              <el-input v-model="name" placeholder="请输入候选人姓名"></el-input>
+            </div>
+            <div class="inputBox">
+              <img src="../../assets/img/candidate/tanchuang_ic_jobs.png" alt="">
+              <el-select v-model="post1" placeholder="选择岗位">
+                <el-option v-for="item in post1Data" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              </el-select>
+            </div>
+            <div class="inputBox">
+              <img src="../../assets/img/candidate/tanchuang_ic_channel.png" alt="">
+              <el-select v-model="channels" placeholder="面试渠道">
+                <el-option v-for="item in channelsData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              </el-select>
+            </div>
+            <div class="inputBox">
+              <img src="../../assets/img/candidate/tanchuang_ic_source.png" alt="">
+              <el-select v-model="resoure" placeholder="选择来源">
+                <el-option v-for="item in resoureData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              </el-select>
+            </div>
 
-          <div class="inputBox">
-            <img src="../../assets/img/candidate/tanchuang_ic_gender.png" alt="">
-            <el-select v-model="sex" placeholder="请选择候选人性别">
-              <el-option v-for="item in sexData" :key="item.value" :label="item.label" :value="item.value"></el-option>
-            </el-select>
-          </div>
-          <div class="inputBox">
-            <img src="../../assets/img/candidate/tanchuang_ic_age.png" alt="">
-            <el-input v-model="age" placeholder="请输入年龄"></el-input>
-          </div>
-          <div class="inputBox">
-            <img src="../../assets/img/candidate/tanchuang_ic_phnnenumber.png" alt="">
-            <el-input v-model="phone" placeholder="请输入手机号"></el-input>
-          </div>
-          <div class="inputBox">
-            <img src="../../assets/img/candidate/tanchuang_ic_email.png" alt="">
-            <el-input v-model="email" placeholder="请输入邮箱号码"></el-input>
-          </div>
-          <div class="inputBox">
-            <img src="../../assets/img/candidate/tanchuang_ic_exp.png" alt="">
-            <el-select v-model="experience" placeholder="请选择工作经验">
-              <el-option v-for="item in experienceData" :key="item.value" :label="item.label" :value="item.value"></el-option>
-            </el-select>
-          </div>
-          <div class="inputBox">
-            <img src="../../assets/img/candidate/tanchuang_ic_exp.png" alt="">
-            <el-select v-model="education1" placeholder="请选择学历">
-              <el-option v-for="item in educationData" :key="item.value" :label="item.label" :value="item.value"></el-option>
-            </el-select>
-          </div>
-          <div class="inputBox">
-            <img src="../../assets/img/candidate/tanchuang_ic_place.png" alt="">
-            <el-input v-model="address" placeholder="所在地"></el-input>
-            <!--<el-select v-model="address" placeholder="所在地">
-              <el-option v-for="item in addressData" :key="item.value" :label="item.label" :value="item.value"></el-option>
-            </el-select>-->
-          </div>
-        </div>
-      </div>
-
-      <div class="addCandidate_content">
-
-        <div :class="flag==2?'standard_status_active':''">
-          <ul class="tab_title">
-            <li @click="changeTab(1)" :class="flag==1?'active':''">原始简历</li>
-            <li @click="changeTab(2)" :class="flag==2?'active':''">标准简历</li>
-            <li class="button">
-              <img src="../../assets/img/candidate/tanchuang_ic_download.png" class="upload">
-              <img src="../../assets/img/candidate/tanchuang_ic_print.png" class="print">
-            </li>
-          </ul>
-          <div class="headImg" v-if="flag==2">
-            <!--<fileUploadHeadImg @getfile="getHeadImg" ref="headImg" ></fileUploadHeadImg>-->
-            <img src="../../assets/img/candidate/tanchuang_ic_head.png" >
-            <input  type="file" accept="image/*"  @change="uploadPhoto($event)"/>
-            <p class="el-upload__tip">点击头像可上传照片，支持JPG/PNG等图片格式，最大不超过2M</p>
+            <div class="inputBox">
+              <img src="../../assets/img/candidate/tanchuang_ic_gender.png" alt="">
+              <el-select v-model="sex" placeholder="请选择候选人性别">
+                <el-option v-for="item in sexData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              </el-select>
+            </div>
+            <div class="inputBox">
+              <img src="../../assets/img/candidate/tanchuang_ic_age.png" alt="">
+              <el-input v-model="age" placeholder="请输入年龄"></el-input>
+            </div>
+            <div class="inputBox">
+              <img src="../../assets/img/candidate/tanchuang_ic_phnnenumber.png" alt="">
+              <el-input v-model="phone" placeholder="请输入手机号"></el-input>
+            </div>
+            <div class="inputBox">
+              <img src="../../assets/img/candidate/tanchuang_ic_email.png" alt="">
+              <el-input v-model="email" placeholder="请输入邮箱号码"></el-input>
+            </div>
+            <div class="inputBox">
+              <img src="../../assets/img/candidate/tanchuang_ic_exp.png" alt="">
+              <el-select v-model="experience" placeholder="请选择工作经验">
+                <el-option v-for="item in experienceData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              </el-select>
+            </div>
+            <div class="inputBox">
+              <img src="../../assets/img/candidate/tanchuang_ic_exp.png" alt="">
+              <el-select v-model="education1" placeholder="请选择学历">
+                <el-option v-for="item in educationData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              </el-select>
+            </div>
+            <div class="inputBox">
+              <img src="../../assets/img/candidate/tanchuang_ic_place.png" alt="">
+              <el-input v-model="address" placeholder="所在地"></el-input>
+              <!--<el-select v-model="address" placeholder="所在地">
+                <el-option v-for="item in addressData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              </el-select>-->
+            </div>
           </div>
         </div>
-        <!--原始简历-->
-        <div v-if="flag==1" class="original_resume">
-          <label style="margin: 0 0 0 20px">请先选择简历来源 <i style="color:#f95714">*</i></label>
-          <el-select v-model="resumeType" placeholder="请选择"  >
-            <el-option
-              v-for="item in resumeTypeData"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            >
-            </el-option>
-          </el-select>
-          <el-upload
-            class="upload-demo"
-            drag
-            ref="upload"
-            :before-upload="beforeAvatarUpload"
-            :action="uploadUrl()"
-            :headers="myHeader"
-            multiple>
-            <i class="el-icon-upload">
-              <img src="../../assets/img/candidate/tanchuang_pic_upload.png" alt="">
-            </i>
-            <p class="el-upload__text">将建立拖至此处自动上传或<em>选择文件上传</em></p>
-            <p class="el-upload__text">目前暂时支持WORD简历格式</p><!--支持PDF/TXT/WORD/WPS等简历格式-->
-          </el-upload>
-        </div>
-        <!--标准简历-->
-        <div v-if="flag==2" class="standard_resume">
-          <el-row>
-            <el-col  :span="24">
-              <el-form>
-                <p class="headLine">个人信息</p>
-                <div class="personInfo">
-                  <el-row :gutter="80">
-                    <el-col :lg="8" :md="8" :sm="8">
-                      <el-form-item label="工作城市">
-                        <el-input v-model="workAddress" placeholder="请输入工作城市"></el-input>
-                      </el-form-item>
-                    </el-col>
-                    <el-col :lg="8" :md="8" :sm="8">
-                      <el-form-item label="籍贯">
-                        <el-select v-model="province" placeholder="请选择省市">
-                          <el-option v-for="item in provinceData" :key="item.value" :label="item.label" :value="item.value"></el-option>
-                        </el-select>
-                      </el-form-item>
-                    </el-col>
 
-                    <el-col :lg="8" :md="8" :sm="8">
-                      <el-form-item label="所在行业">
-                        <el-input v-model="industry" placeholder="请输入所在行业"></el-input>
-                      </el-form-item>
-                    </el-col>
-                  </el-row>
+        <div class="addCandidate_content">
 
-                  <el-row :gutter="80">
-                    <el-col :lg="8" :md="8" :sm="8">
-                      <el-form-item label="期望行业">
-                        <el-input v-model="expected_industry" placeholder="请输入期望行业"></el-input>
-                      </el-form-item>
-                    </el-col>
-                    <el-col :lg="8" :md="8" :sm="8">
-                      <el-form-item label="到岗时间">
-                        <el-input v-model="arrival_time " placeholder="请选择到岗时间"></el-input>
-                      </el-form-item>
-                    </el-col>
-
-                    <el-col :lg="8" :md="8" :sm="8">
-                      <el-form-item label="是否有亲友在本公司工作">
-                        <el-select v-model="isHave" placeholder="请选择">
-                          <el-option v-for="item in isHaveData" :key="item.value" :label="item.label" :value="item.value"></el-option>
-                        </el-select>
-                      </el-form-item>
-                    </el-col>
-                  </el-row>
-
-                  <el-row :gutter="80">
-                    <el-col :lg="8" :md="8" :sm="8">
-                      <el-form-item label="期望薪资">
-                        <div>
-                          <el-row>
-                            <el-col >
-                              <el-input v-model="salary_start" class="salary_start"></el-input>
-                            </el-col>
-                            <el-col class="line" :span="2" style="color:#E5E5E5;">-</el-col>
-                            <el-col>
-                              <el-input v-model="salary_end" class="salary_end"></el-input>
-                            </el-col>
-                          </el-row>
-                        </div>
-
-
-                      </el-form-item>
-                    </el-col>
-                    <el-col :lg="16" :md="16" :sm="16">
-                      <el-form-item label="技能">
-                        <el-input v-model="skill" placeholder="请输入技能（例如英语/计算机语言等）"></el-input>
-                      </el-form-item>
-                    </el-col>
-                  </el-row>
-
-                  <el-row>
-                    <el-col :lg="24" :md="24" :sm="24">
-                      <el-form-item label="兴趣爱好">
-                        <el-input type="textarea" v-model="hobby" placeholder="请输入兴趣爱好"></el-input>
-                      </el-form-item>
-                    </el-col>
-                  </el-row>
-                </div>
-
-                <div v-for="(item,index) in candidateWorkExperienceDTOList" :key="index">
-                  <p class="headLine" v-show="candidateWorkExperienceDTOList.length<2">工作经历</p>
-                  <p class="headLine" v-show="candidateWorkExperienceDTOList.length>1">工作经历{{index+1}}</p>
-                  <div class="addButton" @click="addWorkDomain" v-show="index==0">
-                    添加 <img src="../../assets/img/candidate/tanchuang_ic_add.png" alt="">
-                  </div>
-                  <div class="addButton" @click="removeWorkDomain" v-show="candidateWorkExperienceDTOList.length>1 && index>0">
-                    刪除 <img src="../../assets/img/candidate/tanchuang_ic_remove.png" alt="">
-                  </div>
-                  <div class="clearfix"></div>
-
-                  <div class="work" >
+          <div :class="flag==2?'standard_status_active':''">
+            <ul class="tab_title">
+              <li @click="changeTab(1)" :class="flag==1?'active':''">原始简历</li>
+              <li @click="changeTab(2)" :class="flag==2?'active':''">标准简历</li>
+              <li class="button">
+                <img src="../../assets/img/candidate/tanchuang_ic_download.png" class="upload">
+                <img src="../../assets/img/candidate/tanchuang_ic_print.png" class="print">
+              </li>
+            </ul>
+            <div class="headImg" v-if="flag==2">
+              <!--<fileUploadHeadImg @getfile="getHeadImg" ref="headImg" ></fileUploadHeadImg>-->
+              <img src="../../assets/img/candidate/tanchuang_ic_head.png" >
+              <input  type="file" accept="image/*"  @change="uploadPhoto($event)"/>
+              <p class="el-upload__tip">点击头像可上传照片，支持JPG/PNG等图片格式，最大不超过2M</p>
+            </div>
+          </div>
+          <!--原始简历-->
+          <div v-if="flag==1" class="original_resume">
+            <label style="margin: 0 0 0 20px">请先选择简历来源 <i style="color:#f95714">*</i></label>
+            <el-select v-model="resumeType" placeholder="请选择"  >
+              <el-option
+                v-for="item in resumeTypeData"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
+            <el-upload
+              class="upload-demo"
+              drag
+              ref="upload"
+              :before-upload="beforeAvatarUpload"
+              :action="uploadUrl()"
+              :headers="myHeader"
+              multiple>
+              <i class="el-icon-upload">
+                <img src="../../assets/img/candidate/tanchuang_pic_upload.png" alt="">
+              </i>
+              <p class="el-upload__text">将建立拖至此处自动上传或<em>选择文件上传</em></p>
+              <p class="el-upload__text">目前暂时支持WORD简历格式</p><!--支持PDF/TXT/WORD/WPS等简历格式-->
+            </el-upload>
+          </div>
+          <!--标准简历-->
+          <div v-if="flag==2" class="standard_resume">
+            <el-row>
+              <el-col  :span="24">
+                <el-form>
+                  <p class="headLine">个人信息</p>
+                  <div class="personInfo">
                     <el-row :gutter="80">
                       <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="任职时间">
-                          <el-date-picker
-                            v-model="item.startTime"
-                            type="daterange"
-                            range-separator=""
-                            start-placeholder="请选择任职起止时间"
-                            value-format="yyyy-MM-dd"
-                            end-placeholder="">
-                          </el-date-picker>
+                        <el-form-item label="工作城市">
+                          <el-input v-model="workAddress" placeholder="请输入工作城市"></el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="公司名称">
-                          <el-input v-model="item.companyName" placeholder="请输入就职公司名称"></el-input>
-                        </el-form-item>
-                      </el-col>
-
-                      <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="岗位">
-                          <el-input v-model="item.post" placeholder="请输入任职的岗位"></el-input>
-                        </el-form-item>
-                      </el-col>
-                    </el-row>
-
-                    <el-row :gutter="80">
-                      <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="薪资">
-                          <el-input v-model="item.salary" placeholder="请输入薪资"></el-input>
-                        </el-form-item>
-                      </el-col>
-                      <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="证明人">
-                          <el-input v-model="item.reterence " placeholder="请输入证明人姓名"></el-input><!--certifier-->
-                        </el-form-item>
-                      </el-col>
-                      <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="证明人联系方式">
-                          <el-input v-model="item.reterenceContact" placeholder="请输入证明人的联系方式"></el-input><!--certifier_phone-->
-                        </el-form-item>
-                      </el-col>
-                    </el-row>
-
-                    <el-row>
-                      <el-col :lg="24" :md="24" :sm="24">
-                        <el-form-item label="工作内容">
-                          <el-input type="textarea" v-model="item.workContent" placeholder="请输入工作内容"></el-input>
-                        </el-form-item>
-                      </el-col>
-                    </el-row>
-                    <el-row>
-                      <el-col :lg="24" :md="24" :sm="24">
-                        <el-form-item label="离职原因">
-                          <el-input type="textarea" v-model="item.dimissionReason" placeholder="请输入离职原因"></el-input><!--leaveReason-->
-                        </el-form-item>
-                      </el-col>
-                    </el-row>
-                  </div>
-                </div>
-
-                <div v-for="(item,index) in candidateEducationExperienceDTOList" :key="index">
-                  <p class="headLine" v-show="candidateEducationExperienceDTOList.length<2">教育经历</p>
-                  <p class="headLine" v-show="candidateEducationExperienceDTOList.length>1">教育经历{{index+1}}</p>
-                  <div class="addButton" @click="addEducationDomain" v-show="index==0">
-                    添加 <img src="../../assets/img/candidate/tanchuang_ic_add.png" alt="">
-                  </div>
-                  <div class="addButton" @click="removeEducationDomain" v-show="candidateEducationExperienceDTOList.length>1 && index>0">
-                    删除 <img src="../../assets/img/candidate/tanchuang_ic_remove.png" alt="">
-                  </div>
-                  <div class="clearfix"></div>
-                  <div class="education">
-                    <el-row :gutter="80">
-                      <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="就读时间"><!--studyTime-->
-                          <el-date-picker
-                            v-model="item.startTime"
-                            type="daterange"
-                            range-separator=""
-                            start-placeholder="就读时间"
-                            value-format="yyyy-MM-dd"
-                            end-placeholder="">
-                          </el-date-picker>
-                        </el-form-item>
-                      </el-col>
-                      <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="学校名称">
-                          <el-input v-model="item.schoolName" placeholder="请输入就读学校名称"></el-input>
-                        </el-form-item>
-                      </el-col>
-
-                      <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="专业">
-                          <el-input v-model="item.major" placeholder="请输入所学的专业"></el-input><!--specialty-->
-                        </el-form-item>
-                      </el-col>
-                    </el-row>
-
-                    <el-row :gutter="80">
-                      <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="学历">
-                          <el-select v-model="item.qualification" placeholder="请选择学历"><!--education-->
-                            <el-option v-for="item in educationData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                        <el-form-item label="籍贯">
+                          <el-select v-model="province" placeholder="请选择省市">
+                            <el-option v-for="item in provinceData" :key="item.value" :label="item.label" :value="item.value"></el-option>
                           </el-select>
                         </el-form-item>
                       </el-col>
+
                       <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="学位">
-                          <el-input v-model="item.degree " placeholder="请输入您的学位"></el-input>
+                        <el-form-item label="所在行业">
+                          <el-input v-model="industry" placeholder="请输入所在行业"></el-input>
+                        </el-form-item>
+                      </el-col>
+                    </el-row>
+
+                    <el-row :gutter="80">
+                      <el-col :lg="8" :md="8" :sm="8">
+                        <el-form-item label="期望行业">
+                          <el-input v-model="expected_industry" placeholder="请输入期望行业"></el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="是否全日制">
-                          <el-select v-model="item.isFullTime" placeholder="请选择是否全日制">
-                            <el-option v-for="item in isFullTimeData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                        <el-form-item label="到岗时间">
+                          <el-input v-model="arrival_time " placeholder="请选择到岗时间"></el-input>
+                        </el-form-item>
+                      </el-col>
+
+                      <el-col :lg="8" :md="8" :sm="8">
+                        <el-form-item label="是否有亲友在本公司工作">
+                          <el-select v-model="isHave" placeholder="请选择">
+                            <el-option v-for="item in isHaveData" :key="item.value" :label="item.label" :value="item.value"></el-option>
                           </el-select>
                         </el-form-item>
                       </el-col>
                     </el-row>
 
+                    <el-row :gutter="80">
+                      <el-col :lg="8" :md="8" :sm="8">
+                        <el-form-item label="期望薪资">
+                          <div>
+                            <el-row>
+                              <el-col >
+                                <el-input v-model="salary_start" class="salary_start"></el-input>
+                              </el-col>
+                              <el-col class="line" :span="2" style="color:#E5E5E5;">-</el-col>
+                              <el-col>
+                                <el-input v-model="salary_end" class="salary_end"></el-input>
+                              </el-col>
+                            </el-row>
+                          </div>
+
+
+                        </el-form-item>
+                      </el-col>
+                      <el-col :lg="16" :md="16" :sm="16">
+                        <el-form-item label="技能">
+                          <el-input v-model="skill" placeholder="请输入技能（例如英语/计算机语言等）"></el-input>
+                        </el-form-item>
+                      </el-col>
+                    </el-row>
+
                     <el-row>
                       <el-col :lg="24" :md="24" :sm="24">
-                        <el-form-item label="其他">
-                          <el-input type="textarea" v-model="item.other" placeholder="其他说明"></el-input>
+                        <el-form-item label="兴趣爱好">
+                          <el-input type="textarea" v-model="hobby" placeholder="请输入兴趣爱好"></el-input>
                         </el-form-item>
                       </el-col>
                     </el-row>
                   </div>
-                </div>
 
-                  <p class="headLine">自我描述</p>
-                  <div class="self-description">
-                    <el-row>
-                      <el-col :lg="24" :md="24" :sm="24">
-                        <el-form-item label="自我描述">
-                          <el-input type="textarea" v-model="self_description" placeholder="候选简介"></el-input>
-                        </el-form-item>
-                      </el-col>
-                    </el-row>
+                  <div v-for="(item,index) in candidateWorkExperienceDTOList" :key="index">
+                    <p class="headLine" v-show="candidateWorkExperienceDTOList.length<2">工作经历</p>
+                    <p class="headLine" v-show="candidateWorkExperienceDTOList.length>1">工作经历{{index+1}}</p>
+                    <div class="addButton" @click="addWorkDomain" v-show="index==0">
+                      添加 <img src="../../assets/img/candidate/tanchuang_ic_add.png" alt="">
+                    </div>
+                    <div class="addButton" @click="removeWorkDomain" v-show="candidateWorkExperienceDTOList.length>1 && index>0">
+                      刪除 <img src="../../assets/img/candidate/tanchuang_ic_remove.png" alt="">
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="work" >
+                      <el-row :gutter="80">
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="任职时间">
+                            <el-date-picker
+                              v-model="item.startTime"
+                              type="daterange"
+                              range-separator=""
+                              start-placeholder="请选择任职起止时间"
+                              value-format="yyyy-MM-dd"
+                              end-placeholder="">
+                            </el-date-picker>
+                          </el-form-item>
+                        </el-col>
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="公司名称">
+                            <el-input v-model="item.companyName" placeholder="请输入就职公司名称"></el-input>
+                          </el-form-item>
+                        </el-col>
+
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="岗位">
+                            <el-input v-model="item.post" placeholder="请输入任职的岗位"></el-input>
+                          </el-form-item>
+                        </el-col>
+                      </el-row>
+
+                      <el-row :gutter="80">
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="薪资">
+                            <el-input v-model="item.salary" placeholder="请输入薪资"></el-input>
+                          </el-form-item>
+                        </el-col>
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="证明人">
+                            <el-input v-model="item.reterence " placeholder="请输入证明人姓名"></el-input><!--certifier-->
+                          </el-form-item>
+                        </el-col>
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="证明人联系方式">
+                            <el-input v-model="item.reterenceContact" placeholder="请输入证明人的联系方式"></el-input><!--certifier_phone-->
+                          </el-form-item>
+                        </el-col>
+                      </el-row>
+
+                      <el-row>
+                        <el-col :lg="24" :md="24" :sm="24">
+                          <el-form-item label="工作内容">
+                            <el-input type="textarea" v-model="item.workContent" placeholder="请输入工作内容"></el-input>
+                          </el-form-item>
+                        </el-col>
+                      </el-row>
+                      <el-row>
+                        <el-col :lg="24" :md="24" :sm="24">
+                          <el-form-item label="离职原因">
+                            <el-input type="textarea" v-model="item.dimissionReason" placeholder="请输入离职原因"></el-input><!--leaveReason-->
+                          </el-form-item>
+                        </el-col>
+                      </el-row>
+                    </div>
                   </div>
 
-              </el-form>
-            </el-col>
-          </el-row>
+                  <div v-for="(item,index) in candidateEducationExperienceDTOList" :key="index">
+                    <p class="headLine" v-show="candidateEducationExperienceDTOList.length<2">教育经历</p>
+                    <p class="headLine" v-show="candidateEducationExperienceDTOList.length>1">教育经历{{index+1}}</p>
+                    <div class="addButton" @click="addEducationDomain" v-show="index==0">
+                      添加 <img src="../../assets/img/candidate/tanchuang_ic_add.png" alt="">
+                    </div>
+                    <div class="addButton" @click="removeEducationDomain" v-show="candidateEducationExperienceDTOList.length>1 && index>0">
+                      删除 <img src="../../assets/img/candidate/tanchuang_ic_remove.png" alt="">
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="education">
+                      <el-row :gutter="80">
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="就读时间"><!--studyTime-->
+                            <el-date-picker
+                              v-model="item.startTime"
+                              type="daterange"
+                              range-separator=""
+                              start-placeholder="就读时间"
+                              value-format="yyyy-MM-dd"
+                              end-placeholder="">
+                            </el-date-picker>
+                          </el-form-item>
+                        </el-col>
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="学校名称">
+                            <el-input v-model="item.schoolName" placeholder="请输入就读学校名称"></el-input>
+                          </el-form-item>
+                        </el-col>
 
-        </div>
-      </div>
-      <div class="addCandidate_right">
-        <el-button class="uploadButton" v-if="flag==1">上传简历</el-button>
-        <el-button class="uploadButton" v-if="flag==2" @click="insertResume">上传简历</el-button>
-        <div class="selectedBox">
-          <!--选择内推人-->
-          <p>选择内推人</p>
-          <div class="selectDiv">
-            <input type="text" class="selected">
-            <img src="../../assets/img/candidate/tanchuang_ic_screen.png" alt="">
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="专业">
+                            <el-input v-model="item.major" placeholder="请输入所学的专业"></el-input><!--specialty-->
+                          </el-form-item>
+                        </el-col>
+                      </el-row>
+
+                      <el-row :gutter="80">
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="学历">
+                            <el-select v-model="item.qualification" placeholder="请选择学历"><!--education-->
+                              <el-option v-for="item in educationData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                            </el-select>
+                          </el-form-item>
+                        </el-col>
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="学位">
+                            <el-input v-model="item.degree " placeholder="请输入您的学位"></el-input>
+                          </el-form-item>
+                        </el-col>
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="是否全日制">
+                            <el-select v-model="item.isFullTime" placeholder="请选择是否全日制">
+                              <el-option v-for="item in isFullTimeData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                            </el-select>
+                          </el-form-item>
+                        </el-col>
+                      </el-row>
+
+                      <el-row>
+                        <el-col :lg="24" :md="24" :sm="24">
+                          <el-form-item label="其他">
+                            <el-input type="textarea" v-model="item.other" placeholder="其他说明"></el-input>
+                          </el-form-item>
+                        </el-col>
+                      </el-row>
+                    </div>
+                  </div>
+
+                    <p class="headLine">自我描述</p>
+                    <div class="self-description">
+                      <el-row>
+                        <el-col :lg="24" :md="24" :sm="24">
+                          <el-form-item label="自我描述">
+                            <el-input type="textarea" v-model="self_description" placeholder="候选简介"></el-input>
+                          </el-form-item>
+                        </el-col>
+                      </el-row>
+                    </div>
+
+                </el-form>
+              </el-col>
+            </el-row>
+
           </div>
-
         </div>
+        <div class="addCandidate_right">
+          <el-button class="uploadButton" v-if="flag==1">上传简历</el-button>
+          <el-button class="uploadButton" v-if="flag==2" @click="insertResume">上传简历</el-button>
+          <div class="selectedBox">
+            <!--选择内推人-->
+            <p>选择内推人</p>
+            <div class="selectDiv">
+              <input type="text" class="selected">
+              <img src="../../assets/img/candidate/tanchuang_ic_screen.png" alt="">
+            </div>
+
+          </div>
+        </div>
+
+
       </div>
-    </div>
-  </el-dialog>
+    </el-dialog>
+
+    <!--确定覆盖简历弹窗-->
+    <el-dialog
+      title="提示"
+      :visible.sync="dialogVisible"
+      width="30%"
+      append-to-body>
+      <span>候选人信息已存在，是否要覆盖</span>
+      <span slot="footer" class="dialog-footer">
+          <el-button @click="dialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="updateResume">确 定</el-button>
+        </span>
+    </el-dialog>
+
+  </div>
 </template>
 
 <script>
@@ -401,6 +419,7 @@
       data(){
           return{
             // addVisible:false,
+            dialogVisible:false,
             flag:1,
             add:'add',
 
@@ -574,6 +593,8 @@
             address:'',
             addressData:[],
             imgcode:'',//头像
+            insertResumeData:'',
+            standardResume:'',
             candidateWorkExperienceDTOList:[//工作经历
               {
                 startTime:'',//"任职时间",
@@ -761,7 +782,7 @@
         //标准简历
         insertResume(){
           let that=this;
-          let standardResume={standardResumeDTO: {
+          that.standardResume={standardResumeDTO: {
                 head:that.imgcode,//"图片base64",
                 workCity:that.workAddress,
                 nativePlace:that.province,//"籍贯",
@@ -776,6 +797,21 @@
                 candidateWorkExperienceDTOList:that.candidateWorkExperienceDTOList,
                 candidateEducationExperienceDTOList:that.candidateEducationExperienceDTOList,
               }};
+          that.insertResumeData={
+                candidateName:that.name,// //候选人姓名
+                postId:1, //岗位
+                resumeChannel:that.channels,//渠道
+                resumeSource:that.resoure, //选择来源
+                candidateSex:that.sex,//候选人性别
+                candidateAge:that.age, //候选人年龄
+                candidatePhone:that.phone,//候选人手机号
+                candidateEmail:that.email,//候选人邮箱
+                candidateExperience:that.experience,//工作经验
+                candidateEducation:that.education1,//候选人学历
+                candidateLocation:that.address,//所在地
+                originalResumeAddress:"", //原简历地址
+                standardResume:JSON.stringify(that.standardResume)
+              };
           that.$http({
             method:"post",
             headers:headers(),
@@ -793,18 +829,37 @@
               candidateEducation:that.education1,//候选人学历
               candidateLocation:that.address,//所在地
               originalResumeAddress:"", //原简历地址
-              standardResume:JSON.stringify(standardResume)
+              standardResume:JSON.stringify(that.standardResume)
             }
           }).then(function (res) {
             if(res.data.code==10000){
               that.$message.success("候选人信息插入成功！");
-            }else if(res.data.code==40403){
-
+            }else if(res.data.code==40001){
+              that.dialogVisible = true;
             }else{
               that.$message.error(res.data.msg);
             }
           })
 
+        },
+        // 更新候选人简历 updateResume
+        updateResume(){
+          let that=this;
+          that.$http({
+            method: "put",
+            headers: headers(),
+            url: api.updateResume,
+            data: that.insertResumeData,
+          }).then(function (res) {
+            if(res.data.code==10000){
+              that.$message.success(res.data.msg);
+              that.dialogVisible = false;
+              that.hideModel();
+            }else{
+              that.$message.error(res.data.msg);
+              that.dialogVisible = false;
+            }
+          })
         }
       },
       mounted(){
