@@ -158,7 +158,7 @@
                       </el-col>
                       <el-col :lg="8" :md="8" :sm="8">
                         <el-form-item label="到岗时间">
-                          <el-input v-model="arrival_time " placeholder="请选择到岗时间"></el-input>
+                          <el-date-picker v-model="arrival_time"  value-format="yyyy-MM-dd" style="width: 280px;" type="date" placeholder="请选择到岗时间"></el-date-picker>
                         </el-form-item>
                       </el-col>
 
@@ -834,7 +834,7 @@
           }).then(function (res) {
             if(res.data.code==10000){
               that.$message.success("候选人信息插入成功！");
-            }else if(res.data.code==40001){
+            }else if(res.data.code==40001 && res.data.data==true){
               that.dialogVisible = true;
             }else{
               that.$message.error(res.data.msg);
