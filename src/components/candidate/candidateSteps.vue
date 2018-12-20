@@ -65,7 +65,7 @@
     <!-- 弹窗推荐人 -->
         <div v-if="conShow" style="width:100%;" @click="handleClose2">
             <div  class = "cov">
-                <div class = "con create_dialog" >
+                <div class = "con candidate_sty" >
                     <p class = "ptitle">推荐给用人部门 <i  class="el-icon-close closes_s"></i></p>
                     <div class="rescs" @click="clickHide">
                         <el-form :model="cerateList"  ref="cerateList" id="re_styles">
@@ -125,7 +125,7 @@
       <!-- 弹窗备注 -->
         <div v-if="beizhu" style="width:100%;" @click="handleClose2">
             <div  class = "cov" >
-                <div class = "con create_dialog" style="height:340px;">
+                <div class = "con candidate_sty" style="height:340px;">
                     <p class = "ptitle">备注 <i  class="el-icon-close closes_s"></i></p>
                     <div class="rescs beires"  @click="clickHide2" style="height:220px;">
                         <el-form>
@@ -144,7 +144,7 @@
       <!-- 弹窗-淘汰候选人 -->
         <div v-if="quitdia" style="width:100%;" @click="handleClose2">
             <div  class = "cov" >
-                <div class = "con create_dialog"  style="height:400px;">
+                <div class = "con candidate_sty"  style="height:400px;">
                     <p class = "ptitle">淘汰候选人 <i class="el-icon-close closes_s"></i></p>
                     <div class="rescs beires" @click="clickHide3" style="height:220px;">
                         <el-form :model="cerateList"  ref="cerateList" id="re_styles reset_styless">
@@ -465,7 +465,7 @@ const clickoutside = {
 	color:white;
 }
 /* 弹窗 开始 */
-.create_dialog .el-icon-arrow-down:before {
+.candidate_sty .el-icon-arrow-down:before {
     content: "\E603";
     position: absolute;
     top: 15px;
@@ -473,7 +473,7 @@ const clickoutside = {
     color: #AAADB5;
     cursor: pointer;
 }
-.create_dialog .manage_sty {
+.candidate_sty .manage_sty {
     left: 16%;
     width: 280px; 
 }
@@ -627,7 +627,7 @@ color: #F95714 ;
  .candidate_content .el-scrollbar__wrap {
   overflow-x: hidden !important;
  }
- .create_dialog .el-dialog__body {
+ .candidate_sty .el-dialog__body {
     padding: 30px 70px;
     color: #606266;
     font-size: 14px;
@@ -641,7 +641,7 @@ color: #F95714 ;
     background-color: #fff;
     color:#F95714;
 }
-.create_dialog .manage_sty .el-scrollbar__wrap {
+.candidate_sty .manage_sty .el-scrollbar__wrap {
      overflow-x: hidden !important;
  }
  #re_styles .el-textarea__inner  {

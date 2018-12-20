@@ -24,14 +24,14 @@
                   <el-form :model="makeNormal" class="form_font">
                     <p class="headLine ">基本信息 </p>
                     <div class="person_sty ">
-                      <el-row :gutter="120">
+                      <el-row  style="margin-left:30px;">
                         <el-col :offset="1" :span="10" >
                           <el-form-item label="offer职位">
                               <span>测试工程师</span>
                           </el-form-item>
                         </el-col>
                       </el-row>
-                        <el-row :gutter="120">
+                        <el-row style="margin-left:35px;">
                         <el-col :offset="1" :span="10" >
                           <el-form-item label="用人部门">
                               <span>华趣集团/棋至文化/爱猎评</span>
@@ -48,15 +48,15 @@
                     </div>
                       <p class="headLine ">报道信息 </p>
                       <div class="person_sty ">
-                          <el-row :gutter="120">
+                          <el-row style="margin-left:35px;">
                               <el-col :offset="1" :span="18" >
                                 <el-form-item label="报道时间">
-                                    <el-date-picker v-model="makeNormal.cityShow"  value-format="yyyy-MM-dd"  type="date" placeholder="请选择报道时间"></el-date-picker> 
-                                    <el-date-picker v-model="makeNormal.detpart"  value-format="yyyy-MM-dd"  type="date" placeholder="请选择面试具体时间"></el-date-picker> 
+                                    <el-date-picker style="width:220px" v-model="makeNormal.cityShow"  value-format="yyyy-MM-dd"  type="date" placeholder="请选择报道时间"></el-date-picker> 
+                                    <el-date-picker  style="width:220px" v-model="makeNormal.detpart"  value-format="yyyy-MM-dd"  type="date" placeholder="请选择面试具体时间"></el-date-picker> 
                                 </el-form-item>
                               </el-col>
                         </el-row>
-                          <el-row :gutter="120">
+                          <el-row style="margin-left:35px;" class="place_sty">
                               <el-col :offset="1" :span="18" >
                                 <el-form-item label="报道地点">
                                   <el-select v-model="makeNormal.work" placeholder="请选择报道地点">
@@ -70,18 +70,18 @@
                                 </el-form-item>
                               </el-col>
                         </el-row>
-                          <el-row :gutter="690">
-                              <el-col :offset="1" :span="18" >
+                          <el-row style="margin-left:65px;">
+                              <el-col :offset="1" :span="24" >
                                 <el-form-item label="薪资">
                                   <el-select v-model="makeNormal.work" placeholder="请选择薪资形式">
                                       <el-option label="现金" value="0"></el-option>
                                       <el-option label="银行卡" value="1"></el-option>
                                   </el-select>
-                                  <el-input type="text" style="width:200px;" placeholder="请填写具体数额"></el-input>
+                                  <el-input  style="width:220px;" placeholder="请填写具体数额"></el-input>
                                 </el-form-item>
                               </el-col>
                         </el-row>
-                          <el-row >
+                          <el-row style="margin-left:24px;" class="place_sty">
                               <el-col :offset="1" :span="18" >
                                 <el-form-item label="试用期时长">
                                   <el-select v-model="makeNormal.work" placeholder="请选择使用期时长">
@@ -379,3 +379,24 @@
       color: #748093;
     }
 </style>
+<style>
+.person_sty .el-input--suffix .el-input__inner {
+  width:220px;
+  padding-left: 0px;
+}
+.person_sty .el-input__icon {
+    height: 100%;
+    width: 25px;
+    text-align: center;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    /* line-height: 40px; */
+    position: absolute;
+    right: -204px;
+    font-size: 18px;
+}
+.place_sty .el-input__icon {
+  right: 5px;
+}
+</style>
+
