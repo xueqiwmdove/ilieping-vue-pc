@@ -26,30 +26,33 @@
                 <el-row>
               <!--创建职位左侧栏  -->
                   <el-col :span='4' >
-                    <div class="asidePosition ad_input">
+                    <div class="asidePosition ad_input" >
                         <h4><img class="img_shengfen" src="../../assets/img/zhiwei/shengfen.png" alt="">
                           <span @click="check"  style="margin-left:30px;cursor: pointer;">{{texts}}</span>
                           <i  @click="check"  v-if="showList" style="color:#AAADB5;" class="el-icon-caret-bottom"></i>
                           <i  @click="check"  v-else style="color:#AAADB5;" class="el-icon-caret-right"></i>
                         </h4>
-                          <transition name="fade" enter-class="fade-in-enter" enter-active-class="fade-in-active" leave-class="fade-out-enter" leave-active-class="fade-out-active">
-                                <div v-if="showList" class="select_position_sty">
-                                  <ul>
-                                    <li @click="checkItem('1')">招聘中的职位</li>
-                                    <li @click="checkItem('0')">停止招聘</li>
-                                  </ul>
-                                </div>
+                          <transition  name="fade" enter-class="fade-in-enter" enter-active-class="fade-in-active" leave-class="fade-out-enter" leave-active-class="fade-out-active">
+                               <div v-if="showList"  v-clickoutside="handleClose">
+                                  <div  class="select_position_sty">
+                                    <ul>
+                                      <li  @click="checkItem('1')">招聘中的职位</li>
+                                      <li @click="checkItem('0')">停止招聘</li>
+                                    </ul>
+                                 </div>
+                               </div>
                           </transition>  
                          <div class="search" style="margin-top:30px;">
                             <el-input v-model="names"  class="input_search" placeholder="输入你想搜索的内容" >
-                                <i @click="getCandidate" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
+                                <i @click="getPosition" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                             </el-input>
                          </div>
-                         <p>全部职位 <i   @click="getItems" v-if="flags"><img src="../../assets/img/zhiwei/ic_chose.png" alt=""></i><i v-else style="background-color:#ccc;" class="el-icon-circle-check"></i></p>
+                         <p  @click="getItems" v-if="flags"> 全部职位 <i ><img src="../../assets/img/zhiwei/ic_chose.png" alt=""></i></p>
+                         <p style="color:#748093 ;" @click="getItems" v-else>全部职位  <i ><img src="../../assets/img/zhiwei/3.png" alt=""></i></p>
                          <div class="position_list">
                              <el-scrollbar style="height:100%" >
                                 <ul>
-                                    <li @click="getCandidateList(item)" v-for="(item,index) in personList " :key="index">
+                                    <li :class="seen==item.id ? 'heightlight':''" @click="getCandidateList(item)" v-for="(item,index) in personList " :key="index">
                                         {{item.name}}
                                     </li>
                                 </ul>
@@ -110,7 +113,7 @@
                                 </em>
                             </div>
                             <div class="search">
-                                <el-input  class="input_search" placeholder="输入你想搜索的内容" >
+                                <el-input v-model="searchname"  class="input_search" placeholder="输入你想搜索的内容" >
                                     <i @click="searchList" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                                 </el-input>
                                 <el-button class="add_btn" @click="addCandidateShow('add')">添加候选人</el-button>
@@ -136,7 +139,7 @@
                                     <template slot-scope="scope">
                                         <span style="cursor: pointer;">
                                          <i v-if="scope.row.screeningStatus == '1'" style="color:#66ADFF;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_no feedback.png" alt="">未反馈</i>
-                                         <i v-if="scope.row.screeningStatus =='3'" style="color:#FF001F;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_disagree.png" alt="">不同意</i>
+                                         <i v-if="scope.row.screeningStatus =='3'" style="color:#FF001F;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_disagree.png" alt="">拒绝</i>
                                          <i v-if="scope.row.screeningStatus == '2'" style="color:#5EC860;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_agree.png" alt="">同意</i>
                                          <i v-if="scope.row.screeningStatus == '0'" style="color:#FF001F;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not recommendde.png" alt="">未推荐</i>
                                         </span>
@@ -240,8 +243,10 @@ export default {
         personList:[],//人员数据
         counts:{},
         names:'',//搜素关键字
+        searchname:'',
         postId:'',//职位id
         totalCount:0,
+        seen:'',
         texts:'招聘中的职位',
         candidatestatus:'',
         recruitStatus:'1',
@@ -280,7 +285,7 @@ export default {
 	  			headers:headers('application/json;charset=utf-8'),
 	  			data:{
 				    "postId":that.postId || '',
-				    "candidateName":that.names,
+				    "candidateName":that.searchname || '',
 				    "candidateStatus":that.candidatestatus || '2',
 				    "pageCurrent":currPage,
 				    "pageSize ":pageSize,
@@ -296,6 +301,9 @@ export default {
     },
       getCandidateList(val) {
         this.postId = val.id
+        this.seen = val.id
+        this.getCandidate()
+        this.flags =false
       },
     //展示候选人弹窗
       addCandidateShow(param){
@@ -324,10 +332,13 @@ export default {
       }else {
         this.texts = '招聘中的职位'
       }
-      this.getCandidate()
+      this.getPosition()
     },
     check() {
       this.showList = !this.showList
+    },
+    handleClose() {
+      this.showList = false
     },
     changePage(newPage) {
           let that=this;
@@ -345,18 +356,13 @@ export default {
   //获取左侧职位列表  
     getPosition(){
       let that=this;
-      let currentPage=that.pageIndex || 1;
-      let pageSize=that.pageSize || 5;
       that.$http({
         method:"post",
-        url:api.hr_list,
+        url:api.getPosition,
         headers:headers('application/json;charset=utf-8'),
         data:{
-          "currPage":currentPage,
-          "pageSize":pageSize,
-          'searchContent':that.searchContent,
-          'type':that.select_process,
-          'status':that.select_state
+          'name':that.names,
+          'recruitStatus':that.recruitStatus,
         }
       }).then(function(res){
         if(res.data.code==10000){
@@ -367,11 +373,12 @@ export default {
       });
     },
     searchList() {
-      this.$router.push({path:'/searchCandidata'})
+      this.$router.push({path:'/searchCandidata',query:{code:this.searchname,postId:this.postId,candidatestatus:this.candidatestatus}})
     },
     getItems() {
       this.flags = !this.flags
       console.log(1)
+      this.seen= ''
     },
   //获取状态数据  
     getCount() {
@@ -447,7 +454,7 @@ position: relative;
 .select_position_sty {
   position: absolute;
   top: 28px;
-  left:50px;
+  left:114px;
   width:100px;
   height: 112px;
   background-color: #FAFBFC;
@@ -645,13 +652,14 @@ margin-left: 180px;
   border:none;
 }
 .fade-in-active, .fade-out-active {
-  transition: all 0.4s ease ; 
+  transition: all 0.2s ease ; 
 }
-     
 .fade-in-enter, .fade-out-active {
   opacity: 0 ;
 }
-
+.heightlight {
+  color:#F95714 !important;
+}
 
 </style>
 <style>

@@ -17,7 +17,7 @@
                         </ul>
                     </div>
                     <el-input v-else style="width:280px;height:40px;"  @click.native="ldClick"  v-model="cerateList.name"  placeholder="选择招聘负责人"  class="el-icon-arrow-down"></el-input>
-                            <div v-if="ldVisabled" class="form_tree tree_sty manage_sty " >
+                            <div v-if="ldVisabled" class="creat-tree  create-trees " >
                             <el-scrollbar style="height:100%" >   
                                 <div style="height:100%">
                                 <div class="search">
@@ -151,7 +151,7 @@
   }
 </script>
 <style scoped>
-.manage_sty  ul li .name_f{
+.create-trees  ul li .name_f{
     display: inline-block;
     width: 50px;
     height: 50px;
@@ -165,22 +165,22 @@
     margin-right: 10px;
     margin-left:20px;
 }
-.manage_sty  ul {
+.create-trees  ul {
     padding-top:55px;
 }
-.manage_sty  ul li  p {
+.create-trees  ul li  p {
     height: 30px;
     text-align: left;
     line-height: 30px;
 }
-.manage_sty ul li {
+.create-trees ul li {
     height: 60px;
     width: 100%;
     margin-top: 10px;
     cursor: pointer;
     line-height: 50px;
 }
-.form_tree {
+.creat-tree {
     width:300px;
     height:280px;
     border: 1px solid #E5E5E5;
@@ -225,11 +225,11 @@
     color: #AAADB5;
     cursor: pointer;
 }
-.create_dialog .manage_sty {
+.create_dialog .create-trees {
     left: 22%;
     width: 280px; 
 }
-.manage_sty .search {
+.create-trees .search {
   float: right;
   width: 400px;
   height: 40px;
@@ -238,14 +238,14 @@
   left: -70px;
 
 }
-.manage_sty .search .input_search {
+.create-trees .search .input_search {
   width: 260px;
   position: absolute;
   top:-21px;
   /* width: 260px; */
   
 }
-.manage_sty .search .input_search .se_icon {
+.create-trees .search .input_search .se_icon {
   position: absolute;
   right:-244px;
   height: 30px;
@@ -255,13 +255,13 @@
   border-left: 1px solid #E5E5E5;
   color: #F95714;
 }
-.manage_sty .search .el-icon-search:before {
+.create-trees .search .el-icon-search:before {
     content: "\E619";
     margin-left: 5px;
 }
 </style>
 <style>
- .create_dialog .manage_sty .el-scrollbar__wrap {
+ .create_dialog .create-trees .el-scrollbar__wrap {
   overflow-x: hidden !important;
  }
  .create_dialog .el-input--prefix .el-input__inner {
