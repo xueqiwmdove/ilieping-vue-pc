@@ -3,8 +3,8 @@
    <div class="main">
      <!--候选人弹窗-->
      <addCandidate :addVisible.sync="visables.add" @hideModel="hideChildModal"></addCandidate>
-     <!--候选人信息-->
-     <candidateSteps :addVisible.sync="visables.steps" @hideModel="hideChildModal"></candidateSteps>
+     <!--候选人信息  父组件传值-->
+     <candidateSteps :addVisible.sync="visables.steps" @hideModel="hideChildModal" :candidateStepsData="candidateStepsData" :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList"></candidateSteps>
      <!-- 推荐人弹窗  -->
      <recommendDia :addVisible.sync="visables.recommend" @hideModel="hideChildModal"></recommendDia>
 
@@ -21,7 +21,7 @@
         <div class="right-content pull-right">
             <div class="content">
                 <p class="headline">
-                    <span  @click="addCandidateShow('steps')" >候选人管理</span>
+                    <span   >候选人管理</span>
                 </p>
                 <el-row>
               <!--创建职位左侧栏  -->
@@ -41,7 +41,7 @@
                                     </ul>
                                  </div>
                                </div>
-                          </transition>  
+                          </transition>
                          <div class="search" style="margin-top:30px;">
                             <el-input v-model="names"  class="input_search" placeholder="输入你想搜索的内容" >
                                 <i @click="getPosition" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
@@ -124,7 +124,7 @@
                             <el-table :key='signs'  :data="candidateList" style="width: 100%">
                                 <el-table-column fixed prop="processNum" label="基本资料" header-align='center' align='left' width="350px">
                                     <template slot-scope="scope">
-                                        <span class="basic_sty " @click="addCandidateShow('steps')" style="cursor: pointer">
+                                        <span class="basic_sty " @click="addCandidateShow('steps');showSteps(scope.row.id)" style="cursor: pointer">
                                           <span class="name_s">{{scope.row.candidateName}} <em>{{scope.row.candidateSex}}</em><em class="bom_sty"></em><em>{{scope.row.candidateExperience}}</em></span>
                                           <p><img src="../../assets/img/zhiwei/houxuan_ic_work.png" alt=""><span>{{scope.row.workExperience}}</span></p>
                                           <p><img src="../../assets/img/zhiwei/houxuan_ic_education.png" alt=""><span>{{scope.row.educationExperience}}</span></p>
@@ -199,6 +199,7 @@
 //  blance
   import addCandidate from '@/components/candidate/addCandidate';
   import candidateSteps from '@/components/candidate/candidateSteps';
+  import {toArray} from '@/assets/js/common/diy.show';
   // import recommend_depart from '@/components/candidate/common/recommend_depart';
 
 // duanyanhong
@@ -266,7 +267,11 @@ export default {
           add:false,
           steps:false,
           recommend:false,
-        }
+        },
+        candidateStepsData:[],//候选人基本信息
+        standardResume:[],//候选人个人信息之外的内容,
+        candidateWorkExperienceDTOList:'',//工作经历
+        candidateEducationExperienceDTOList:''//教育经历
       };
     },
     watch:{
@@ -309,6 +314,10 @@ export default {
       addCandidateShow(param){
         let that=this;
         that.visables[param] = true;
+        if(param=='steps'){//添加候选人信息弹窗s
+
+
+        }
       },
     //关闭候选人弹窗
       hideChildModal(param){
@@ -352,7 +361,7 @@ export default {
           that.pageSize = newSize;
           that.getCandidate();
     },
-  //获取左侧职位列表  
+  //获取左侧职位列表
     getPosition(){
       let that=this;
       that.$http({
@@ -379,7 +388,7 @@ export default {
       console.log(1)
       this.seen= ''
     },
-  //获取状态数据  
+  //获取状态数据
     getCount() {
       let that=this;
         that.$http({
@@ -412,8 +421,45 @@ export default {
 	  				that.$message.error(res.data.msg);
 	  			}
 		    });
-    }
     },
+
+    //blance showSteps  查询候选人信息
+      showSteps(id){
+      let that=this;
+        that.$http({
+          url:api.getCandidate+id,
+          headers:headers(),
+          method:'get',
+        }).then(function (res) {
+          that.candidateStepsData=[];
+          that.standardResume=[];
+          if(res.data.code==10000 && res.data.data !=null ){
+            // let data=res.data.data;
+            // let data2=JSON.parse(res.data.data.standardResume);
+
+            // for (let i in data) {
+            //   that.candidateStepsData.push(data[i]);
+            // }
+            //
+            // for (let i in data2) {
+            //   that.standardResume.push(data2[i]);
+            // }
+
+            that.candidateStepsData.push(res.data.data);//TODO 多次添加的bug
+            that.standardResume.push(JSON.parse(res.data.data.standardResume));
+            that.candidateWorkExperienceDTOList=JSON.parse(res.data.data.standardResume).candidateWorkExperienceDTOList;
+            that.candidateEducationExperienceDTOList=JSON.parse(res.data.data.standardResume).candidateEducationExperienceDTOList;
+
+
+
+
+          }
+        })
+      }
+    },
+  toArray(data) {
+    return toArray(data);
+  },
     mounted() {
      this.getCandidate()
      this.getPosition()
@@ -651,7 +697,7 @@ margin-left: 180px;
   border:none;
 }
 .fade-in-active, .fade-out-active {
-  transition: all 0.2s ease ; 
+  transition: all 0.2s ease ;
 }
 .fade-in-enter, .fade-out-active {
   opacity: 0 ;

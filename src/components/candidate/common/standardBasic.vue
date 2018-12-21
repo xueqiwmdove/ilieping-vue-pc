@@ -7,8 +7,8 @@
       </div>
       <div class="inputBox">
           <img src="../../../assets/img/candidate/tanchuang_ic_jobs.png" alt="">
-          <el-select v-model="post" placeholder="选择岗位">
-            <el-option v-for="item in postData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+          <el-select v-model="post1" placeholder="选择岗位">
+            <el-option v-for="item in post1Data" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
       </div>
       <div class="inputBox">
@@ -64,23 +64,33 @@
         data(){
           return{
             name:'',
-            post:'',
-            postData:[],
+            post1:'',
+            post1Data:[],
             channels:'',
             channelsData:[
-              {value:'手动添加',label:'手动添加'},
-              {value:'内部推荐',label:'内部推荐'},
-              {value:'社招官网',label:'社招官网'},
-              {value:'拉钩',label:'拉钩'},
-              {value:'猎聘',label:'猎聘'},
-              {value:'BOSS直聘',label:'BOSS直聘'},
+              {value:'1',label:'手动添加'},
+              {value:'2',label:'内部推荐'},
+              {value:'3',label:'社招官网'},
+              {value:'4',label:'拉钩'},
+              {value:'5',label:'猎聘'},
+              {value:'6',label:'BOSS直聘'},
             ],
             resoure:'',
-            resoureData:[],
+            resoureData:[
+              {
+                value:'0',
+                label:'主动搜索',
+              },
+              {
+                value:'1',
+                label:'候选人投递',
+
+              }
+            ],
             sex:'',
             sexData:[
-              {value:'男',label:'男'},
-              {value:'女',label:'女'}
+              {value:'1',label:'男'},
+              {value:'0',label:'女'}
             ],
             age:'',
             email:'',
@@ -115,7 +125,32 @@
             address:'',
             addressData:[],
           }
-        }
+        },
+        methods:{
+          //获取岗位列表
+          getList(){
+            let that=this;
+            that.$http({
+              method:"post",
+              url:api.getPosition,
+              headers:headers(),
+              data:{
+                name:'',
+                recruitStatus:1,
+              }
+            }).then(function(res){
+              if(res.data.code==10000){
+                that.postData=res.data.data;
+              }else{
+                that.$message.error(res.data.msg);
+              }
+            });
+          },
+        },
+      mounted(){
+          let that=this;
+          that.getList();
+      }
     }
 </script>
 

@@ -126,8 +126,8 @@
                     <li @click="click_candidate(22)" :class="flag==22?'active':''"><span>候选人管理</span></li>
                      <li @click="click_interviewMmanagement(30)" :class="flag==30?'active':''"><span>面试管理</span></li>
                      <li @click="click_option(31)" :class="flag==31?'active':''"><span>设置</span></li>
-                    <li @click="click_potion25(25)" :class="flag==25?'active':''"><span>人才库</span></li>
-                    <li @click="click_potion26(26)" :class="flag==26?'active':''"><span>设置</span></li>
+                    <!--<li @click="click_potion25(25)" :class="flag==25?'active':''"><span>人才库</span></li>-->
+                    <!--<li @click="click_potion26(26)" :class="flag==26?'active':''"><span>设置</span></li>-->
                 </ul>
             </li>
 

@@ -1,20 +1,22 @@
 <template >
   <!--候选人信息弹窗-->
-  <el-dialog title="候选人信息" :visible.sync="addVisible"  custom-class="candidateSteps" :before-close="hideModel">
-    <img src="../../assets/img/candidate/tanchuang_ic_save.png" class="save">
+  <el-dialog title="候选人信息" :visible="addVisible"  custom-class="candidateSteps" :before-close="hideModel">
+    <img src="../../assets/img/candidate/tanhcuang_ic_editor.png" class="save">
     <div class="addMain">
-      <div class="personInfo">
+      <div class="personInfo" v-for="item  in candidateStepsData">
         <p class="primary ">
-          <span  class="name">张三</span>
-          <span class="post">测试工程师.拉钩（主动搜索）</span>
+          <span  class="name">{{item.candidateName}}</span>
+          <span class="post">{{item.postName}}.{{item.resumeChannelStr}}（<i v-if="item.resumeSource==0">主动搜索</i><i v-if="item.resumeSource==1">候选人投递</i>）</span>
           <span class="tag">内推</span>
         </p>
         <p class="minor">
-          <span class="phone">15921720256</span>
-          <span class="email">78995677900@163.com</span>
-          <span class="sex">男 28</span>
-          <span class="workExp">五年工作经验</span>
-          <span class="address">上海</span>
+          <span class="phone">{{item.candidatePhone}}</span>
+          <span class="email">{{item.candidateEmail}}</span>
+          <span class="sex" v-if="item.candidateSex==1">男 {{item.candidateAge}}</span>
+          <span class="sex" v-if="item.candidateSex==0">女 {{item.candidateAge}}</span>
+          <span class="workExp" v-if="item.candidateExperience!=0">{{item.candidateExperience}}年工作经验</span>
+          <span class="workExp" v-if="item.candidateExperience==0">无年工作经验</span>
+          <span class="address">{{item.candidateLocation}}</span>
         </p>
         <div class="fivesteps">
           <div class="onStep">
@@ -49,9 +51,10 @@
       </div>
 
       <div class="candidate_content">
-       <el-scrollbar style="height:100%">
-          <basicFirst  v-show="step==1"></basicFirst>
-          <interviewSecond   v-show="step==2"></interviewSecond>
+       <el-scrollbar style="height:100%;overflow-x: hidden">
+          <basicFirst  v-show="step==1" :candidateStepsData="candidateStepsData" :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList"></basicFirst>
+
+          <interviewSecond   v-show="step==2"  ></interviewSecond><!--:listentochild="showMsgformChild"-->
           <offerThird v-show="step==3"></offerThird>
           <remarkForth v-show="step==4"></remarkForth>
           <accessoryFifth v-show="step==5"></accessoryFifth>
@@ -74,17 +77,17 @@
                                     <div v-if="isflag" class="manage_se">
                                         <ul>
                                             <li>
-                                                <span class="name_f">{{showList.employeeName?showList.employeeName.substr(0, 1):''}}</span> 
+                                                <span class="name_f">{{showList.employeeName?showList.employeeName.substr(0, 1):''}}</span>
                                                 <span style="float:left;">
-                                                    <p>{{showList.employeeName}}</p> 
-                                                    <p>{{showList.deptName}}-{{showList.position}}</p>    
+                                                    <p>{{showList.employeeName}}</p>
+                                                    <p>{{showList.deptName}}-{{showList.position}}</p>
                                                 </span>
                                             </li>
                                         </ul>
                                 </div>
                                 <el-input v-else style="width:280px;height:40px;"  @click.native="ldClick"  v-model="cerateList.name"  placeholder="选择招聘负责人"  class="el-icon-arrow-down"></el-input>
                                         <div v-if="ldVisabled" class="form_tree tree_sty manage_sty " >
-                                            <el-scrollbar style="height:100%" >   
+                                            <el-scrollbar style="height:100%" >
                                                 <div style="height:100%">
                                                 <div class="search">
                                                     <el-input  class="input_search" v-model="names" placeholder="输入你想搜索的内容" >
@@ -93,20 +96,20 @@
                                                 </div>
                                                 <ul>
                                                     <li @click="selectItem(item)" v-for="(item,index) in employeeList" :key='index'>
-                                                        <span class="name_f">{{item.employeeName.substr(0, 1)}}</span> 
+                                                        <span class="name_f">{{item.employeeName.substr(0, 1)}}</span>
                                                         <span style="float:left;">
-                                                            <p>{{item.employeeName}}</p> 
-                                                            <p>{{item.deptName}}-{{item.position}}</p>    
+                                                            <p>{{item.employeeName}}</p>
+                                                            <p>{{item.deptName}}-{{item.position}}</p>
                                                         </span>
                                                     </li>
                                                 </ul>
-                                                </div>  
-                                            </el-scrollbar> 
+                                                </div>
+                                            </el-scrollbar>
                                         </div>
                                 </el-form-item>
                                 <el-form-item label="推荐理由">
                                     <el-input :rows="3" type="textarea" style="width:280px;margin-left:20px;" placeholder="请输入推荐理由（如名校经历等）"></el-input>
-                                </el-form-item> 
+                                </el-form-item>
                                 <el-form-item label="使用简历" >
                                 <!-- <span style="margin-right:23px;">使用简历</span> -->
                                     <el-radio-group v-model="type">
@@ -118,7 +121,7 @@
                     </div>
                     <div slot="footer" class="dialog-footer">
                             <el-button  type="primary" :class="searchBtnClass1" :disabled="searchDisabled1"   style="height:36px;" >保存</el-button>
-                    </div>  
+                    </div>
                 </div>
             </div>
         </div >
@@ -137,7 +140,7 @@
                     </div>
                     <div slot="footer" class="dialog-footer">
                             <el-button  type="primary" :class="searchBtnClass2" :disabled="searchDisabled2"   style="height:36px;" >保存</el-button>
-                    </div>  
+                    </div>
                 </div>
             </div>
         </div>
@@ -166,10 +169,30 @@
                     </div>
                     <div slot="footer" class="dialog-footer">
                         <el-button  type="primary" :class="searchBtnClass3" :disabled="searchDisabled3"   style="height:36px;" >保存</el-button>
-                    </div>  
+                    </div>
                 </div>
             </div>
-        </div>    
+        </div>
+
+      <!--取消面试弹窗-->
+      <!-- <div class = "cov"  v-clickoutside="handleClose2" >&lt;!&ndash;v-if="cancelInterview==true"&ndash;&gt;
+         <div class = "con create_dialog" style="height:340px;">
+           <p class = "ptitle">取消面试 <i class="el-icon-close closes_s"></i></p>
+           <div class="rescs beires" style="height:220px;">
+             <el-form>
+               <el-form :model="cerateList"  ref="cerateList" id="re_styles">
+                 <span class="title_bei">请填写取消面试原因</span>
+                 <el-input :rows="4" type="textarea" v-model="text" style="width:460px;margin-left:60px;" placeholder="请输入内容"></el-input>
+               </el-form>
+             </el-form>
+           </div>
+           <div slot="footer" class="dialog-footer">
+             <el-button  type="primary"    style="height:36px;" >保存</el-button>
+           </div>
+         </div>
+       </div>-->
+
+
     </div>
   </el-dialog>
 </template>
@@ -192,6 +215,7 @@
   import candidateRight from '@/components/candidate/common/candidateRight';
   import {checkMobile,compareDate,isNumber,isEmail} from '@/assets/js/common/verify.js'
   import {formatDate} from '@/assets/js/common/date_year.js';
+  import {toArray} from '@/assets/js/common/diy.show';
   // duanyanhong
 // 2018.12.2
 // 自定义控制员工架构下拉框点击空白处隐藏
@@ -218,7 +242,7 @@ const clickoutside = {
 };
     export default {
         name: "candidateSteps",
-        props:['addVisible'],
+        props:['addVisible','candidateStepsData','standardResume','candidateEducationExperienceDTOList','candidateWorkExperienceDTOList'],
         components:{
           candidateContent,
           basicFirst,
@@ -253,6 +277,7 @@ const clickoutside = {
               cerateList:{
               type:'',
             },
+            flag:1,//默认标准简历
           }
       },
       computed:{
@@ -275,7 +300,7 @@ const clickoutside = {
                 }else{
                     return true
                 }
-          }, 
+          },
            // 备注提交按钮样式
             searchBtnClass2:function () {
             if(this.text !='' ){
@@ -295,7 +320,7 @@ const clickoutside = {
                 }else{
                     return true
                 }
-          }, 
+          },
              // 备注提交按钮样式
             searchBtnClass3:function () {
             if(this.text !='' ){
@@ -315,10 +340,10 @@ const clickoutside = {
                 }else{
                     return true
                 }
-          }, 
+          },
       },
       directives: {clickoutside},
-      methods:{    
+      methods:{
         clickHide(e)  {
           this.conShow=true
           e.stopPropagation();//阻止冒泡
@@ -331,7 +356,7 @@ const clickoutside = {
           this.quitdia=true
           e.stopPropagation();//阻止冒泡
         },
-    //获取面试官，负责人列表  
+    //获取面试官，负责人列表
         getEmployeeList() {
             let that = this
             let currPage=that.pageIndex || 1;
@@ -355,13 +380,13 @@ const clickoutside = {
             }
             });
         },
-    //   显示弹窗  
+    //   显示弹窗
         showmodel1() {
           this.conShow=true
         },
         showmodel2() {
           this.beizhu=true
-        },    
+        },
         showmodel3() {
           this.quitdia=true
         },
@@ -372,13 +397,13 @@ const clickoutside = {
         this.quitdia=false
         this.showList=[]
       },
-    //选择招聘负责人 
+    //选择招聘负责人
         selectItem(val) {
             this.ldVisabled=false
             this.isflag = true
             this.showList = val
           },
-        //招聘负责人  
+        //招聘负责人
         ldClick() {
             this.getEmployeeList()
             this.ldVisabled = !this.ldVisabled
@@ -394,13 +419,19 @@ const clickoutside = {
           this.step=flag;//子组件穿过的flag值，赋值给step；
           // console.log('接收的数据--------->'+flag)
         },
-    //  关闭弹窗
+        //  关闭弹窗
         hideModel(){
           this.conShow=false
           let that=this;
           that.$emit('hideModel','steps');//向父组件派发事件
         },
-      }
+        showMsgformChild(){
+
+        },
+        changeTab2(flag){
+          this.flag=flag;
+        }
+      },
     }
 </script>
 
@@ -433,7 +464,7 @@ const clickoutside = {
 	right:36%;
     top:30%;
 	box-shadow:0px 0px 5px #ddd;
-    
+
 }
 .ptitle{
 	width:100%;
@@ -475,7 +506,7 @@ const clickoutside = {
 }
 .candidate_sty .manage_sty {
     left: 16%;
-    width: 280px; 
+    width: 280px;
 }
 .manage_sty .search {
     float: right;
@@ -580,7 +611,7 @@ const clickoutside = {
     line-height: 50px;
 }
 #re_styles .el-radio-button, .el-radio-button__inner {
-    margin-right: 20px; 
+    margin-right: 20px;
     height: 40px;
     width: 90px;
     border-color: #E5E5E5;
@@ -645,13 +676,13 @@ color: #F95714 ;
      overflow-x: hidden !important;
  }
  #re_styles .el-textarea__inner  {
-     margin-left:-55px;  
+     margin-left:-55px;
  }
  #re_styles .el-input__inner {
-     margin-left:-80px;  
- } 
+     margin-left:-80px;
+ }
  #reset_styless .el-input__inner  {
-     margin-left:-55px; 
+     margin-left:-55px;
  }
  #re_styles .el-form-item__label  {
      margin-right:20px;
