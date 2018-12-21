@@ -388,26 +388,198 @@
         }
         /*面试列表以及状态*/
         .interview_list_status{
+          padding: 40px 60px;
+          button{
+            width: 220px;
+            height: 40px;
+            background: #f95714;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+            color: #fff;
+            display: block;
+            margin: 0 auto;
+          }
           .interview_list{
-           .interview{
-             background:rgba(255,255,255,1);
+            padding: 0 0 0 60px;
+
+            .interview{
+             width: 680px;
+             margin: 40px 0 0 0;
+             background: #fff;
              border-radius:4px;
              border:1px solid rgba(229,229,229,1);
+             position: relative;
+             .img_status{
+               position: absolute;
+               top:8px;
+               left: -44px;
+             }
              .title{
                height: 40px;
                line-height: 40px;
+               padding: 0 20px;
+               color: #394A66;
+               font-weight:bold;
                background: #F2F3F5;
                border-radius:4px 4px 0px 0px;
+               overflow: hidden;
+               i{
+                 display: inline-block;
+                 font-weight:bold;
+               }
+               .el-dropdown{
+                 padding:0;
+                 float: right;
+                 .el-dropdown-link{
+                 }
+               }
+
              }
              div{
                padding: 20px 40px;
                p{
                  height: 20px;
                  line-height: 20px;
-                 margin: 0 0 10px 0;
+                 margin: 0 0 15px 0;
                  color: #748093;
+                 img{
+                   vertical-align: middle;
+                   margin: 0 8px 0 3px;
+                 }
                  i{
                    color: #394A66;
+                 }
+                 .interview_status{
+                   background: #66ADFF;
+                   color: #fff;
+                   padding: 2px 8px;
+                   border-radius: 4px;
+                 }
+                 .interview_feedbook{
+                   color: #66ADFF;
+                   float: right;
+                   cursor: pointer;
+                 }
+                 .el-icon-caret-bottom:before{
+                   content: "";
+                 }
+                 .el-icon-caret-bottom:after{
+                   content: "\E60B";
+                   color:#AAADB5 ;
+                   cursor: pointer;
+                 }
+
+                 label{
+                   text-align: right;
+                   width: 85px;
+                   display: inline-block;
+                 }
+                 .look_Download{
+                   float: right;
+                   i{
+                     color: #66ADFF;
+                     cursor: pointer;
+                   }
+                 }
+                 span{
+                   display: inline-block;
+                   height: 20px;
+                   padding: 0 0 0 25px;
+                 }
+                 .yawp{
+                   background: url("../../../assets/img/candidate/tanchuang_ic_bumanyi.png") no-repeat 0px 0px;
+                 }
+                 .common{
+                   background: url("../../../assets/img/candidate/tanchuang_ic-yiban.png") no-repeat 0px 0px;
+                 }
+                 .satisfactory{
+                   background: url("../../../assets/img/candidate/tanchuang_ic_jiaomanyi.png") no-repeat 0px 0px;
+                 }
+                 .great_satisfaction{
+                   background: url("../../../assets/img/candidate/tanchuang_ic_feichangmanyi.png") no-repeat 0px 0px;
+                 }
+               }
+               .feedbook_form{
+                 padding: 0;
+                 .vertical{text-align: center;margin: 50px 0 20px!important;}
+                 .form-group{
+                   padding: 0;
+                   margin: 20px 0 0 0;
+                   font-size: 0;
+                   label{vertical-align: top;font-size: 14px;margin-right: 4px;}
+                   textarea{
+                     width:480px;
+                     height:120px;
+                     background:rgba(255,255,255,1);
+                     border-radius:4px;
+                     border:1px solid rgba(229,229,229,1);
+                     font-size: 14px;
+                   }
+                  span{
+                    display: inline-block;
+                    padding: 0 20px 0 50px;
+                    height: 30px;
+                    line-height: 30px;
+                    font-size: 14px;
+                    margin: 0 10px 0 0;
+                    border-radius: 4px;
+                    border: 1px solid #E5E5E5;
+                    color: #748093;
+                    cursor: pointer;
+                  }
+                   .active{
+                     color: #f95714;
+                     border: 1px solid #f95714;
+                   }
+                   .yawp{
+                     background: url("../../../assets/img/candidate/tanchuang_ic_bumanyi.png") no-repeat 20px 5px;
+                   }
+                   .yawp.active{
+                     background: url("../../../assets/img/candidate/tanchuang_ic_bumanyi_pre.png") no-repeat 20px 5px;
+                   }
+                   .common{
+                     background: url("../../../assets/img/candidate/tanchuang_ic-yiban.png") no-repeat 20px 5px;
+                   }
+                   .common.active{
+                     background: url("../../../assets/img/candidate/tanchuang_ic-yiban_pre.png") no-repeat 20px 5px;
+                   }
+                   .satisfactory{
+                     background: url("../../../assets/img/candidate/tanchuang_ic_jiaomanyi.png") no-repeat 20px 5px;
+                   }
+                   .satisfactory.active{
+                     background: url("../../../assets/img/candidate/tanchuang_ic_jiaomanyi_pre.png") no-repeat 20px 5px;
+                   }
+                   .great_satisfaction{
+                     background: url("../../../assets/img/candidate/tanchuang_ic_feichangmanyi.png") no-repeat 20px 5px;
+                   }
+                   .great_satisfaction.active{
+                     background: url("../../../assets/img/candidate/tanchuang_ic_feichangmanyi_pre.png") no-repeat 20px 5px;
+                   }
+                   .button{
+                     width:80px;
+                     height:34px;
+                     color: #fff;
+                     background:#f95714;
+                     border-radius:4px;
+                     border: none;
+                     font-size: 14px;
+                     cursor: pointer;
+                   }
+                   .cancel{
+                     background: #DBDBDB;
+                     margin: 0 0 0 6px;
+                   }
+                 }
+               }
+               .feedbook_form_pullDown{
+                 padding: 10px 10px 27px;
+                 h4{
+                   color: #394A66;
+                   font-weight: bold;
+                 }
+                 p{
+                  margin: 20px 0 0;
                  }
                }
              }
@@ -528,6 +700,61 @@
       }
       /*附件*/
       .accessory_fifth{
+        .sty {
+          text-align: center;
+          img{
+            margin:112px 0 0;
+          }
+          p{
+            height:19px;
+            font-size:14px;
+            color:rgba(57,74,102,1);
+            line-height:19px;
+            margin: 43px 0 25px;
+          }
+          .uploadFile{
+            position: relative;
+            height: 40px;
+            width:220px;
+            margin: 12px auto auto;
+
+            input {
+              opacity: 0;
+              width:220px;
+              height:40px;
+              z-index: 10000;
+              border:1px solid #ccc;
+              position: absolute;
+              left: 0;
+              top:0;
+            }
+            span {
+              position: absolute;
+              left: 0;
+              top:0;
+              font-size: 14px;
+              text-align: center;
+              line-height: 34px;
+              width:220px;
+              height:40px;
+              background:rgba(249,87,20,1);
+              border-radius:4px;
+              cursor: pointer;
+              border: none;
+              color: #fff;
+            }
+          }
+          .button{
+            width:220px;
+            height:40px;
+            background:rgba(249,87,20,1);
+            border-radius:4px;
+            cursor: pointer;
+            border: none;
+            color: #fff;
+            margin: 12px 0 0;
+          }
+        }
         .noOps{
           text-align: center;
           img{
@@ -595,6 +822,7 @@
             border-left: 4px solid #f95714;
             text-indent: 10px;
             margin-bottom: 20px;
+            
           }
           .file_text_box{
             border: 1px solid #e5e5e5;

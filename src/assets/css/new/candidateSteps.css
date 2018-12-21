@@ -298,6 +298,9 @@
 .el-dialog.candidateSteps .addMain .candidate_content .basic_first .standard_resume .resume_content .sel_description .line div {
   line-height: 24px;
 }
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second {
+  /*面试列表以及状态*/
+}
 .el-dialog.candidateSteps .addMain .candidate_content .interview_second .noInterviews,
 .el-dialog.candidateSteps .addMain .candidate_content .interview_second .noOps {
   text-align: center;
@@ -323,6 +326,226 @@
   border: none;
   color: #fff;
   margin: 22px 0 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_basic {
+  overflow: hidden;
+  padding: 0 20px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_basic .headLine {
+  height: 24px;
+  font-size: 18px;
+  font-family: MicrosoftYaHei-Bold;
+  font-weight: bold;
+  color: #394A66;
+  line-height: 24px;
+  border-left: 4px solid #f95714;
+  text-indent: 10px;
+  margin-bottom: 20px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_basic .interview_modal {
+  width: 820px;
+  margin: 16px 0 0 ;
+  background: #ffffff;
+  border-radius: 4px;
+  border: 1px solid #e5e5e5;
+  font-size: 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_basic .interview_modal .title {
+  height: 40px;
+  background: #F2F3F5;
+  border-radius: 4px 4px 0px 0px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_basic .interview_modal div {
+  margin: 19px 10px 10px 40px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_basic .interview_modal div p {
+  height: 30px;
+  font-size: 14px;
+  color: #748093;
+  line-height: 30px;
+  margin: 0px 10px 10px 0px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_basic .interview_modal div p i {
+  color: #394A66;
+  background: #F2F3F5;
+  padding: 3px 11px;
+  margin-right: 10px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_basic .selectedModel {
+  margin: 10px 0 40px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_basic .interview_button {
+  text-align: center;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_basic .interview_button .button {
+  width: 80px;
+  height: 34px;
+  color: #fff;
+  background: #f95714;
+  border-radius: 4px;
+  border: none;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_basic .interview_button .cancel {
+  background: #DBDBDB;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status {
+  padding: 40px 60px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status button {
+  width: 220px;
+  height: 40px;
+  background: #f95714;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  display: block;
+  margin: 0 auto;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list {
+  padding: 0 0 0 60px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview {
+  width: 680px;
+  margin: 40px 0 0 0;
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #e5e5e5;
+  position: relative;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview .img_status {
+  position: absolute;
+  top: 8px;
+  left: -44px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview .title {
+  height: 40px;
+  line-height: 40px;
+  padding: 0 20px;
+  color: #394A66;
+  font-weight: bold;
+  background: #F2F3F5;
+  border-radius: 4px 4px 0px 0px;
+  overflow: hidden;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview .title i {
+  display: inline-block;
+  font-weight: bold;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview .title .el-dropdown {
+  padding: 0;
+  float: right;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div {
+  padding: 20px 40px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div p {
+  height: 20px;
+  line-height: 20px;
+  margin: 0 0 15px 0;
+  color: #748093;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div p img {
+  vertical-align: middle;
+  margin: 0 8px 0 3px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div p i {
+  color: #394A66;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div p .interview_status {
+  background: #66ADFF;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div p .interview_feedbook {
+  color: #66ADFF;
+  float: right;
+  cursor: pointer;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div p label {
+  text-align: right;
+  width: 85px;
+  display: inline-block;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div .feedbook_form {
+  padding: 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div .feedbook_form .vertical {
+  text-align: center;
+  margin: 50px 0 20px!important;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div .feedbook_form .form-group {
+  padding: 0;
+  margin: 20px 0 0 0;
+  font-size: 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div .feedbook_form .form-group label {
+  vertical-align: top;
+  font-size: 14px;
+  margin-right: 4px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div .feedbook_form .form-group textarea {
+  width: 480px;
+  height: 120px;
+  background: #ffffff;
+  border-radius: 4px;
+  border: 1px solid #e5e5e5;
+  font-size: 14px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div .feedbook_form .form-group span {
+  display: inline-block;
+  padding: 0 20px 0 50px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  margin: 0 10px 0 0;
+  border-radius: 4px;
+  border: 1px solid #E5E5E5;
+  color: #748093;
+  cursor: pointer;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div .feedbook_form .form-group .active {
+  color: #f95714;
+  border: 1px solid #f95714;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div .feedbook_form .form-group .yawp {
+  background: url("../../../assets/img/candidate/tanchuang_ic_bumanyi.png") no-repeat 20px 5px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div .feedbook_form .form-group .yawp.active {
+  background: url("../../../assets/img/candidate/tanchuang_ic_bumanyi_pre.png") no-repeat 20px 5px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div .feedbook_form .form-group .common {
+  background: url("../../../assets/img/candidate/tanchuang_ic-yiban.png") no-repeat 20px 5px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div .feedbook_form .form-group .common.active {
+  background: url("../../../assets/img/candidate/tanchuang_ic-yiban_pre.png") no-repeat 20px 5px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div .feedbook_form .form-group .satisfactory {
+  background: url("../../../assets/img/candidate/tanchuang_ic_jiaomanyi.png") no-repeat 20px 5px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div .feedbook_form .form-group .satisfactory.active {
+  background: url("../../../assets/img/candidate/tanchuang_ic_jiaomanyi_pre.png") no-repeat 20px 5px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div .feedbook_form .form-group .great_satisfaction {
+  background: url("../../../assets/img/candidate/tanchuang_ic_feichangmanyi.png") no-repeat 20px 5px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div .feedbook_form .form-group .great_satisfaction.active {
+  background: url("../../../assets/img/candidate/tanchuang_ic_feichangmanyi_pre.png") no-repeat 20px 5px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div .feedbook_form .form-group .button {
+  width: 80px;
+  height: 34px;
+  color: #fff;
+  background: #f95714;
+  border-radius: 4px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .interview_second .interview_list_status .interview_list .interview div .feedbook_form .form-group .cancel {
+  background: #DBDBDB;
+  margin: 0 0 0 6px;
 }
 .el-dialog.candidateSteps .addMain .candidate_content .offer_third .noOps,
 .el-dialog.candidateSteps .addMain .candidate_content .offer_third .noOffer {
@@ -427,6 +650,60 @@
   color: #FF001F;
   height: 19px;
   cursor: pointer;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .sty {
+  text-align: center;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .sty img {
+  margin: 112px 0 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .sty p {
+  height: 19px;
+  font-size: 14px;
+  color: #394a66;
+  line-height: 19px;
+  margin: 43px 0 25px;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .sty .uploadFile {
+  position: relative;
+  height: 40px;
+  width: 220px;
+  margin: 12px auto auto;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .sty .uploadFile input {
+  opacity: 0;
+  width: 220px;
+  height: 40px;
+  z-index: 10000;
+  border: 1px solid #ccc;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .sty .uploadFile span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 14px;
+  text-align: center;
+  line-height: 34px;
+  width: 220px;
+  height: 40px;
+  background: #f95714;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+}
+.el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .sty .button {
+  width: 220px;
+  height: 40px;
+  background: #f95714;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  margin: 12px 0 0;
 }
 .el-dialog.candidateSteps .addMain .candidate_content .accessory_fifth .noOps {
   text-align: center;

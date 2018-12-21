@@ -126,13 +126,13 @@
                     <li @click="click_candidate(22)" :class="flag==22?'active':''"><span>候选人管理</span></li>
                      <li @click="click_interviewMmanagement(30)" :class="flag==30?'active':''"><span>面试管理</span></li>
                      <li @click="click_option(31)" :class="flag==31?'active':''"><span>设置</span></li>
-                    <li @click="click_potion25(25)" :class="flag==25?'active':''"><span>人才库</span></li>
-                    <!-- <li @click="click_potion26(26)" :class="flag==26?'active':''"><span>设置</span></li> -->
+                    <!--<li @click="click_potion25(25)" :class="flag==25?'active':''"><span>人才库</span></li>-->
+                    <!--<li @click="click_potion26(26)" :class="flag==26?'active':''"><span>设置</span></li>-->
                 </ul>
             </li>
 
 
-        <!--  <li>
+          <!-- <li>
             <div class="link" @click="toggle7">
               <i class="fa fa-globe">
                 <img src="../../assets/img/entryManagement/ic_ruzhiguanli.svg" alt="" class="click-before"  v-if="before7">
@@ -149,7 +149,8 @@
               <li @click="click_offerManage(19)" :class="flag==19?'active':''"><span>offer管理</span></li>
               <li @click="click_setupTemplate(20)" :class="flag==20?'active':''"><span>offer模板设置</span></li>
             </ul>
-          </li>
+          </li> -->
+
         </ul>
     </div>
   </div>
@@ -168,7 +169,7 @@ export default {
        isShow6:false,
        isShow7:false,
        isShow8:false,
-			 isShow9:false,
+	   isShow9:false,
        before1:true,
        after1:false,
        before2:true,
@@ -286,14 +287,14 @@ export default {
         this.flag=a;
     		this.$router.push('/jobmanageindex');
       },
-      //  click_potion25(a){//人才库
-      //   this.flag=a;
-    	// 	this.$router.push('/jobmanageindex');
-      // },
-      //  click_potion26(a){//设置
-      //   this.flag=a;
-    	// 	this.$router.push('/jobmanageindex');
-      // },
+       click_potion25(a){//人才库
+        this.flag=a;
+    		this.$router.push('/jobmanageindex');
+      },
+       click_potion26(a){//设置
+        this.flag=a;
+    		this.$router.push('/jobmanageindex');
+      },
        click_candidate(a){//候选人管理
         this.flag=a;
     		this.$router.push('/candidatindex');
@@ -360,7 +361,6 @@ export default {
       let a = window.location.href;
       let b = a.indexOf("#");
       let loginUrl = a.substring(b+2);
-//       console.log(loginUrl)
 			if(loginUrl=='searchbefore'){
     		let that=this;
 				that.isShow1=true;
@@ -524,4 +524,5 @@ export default {
   color: #F95714;
 }
 </style>
+
 

@@ -69,31 +69,46 @@
                             <span>员工档案</span>
                             <router-link :to="{path:'/archives',query: { id: id}}">查看详情</router-link>
                         </p>
-                        <div class="info-content" ref="info1" :style="{height:infoH}">
-                            <dl>
-                                <dt>工　　号</dt>
-                                <dd>{{employeeInfo.employeeNumber}}</dd>
-                                <dt>工作类型</dt>
-                                <dd>{{employeeInfo.workType == 0 ? '全职' : employeeInfo.workType == 1 ? ' 兼职' : '实习'}}</dd>
-                                <dt v-if="employeeInfo.workType == 0 && serviceSituation == 0 && status == 0">预计转正日期</dt><!--!personnelPromotionResponse.flag && -->
-                                <dd v-if="employeeInfo.workType == 0 && serviceSituation == 0 && status == 0 && personnelProcessResponse == null">{{employeeInfo.turnPositiveTime}}</dd>
+                        <div class="info-contents">
+                      <!--    <dl>
+                            <dt v-if="employeeInfo.workType == 0 && serviceSituation == 0 && status == 0">预计转正日期</dt>&lt;!&ndash;!personnelPromotionResponse.flag && &ndash;&gt;
+                            <dd v-if="employeeInfo.workType == 0 && serviceSituation == 0 && status == 0 && personnelProcessResponse == null">{{employeeInfo.turnPositiveTime}}</dd>
 
-                                <dt v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0">实际转正日期</dt>
-                               <!-- <dd v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0 && personnelProcessResponse != null ">{{personnelProcessResponse.effectiveDate}}</dd>
-                              <dd v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0 && personnelProcessResponse == null ">{{employeeInfo.entryTime}}</dd>-->
-                              <dd v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0 && probation>6">{{personnelProcessResponse.effectiveDate}}</dd>
-                              <dd v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0 &&  probation<6">{{employeeInfo.entryTime}}</dd>
-
-                                <!--<dd v-if="!personnelPromotionResponse.flag && employeeInfo.workType == 0">{{personnelPromotionResponse.expectedTurnTome}}</dd>-->
-                                <!--<dt v-if="personnelPromotionResponse.flag && employeeInfo.workType == 0">实际转正日期</dt>-->
-                                <!--<dd v-if="personnelPromotionResponse.flag && employeeInfo.workType == 0">{{employeeInfo.turnPositiveTime}}</dd>-->
-                                <dt>直属上级</dt>
-                                <dd>{{employeeInfo.directlySuperior}}</dd>
-                                <dt>入职日期</dt>
-                                <dd>{{employeeInfo.entryTime}}</dd>
-                                <dt>个人邮箱</dt>
-                                <dd>{{employeeInfo.employeeEmail}}</dd>
-                            </dl>
+                            <dt v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0">实际转正日期</dt>
+                            <dd v-if="status == 0 && personnelProcessResponse != null ">{{personnelProcessResponse.effectiveDate}}</dd>
+                            <dd v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0 && probation>0">{{personnelProcessResponse.turnPositiveTime}}</dd>
+                            <dd v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0 &&  probation==0">{{employeeInfo.entryTime}}</dd>
+                          </dl>-->
+                            <el-row style="margin:0 10px 20px 5px;">
+                               <el-col class="col_t"  :span="3">工　　号</el-col>
+                               <el-col class="col_c" :span="8" :offset='1'>{{employeeInfo.employeeNumber}}</el-col>
+                            </el-row>
+                            <el-row  style="margin:0 10px 20px 5px;">
+                               <el-col class="col_t"  :span="3">工作类型</el-col>
+                               <el-col class="col_c"  :span="8"  :offset='1'>{{employeeInfo.workType == 0 ? '全职' : employeeInfo.workType == 1 ? ' 兼职' : '实习'}}</el-col>
+                            </el-row>
+                             <el-row  style="margin:0 10px 20px 5px;"  v-if="employeeInfo.workType == 0 && serviceSituation == 0 && status == 0 && personnelProcessResponse == null">
+                               <el-col class="col_t"  :span="3">预计转正日期</el-col>
+                               <el-col class="col_c"  :span="8"  :offset='1'>{{employeeInfo.turnPositiveTime}}</el-col>
+                            </el-row>
+                             <el-row  style="margin:0 10px 20px 5px;" v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0">
+                               <el-col class="col_t"  :span="3">实际转正日期</el-col>
+                               <el-col  class="col_c" v-if="status == 0 && personnelProcessResponse != null "  :offset='1' :span="8">{{personnelProcessResponse.effectiveDate}}</el-col>
+                               <el-col class="col_c" v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0 && probation>0"  :offset='1' :span="8">{{employeeInfo.turnPositiveTime}}</el-col>
+                               <el-col class="col_c" v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0 &&  probation==0"  :offset='1' :span="8">{{employeeInfo.entryTime}}</el-col>
+                            </el-row>
+                             <el-row  style="margin:0 10px 20px 5px;">
+                               <el-col class="col_t"  :span="3">直属上级</el-col>
+                               <el-col class="col_c" :span="8"  :offset='1'>{{employeeInfo.directlySuperior}}</el-col>
+                            </el-row>
+                             <el-row  style="margin:0 10px 20px 5px;">
+                               <el-col class="col_t"  :span="3">入职日期</el-col>
+                               <el-col class="col_c" :span="8"  :offset='1'>{{employeeInfo.entryTime}}</el-col>
+                            </el-row>
+                             <el-row  style="margin:0 10px 20px 5px;">
+                               <el-col class="col_t"  :span="3">个人邮箱</el-col>
+                               <el-col class="col_c" :span="8"  :offset='1'>{{employeeInfo.employeeEmail}}</el-col>
+                            </el-row>
                         </div>
                     </div>
                     <div class="staff-process">
@@ -102,11 +117,12 @@
                             <router-link :to="{path:'/hr',query: { employeePhone: employeeInfoDetail.employeePhone }}">查看详情</router-link>
                         </p>
 
-                        <div class="info-content" ref="info2" :style="{height:infoH}">
-                            <dl>
-                                <dt>{{ personProcess ? (personProcess.processTitle ? personProcess.processTitle : '') : ''}} </dt>
-                                <dd>{{personProcess ? (personProcess.status == 0 ? '已撤销': personProcess.status == 1 ? '已生效' : '即将生效') : ''}}</dd>
-                            </dl>
+                        <div class="info-contents">
+                            <el-row  style="margin:0 10px 20px 5px;">
+                                <el-col class="col_t"  :span="3">{{ personProcess ? (personProcess.processTitle ? personProcess.processTitle : '') : ''}}</el-col>
+                                <el-col class="col_c" :span="8"  :offset='1'>{{personProcess ? (personProcess.status == 0 ? '已撤销': personProcess.status == 1 ? '已生效' : '即将生效') : ''}}</el-col>
+                            </el-row>
+
                         </div>
                     </div>
                 </div>
@@ -461,7 +477,9 @@
         border: 1px solid #E5E5E5;
         border-radius: 2px;
     }
-
+    .staff-box {
+      min-width: 1073px;
+    }
     .staff-box>div{
         display: inline-block;
         width: calc(50% - 13px);
@@ -478,6 +496,7 @@
     .staff-tit{
         display: flex;
         justify-content: space-between;
+      min-width: 539px;
         padding:15px 20px;
         font-size: 16px;
         color: #394A66;
@@ -517,5 +536,21 @@
     .info-content>dl>dd{
         color: #394A66;
         width: calc(100% - 100px);
+    }
+    .info-contents{
+      height: 250px;;
+      min-height: 200px;
+      min-width: 539px;
+      /* font-size: 0; */
+      padding:24px 20px 30px 50px;
+      border: 1px solid #E5E5E5;
+      border-top:0;
+    }
+    .info-contents .col_t {
+      text-align: right;
+      color:#97A2B3;
+    }
+    .info-contents .col_c {
+      color:#394A66;
     }
 </style>

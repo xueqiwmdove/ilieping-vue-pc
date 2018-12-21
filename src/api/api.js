@@ -2,7 +2,8 @@
 // let Butterfly="http://127.0.0.1:8899/jersey/";
 let Butterfly="http://192.168.2.166:8899/jersey/";//测试ip
 // let Butterfly="http://192.168.6.6:8899/jersey/";//薛尧
-// let Butterfly="http://192.168.6.209:8891/jersey/";//潘述钱ip
+// let Butterfly="http://192.168.6.251:8899/jersey/";//潘述钱ip
+// let Butterfly="http://192.168.6.209:8899/jersey/";//潘述钱ip
 // let Butterfly="http://192.168.6.208:8891/jersey/";//郭峰ips
 // let Butterfly="http://192.168.6.207:8899/jersey/";//施玮ip
 // let Butterfly="http://192.168.6.195:8899/jersey/";//李博凯
@@ -151,14 +152,33 @@ const api = {
   getPosition:Butterfly+'positionInfo/getPosition',//查询职位列表  
   candidateList:Butterfly+'candidate/search/list',//查询候选人列表  
   getGrouping:Butterfly+'candidate/get/status/grouping',//查询候选人分组人数  
+  candidateOperation:Butterfly+'candidateOperationRecord/getList',//查询候选人操作记录
+  annexList:Butterfly+'candidate/get/annexList',//查询候选人操作记录
+  deleteFile:Butterfly+'candidate/delete/annex',//删除候选人附件
+  uploadAnnexInfo:Butterfly+'candidate/upload/annexInfo',//上传候选人附件
 
-  
+ 
+  positionDetail:Butterfly+'positionInfo/detail',//添加，更新岗位
+  getPosition:Butterfly+'positionInfo/getPosition',//查询职位列表
+  candidateList:Butterfly+'candidate/search/list',//查询候选人列表
+  getGrouping:Butterfly+'candidate/get/status/grouping',//查询候选人分组人数
+
+
   positionDetail:Butterfly+'positionInfo/detail',//添加，更新岗位
   getPosition:Butterfly+'positionInfo/getPosition',//查询职位列表
 
 	logout:Butterfly+'logout',//退出接口
 
+//  blance
+  uploadResume:Butterfly+'candidate/upload/candidate/resume',
+  handAddCandidate:Butterfly+'candidate/getCandidateIsExist',//标准简历
+  updateResume:Butterfly+'candidate/update',//更新候选人简历
+  getCandidate:Butterfly+'candidate/getCandidate/',//查询候选人信息
 };
-export default api;
+export default api
 
-
+// export default {
+//   uploadFile() {
+//     return `${Butterfly}` + '/candidate/upload/annexInfo'
+//   },
+// }
