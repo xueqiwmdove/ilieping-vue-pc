@@ -4,13 +4,21 @@
       <div v-if="dataList==[]" class="noOps">
         <img src="../../../assets/img/candidate/tanchuang_pic_attachment.png" alt="">
         <p>尚无附件信息</p>
-        <div class="uploadFile">
-          <span>上传附件</span>
-          <input class="el-icon-upload"  @change="getFile($event)" type="file" ref="fileTag"  id='file'  action=""/>
-        </div>
+         <el-upload
+          class="upload-demo"
+          :action="doupload()"
+          :before-upload="before_Upload"
+          ref="newupload"
+          :data="data"
+           multiple
+          :file-list="fileList"
+          >
+          <el-button style="background-color:#F95714;border-radius:4px;width:220px;height:40px;color:#fff" >上传附件</el-button>
+          <!-- <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div> -->
+        </el-upload>
       </div>
       <!--上传-->
-      <div v-else class="fileList sty">
+      <div v-else class="fileList sty ">
          <!-- <div class="uploadFile">
           <span>上传附件</span>
           <input  @change="getFile($event)" class="el-icon-upload" type="file" ref="fileTag"  id='file'  action=""/>
@@ -24,7 +32,7 @@
            multiple
           :file-list="fileList"
           >
-          <el-button size="middle" type="primary">上传附件</el-button>
+          <el-button style="background-color:#F95714;border-radius:4px;width:220px;height:40px;color:#fff" >上传附件</el-button>
           <!-- <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div> -->
         </el-upload>
         <p  class="headLine">附件列表</p>
@@ -76,7 +84,7 @@
       },
       methods:{
       doupload() {
-        return api.annexList
+        return api.uploadAnnexInfo
       },
     //上传
       before_Upload(file) {
@@ -205,5 +213,11 @@
  }
  .filename {
    float: left;
+ }
+ .btn_rsset.el-button--primary {
+   background: #F95714;
+   border-radius: 4px;
+   width: 220px;
+   height: 40px;
  }
 </style>
