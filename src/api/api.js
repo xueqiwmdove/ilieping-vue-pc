@@ -159,7 +159,7 @@ const api = {
 	logout:Butterfly+'logout',//退出接口
 
 //  blance
-  uploadResume:Butterfly+'candidate/upload/candidate/resume',
+  uploadResume:Butterfly+'candidate/upload/candidate/resume',//上传简历
   handAddCandidate:Butterfly+'candidate/getCandidateIsExist',//标准简历
   updateResume:Butterfly+'candidate/update',//更新候选人简历
   getCandidate:Butterfly+'candidate/getCandidate/',//查询候选人信息

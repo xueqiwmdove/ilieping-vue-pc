@@ -110,10 +110,10 @@
             <el-upload
               class="upload-demo"
               drag
-              ref="upload"
               :before-upload="beforeAvatarUpload"
               :action="uploadUrl()"
               :headers="myHeader"
+              :data="data"
               multiple>
               <i class="el-icon-upload">
                 <img src="../../assets/img/candidate/tanchuang_pic_upload.png" alt="">
@@ -422,7 +422,9 @@
             dialogVisible:false,
             flag:1,
             add:'add',
+            data:{
 
+            },
             resumeType:'',
             resumeTypeData:[
               {
@@ -642,13 +644,14 @@
         getHeadImg(){
 
         },
+
         //原始简历上传文件前的校验
         beforeAvatarUpload (file) {
           let that=this;
           let fileName=new Array();
           fileName =file.name.split('.');
           // const extension = fileName[fileName.length-1] === 'txt';
-          const extension2 =  fileName[fileName.length-1]=== 'word';
+          const extension2 =  fileName[fileName.length-1]=== 'doc';
           // const isLt2M = file.size / 1024 / 1024 < 10;
           if (that.resumeType=="") {
             that.$message({
@@ -674,29 +677,32 @@
           if (extension2 && that.resumeType!="") {/*&& isLt2M == true*/
             // console.log(file);
             let fd = new FormData();
-            fd.append('resumeType', that.resumeType);//随文件上传的其他参数
-            fd.append('file', file);
+            fd.append('type', that.resumeType);//随文件上传的其他参数
+            fd.append('resumeFileName', file);
+            // let fd={
+            //   resumeFileName:file,
+            //   type: that.resumeType
+            // };
+            // console.log(file)
             // console.log(fd)
-            this.newImport(fd).then(function (res) {//校验完成后提交
-              console.log(res)
-            }, function () {
-              console.log('failed');
-            });
-            return true
+            // this.newImport(fd);//校验完成后提交
+
+
+            // return true
           }
           return extension2 && that.resumeType
         },
+        //上传解析简历
         newImport (data) {
           this.$http({
             method:'post',
-            url:"url",
+            url:api.uploadResume,
             data:data,
             headers:headers()
           }).then(function (res) {//成功后回调
-            // let code = res.data.returncode;//返回json结果
-            // let msg = res.data.msg;
-            // this.open(msg, code);
-            // console.log('success');
+            if(res.data.code==10000){
+              console.log(res.data.data);
+            }
           }, function () {
             // console.log('failed');
           });
