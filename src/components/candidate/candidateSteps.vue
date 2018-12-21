@@ -3,7 +3,7 @@
   <el-dialog title="候选人信息" :visible="addVisible"  custom-class="candidateSteps" :before-close="hideModel">
     <img src="../../assets/img/candidate/tanhcuang_ic_editor.png" class="save">
     <div class="addMain">
-      <div class="personInfo" v-for="item  in candidateStepsData">
+      <div class="personInfo" v-for="(item,index)  in candidateStepsData" :key="index">
         <p class="primary ">
           <span  class="name">{{item.candidateName}}</span>
           <span class="post">{{item.postName}}.{{item.resumeChannelStr}}（<i v-if="item.resumeSource==0">主动搜索</i><i v-if="item.resumeSource==1">候选人投递</i>）</span>
@@ -215,7 +215,6 @@
   import candidateRight from '@/components/candidate/common/candidateRight';
   import {checkMobile,compareDate,isNumber,isEmail} from '@/assets/js/common/verify.js'
   import {formatDate} from '@/assets/js/common/date_year.js';
-  import {toArray} from '@/assets/js/common/diy.show';
   // duanyanhong
 // 2018.12.2
 // 自定义控制员工架构下拉框点击空白处隐藏

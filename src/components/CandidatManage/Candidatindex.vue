@@ -199,7 +199,7 @@
 //  blance
   import addCandidate from '@/components/candidate/addCandidate';
   import candidateSteps from '@/components/candidate/candidateSteps';
-  import {toArray} from '@/assets/js/common/diy.show';
+  // import {toArray} from '@/assets/js/common/diy.show';
   // import recommend_depart from '@/components/candidate/common/recommend_depart';
 
 // duanyanhong
@@ -457,9 +457,9 @@ export default {
         })
       }
     },
-  toArray(data) {
-    return toArray(data);
-  },
+  // toArray(data) {
+  //   return toArray(data);
+  // },
     mounted() {
      this.getCandidate()
      this.getPosition()
