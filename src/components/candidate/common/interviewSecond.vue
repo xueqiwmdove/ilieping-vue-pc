@@ -217,6 +217,7 @@
 <script>
     export default {
         name: "interview_second",
+        // props:[''],
         components:{
 
         },
@@ -229,14 +230,16 @@
             feedbook_form:false,
             no_feedBook:true,
             feedbook_form_pullDown:false,
-            feedBook:false
+            feedBook:false,
+
           }
         },
       methods: {
         //  取消面试
         cancelInterview(){
           let that=this;
-          console.log(12)
+          console.log(12);
+          // that.$emit('listentochild',true)
         },
         /*保存面试登记表
           * */

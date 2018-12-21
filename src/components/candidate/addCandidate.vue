@@ -205,7 +205,7 @@
                     </el-row>
                   </div>
 
-                  <div v-for="(item,index) in candidateWorkExperienceDTOList" :key="index">
+                  <div v-for="(item,index) in candidateWorkExperienceDTOList" :key="'info1'-index">
                     <p class="headLine" v-show="candidateWorkExperienceDTOList.length<2">工作经历</p>
                     <p class="headLine" v-show="candidateWorkExperienceDTOList.length>1">工作经历{{index+1}}</p>
                     <div class="addButton" @click="addWorkDomain" v-show="index==0">
@@ -278,7 +278,7 @@
                     </div>
                   </div>
 
-                  <div v-for="(item,index) in candidateEducationExperienceDTOList" :key="index">
+                  <div v-for="(item,index) in candidateEducationExperienceDTOList" :key="'info2'-index">
                     <p class="headLine" v-show="candidateEducationExperienceDTOList.length<2">教育经历</p>
                     <p class="headLine" v-show="candidateEducationExperienceDTOList.length>1">教育经历{{index+1}}</p>
                     <div class="addButton" @click="addEducationDomain" v-show="index==0">
@@ -467,11 +467,11 @@
             isHave:'',
             isHaveData:[
             {
-              value:'1',
+              value:'有',
               label:'有',
             },
             {
-              value:'0',
+              value:'无',
               label:'无',
             }
           ],
@@ -535,12 +535,12 @@
             post1Data:[],
             channels:'',
             channelsData:[
-              {value:'1',label:'手动添加'},
-              {value:'2',label:'内部推荐'},
-              {value:'3',label:'社招官网'},
-              {value:'4',label:'拉钩'},
-              {value:'5',label:'猎聘'},
-              {value:'6',label:'BOSS直聘'},
+              {value:'0',label:'手动添加'},
+              {value:'1',label:'内部推荐'},
+              {value:'2',label:'社招官网'},
+              {value:'3',label:'拉钩'},
+              {value:'4',label:'猎聘'},
+              {value:'5',label:'BOSS直聘'},
             ],
             resoure:'',
             resoureData:[
@@ -796,6 +796,7 @@
                 hobby:that.hobby,//"兴趣爱好",
                 candidateWorkExperienceDTOList:that.candidateWorkExperienceDTOList,
                 candidateEducationExperienceDTOList:that.candidateEducationExperienceDTOList,
+                description:that.self_description,
               }};
           that.insertResumeData={
                 candidateName:that.name,// //候选人姓名
@@ -829,6 +830,7 @@
               candidateEducation:that.education1,//候选人学历
               candidateLocation:that.address,//所在地
               originalResumeAddress:"", //原简历地址
+              commonEmployeeId:'',//TODO 推荐人id
               standardResume:JSON.stringify(that.standardResume)
             }
           }).then(function (res) {

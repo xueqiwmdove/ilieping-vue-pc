@@ -94,7 +94,7 @@
                              <el-row  style="margin:0 10px 20px 5px;" v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0">
                                <el-col class="col_t"  :span="3">实际转正日期</el-col>
                                <el-col  class="col_c" v-if="status == 0 && personnelProcessResponse != null "  :offset='1' :span="8">{{personnelProcessResponse.effectiveDate}}</el-col>
-                               <el-col class="col_c" v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0 && probation>0"  :offset='1' :span="8">{{personnelProcessResponse.turnPositiveTime}}</el-col>
+                               <el-col class="col_c" v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0 && probation>0"  :offset='1' :span="8">{{employeeInfo.turnPositiveTime}}</el-col>
                                <el-col class="col_c" v-if="employeeInfo.workType == 0 && serviceSituation == 1 && status == 0 &&  probation==0"  :offset='1' :span="8">{{employeeInfo.entryTime}}</el-col>
                             </el-row>
                              <el-row  style="margin:0 10px 20px 5px;">
@@ -477,7 +477,9 @@
         border: 1px solid #E5E5E5;
         border-radius: 2px;
     }
-
+    .staff-box {
+      min-width: 1073px;
+    }
     .staff-box>div{
         display: inline-block;
         width: calc(50% - 13px);
@@ -494,6 +496,7 @@
     .staff-tit{
         display: flex;
         justify-content: space-between;
+      min-width: 539px;
         padding:15px 20px;
         font-size: 16px;
         color: #394A66;
@@ -533,5 +536,21 @@
     .info-content>dl>dd{
         color: #394A66;
         width: calc(100% - 100px);
+    }
+    .info-contents{
+      height: 250px;;
+      min-height: 200px;
+      min-width: 539px;
+      /* font-size: 0; */
+      padding:24px 20px 30px 50px;
+      border: 1px solid #E5E5E5;
+      border-top:0;
+    }
+    .info-contents .col_t {
+      text-align: right;
+      color:#97A2B3;
+    }
+    .info-contents .col_c {
+      color:#394A66;
     }
 </style>

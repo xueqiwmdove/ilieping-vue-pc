@@ -1,20 +1,22 @@
 <template >
   <!--候选人信息弹窗-->
   <el-dialog title="候选人信息" :visible="addVisible"  custom-class="candidateSteps" :before-close="hideModel">
-    <img src="../../assets/img/candidate/tanchuang_ic_save.png" class="save">
+    <img src="../../assets/img/candidate/tanhcuang_ic_editor.png" class="save">
     <div class="addMain">
-      <div class="personInfo">
+      <div class="personInfo" v-for="item  in candidateStepsData">
         <p class="primary ">
-          <span  class="name">张三</span>
-          <span class="post">测试工程师.拉钩（主动搜索）</span>
+          <span  class="name">{{item.candidateName}}</span>
+          <span class="post">{{item.postName}}.{{item.resumeChannelStr}}（<i v-if="item.resumeSource==0">主动搜索</i><i v-if="item.resumeSource==1">候选人投递</i>）</span>
           <span class="tag">内推</span>
         </p>
         <p class="minor">
-          <span class="phone">15921720256</span>
-          <span class="email">78995677900@163.com</span>
-          <span class="sex">男 28</span>
-          <span class="workExp">五年工作经验</span>
-          <span class="address">上海</span>
+          <span class="phone">{{item.candidatePhone}}</span>
+          <span class="email">{{item.candidateEmail}}</span>
+          <span class="sex" v-if="item.candidateSex==1">男 {{item.candidateAge}}</span>
+          <span class="sex" v-if="item.candidateSex==0">女 {{item.candidateAge}}</span>
+          <span class="workExp" v-if="item.candidateExperience!=0">{{item.candidateExperience}}年工作经验</span>
+          <span class="workExp" v-if="item.candidateExperience==0">无年工作经验</span>
+          <span class="address">{{item.candidateLocation}}</span>
         </p>
         <div class="fivesteps">
           <div class="onStep">
@@ -49,9 +51,10 @@
       </div>
 
       <div class="candidate_content">
-       <el-scrollbar style="height:100%">
-          <basicFirst  v-show="step==1"></basicFirst>
-          <interviewSecond   v-show="step==2"></interviewSecond>
+       <el-scrollbar style="height:100%;overflow-x: hidden">
+          <basicFirst  v-show="step==1" :candidateStepsData="candidateStepsData" :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList"></basicFirst>
+
+          <interviewSecond   v-show="step==2"  ></interviewSecond><!--:listentochild="showMsgformChild"-->
           <offerThird v-show="step==3"></offerThird>
           <remarkForth v-show="step==4"></remarkForth>
           <accessoryFifth v-show="step==5"></accessoryFifth>
@@ -172,9 +175,9 @@
         </div>
 
       <!--取消面试弹窗-->
-      <!-- <div class = "cov"  v-clickoutside="handleClose2">
+      <!-- <div class = "cov"  v-clickoutside="handleClose2" >&lt;!&ndash;v-if="cancelInterview==true"&ndash;&gt;
          <div class = "con create_dialog" style="height:340px;">
-           <p class = "ptitle">取消面试 <i @click="hideModel2" class="el-icon-close closes_s"></i></p>
+           <p class = "ptitle">取消面试 <i class="el-icon-close closes_s"></i></p>
            <div class="rescs beires" style="height:220px;">
              <el-form>
                <el-form :model="cerateList"  ref="cerateList" id="re_styles">
@@ -212,6 +215,7 @@
   import candidateRight from '@/components/candidate/common/candidateRight';
   import {checkMobile,compareDate,isNumber,isEmail} from '@/assets/js/common/verify.js'
   import {formatDate} from '@/assets/js/common/date_year.js';
+  import {toArray} from '@/assets/js/common/diy.show';
   // duanyanhong
 // 2018.12.2
 // 自定义控制员工架构下拉框点击空白处隐藏
@@ -238,7 +242,7 @@ const clickoutside = {
 };
     export default {
         name: "candidateSteps",
-        props:['addVisible'],
+        props:['addVisible','candidateStepsData','standardResume','candidateEducationExperienceDTOList','candidateWorkExperienceDTOList'],
         components:{
           candidateContent,
           basicFirst,
@@ -273,6 +277,7 @@ const clickoutside = {
               cerateList:{
               type:'',
             },
+            flag:1,//默认标准简历
           }
       },
       computed:{
@@ -420,13 +425,13 @@ const clickoutside = {
           let that=this;
           that.$emit('hideModel','steps');//向父组件派发事件
         },
-        hideModel2(){
-          this.conShow=false
-          this.beizhu = false
-          this.quitdia =false
-          this.showList=[]
+        showMsgformChild(){
+
         },
-      }
+        changeTab2(flag){
+          this.flag=flag;
+        }
+      },
     }
 </script>
 
