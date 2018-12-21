@@ -13,7 +13,7 @@
           <p class="rotate rotate1"><i class="triangle-left"></i>员工基本信息</p>
           <p class="rotate rotate2"><i class="triangle-top"></i>职场胜任力测评</p>
           <p class="rotate rotate3">职场失信行为曝光<i class="triangle-right"></i></p>
-        </div>
+        </div> 
       </div>
       <div class="assessmentFlow content">
         <p class="headLine">评价上传流程</p>
