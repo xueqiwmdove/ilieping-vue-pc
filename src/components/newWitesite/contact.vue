@@ -66,7 +66,6 @@
 	          companyName:'',
 	          telephone:'',
 	          msg:'',
-
         }
       },
 	    watch:{
