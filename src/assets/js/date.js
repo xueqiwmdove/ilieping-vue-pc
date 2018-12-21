@@ -20,5 +20,5 @@ Date.prototype.format = function (fmt) { //author: meizz
     return fmt;
   }
   export {
-    format   
+    format
   }

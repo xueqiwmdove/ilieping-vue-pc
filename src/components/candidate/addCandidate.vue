@@ -1,48 +1,634 @@
 <template>
   <!--添加候选人弹窗-->
-  <el-dialog title="添加候选人" :visible="addVisible"  :custom-class='["addCandidateAlert",flag=="2"?"addCandidateAlert_add":""]' :before-close="hideModel">
-    <img src="../../assets/img/candidate/tanchuang_ic_save.png" class="save">
-    <div class="addMain">
-      <!--标准简历才有-->
-      <standardBasic v-if="flag==2"></standardBasic>
+  <div>
+    <el-dialog title="添加候选人" :visible="addVisible"  :custom-class='["addCandidateAlert",flag=="2"?"addCandidateAlert_add":""]' :before-close="hideModel">
+      <img src="../../assets/img/candidate/tanchuang_ic_save.png" class="save">
+      <div class="addMain">
+        <!--标准简历才有-->
+        <!--<standardBasic v-if="flag==2"></standardBasic>-->
 
-      <addCandidate_content @my-event="getMyEvent"></addCandidate_content>
-      <!--父组件中通过监测my-event事件执行一个方法，然后取到子组件中传递过来的值-->
-      <addCandidate_right></addCandidate_right>
-    </div>
-  </el-dialog>
+        <!--<addCandidate_content @my-event="getMyEvent"></addCandidate_content>-->
+        <!--父组件中通过监测my-event事件执行一个方法，然后取到子组件中传递过来的值-->
+        <!--<addCandidate_right></addCandidate_right>-->
+
+        <!--标准简历才有-->
+        <div class="standard_required" v-if="flag==2">
+          <div class="basic">
+            <div class="inputBox">
+              <img src="../../assets/img/candidate/tanchuang_ic_name.png" alt="">
+              <el-input v-model="name" placeholder="请输入候选人姓名"></el-input>
+            </div>
+            <div class="inputBox">
+              <img src="../../assets/img/candidate/tanchuang_ic_jobs.png" alt="">
+              <el-select v-model="post1" placeholder="选择岗位">
+                <el-option v-for="item in post1Data" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              </el-select>
+            </div>
+            <div class="inputBox">
+              <img src="../../assets/img/candidate/tanchuang_ic_channel.png" alt="">
+              <el-select v-model="channels" placeholder="面试渠道">
+                <el-option v-for="item in channelsData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              </el-select>
+            </div>
+            <div class="inputBox">
+              <img src="../../assets/img/candidate/tanchuang_ic_source.png" alt="">
+              <el-select v-model="resoure" placeholder="选择来源">
+                <el-option v-for="item in resoureData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              </el-select>
+            </div>
+
+            <div class="inputBox">
+              <img src="../../assets/img/candidate/tanchuang_ic_gender.png" alt="">
+              <el-select v-model="sex" placeholder="请选择候选人性别">
+                <el-option v-for="item in sexData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              </el-select>
+            </div>
+            <div class="inputBox">
+              <img src="../../assets/img/candidate/tanchuang_ic_age.png" alt="">
+              <el-input v-model="age" placeholder="请输入年龄"></el-input>
+            </div>
+            <div class="inputBox">
+              <img src="../../assets/img/candidate/tanchuang_ic_phnnenumber.png" alt="">
+              <el-input v-model="phone" placeholder="请输入手机号"></el-input>
+            </div>
+            <div class="inputBox">
+              <img src="../../assets/img/candidate/tanchuang_ic_email.png" alt="">
+              <el-input v-model="email" placeholder="请输入邮箱号码"></el-input>
+            </div>
+            <div class="inputBox">
+              <img src="../../assets/img/candidate/tanchuang_ic_exp.png" alt="">
+              <el-select v-model="experience" placeholder="请选择工作经验">
+                <el-option v-for="item in experienceData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              </el-select>
+            </div>
+            <div class="inputBox">
+              <img src="../../assets/img/candidate/tanchuang_ic_exp.png" alt="">
+              <el-select v-model="education1" placeholder="请选择学历">
+                <el-option v-for="item in educationData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              </el-select>
+            </div>
+            <div class="inputBox">
+              <img src="../../assets/img/candidate/tanchuang_ic_place.png" alt="">
+              <el-input v-model="address" placeholder="所在地"></el-input>
+              <!--<el-select v-model="address" placeholder="所在地">
+                <el-option v-for="item in addressData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              </el-select>-->
+            </div>
+          </div>
+        </div>
+
+        <div class="addCandidate_content">
+
+          <div :class="flag==2?'standard_status_active':''">
+            <ul class="tab_title">
+              <li @click="changeTab(1)" :class="flag==1?'active':''">原始简历</li>
+              <li @click="changeTab(2)" :class="flag==2?'active':''">标准简历</li>
+              <li class="button">
+                <img src="../../assets/img/candidate/tanchuang_ic_download.png" class="upload">
+                <img src="../../assets/img/candidate/tanchuang_ic_print.png" class="print">
+              </li>
+            </ul>
+            <div class="headImg" v-if="flag==2">
+              <!--<fileUploadHeadImg @getfile="getHeadImg" ref="headImg" ></fileUploadHeadImg>-->
+              <img src="../../assets/img/candidate/tanchuang_ic_head.png" >
+              <input  type="file" accept="image/*"  @change="uploadPhoto($event)"/>
+              <p class="el-upload__tip">点击头像可上传照片，支持JPG/PNG等图片格式，最大不超过2M</p>
+            </div>
+          </div>
+          <!--原始简历-->
+          <div v-if="flag==1" class="original_resume">
+            <label style="margin: 0 0 0 20px">请先选择简历来源 <i style="color:#f95714">*</i></label>
+            <el-select v-model="resumeType" placeholder="请选择"  >
+              <el-option
+                v-for="item in resumeTypeData"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
+            <el-upload
+              class="upload-demo"
+              drag
+              ref="upload"
+              :before-upload="beforeAvatarUpload"
+              :action="uploadUrl()"
+              :headers="myHeader"
+              multiple>
+              <i class="el-icon-upload">
+                <img src="../../assets/img/candidate/tanchuang_pic_upload.png" alt="">
+              </i>
+              <p class="el-upload__text">将建立拖至此处自动上传或<em>选择文件上传</em></p>
+              <p class="el-upload__text">目前暂时支持WORD简历格式</p><!--支持PDF/TXT/WORD/WPS等简历格式-->
+            </el-upload>
+          </div>
+          <!--标准简历-->
+          <div v-if="flag==2" class="standard_resume">
+            <el-row>
+              <el-col  :span="24">
+                <el-form>
+                  <p class="headLine">个人信息</p>
+                  <div class="personInfo">
+                    <el-row :gutter="80">
+                      <el-col :lg="8" :md="8" :sm="8">
+                        <el-form-item label="工作城市">
+                          <el-input v-model="workAddress" placeholder="请输入工作城市"></el-input>
+                        </el-form-item>
+                      </el-col>
+                      <el-col :lg="8" :md="8" :sm="8">
+                        <el-form-item label="籍贯">
+                          <el-select v-model="province" placeholder="请选择省市">
+                            <el-option v-for="item in provinceData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                          </el-select>
+                        </el-form-item>
+                      </el-col>
+
+                      <el-col :lg="8" :md="8" :sm="8">
+                        <el-form-item label="所在行业">
+                          <el-input v-model="industry" placeholder="请输入所在行业"></el-input>
+                        </el-form-item>
+                      </el-col>
+                    </el-row>
+
+                    <el-row :gutter="80">
+                      <el-col :lg="8" :md="8" :sm="8">
+                        <el-form-item label="期望行业">
+                          <el-input v-model="expected_industry" placeholder="请输入期望行业"></el-input>
+                        </el-form-item>
+                      </el-col>
+                      <el-col :lg="8" :md="8" :sm="8">
+                        <el-form-item label="到岗时间">
+                          <el-date-picker v-model="arrival_time"  value-format="yyyy-MM-dd" style="width: 280px;" type="date" placeholder="请选择到岗时间"></el-date-picker>
+                        </el-form-item>
+                      </el-col>
+
+                      <el-col :lg="8" :md="8" :sm="8">
+                        <el-form-item label="是否有亲友在本公司工作">
+                          <el-select v-model="isHave" placeholder="请选择">
+                            <el-option v-for="item in isHaveData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                          </el-select>
+                        </el-form-item>
+                      </el-col>
+                    </el-row>
+
+                    <el-row :gutter="80">
+                      <el-col :lg="8" :md="8" :sm="8">
+                        <el-form-item label="期望薪资">
+                          <div>
+                            <el-row>
+                              <el-col >
+                                <el-input v-model="salary_start" class="salary_start"></el-input>
+                              </el-col>
+                              <el-col class="line" :span="2" style="color:#E5E5E5;">-</el-col>
+                              <el-col>
+                                <el-input v-model="salary_end" class="salary_end"></el-input>
+                              </el-col>
+                            </el-row>
+                          </div>
+
+
+                        </el-form-item>
+                      </el-col>
+                      <el-col :lg="16" :md="16" :sm="16">
+                        <el-form-item label="技能">
+                          <el-input v-model="skill" placeholder="请输入技能（例如英语/计算机语言等）"></el-input>
+                        </el-form-item>
+                      </el-col>
+                    </el-row>
+
+                    <el-row>
+                      <el-col :lg="24" :md="24" :sm="24">
+                        <el-form-item label="兴趣爱好">
+                          <el-input type="textarea" v-model="hobby" placeholder="请输入兴趣爱好"></el-input>
+                        </el-form-item>
+                      </el-col>
+                    </el-row>
+                  </div>
+
+                  <div v-for="(item,index) in candidateWorkExperienceDTOList" :key="'info1'-index">
+                    <p class="headLine" v-show="candidateWorkExperienceDTOList.length<2">工作经历</p>
+                    <p class="headLine" v-show="candidateWorkExperienceDTOList.length>1">工作经历{{index+1}}</p>
+                    <div class="addButton" @click="addWorkDomain" v-show="index==0">
+                      添加 <img src="../../assets/img/candidate/tanchuang_ic_add.png" alt="">
+                    </div>
+                    <div class="addButton" @click="removeWorkDomain" v-show="candidateWorkExperienceDTOList.length>1 && index>0">
+                      刪除 <img src="../../assets/img/candidate/tanchuang_ic_remove.png" alt="">
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="work" >
+                      <el-row :gutter="80">
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="任职时间">
+                            <el-date-picker
+                              v-model="item.startTime"
+                              type="daterange"
+                              range-separator=""
+                              start-placeholder="请选择任职起止时间"
+                              value-format="yyyy-MM-dd"
+                              end-placeholder="">
+                            </el-date-picker>
+                          </el-form-item>
+                        </el-col>
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="公司名称">
+                            <el-input v-model="item.companyName" placeholder="请输入就职公司名称"></el-input>
+                          </el-form-item>
+                        </el-col>
+
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="岗位">
+                            <el-input v-model="item.post" placeholder="请输入任职的岗位"></el-input>
+                          </el-form-item>
+                        </el-col>
+                      </el-row>
+
+                      <el-row :gutter="80">
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="薪资">
+                            <el-input v-model="item.salary" placeholder="请输入薪资"></el-input>
+                          </el-form-item>
+                        </el-col>
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="证明人">
+                            <el-input v-model="item.reterence " placeholder="请输入证明人姓名"></el-input><!--certifier-->
+                          </el-form-item>
+                        </el-col>
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="证明人联系方式">
+                            <el-input v-model="item.reterenceContact" placeholder="请输入证明人的联系方式"></el-input><!--certifier_phone-->
+                          </el-form-item>
+                        </el-col>
+                      </el-row>
+
+                      <el-row>
+                        <el-col :lg="24" :md="24" :sm="24">
+                          <el-form-item label="工作内容">
+                            <el-input type="textarea" v-model="item.workContent" placeholder="请输入工作内容"></el-input>
+                          </el-form-item>
+                        </el-col>
+                      </el-row>
+                      <el-row>
+                        <el-col :lg="24" :md="24" :sm="24">
+                          <el-form-item label="离职原因">
+                            <el-input type="textarea" v-model="item.dimissionReason" placeholder="请输入离职原因"></el-input><!--leaveReason-->
+                          </el-form-item>
+                        </el-col>
+                      </el-row>
+                    </div>
+                  </div>
+
+                  <div v-for="(item,index) in candidateEducationExperienceDTOList" :key="'info2'-index">
+                    <p class="headLine" v-show="candidateEducationExperienceDTOList.length<2">教育经历</p>
+                    <p class="headLine" v-show="candidateEducationExperienceDTOList.length>1">教育经历{{index+1}}</p>
+                    <div class="addButton" @click="addEducationDomain" v-show="index==0">
+                      添加 <img src="../../assets/img/candidate/tanchuang_ic_add.png" alt="">
+                    </div>
+                    <div class="addButton" @click="removeEducationDomain" v-show="candidateEducationExperienceDTOList.length>1 && index>0">
+                      删除 <img src="../../assets/img/candidate/tanchuang_ic_remove.png" alt="">
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="education">
+                      <el-row :gutter="80">
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="就读时间"><!--studyTime-->
+                            <el-date-picker
+                              v-model="item.startTime"
+                              type="daterange"
+                              range-separator=""
+                              start-placeholder="就读时间"
+                              value-format="yyyy-MM-dd"
+                              end-placeholder="">
+                            </el-date-picker>
+                          </el-form-item>
+                        </el-col>
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="学校名称">
+                            <el-input v-model="item.schoolName" placeholder="请输入就读学校名称"></el-input>
+                          </el-form-item>
+                        </el-col>
+
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="专业">
+                            <el-input v-model="item.major" placeholder="请输入所学的专业"></el-input><!--specialty-->
+                          </el-form-item>
+                        </el-col>
+                      </el-row>
+
+                      <el-row :gutter="80">
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="学历">
+                            <el-select v-model="item.qualification" placeholder="请选择学历"><!--education-->
+                              <el-option v-for="item in educationData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                            </el-select>
+                          </el-form-item>
+                        </el-col>
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="学位">
+                            <el-input v-model="item.degree " placeholder="请输入您的学位"></el-input>
+                          </el-form-item>
+                        </el-col>
+                        <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="是否全日制">
+                            <el-select v-model="item.isFullTime" placeholder="请选择是否全日制">
+                              <el-option v-for="item in isFullTimeData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                            </el-select>
+                          </el-form-item>
+                        </el-col>
+                      </el-row>
+
+                      <el-row>
+                        <el-col :lg="24" :md="24" :sm="24">
+                          <el-form-item label="其他">
+                            <el-input type="textarea" v-model="item.other" placeholder="其他说明"></el-input>
+                          </el-form-item>
+                        </el-col>
+                      </el-row>
+                    </div>
+                  </div>
+
+                    <p class="headLine">自我描述</p>
+                    <div class="self-description">
+                      <el-row>
+                        <el-col :lg="24" :md="24" :sm="24">
+                          <el-form-item label="自我描述">
+                            <el-input type="textarea" v-model="self_description" placeholder="候选简介"></el-input>
+                          </el-form-item>
+                        </el-col>
+                      </el-row>
+                    </div>
+
+                </el-form>
+              </el-col>
+            </el-row>
+
+          </div>
+        </div>
+        <div class="addCandidate_right">
+          <el-button class="uploadButton" v-if="flag==1">上传简历</el-button>
+          <el-button class="uploadButton" v-if="flag==2" @click="insertResume">上传简历</el-button>
+          <div class="selectedBox">
+            <!--选择内推人-->
+            <p>选择内推人</p>
+            <div class="selectDiv">
+              <input type="text" class="selected">
+              <img src="../../assets/img/candidate/tanchuang_ic_screen.png" alt="">
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+    </el-dialog>
+
+    <!--确定覆盖简历弹窗-->
+    <el-dialog
+      title="提示"
+      :visible.sync="dialogVisible"
+      width="30%"
+      append-to-body>
+      <span>候选人信息已存在，是否要覆盖</span>
+      <span slot="footer" class="dialog-footer">
+          <el-button @click="dialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="updateResume">确 定</el-button>
+        </span>
+    </el-dialog>
+
+  </div>
 </template>
 
 <script>
   import http from '@/http/http'
   import api from '@/api/api.js';
   import {headers} from '@/assets/js/common/lp.js'
-  import addCandidate_content from '@/components/common/candidate_public/addCandidate_content';
-  import addCandidate_right from '@/components/common/candidate_public/addCandidate_right';
+  // import addCandidate_content from '@/components/common/candidate_public/addCandidate_content';
+  // import addCandidate_right from '@/components/common/candidate_public/addCandidate_right';
   import {checkMobile,compareDate,isNumber,isEmail} from '@/assets/js/common/verify.js'
   import {formatDate} from '@/assets/js/common/date_year.js';
-  import standardBasic from '@/components/candidate/common/standardBasic';
+  // import standardBasic from '@/components/candidate/common/standardBasic';
 
     export default {
         name: "addCandidate",
         props:['addVisible'],
         components:{
-          addCandidate_content,
-          addCandidate_right,
-          standardBasic
+          // addCandidate_content,
+          // addCandidate_right,
+          // standardBasic
         },
       data(){
           return{
             // addVisible:false,
+            dialogVisible:false,
             flag:1,
             add:'add',
+
+            resumeType:'',
+            resumeTypeData:[
+              {
+                value: '1',
+                label: '51job'
+              }, {
+                value: '2',
+                label: '智联招聘'
+              },{
+                value: '3',
+                label: 'boss直聘'
+              },{
+                value: '4',
+                label: '猎聘'
+              },{
+                value: '5',
+                label: '拉勾'
+              }
+            ],
+            myHeader:headers(),//文件上传请求头
+
+            workAddress:'',
+            province:'',
+            provinceData:[
+            {value:'北京市',label:'北京市'},{value:'上海市',label:'上海市'},{value:'天津市',label:'天津市'},
+            {value:'重庆市',label:'重庆市'},{value:'河北省',label:'河北省'},{value:'山西省',label:'山西省'},
+            {value:'内蒙古',label:'内蒙古'},{value:'辽宁省',label:'辽宁省'},{value:'吉林省',label:'吉林省'},
+            {value:'黑龙江省',label:'黑龙江省'},{value:'江苏省',label:'江苏省'},{value:'浙江省',label:'浙江省'},
+            {value:'广西',label:'广西'},{value:'安徽省',label:'安徽省'},{value:'福建省',label:'福建省'},
+            {value:'江西省',label:'江西省'},{value:'山东省',label:'山东省'},{value:'河南省',label:'河南省'},
+            {value:'湖北省',label:'湖北省'},{value:'湖南省',label:'湖南省'},{value:'广东省',label:'广东省'},
+            {value:'海南省',label:'海南省'},{value:'四川省',label:'四川省'},{value:'贵州省',label:'贵州省'},
+            {value:'云南省',label:'云南省'},{value:'西藏',label:'西藏'},{value:'陕西省',label:'陕西省'},
+            {value:'甘肃省',label:'甘肃省'},{value:'青海省',label:'青海省'},{value: '宁夏',label: '宁夏'},
+            {value:'新疆',label:'新疆'},{value:'台湾',label:'台湾'},{value:'香港',label:'香港'},{value:'澳门',label:'澳门'}
+          ],
+            industry:'',
+            salary_start:'',
+            salary_end:'',
+            expected_industry:'',
+            arrival_time:'',
+            isHave:'',
+            isHaveData:[
+            {
+              value:'有',
+              label:'有',
+            },
+            {
+              value:'无',
+              label:'无',
+            }
+          ],
+            skill:'',
+            hobby:'',
+            workTime:'',
+            companyName:'',
+            post:'',//工作经历-岗位
+            salary:'',
+            certifier:'',
+            certifier_phone:'',
+            workContent:'',
+            leaveReason:'',
+            studyTime:'',
+            schoolName:'',
+            specialty:'',
+            education:'',
+            educationData: [
+              {
+            value: '初中及以下',
+            label: '初中及以下'
+          }, {
+            value: '高中',
+            label: '高中'
+          }, {
+            value: '中专',
+            label: '中专'
+          },{
+            value:'大专',
+            label:'大专'
+          },{
+            value:'本科',
+            label:'本科'
+          },{
+            value:'硕士',
+            label:'硕士'
+          },{
+            value:'博士',
+            label:'博士'
+          },{
+            value:'MBA',
+            label:'MBA'
+          }
+          ],
+            degree:'',
+            isFullTime:'',
+            isFullTimeData:[
+            {
+              value: '是',
+              label: '是'
+            }, {
+              value: '否',
+              label: '否'
+            },
+          ],
+            other:'',
+            self_description:'',
+
+            name:'',
+            post1:'',//选择岗位
+            post1Data:[],
+            channels:'',
+            channelsData:[
+              {value:'0',label:'手动添加'},
+              {value:'1',label:'内部推荐'},
+              {value:'2',label:'社招官网'},
+              {value:'3',label:'拉钩'},
+              {value:'4',label:'猎聘'},
+              {value:'5',label:'BOSS直聘'},
+            ],
+            resoure:'',
+            resoureData:[
+              {
+                value:'0',
+                label:'主动搜索',
+              },
+              {
+                value:'1',
+                label:'候选人投递',
+
+              }
+            ],
+            sex:'',
+            sexData:[
+              {value:'1',label:'男'},
+              {value:'0',label:'女'}
+            ],
+            age:'',
+            email:'',
+            phone:'',
+            experience:'',
+            experienceData:[
+              {
+                value:'0',
+                label:'应届毕业生'
+              },
+              {
+                value:'1',
+                label:'1',
+              },
+              {
+                value:'2',
+                label:'2',
+              },
+              {
+                value:'3',
+                label:'3',
+              },
+              {
+                value:'4',
+                label:'4',
+              },
+              {
+                value:'5',
+                label:'5',
+              }
+            ],
+            education1:'',
+            address:'',
+            addressData:[],
+            imgcode:'',//头像
+            insertResumeData:'',
+            standardResume:'',
+            candidateWorkExperienceDTOList:[//工作经历
+              {
+                startTime:'',//"任职时间",
+                companyName:'',//"公司名称",
+                post:'',//"岗位",
+                salary:'',//"薪资",
+                reterence:'',//"证明人",
+                reterenceContact:'',//"证明人联系方式",
+                workContent:'',//"工作内容",
+                dimissionReason:'',//"离职原因"
+              }
+            ],
+            candidateEducationExperienceDTOList:[
+              {
+                startTime:'',//"就读时间",
+                schoolName:'',//"学校名称",
+                major:'',//"专业",
+                qualification:'',//"学历",
+                degree:'',//"学位",
+                isFullTime:'',//"是否全日制",
+                other:'',//"其他"
+              }
+            ],
           }
       },
       methods:{
-        getMyEvent(flag){
-          //接收的数据--------->我是子组件中的数据
-          this.flag=flag;
-          // console.log('接收的数据--------->'+flag)
+        // getMyEvent(flag){
+        //   //接收的数据--------->我是子组件中的数据
+        //   this.flag=flag;
+        //   // console.log('接收的数据--------->'+flag)
+        // },
+        changeTab(num){
+          let that=this;
+          that.flag=num;
         },
         //  关闭弹窗
         hideModel(){
@@ -51,6 +637,236 @@
           // console.log(that.add)
           that.$emit('hideModel',that.add);//向父组件派发事件
         },
+
+        //上传头像
+        getHeadImg(){
+
+        },
+        //原始简历上传文件前的校验
+        beforeAvatarUpload (file) {
+          let that=this;
+          let fileName=new Array();
+          fileName =file.name.split('.');
+          // const extension = fileName[fileName.length-1] === 'txt';
+          const extension2 =  fileName[fileName.length-1]=== 'word';
+          // const isLt2M = file.size / 1024 / 1024 < 10;
+          if (that.resumeType=="") {
+            that.$message({
+              message: '请先选择简历来源!',
+              type: 'warning'
+            });
+            return;
+          }
+          if (!extension2) {
+            that.$message({
+              message: '上传模板只能是word格式!',
+              type: 'warning'
+            });
+            return;
+          }
+          // if (!isLt2M) {
+          //   this.$message({
+          //     message: '上传模板大小不能超过 10MB!',
+          //     type: 'warning'
+          //   });
+          // }
+          console.log(that.resumeType);
+          if (extension2 && that.resumeType!="") {/*&& isLt2M == true*/
+            // console.log(file);
+            let fd = new FormData();
+            fd.append('resumeType', that.resumeType);//随文件上传的其他参数
+            fd.append('file', file);
+            // console.log(fd)
+            this.newImport(fd).then(function (res) {//校验完成后提交
+              console.log(res)
+            }, function () {
+              console.log('failed');
+            });
+            return true
+          }
+          return extension2 && that.resumeType
+        },
+        newImport (data) {
+          this.$http({
+            method:'post',
+            url:"url",
+            data:data,
+            headers:headers()
+          }).then(function (res) {//成功后回调
+            // let code = res.data.returncode;//返回json结果
+            // let msg = res.data.msg;
+            // this.open(msg, code);
+            // console.log('success');
+          }, function () {
+            // console.log('failed');
+          });
+        },
+        uploadUrl:function(){
+          return api.uploadResume;
+        },
+        //获取岗位列表
+        getList(){
+          let that=this;
+          that.$http({
+            method:"post",
+            url:api.getPosition,
+            headers:headers(),
+            data:{
+              name:'',
+              recruitStatus:1,
+            }
+          }).then(function(res){
+            if(res.data.code==10000){
+              that.postData=res.data.data;
+            }else{
+              that.$message.error(res.data.msg);
+            }
+          });
+        },
+        //上传头像,获取base64
+        uploadPhoto(e) {
+          // 利用fileReader对象获取file
+          let file = e.target.files[0];
+          let filesize = file.size;
+          let filename = file.name;
+          // 2,621,440   2M
+          if (filesize > 2101440) {
+            // 图片大于2MB
+
+          }
+          let reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = function (e) {
+            // 读取到的图片base64 数据编码 将此编码字符串传给后台即可
+            this.imgcode = e.target.result;
+            console.log(this.imgcode);
+          }
+        },
+        //删除工作经历
+        removeWorkDomain(item) {
+          let index = this.candidateWorkExperienceDTOList.indexOf(item);
+          this.candidateWorkExperienceDTOList.splice(index, 1)
+        },
+        //添加工作经历
+        addWorkDomain() {
+          this.candidateWorkExperienceDTOList.push({
+            startTime:'',//"任职时间",
+            companyName:'',//"公司名称",
+            post:'',//"岗位",
+            salary:'',//"薪资",
+            reterence:'',//"证明人",
+            reterenceContact:'',//"证明人联系方式",
+            workContent:'',//"工作内容",
+            dimissionReason:'',//"离职原因"
+            key: Date.now()
+          });
+        },
+        //删除教育经历
+        removeEducationDomain(item) {
+          let index = this.candidateEducationExperienceDTOList.indexOf(item);
+          this.candidateEducationExperienceDTOList.splice(index, 1)
+        },
+        //添加教育经历
+        addEducationDomain() {
+          this.candidateEducationExperienceDTOList.push({
+            startTime:'',//"就读时间",
+            schoolName:'',//"学校名称",
+            major:'',//"专业",
+            qualification:'',//"学历",
+            degree:'',//"学位",
+            isFullTime:'',//"是否全日制",
+            other:'',//"其他"
+            key: Date.now()
+          });
+        },
+        //标准简历
+        insertResume(){
+          let that=this;
+          that.standardResume={standardResumeDTO: {
+                head:that.imgcode,//"图片base64",
+                workCity:that.workAddress,
+                nativePlace:that.province,//"籍贯",
+                inIndustry:that.industry,//"所在行业",
+                expectIndustry:that.expected_industry,//"期望行业",
+                arrivalTime:that.arrival_time,//"到岗时间",
+                isFriendInCompany:that.isHave,//"是否亲友在本公司工作",
+                salaryMin:that.salary_start,//"最低薪资",
+                salaryMax:that.salary_end,//"最高薪资",
+                skill:that.skill,//"技能",
+                hobby:that.hobby,//"兴趣爱好",
+                candidateWorkExperienceDTOList:that.candidateWorkExperienceDTOList,
+                candidateEducationExperienceDTOList:that.candidateEducationExperienceDTOList,
+                description:that.self_description,
+              }};
+          that.insertResumeData={
+                candidateName:that.name,// //候选人姓名
+                postId:1, //岗位
+                resumeChannel:that.channels,//渠道
+                resumeSource:that.resoure, //选择来源
+                candidateSex:that.sex,//候选人性别
+                candidateAge:that.age, //候选人年龄
+                candidatePhone:that.phone,//候选人手机号
+                candidateEmail:that.email,//候选人邮箱
+                candidateExperience:that.experience,//工作经验
+                candidateEducation:that.education1,//候选人学历
+                candidateLocation:that.address,//所在地
+                originalResumeAddress:"", //原简历地址
+                standardResume:JSON.stringify(that.standardResume)
+              };
+          that.$http({
+            method:"post",
+            headers:headers(),
+            url:api.handAddCandidate,
+            data:{
+              candidateName:that.name,// //候选人姓名
+              postId:1, //岗位
+              resumeChannel:that.channels,//渠道
+              resumeSource:that.resoure, //选择来源
+              candidateSex:that.sex,//候选人性别
+              candidateAge:that.age, //候选人年龄
+              candidatePhone:that.phone,//候选人手机号
+              candidateEmail:that.email,//候选人邮箱
+              candidateExperience:that.experience,//工作经验
+              candidateEducation:that.education1,//候选人学历
+              candidateLocation:that.address,//所在地
+              originalResumeAddress:"", //原简历地址
+              commonEmployeeId:'',//TODO 推荐人id
+              standardResume:JSON.stringify(that.standardResume)
+            }
+          }).then(function (res) {
+            if(res.data.code==10000){
+              that.$message.success("候选人信息插入成功！");
+            }else if(res.data.code==40001 && res.data.data==true){
+              that.dialogVisible = true;
+            }else{
+              that.$message.error(res.data.msg);
+            }
+          })
+
+        },
+        // 更新候选人简历 updateResume
+        updateResume(){
+          let that=this;
+          that.$http({
+            method: "put",
+            headers: headers(),
+            url: api.updateResume,
+            data: that.insertResumeData,
+          }).then(function (res) {
+            if(res.data.code==10000){
+              that.$message.success(res.data.msg);
+              that.dialogVisible = false;
+              that.hideModel();
+            }else{
+              that.$message.error(res.data.msg);
+              that.dialogVisible = false;
+            }
+          })
+        }
+      },
+      mounted(){
+        let that=this;
+        that.getList();
       }
     }
 </script>

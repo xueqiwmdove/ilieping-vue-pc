@@ -14,37 +14,43 @@
 
       </div>
     </div>
-    <div v-if="flag==2" class="standard_resume">
+    <div v-if="flag==2" class="standard_resume" >
       <div class="personal">
-        <img src="../../../assets/img/candidate/tanchuang_ic_head.png" class="head-photo">
-        <p class="username">王思</p>
-        <p>
-          <span class="sex">31岁.</span>
-          <span class="workExp">无工作经验.</span>
-          <span class="educationBg">硕士.</span>
-          上海静安
-        </p>
-        <p>
-          <span class="phone">179-9282-2922</span>
-          <span class="email">4222112442@qq.com</span>
-        </p>
+        <div v-for="item  in standardResume">
+          <img  :src="item.head" class="head-photo" >
+        </div>
+        <div  v-for="item in  candidateStepsData">
+          <p class="username">{{item.candidateName}}</p>
+          <p>
+            <span class="sex">{{item.candidateAge}}岁.</span>
+            <span class="workExp" v-if="item.candidateExperience!=0">{{item.candidateExperience}}工作经验.</span>
+            <span class="workExp" v-if="item.candidateExperience==0">无工作经验.</span>
+            <span class="educationBg">{{item.candidateEducation}}.</span>
+            {{item.candidateLocation}}
+          </p>
+          <p>
+            <span class="phone">{{item.candidatePhone}}</span>
+            <span class="email">{{item.candidateEmail}}</span>
+          </p>
+        </div>
+
       </div>
       <div class="resume_content">
         <p class="headLine">个人信息</p>
-        <div class="personInfos">
+        <div class="personInfos" v-for="item  in standardResume">
           <div class="line">
             <el-row>
               <el-col :span="8">
                 <p class="label">工作城市</p>
-                <p>上海</p>
+                <p>{{item.workCity}}</p>
               </el-col>
               <el-col :span="8">
                 <p class="label">籍贯</p>
-                <p></p>
+                <p>{{item.nativePlace}}</p>
               </el-col>
               <el-col :span="8">
                 <p class="label">所在行业</p>
-                <p></p>
+                <p>{{item.inIndustry}}</p>
               </el-col>
             </el-row>
           </div>
@@ -53,15 +59,15 @@
             <el-row>
               <el-col :span="8">
                 <p class="label">期望行业</p>
-                <p></p>
+                <p>{{item.expectIndustry}}</p>
               </el-col>
               <el-col :span="8">
                 <p class="label">到岗时间</p>
-                <p></p>
+                <p>{{item.arrivalTime}}</p>
               </el-col>
               <el-col :span="8">
                 <p class="label">是否有亲友在本公司工作</p>
-                <p></p>
+                <p>{{item.isFriendInCompany}}</p>
               </el-col>
             </el-row>
           </div>
@@ -70,11 +76,11 @@
             <el-row>
               <el-col :span="8">
                 <p class="label">期望薪资</p>
-                <p></p>
+                <p>{{item.salaryMin}}-{{item.salaryMax}}</p>
               </el-col>
               <el-col :span="16">
                 <p class="label">技能</p>
-                <p>CET · 4，Java，.net，php，Python等</p>
+                <p>{{item.skill}}</p>
               </el-col>
             </el-row>
           </div>
@@ -83,128 +89,133 @@
             <el-row>
               <el-col :span="24">
                 <p class="label">兴趣爱好</p>
-                <p></p>
+                <p>{{item.hobby}}</p>
               </el-col>
             </el-row>
           </div>
         </div>
 
+        <div v-for="item in candidateWorkExperienceDTOList">
+          <p class="headLine">工作经历</p>
+          <div class="work">
+            <div class="line">
+              <el-row>
+                <el-col :span="8">
+                  <p class="label">任职时间</p>
+                  <p>{{item.startTime}} - {{item.endTime}}</p>
+                </el-col>
+                <el-col :span="8">
+                  <p class="label">公司名称</p>
+                  <p>{{item.companyName}}</p>
+                </el-col>
 
-        <p class="headLine">工作经历</p>
-        <div class="work">
-          <div class="line">
-            <el-row>
-              <el-col :span="8">
-                <p class="label">任职时间</p>
-                <p></p>
-              </el-col>
-              <el-col :span="8">
-                <p class="label">公司名称</p>
-                <p></p>
-              </el-col>
+                <el-col :span="8">
+                  <p class="label">岗位</p>
+                  <p>{{item.post}}</p>
+                </el-col>
+              </el-row>
+            </div>
 
-              <el-col :span="8">
-                <p class="label">岗位</p>
-                <p></p>
-              </el-col>
-            </el-row>
-          </div>
+            <div class="line">
+              <el-row>
+                <el-col :span="8">
+                  <p class="label">薪资</p>
+                  <p>{{item.salary}}</p>
+                </el-col>
+                <el-col :span="8">
+                  <p class="label">证明人</p>
+                  <p>{{item.reterence}}</p>
+                </el-col>
 
-          <div class="line">
-            <el-row>
-              <el-col :span="8">
-                <p class="label">薪资</p>
-                <p></p>
-              </el-col>
-              <el-col :span="8">
-                <p class="label">证明人</p>
-                <p></p>
-              </el-col>
+                <el-col :span="8">
+                  <p class="label">证明人联系方式</p>
+                  <p>{{item.reterenceContact}}</p>
+                </el-col>
+              </el-row>
+            </div>
 
-              <el-col :span="8">
-                <p class="label">证明人联系方式</p>
-                <p></p>
-              </el-col>
-            </el-row>
-          </div>
+            <div class="line">
+              <el-row>
+                <el-col :span="24">
+                  <p class="label">工作内容</p>
+                  <div>
+                    <p>{{item.workContent}}</p>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
 
-         <div class="line">
-           <el-row>
-             <el-col :span="24">
-               <p class="label">工作内容</p>
-               <div>
-                 <p></p>
-               </div>
-             </el-col>
-           </el-row>
-         </div>
+            <div class="line">
+              <el-row>
+                <el-col :span="24">
+                  <p class="label">离职原因</p>
+                  <p>{{item.dimissionReason}}</p>
+                </el-col>
+              </el-row>
+            </div>
 
-          <div class="line">
-            <el-row>
-              <el-col :span="24">
-                <p class="label">离职原因</p>
-                <p></p>
-              </el-col>
-            </el-row>
-          </div>
-
-        </div>
-        <p class="headLine">教育经历</p>
-
-        <div class="education">
-          <div class="line">
-            <el-row>
-              <el-col :span="8">
-                <p class="label">就读时间</p>
-                <p></p>
-              </el-col>
-              <el-col :span="8">
-                <p class="label">学校名称</p>
-                <p></p>
-              </el-col>
-
-              <el-col :span="8">
-                <p class="label">专业</p>
-                <p></p>
-              </el-col>
-            </el-row>
-          </div>
-
-          <div class="line">
-            <el-row>
-              <el-col :span="8">
-                <p class="label">学历</p>
-                <p></p>
-              </el-col>
-              <el-col :span="8">
-                <p class="label">学位</p>
-                <p></p>
-              </el-col>
-
-              <el-col :span="8">
-                <p class="label">是否全日制</p>
-                <p></p>
-              </el-col>
-            </el-row>
-          </div>
-
-          <div class="line">
-            <el-row>
-              <el-col :span="24">
-                <p>其他</p>
-                <p>无</p>
-              </el-col>
-            </el-row>
           </div>
         </div>
+
+        <div v-for=" item in candidateEducationExperienceDTOList">
+          <p class="headLine">教育经历</p>
+
+          <div class="education">
+            <div class="line">
+              <el-row>
+                <el-col :span="8">
+                  <p class="label">就读时间</p>
+                  <p>{{item.startTime}} - {{item.endTime}}</p>
+                </el-col>
+                <el-col :span="8">
+                  <p class="label">学校名称</p>
+                  <p>{{item.schoolName}}</p>
+                </el-col>
+
+                <el-col :span="8">
+                  <p class="label">专业</p>
+                  <p>{{item.major}}</p>
+                </el-col>
+              </el-row>
+            </div>
+
+            <div class="line">
+              <el-row>
+                <el-col :span="8">
+                  <p class="label">学历</p>
+                  <p>{{item.qualification}}</p>
+                </el-col>
+                <el-col :span="8">
+                  <p class="label">学位</p>
+                  <p>{{item.degree}}</p>
+                </el-col>
+
+                <el-col :span="8">
+                  <p class="label">是否全日制</p>
+                  <p>{{item.isFullTime}}</p>
+                </el-col>
+              </el-row>
+            </div>
+
+            <div class="line">
+              <el-row>
+                <el-col :span="24">
+                  <p>其他</p>
+                  <p>{{item.other}}</p>
+                </el-col>
+              </el-row>
+            </div>
+          </div>
+        </div>
+
         <p class="headLine">自我描述</p>
-        <div class="self_description">
+        <div class="self_description" v-for="item  in standardResume">
           <div class="line">
             <el-row>
               <el-col :span="24">
                 <p>自我描述</p>
                 <div>
-
+                  {{item.self_description}}
                 </div>
               </el-col>
             </el-row>
@@ -219,19 +230,21 @@
 <script>
     export default {
         name: "basicFirst",
+        props:['candidateStepsData','standardResume','candidateWorkExperienceDTOList','candidateEducationExperienceDTOList'],
         components:{
 
         },
         data(){
           return{
             flag:1,//默认标准简历
+
           }
         },
       methods:{
         changeTab(flag){
           this.flag=flag;
         }
-      }
+      },
     }
 </script>
 

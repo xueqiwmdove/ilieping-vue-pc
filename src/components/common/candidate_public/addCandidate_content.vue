@@ -19,16 +19,29 @@
     </div>
     <!--原始简历-->
       <div v-if="flag==1" class="original_resume">
+        <label style="margin: 0 0 0 20px">请先选择简历来源 <i style="color:#f95714">*</i></label>
+        <el-select v-model="resumeType" placeholder="请选择"  >
+          <el-option
+            v-for="item in resumeTypeData"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+           >
+          </el-option>
+        </el-select>
         <el-upload
           class="upload-demo"
           drag
-          action=""
+          ref="upload"
+          :before-upload="beforeAvatarUpload"
+          :action="uploadUrl()"
+          :headers="myHeader"
           multiple>
           <i class="el-icon-upload">
             <img src="../../../assets/img/candidate/tanchuang_pic_upload.png" alt="">
           </i>
           <p class="el-upload__text">将建立拖至此处自动上传或<em>选择文件上传</em></p>
-          <p class="el-upload__text">支持PDF/TXT/WORD/WPS等简历格式</p>
+          <p class="el-upload__text">目前暂时支持WORD简历格式</p><!--支持PDF/TXT/WORD/WPS等简历格式-->
         </el-upload>
       </div>
     <!--标准简历-->
@@ -73,7 +86,9 @@
 
                    <el-col :lg="8" :md="8" :sm="8">
                      <el-form-item label="是否有亲友在本公司工作">
-                       <el-input  v-model="isHave" placeholder="请选择"></el-input>
+                         <el-select v-model="isHave" placeholder="请选择">
+                           <el-option v-for="item in isHaveData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                         </el-select>
                      </el-form-item>
                    </el-col>
                  </el-row>
@@ -125,6 +140,7 @@
                          type="daterange"
                          range-separator=""
                          start-placeholder="请选择任职起止时间"
+                         value-format="yyyy-MM-dd"
                          end-placeholder="">
                        </el-date-picker>
                      </el-form-item>
@@ -189,6 +205,7 @@
                          type="daterange"
                          range-separator=""
                          start-placeholder="就读时间"
+                         value-format="yyyy-MM-dd"
                          end-placeholder="">
                        </el-date-picker>
                      </el-form-item>
@@ -271,7 +288,7 @@
           return{
             flag:1,
             name:'',
-
+            myHeader:headers(),//文件上传请求头
             workAddress:'',
             province:'',
             provinceData:[
@@ -293,6 +310,16 @@
             expected_industry:'',
             arrival_time:'',
             isHave:'',
+            isHaveData:[
+              {
+                value:'1',
+                label:'有',
+              },
+              {
+                value:'0',
+                label:'无',
+              }
+            ],
             skill:'',
             hobby:'',
             workTime:'',
@@ -345,10 +372,29 @@
               },
             ],
             other:'',
-            self_description:''
-
+            self_description:'',
+            resumeType:'',
+            resumeTypeData:[
+              {
+                value: '1',
+                label: '51job'
+              }, {
+                value: '2',
+                label: '智联招聘'
+              },{
+                value: '3',
+                label: 'boss直聘'
+              },{
+                value: '4',
+                label: '猎聘'
+              },{
+                value: '5',
+                label: '拉勾'
+              },
+            ]
           }
         },
+
       methods:{
         changeTab(num){
           let that=this;
@@ -358,6 +404,131 @@
         },
         //上传头像
         getHeadImg(){
+
+        },
+        //原始简历上传文件前的校验
+        beforeAvatarUpload (file) {
+          let that=this;
+          let fileName=new Array();
+          fileName =file.name.split('.');
+          // const extension = fileName[fileName.length-1] === 'txt';
+          const extension2 =  fileName[fileName.length-1]=== 'word';
+          // const isLt2M = file.size / 1024 / 1024 < 10;
+          if (that.resumeType=="") {
+            that.$message({
+              message: '请先选择简历来源!',
+              type: 'warning'
+            });
+            return;
+          }
+          if (!extension2) {
+            that.$message({
+              message: '上传模板只能是word格式!',
+              type: 'warning'
+            });
+            return;
+          }
+          // if (!isLt2M) {
+          //   this.$message({
+          //     message: '上传模板大小不能超过 10MB!',
+          //     type: 'warning'
+          //   });
+          // }
+          console.log(that.resumeType);
+          if (extension2 && that.resumeType!="") {/*&& isLt2M == true*/
+            // console.log(file);
+            let fd = new FormData();
+            fd.append('resumeType', that.resumeType);//随文件上传的其他参数
+            fd.append('file', file);
+            // console.log(fd)
+            this.newImport(fd).then(function (res) {//校验完成后提交
+              console.log(res)
+            }, function () {
+              console.log('failed');
+            });
+            return true
+          }
+          return extension2 && that.resumeType
+        },
+        newImport (data) {
+          this.$http({
+            method:'post',
+            url:"url",
+            data:data,
+            headers:headers()
+          }).then(function (res) {//成功后回调
+            // let code = res.data.returncode;//返回json结果
+            // let msg = res.data.msg;
+            // this.open(msg, code);
+            // console.log('success');
+          }, function () {
+            // console.log('failed');
+          });
+        },
+        uploadUrl:function(){
+          return api.uploadResume;
+        },
+
+      //标准简历
+        insertResume(){
+          let that=this;
+          that.$http({
+            method:"post",
+            headers:headers(),
+            data:{
+              candidateName:"张明", //候选人姓名
+              postId:'', //岗位
+              resumeChannel:1,//渠道
+              resumeSource:1, //选择来源
+              candidateSex:1,//候选人性别
+              candidateAge:18, //候选人年龄
+              candidatePhone:"13915138049",//候选人手机号
+              candidateEmail:"admin@qq.com",//候选人邮箱
+              candidateExperience:1,//工作经验
+              candidateEducation:"小学",//候选人学历
+              candidateLocation:"上海",//所在地
+              originalResumeAddress:"http://baidu.com", //原简历地址
+              standardResume: {
+                standardResumeDTO: {
+                  head:"图片base64",
+                  workCity:that.workAddress,
+                  nativePlace:that,province,//"籍贯",
+                  inIndustry:that.industry,//"所在行业",
+                  expectIndustry:that.expected_industry,//"期望行业",
+                  arrivalTime:that.arrival_time,//"到岗时间",
+                  isFriendInCompany:that.isHave,//"是否亲友在本公司工作",
+                  skill:that.skill,//"技能",
+                  hobby:that.hobby,//"兴趣爱好",
+                  workExperienceDTOList:[
+                      {
+                        startTime:that.workTime[0],//"任职时间",
+                        endTime:that.workTime[1],
+                        companyName:that.companyName,//"公司名称",
+                        post:that.post,//"岗位",
+                        salary:that.salary,//"薪资",
+                        reterence:that.certifier,//"证明人",
+                        reterenceContact:that.certifier_phone,//"证明人联系方式",
+                        workContent:that.workContent,//"工作内容",
+                        dimissionReason:that.leaveReason,//"离职原因"
+                      }
+                    ],
+                  educationExperienceDTOList:[
+                      {
+                        startTime:that.studyTime[0],//"就读时间",
+                        endTime:that.studyTime[1],
+                        schoolName:that.schoolName,//"学校名称",
+                        major:that.specialty,//"专业",
+                        qualification:that.education,//"学历",
+                        degree:that.degree,//"学位",
+                        isFullTime:that.isFullTime,//"是否全日制",
+                        other:that.other,//"其他"
+                      }
+                    ],
+                  description:that.self_description,//"自我描述"
+                }
+              },
+            }
+          })
 
         }
       }
