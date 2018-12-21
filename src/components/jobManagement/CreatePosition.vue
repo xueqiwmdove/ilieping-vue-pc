@@ -171,7 +171,7 @@
                               </el-row>
                               <el-row class="area_sty">
                                   <el-form-item label="职位描述"><br>
-                                        <el-input v-model="makeNormal.positionDescribe" type="textarea" :rows='7' style="width:1050px;" placeholder="请输入职位描述"></el-input>
+                                        <textarea v-model="makeNormal.positionDescribe" style="width:1050px;height:220px" placeholder="请输入职位描述"></textarea>
                                   </el-form-item>
                              </el-row>
                              <el-row>

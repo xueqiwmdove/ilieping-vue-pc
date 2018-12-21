@@ -1,7 +1,8 @@
 // let Butterfly="http://101.132.66.158:8899/jersey/";
 // let Butterfly="http://127.0.0.1:8899/jersey/";
-// let Butterfly="http://192.168.2.166:8899/jersey/";//测试ip
-let Butterfly="http://192.168.6.6:8899/jersey/";//薛尧
+let Butterfly="http://192.168.2.166:8899/jersey/";//测试ip
+// let Butterfly="http://192.168.6.6:8899/jersey/";//薛尧
+// let Butterfly="http://192.168.6.251:8899/jersey/";//潘述钱ip
 // let Butterfly="http://192.168.6.209:8899/jersey/";//潘述钱ip
 // let Butterfly="http://192.168.6.208:8891/jersey/";//郭峰ips
 // let Butterfly="http://192.168.6.207:8899/jersey/";//施玮ip
@@ -147,6 +148,16 @@ const api = {
   positionCount:Butterfly+'positionInfo/count',//不同岗位统计人数
   getEmployeeList:Butterfly+'employee/getEmployeeList',//招聘负责人，面试官列表
   insertOrUpdate:Butterfly+'positionInfo/insertOrUpdate',//添加，更新岗位
+  positionDetail:Butterfly+'positionInfo/detail',//添加，更新岗位  
+  getPosition:Butterfly+'positionInfo/getPosition',//查询职位列表  
+  candidateList:Butterfly+'candidate/search/list',//查询候选人列表  
+  getGrouping:Butterfly+'candidate/get/status/grouping',//查询候选人分组人数  
+  candidateOperation:Butterfly+'candidateOperationRecord/getList',//查询候选人操作记录
+  annexList:Butterfly+'candidate/get/annexList',//查询候选人操作记录
+  deleteFile:Butterfly+'candidate/delete/annex',//删除候选人附件
+  uploadAnnexInfo:Butterfly+'candidate/upload/annexInfo',//上传候选人附件
+
+ 
   positionDetail:Butterfly+'positionInfo/detail',//添加，更新岗位
   getPosition:Butterfly+'positionInfo/getPosition',//查询职位列表
   candidateList:Butterfly+'candidate/search/list',//查询候选人列表
@@ -164,6 +175,10 @@ const api = {
   updateResume:Butterfly+'candidate/update',//更新候选人简历
   getCandidate:Butterfly+'candidate/getCandidate/',//查询候选人信息
 };
-export default api;
+export default api
 
-
+// export default {
+//   uploadFile() {
+//     return `${Butterfly}` + '/candidate/upload/annexInfo'
+//   },
+// }
