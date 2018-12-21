@@ -1,26 +1,51 @@
 <template>
   <!---->
     <div class="accessory_fifth">
-      <div class="noOps">
+      <div v-if="dataList==[]" class="noOps">
         <img src="../../../assets/img/candidate/tanchuang_pic_attachment.png" alt="">
         <p>尚无附件信息</p>
         <div class="uploadFile">
           <span>上传附件</span>
-          <input class="el-icon-upload" type="file" ref="fileTag"  id='file'  action=""/>
+          <input class="el-icon-upload"  @change="getFile($event)" type="file" ref="fileTag"  id='file'  action=""/>
         </div>
       </div>
-
       <!--上传-->
-      <div class="fileList">
-        <p class="headLine">附件列表</p>
+      <div v-else class="fileList sty">
+         <!-- <div class="uploadFile">
+          <span>上传附件</span>
+          <input  @change="getFile($event)" class="el-icon-upload" type="file" ref="fileTag"  id='file'  action=""/>
+        </div> -->
+        <el-upload
+          class="upload-demo"
+          :action="doupload()"
+          :before-upload="before_Upload"
+          ref="newupload"
+          :data="data"
+           multiple
+          :file-list="fileList"
+          >
+          <el-button size="middle" type="primary">上传附件</el-button>
+          <!-- <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div> -->
+        </el-upload>
+        <p  class="headLine">附件列表</p>
         <div class="file_text_box"><!--v-for="(item,index) of imgList" :key="index" -->
           <div class="file_text">
-            <div class="file">
-              <i class="filename">面试登记附件</i>
+            <div class="file" v-for="(item,index) in dataList" :key="index">
+              <i class="filename">
+                {{item.fileName}}
+                <!-- {{item.type=='0'?"人事流程附件"
+                :item.type=='1'?'转正附件'
+                :item.type=='2'?'离职附件'
+                :item.type=='3'?'简历附件'
+                :item.type=='4'?'学历证明附件'
+                :item.type=='5'?'上家离职证明附件'
+                :item.type=='6'?'员工照片'
+                :item.type=='7'?'体验报告':''}} -->
+                </i>
               <div>
-                <i class="detail">查看</i>
-                <i class="downLoad">下载</i>
-                <i class="delete">删除</i>
+                <i @click="checkfile(item)" class="detail" >查看</i>
+                <i @click="downLoad(item)" class="downLoad">下载</i>
+                <i @click="deletefile(item)" class="delete">删除</i>
               </div>
 
             </div>
@@ -33,21 +58,152 @@
 </template>
 
 <script>
+  import http from '@/http/http'
+  import api from '@/api/api.js';
+  import {headers} from '@/assets/js/common/lp.js'
+  import store from '@/store/store';
     export default {
         name: "accessoryFifth",
         components:{
 
         },
       data(){
-          return{
-            imgList:[
+        return{
+          dataList:[],
+          fileList:[],
+          data:{}
+          };
+      },
+      methods:{
+      doupload() {
+        return api.annexList
+      },
+    //上传
+      before_Upload(file) {
+        let FormDatas = new FormData()
+        FormDatas.append('file',file)
+        FormDatas.append('bizTable','candidate')
+        FormDatas.append('bizId','6')//候选人id<===========!
+        console.log(FormDatas)
+          let that = this
+          that.$http({
+            method:'post',
+            url:api.uploadAnnexInfo,
+            headers:headers('multipart/form-data'),
+            data:FormDatas
+          }).then(function(res){
+           if(res.data.code==10000){
+              that.$message.success(res.data.msg);
+              that.getList()
+            }else{
+              that.$message.error(res.data.msg);
+            }
+          })
+      },      
+  //删除附件
+      deletefile(val) { 
+          let that = this
+          let annexId = val.id  
+          that.$http({
+            method:'get',
+            url:api.deleteFile+'/'+annexId ,
+           headers:headers('application/json;charset=utf-8'),
+          }).then(function(res){
+            if(res.data.code==10000){
+              that.$message.success(res.data.msg);
+              that.getList()
+            }else{
+              that.$message.error(res.data.msg);
+            }
+          })
+      }, 
+     //获取附件列表   
+       getList() {
+          let that = this
+          let candidateId = '6'
+          that.$http({
+            method:'get',
+            url:api.annexList+'/'+candidateId ,
+              headers:headers('application/json;charset=utf-8'),
+          }).then(function(res){
+            if(res.data.code==10000){
+              that.dataList = res.data.data;
+            }else{
+              that.$message.error(res.data.msg);
+            }
+          })
+       },
+     //查看
+       checkfile(val) {
+         let url = val.httpUrl
+         window.location.href = url
+       },
+     //下载
+       downLoad(val) {
+          let url = val.httpUrl
+          let fileTye = url.match(/.+\/(.+)$/)[1];
+          let that = this;
+          let formData = new FormData();
+           formData.append('fileUrl',url);
+            this.$http({
+                url:api.archivesLoadFile,
+                method:'POST',
+                headers:headers('multipart/form-data'),
+                responseType: 'blob',
+                data: formData,
+            }).then(function (res) {
+                let result=res.data;
 
-            ]
-          }
-      }
+                    let url =  window.URL.createObjectURL(new Blob([result]));
+                    let link = document.createElement('a');
+                    link.style.display = 'none';
+                    link.href = url;
+
+                    link.download = fileTye;
+                    document.body.appendChild(link);
+                    link.click();
+
+
+            }).catch(function (error) {
+                that.$message.error(error);
+            });
+       },    
+     //上传附件  
+      //  getFile(event) {
+      //     this.file = event.target.files[0];
+      //      let param = new FormData(); 
+      //       param.append('file',file);
+      //        let that = this
+      //         that.$http({
+      //           methods:'post',
+      //           url:api.uploadAnnexInfo ,
+      //           headers:headers('multipart/form-data'),
+      //           data:{
+      //             "bizTable" : 'candidate' ,
+      //             "bizId ":'6',
+      //             "file": param
+      //           }
+      //         }).then(function(res){
+      //           if(res.data.code==10000){
+      //             that.$message.success(res.data.msg);
+      //           }else{
+      //             that.$message.error(res.data.msg);
+      //           }
+      //         }) 
+      //     },
+      },
+      created(){
+        this.getList()
+      },
+      
     }
 </script>
 
 <style scoped>
-
+ .headLine {
+   text-align: left;  
+ }
+ .filename {
+   float: left;
+ }
 </style>

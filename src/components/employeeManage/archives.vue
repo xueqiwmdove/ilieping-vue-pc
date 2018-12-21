@@ -68,9 +68,9 @@
                                 <fileupload @getfile="getResignCertFiles" ref="resignCertUpload"  :fileUrled='annexResignCert.httpUrl' :fileName='annexResignCert.fileName' :fileId='annexResignCert.id'></fileupload>
                             </el-form-item>
 
-														<el-form-item label="照片" :label-width="formLabelWidth" style="width: 100%;padding-left: 54px;">
-															<fileuploadList @getfile="getPhoto" ref="PhotoUpload" :sendData="sendData" :fileUrled='PhotoList.httpUrl' :fileName='PhotoList.fileName' :fileId='PhotoList.id'></fileuploadList>
-														</el-form-item>
+                            <el-form-item label="照片" :label-width="formLabelWidth" style="width: 100%;padding-left: 54px;">
+                                <fileuploadList @getfile="getPhoto" ref="PhotoUpload" :sendData="sendData" :fileUrled='PhotoList.httpUrl' :fileName='PhotoList.fileName' :fileId='PhotoList.id'></fileuploadList>
+                            </el-form-item>
                         </el-form>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
     import salary from '@/components/common/personInfo/salary';
     import personalChange from '@/components/employeeManage/modal/personalChange';
     import fileupload from '@/components/common/fileUploadFile';
-		import fileuploadList from '@/components/common/fileUploadFileList';
+	import fileuploadList from '@/components/common/fileUploadFileList';
 
     import fileUploadHeadImg from '@/components/common/fileUploadHeadImg';
 

@@ -174,7 +174,7 @@ export default {
       getCount() {
         let that = this
         that.$http({
-          methods:'get',
+          method:'get',
           url:api.positionCount ,
           	headers:headers('application/json;charset=utf-8'),
 	  		}).then(function(res){

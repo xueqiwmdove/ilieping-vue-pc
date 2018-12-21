@@ -308,7 +308,6 @@ export default {
     //展示候选人弹窗
       addCandidateShow(param){
         let that=this;
-        console.log()
         that.visables[param] = true;
       },
     //关闭候选人弹窗
