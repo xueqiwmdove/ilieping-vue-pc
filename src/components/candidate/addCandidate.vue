@@ -1,7 +1,7 @@
 <template>
   <!--添加候选人弹窗-->
   <div>
-    <el-dialog title="添加候选人" :visible="addVisible"  :custom-class='["addCandidateAlert",flag=="2"?"addCandidateAlert_add":""]' :before-close="hideModel">
+    <el-dialog title="添加候选人" :visible="addVisible"  :custom-class='customclass' :before-close="hideModel"><!---->
       <img src="../../assets/img/candidate/tanchuang_ic_save.png" class="save">
       <div class="addMain">
         <!--标准简历才有-->
@@ -206,7 +206,7 @@
                     </el-row>
                   </div>
 
-                  <div v-for="(item,index) in candidateWorkExperienceDTOList" :key="'info1'-index">
+                  <div v-for="(item,index) in candidateWorkExperienceDTOList" :key="item.index">
                     <p class="headLine" v-show="candidateWorkExperienceDTOList.length<2">工作经历</p>
                     <p class="headLine" v-show="candidateWorkExperienceDTOList.length>1">工作经历{{index+1}}</p>
                     <div class="addButton" @click="addWorkDomain" v-show="index==0">
@@ -280,7 +280,7 @@
                     </div>
                   </div>
 
-                  <div v-for="(item,index) in candidateEducationExperienceDTOList" :key="'info2'-index">
+                  <div v-for="(item,index) in candidateEducationExperienceDTOList" :key="item.index">
                     <p class="headLine" v-show="candidateEducationExperienceDTOList.length<2">教育经历</p>
                     <p class="headLine" v-show="candidateEducationExperienceDTOList.length>1">教育经历{{index+1}}</p>
                     <div class="addButton" @click="addEducationDomain" v-show="index==0">
@@ -436,6 +436,7 @@
             data:{
 
             },
+            customclass:'addCandidateAlert',
             currPage:1,
             pageSize:10,
             commendEmployeeId:'',
@@ -654,6 +655,14 @@
         changeTab(num){
           let that=this;
           that.flag=num;
+
+          //切换简历类型，切换样式
+          if(num==1){
+            that.customclass='addCandidateAlert';
+          }else{
+            that.customclass="addCandidateAlert   addCandidateAlert_add";
+          }
+
           console.log(num,that.resumeUrl);
           // that.resumeUrl="D:/z-简历/Boss直聘简历/王晨宇简历.doc";
           // that.resumeType=3;
