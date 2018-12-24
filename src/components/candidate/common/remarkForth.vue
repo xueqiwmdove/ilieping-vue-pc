@@ -1,37 +1,78 @@
 <template>
   <!--备注-->
     <div class="remark_forth">
-      <div class="noOps">
+      <div v-if="dataList == []" class="noOps">
         <img src="../../../assets/img/candidate/tanchuang_pic_note.png" alt="">
         <p>尚无备注</p>
-        <button>添加备注</button>
+        <button @click="addMack">添加备注</button>
       </div>
 
       <!--备注列表-->
-      <div class="remarkList">
-        <button>添加备注</button>
-        <div class="remark_box">
-          <div class="remark">
+      <div v-else class="remarkList" >
+        <button @click="addMack">添加备注</button>
+        <!-- 用来让父组件触发 -->
+        <div class="remark_box" >
+          <div class="remark" v-for="(item,index ) in dataList" :key="index" >
             <p class="ops_person">
-              <span>王</span>
-              <i class="hrName">王一一 · HR</i>
-              <i class="time">20秒前</i>
+              <span>{{item.operatorName?item.operatorName.substr(0, 1):''}}</span>
+              <i class="hrName">{{item.operatorName}}· {{item.operatorPostStr}}</i>
+              <i class="time">{{item.createTime}}</i>
             </p>
-            <div class="ops_content">该候选人的面试情况基本符合岗位需求</div>
+            <div class="ops_content">{{item.remark}}</div>
             <p class="ops">
-              <i>删除</i>
+              <!-- <i>删除</i> -->
             </p>
           </div>
         </div>
       </div>
-
+        <remarkAlert ref="mack" @getList="getList" ></remarkAlert>
     </div>
 </template>
 
 <script>
-    export default {
-        name: "remarkForth"
-    }
+  import http from '@/http/http'
+  import api from '@/api/api.js';
+  import {headers} from '@/assets/js/common/lp.js'
+  import store from '@/store/store';
+  import remarkAlert from './remarkAlert';
+  
+ export default {
+      name: "remarkForth",
+      components:{
+        remarkAlert,
+      },
+        data(){
+        return{
+          dataList:[],
+          beizhu:false,
+
+        };
+    },
+    methods:{
+      getList() {
+        let that = this
+        let candidateId = '6'//候选人id<===========!
+        that.$http({
+          method:'get',
+          url:api.candidateRemark+'/'+candidateId ,
+            headers:headers('application/json;charset=utf-8'),
+        }).then(function(res){
+          if(res.data.code==10000){
+            that.dataList = res.data.data;
+          }else{
+            that.$message.error(res.data.msg);
+          }
+        })
+      },
+      addMack() {
+        this.$refs.mack.open()
+        // this.$emit("addMack")
+      }
+    },
+    created(){
+      this.getList()
+    },
+}
 </script>
 
 <style scoped>

@@ -18,26 +18,31 @@
         </ul>
       </div>
     </div>
-    <!--淘汰弹窗-->
-    <!-- <weekOutAlert visableModal.sync="visable.weekOut"></weekOutAlert> -->
-    <!--备注弹窗-->
-    <!-- <remarkAlert visableModal.sync="visable.remark"></remarkAlert> -->
 
     <button class="button recommend" v-if="flag==1" @click="showmodel1">推荐给用人部门</button><!--@click="addCandidateShow('recommend')"-->
     <button class="button weedOut" @click="showmodel3" >淘汰</button><!--@click="visable.weekOut==true"-->
     <button class="button remark" @click="showmodel2">备注</button><!--@click="visable.remark==true"-->
+
+    <!-- 弹窗备注 -->
+    <remarkAlert ref="mack" @getList="getList"></remarkAlert>
+    <!-- 弹窗推荐人 -->
+    <recommendDia ref="reconmmend"></recommendDia>
+    <!-- 淘汰弹窗 -->
+    <weekOutAlert ref="quit"></weekOutAlert>
   </div>
 </template>
 
 <script>
   import weekOutAlert from '@/components/candidate/common/weekOutAlert'
   import remarkAlert from '@/components/candidate/common/remarkAlert'
-
+  import recommendDia from '@/components/candidate/common/recommendDia'
+  
     export default {
         name: "candidateRight",
         components:{
           weekOutAlert,
-          remarkAlert
+          remarkAlert,
+          recommendDia,
         },
         data(){
           return{
@@ -45,11 +50,6 @@
             count:0,
             isShow:false,
             flag:1,
-            visable:{
-              weekOut:true,
-              remark:true,
-              recommend:false,
-            },
             cerateList:{
               type:'',
             },
@@ -57,7 +57,10 @@
           }
         },
       methods:{
-          //点击切换按钮状态
+       getList() {
+         this.$emit("getList")//触发给父组件
+       },
+      //点击切换按钮状态
         changeStatus(){
           let that=this;
           that.count++;
@@ -78,21 +81,20 @@
         },
         //显示弹窗
         showmodel1(){
-          this.$emit('showmodel1')
+          this.$refs.reconmmend.open()
         },
         showmodel2(){
-          console.log(55555)
-          this.$emit('showmodel2')
+          this.$refs.mack.open()
         },
         showmodel3(){
-          this.$emit('showmodel3')
+          this.$refs.quit.open()
         },
         //展示候选人弹窗
-        addCandidateShow(param){
-          let that=this;
-          console.log(0)
-          that.visables[param] = true;
-        },
+        // addCandidateShow(param){
+        //   let that=this;
+        //   console.log(0)
+        //   that.visables[param] = true;
+        // },
       }
     }
 </script>

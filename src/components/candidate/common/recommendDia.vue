@@ -1,165 +1,263 @@
 <template>
-  <!--候选人信息弹窗-->
-        <el-dialog title="推荐给用人部门" width="540px" :visible="addVisible" class="create_dialog" custom-class="create_dialog" :before-close="hideModel" >
-            <el-form :model="cerateList"  ref="cerateList" id="re_styles">
-                <el-form-item label="推荐到" style="text-align:center;" >
-                    <div v-if="isflag" class="manage_se">
-                        <ul>
-                            <li>
-                                <span class="name_f">{{showList.employeeName?showList.employeeName.substr(0, 1):''}}</span> 
-                                <span style="float:left;">
-                                    <p>{{showList.employeeName}}</p> 
-                                    <p>{{showList.deptName}}-{{showList.position}}</p>    
-                                </span>
-                            </li>
-                        </ul>
-                  </div>
-                <el-input v-else style="width:280px;height:40px;"  @click.native="ldClick"  v-model="cerateList.name"  placeholder="选择招聘负责人"  class="el-icon-arrow-down"></el-input>
-                        <div v-if="ldVisabled" class="form_tree tree_sty manage_sty " >
-                            <el-scrollbar style="height:100%" >   
-                                <div style="height:100%">
-                                <div class="search">
-                                    <el-input  class="input_search" v-model="names" placeholder="输入你想搜索的内容" >
-                                        <i @click="searchName()" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
-                                    </el-input>
+    <div>
+         <div v-if="conShow" style="width:100%;" @click="handleClose2">
+            <div  class = "cov">
+                <div class = "con candidate_sty" >
+                    <p class = "ptitle">推荐给用人部门 <i  class="el-icon-close closes_s"></i></p>
+                    <div class="rescs" @click="clickHide">
+                        <el-form :model="cerateList"  ref="cerateList" id="re_styles">
+                                <el-form-item label="推荐到" style="text-align:center;margin-left:12px;" >
+                                <!-- <span style="margin-right:23px;"></span> -->
+                                    <div v-if="isflag" class="manage_se">
+                                        <ul>
+                                            <li>
+                                                <span class="name_f">{{showList.employeeName?showList.employeeName.substr(0, 1):''}}</span>
+                                                <span style="float:left;">
+                                                    <p>{{showList.employeeName}}</p>
+                                                    <p>{{showList.deptName}}-{{showList.position}}</p>
+                                                </span>
+                                            </li>
+                                        </ul>
                                 </div>
-                                <ul>
-                                    <li @click="selectItem(item)" v-for="(item,index) in employeeList" :key='index'>
-                                        <span class="name_f">{{item.employeeName.substr(0, 1)}}</span> 
-                                        <span style="float:left;">
-                                            <p>{{item.employeeName}}</p> 
-                                            <p>{{item.deptName}}-{{item.position}}</p>    
-                                        </span>
-                                    </li>
-                                </ul>
-                                </div>  
-                            </el-scrollbar> 
-                        </div>
-                </el-form-item>
-                <el-form-item label="推荐理由">
-                    <el-input :rows="3" type="textarea" style="width:280px;margin-left:20px;" placeholder="请输入推荐理由（如名校经历等）"></el-input>
-                </el-form-item> 
-                        <el-form-item label="使用简历" >
-                            <el-radio-group v-model="type">
-                                <el-radio-button label="0" >原始简历</el-radio-button>
-                                <el-radio-button label="1">标准简历</el-radio-button>
-                            </el-radio-group>
-                        </el-form-item>
-            </el-form>
-            <div slot="footer" class="dialog-footer">
-                    <el-button  type="primary" :class="searchBtnClass1" :disabled="searchDisabled1"   style="height:36px;" >保存</el-button>
+                                <el-input v-else style="width:280px;height:40px;"  @click.native="ldClick"  v-model="cerateList.name"  placeholder="选择招聘负责人"  class="el-icon-arrow-down"></el-input>
+                                        <div v-if="ldVisabled" class="form_tree tree_sty manage_sty " >
+                                            <el-scrollbar style="height:100%" >
+                                                <div style="height:100%">
+                                                <div class="search">
+                                                    <el-input  class="input_search" v-model="names" placeholder="输入你想搜索的内容" >
+                                                        <i @click="searchName()" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
+                                                    </el-input>
+                                                </div>
+                                                <ul>
+                                                    <li @click="selectItem(item)" v-for="(item,index) in employeeList" :key='index'>
+                                                        <span class="name_f">{{item.employeeName.substr(0, 1)}}</span>
+                                                        <span style="float:left;">
+                                                            <p>{{item.employeeName}}</p>
+                                                            <p>{{item.deptName}}-{{item.position}}</p>
+                                                        </span>
+                                                    </li>
+                                                </ul>
+                                                </div>
+                                            </el-scrollbar>
+                                        </div>
+                                </el-form-item>
+                                <el-form-item label="推荐理由">
+                                    <textarea v-model="cerateList.type"  style="width:280px;height:100px;margin-left:-82px;" placeholder="请输入推荐理由（如名校经历等）"></textarea>
+                                </el-form-item>
+                                <el-form-item label="使用简历" >
+                                <!-- <span style="margin-right:23px;">使用简历</span> -->
+                                    <el-radio-group v-model="cerateList.region">
+                                        <el-radio-button label="0" >原始简历</el-radio-button>
+                                        <el-radio-button label="1">标准简历</el-radio-button>
+                                    </el-radio-group>
+                                </el-form-item>
+                    </el-form>
+                    </div>
+                    <div slot="footer" class="dialog-footer">
+                            <el-button  @click="submitRecommen" type="primary" :class="searchBtnClass1" :disabled="searchDisabled1"   style="height:36px;" >保存</el-button>
+                    </div>
+                </div>
             </div>
-    </el-dialog>
+        </div >
+    </div>
 </template>
-
 <script>
   import http from '@/http/http'
   import api from '@/api/api.js';
   import {headers} from '@/assets/js/common/lp.js'
-  import {formatDate} from '@/assets/js/common/date_year.js';
+  import store from '@/store/store';
     export default {
-        name: "recommendDia",
-        props:['addVisible'],
-        
-      data(){
-          return{
-            // addVisible:true,
-            employeeList:[],//员工集合
-            isflag:false,
-            ldVisabled:false,
-            showList:[],
-            names:'',//搜索人员名称
-            type:'',
-            cerateList:{
-                region:'',
-                name:''
-            },
-          }
-       },
-    computed:{
-        // 选择负责人提交按钮样式
-        searchBtnClass1:function () {
-        if(this.showList.employeeName ){
-            return{
-                click_opacity:false
+        name: 'recommendDia',
+        components: {},
+        data() {
+            return {
+               remack:'',//备注  
+               showList:[],
+               conShow:false,//推荐人
+               isflag:false,
+               ldVisabled:false,
+               employeeList:[],
+               pageIndex:'',
+               pageSize:'',
+               names:'',
+               cerateList:{
+                 region:'',
+                 name:'',
+                 type:''
+                },
             }
-        }else{
-            return{
-                click_opacity:true
-            }
-        }
         },
-        // 选择负责人提交禁用 true
-        searchDisabled1:function () {
-            if(this.showList.employeeName ){
-                return false
+        watch: {},
+        computed:{
+         // 备注提交按钮样式
+            searchBtnClass1:function () {
+            if(this.remack !='' ){
+                return{
+                    click_opacity:false
+                }
             }else{
-                return true
+                return{
+                    click_opacity:true
+                }
             }
-       }, 
-     },
-      methods:{
-    //获取面试官，负责人列表  
-    getEmployeeList() {
-        let that = this
-        let currPage=that.pageIndex || 1;
-        let pageSize=that.pageSize || 10;
-        let employeeName = that.names || ''
-        this.$http({
-        method:"post",
-        url:api.getEmployeeList,
-        headers:headers('application/json;charset=utf-8'),
-        data:{
-        "currPage":currPage,
-        "pageSize":pageSize,
-        'employeeName':employeeName
+            },
+            // 备注提交禁用 true
+            searchDisabled1:function () {
+                if(this.remack !='' ){
+                    return false
+                }else{
+                    return true
+                }
+          },
         },
-        cache:false
-        }).then(function(res){
-        if(res.data.code==10000 || res.data.data==null){
-            that.employeeList = res.data.data
-        }else{
-        that.$message.error(res.data.msg);
+        methods: {
+          open(){
+            this.remack = ''
+            this.conShow = true
+          },
+          clickHide(e)  {
+            this.conShow=true
+            e.stopPropagation();//阻止冒泡
+          },
+          submitRecommen() {
+              let that = this
+              let candidateId = '6'
+              that.$http({
+              method:'post',
+              url:api.candidateinsert,
+              headers:headers('application/json;charset=utf-8'),
+              data:{
+                "candidateId" :candidateId ,
+                "remark":that.remack
+              }
+              }).then(function(res){
+              if(res.data.code==10000){
+                  that.$message.success(res.data.msg);
+                  that.conShow = false
+                  that.remack = ''
+                  that.$emit("getList")
+              }else{
+                  that.$message.error(res.data.msg);
+              }
+              })    
+          },
+        searchName() {
+            this.getEmployeeList()
+        },
+        //选择招聘负责人
+          selectItem(val) {
+                this.ldVisabled=false
+                this.isflag = true
+                this.showList = val
+            },
+       //招聘负责人
+          ldClick() {
+                this.getEmployeeList()
+                this.ldVisabled = !this.ldVisabled
+            },
+       //获取面试官，负责人列表
+          getEmployeeList() {
+            let that = this
+            let currPage=that.pageIndex || 1;
+            let pageSize=that.pageSize || 10;
+            let employeeName = that.names || ''
+            this.$http({
+            method:"post",
+            url:api.getEmployeeList,
+            headers:headers('application/json;charset=utf-8'),
+            data:{
+            "currPage":currPage,
+            "pageSize":pageSize,
+            'employeeName':employeeName
+            },
+            cache:false
+            }).then(function(res){
+            if(res.data.code==10000 || res.data.data==null){
+                that.employeeList = res.data.data
+            }else{
+            that.$message.error(res.data.msg);
+            }
+            });
+          },
+          //点击空白处收起弹窗
+          handleClose2() {
+            this.conShow=false
+            this.remack = ''
+          },  
+        },
+        mounted() {
+         
         }
-        });
-    }, 
-  //选择招聘负责人 
-    selectItem(val) {
-        this.ldVisabled=false
-        this.isflag = true
-        this.showList = val
-      },
-    //招聘负责人  
-    ldClick() {
-        this.getEmployeeList()
-        this.ldVisabled = !this.ldVisabled
-    },
-//搜索
-    searchName() {
-        this.getEmployeeList()
-    },   
-//  关闭弹窗
-    hideModel(){
-        let that=this;
-        that.$emit('hideModel','cteate');//向父组件派发事件
-    },
-
-      }
     }
 </script>
 
+<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-/* .create_dialog .el-icon-arrow-down:before {
+  .cov{
+	width:1900px;
+	height:1200px;
+	background-color:rgba(0, 0, 0, 0.2);
+	z-index:100000;
+    /* display:none; */
+    left: 0px;
+    top: 0;
+	position: fixed;;
+	text-align:center;
+	font-size: 16px;
+	box-shadow:0px 0px 5px black;
+}
+.con{
+	z-index:110000;
+	width:540px;
+	height:400px;
+	background-color:white;
+	position:fixed;
+	right:36%;
+    top:30%;
+	box-shadow:0px 0px 5px #ddd;
+
+}
+.ptitle{
+	width:100%;
+  height:60px;
+  line-height:60px;
+  background-color:#fff;
+  border-bottom: 1px solid #E5E5E5;
+	font-size: 16px;
+  color: #21324E;
+}
+.ptitle .closes_s {
+  float: right;
+  margin-top: 20px;
+  margin-right: 20px;
+  color: #A8ABB3 ;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.dbt{
+	border-radius: 5px;
+    width: 70px;
+	height:30px;
+	background-color:#3daae9;
+	right:20px;
+	bottom:20px;
+	position:absolute;
+	line-height:30px;
+	color:white;
+}
+/* 弹窗 开始 */
+.candidate_sty .el-icon-arrow-down:before {
     content: "\E603";
     position: absolute;
     top: 15px;
-    left: 240px;
+    left: 210px;
     color: #AAADB5;
     cursor: pointer;
 }
-.create_dialog .manage_sty {
-    left: 18%;
-    width: 280px; 
+.candidate_sty .manage_sty {
+    left: 15%;
+    width: 280px;
 }
 .manage_sty .search {
     float: right;
@@ -167,7 +265,7 @@
     height: 40px;
     margin-top: 30px;
     position: relative;
-    left: -60px;
+    left: -25px;
 }
 .manage_sty .search .input_search {
     width: 260px;
@@ -176,7 +274,7 @@
 }
 .manage_sty .search .input_search .se_icon {
     position: absolute;
-    right:-238px;
+    right:-208px;
     height: 30px;
     top:8px;
     font-size: 18px;
@@ -188,7 +286,7 @@
     content: "\E619";
     margin-left: 2px;
 }
-.createBut {
+/* .createBut {
      background: #F95714;
      border-radius: 4px;
      height: 40px;
@@ -196,7 +294,7 @@
      color: #fff;
      margin-top: 100px;
      margin-left:35%;
-}
+} */
 .form_tree {
     width:300px;
     height:280px;
@@ -264,7 +362,7 @@
     line-height: 50px;
 }
 #re_styles .el-radio-button, .el-radio-button__inner {
-    margin-right: 20px; 
+    margin-right: 20px;
     height: 40px;
     width: 90px;
     border-color: #E5E5E5;
@@ -272,10 +370,46 @@
 }
 #re_styles .el-radio-button, .el-radio-button__inner:nth-child(2) {
     border-left: 1px solid #E5E5E5;
-} */
+}
+.rescs {
+  width: 100%;
+  height: 280px;
+  padding: 20px 40px;
+  padding-left:80px;
+}
+.beires {
+  width: 100%;
+  height: 280px;
+  padding: 20px 40px;
+  padding-left:40px;
+}
+.title_bei,.title_quit {
+  width: 100%;
+  display: inline-block;
+  text-align: left;
+  font-size: 14px;
+  margin-bottom: 15px;
+  color: #394A66;
+}
+.title_quit {
+color: #F95714 ;
+}
+.dialog-footer {
+    height: 60px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    border-top: 1px solid #E5E5E5;
+    background: #FAFBFC;
+    line-height: 60px;
+}
+/* 弹窗 */
 </style>
 <style>
-/* .create_dialog .el-dialog__body {
+ .candidate_content .el-scrollbar__wrap {
+  overflow-x: hidden !important;
+ }
+ .candidate_sty .el-dialog__body {
     padding: 30px 70px;
     color: #606266;
     font-size: 14px;
@@ -289,14 +423,29 @@
     background-color: #fff;
     color:#F95714;
 }
-.create_dialog .manage_sty .el-scrollbar__wrap {
+.candidate_sty .manage_sty .el-scrollbar__wrap {
      overflow-x: hidden !important;
  }
- #re_styles .el-textarea__inner  {
-     margin-left:-17px;  
- }
  #re_styles .el-input__inner {
-     margin-left:-29px;  
- }     */
+     margin-left:-80px;
+ }
+ #reset_styless .el-input__inner  {
+     margin-left:-55px;
+ }
+ #re_styles .el-form-item__label  {
+     margin-right:20px;
+ }
+#re_styles .el-radio-group {
+    margin-right: 111px;
+}
+.beires #re_styles .title_quit .el-input__suffix {
+  right: 50px !important  ;
+}
+.rescs #reset_styless .el-form-item .el-form-item__content .el-select {
+    display: inline-block;
+    position: relative;
+    left: -22px;
+}
+
 </style>
 

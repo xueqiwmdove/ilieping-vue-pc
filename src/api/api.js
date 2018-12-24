@@ -156,6 +156,8 @@ const api = {
   annexList:Butterfly+'candidate/get/annexList',//查询候选人操作记录
   deleteFile:Butterfly+'candidate/delete/annex',//删除候选人附件
   uploadAnnexInfo:Butterfly+'candidate/upload/annexInfo',//上传候选人附件
+  candidateRemark:Butterfly+'candidateRemark/get',//候选人备注列表查询
+  candidateinsert:Butterfly+'candidateRemark/insert',//候选人备注添加
 
  
   positionDetail:Butterfly+'positionInfo/detail',//添加，更新岗位
