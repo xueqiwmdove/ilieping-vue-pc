@@ -382,7 +382,7 @@
   height: 280px;
   padding: 20px 40px;
   padding-left:40px;
-}
+}   
 .dialog-footer {
     height: 60px;
     position: absolute;

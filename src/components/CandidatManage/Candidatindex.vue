@@ -576,7 +576,7 @@ margin-left: 180px;
 }
 .position_list ul li:hover {
   color: #F95714;
-  padding-left: 15px;
+  /* padding-left: 15px; */
 }
 .positionTable {
     background-color: #fff;
