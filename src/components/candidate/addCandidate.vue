@@ -1,7 +1,7 @@
 <template>
   <!--添加候选人弹窗-->
   <div>
-    <el-dialog title="添加候选人" :visible="addVisible"  :custom-class='["addCandidateAlert",flag=="2"?"addCandidateAlert_add":""]' :before-close="hideModel">
+    <el-dialog title="添加候选人" :visible="addVisible"  :custom-class='customclass' :before-close="hideModel"><!---->
       <img src="../../assets/img/candidate/tanchuang_ic_save.png" class="save">
       <div class="addMain">
         <!--标准简历才有-->
@@ -173,25 +173,26 @@
 
                     <el-row :gutter="80">
                       <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="期望薪资">
+                        <label style="display: block;margin-bottom: 10px;">期望薪资</label>
+                        <!--<div>-->
+                        <input v-model="salary_start" class="salary_start" />  -  <input v-model="salary_end" class="salary_end" />
+                       <!-- <el-form-item label="期望薪资">
                           <div>
                             <el-row>
-                              <el-col >
-                                <el-input v-model="salary_start" class="salary_start"></el-input>
+                              <el-col :span="11">
+
                               </el-col>
                               <el-col class="line" :span="2" style="color:#E5E5E5;">-</el-col>
-                              <el-col>
-                                <el-input v-model="salary_end" class="salary_end"></el-input>
+                              <el-col :span="11">
+
                               </el-col>
                             </el-row>
                           </div>
-
-
-                        </el-form-item>
+                        </el-form-item>-->
                       </el-col>
                       <el-col :lg="16" :md="16" :sm="16">
                         <el-form-item label="技能">
-                          <el-input v-model="skill" placeholder="请输入技能（例如英语/计算机语言等）"></el-input>
+                          <el-input v-model="skill" placeholder="请输入技能（例如英语/计算机语言等）" class="skillInput"></el-input>
                         </el-form-item>
                       </el-col>
                     </el-row>
@@ -205,7 +206,7 @@
                     </el-row>
                   </div>
 
-                  <div v-for="(item,index) in candidateWorkExperienceDTOList" :key="'info1'-index">
+                  <div v-for="(item,index) in candidateWorkExperienceDTOList" :key="item.index">
                     <p class="headLine" v-show="candidateWorkExperienceDTOList.length<2">工作经历</p>
                     <p class="headLine" v-show="candidateWorkExperienceDTOList.length>1">工作经历{{index+1}}</p>
                     <div class="addButton" @click="addWorkDomain" v-show="index==0">
@@ -226,6 +227,7 @@
                               range-separator=""
                               start-placeholder="请选择任职起止时间"
                               value-format="yyyy-MM-dd"
+                              :picker-options="pickerOptions0"
                               end-placeholder="">
                             </el-date-picker>
                           </el-form-item>
@@ -278,7 +280,7 @@
                     </div>
                   </div>
 
-                  <div v-for="(item,index) in candidateEducationExperienceDTOList" :key="'info2'-index">
+                  <div v-for="(item,index) in candidateEducationExperienceDTOList" :key="item.index">
                     <p class="headLine" v-show="candidateEducationExperienceDTOList.length<2">教育经历</p>
                     <p class="headLine" v-show="candidateEducationExperienceDTOList.length>1">教育经历{{index+1}}</p>
                     <div class="addButton" @click="addEducationDomain" v-show="index==0">
@@ -371,8 +373,17 @@
             <!--选择内推人-->
             <p>选择内推人</p>
             <div class="selectDiv">
-              <input type="text" class="selected">
-              <img src="../../assets/img/candidate/tanchuang_ic_screen.png" alt="">
+              <!--<input type="text" class="selected">-->
+              <!--<img src="../../assets/img/candidate/tanchuang_ic_screen.png" alt="">-->
+
+              <el-select v-model="commendEmployeeId" placeholder="请选择" class="selected">
+                <el-option
+                  v-for="item in commendEmployeeIdData"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
             </div>
 
           </div>
@@ -425,6 +436,15 @@
             data:{
 
             },
+            customclass:'addCandidateAlert',
+            currPage:1,
+            pageSize:10,
+            commendEmployeeId:'',
+            commendEmployeeIdData:[],
+             pickerOptions0: {
+
+             },
+            resumeUrl:'',//原始简历
             resumeType:'',
             resumeTypeData:[
               {
@@ -572,23 +592,27 @@
               },
               {
                 value:'1',
-                label:'1',
+                label:'1年',
               },
               {
                 value:'2',
-                label:'2',
+                label:'2年',
               },
               {
                 value:'3',
-                label:'3',
+                label:'3年',
               },
               {
                 value:'4',
-                label:'4',
+                label:'4年',
               },
               {
                 value:'5',
-                label:'5',
+                label:'5年',
+              },
+              {
+                value:'6',
+                label:'5年以上',
               }
             ],
             education1:'',
@@ -611,7 +635,7 @@
             ],
             candidateEducationExperienceDTOList:[
               {
-                startTime:'',//"就读时间",
+                startTime:'',//"就读时间",['2018-1-1','2018-1-1']
                 schoolName:'',//"学校名称",
                 major:'',//"专业",
                 qualification:'',//"学历",
@@ -631,6 +655,61 @@
         changeTab(num){
           let that=this;
           that.flag=num;
+
+          //切换简历类型，切换样式
+          if(num==1){
+            that.customclass='addCandidateAlert';
+          }else{
+            that.customclass="addCandidateAlert   addCandidateAlert_add";
+          }
+
+          console.log(num,that.resumeUrl);
+          // that.resumeUrl="D:/z-简历/Boss直聘简历/王晨宇简历.doc";
+          // that.resumeType=3;
+          if(num==2 && that.resumeUrl!=""){
+            //  解析标准简历
+            that.$http({
+              method:'post',
+              url:api.parseResume,
+              headers:headers(),
+              data:{
+                resumeFileName:that.resumeUrl,
+                type:that.resumeType
+              }
+            }).then(function (res) {
+              // console.log(res)
+              if(res.data.code==10000){
+                let data=res.data.data;
+                that.candidateEducationExperienceDTOList=data.educationalExperienceList;
+                that.candidateWorkExperienceDTOList= data.workExpericeList;
+                that.name=data.name;
+                that.sex=data.gender;
+                that.description=data.selfEvaluation;
+                that.workAddress=data.workingCity;
+                that.arrival_time=data.dutyTime;
+                that.age=data.age;
+                that.phone=data.phone;
+                that.email=data.email;
+                that.hobby=data.hobby;
+                that.province=data.birthPlace;
+                that.skill=data.skill;
+                that.education1=data.education;
+                that.address=data.location;
+                that.experience=data.workExperience;
+                that.industry=data.whereIndustry;
+                that.expected_industry=data.expectIndustry;
+                //   postId:1, //岗位
+                //   resumeChannel:that.channels,//渠道
+                //   resumeSource:that.resoure, //选择来源
+                //   originalResumeAddress:"", //原简历地址
+                // head:that.imgcode,//"图片base64",
+                //   isFriendInCompany:that.isHave,//"是否亲友在本公司工作",
+                //   salaryMin:that.salary_start,//"最低薪资",
+                //   salaryMax:that.salary_end,//"最高薪资",
+              }
+            })
+          }
+
         },
         //  关闭弹窗
         hideModel(){
@@ -677,23 +756,24 @@
           if (extension2 && that.resumeType!="") {/*&& isLt2M == true*/
             // console.log(file);
             let fd = new FormData();
-            fd.append('type', that.resumeType);//随文件上传的其他参数
-            fd.append('resumeFileName', file);
+            fd.append('type', 3);//随文件上传的其他参数
+            fd.append('files', file);
             // let fd={
             //   resumeFileName:file,
             //   type: that.resumeType
             // };
             // console.log(file)
             // console.log(fd)
-            // this.newImport(fd);//校验完成后提交
+            this.newImport(fd);//校验完成后提交
 
 
             // return true
           }
           return extension2 && that.resumeType
         },
-        //上传解析简历
+        //上传简历
         newImport (data) {
+          let that=this;
           this.$http({
             method:'post',
             url:api.uploadResume,
@@ -701,11 +781,12 @@
             headers:headers()
           }).then(function (res) {//成功后回调
             if(res.data.code==10000){
-              console.log(res.data.data);
+              that.resumeUrl=res.data.data[0].httpUrl;
+              console.log( that.resumeUrl)
+            }else{
+              this.$message.error(res.data.data.msg);
             }
-          }, function () {
-            // console.log('failed');
-          });
+          })
         },
         uploadUrl:function(){
           return api.uploadResume;
@@ -724,6 +805,29 @@
           }).then(function(res){
             if(res.data.code==10000){
               that.postData=res.data.data;
+            }else{
+              that.$message.error(res.data.msg);
+            }
+          });
+        },
+        //获取员工列表
+        getEmployeeList() {
+          let that = this;
+          let currPage=that.currPage || 1;
+          let pageSize=that.pageSize || 10;
+          let employeeName = that.names || '';
+          this.$http({
+            method:"post",
+            url:api.getEmployeeList,
+            headers:headers(),
+            data:{
+              currPage:currPage,
+              pageSize:pageSize,
+              employeeName:"",
+            },
+          }).then(function(res){
+            if(res.data.code==10000 || res.data.data==null){
+              that.commendEmployeeIdData = res.data.data
             }else{
               that.$message.error(res.data.msg);
             }
@@ -835,8 +939,8 @@
               candidateExperience:that.experience,//工作经验
               candidateEducation:that.education1,//候选人学历
               candidateLocation:that.address,//所在地
-              originalResumeAddress:"", //原简历地址
-              commonEmployeeId:'',//TODO 推荐人id
+              originalResumeAddress:that.resumeUrl, //原简历地址
+              commendEmployeeId:that.commendEmployeeId,//TODO 推荐人id
               standardResume:JSON.stringify(that.standardResume)
             }
           }).then(function (res) {
@@ -873,6 +977,7 @@
       mounted(){
         let that=this;
         that.getList();
+        that.getEmployeeList();
       }
     }
 </script>

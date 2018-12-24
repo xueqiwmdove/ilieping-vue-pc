@@ -19,7 +19,7 @@
          <!-- 创建offer -->
         <div v-else class="addCandidate_content">
             <div class="standard_resume">
-              <el-row>
+              <el-row style="overflow-x: hidden;">
                 <el-col  :span="24">
                   <el-form :model="makeNormal" class="form_font">
                     <p class="headLine ">基本信息 </p>
@@ -41,7 +41,7 @@
                       <el-row :gutter="120">
                         <el-col :offset="1" :span="18" >
                           <el-form-item label="预计入职时间">
-                              <el-date-picker v-model="makeNormal.salaryLow"  value-format="yyyy-MM-dd"  type="date" placeholder="请选择入职时间"></el-date-picker> 
+                              <el-date-picker v-model="makeNormal.expectedEntrytime"  value-format="yyyy-MM-dd"  type="date" placeholder="请选择入职时间"></el-date-picker>
                           </el-form-item>
                         </el-col>
                       </el-row>
@@ -51,15 +51,15 @@
                           <el-row style="margin-left:35px;">
                               <el-col :offset="1" :span="18" >
                                 <el-form-item label="报道时间">
-                                    <el-date-picker style="width:220px" v-model="makeNormal.cityShow"  value-format="yyyy-MM-dd"  type="date" placeholder="请选择报道时间"></el-date-picker> 
-                                    <el-date-picker  style="width:220px" v-model="makeNormal.detpart"  value-format="yyyy-MM-dd"  type="date" placeholder="请选择面试具体时间"></el-date-picker> 
+                                    <el-date-picker style="width:220px" v-model="makeNormal.reportTime"  value-format="yyyy-MM-dd"  type="datetime" default-time="10:00:00" placeholder="请选择报道时间"></el-date-picker>
+                                    <!--<el-date-picker  style="width:220px" v-model="makeNormal.detpart"  value-format="yyyy-MM-dd"  type="date" placeholder="请选择面试具体时间"></el-date-picker>-->
                                 </el-form-item>
                               </el-col>
                         </el-row>
                           <el-row style="margin-left:35px;" class="place_sty">
                               <el-col :offset="1" :span="18" >
                                 <el-form-item label="报道地点">
-                                  <el-select v-model="makeNormal.work" placeholder="请选择报道地点">
+                                  <el-select v-model="makeNormal.reportAddr" placeholder="请选择报道地点">
                                       <el-option label="应届毕业生" value="0"></el-option>
                                       <el-option label="一年以下" value="1"></el-option>
                                       <el-option label="1-3年" value="2"></el-option>
@@ -73,28 +73,34 @@
                           <el-row style="margin-left:65px;">
                               <el-col :offset="1" :span="24" >
                                 <el-form-item label="薪资">
-                                  <el-select v-model="makeNormal.work" placeholder="请选择薪资形式">
-                                      <el-option label="现金" value="0"></el-option>
-                                      <el-option label="银行卡" value="1"></el-option>
+                                  <el-select v-model="makeNormal.salaryType" placeholder="请选择薪资形式">
+                                      <el-option label="日薪" value="1"></el-option>
+                                      <el-option label="月薪" value="2"></el-option>
+                                      <el-option label="年薪" value="3"></el-option>
                                   </el-select>
-                                  <el-input  style="width:220px;" placeholder="请填写具体数额"></el-input>
+                                  <el-input  style="width:220px;" placeholder="请填写具体数额" v-model="makeNormal.salary"></el-input>
                                 </el-form-item>
                               </el-col>
                         </el-row>
                           <el-row style="margin-left:24px;" class="place_sty">
                               <el-col :offset="1" :span="18" >
                                 <el-form-item label="试用期时长">
-                                  <el-select v-model="makeNormal.work" placeholder="请选择使用期时长">
-                                      <el-option label="3个月" value="0"></el-option>
-                                      <el-option label="6个月" value="1"></el-option>
+                                  <el-select v-model="makeNormal.probation" placeholder="请选择使用期时长">
+                                      <el-option label="无试用期" value="0"></el-option>
+                                      <el-option label="1个月" value="1"></el-option>
+                                      <el-option label="2个月" value="2"></el-option>
+                                      <el-option label="3个月" value="3"></el-option>
+                                      <el-option label="4个月" value="4"></el-option>
+                                      <el-option label="5个月" value="5"></el-option>
+                                      <el-option label="6个月" value="6"></el-option>
                                   </el-select>
                                 </el-form-item>
                               </el-col>
                         </el-row>
-                      </div>   
+                      </div>
                       <p class="headLine " style="margin-right:60px;">邮件通知候选人 </p>
                         <span style="float: right;">
-                            <el-select v-model="makeNormal.work" placeholder="请选择模板">
+                            <el-select v-model="makeNormal.model" placeholder="请选择模板">
                                   <el-option label="系统模板" value="0"></el-option>
                               </el-select>
                         </span>
@@ -143,11 +149,11 @@
                           <el-row >
                               <el-col :offset="1" :span="18" >
                                 <el-form-item label="offer生成pdf">
-                                  <el-switch v-model="makeNormal.salaryLow"></el-switch>
+                                  <el-switch v-model="makeNormal.isPdf" @change="isPdf"></el-switch>
                                 </el-form-item>
                               </el-col>
                         </el-row>
-                      </div>   
+                      </div>
                   </el-form>
                     <el-row >
                           <el-col :offset="10"  >
@@ -159,10 +165,10 @@
               </el-row>
             </div>
         </div>
-     </div> 
+     </div>
      <!-- 已经添加offer -->
       <div v-else>
-          <div class="person_sty">  
+          <div class="person_sty">
           <div class="offer_modal2">
               <p class="title2">
                 <span class="methods">2018/09/08(星期一) 发送offer</span>
@@ -194,7 +200,10 @@
 
 <script>
   import fileUpload from '@/components/common/candidate_public/candidateFile'
- 
+  import http from '@/http/http'
+  import api from '@/api/api.js';
+  import {headers} from '@/assets/js/common/lp.js'
+
     export default {
       name: "offerThird",
       	components: {
@@ -204,27 +213,77 @@
         return {
            isshow:true,
            flag1:true,
-           workAddress:'',
+           // workAddress:'',
            makeNormal:{
               name:'',
-              cityShow:'',
-              type:'',
-              city:'',
-              salaryLow:'',
-              salaryHigh:'',
-              work:'',
+              reportTime:'',
+              reportAddr:'',
+              model:'',
+              isPdf:false,
+              expectedEntrytime:'',
+              salaryType:'',
+              salary:'',
               education:'',
               number:'',
-              detpart:'',
-              positionDescribe:''
+              // detpart:'',
+              // positionDescribe:''
           },
+          candidateId:19,
         }
       },
       methods:{
+        isPdf(){
+          console.log(this.makeNormal.isPdf)
+        },
+        //发送创建offer
         submit() {
-          this.flag1 = false
-        } 
-      }  
+          let that=this;
+          this.flag1 = false;
+          that.$http({
+            method:'post',
+            url:api.sendOffer,
+            headers:headers(),
+            data:{
+              reportTime:that.reportTime,
+              reportAddr:that.reportAddr,
+              salary:that.salary,
+              salaryType:that.salaryType,
+              probation:that.probation,
+              templateId:"",//模板id
+              candidateId:that.candidateId,
+              isAccessory:that.isPdf,//是否发送pdf
+              path:[1,3,4],//附件id
+            }
+          }).then(function (res) {
+            console.log(res)
+          })
+        } ,
+      //  查看是否有offer
+        offerIsExist(){
+          let that=this;
+          that.$http({
+            method:'get',
+            url:api.offerDetailButton+that.candidateId,
+            headers:headers(),
+          }).then(function (res) {
+            console.log(res);
+            if(res.data.code==10000){
+              that.isShow=false;
+
+            }else if(res.data.code==40000){
+              // offer 不存在"
+              that.isShow=true;
+            }else{
+              that.isShow=true;
+              that.$message.error(data.msg||res.data.msg);
+            }
+          })
+        }
+      },
+      mounted(){
+        let that=this;
+        that.offerIsExist();
+      }
     }
 </script>
 
@@ -249,7 +308,7 @@
       line-height:24px;
       border-left: 4px solid #f95714;
       text-indent: 10px;
-      margin-bottom: 20px; 
+      margin-bottom: 20px;
   }
   .standard_resume {
     padding: 10px 15px;
@@ -261,7 +320,7 @@
       height: 600px;
       width: 80%;
       background: #FFFFFF;
-      border: 1px solid #E5E5E5;  
+      border: 1px solid #E5E5E5;
       border-radius: 4px;
       margin-top: 40px;
       margin-left: 10%;
@@ -275,7 +334,7 @@
   .person_sty .offer_modal2 .methods {
     font-size: 18px;
     font-weight: 700;
-    color: #394A66; 
+    color: #394A66;
   }
   .person_sty .offer_modal2 .removes {
     font-size: 16px;
@@ -306,7 +365,7 @@
       height: 600px;
       width: 100%;
       background: #FFFFFF;
-      border: 1px solid #E5E5E5;  
+      border: 1px solid #E5E5E5;
       border-radius: 4px;
   }
    .person_sty .offer_modal .title  {
@@ -397,6 +456,9 @@
 }
 .place_sty .el-input__icon {
   right: 5px;
+}
+.standard_resume  .el-form-item__label{
+  color: #394A66;
 }
 </style>
 
