@@ -379,9 +379,9 @@
               <el-select v-model="commendEmployeeId" placeholder="请选择" class="selected">
                 <el-option
                   v-for="item in commendEmployeeIdData"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
+                  :key="item.employeeName"
+                  :label="item.employeeName"
+                  :value="item.id">
                 </el-option>
               </el-select>
             </div>

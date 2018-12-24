@@ -23,35 +23,35 @@
                 <el-col  :span="24">
                   <el-form :model="makeNormal" class="form_font">
                     <p class="headLine ">基本信息 </p>
-                    <div class="person_sty ">
-                      <el-row  style="margin-left:30px;">
+                    <div class="person_sty " v-for="item in  candidateStepsData">
+                      <el-row  style="margin-left:30px;"  >
                         <el-col :offset="1" :span="10" >
                           <el-form-item label="offer职位">
-                              <span>测试工程师</span>
+                              <span>{{item.postName}}</span>
                           </el-form-item>
                         </el-col>
                       </el-row>
                         <el-row style="margin-left:35px;">
                         <el-col :offset="1" :span="10" >
                           <el-form-item label="用人部门">
-                              <span>华趣集团/棋至文化/爱猎评</span>
+                              <span>{{item.deptName}}</span>
                           </el-form-item>
                         </el-col>
                       </el-row>
-                      <el-row :gutter="120">
+                     <!-- <el-row :gutter="120">
                         <el-col :offset="1" :span="18" >
                           <el-form-item label="预计入职时间">
                               <el-date-picker v-model="makeNormal.expectedEntrytime"  value-format="yyyy-MM-dd"  type="date" placeholder="请选择入职时间"></el-date-picker>
                           </el-form-item>
                         </el-col>
-                      </el-row>
+                      </el-row>-->
                     </div>
                       <p class="headLine ">报道信息 </p>
                       <div class="person_sty ">
                           <el-row style="margin-left:35px;">
                               <el-col :offset="1" :span="18" >
                                 <el-form-item label="报道时间">
-                                    <el-date-picker style="width:220px" v-model="makeNormal.reportTime"  value-format="yyyy-MM-dd"  type="datetime" default-time="10:00:00" placeholder="请选择报道时间"></el-date-picker>
+                                    <el-date-picker style="width:220px" v-model="makeNormal.reportTime"  value-format="yyyy-MM-dd HH:mm"  type="datetime" default-time="10:00:00" placeholder="请选择报道时间"></el-date-picker>
                                     <!--<el-date-picker  style="width:220px" v-model="makeNormal.detpart"  value-format="yyyy-MM-dd"  type="date" placeholder="请选择面试具体时间"></el-date-picker>-->
                                 </el-form-item>
                               </el-col>
@@ -60,12 +60,12 @@
                               <el-col :offset="1" :span="18" >
                                 <el-form-item label="报道地点">
                                   <el-select v-model="makeNormal.reportAddr" placeholder="请选择报道地点">
-                                      <el-option label="应届毕业生" value="0"></el-option>
-                                      <el-option label="一年以下" value="1"></el-option>
-                                      <el-option label="1-3年" value="2"></el-option>
-                                      <el-option label="3-5年" value="3"></el-option>
-                                      <el-option label="5-10年" value="4"></el-option>
-                                      <el-option label="10年以上" value="4"></el-option>
+                                    <el-option
+                                      v-for="item in addressList"
+                                      :key="item.city"
+                                      :label="item.city"
+                                      :value="item.city">
+                                    </el-option>
                                   </el-select>
                                 </el-form-item>
                               </el-col>
@@ -120,13 +120,13 @@
                                 </li>
                               </ul> -->
                             </p>
-                            <div class="count_offer">
-                              <p> 您好！尊敬的<span>谭迎港</span></p>
-                              <p>欢迎您加入<span>上海棋至文化有限公司</span>在此荣幸的要请你出任<span>前端</span>一职</p>
-                              <p>入职时间：<span>2018-11-20</span></p>
-                              <p>薪酬：<span>月薪</span><span>10000</span></p>
-                              <p>试用期<span style="background-color:#F5A623;color:#fff;"> 未知</span></p>
-                              <p>入职地点：<span>上海市北京西路1250号13楼</span></p>
+                            <div class="count_offer" v-for="item in  candidateStepsData">
+                              <p> 您好！尊敬的<span>{{item.candidateName}}</span></p>
+                              <p>欢迎您加入<span>上海棋至文化有限公司</span>在此荣幸的要请你出任<span>{{item.postName}}</span>一职</p>
+                              <p>入职时间：<span>{{makeNormal.reportTime}}</span></p>
+                              <p>薪酬：<span>{{makeNormal.salaryType}}</span><span>{{makeNormal.salary}}</span></p>
+                              <p>试用期<span style="background-color:#F5A623;color:#fff;" v-if="makeNormal.probation==0"> {{makeNormal.probation}}个月</span></p>
+                              <p>入职地点：<span>{{makeNormal.reportAddr}}</span></p>
                               <p>联系人：<span>李乾坤</span></p>
                               <p>电话：<span>12545454444</span></p>
                               <p>入职所需的材料和证明</p>
@@ -142,7 +142,7 @@
                           <el-row >
                               <el-col :offset="1" :span="18" >
                                 <el-form-item label="邮件附件">
-                                  <fileUpload></fileUpload>
+                                  <fileUpload @getfile="getEmail" :sendData="sendData"></fileUpload>
                                 </el-form-item>
                               </el-col>
                         </el-row>
@@ -206,6 +206,7 @@
 
     export default {
       name: "offerThird",
+      props:['candidateStepsData','addressList'],
       	components: {
         fileUpload
       },
@@ -229,33 +230,62 @@
               // positionDescribe:''
           },
           candidateId:19,
+          sendData:[],//附件信息
+          pathData:[],//附件id
         }
       },
       methods:{
         isPdf(){
           console.log(this.makeNormal.isPdf)
         },
+        //上传附件8
+        getEmail(fileList){
+          let that=this;
+          let formData = new FormData();
+          formData.append('type','8');
+          formData.append('files',fileList);
+          that.$http({
+            method:'post',
+            url:api.uploadResume,
+            data:formData,
+            headers:headers(),
+          }).then(function (res) {
+            if(res.data.code==10000){
+              that.sendData.push(res.data.data[0]);
+              that.pathData.push(res.data.data[0].id);
+              console.log(that.sendData)
+            }
+          })
+        },
         //发送创建offer
         submit() {
           let that=this;
-          this.flag1 = false;
           that.$http({
             method:'post',
             url:api.sendOffer,
             headers:headers(),
             data:{
-              reportTime:that.reportTime,
-              reportAddr:that.reportAddr,
-              salary:that.salary,
-              salaryType:that.salaryType,
-              probation:that.probation,
-              templateId:"",//模板id
+              reportTime:that.makeNormal.reportTime,
+              reportAddr:that.makeNormal.reportAddr,
+              salary:that.makeNormal.salary,
+              salaryType:that.makeNormal.salaryType,
+              probation:that.makeNormal.probation,
+              templateId:1,//模板id
               candidateId:that.candidateId,
-              isAccessory:that.isPdf,//是否发送pdf
-              path:[1,3,4],//附件id
+              isAccessory:that.makeNormal.isPdf,//是否发送pdf
+              path:that.pathData,//附件id
             }
           }).then(function (res) {
-            console.log(res)
+            // console.log(res)
+            if(res.data.code==10000){
+              this.flag1 = false;
+              that.offerIsExist();
+            }else if(res.data.code==40001){
+              this.flag1 = false;
+              that.offerIsExist();
+            }else{
+
+            }
           })
         } ,
       //  查看是否有offer
@@ -275,7 +305,7 @@
               that.isShow=true;
             }else{
               that.isShow=true;
-              that.$message.error(data.msg||res.data.msg);
+              that.$message.error(res.data.msg);
             }
           })
         }

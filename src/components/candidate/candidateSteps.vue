@@ -54,8 +54,8 @@
        <el-scrollbar style="height:100%;overflow-x: hidden">
           <basicFirst  v-show="step==1" :candidateStepsData="candidateStepsData" :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList"></basicFirst>
 
-          <interviewSecond   v-show="step==2"  ></interviewSecond><!--:listentochild="showMsgformChild"-->
-          <offerThird v-show="step==3"></offerThird>
+          <interviewSecond   v-show="step==2" :candidateStepsData="candidateStepsData" :addressList="addressList" :commendEmployeeIdData="commendEmployeeIdData"></interviewSecond><!--:listentochild="showMsgformChild"-->
+          <offerThird v-show="step==3" :candidateStepsData="candidateStepsData" :addressList="addressList"></offerThird>
           <remarkForth v-show="step==4"></remarkForth>
           <accessoryFifth v-show="step==5"></accessoryFifth>
           <opsRecordSeventh v-show="step==6"></opsRecordSeventh>
@@ -277,6 +277,8 @@ const clickoutside = {
               type:'',
             },
             flag:1,//默认标准简历
+            addressList:[],//企业地址集合
+            commendEmployeeIdData:[],//公司人员集合
           }
       },
       computed:{
@@ -429,8 +431,52 @@ const clickoutside = {
         },
         changeTab2(flag){
           this.flag=flag;
-        }
+        },
+        //获取企业地址集合
+        getAddress() {
+          let that = this;
+          this.$http({
+            method:"get",
+            url:api.getAddress,
+            headers:headers(),
+            cache:false
+          }).then(function(res){
+            if(res.data.code==10000 || res.data.data==null){
+              that.addressList=res.data.data;
+            }else{
+              that.$message.error(res.data.msg);
+            }
+          });
+        },
+        //获取员工列表,公司人员
+        getEmployeeList() {
+          let that = this;
+          let currPage=that.currPage || 1;
+          let pageSize=that.pageSize || 10;
+          let employeeName = that.names || '';
+          this.$http({
+            method:"post",
+            url:api.getEmployeeList,
+            headers:headers(),
+            data:{
+              currPage:currPage,
+              pageSize:pageSize,
+              employeeName:"",
+            },
+          }).then(function(res){
+            if(res.data.code==10000 || res.data.data==null){
+              that.commendEmployeeIdData = res.data.data
+            }else{
+              that.$message.error(res.data.msg);
+            }
+          });
+        },
       },
+      mounted(){
+          let that=this;
+        that.getAddress();
+        that.getEmployeeList();
+      }
     }
 </script>
 

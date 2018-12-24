@@ -445,7 +445,7 @@ export default {
             //   that.standardResume.push(data2[i]);
             // }
 
-            that.candidateStepsData.push(res.data.data);//TODO 多次添加的bug
+            that.candidateStepsData.push(res.data.data);//
             that.standardResume.push(JSON.parse(res.data.data.standardResume));
             that.candidateWorkExperienceDTOList=JSON.parse(res.data.data.standardResume).candidateWorkExperienceDTOList;
             that.candidateEducationExperienceDTOList=JSON.parse(res.data.data.standardResume).candidateEducationExperienceDTOList;

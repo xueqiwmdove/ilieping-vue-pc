@@ -6,7 +6,7 @@
       <p>将候选人移动至「面试」后（右侧），才可以添加面试</p>
     </div>
     <!--缺省-已到面试状态-->
-    <div class="noInterviews">
+    <div class="noInterviews" v-if="interviewList == ''">
       <img src="../../../assets/img/candidate/tanchuang_pic_interview1.png" alt="">
       <p>暂未添加面试</p>
       <button>添加面试</button>
@@ -27,22 +27,22 @@
               <el-row :gutter="40">
                 <el-col :lg="8" :md="8" :sm="8">
                   <el-form-item>
-                    <el-select v-model="province" placeholder="初试">
-                      <el-option v-for="item in provinceData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                    <el-select v-model=" interviewType" placeholder="初试">
+                      <el-option v-for="item in  interviewTypeData" :key="item.value" :label="item.label" :value="item.value"></el-option>
                     </el-select>
                   </el-form-item>
                 </el-col>
                 <el-col :lg="8" :md="8" :sm="8">
                   <el-form-item>
-                    <el-select v-model="province" placeholder="面试形式">
-                      <el-option v-for="item in provinceData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                    <el-select v-model="interviewMode" placeholder="面试形式">
+                      <el-option v-for="item in interviewModeData" :key="item.value" :label="item.label" :value="item.value"></el-option>
                     </el-select>
                   </el-form-item>
                 </el-col>
                   <el-col :lg="8" :md="8" :sm="8">
                     <el-form-item>
-                      <el-select v-model="province" placeholder="选择面试官支持搜索">
-                        <el-option v-for="item in provinceData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                      <el-select v-model="interviewer" placeholder="选择面试官支持搜索">
+                        <el-option v-for="item in commendEmployeeIdData" :key="item.employeeName" :label="item.employeeName" :value="item.id"></el-option>
                       </el-select>
                     </el-form-item>
                   </el-col>
@@ -56,15 +56,14 @@
                   <el-form-item>
                     <el-date-picker
                       v-model="interviewTime"
-                      type="date"
-                      range-separator=""
-                      start-placeholder="请选择面试时间"
-                      end-placeholder="">
+                      type="datetime"
+                      placeholder="请选择面试时间"
+                      value-format="yyyy-MM-dd HH:mm">
                     </el-date-picker>
                   </el-form-item>
                 </el-col>
 
-                <el-col :lg="8" :md="8" :sm="8">
+              <!--  <el-col :lg="8" :md="8" :sm="8">
                   <el-form-item>
                     <el-date-picker
                       v-model="interviewTime"
@@ -74,12 +73,12 @@
                       end-placeholder="">
                     </el-date-picker>
                   </el-form-item>
-                </el-col>
+                </el-col>-->
 
                 <el-col :lg="8" :md="8" :sm="8">
                   <el-form-item>
-                    <el-select v-model="province" placeholder="面试地点">
-                      <el-option v-for="item in provinceData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                    <el-select v-model="interviewAddress" placeholder="面试地点">
+                      <el-option v-for="item in addressList" :key="item.city" :label="item.city" :value="item.city"></el-option>
                     </el-select>
                   </el-form-item>
                 </el-col>
@@ -106,13 +105,13 @@
 
             <div class="interview_modal">
               <h4 class="title"></h4>
-              <div>
-                <p><i>谭迎港</i>您好</p>
+              <div v-for="item in candidateStepsData">
+                <p><i>{{item.candidateName}}</i>您好</p>
                 <p>感谢关注上海棋至文化有限公司！我是该公司的HR。很高兴收到您的简历。面试安排如下：</p>
-                <P>面试时间：<i>2018/09/09 14:30</i></P>
-                <p>面试形式：<i>视频面试</i></p>
-                <p>面试地点：<i>未知</i></p>
-                <p>联系方式：<i>联系方式</i><i>12367889900</i></p>
+                <P>面试时间：<i>{{item.interviewTime}}</i></P>
+                <p>面试形式：<i v-if="interviewMode==3">视频面试</i><i v-if="interviewMode==2">电话面试</i><i v-if="interviewMode==1">现场面试</i></p>
+                <p>面试地点：<i>{{interviewAddress}}</i></p>
+                <p>联系方式：<i>联系方式</i><i></i></p>
               </div>
 
             </div>
@@ -121,15 +120,15 @@
               <el-row :gutter="40">
                 <el-col :lg="12" :md="12" :sm="12">
                   <el-form-item label="选择通知模版">
-                    <el-select v-model="province" placeholder="选择通知模版">
-                      <el-option v-for="item in provinceData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                    <el-select v-model="notifyTemplate" placeholder="选择通知模版">
+                      <el-option v-for="item in notifyTemplateData" :key="item.value" :label="item.label" :value="item.value"></el-option>
                     </el-select>
                   </el-form-item>
                 </el-col>
                 <el-col :lg="12" :md="12" :sm="12">
                   <el-form-item label="面试登记表模版">
-                    <el-select v-model="province" placeholder="面试登记表模版">
-                      <el-option v-for="item in provinceData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                    <el-select v-model="notifyTemplate" placeholder="面试登记表模版">
+                      <el-option v-for="item in notifyTemplateData" :key="item.value" :label="item.label" :value="item.value"></el-option>
                     </el-select>
                   </el-form-item>
                 </el-col>
@@ -137,7 +136,7 @@
             </div>
 
             <div class="interview_button">
-              <el-button class="button">保存</el-button>
+              <el-button class="button" @click="insertInterview">保存</el-button>
               <el-button class="button cancel">取消</el-button>
             </div>
           </el-form>
@@ -149,9 +148,9 @@
     </div>
 
     <!--面试列表以及状态-->
-    <div class="interview_list_status">
+    <div class="interview_list_status" v-if="interviewList != ''">
       <button>继续添加面试</button>
-      <div class="interview_list">
+      <div class="interview_list" >
         <div class="interview">
           <img src="../../../assets/img/candidate/tanhcuang_ic_tag.png" alt="" class="img_status">
           <h4 class="title">
@@ -215,9 +214,14 @@
 </template>
 
 <script>
+    import http from '@/http/http'
+    import api from '@/api/api.js';
+    import {headers} from '@/assets/js/common/lp.js'
+
+
     export default {
         name: "interview_second",
-        // props:[''],
+        props:['candidateStepsData','addressList','commendEmployeeIdData'],
         components:{
 
         },
@@ -231,10 +235,88 @@
             no_feedBook:true,
             feedbook_form_pullDown:false,
             feedBook:false,
+            candidateID:19,
+            interviewList:[],//面试列表
+            interviewAddress:'',
+            interviewType:'',
+            interviewTypeData:[
+              {
+                value:'1',
+                label:'初试'
+              },{
+                value:'2',
+                label:'复试'
+              },{
+                value:'3',
+                label:'终试'
+              }
+            ],
+            interviewMode:'',//面试形式
+            interviewModeData:[
+              {
+                value:'1',
+                label:'现场面试'
+              },{
+                value:'2',
+                label:'电话面试'
+              },{
+                value:'3',
+                label:'视频面试'
+              }
+            ],
+            interviewer:'',
+            interviewerData:[],
+            notifyTemplate:'',
+            notifyTemplateData:[
+              {
+                value:'1',
+                label:'系统默认'
+              }
+            ]
+
 
           }
         },
       methods: {
+
+        //  查看面试列表
+        getInterview(){
+          let that=this;
+          that.$http({
+            method:'get',
+            url:api.interviewList+that.candidateID,
+            headers:headers(),
+          }).then(function (res) {
+            if(res.data.code==10000){
+              console.log(res.data.data);
+              that.interviewList=res.data.data;
+            }
+          })
+        },
+        //插入面试
+        insertInterview(){
+          let that=this;
+          console.log(that.checkList)
+          // that.$http({
+          //   method:'get',
+          //   url:api.insertInterview,
+          //   data:{
+          //     candidateId:that.candidateID,
+          //     interviewer:that.ininterviewer,
+          //     interviewType:that.interviewType,//interview_type：1 初试  2复试  3终试
+          //     interviewMode:that.interviewMode,//interview_mode：1 现场面试 2 电话面试 3 视频面试
+          //     interviewDate:that.interviewTime,
+          //     interviewAddress:that.interviewAddress,
+          //     notifyTemplate:1,//选择通知模板
+          //   },
+          //   headers:headers(),
+          // }).then(function (res) {
+          //   if(res.data.code==10000){
+          //     console.log(res.data.data);
+          //
+          //   }
+          // })
+        },
         //  取消面试
         cancelInterview(){
           let that=this;
@@ -255,6 +337,13 @@
           let that=this;
           that.feedbook_form=false;
         }
+
+
+
+      },
+      mounted(){
+          let that=this;
+          that.getInterview();
 
       }
     }
