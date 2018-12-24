@@ -5,11 +5,6 @@
      <addCandidate :addVisible.sync="visables.add" @hideModel="hideChildModal"></addCandidate>
      <!--候选人信息  父组件传值-->
      <candidateSteps :addVisible.sync="visables.steps" @hideModel="hideChildModal" :candidateStepsData="candidateStepsData" :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList"></candidateSteps>
-     <!-- 推荐人弹窗  -->
-     <recommendDia :addVisible.sync="visables.recommend" @hideModel="hideChildModal"></recommendDia>
-
-     <!--推荐给用人部门-->
-     <!-- <recommend_depart :addVisible.sync="visables.recommend" @hideModel="hideChildModal"></recommend_depart> -->
 
           <!--顶部导航-->
         <pageheader class="pageheader"></pageheader>
@@ -119,64 +114,64 @@
                                 <el-button class="add_btn" @click="addCandidateShow('add')">添加候选人</el-button>
                             </div>
                           </div>
-                <!--表格  -->
-                        <div class="div_table_infor">
-                            <el-table :key='signs'  :data="candidateList" style="width: 100%">
-                                <el-table-column fixed prop="processNum" label="基本资料" header-align='center' align='left' width="350px">
-                                    <template slot-scope="scope">
-                                        <span class="basic_sty " @click="addCandidateShow('steps');showSteps(scope.row.id)" style="cursor: pointer">
-                                          <span class="name_s">{{scope.row.candidateName}} <em>{{scope.row.candidateSex}}</em><em class="bom_sty"></em><em>{{scope.row.candidateExperience}}</em></span>
-                                          <p><img src="../../assets/img/zhiwei/houxuan_ic_work.png" alt=""><span>{{scope.row.workExperience}}</span></p>
-                                          <p><img src="../../assets/img/zhiwei/houxuan_ic_education.png" alt=""><span>{{scope.row.educationExperience}}</span></p>
-                                        </span>
-                                    </template>
-                                </el-table-column>
-                                <el-table-column prop="departmentHeads" label="候选人负责人" header-align='center' align='center'></el-table-column>
-                                <el-table-column prop="postStr" label="招聘职位" header-align='center' align='center'></el-table-column>
-                                <el-table-column prop="resumeChannel" label="招聘渠道" header-align='center' align='center'></el-table-column>
-                                <el-table-column  v-if="signs =='2'" prop="createTime" label="添加日期" header-align='center' align='center'></el-table-column>
-                                <el-table-column  v-if="signs =='3'" prop="screeningStatus" label="状态" header-align='center' align='center'>
-                                    <template slot-scope="scope">
-                                        <span style="cursor: pointer;">
-                                         <i v-if="scope.row.screeningStatus == '1'" style="color:#66ADFF;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_no feedback.png" alt="">未反馈</i>
-                                         <i v-if="scope.row.screeningStatus =='3'" style="color:#FF001F;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_disagree.png" alt="">拒绝</i>
-                                         <i v-if="scope.row.screeningStatus == '2'" style="color:#5EC860;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_agree.png" alt="">同意</i>
-                                         <i v-if="scope.row.screeningStatus == '0'" style="color:#FF001F;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not recommendde.png" alt="">未推荐</i>
-                                        </span>
-                                    </template>
-                                </el-table-column>
-                                <el-table-column  v-if="signs =='4'" prop="interviewStatus" label="面试状态" header-align='center' align='center'>
-                                     <template slot-scope="scope">
-                                        <span v-if="scope.row.interviewStatus =='0'" style="cursor: pointer;">
-                                          <p>未安排面试</p>
-                                          <el-button size="small" style="color:#fff ;background-color:#F95714;">去安排</el-button>
-                                        </span>
-                                         <span v-if="scope.row.interviewStatus == '1'" style="cursor: pointer;">
-                                          <p>已安排面试</p>
-                                          <el-button size="small" style="color:#fff ;background-color:#66ADFF;">去查看</el-button>
-                                        </span>
-                                    </template>
-                                </el-table-column>
-                                <el-table-column  v-if="signs =='5'" prop="offerStatus" label="Offer状态" header-align='center' align='center'>
-                                     <template slot-scope="scope">
-                                        <span style="cursor: pointer;">
-                                         <i v-if="scope.row.offerStatus == '0'" ><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_notcreate.png" alt="">未创建</i>
-                                         <!-- <i v-if="scope.row.offerStatus == '1'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not receive.png" alt="">未接收</i> -->
-                                         <i v-if="scope.row.offerStatus == '2'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_receive.png" alt="">同意</i>
-                                         <i v-if="scope.row.offerStatus == '3'" ><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_refused.png" alt="">已拒绝</i>
-                                         <i v-if="scope.row.offerStatus == '1'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not receive.png" alt="">待接收</i>
-                                        </span>
-                                    </template>
-                                </el-table-column>
-                                <el-table-column  v-if="signs =='6'" prop="createDate" label="预计入职时间" header-align='center' align='center'></el-table-column>
-                                <el-table-column  v-if="signs =='0'" prop="archivingReason" label="淘汰原因" header-align='center' align='center'></el-table-column>
-                            </el-table>
-                        </div>
-               			<!-- 分页  -->
-                            <div class="bottom-pagination" v-if="totalCount > 5">
-                                <el-pagination @current-change="changePage" @size-change="changeSize" :current-page="pageIndex" :page-size="pageSize" :page-sizes="[5,10, 25, 50, 100]" layout="total, prev, pager, next, sizes, jumper" :total="totalCount">
-                                </el-pagination>
-                            </div>
+                      <!--表格  -->
+                          <div class="div_table_infor">
+                              <el-table :key='signs'  :data="candidateList" style="width: 100%">
+                                  <el-table-column fixed prop="processNum" label="基本资料" header-align='center' align='left' width="350px">
+                                      <template slot-scope="scope">
+                                          <span class="basic_sty " @click="addCandidateShow('steps');showSteps(scope.row.id)" style="cursor: pointer">
+                                            <span class="name_s">{{scope.row.candidateName}} <em>{{scope.row.candidateSex}}</em><em class="bom_sty"></em><em>{{scope.row.candidateExperience}}</em></span>
+                                            <p><img src="../../assets/img/zhiwei/houxuan_ic_work.png" alt=""><span>{{scope.row.workExperience}}</span></p>
+                                            <p><img src="../../assets/img/zhiwei/houxuan_ic_education.png" alt=""><span>{{scope.row.educationExperience}}</span></p>
+                                          </span>
+                                      </template>
+                                  </el-table-column>
+                                  <el-table-column prop="departmentHeads" label="候选人负责人" header-align='center' align='center'></el-table-column>
+                                  <el-table-column prop="postStr" label="招聘职位" header-align='center' align='center'></el-table-column>
+                                  <el-table-column prop="resumeChannel" label="招聘渠道" header-align='center' align='center'></el-table-column>
+                                  <el-table-column  v-if="signs =='2'" prop="createTime" label="添加日期" header-align='center' align='center'></el-table-column>
+                                  <el-table-column  v-if="signs =='3'" prop="screeningStatus" label="状态" header-align='center' align='center'>
+                                      <template slot-scope="scope">
+                                          <span style="cursor: pointer;">
+                                          <i v-if="scope.row.screeningStatus == '1'" style="color:#66ADFF;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_no feedback.png" alt="">未反馈</i>
+                                          <i v-if="scope.row.screeningStatus =='3'" style="color:#FF001F;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_disagree.png" alt="">拒绝</i>
+                                          <i v-if="scope.row.screeningStatus == '2'" style="color:#5EC860;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_agree.png" alt="">同意</i>
+                                          <i v-if="scope.row.screeningStatus == '0'" style="color:#FF001F;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not recommendde.png" alt="">未推荐</i>
+                                          </span>
+                                      </template>
+                                  </el-table-column>
+                                  <el-table-column  v-if="signs =='4'" prop="interviewStatus" label="面试状态" header-align='center' align='center'>
+                                      <template slot-scope="scope">
+                                          <span v-if="scope.row.interviewStatus =='0'" style="cursor: pointer;">
+                                            <p>未安排面试</p>
+                                            <el-button size="small" style="color:#fff ;background-color:#F95714;">去安排</el-button>
+                                          </span>
+                                          <span v-if="scope.row.interviewStatus == '1'" style="cursor: pointer;">
+                                            <p>已安排面试</p>
+                                            <el-button size="small" style="color:#fff ;background-color:#66ADFF;">去查看</el-button>
+                                          </span>
+                                      </template>
+                                  </el-table-column>
+                                  <el-table-column  v-if="signs =='5'" prop="offerStatus" label="Offer状态" header-align='center' align='center'>
+                                      <template slot-scope="scope">
+                                          <span style="cursor: pointer;">
+                                          <i v-if="scope.row.offerStatus == '0'" ><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_notcreate.png" alt="">未创建</i>
+                                          <!-- <i v-if="scope.row.offerStatus == '1'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not receive.png" alt="">未接收</i> -->
+                                          <i v-if="scope.row.offerStatus == '2'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_receive.png" alt="">同意</i>
+                                          <i v-if="scope.row.offerStatus == '3'" ><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_refused.png" alt="">已拒绝</i>
+                                          <i v-if="scope.row.offerStatus == '1'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not receive.png" alt="">待接收</i>
+                                          </span>
+                                      </template>
+                                  </el-table-column>
+                                  <el-table-column  v-if="signs =='6'" prop="createDate" label="预计入职时间" header-align='center' align='center'></el-table-column>
+                                  <el-table-column  v-if="signs =='0'" prop="archivingReason" label="淘汰原因" header-align='center' align='center'></el-table-column>
+                              </el-table>
+                          </div>
+               		  	<!-- 分页  -->
+                          <div class="bottom-pagination" v-if="totalCount > 5">
+                              <el-pagination @current-change="changePage" @size-change="changeSize" :current-page="pageIndex" :page-size="pageSize" :page-sizes="[5,10, 25, 50, 100]" layout="total, prev, pager, next, sizes, jumper" :total="totalCount">
+                              </el-pagination>
+                          </div>
                     </div>
                   </el-col>
                 </el-row>
@@ -195,12 +190,9 @@
   import pageheader from '@/components/common/pageheader';
   import pageaside from '@/components/common/pageaside';
   import treeSearch from '@/components/common/treeSearch'
-  import recommendDia from '@/components/candidate/common/recommendDia'
 //  blance
   import addCandidate from '@/components/candidate/addCandidate';
   import candidateSteps from '@/components/candidate/candidateSteps';
-  // import {toArray} from '@/assets/js/common/diy.show';
-  // import recommend_depart from '@/components/candidate/common/recommend_depart';
 
 // duanyanhong
 // 2018.12.2
@@ -234,7 +226,6 @@ export default {
     treeSearch,
     addCandidate,
     candidateSteps,
-    recommendDia,
     // recommend_depart
   },
    data() {
@@ -434,18 +425,8 @@ export default {
           that.candidateStepsData=[];
           that.standardResume=[];
           if(res.data.code==10000 && res.data.data !=null ){
-            // let data=res.data.data;
-            // let data2=JSON.parse(res.data.data.standardResume);
 
-            // for (let i in data) {
-            //   that.candidateStepsData.push(data[i]);
-            // }
-            //
-            // for (let i in data2) {
-            //   that.standardResume.push(data2[i]);
-            // }
-
-            that.candidateStepsData.push(res.data.data);//
+            that.candidateStepsData.push(res.data.data);
             that.standardResume.push(JSON.parse(res.data.data.standardResume));
             that.candidateWorkExperienceDTOList=JSON.parse(res.data.data.standardResume).candidateWorkExperienceDTOList;
             that.candidateEducationExperienceDTOList=JSON.parse(res.data.data.standardResume).candidateEducationExperienceDTOList;
@@ -457,9 +438,6 @@ export default {
         })
       }
     },
-  // toArray(data) {
-  //   return toArray(data);
-  // },
     mounted() {
      this.getCandidate()
      this.getPosition()

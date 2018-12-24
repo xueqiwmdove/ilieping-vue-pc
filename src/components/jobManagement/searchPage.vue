@@ -15,11 +15,11 @@
                 </p>
                 <!-- 搜索栏 -->
                  <div class='content_pad  del_icon'>
-                    <el-input  v-if="show" class="case_sty" v-model="searchName" style="width:260px;height:40px;" @change="check" placeholder="请输入内容"  clearable>
+                    <el-input maxlength="20"  v-if="show" class="case_sty" v-model="searchName" style="width:260px;height:40px;" @change="check" placeholder="请输入内容"  clearable>
                           <i @click="del_click" slot="prefix" class="el-input__icon delete_sty el-icon-close"></i>
                     </el-input>
                     <div class="search"  v-else>
-                        <el-input v-model="searchName1" class="input_search" placeholder="输入你想搜索的内容" >
+                        <el-input maxlength="20"  v-model="searchName1" class="input_search" placeholder="输入你想搜索的内容" >
                         <i @click="searchPage" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                        </el-input> 
                     </div> 

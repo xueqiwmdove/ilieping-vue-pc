@@ -33,7 +33,7 @@
                       </em>
                     </div>
                     <div class="search">
-                      <el-input  v-model="searchName" class="input_search" placeholder="输入你想搜索的内容" >
+                      <el-input  v-model="searchName" maxlength="20" class="input_search" placeholder="输入你想搜索的内容" >
                         <i @click="searchPage" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                       </el-input>
                       <el-button class="add_btn" @click="createPosition">添加招聘职位</el-button>

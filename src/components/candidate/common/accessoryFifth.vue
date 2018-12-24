@@ -10,6 +10,7 @@
           :before-upload="before_Upload"
           ref="newupload"
           :data="data"
+          :show-file-list="false"
            multiple
           :file-list="fileList"
           >
@@ -30,10 +31,10 @@
           ref="newupload"
           :data="data"
            multiple
+          :show-file-list="false"
           :file-list="fileList"
           >
           <el-button style="background-color:#F95714;border-radius:4px;width:220px;height:40px;color:#fff" >上传附件</el-button>
-          <!-- <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div> -->
         </el-upload>
         <p  class="headLine">附件列表</p>
         <div class="file_text_box"><!--v-for="(item,index) of imgList" :key="index" -->
@@ -113,7 +114,7 @@
           let that = this
           let annexId = val.id  
           that.$http({
-            method:'get',
+            method:'delete',
             url:api.deleteFile+'/'+annexId ,
            headers:headers('application/json;charset=utf-8'),
           }).then(function(res){
@@ -128,7 +129,7 @@
      //获取附件列表   
        getList() {
           let that = this
-          let candidateId = '6'
+          let candidateId = '6'//候选人id<===========!
           that.$http({
             method:'get',
             url:api.annexList+'/'+candidateId ,
@@ -176,29 +177,6 @@
                 that.$message.error(error);
             });
        },    
-     //上传附件  
-      //  getFile(event) {
-      //     this.file = event.target.files[0];
-      //      let param = new FormData(); 
-      //       param.append('file',file);
-      //        let that = this
-      //         that.$http({
-      //           methods:'post',
-      //           url:api.uploadAnnexInfo ,
-      //           headers:headers('multipart/form-data'),
-      //           data:{
-      //             "bizTable" : 'candidate' ,
-      //             "bizId ":'6',
-      //             "file": param
-      //           }
-      //         }).then(function(res){
-      //           if(res.data.code==10000){
-      //             that.$message.success(res.data.msg);
-      //           }else{
-      //             that.$message.error(res.data.msg);
-      //           }
-      //         }) 
-      //     },
       },
       created(){
         this.getList()

@@ -155,7 +155,7 @@
                               </el-col>
                               <el-col :span='14'>
                                   <el-form-item label="变更为" :label-width="formLabelWidth">
-                                    <el-input  @click.native="treeClick"  v-model="personChange.region"  placeholder="请选择部门名称"  class="el-icon-arrow-down"></el-input>
+                                    <el-input readonly  @click.native="treeClick"  v-model="personChange.region"  placeholder="请选择部门名称"  class="el-icon-arrow-down"></el-input>
                                           <div v-if="treeVisabled" class="form_tree tree_sty" >
                                               <treeSelect  :tree-datas="treeDatas" v-on:getIds="getIds"></treeSelect>
                                           </div>

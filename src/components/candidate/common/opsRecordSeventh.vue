@@ -36,7 +36,7 @@
       methods:{
        getList() {
           let that = this
-          let candidateId = '6'
+          let candidateId = '6'//候选人id<===========!
           that.$http({
             method:'get',
             url:api.candidateOperation+'/'+candidateId ,
