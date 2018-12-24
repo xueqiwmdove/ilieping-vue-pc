@@ -81,7 +81,7 @@
                   <el-col :span='19' >
                     <div class="positionTable">
                        <h4>职位信息</h4> 
-                        <el-form :model="makeNormal" :rules="rules"  ref="makeNormal" id="re_style">
+                        <el-form :model="makeNormal" :rules="rules"  ref="makeNormal" id="re_style2">
                               <el-row class="row_sty">
                                   <el-col :span='6' >
                                       <el-form-item label="" prop="name">
@@ -93,7 +93,7 @@
                                   <el-col :span='6'  :offset="2">
                                     <el-form-item label="" v-clickoutside="handleClose2"  prop="detpart">
                                         <span>用人部门<img src="../../assets/img/zhiwei/zhiwei_ic_bitian.png" alt="">
-                                            <el-input v-model="makeNormal.detpart"  @click.native="treeClick"   class="el-icon-arrow-down"  placeholder="请输入内容"></el-input>
+                                            <el-input  readonly  v-model="makeNormal.detpart"  @click.native="treeClick"   class="el-icon-arrow-down"  placeholder="请输入内容"></el-input>
                                              <div v-if="treeVisabled" class="form_tree" >
                                                     <treeSearch  :tree-datas="treeDatas" v-on:treeHiden='getstatus' v-on:getId="getLabel" ></treeSearch>
                                               </div>
@@ -609,13 +609,13 @@ export default {
    .positionTable .row_sty span img {
       margin-left: 5px; 
    }
-   #re_style .el-radio-button, .el-radio-button__inner {
+   #re_style2 .el-radio-button, .el-radio-button__inner {
      margin-right: 8px; 
      height: 40px;
      width: 90px;
      border-color: #E5E5E5;
    }
-   #re_style .el-radio-button, .el-radio-button__inner:nth-child(2) {
+   #re_style2 .el-radio-button, .el-radio-button__inner:nth-child(2) {
        border-left: 1px solid #E5E5E5;
    }
    .content {
@@ -672,7 +672,7 @@ export default {
   background-color: #fff;
   color:#F95714;
 }
-#re_style .el-icon-arrow-down:before {
+#re_style2 .el-icon-arrow-down:before {
     content: "\E603";
     position: absolute;
     top: 15px;

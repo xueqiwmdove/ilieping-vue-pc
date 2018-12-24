@@ -93,7 +93,7 @@
                                   <el-col :span='6'  :offset="2">
                                     <el-form-item label="" v-clickoutside="handleClose2"  prop="detpart">
                                         <span>用人部门<img src="../../assets/img/zhiwei/zhiwei_ic_bitian.png" alt="">
-                                            <el-input v-model="makeNormal.detpart"  @click.native="treeClick"   class="el-icon-arrow-down"  placeholder="请输入内容"></el-input>
+                                            <el-input  readonly  v-model="makeNormal.detpart"  @click.native="treeClick"   class="el-icon-arrow-down"  placeholder="请输入内容"></el-input>
                                              <div v-if="treeVisabled" class="form_tree" >
                                                     <treeSearch  :tree-datas="treeDatas" v-on:treeHiden='getstatus' v-on:getId="getLabel" ></treeSearch>
                                               </div>
