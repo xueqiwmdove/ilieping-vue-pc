@@ -93,7 +93,7 @@
                                   <el-col :span='6'  :offset="2">
                                     <el-form-item label="" v-clickoutside="handleClose2"  prop="detpart">
                                         <span>用人部门<img src="../../assets/img/zhiwei/zhiwei_ic_bitian.png" alt="">
-                                            <el-input  readonly  v-model="makeNormal.detpart"  @click.native="treeClick"   class="el-icon-arrow-down"  placeholder="请输入内容"></el-input>
+                                            <el-input  readonly  v-model="makeNormal.detpart"  @click.native="treeClick"   class="el-icon-arrow-down"  placeholder="请选择用人部门"></el-input>
                                              <div v-if="treeVisabled" class="form_tree" >
                                                     <treeSearch  :tree-datas="treeDatas" v-on:treeHiden='getstatus' v-on:getId="getLabel" ></treeSearch>
                                               </div>
@@ -116,7 +116,7 @@
                                  <el-col :span='6'>  
                                     <el-form-item label="">
                                         <span>工作城市
-                                            <el-select v-model="makeNormal.cityShow" placeholder="请选择活动区域" @change="checkInput">
+                                            <el-select v-model="makeNormal.cityShow" placeholder="请选择工作城市" @change="checkInput">
                                                 <el-option v-for="item in addressList" :key='item.id'  :value="item.city">{{item.city}}{{item.address}}</el-option>
                                             </el-select>
                                         </span>
@@ -134,7 +134,7 @@
                                   <el-col :span='6'  :offset="2">  
                                       <el-form-item label="">     
                                         <span>工作经验
-                                            <el-select v-model="makeNormal.work" placeholder="请选择活动区域">
+                                            <el-select v-model="makeNormal.work" placeholder="请选择工作经验">
                                                 <el-option label="应届毕业生" value="0"></el-option>
                                                 <el-option label="一年以下" value="1"></el-option>
                                                 <el-option label="1-3年" value="2"></el-option>
@@ -150,7 +150,7 @@
                                  <el-col :span='6'>  
                                     <el-form-item label="">
                                       <span>学历要求
-                                            <el-select v-model="makeNormal.education" placeholder="请选择活动区域">
+                                            <el-select v-model="makeNormal.education" placeholder="请选择学历要求">
                                               <el-option label="研究生（博士及以上）" value="0"></el-option>
                                               <el-option label="研究生（MBA）" value="1"></el-option>
                                               <el-option label="研究生（硕士）" value="2"></el-option>
