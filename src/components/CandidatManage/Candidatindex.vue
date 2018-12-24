@@ -376,8 +376,9 @@ export default {
     },
     getItems() {
       this.flags = !this.flags
-      console.log(1)
       this.seen= ''
+      this.postId = ''
+      this.getCandidate()
     },
   //获取状态数据
     getCount() {
