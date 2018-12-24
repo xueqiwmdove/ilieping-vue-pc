@@ -178,6 +178,14 @@ export default {
   padding: 20px 40px;
   padding-left:40px;
 }
+.title_bei,.title_quit {
+  width: 100%;
+  display: inline-block;
+  text-align: left;
+  font-size: 14px;
+  margin-bottom: 15px;
+  color: #394A66;
+}
 .title_quit {
 color: #F95714 ;
 }
