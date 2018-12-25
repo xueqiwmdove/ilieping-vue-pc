@@ -16,7 +16,7 @@
         <div class="right-content pull-right">
             <div class="content">
                 <p class="headline">
-                    <span   >候选人管理</span>
+                    <span >候选人管理</span>
                 </p>
                 <el-row>
               <!--创建职位左侧栏  -->
@@ -134,8 +134,8 @@
                                       <template slot-scope="scope">
                                           <span style="cursor: pointer;">
                                           <i v-if="scope.row.screeningStatus == '1'" style="color:#66ADFF;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_no feedback.png" alt="">未反馈</i>
-                                          <i v-if="scope.row.screeningStatus =='3'" style="color:#FF001F;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_disagree.png" alt="">拒绝</i>
-                                          <i v-if="scope.row.screeningStatus == '2'" style="color:#5EC860;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_agree.png" alt="">同意</i>
+                                          <i v-if="scope.row.screeningStatus =='2'" style="color:#FF001F;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_disagree.png" alt="">拒绝</i>
+                                          <i v-if="scope.row.screeningStatus == '3'" style="color:#5EC860;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_agree.png" alt="">同意</i>
                                           <i v-if="scope.row.screeningStatus == '0'" style="color:#FF001F;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not recommendde.png" alt="">未推荐</i>
                                           </span>
                                       </template>
@@ -157,8 +157,8 @@
                                           <span style="cursor: pointer;">
                                           <i v-if="scope.row.offerStatus == '0'" ><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_notcreate.png" alt="">未创建</i>
                                           <!-- <i v-if="scope.row.offerStatus == '1'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not receive.png" alt="">未接收</i> -->
-                                          <i v-if="scope.row.offerStatus == '2'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_receive.png" alt="">同意</i>
-                                          <i v-if="scope.row.offerStatus == '3'" ><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_refused.png" alt="">已拒绝</i>
+                                          <i v-if="scope.row.offerStatus == '3'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_receive.png" alt="">同意</i>
+                                          <i v-if="scope.row.offerStatus == '2'" ><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_refused.png" alt="">已拒绝</i>
                                           <i v-if="scope.row.offerStatus == '1'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not receive.png" alt="">待接收</i>
                                           </span>
                                       </template>

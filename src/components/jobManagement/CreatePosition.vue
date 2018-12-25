@@ -61,17 +61,17 @@
                         </div>
                          <div class="manage_position">
                            <span class="ly_s">
-                             <span>选择开始招聘时间 </span>
                              <el-row class="date_sty">
-                                <el-date-picker v-model="startTime"  value-format="yyyy-MM-dd" style="width: 280px;" type="date" placeholder="选择日期"></el-date-picker> 
+                                 <span >选择开始招聘时间 </span>
+                                <el-date-picker v-model="startTime"  value-format="yyyy-MM-dd" style="width: 280px;margin-top:20px" type="date" placeholder="选择日期"></el-date-picker> 
                              </el-row>
                            </span> 
                         </div>
                          <div class="manage_position">
                            <span class="ly_s">
-                             <span>选择目标完成时间 </span>
                              <el-row class="date_sty">
-                                <el-date-picker v-model="endTime"  value-format="yyyy-MM-dd" style="width: 280px;" type="date" placeholder="选择日期"></el-date-picker> 
+                               <span>选择目标完成时间 </span>
+                                <el-date-picker v-model="endTime"  value-format="yyyy-MM-dd" style="width: 280px;margin-top:20px" type="date" placeholder="选择日期"></el-date-picker> 
                              </el-row>
                            </span> 
                         </div>
@@ -120,7 +120,7 @@
                                                 <el-option v-for="item in addressList" :key='item.id' :value="item.cityAddress">{{item.city}}{{item.address}}</el-option>
                                             </el-select>
                                         </span>
-                                        <i class="tixin"><img src="../../assets/img/zhiwei/cuowu.png" alt="">如果同个职位在多个城市招聘，请分开添加招聘职位</i>
+                                        <i class="tixin">如果同个职位在多个城市招聘，请分开添加招聘职位</i>
                                     </el-form-item>
                                   </el-col> 
                                   <el-col :span='6'  :offset="2">  
@@ -171,7 +171,7 @@
                               </el-row>
                               <el-row class="area_sty">
                                   <el-form-item label="职位描述"><br>
-                                        <textarea v-model="makeNormal.positionDescribe" style="width:1050px;height:220px" placeholder="请输入职位描述"></textarea>
+                                        <textarea v-model="makeNormal.positionDescribe" style="width:1100px;height:220px" placeholder="请输入职位描述"></textarea>
                                   </el-form-item>
                              </el-row>
                              <el-row>
@@ -534,6 +534,9 @@ export default {
       font-size: 15px;
       border: 1px solid #F95714;
     }
+    .asidePosition .manage_position {
+      
+    }
     .asidePosition .manage_position .ly_s {
        display: inline-block;
        height: 19px;
@@ -635,7 +638,18 @@ export default {
      font-size: 12px;
      display: inline-block;
      color:#F95714;
+     position: relative;
+     margin-left: 12px;
    }
+   .rowspan_sty .tixin::after {
+     content: '';
+     background-image: url(../../assets/img/zhiwei/cuowu.png) ;
+     position: absolute;
+     height: 14px;
+     width: 13px;
+     top:13px;
+     left:-15px;
+   } 
    .createBut {
      background: #F95714;
      border-radius: 4px;

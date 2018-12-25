@@ -5,7 +5,7 @@
                 <div class = "con candidate_sty" >
                     <p class = "ptitle">推荐给用人部门 <i  class="el-icon-close closes_s"></i></p>
                     <div class="rescs" @click="clickHide">
-                        <el-form :model="cerateList"  ref="cerateList" id="re_styles">
+                        <el-form :model="cerateList"  ref="cerateList" id="re_styles3">
                                 <el-form-item label="推荐到" style="text-align:center;margin-left:12px;" >
                                 <!-- <span style="margin-right:23px;"></span> -->
                                     <div v-if="isflag" class="manage_se">
@@ -361,14 +361,14 @@
     cursor: pointer;
     line-height: 50px;
 }
-#re_styles .el-radio-button, .el-radio-button__inner {
+#re_styles3 .el-radio-button, .el-radio-button__inner {
     margin-right: 20px;
     height: 40px;
     width: 90px;
     border-color: #E5E5E5;
     border-radius: 5px;
 }
-#re_styles .el-radio-button, .el-radio-button__inner:nth-child(2) {
+#re_styles3 .el-radio-button, .el-radio-button__inner:nth-child(2) {
     border-left: 1px solid #E5E5E5;
 }
 .rescs {
@@ -404,7 +404,7 @@
     font-size: 14px;
 }
 
-#re_styles .el-radio-button__orig-radio:checked+.el-radio-button__inner {
+#re_styles3 .el-radio-button__orig-radio:checked+.el-radio-button__inner {
     background-image: url('../../../assets/img/zhiwei/zhiwei_ic_choose.png');
     background-repeat:no-repeat;
     background-position:100% 100%;
@@ -415,19 +415,19 @@
 .candidate_sty .manage_sty .el-scrollbar__wrap {
      overflow-x: hidden !important;
  }
- #re_styles .el-input__inner {
+ #re_styles3 .el-input__inner {
      margin-left:-80px;
  }
  #reset_styless .el-input__inner  {
      margin-left:-55px;
  }
- #re_styles .el-form-item__label  {
+ #re_styles3 .el-form-item__label  {
      margin-right:20px;
  }
-#re_styles .el-radio-group {
+#re_styles3 .el-radio-group {
     margin-right: 111px;
 }
-.beires #re_styles .title_quit .el-input__suffix {
+.beires #re_styles3 .title_quit .el-input__suffix {
   right: 50px !important  ;
 }
 .rescs #reset_styless .el-form-item .el-form-item__content .el-select {
