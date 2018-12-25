@@ -82,7 +82,7 @@
                     <div class="positionTable">
                        <h4>职位信息</h4> 
                         <el-form :model="makeNormal" :rules="rules"  ref="makeNormal" id="re_style2">
-                              <el-row class="row_sty">
+                              <el-row class="rowspan_sty">
                                   <el-col :span='6' >
                                       <el-form-item label="" prop="name">
                                         <span>职位名称<img src="../../assets/img/zhiwei/zhiwei_ic_bitian.png" alt="">
@@ -112,7 +112,7 @@
                                       </el-form-item>
                                   </el-col>    
                               </el-row>
-                              <el-row class="row_sty">
+                              <el-row class="rowspan_sty">
                                  <el-col :span='6'>  
                                     <el-form-item label="">
                                         <span>工作城市
@@ -146,7 +146,7 @@
                                       </el-form-item>
                                   </el-col>
                               </el-row>
-                              <el-row class="row_sty">
+                              <el-row class="rowspan_sty">
                                  <el-col :span='6'>  
                                     <el-form-item label="">
                                       <span>学历要求
@@ -494,6 +494,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped >
+
+/* 左侧样式开始 */
    .asidePosition {
       width: 340px;
       min-width: 340px;;
@@ -569,6 +571,10 @@ export default {
     .asidePosition .manage_position .ly_s .date_sty {
         margin-top: 15px; 
     }
+    /* 左侧样式结束 */
+
+
+  /* 右侧样式开始 */
     .form_tree {
     width:300px;
     height:280px;
@@ -579,8 +585,7 @@ export default {
     z-index: 44;
     position: absolute;
     background-color: #fff;
-}
-  
+} 
    .positionTable {
      background-color: #fff;
       padding: 0px 25px;   
@@ -593,7 +598,7 @@ export default {
     color: #394A66;
     letter-spacing: 0;  
    }
-   .positionTable .row_sty span {
+   .positionTable .rowspan_sty span {
        display: inline-block;
        width: 300px;
        height: 40px;
@@ -603,10 +608,10 @@ export default {
        /* margin-right:124px; */
        margin-top: 15px;
    }
-   .positionTable .row_sty span:nth-child(3) {
+   .positionTable .rowspan_sty span:nth-child(3) {
        margin-right: 0px;
    }
-   .positionTable .row_sty span img {
+   .positionTable .rowspan_sty span img {
       margin-left: 5px; 
    }
    #re_style2 .el-radio-button, .el-radio-button__inner {
@@ -621,12 +626,12 @@ export default {
    .content {
      min-width: 1366px;;  
    }
-   .row_sty .qian::before {
+   .rowspan_sty .qian::before {
      content: 'K';
      position: absolute;
      right:10px;
    }
-   .row_sty .tixin {
+   .rowspan_sty .tixin {
      font-size: 12px;
      display: inline-block;
      color:#F95714;
@@ -640,10 +645,11 @@ export default {
      margin-top: 100px;
      margin-left:35%;
    }
-  
-
+  /* 右侧样式结束 */
 </style>
 <style>
+
+/* 重置默认样式 */
 .date_sty .el-icon-date:before {
     content: "\E608";
     /* float: right; */
@@ -655,7 +661,7 @@ export default {
  .date_sty .el-input--prefix .el-input__inner   {
     padding-left:0px;
  }
- .row_sty .el-input--suffix .el-input__inner {
+ .rowspan_sty .el-input--suffix .el-input__inner {
     padding-right: 0px !important;
     padding-left:0px !important;
     width: 300px !important;
@@ -664,7 +670,7 @@ export default {
     text-indent: 12px;
     padding-left: 0px;
 } 
-.row_sty .el-radio-button__orig-radio:checked+.el-radio-button__inner {
+.rowspan_sty .el-radio-button__orig-radio:checked+.el-radio-button__inner {
   background-image: url('../../assets/img/zhiwei/zhiwei_ic_choose.png');
   background-repeat:no-repeat;
   background-position:100% 100%;
