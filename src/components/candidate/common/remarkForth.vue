@@ -66,6 +66,7 @@
             }
 
           }else{
+            that.beizhu=true;
             that.$message.error(res.data.msg);
           }
         })

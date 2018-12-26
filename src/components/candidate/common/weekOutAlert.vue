@@ -1,26 +1,29 @@
 <template>
-    <div class="dis"> 
+    <div class="dis">
        <!-- 弹窗-淘汰候选人 -->
         <div v-if="quitdia" style="width:100%;" @click="handleClose2">
             <div  class = "cov" >
-                <div class = "con candidate_sty"  style="height:400px;">
+                <div class = "con candidate_sty"  style="height:408px;">
                     <p class = "ptitle">淘汰候选人 <i class="el-icon-close closes_s"></i></p>
                     <div class="rescs beires" @click="clickHide3" style="height:220px;">
                         <el-form :model="cerateList"  ref="cerateList" id="re_styles reset_styless">
                             <span class="title_quit"><i><img src="../../../assets/img/zhiwei/cuowu.png" alt=""></i> 此候选人将被归档到人才库，请选择归档原因</span>
                             <el-form-item label="淘汰原因" style="margin-left:31px;" >
                                 <el-select style="width:280px;height:40px;" v-model="cerateList.type" placeholder="请选择工作经验">
-                                    <el-option label="胜任力不足" value="0"></el-option>
-                                    <el-option label="没有回应" value="1"></el-option>
-                                    <el-option label="淘汰" value="2"></el-option>
-                                    <el-option label="与公司文化不符合" value="2"></el-option>
-                                    <el-option label="福利待遇不匹配" value="2"></el-option>
-                                    <el-option label="待定" value="2"></el-option>
+                                    <el-option value="胜任力不足" ></el-option>
+                                    <el-option value="没有回应" ></el-option>
+                                    <el-option value="淘汰" ></el-option>
+                                    <el-option value="与公司文化不符合" ></el-option>
+                                    <el-option value="福利待遇不匹配" ></el-option>
+                                    <el-option value="待定"></el-option>
                                 </el-select>
                             </el-form-item>
                             <el-form-item label="具体原因(选填)" >
                                 <textarea  v-model="cerateList.text" style="width:280px;height:100px;margin-left:-4px;" placeholder="请输入内容"></textarea>
                             </el-form-item>
+                          <el-checkbox v-model="cerateList.radio">放入人才库</el-checkbox>
+                          <el-checkbox v-model="cerateList.sendSms" >发送拒信</el-checkbox>
+
                     </el-form>
                     </div>
                     <div slot="footer" class="dialog-footer">
@@ -42,11 +45,15 @@ export default {
     components: {},
     data() {
       return {
-        quitdia:false,   
+        quitdia:false,
         cerateList:{
         type:'',
-        text:''
+        text:'',
+        radio:true,
+        sendSms:''
         },
+        candidateId:'',
+
       }
     },
     computed:{
@@ -69,40 +76,44 @@ export default {
             }else{
                 return true
             }
-        },  
+        },
     },
     methods: {
         open(){
         this.quitdia = true
         },
         clickHide3(e)  {
-        this.quitdia=true
+        this.quitdia=true;
         e.stopPropagation();//阻止冒泡
         },
         submirQuit() {
-            let that = this
-            let candidateId = '6'
+            let that = this;
+            that.candidateId=localStorage.getItem('candidateID');
             that.$http({
-            method:'post',
-            url:api.candidateinsert,
-            headers:headers('application/json;charset=utf-8'),
+            method:'put',
+            url:api.updateEliminate,
+            headers:headers(),
             data:{
-            }
+              id:that.candidateId,
+              archivingReason:that.cerateList.type,
+              detailedReasons:that.cerateList.text,
+              sendSms:that.cerateList.sendSms,
+              }
             }).then(function(res){
             if(res.data.code==10000){
                 that.$message.success(res.data.msg);
-                that.conShow = false
-                that.remack = ''
+                that.conShow = false;
+                that.cerateList.text = '';
                 that.$emit("getList")
             }else{
                 that.$message.error(res.data.msg);
             }
-            })    
+            })
         },
         //点击空白处收起弹窗
         handleClose2() {
         this.quitdia=false
-        },  
+        },
     },
     mounted() {
     }

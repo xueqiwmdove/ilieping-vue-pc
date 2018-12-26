@@ -62,7 +62,7 @@
        </el-scrollbar>
       </div>
       <!--<candidateContent></candidateContent>-->
-      <candidateRight  @getList="getList"   @listento-flag="getFlag" :step="step"></candidateRight>
+      <candidateRight  @getList="getList"   @listento-flag="getFlag" :step="step" :signs="signs"></candidateRight>
       <!--右边-->
 
       <!--取消面试弹窗-->
@@ -109,7 +109,7 @@
   import {formatDate} from '@/assets/js/common/date_year.js';
     export default {
         name: "candidateSteps",
-        props:['addVisible','candidateStepsData','standardResume','candidateEducationExperienceDTOList','candidateWorkExperienceDTOList'],
+        props:['addVisible','candidateStepsData','standardResume','candidateEducationExperienceDTOList','candidateWorkExperienceDTOList','signs'],
         components:{
           candidateContent,
           basicFirst,

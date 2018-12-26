@@ -4,7 +4,7 @@
      <!--候选人弹窗-->
      <addCandidate :addVisible.sync="visables.add" @hideModel="hideChildModal"></addCandidate>
      <!--候选人信息  父组件传值-->
-     <candidateSteps :addVisible.sync="visables.steps" @hideModel="hideChildModal" :candidateStepsData="candidateStepsData"  :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList"></candidateSteps>
+     <candidateSteps :addVisible.sync="visables.steps" @hideModel="hideChildModal" :candidateStepsData="candidateStepsData"  :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList" :signs="signs"></candidateSteps>
 
           <!--顶部导航-->
         <pageheader class="pageheader"></pageheader>
