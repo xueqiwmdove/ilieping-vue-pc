@@ -209,6 +209,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped >
+/* 搜索栏样式开始 */
 .content_pad {
   margin:11px;  
   height:80px;
@@ -307,6 +308,9 @@ export default {
 .content_stys .div_table_infor .el-table {
   border:none;  
 }
+/* 搜索栏样式结束 */
+
+/* 表格样式开始 */
 .basic_sty .name_s {
    font-size: 15px;
    color:#394A66; 
@@ -328,6 +332,8 @@ export default {
   width: 100%;
   cursor: pointer;
 }
+
+/* 表格样式结束 */
 </style>
 <style>
  .content_pad .search .el-input--prefix .el-input__inner {

@@ -145,7 +145,6 @@
               }
               })
           },
-
         searchName() {
             this.getEmployeeList()
         },
@@ -380,7 +379,7 @@
 .rescs {
   width: 100%;
   height: 280px;
-  padding: 10px 40px;
+  padding: 20px 40px;
   padding-left:80px;
 }
 .beires {

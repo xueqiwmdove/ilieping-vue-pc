@@ -16,7 +16,7 @@
         <div class="right-content pull-right">
             <div class="content">
                 <p class="headline">
-                    <span   >候选人管理</span>
+                    <span >候选人管理</span>
                 </p>
                 <el-row>
               <!--创建职位左侧栏  -->
@@ -42,8 +42,8 @@
                                 <i @click="getPosition" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                             </el-input>
                          </div>
-                         <p  @click="getItems" v-if="flags"> 全部职位 <i ><img src="../../assets/img/zhiwei/ic_chose.png" alt=""></i></p>
-                         <p style="color:#748093 ;" @click="getItems" v-else>全部职位  <i ><img src="../../assets/img/zhiwei/3.png" alt=""></i></p>
+                         <p style="z-index:1000"  @click="getItems" v-if="flags"> 全部职位 <i ><img  src="../../assets/img/zhiwei/ic_chose.png" alt=""></i></p>
+                         <p style="color:#748093 ;" @click="getItems" v-else>全部职位  <i  ><img src="../../assets/img/zhiwei/3.png" alt=""></i></p>
                          <div class="position_list">
                              <el-scrollbar style="height:100%" >
                                 <ul>
@@ -56,7 +56,7 @@
                     </div>
                   </el-col>
               <!--创建职位右边部分  -->
-                  <el-col :span='20' >
+                  <el-col  :span='20' >
                     <div class="positionTable">
                           <div class='content_pad'>
                             <div class="but_stys" :class="signs=='2'? 'btn_s':''" @click="tagStyChange(2)">
@@ -134,8 +134,8 @@
                                       <template slot-scope="scope">
                                           <span style="cursor: pointer;">
                                           <i v-if="scope.row.screeningStatus == '1'" style="color:#66ADFF;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_no feedback.png" alt="">未反馈</i>
-                                          <i v-if="scope.row.screeningStatus =='3'" style="color:#FF001F;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_disagree.png" alt="">拒绝</i>
-                                          <i v-if="scope.row.screeningStatus == '2'" style="color:#5EC860;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_agree.png" alt="">同意</i>
+                                          <i v-if="scope.row.screeningStatus =='2'" style="color:#FF001F;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_disagree.png" alt="">拒绝</i>
+                                          <i v-if="scope.row.screeningStatus == '3'" style="color:#5EC860;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_agree.png" alt="">同意</i>
                                           <i v-if="scope.row.screeningStatus == '0'" style="color:#FF001F;"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not recommendde.png" alt="">未推荐</i>
                                           </span>
                                       </template>
@@ -157,8 +157,8 @@
                                           <span style="cursor: pointer;">
                                           <i v-if="scope.row.offerStatus == '0'" ><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_notcreate.png" alt="">未创建</i>
                                           <!-- <i v-if="scope.row.offerStatus == '1'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not receive.png" alt="">未接收</i> -->
-                                          <i v-if="scope.row.offerStatus == '2'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_receive.png" alt="">同意</i>
-                                          <i v-if="scope.row.offerStatus == '3'" ><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_refused.png" alt="">已拒绝</i>
+                                          <i v-if="scope.row.offerStatus == '3'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_receive.png" alt="">同意</i>
+                                          <i v-if="scope.row.offerStatus == '2'" ><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_refused.png" alt="">已拒绝</i>
                                           <i v-if="scope.row.offerStatus == '1'"><img style="margin-right:5px;" src="../../assets/img/zhiwei/houxuan_ic_not receive.png" alt="">待接收</i>
                                           </span>
                                       </template>
@@ -378,6 +378,8 @@ export default {
     getItems() {
       this.flags = !this.flags
       this.seen= ''
+      this.postId = ''
+      this.getCandidate()
     },
   //获取状态数据
     getCount() {
@@ -451,15 +453,16 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped >
  .content {
-   min-width: 1520px;;
+   min-width: 1467px;
  }
 .asidePosition {
-    width: 340px;
-    min-width: 340px;;
+    width: 330px;
+    min-width: 330px;;
     height:948px;
     background: #fff;
     margin-right: 15px;
     padding: 0px 25px;
+    margin-right: 10px
     /* border-right: 1px solid #eee; */
 }
 .asidePosition h4 {
@@ -550,7 +553,7 @@ color: #F95714;
   /* background-color: #FAFBFC; */
 }
 .ad_input p i {
-margin-left: 180px;
+margin-left: 175px;
 }
 .position_list {
    height:500px;
@@ -571,17 +574,18 @@ margin-left: 180px;
 }
 .position_list ul li:hover {
   color: #F95714;
-  padding-left: 15px;
+  /* padding-left: 15px; */
 }
 .positionTable {
     background-color: #fff;
     padding: 0px 25px;
     margin-left: 36px;
-    min-width: 1248px;
+    min-width: 1125px;
     padding-left: 0px;
 }
 .content_pad {
   margin:11px;
+  margin-left: 0px;
   height:80px;
   line-height:80px;
   margin-top: 0px;
