@@ -45,7 +45,7 @@
                         </el-col>
                         <el-col :lg="8" :md="9" :sm="12">
                             <el-form-item label="">
-                              <el-input v-model="form.name"  maxlength="11"  placeholder="请输入姓名/手机号"></el-input>
+                              <el-input v-model="form.name"  maxlength="11" @keyup.enter.native="getList"  placeholder="请输入姓名/手机号"></el-input>
                           </el-form-item>
                         </el-col>
                         <el-col :span="4">

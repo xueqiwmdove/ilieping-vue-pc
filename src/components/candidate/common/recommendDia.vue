@@ -425,6 +425,8 @@ color: #F95714 ;
 #re_styles .el-radio-button__orig-radio:checked+.el-radio-button__inner {
     background-image: url('../../../assets/img/zhiwei/zhiwei_ic_choose.png');
     background-repeat:no-repeat;
+    transition-delay: 0s;
+    transition-duration: 0s; 
     background-position:100% 100%;
     border-color:#F95714;
     background-color: #fff;

@@ -19,8 +19,8 @@
                           <i @click="del_click" slot="prefix" class="el-input__icon delete_sty el-icon-close"></i>
                     </el-input>
                     <div class="search"  v-else>
-                        <el-input maxlength="20"  v-model="searchName1" class="input_search" placeholder="输入你想搜索的内容" >
-                        <i @click="searchPage" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
+                        <el-input maxlength="20" @keyup.enter.native="searchPage"  v-model="searchName1" class="input_search" placeholder="输入你想搜索的内容" >
+                        <i @click="searchPage"  slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                        </el-input> 
                     </div> 
                      <br>
@@ -57,11 +57,11 @@
                       <el-table-column prop="createTime" label="创建时间" header-align='center' align='center'></el-table-column>
                     </el-table>
 						   </div>
-               			<!-- 分页  -->
-                        <div class="bottom-pagination" v-if="totalCount > 5">
-                            <el-pagination @current-change="changePage" @size-change="changeSize" :current-page="pageIndex" :page-size="pageSize" :page-sizes="[5,10, 25, 50, 100]" layout="total, prev, pager, next, sizes, jumper" :total="totalCount">
-                            </el-pagination>
-                        </div> 
+                <!-- 分页  -->
+                    <div class="bottom-pagination" v-if="totalCount > 5">
+                        <el-pagination @current-change="changePage" @size-change="changeSize" :current-page="pageIndex" :page-size="pageSize" :page-sizes="[5,10, 25, 50, 100]" layout="total, prev, pager, next, sizes, jumper" :total="totalCount">
+                        </el-pagination>
+                    </div> 
             </div>
         </div>      
     </div>        
@@ -111,6 +111,15 @@ export default {
           that.pageSize = newSize;
           that.getList();
     },
+    //  keyupEnter(){ //键控
+    //     document.onkeydown = e =>{
+    //         let body = document.getElementsByTagName('body')[0]
+    //         if (e.keyCode === 13 && e.target.baseURI.match(/inputbook/) && e.target === body) {
+    //             console.log('enter')
+    //             this.searchPage()
+    //         }
+    //     }
+    // },
       getList(){
         let that=this;
         console.log(this.$route.query.code,4444)
@@ -160,6 +169,7 @@ export default {
     created() {
        this.searchName = this.$route.query.code
        this.getList();
+      //  this.keyupEnter()
     }
 }
 </script>
