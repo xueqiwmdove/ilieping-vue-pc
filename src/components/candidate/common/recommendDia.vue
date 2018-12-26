@@ -54,7 +54,9 @@
                     </el-form>
                     </div>
                     <div slot="footer" class="dialog-footer">
-                            <el-button  @click="submitCommend" type="primary" :class="searchBtnClass1" :disabled="searchDisabled1"   style="height:36px;" >保存</el-button>
+                            <el-button  @click="submitCommend" type="primary" :class="searchBtnClass1" :disabled="searchDisabled1"
+                                        style="width:120px;height:32px;background:rgba(249,87,20,1);border-radius:4px;padding: 0;">
+                            保存</el-button>
                     </div>
                 </div>
             </div>

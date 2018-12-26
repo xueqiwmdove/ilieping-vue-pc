@@ -367,7 +367,7 @@
           </div>
         </div>
         <div class="addCandidate_right">
-          <el-button class="uploadButton" v-if="flag==1">上传简历</el-button>
+          <!--<el-button class="uploadButton" v-if="flag==1">上传简历</el-button>-->
           <el-button class="uploadButton" v-if="flag==2" @click="insertResume">上传简历</el-button>
           <div class="selectedBox">
             <!--选择内推人-->
@@ -956,6 +956,8 @@
           }).then(function (res) {
             if(res.data.code==10000){
               that.$message.success("候选人信息插入成功！");
+              that.hideModel();
+              window.location.reload();
             }else if(res.data.code==40001 && res.data.data==true){
               that.dialogVisible = true;
             }else{

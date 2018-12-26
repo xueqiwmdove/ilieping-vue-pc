@@ -6,10 +6,10 @@
       <p>将候选人移动至「面试」后（右侧），才可以添加面试</p>
     </div>
     <!--缺省-已到面试状态-->
-    <div class="noInterviews" v-if="!interview_basic && interviewList == ''">
+    <div class="noInterviews" v-show="noInterviews"><!--!interview_basic && interviewList == ''-->
       <img src="../../../assets/img/candidate/tanchuang_pic_interview1.png" alt="">
       <p>暂未添加面试</p>
-      <button @click="interview_basic=true">添加面试</button>
+      <button @click="interview_basic=true;noInterviews=false">添加面试</button>
     </div>
 
     <!--面试基本信息-->
@@ -150,8 +150,8 @@
     </div>
 
     <!--面试列表以及状态-->
-    <div class="interview_list_status" v-if="interviewList != '' "><!--&& !interview_basic-->
-      <button @click="interview_basic=true;interviewList == '' ">继续添加面试</button>
+    <div class="interview_list_status" v-show=" interview_list_status"><!--&& interviewList != ''-->
+      <button @click="interview_basic=true;interview_list_status=false;">继续添加面试</button>
       <div class="interview_list" >
         <div class="interview" v-for="item in interviewList">
           <img src="../../../assets/img/candidate/tanhcuang_ic_tag.png" alt="" class="img_status">
@@ -250,7 +250,9 @@
         data(){
           return{
             noOps:false,
+            noInterviews:false,
             interview_basic:false,
+            interview_list_status:false,
             province:'',
             provinceData:[],
             interviewTime:'',
@@ -343,8 +345,10 @@
               console.log(res.data.data);
               that.interviewList=res.data.data;
               if(that.interviewList.length==0){
-                that.interview_basic=true;
+
+                that.noInterviews=true;
               }else{
+                that.interview_list_status=true;
                 that.interview_basic=false;
               }
               console.log(that.interview_basic,that.interviewList.length)

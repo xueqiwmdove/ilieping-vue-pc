@@ -23,19 +23,19 @@
             <span class="up">1 <em></em></span>
             <span class="down">初筛</span>
           </div>
-          <div>
+          <div :class="status1==2 || status1==3 || status1==4 || status1==5?'onStep':''">
             <span class="up">2<em></em></span>
             <span class="down">用人部门筛选</span>
           </div>
-          <div>
+          <div :class="status1==3 || status1==4 || status1==5?'onStep':''">
             <span class="up">3<em></em></span>
             <span class="down">面试</span>
           </div>
-          <div>
+          <div :class="status1==4 || status1==5?'onStep':''">
             <span class="up">4<em></em></span>
             <span class="down">offer/录用</span>
           </div>
-          <div>
+          <div :class="status1==5 ?'onStep':''">
             <span class="up">5</span>
             <span class="down">待入职</span>
           </div>
@@ -62,7 +62,7 @@
        </el-scrollbar>
       </div>
       <!--<candidateContent></candidateContent>-->
-      <candidateRight  @getList="getList"   @listento-flag="getFlag" :step="step" :signs="signs"></candidateRight>
+      <candidateRight  @getList="getList"   @listento-flag="getFlag" :step="step" :signs="signs" :candidateStepsData="candidateStepsData" ></candidateRight>
       <!--右边-->
 
       <!--取消面试弹窗-->
@@ -126,6 +126,7 @@
       data(){
           return{
             // addVisible:false,
+            status1:'',
             step:1,
             conShow:false,//推荐人
             text:'',
@@ -169,6 +170,8 @@
         },
         getFlag(flag){
           this.step=flag;//子组件穿过的flag值，赋值给step；
+          this.status1=flag;
+          console.log(this.status1);
         },
         //  关闭弹窗
         hideModel(){

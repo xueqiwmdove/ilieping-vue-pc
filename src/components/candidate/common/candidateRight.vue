@@ -3,11 +3,11 @@
   <div class="candidate_right">
     <div v-if="signs != '0'">
       <div class="operating_button">
-        <button class="button" v-if="flag==1">进入用人部门筛选</button>
-        <button class="button" v-if="flag==2">进入面试</button>
-        <button class="button" v-if="flag==3">进入沟通offer</button>
-        <button class="button" v-if="flag==4">进入待入职</button>
-        <button class="button" v-if="flag==5">办理入职</button>
+        <button class="button" v-if="flag==1" @click="changeStatus2(1)">进入用人部门筛选</button>
+        <button class="button" v-if="flag==2" @click="changeStatus2(2)">进入面试</button>
+        <button class="button" v-if="flag==3" @click="changeStatus2(3)">进入沟通offer</button>
+        <button class="button" v-if="flag==4" @click="changeStatus2(4)">进入待入职</button>
+        <button class="button" v-if="flag==5" @click="changeStatus2(5)">办理入职</button>
         <el-button class="buttonRow" :icon="status" @click="changeStatus"></el-button>
         <div class="button_pullDown" v-show="isShow">
           <ul>
@@ -26,13 +26,13 @@
     </div>
 
 
-    <div v-if="signs == '0'">
+    <div v-if="signs == '0'" class="file_for_details" v-for="item in candidateStepsData">
       <H4>归档详情</H4>
-      <P><i>分类</i></P>
-      <P><i>原因</i></P>
-      <P><i>说明</i></P>
-      <button  class="button remark">恢复到初筛</button>
-      <button class="button remark" @click="showmodel2">备注</button><!--@click="visable.remark==true"-->
+      <P><i>分类:</i>我们拒绝了候选人</P>
+      <P><i>原因:</i>{{item.archivingReason}}</P>
+      <P><i>说明:</i>{{item.detailedReasons}}</P>
+      <button  class="button weedOut" @click="renew">恢复到初筛</button>
+      <button class="button weedOut" @click="showmodel2">备注</button><!--@click="visable.remark==true"-->
     </div>
     <!-- 弹窗备注 -->
     <remarkAlert ref="mack" @getList="getList"></remarkAlert>
@@ -44,13 +44,16 @@
 </template>
 
 <script>
+  import http from '@/http/http'
+  import api from '@/api/api.js';
+  import {headers} from '@/assets/js/common/lp.js'
   import weekOutAlert from '@/components/candidate/common/weekOutAlert'
   import remarkAlert from '@/components/candidate/common/remarkAlert'
   import recommendDia from '@/components/candidate/common/recommendDia'
 
     export default {
         name: "candidateRight",
-        props:['step','signs'],
+        props:['step','signs','candidateStepsData' ],
         components:{
           weekOutAlert,
           remarkAlert,
@@ -65,14 +68,25 @@
             cerateList:{
               type:'',
             },
-            visableModal:false
+            visableModal:false,
+            candidateId:'',
           }
         },
       methods:{
        getList() {
          this.$emit("getList")//触发给父组件
        },
-      //点击切换按钮状态
+      //点击切换按钮状态,关联父组件
+        changeStatus2(param){
+          let that=this;
+          if(param==5){
+            that.flag=1;
+          }else{
+            that.flag=that.flag+1;
+          }
+          //子组件通过父组件里面的 listento-flag，传到父组件当中；
+          that.$emit("listento-flag",that.flag)
+        },
         changeStatus(){
           let that=this;
           that.count++;
@@ -101,12 +115,23 @@
         showmodel3(){
           this.$refs.quit.open()
         },
-        //展示候选人弹窗
-        // addCandidateShow(param){
-        //   let that=this;
-        //   console.log(0)
-        //   that.visables[param] = true;
-        // },
+      //  恢复到初筛
+        renew(){
+         let that=this;
+         that.candidateId=localStorage.getItem('candidateID');
+          this.$http({
+            method:"get",
+            url:api.init+ that.candidateId,
+            headers:headers(),
+            cache:false
+          }).then(function(res){
+            if(res.data.code==10000 ){
+              that.$message.success(res.data.msg);
+            }else{
+              that.$message.error(res.data.msg);
+            }
+          });
+        }
       }
     }
 </script>
