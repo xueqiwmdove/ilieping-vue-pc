@@ -3,9 +3,11 @@
 let Butterfly="http://192.168.2.166:8899/jersey/";//测试ip
 // let Butterfly="http://192.168.6.6:8899/jersey/";//薛尧
 // let Butterfly="http://192.168.6.251:8899/jersey/";//潘述钱ip
+// let Butterfly="http://192.168.6.209:8899/jersey/";//潘述钱ip
 // let Butterfly = 'http://192.168.6.208:8899/jersey/'// 郭峰ips
 // let Butterfly="http://192.168.6.207:8899/jersey/";//施玮ip
 // let Butterfly="http://192.168.6.195:8899/jersey/";//李博凯
+// let Butterfly="http://192.168.6.244:8899/jersey/";
 // let Butterfly="http://192.168.6.188:8899/jersey/";//曹莉
 // let Butterfly="http://192.168.6.252:8899/jersey/";//王恒
 
@@ -139,35 +141,22 @@ const api = {
   interviewListBefore: Butterfly + 'interview/before/list/', // 1.5版本面试管理 明天及之后的面试
   interviewListAfter: Butterfly + 'interview/after/list/', // 1.5版本面试管理 昨天及之前的面试
 
-  interviewListAfter:Butterfly+'interview/after/list/',//1.5版本面试管理 昨天及之前的面试
   getphone:Butterfly+'current/login/phone',//账户信息获取手机号
  // duan
-  getPosition:Butterfly+'positionInfo/getPosition',//职位列表
-  getAddress:Butterfly+'enterpriseDate/enterprise/address/get',//企业地址列表
   structurePerson:Butterfly+'org/structure/',//人员架构列表
   positionCount:Butterfly+'positionInfo/count',//不同岗位统计人数
   getEmployeeList:Butterfly+'employee/getEmployeeList',//招聘负责人，面试官列表
   insertOrUpdate:Butterfly+'positionInfo/insertOrUpdate',//添加，更新岗位
-  positionDetail:Butterfly+'positionInfo/detail',//添加，更新岗位  
-  getPosition:Butterfly+'positionInfo/getPosition',//查询职位列表  
-  candidateList:Butterfly+'candidate/search/list',//查询候选人列表  
-  getGrouping:Butterfly+'candidate/get/status/grouping',//查询候选人分组人数  
+  positionDetail:Butterfly+'positionInfo/detail',//添加，更新岗位
+  getPosition:Butterfly+'positionInfo/getPosition',//查询职位列表
+  candidateList:Butterfly+'candidate/search/list',//查询候选人列表
+  getGrouping:Butterfly+'candidate/get/status/grouping',//查询候选人分组人数
   candidateOperation:Butterfly+'candidateOperationRecord/getList',//查询候选人操作记录
   annexList:Butterfly+'candidate/get/annexList',//查询候选人操作记录
   deleteFile:Butterfly+'candidate/delete/annex',//删除候选人附件
   uploadAnnexInfo:Butterfly+'candidate/upload/annexInfo',//上传候选人附件
   candidateRemark:Butterfly+'candidateRemark/get',//候选人备注列表查询
   candidateinsert:Butterfly+'candidateRemark/insert',//候选人备注添加
-  interviewListAfter: Butterfly + 'interview/after/list/', // 1.5版本面试管理 昨天及之前的面试
-  getphone: Butterfly + 'current/login/phone', // 账户信息获取手机号
-
-  positionDetail: Butterfly + 'positionInfo/detail', // 添加，更新岗位
-  getPosition: Butterfly + 'positionInfo/getPosition', // 查询职位列表
-  candidateList: Butterfly + 'candidate/search/list', // 查询候选人列表
-  getGrouping: Butterfly + 'candidate/get/status/grouping', // 查询候选人分组人数
-
-  positionDetail: Butterfly + 'positionInfo/detail', // 添加，更新岗位
-  getPosition: Butterfly + 'positionInfo/getPosition', // 查询职位列表
 
   logout: Butterfly + 'logout', // 退出接口
 
@@ -176,7 +165,16 @@ const api = {
   parseResume: Butterfly + 'candidate/search/resume/info', // 解析简历
   handAddCandidate: Butterfly + 'candidate/getCandidateIsExist', // 标准简历
   updateResume: Butterfly + 'candidate/update', // 更新候选人简历
-  getCandidate: Butterfly + 'candidate/getCandidate/'// 查询候选人信息
+  getCandidate: Butterfly + 'candidate/getCandidate/',// 查询候选人信息
+  commendDepartment:Butterfly+'candidate/insert/commend/department',//推荐给用人部门
+
+  interviewList:Butterfly+'candidate/interview/list/',//候选人面试列表
+  insertInterview:Butterfly+'candidate/interview/insert',//插入面试
+  interviewDetail:Butterfly+'candidate/interview/detail/',//查看面试详情
+  cancelInterview:Butterfly+'candidate/interview/cancel',//取消面试
+  feedbackInterview:Butterfly+'interview/h5/submit/feedback',//面试反馈
+
+  removeOffer:Butterfly+'offer/delete/',//删除offer
 }
 export default api
 

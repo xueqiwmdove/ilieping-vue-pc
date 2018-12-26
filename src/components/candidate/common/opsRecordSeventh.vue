@@ -2,7 +2,7 @@
   <!--操作记录-->
     <div class="opsRecord_seventh">
       <!--缺省页-->
-      <div v-if="dataList==[]" class="noOps">
+      <div v-if="dataList.length==0" class="noOps">
         <img src="../../../assets/img/candidate/tanchuang_pic_record.png" alt="">
         <p>暂无操作记录</p>
       </div>
@@ -30,16 +30,15 @@
             data(){
         return{
           dataList:[],
-
+          candidateID:localStorage.getItem('candidateID'),
           };
       },
       methods:{
        getList() {
-          let that = this
-          let candidateId = '6'//候选人id<===========!
+          let that = this;
           that.$http({
             method:'get',
-            url:api.candidateOperation+'/'+candidateId ,
+            url:api.candidateOperation+'/'+that.candidateID ,
               headers:headers('application/json;charset=utf-8'),
           }).then(function(res){
             if(res.data.code==10000){
@@ -51,7 +50,7 @@
        }
       },
       created(){
-        this.getList()
+        // this.getList()
       },
     }
 </script>

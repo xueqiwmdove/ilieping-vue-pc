@@ -4,10 +4,10 @@
       <div v-if="flag1">
         <div v-if="isshow">
               <!--无操作-->
-            <div class="noOps">
+           <!-- <div class="noOps">
               <img src="../../../assets/img/candidate/tanchuang_pic_offer2.png" alt="">
               <p>将候选人移动至「沟通offer」或「待入职」后（右侧），才可以发送offer或标记入职</p>
-            </div>
+            </div>-->
 
             <!--缺省-->
             <div class="noOffer">
@@ -17,41 +17,41 @@
             </div>
          </div>
          <!-- 创建offer -->
-        <div v-else class="addCandidate_content">
+        <div v-if="!isshow" class="addCandidate_content">
             <div class="standard_resume">
               <el-row style="overflow-x: hidden;">
                 <el-col  :span="24">
                   <el-form :model="makeNormal" class="form_font">
                     <p class="headLine ">基本信息 </p>
-                    <div class="person_sty ">
-                      <el-row  style="margin-left:30px;">
+                    <div class="person_sty " v-for="item in  candidateStepsData">
+                      <el-row  style="margin-left:30px;"  >
                         <el-col :offset="1" :span="10" >
                           <el-form-item label="offer职位">
-                              <span>测试工程师</span>
+                              <span>{{item.postName}}</span>
                           </el-form-item>
                         </el-col>
                       </el-row>
                         <el-row style="margin-left:35px;">
                         <el-col :offset="1" :span="10" >
                           <el-form-item label="用人部门">
-                              <span>华趣集团/棋至文化/爱猎评</span>
+                              <span>{{item.deptName}}</span>
                           </el-form-item>
                         </el-col>
                       </el-row>
-                      <el-row :gutter="120">
+                     <!-- <el-row :gutter="120">
                         <el-col :offset="1" :span="18" >
                           <el-form-item label="预计入职时间">
                               <el-date-picker v-model="makeNormal.expectedEntrytime"  value-format="yyyy-MM-dd"  type="date" placeholder="请选择入职时间"></el-date-picker>
                           </el-form-item>
                         </el-col>
-                      </el-row>
+                      </el-row>-->
                     </div>
                       <p class="headLine ">报道信息 </p>
                       <div class="person_sty ">
                           <el-row style="margin-left:35px;">
                               <el-col :offset="1" :span="18" >
                                 <el-form-item label="报道时间">
-                                    <el-date-picker style="width:220px" v-model="makeNormal.reportTime"  value-format="yyyy-MM-dd"  type="datetime" default-time="10:00:00" placeholder="请选择报道时间"></el-date-picker>
+                                    <el-date-picker style="width:220px" v-model="makeNormal.reportTime"  value-format="yyyy-MM-dd HH:mm"  type="datetime" default-time="10:00:00" placeholder="请选择报道时间"></el-date-picker>
                                     <!--<el-date-picker  style="width:220px" v-model="makeNormal.detpart"  value-format="yyyy-MM-dd"  type="date" placeholder="请选择面试具体时间"></el-date-picker>-->
                                 </el-form-item>
                               </el-col>
@@ -60,12 +60,12 @@
                               <el-col :offset="1" :span="18" >
                                 <el-form-item label="报道地点">
                                   <el-select v-model="makeNormal.reportAddr" placeholder="请选择报道地点">
-                                      <el-option label="应届毕业生" value="0"></el-option>
-                                      <el-option label="一年以下" value="1"></el-option>
-                                      <el-option label="1-3年" value="2"></el-option>
-                                      <el-option label="3-5年" value="3"></el-option>
-                                      <el-option label="5-10年" value="4"></el-option>
-                                      <el-option label="10年以上" value="4"></el-option>
+                                    <el-option
+                                      v-for="item in addressList"
+                                      :key="item.city"
+                                      :label="item.city"
+                                      :value="item.city">
+                                    </el-option>
                                   </el-select>
                                 </el-form-item>
                               </el-col>
@@ -120,13 +120,13 @@
                                 </li>
                               </ul> -->
                             </p>
-                            <div class="count_offer">
-                              <p> 您好！尊敬的<span>谭迎港</span></p>
-                              <p>欢迎您加入<span>上海棋至文化有限公司</span>在此荣幸的要请你出任<span>前端</span>一职</p>
-                              <p>入职时间：<span>2018-11-20</span></p>
-                              <p>薪酬：<span>月薪</span><span>10000</span></p>
-                              <p>试用期<span style="background-color:#F5A623;color:#fff;"> 未知</span></p>
-                              <p>入职地点：<span>上海市北京西路1250号13楼</span></p>
+                            <div class="count_offer" v-for="item in  candidateStepsData">
+                              <p> 您好！尊敬的<span>{{item.candidateName}}</span></p>
+                              <p>欢迎您加入<span>上海棋至文化有限公司</span>在此荣幸的要请你出任<span>{{item.postName}}</span>一职</p>
+                              <p>入职时间：<span>{{makeNormal.reportTime}}</span></p>
+                              <p>薪酬：<span>{{makeNormal.salaryType}}</span><span>{{makeNormal.salary}}</span></p>
+                              <p>试用期<span style="background-color:#F5A623;color:#fff;" v-if="makeNormal.probation==0"> {{makeNormal.probation}}个月</span></p>
+                              <p>入职地点：<span>{{makeNormal.reportAddr}}</span></p>
                               <p>联系人：<span>李乾坤</span></p>
                               <p>电话：<span>12545454444</span></p>
                               <p>入职所需的材料和证明</p>
@@ -142,7 +142,7 @@
                           <el-row >
                               <el-col :offset="1" :span="18" >
                                 <el-form-item label="邮件附件">
-                                  <fileUpload></fileUpload>
+                                  <fileUpload @getfile="getEmail" :sendData="sendData"></fileUpload>
                                 </el-form-item>
                               </el-col>
                         </el-row>
@@ -172,26 +172,27 @@
           <div class="offer_modal2">
               <p class="title2">
                 <span class="methods">2018/09/08(星期一) 发送offer</span>
-                <span class="removes">删除offer</span>
+                <span class="removes" @click="removeOffer">删除offer</span>
               </p>
               <div class="content_offer">
               <img class="up_img" src="../../../assets/img/candidate/777.png" alt="">
-                <h2>尊敬的谢进</h2>
-                <p>您好，欢迎您加入 <span>上海华趣文化传播有限公司</span>，在此荣幸的邀请您出任我们</p>
-                <p><span>产品部PM</span> 一职。</p>
-                <p>请您仔细阅读此录用通知书并及时保存。请您在收到录取通知书后，在规定日期内</p>
-                <p>日报道办理入职。</p>
-                <p><span class="items">1.报道信息</span></p>
-                <p>请您在 <span> 2018/10/27 14:40</span> 到 <span>上海市南京东路上海商城302号</span>  办理报道</p>
-                <p>报道联系人：<span>李乾坤</span> 电话：<span>12567788345</span></p>
-                <p>逾期录用通知书将自动失效。</p>
-                <p><span class="items">2.薪酬待遇</span></p>
-                <p>基本工资：<span>月薪10000</span>元</p>
-                 <p><span class="items">3.工作性质和试用期</span></p>
-                <p>您的工作性质是：<span>全职</span>试用期：<span>无</span></p>
+                <div v-html="html"></div>
+                <!--<h2>尊敬的谢进</h2>-->
+                <!--<p>您好，欢迎您加入 <span>上海华趣文化传播有限公司</span>，在此荣幸的邀请您出任我们</p>-->
+                <!--<p><span>产品部PM</span> 一职。</p>-->
+                <!--<p>请您仔细阅读此录用通知书并及时保存。请您在收到录取通知书后，在规定日期内</p>-->
+                <!--<p>日报道办理入职。</p>-->
+                <!--<p><span class="items">1.报道信息</span></p>-->
+                <!--<p>请您在 <span> 2018/10/27 14:40</span> 到 <span>上海市南京东路上海商城302号</span>  办理报道</p>-->
+                <!--<p>报道联系人：<span>李乾坤</span> 电话：<span>12567788345</span></p>-->
+                <!--<p>逾期录用通知书将自动失效。</p>-->
+                <!--<p><span class="items">2.薪酬待遇</span></p>-->
+                <!--<p>基本工资：<span>月薪10000</span>元</p>-->
+                 <!--<p><span class="items">3.工作性质和试用期</span></p>-->
+                <!--<p>您的工作性质是：<span>全职</span>试用期：<span>无</span></p>-->
               <img class="down_img" src="../../../assets/img/candidate/666.png" alt="">
               </div>
-              <img class="status_img" src="../../../assets/img/candidate/tanchuang_offer_pic_refused.png" alt="">
+              <img v-if="status==1"  class="status_img" src="../../../assets/img/candidate/tanchuang_offer_pic_refused.png" alt="">
           </div>
         </div>
       </div>
@@ -206,6 +207,7 @@
 
     export default {
       name: "offerThird",
+      props:['candidateStepsData','addressList'],
       	components: {
         fileUpload
       },
@@ -228,61 +230,118 @@
               // detpart:'',
               // positionDescribe:''
           },
-          candidateId:19,
+          candidateID:'',
+          sendData:[],//附件信息
+          pathData:[],//附件id
+          status:'',
+          html:[],
+          offerId:''
         }
       },
       methods:{
         isPdf(){
           console.log(this.makeNormal.isPdf)
         },
+        //上传附件8
+        getEmail(fileList){
+          let that=this;
+          let formData = new FormData();
+          formData.append('type','8');
+          formData.append('files',fileList);
+          that.$http({
+            method:'post',
+            url:api.uploadResume,
+            data:formData,
+            headers:headers(),
+          }).then(function (res) {
+            if(res.data.code==10000){
+              that.sendData.push(res.data.data[0]);
+              that.pathData.push(res.data.data[0].id);
+              console.log(that.sendData)
+            }
+          })
+        },
         //发送创建offer
         submit() {
           let that=this;
-          this.flag1 = false;
           that.$http({
             method:'post',
             url:api.sendOffer,
             headers:headers(),
             data:{
-              reportTime:that.reportTime,
-              reportAddr:that.reportAddr,
-              salary:that.salary,
-              salaryType:that.salaryType,
-              probation:that.probation,
-              templateId:"",//模板id
-              candidateId:that.candidateId,
-              isAccessory:that.isPdf,//是否发送pdf
-              path:[1,3,4],//附件id
+              reportTime:that.makeNormal.reportTime,
+              reportAddr:that.makeNormal.reportAddr,
+              salary:that.makeNormal.salary,
+              salaryType:that.makeNormal.salaryType,
+              probation:that.makeNormal.probation,
+              templateId:1,//模板id
+              candidateId:that.candidateID,//
+              isAccessory:that.makeNormal.isPdf,//是否发送pdf
+              path:that.pathData,//附件id
             }
           }).then(function (res) {
-            console.log(res)
+            // console.log(res)
+            if(res.data.code==10000){
+              this.flag1 = false;
+              that.offerIsExist();
+            }else if(res.data.code==40001){
+              this.flag1 = false;
+              that.offerIsExist();
+            }else{
+
+            }
           })
         } ,
       //  查看是否有offer
         offerIsExist(){
           let that=this;
+          that.candidateID=localStorage.getItem('candidateID');
           that.$http({
             method:'get',
-            url:api.offerDetailButton+that.candidateId,
+            url:api.offerDetailButton+that.candidateID,
             headers:headers(),
           }).then(function (res) {
             console.log(res);
             if(res.data.code==10000){
               that.isShow=false;
+              that.html=res.data.html;
+              //邮件状态 1-等待员工确认offer 2- 拒绝 3-已确认offer待入职 4-已完成入职
+              that.status=res.data.status;
+              that.offerId=res.data.id;
 
             }else if(res.data.code==40000){
               // offer 不存在"
+              that.flag1=true;
               that.isShow=true;
+
             }else{
+              that.flag1=true;
               that.isShow=true;
-              that.$message.error(data.msg||res.data.msg);
+              that.$message.error(res.data.msg);
+            }
+          })
+        },
+      //  删除offer
+        removeOffer(){
+          let that=this;
+          that.$http({
+            method:'post',
+            url:api.removeOffer+that.candidateID+"/"+193,//that.offerId,
+            headers:headers(),
+          }).then(function (res) {
+            console.log(res);
+            if(res.data.code==10000){
+
+
+            }else{
+              that.$message.error(res.data.msg);
             }
           })
         }
       },
       mounted(){
         let that=this;
-        that.offerIsExist();
+        // that.offerIsExist();
       }
     }
 </script>

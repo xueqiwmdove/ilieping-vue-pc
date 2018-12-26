@@ -21,7 +21,7 @@
             <div class="inputBox">
               <img src="../../assets/img/candidate/tanchuang_ic_jobs.png" alt="">
               <el-select v-model="post1" placeholder="选择岗位">
-                <el-option v-for="item in post1Data" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                <el-option v-for="item in post1Data" :key="item.name" :label="item.name" :value="item.id"></el-option>
               </el-select>
             </div>
             <div class="inputBox">
@@ -379,9 +379,9 @@
               <el-select v-model="commendEmployeeId" placeholder="请选择" class="selected">
                 <el-option
                   v-for="item in commendEmployeeIdData"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
+                  :key="item.employeeName"
+                  :label="item.employeeName"
+                  :value="item.id">
                 </el-option>
               </el-select>
             </div>
@@ -667,6 +667,7 @@
           // that.resumeUrl="D:/z-简历/Boss直聘简历/王晨宇简历.doc";
           // that.resumeType=3;
           if(num==2 && that.resumeUrl!=""){
+
             //  解析标准简历
             that.$http({
               method:'post',
@@ -683,7 +684,7 @@
                 that.candidateEducationExperienceDTOList=data.educationalExperienceList;
                 that.candidateWorkExperienceDTOList= data.workExpericeList;
                 that.name=data.name;
-                that.sex=data.gender;
+                // that.sex=data.gender;
                 that.description=data.selfEvaluation;
                 that.workAddress=data.workingCity;
                 that.arrival_time=data.dutyTime;
@@ -706,6 +707,8 @@
                 //   isFriendInCompany:that.isHave,//"是否亲友在本公司工作",
                 //   salaryMin:that.salary_start,//"最低薪资",
                 //   salaryMax:that.salary_end,//"最高薪资",
+              }else{
+                that.$message.error(res.data.msg);
               }
             })
           }
@@ -729,7 +732,7 @@
           let that=this;
           let fileName=new Array();
           fileName =file.name.split('.');
-          // const extension = fileName[fileName.length-1] === 'txt';
+          const extension = fileName[fileName.length-1] === 'docx';
           const extension2 =  fileName[fileName.length-1]=== 'doc';
           // const isLt2M = file.size / 1024 / 1024 < 10;
           if (that.resumeType=="") {
@@ -739,9 +742,16 @@
             });
             return;
           }
-          if (!extension2) {
+          if (!extension2 && !extension) {
             that.$message({
               message: '上传模板只能是word格式!',
+              type: 'warning'
+            });
+            return;
+          }
+          if (!extension && that.resumeType==1) {
+            that.$message({
+              message: '暂不支持51job的docx格式的简历，请选择其他格式的简历!',
               type: 'warning'
             });
             return;
@@ -753,10 +763,10 @@
           //   });
           // }
           console.log(that.resumeType);
-          if (extension2 && that.resumeType!="") {/*&& isLt2M == true*/
+          if (extension2 || extension && that.resumeType!="") {
             // console.log(file);
             let fd = new FormData();
-            fd.append('type', 3);//随文件上传的其他参数
+            fd.append('type', that.resumeType);//随文件上传的其他参数
             fd.append('files', file);
             // let fd={
             //   resumeFileName:file,
@@ -769,7 +779,7 @@
 
             // return true
           }
-          return extension2 && that.resumeType
+          return extension2|| extension && that.resumeType
         },
         //上传简历
         newImport (data) {
@@ -804,7 +814,7 @@
             }
           }).then(function(res){
             if(res.data.code==10000){
-              that.postData=res.data.data;
+              that.post1Data=res.data.data;
             }else{
               that.$message.error(res.data.msg);
             }
@@ -910,7 +920,7 @@
               }};
           that.insertResumeData={
                 candidateName:that.name,// //候选人姓名
-                postId:1, //岗位
+                postId:that.post1, //岗位
                 resumeChannel:that.channels,//渠道
                 resumeSource:that.resoure, //选择来源
                 candidateSex:that.sex,//候选人性别
@@ -920,7 +930,7 @@
                 candidateExperience:that.experience,//工作经验
                 candidateEducation:that.education1,//候选人学历
                 candidateLocation:that.address,//所在地
-                originalResumeAddress:"", //原简历地址
+                originalResumeAddress:that.resumeUrl, //原简历地址
                 standardResume:JSON.stringify(that.standardResume)
               };
           that.$http({
@@ -929,7 +939,7 @@
             url:api.handAddCandidate,
             data:{
               candidateName:that.name,// //候选人姓名
-              postId:1, //岗位
+              postId:that.post1, //岗位
               resumeChannel:that.channels,//渠道
               resumeSource:that.resoure, //选择来源
               candidateSex:that.sex,//候选人性别
@@ -967,6 +977,7 @@
               that.$message.success(res.data.msg);
               that.dialogVisible = false;
               that.hideModel();
+              window.location.reload();
             }else{
               that.$message.error(res.data.msg);
               that.dialogVisible = false;

@@ -1,4 +1,4 @@
-<!-- 
+<!--
     duanyanhong
     日期：2018/11/16
 -->
@@ -14,22 +14,24 @@
                  </div>
             </div>
             <!-- 上传列表 -->
-            <!-- <div v-show="imgList.length!=0"   >
-                <div v-for="(item,index) of imgList" :key="index" >
-                <div class="file_text">
-                    <div class="notext">
-                            <i class="name_sty" :title="item.file.name"> {{item.file.name}}</i>
-                            <i  class=" file_del" @click="fileDel(index)">删除</i>
-                    </div>
-                </div>
-                </div>
-            </div> -->
+          <div v-for="(item,index) in sendData" :key="index" >
+            <div class="file_text" style="padding: 0">
+              <div class="load-del">
+                <i class="name_sty" >{{item.fileName}} </i>
+                <!--<i class="ic_atta"></i>-->
+                <!--<i class="file_del" @click="showImage(item)">预览</i>-->
+                <!--<i class="file_del" @click="getLoad(item)">下载</i>-->
+                <!--<i class="file_del" @click="fileDel(index,item)">删除</i>-->
+              </div>
+            </div>
+          </div>
     </div>
 </template>
 <script>
 import store from '@/store/store';
 export default {
     name:'candidateFile',
+    props:['sendData'],
     data() {
       return {
         imgList:[],
@@ -39,50 +41,44 @@ export default {
         getFile(event) {
         this.file = event.target.files[0];
         if (!event.target.files[0].size) return;
-            console.log(this.file);
+            // console.log(this.file);
             this.getFileList(event.target.files);
         },
         getFileList(files){
-        console.log(files,'<==========files')
         for (let i = 0; i < files.length; i++) {
                 this.fileAdd(files[i]);
         }
         },
         fileAdd(file){
-            console.log(file.size,'<======file')
-            var files_size=file.size;
-            var isLt5M= files_size / 1024 / 1024 < 3;
-            console.log(isLt5M,'<=======isLt5M')
-            if (!isLt5M) {
-                this.$message.error('图片选择失败，每张图片大小不能超过 3MB,请重新选择!');
+          let that=this;
+            // console.log(file.size,'<======file')
+            let files_size=file.size;
+            let isLt10M= files_size / 1024 / 1024 < 10;
+            // console.log(isLt5M,'<=======isLt5M')
+            if (!isLt10M) {
+                this.$message.error('附件选择失败，大小不能超过 10MB,请重新选择!');
                 return false;
             }else {
-                let reader = new FileReader();
-                reader.vue = this;
-                reader.readAsDataURL(file);
-                if(this.imgList.length>4) {
-                    this.$message({
-                        message:'上传文件不能超过5张',
-                        type:'error'  
-                    }) 
-                this.flag=true
-                return
-            }else {
-                reader.onload = function () {
-                file.src = this.result;
-                this.vue.imgList.push({
-                    file
+              let reader = new FileReader();
+              reader.vue = this;
+              reader.readAsDataURL(file);
+              if (this.sendData.length > 4) {
+                this.$message({
+                  message: '上传文件不能超过5张',
+                  type: 'error'
                 });
-            } 
+                this.flag = true;
+                return
+              } else {
+                that.$emit('getfile', file);
+              }
             }
-            this.$emit('getfile',this.imgList)
-            }
-        
+
         },
         // 删除文件
         fileDel(index){
             this.imgList.splice(index, 1);
-        },   
+        },
     },
     computed:{
         resetImg(){
@@ -154,7 +150,7 @@ color: #2064F5;
     overflow: hidden;
     white-space: nowrap;
     display: inline-block;
-    width: 200px;   
+    width: 200px;
     cursor: pointer;
 }
 </style>

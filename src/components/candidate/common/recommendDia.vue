@@ -5,8 +5,8 @@
                 <div class = "con candidate_sty" >
                     <p class = "ptitle">推荐给用人部门 <i  class="el-icon-close closes_s"></i></p>
                     <div class="rescs" @click="clickHide">
-                        <el-form :model="cerateList"  ref="cerateList" id="re_styles3">
-                                <el-form-item label="推荐到" style="text-align:center;margin-left:12px;" >
+                        <el-form :model="cerateList"  ref="cerateList" id="re_styles">
+                                <el-form-item label="推荐到" style="text-align:center;margin:0 0 10px 12px;" >
                                 <!-- <span style="margin-right:23px;"></span> -->
                                     <div v-if="isflag" class="manage_se">
                                         <ul>
@@ -29,7 +29,7 @@
                                                     </el-input>
                                                 </div>
                                                 <ul>
-                                                    <li @click="selectItem(item)" v-for="(item,index) in employeeList" :key='index'>
+                                                    <li @click="selectItem(item,item.id)" v-for="(item,index) in employeeList" :key='index'>
                                                         <span class="name_f">{{item.employeeName.substr(0, 1)}}</span>
                                                         <span style="float:left;">
                                                             <p>{{item.employeeName}}</p>
@@ -47,14 +47,14 @@
                                 <el-form-item label="使用简历" >
                                 <!-- <span style="margin-right:23px;">使用简历</span> -->
                                     <el-radio-group v-model="cerateList.region">
-                                        <el-radio-button label="0" >原始简历</el-radio-button>
-                                        <el-radio-button label="1">标准简历</el-radio-button>
+                                        <el-radio-button label="原始简历" >原始简历</el-radio-button>
+                                        <el-radio-button label="标准简历">标准简历</el-radio-button>
                                     </el-radio-group>
                                 </el-form-item>
                     </el-form>
                     </div>
                     <div slot="footer" class="dialog-footer">
-                            <el-button  @click="submitRecommen" type="primary" :class="searchBtnClass1" :disabled="searchDisabled1"   style="height:36px;" >保存</el-button>
+                            <el-button  @click="submitCommend" type="primary" :class="searchBtnClass1" :disabled="searchDisabled1"   style="height:36px;" >保存</el-button>
                     </div>
                 </div>
             </div>
@@ -71,7 +71,6 @@
         components: {},
         data() {
             return {
-               remack:'',//备注  
                showList:[],
                conShow:false,//推荐人
                isflag:false,
@@ -85,13 +84,15 @@
                  name:'',
                  type:''
                 },
+              candidateID:'',
+              departmentHeads:'',//上级部门领导人id
             }
         },
         watch: {},
         computed:{
          // 备注提交按钮样式
             searchBtnClass1:function () {
-            if(this.remack !='' ){
+            if(this.cerateList.type !='' ){
                 return{
                     click_opacity:false
                 }
@@ -103,7 +104,7 @@
             },
             // 备注提交禁用 true
             searchDisabled1:function () {
-                if(this.remack !='' ){
+                if(this.cerateList.type !='' ){
                     return false
                 }else{
                     return true
@@ -112,55 +113,59 @@
         },
         methods: {
           open(){
-            this.remack = ''
+            this.cerateList.type = '';
             this.conShow = true
           },
           clickHide(e)  {
-            this.conShow=true
+            this.conShow=true;
             e.stopPropagation();//阻止冒泡
           },
-          submitRecommen() {
-              let that = this
-              let candidateId = '6'
-              that.$http({
+          submitCommend() {
+              let that = this;
+            that.candidateID=localStorage.getItem('candidateID');
+
+            that.$http({
               method:'post',
-              url:api.candidateinsert,
-              headers:headers('application/json;charset=utf-8'),
+              url:api.commendDepartment,
+              headers:headers(),
               data:{
-                "candidateId" :candidateId ,
-                "remark":that.remack
+                departmentHeads:that.departmentHeads,
+                operationDescription:that.cerateList.type,
+                candidateId:that.candidateID ,
+                remark:that.cerateList.region,
               }
               }).then(function(res){
               if(res.data.code==10000){
                   that.$message.success(res.data.msg);
-                  that.conShow = false
-                  that.remack = ''
+                  that.conShow = false;
+                  that.cerateList.type = '';
                   that.$emit("getList")
               }else{
                   that.$message.error(res.data.msg);
               }
-              })    
+              })
           },
         searchName() {
             this.getEmployeeList()
         },
         //选择招聘负责人
-          selectItem(val) {
-                this.ldVisabled=false
-                this.isflag = true
-                this.showList = val
+          selectItem(val,id) {
+                this.ldVisabled=false;
+                this.isflag = true;
+                this.showList = val;
+                this.departmentHeads=id;
             },
        //招聘负责人
           ldClick() {
-                this.getEmployeeList()
+                this.getEmployeeList();
                 this.ldVisabled = !this.ldVisabled
             },
        //获取面试官，负责人列表
           getEmployeeList() {
-            let that = this
+            let that = this;
             let currPage=that.pageIndex || 1;
             let pageSize=that.pageSize || 10;
-            let employeeName = that.names || ''
+            let employeeName = that.names || '';
             this.$http({
             method:"post",
             url:api.getEmployeeList,
@@ -181,12 +186,12 @@
           },
           //点击空白处收起弹窗
           handleClose2() {
-            this.conShow=false
-            this.remack = ''
-          },  
+            this.conShow=false;
+            this.cerateList.type = '';
+          },
         },
         mounted() {
-         
+
         }
     }
 </script>
@@ -361,14 +366,14 @@
     cursor: pointer;
     line-height: 50px;
 }
-#re_styles3 .el-radio-button, .el-radio-button__inner {
+#re_styles .el-radio-button, .el-radio-button__inner {
     margin-right: 20px;
     height: 40px;
     width: 90px;
     border-color: #E5E5E5;
     border-radius: 5px;
 }
-#re_styles3 .el-radio-button, .el-radio-button__inner:nth-child(2) {
+#re_styles .el-radio-button, .el-radio-button__inner:nth-child(2) {
     border-left: 1px solid #E5E5E5;
 }
 .rescs {
@@ -382,7 +387,18 @@
   height: 280px;
   padding: 20px 40px;
   padding-left:40px;
-}   
+}
+.title_bei,.title_quit {
+  width: 100%;
+  display: inline-block;
+  text-align: left;
+  font-size: 14px;
+  margin-bottom: 15px;
+  color: #394A66;
+}
+.title_quit {
+color: #F95714 ;
+}
 .dialog-footer {
     height: 60px;
     position: absolute;
@@ -404,7 +420,7 @@
     font-size: 14px;
 }
 
-#re_styles3 .el-radio-button__orig-radio:checked+.el-radio-button__inner {
+#re_styles .el-radio-button__orig-radio:checked+.el-radio-button__inner {
     background-image: url('../../../assets/img/zhiwei/zhiwei_ic_choose.png');
     background-repeat:no-repeat;
     background-position:100% 100%;
@@ -415,19 +431,19 @@
 .candidate_sty .manage_sty .el-scrollbar__wrap {
      overflow-x: hidden !important;
  }
- #re_styles3 .el-input__inner {
+ #re_styles .el-input__inner {
      margin-left:-80px;
  }
  #reset_styless .el-input__inner  {
      margin-left:-55px;
  }
- #re_styles3 .el-form-item__label  {
+ #re_styles .el-form-item__label  {
      margin-right:20px;
  }
-#re_styles3 .el-radio-group {
+#re_styles .el-radio-group {
     margin-right: 111px;
 }
-.beires #re_styles3 .title_quit .el-input__suffix {
+.beires #re_styles .title_quit .el-input__suffix {
   right: 50px !important  ;
 }
 .rescs #reset_styless .el-form-item .el-form-item__content .el-select {

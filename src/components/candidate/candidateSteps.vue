@@ -54,11 +54,11 @@
        <el-scrollbar style="height:100%;overflow-x: hidden">
           <basicFirst  v-show="step==1" :candidateStepsData="candidateStepsData" :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList"></basicFirst>
 
-          <interviewSecond   v-show="step==2"  ></interviewSecond><!--:listentochild="showMsgformChild"-->
-          <offerThird v-show="step==3"></offerThird>
-          <remarkForth ref="barget" @addMack="addMack" v-show="step==4"></remarkForth>
-          <accessoryFifth v-show="step==5"></accessoryFifth>
-          <opsRecordSeventh v-show="step==6"></opsRecordSeventh>
+          <interviewSecond   v-show="step==2" ref="interviewChild" :candidateStepsData="candidateStepsData"   :addressList="addressList" :commendEmployeeIdData="commendEmployeeIdData"></interviewSecond><!--:listentochild="showMsgformChild"-->
+          <offerThird v-show="step==3"  ref="offerChild" :candidateStepsData="candidateStepsData"  :addressList="addressList"></offerThird>
+          <remarkForth v-show="step==4" ref="barget" @addMack="addMack" ></remarkForth>
+          <accessoryFifth v-show="step==5" ref="accessoryChild"></accessoryFifth>
+          <opsRecordSeventh v-show="step==6" ref="opsRecordChild"></opsRecordSeventh>
        </el-scrollbar>
       </div>
       <!--<candidateContent></candidateContent>-->
@@ -86,6 +86,7 @@
 
     </div>
   </el-dialog>
+
 </template>
 
 <script>
@@ -118,28 +119,53 @@
           accessoryFifth,
           opsRecordSeventh,
           candidateRight,
+
+          // weekOutAlert,
+          // remarkAlert
         },
       data(){
-        return{
-        // addVisible:false,
-        step:1,
-        text:'',
-        flag:1,//默认标准简历
-        }
+          return{
+            // addVisible:false,
+            step:1,
+            conShow:false,//推荐人
+            text:'',
+            type:'',
+            flag:1,//默认标准简历
+            addressList:[],//企业地址集合
+            commendEmployeeIdData:[],//公司人员集合
+            candidateID:localStorage.getItem('candidateID')
+          }
       },
       computed:{
       },
       methods:{
-    //调用子组件里面的方法      
+    //调用子组件里面的方法
         getList() {
-          this.$refs.barget.getList() 
+          this.$refs.barget.getList()
         },
-    //添加备注    
+        //添加备注
         addMack() {
-          this.beizhu=true  
-        } ,  
+          this.beizhu=true
+        } ,
+        //点击切换时，调用对应子组件的方法
         changeTab(flag){
+          let that=this;
           this.step=flag;
+          if(flag==1){
+
+          }else if(flag==2){
+            this.$refs.interviewChild.getInterview();
+          }else if(flag==3){
+            this.$refs.offerChild.offerIsExist();
+          } else if(flag==4){
+            this.$refs.barget.getList();
+          }else if(flag==5){
+            this.$refs.accessoryChild.getList();
+          }else if(flag==6){
+            this.$refs.opsRecordChild.getList();
+          }else{
+
+          }
         },
         getFlag(flag){
           this.step=flag;//子组件穿过的flag值，赋值给step；
@@ -155,8 +181,52 @@
         },
         changeTab2(flag){
           this.flag=flag;
-        }
+        },
+        //获取企业地址集合
+        getAddress() {
+          let that = this;
+          this.$http({
+            method:"get",
+            url:api.getAddress,
+            headers:headers(),
+            cache:false
+          }).then(function(res){
+            if(res.data.code==10000 || res.data.data==null){
+              that.addressList=res.data.data;
+            }else{
+              that.$message.error(res.data.msg);
+            }
+          });
+        },
+        //获取员工列表,公司人员
+        getEmployeeList() {
+          let that = this;
+          let currPage=that.currPage || 1;
+          let pageSize=that.pageSize || 10;
+          let employeeName = that.names || '';
+          this.$http({
+            method:"post",
+            url:api.getEmployeeList,
+            headers:headers(),
+            data:{
+              currPage:currPage,
+              pageSize:pageSize,
+              employeeName:"",
+            },
+          }).then(function(res){
+            if(res.data.code==10000 || res.data.data==null){
+              that.commendEmployeeIdData = res.data.data
+            }else{
+              that.$message.error(res.data.msg);
+            }
+          });
+        },
       },
+      mounted(){
+          let that=this;
+        that.getAddress();
+        that.getEmployeeList();
+      }
     }
 </script>
 

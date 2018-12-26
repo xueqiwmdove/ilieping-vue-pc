@@ -3,17 +3,17 @@
        <div v-if="beizhu" style="width:100%;" @click="handleClose2">
             <div  class = "cov" >
                 <div class = "con candidate_sty" style="height:340px;">
-                    <p class = "ptitle">备注 <i  class="el-icon-close closes_s"></i></p>
+                    <p class = "ptitle">取消面试 <i  class="el-icon-close closes_s"></i></p>
                     <div class="rescs beires"  @click="clickHide2" style="height:220px;">
                         <el-form >
-                            <el-form   ref="cerateList" id="re_styles">
-                                <span class="title_bei">输入对该候选人的备注</span>
-                                <el-input :rows="4" type="textarea" v-model="remack" style="width:460px;margin-left:60px;" placeholder="请输入内容"></el-input>
+                            <el-form   :model="createList" ref="createList" id="re_styles">
+                                <span class="title_bei">请填写取消面试原因</span>
+                                <el-input :rows="4" type="textarea" v-model="createList.content" style="width:460px;margin-left:60px;" placeholder="请输入内容"></el-input>
                             </el-form>
                         </el-form>
                     </div>
                     <div slot="footer" class="dialog-footer">
-                            <el-button  type="primary" :class="searchBtnClass2" :disabled="searchDisabled2" @click="submitBei()"  style="height:36px;width:120px" >保存</el-button>
+                            <el-button  type="primary" :class="searchBtnClass2" :disabled="searchDisabled2" @click="submitBei(param)"  style="height:36px;width:120px" >保存</el-button>
                     </div>
                 </div>
             </div>
@@ -28,12 +28,16 @@
   import store from '@/store/store';
   import remarkAlert from './remarkAlert';
     export default {
-        name: 'remarkAlert',
+        name: 'cancelInterview',
+      props:['param'],
         components: {},
         data() {
             return {
                remack:'',//备注
                beizhu:false,
+              createList:{
+                content:'',
+              },
               candidateId:''
             }
         },
@@ -41,7 +45,7 @@
         computed:{
          // 备注提交按钮样式
             searchBtnClass2:function () {
-            if(this.remack !='' ){
+            if(this.createList.content !='' ){
                 return{
                     click_opacity:false
                 }
@@ -53,7 +57,7 @@
             },
             // 备注提交禁用 true
             searchDisabled2:function () {
-                if(this.remack !='' ){
+                if(this.createList.content !='' ){
                     return false
                 }else{
                     return true
@@ -62,41 +66,39 @@
         },
         methods: {
           open(){
-            this.remack = ''
+            this.createList.content = '';
             this.beizhu = true
           },
           clickHide2(e)  {
-              this.beizhu=true
+              this.beizhu=true;
               e.stopPropagation();//阻止冒泡
           },
-          submitBei() {
+          submitBei(param) {
               let that = this;
-              that.candidateId=localStorage.getItem('candidateID');
-              let candidateId = that.candidateId;
-
-              that.$http({
-              method:'post',
-              url:api.candidateinsert,
-              headers:headers('application/json;charset=utf-8'),
-              data:{
-                "candidateId" :candidateId ,
-                "remark":that.remack
-              }
-              }).then(function(res){
-              if(res.data.code==10000){
+               that.$http({
+                method:'post',
+                url:api.cancelInterview,
+                data:{
+                  id:param,
+                  cancelRemark:that.createList.content,//that.cancelRemark,
+                },
+                headers:headers(),
+              }).then(function (res) {
+                if(res.data.code==10000){
+                  console.log(res.data.data);
+                  that. getInterview();
                   that.$message.success(res.data.msg);
-                  that.beizhu = false
-                  that.remack = ''
-                  that.$emit("getList")
-              }else{
-                  that.$message.error(res.data.msg);
-              }
+                  that.beizhu = false;
+                  that.createList.content = '';
+                }else {
+                  that.$message.error(res.data.msg)
+                }
               })
           },
           //点击空白处收起弹窗
           handleClose2() {
-            this.beizhu=false
-            this.remack = ''
+            this.beizhu=false;
+            that.createList.content = '';
           },
         },
         mounted() {
