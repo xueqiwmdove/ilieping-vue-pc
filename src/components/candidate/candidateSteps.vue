@@ -62,7 +62,7 @@
        </el-scrollbar>
       </div>
       <!--<candidateContent></candidateContent>-->
-      <candidateRight  @getList="getList"   @listento-flag="getFlag"></candidateRight>
+      <candidateRight  @getList="getList"   @listento-flag="getFlag" :step="step"></candidateRight>
       <!--右边-->
 
       <!--取消面试弹窗-->

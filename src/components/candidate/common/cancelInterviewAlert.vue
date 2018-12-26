@@ -86,7 +86,7 @@
               }).then(function (res) {
                 if(res.data.code==10000){
                   console.log(res.data.data);
-                  that. getInterview();
+                  // that. getInterview();
                   that.$message.success(res.data.msg);
                   that.beizhu = false;
                   that.createList.content = '';
@@ -98,7 +98,7 @@
           //点击空白处收起弹窗
           handleClose2() {
             this.beizhu=false;
-            that.createList.content = '';
+            this.createList.content = '';
           },
         },
         mounted() {
