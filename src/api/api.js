@@ -177,9 +177,3 @@ const api = {
   removeOffer:Butterfly+'offer/delete/',//删除offer
 }
 export default api
-
-// export default {
-//   uploadFile() {
-//     return `${Butterfly}` + '/candidate/upload/annexInfo'
-//   },
-// }

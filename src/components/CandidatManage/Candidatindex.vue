@@ -56,7 +56,7 @@
                     </div>
                   </el-col>
               <!--创建职位右边部分  -->
-                  <el-col  :span='20' >
+                  <el-col :offset="1" :span='19' >
                     <div class="positionTable">
                           <div class='content_pad'>
                             <div class="but_stys" :class="signs=='2'? 'btn_s':''" @click="tagStyChange(2)">
@@ -579,7 +579,7 @@ margin-left: 175px;
 .positionTable {
     background-color: #fff;
     padding: 0px 25px;
-    margin-left: 36px;
+    /* margin-left: 36px; */
     min-width: 1125px;
     padding-left: 0px;
 }

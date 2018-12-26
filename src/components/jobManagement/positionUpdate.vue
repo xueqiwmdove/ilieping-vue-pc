@@ -59,22 +59,14 @@
                                </li>
                            </ul>
                         </div>
-                         <div class="manage_position">
-                           <span class="ly_s">
-                             <el-row class="date_sty">
-                             <span>选择开始招聘时间 </span>
-                                <el-date-picker v-model="startTime"  value-format="yyyy-MM-dd" style="width: 280px;margin-top:20px" type="date" placeholder="选择日期"></el-date-picker> 
-                             </el-row>
-                           </span> 
-                        </div>
-                         <div class="manage_position">
-                           <span class="ly_s">
-                             <el-row class="date_sty">
-                             <span>选择目标完成时间 </span>
-                                <el-date-picker v-model="endTime"  value-format="yyyy-MM-dd" style="width: 280px;margin-top:20px" type="date" placeholder="选择日期"></el-date-picker> 
-                             </el-row>
-                           </span> 
-                        </div>
+                       <el-row class="date_sty" style="margin-top:40px;">    
+                              <p >选择开始招聘时间 </p>
+                              <el-date-picker v-model="startTime"  value-format="yyyy-MM-dd" style="width: 280px;margin-top:20px" type="date" placeholder="选择日期"></el-date-picker> 
+                        </el-row>
+                         <el-row class="date_sty" style="margin-top:40px;">    
+                              <p >选择目标完成时间 </p>
+                               <el-date-picker v-model="endTime"  value-format="yyyy-MM-dd" style="width: 280px;margin-top:15px" type="date" placeholder="选择日期"></el-date-picker>                               
+                        </el-row>
                     </div>  
                   </el-col> 
               <!--创建职位右边部分  -->
@@ -674,7 +666,7 @@ export default {
        border-left: 1px solid #E5E5E5;
    }
    .content {
-     min-width: 1366px;;  
+     min-width: 1424px;;  
    }
    .row_sty .qian::before {
      content: 'K';
