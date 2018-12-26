@@ -86,7 +86,7 @@
                                   <el-col :span='6' >
                                       <el-form-item label="" prop="name">
                                         <span>职位名称<img src="../../assets/img/zhiwei/zhiwei_ic_bitian.png" alt="">
-                                            <el-input v-model="makeNormal.name" placeholder="请输入职位名称"></el-input>
+                                            <el-input maxlength="18" v-model="makeNormal.name" placeholder="请输入职位名称"></el-input>
                                         </span>
                                     </el-form-item>
                                   </el-col>
@@ -164,7 +164,7 @@
                                   <el-col :span='6'  :offset="2">  
                                       <el-form-item label="">
                                         <span>招聘人数
-                                            <el-input v-model="makeNormal.number" placeholder="请输入招聘人数"></el-input>
+                                            <el-input type="number" v-model="makeNormal.number" placeholder="请输入招聘人数"></el-input>
                                         </span>
                                       </el-form-item>
                                   </el-col>  

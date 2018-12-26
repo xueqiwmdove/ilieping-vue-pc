@@ -86,7 +86,7 @@
                                   <el-col :span='6' >
                                       <el-form-item label="" prop="name">
                                         <span>职位名称<img src="../../assets/img/zhiwei/zhiwei_ic_bitian.png" alt="">
-                                            <el-input v-model="makeNormal.name" placeholder="请输入职位名称"></el-input>
+                                            <el-input maxlength="18" v-model="makeNormal.name" placeholder="请输入职位名称"></el-input>
                                         </span>
                                     </el-form-item>
                                   </el-col>
@@ -126,8 +126,8 @@
                                   <el-col :span='6'  :offset="2">  
                                       <el-form-item label="">   
                                         <span>薪资范围 <br>
-                                            <el-input v-model="makeNormal.salaryLow" class="qian" style="width:130px" ></el-input><i style="color:#D8D8D8;"> — </i>
-                                            <el-input v-model="makeNormal.salaryHigh" class="qian" style="width:130px" ></el-input>
+                                            <el-input type="number"  v-model="makeNormal.salaryLow" class="qian" style="width:130px" ></el-input><i style="color:#D8D8D8;"> — </i>
+                                            <el-input type="number"  v-model="makeNormal.salaryHigh" class="qian" style="width:130px" ></el-input>
                                         </span>
                                       </el-form-item>
                                   </el-col>
@@ -164,14 +164,14 @@
                                   <el-col :span='6'  :offset="2">  
                                       <el-form-item label="">
                                         <span>招聘人数
-                                            <el-input v-model="makeNormal.number" placeholder="请输入招聘人数"></el-input>
+                                            <el-input type="number" v-model="makeNormal.number" placeholder="请输入招聘人数"></el-input>
                                         </span>
                                       </el-form-item>
                                   </el-col>  
                               </el-row>
                               <el-row class="area_sty">
                                   <el-form-item label="职位描述"><br>
-                                        <textarea v-model="makeNormal.positionDescribe" style="width:1100px;height:220px" placeholder="请输入职位描述"></textarea>
+                                        <textarea  v-model="makeNormal.positionDescribe" style="width:1100px;height:220px" placeholder="请输入职位描述"></textarea>
                                   </el-form-item>
                              </el-row>
                              <el-row>
