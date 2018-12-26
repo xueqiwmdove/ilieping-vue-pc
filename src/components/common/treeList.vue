@@ -477,7 +477,7 @@ export default {
             headers:headers('application/json;charset=utf-8'),
             cache:false
           }).then(function(res){
-            if(res.data.code==10000 || res.data.data==null){
+            if(res.data.code==10000 ){
               that.$message({
                   message: '删除成功！',
                   type: "success"
@@ -485,8 +485,11 @@ export default {
               that.$emit("getlists")
               that.dialogDelete=false
               that.getTree()
+            }else if(res.data.code==40000) {
+               that.$message.error(res.data.msg);
+               that.dialogDelete=false
             }else{
-            that.$message.error(res.data.msg);
+             that.$message.error(res.data.msg);
             }
           });
       },
