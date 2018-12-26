@@ -19,7 +19,7 @@
       </div>
     </div>
 
-    <button class="button recommend" v-if="flag==1" @click="showmodel1">推荐给用人部门</button><!--@click="addCandidateShow('recommend')"-->
+    <button class="button recommend" v-if="flag==1&& step==1" @click="showmodel1" >推荐给用人部门</button><!--@click="addCandidateShow('recommend')"-->
     <button class="button weedOut" @click="showmodel3" >淘汰</button><!--@click="visable.weekOut==true"-->
     <button class="button remark" @click="showmodel2">备注</button><!--@click="visable.remark==true"-->
 
@@ -36,9 +36,10 @@
   import weekOutAlert from '@/components/candidate/common/weekOutAlert'
   import remarkAlert from '@/components/candidate/common/remarkAlert'
   import recommendDia from '@/components/candidate/common/recommendDia'
-  
+
     export default {
         name: "candidateRight",
+        props:['step'],
         components:{
           weekOutAlert,
           remarkAlert,
@@ -100,7 +101,7 @@
 </script>
 
 <style scoped>
- 
+
 </style>
 
 
