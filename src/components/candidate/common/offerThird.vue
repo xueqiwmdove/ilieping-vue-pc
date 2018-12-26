@@ -4,10 +4,10 @@
       <div v-if="flag1">
         <div v-if="isshow">
               <!--无操作-->
-            <div class="noOps">
+           <!-- <div class="noOps">
               <img src="../../../assets/img/candidate/tanchuang_pic_offer2.png" alt="">
               <p>将候选人移动至「沟通offer」或「待入职」后（右侧），才可以发送offer或标记入职</p>
-            </div>
+            </div>-->
 
             <!--缺省-->
             <div class="noOffer">
@@ -17,7 +17,7 @@
             </div>
          </div>
          <!-- 创建offer -->
-        <div v-else class="addCandidate_content">
+        <div v-if="!isshow" class="addCandidate_content">
             <div class="standard_resume">
               <el-row style="overflow-x: hidden;">
                 <el-col  :span="24">
@@ -172,26 +172,27 @@
           <div class="offer_modal2">
               <p class="title2">
                 <span class="methods">2018/09/08(星期一) 发送offer</span>
-                <span class="removes">删除offer</span>
+                <span class="removes" @click="removeOffer">删除offer</span>
               </p>
               <div class="content_offer">
               <img class="up_img" src="../../../assets/img/candidate/777.png" alt="">
-                <h2>尊敬的谢进</h2>
-                <p>您好，欢迎您加入 <span>上海华趣文化传播有限公司</span>，在此荣幸的邀请您出任我们</p>
-                <p><span>产品部PM</span> 一职。</p>
-                <p>请您仔细阅读此录用通知书并及时保存。请您在收到录取通知书后，在规定日期内</p>
-                <p>日报道办理入职。</p>
-                <p><span class="items">1.报道信息</span></p>
-                <p>请您在 <span> 2018/10/27 14:40</span> 到 <span>上海市南京东路上海商城302号</span>  办理报道</p>
-                <p>报道联系人：<span>李乾坤</span> 电话：<span>12567788345</span></p>
-                <p>逾期录用通知书将自动失效。</p>
-                <p><span class="items">2.薪酬待遇</span></p>
-                <p>基本工资：<span>月薪10000</span>元</p>
-                 <p><span class="items">3.工作性质和试用期</span></p>
-                <p>您的工作性质是：<span>全职</span>试用期：<span>无</span></p>
+                <div v-html="html"></div>
+                <!--<h2>尊敬的谢进</h2>-->
+                <!--<p>您好，欢迎您加入 <span>上海华趣文化传播有限公司</span>，在此荣幸的邀请您出任我们</p>-->
+                <!--<p><span>产品部PM</span> 一职。</p>-->
+                <!--<p>请您仔细阅读此录用通知书并及时保存。请您在收到录取通知书后，在规定日期内</p>-->
+                <!--<p>日报道办理入职。</p>-->
+                <!--<p><span class="items">1.报道信息</span></p>-->
+                <!--<p>请您在 <span> 2018/10/27 14:40</span> 到 <span>上海市南京东路上海商城302号</span>  办理报道</p>-->
+                <!--<p>报道联系人：<span>李乾坤</span> 电话：<span>12567788345</span></p>-->
+                <!--<p>逾期录用通知书将自动失效。</p>-->
+                <!--<p><span class="items">2.薪酬待遇</span></p>-->
+                <!--<p>基本工资：<span>月薪10000</span>元</p>-->
+                 <!--<p><span class="items">3.工作性质和试用期</span></p>-->
+                <!--<p>您的工作性质是：<span>全职</span>试用期：<span>无</span></p>-->
               <img class="down_img" src="../../../assets/img/candidate/666.png" alt="">
               </div>
-              <img class="status_img" src="../../../assets/img/candidate/tanchuang_offer_pic_refused.png" alt="">
+              <img v-if="status==1"  class="status_img" src="../../../assets/img/candidate/tanchuang_offer_pic_refused.png" alt="">
           </div>
         </div>
       </div>
@@ -229,9 +230,12 @@
               // detpart:'',
               // positionDescribe:''
           },
-          candidateId:19,
+          candidateID:'',
           sendData:[],//附件信息
           pathData:[],//附件id
+          status:'',
+          html:[],
+          offerId:''
         }
       },
       methods:{
@@ -271,7 +275,7 @@
               salaryType:that.makeNormal.salaryType,
               probation:that.makeNormal.probation,
               templateId:1,//模板id
-              candidateId:that.candidateId,
+              candidateId:that.candidateID,//
               isAccessory:that.makeNormal.isPdf,//是否发送pdf
               path:that.pathData,//附件id
             }
@@ -291,20 +295,45 @@
       //  查看是否有offer
         offerIsExist(){
           let that=this;
+          that.candidateID=localStorage.getItem('candidateID');
           that.$http({
             method:'get',
-            url:api.offerDetailButton+that.candidateId,
+            url:api.offerDetailButton+that.candidateID,
             headers:headers(),
           }).then(function (res) {
             console.log(res);
             if(res.data.code==10000){
               that.isShow=false;
+              that.html=res.data.html;
+              //邮件状态 1-等待员工确认offer 2- 拒绝 3-已确认offer待入职 4-已完成入职
+              that.status=res.data.status;
+              that.offerId=res.data.id;
 
             }else if(res.data.code==40000){
               // offer 不存在"
+              that.flag1=true;
               that.isShow=true;
+
             }else{
+              that.flag1=true;
               that.isShow=true;
+              that.$message.error(res.data.msg);
+            }
+          })
+        },
+      //  删除offer
+        removeOffer(){
+          let that=this;
+          that.$http({
+            method:'post',
+            url:api.removeOffer+that.candidateID+"/"+193,//that.offerId,
+            headers:headers(),
+          }).then(function (res) {
+            console.log(res);
+            if(res.data.code==10000){
+
+
+            }else{
               that.$message.error(res.data.msg);
             }
           })
@@ -312,7 +341,7 @@
       },
       mounted(){
         let that=this;
-        that.offerIsExist();
+        // that.offerIsExist();
       }
     }
 </script>

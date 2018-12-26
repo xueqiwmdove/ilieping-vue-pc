@@ -54,11 +54,11 @@
        <el-scrollbar style="height:100%;overflow-x: hidden">
           <basicFirst  v-show="step==1" :candidateStepsData="candidateStepsData" :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList"></basicFirst>
 
-          <interviewSecond   v-show="step==2" :candidateStepsData="candidateStepsData" :addressList="addressList" :commendEmployeeIdData="commendEmployeeIdData"></interviewSecond><!--:listentochild="showMsgformChild"-->
-          <offerThird v-show="step==3" :candidateStepsData="candidateStepsData" :addressList="addressList"></offerThird>
-          <remarkForth v-show="step==4" ref="barget" @addMack="addMack"></remarkForth>
-          <accessoryFifth v-show="step==5"></accessoryFifth>
-          <opsRecordSeventh v-show="step==6"></opsRecordSeventh>
+          <interviewSecond   v-show="step==2" ref="interviewChild" :candidateStepsData="candidateStepsData"   :addressList="addressList" :commendEmployeeIdData="commendEmployeeIdData"></interviewSecond><!--:listentochild="showMsgformChild"-->
+          <offerThird v-show="step==3"  ref="offerChild" :candidateStepsData="candidateStepsData"  :addressList="addressList"></offerThird>
+          <remarkForth v-show="step==4" ref="barget" @addMack="addMack" ></remarkForth>
+          <accessoryFifth v-show="step==5" ref="accessoryChild"></accessoryFifth>
+          <opsRecordSeventh v-show="step==6" ref="opsRecordChild"></opsRecordSeventh>
        </el-scrollbar>
       </div>
       <!--<candidateContent></candidateContent>-->
@@ -86,6 +86,7 @@
 
     </div>
   </el-dialog>
+
 </template>
 
 <script>
@@ -132,6 +133,7 @@
             flag:1,//默认标准简历
             addressList:[],//企业地址集合
             commendEmployeeIdData:[],//公司人员集合
+            candidateID:localStorage.getItem('candidateID')
           }
       },
       computed:{
@@ -145,8 +147,25 @@
         addMack() {
           this.beizhu=true
         } ,
+        //点击切换时，调用对应子组件的方法
         changeTab(flag){
+          let that=this;
           this.step=flag;
+          if(flag==1){
+
+          }else if(flag==2){
+            this.$refs.interviewChild.getInterview();
+          }else if(flag==3){
+            this.$refs.offerChild.offerIsExist();
+          } else if(flag==4){
+            this.$refs.barget.getList();
+          }else if(flag==5){
+            this.$refs.accessoryChild.getList();
+          }else if(flag==6){
+            this.$refs.opsRecordChild.getList();
+          }else{
+
+          }
         },
         getFlag(flag){
           this.step=flag;//子组件穿过的flag值，赋值给step；

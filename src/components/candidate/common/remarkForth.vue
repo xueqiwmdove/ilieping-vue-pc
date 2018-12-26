@@ -1,7 +1,7 @@
 <template>
   <!--备注-->
     <div class="remark_forth">
-      <div v-if="dataList == []" class="noOps">
+      <div v-if="beizhu" class="noOps">
         <img src="../../../assets/img/candidate/tanchuang_pic_note.png" alt="">
         <p>尚无备注</p>
         <button @click="addMack">添加备注</button>
@@ -35,7 +35,7 @@
   import {headers} from '@/assets/js/common/lp.js'
   import store from '@/store/store';
   import remarkAlert from './remarkAlert';
-  
+
  export default {
       name: "remarkForth",
       components:{
@@ -45,20 +45,26 @@
         return{
           dataList:[],
           beizhu:false,
+          candidateID:localStorage.getItem('candidateID')
 
         };
     },
     methods:{
       getList() {
-        let that = this
-        let candidateId = '6'//候选人id<===========!
+        let that = this;
         that.$http({
           method:'get',
-          url:api.candidateRemark+'/'+candidateId ,
+          url:api.candidateRemark+'/'+that.candidateID ,
             headers:headers('application/json;charset=utf-8'),
         }).then(function(res){
           if(res.data.code==10000){
             that.dataList = res.data.data;
+            if(that.dataList.length==0){
+              that.beizhu=true;
+            }else{
+              that.beizhu=false;
+            }
+
           }else{
             that.$message.error(res.data.msg);
           }
@@ -70,7 +76,7 @@
       }
     },
     created(){
-      this.getList()
+      // this.getList()
     },
 }
 </script>

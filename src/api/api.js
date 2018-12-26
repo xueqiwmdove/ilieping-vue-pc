@@ -1,12 +1,13 @@
 // let Butterfly="http://101.132.66.158:8899/jersey/";
 // let Butterfly="http://127.0.0.1:8899/jersey/";
-let Butterfly="http://192.168.2.166:8891/jersey/";//测试ip
+let Butterfly="http://192.168.2.166:8899/jersey/";//测试ip
 // let Butterfly="http://192.168.6.6:8899/jersey/";//薛尧
 // let Butterfly="http://192.168.6.251:8899/jersey/";//潘述钱ip
 // let Butterfly="http://192.168.6.209:8899/jersey/";//潘述钱ip
 // let Butterfly = 'http://192.168.6.208:8899/jersey/'// 郭峰ips
 // let Butterfly="http://192.168.6.207:8899/jersey/";//施玮ip
 // let Butterfly="http://192.168.6.195:8899/jersey/";//李博凯
+// let Butterfly="http://192.168.6.244:8899/jersey/";
 // let Butterfly="http://192.168.6.188:8899/jersey/";//曹莉
 // let Butterfly="http://192.168.6.252:8899/jersey/";//王恒
 
@@ -165,9 +166,15 @@ const api = {
   handAddCandidate: Butterfly + 'candidate/getCandidateIsExist', // 标准简历
   updateResume: Butterfly + 'candidate/update', // 更新候选人简历
   getCandidate: Butterfly + 'candidate/getCandidate/',// 查询候选人信息
+  commendDepartment:Butterfly+'candidate/insert/commend/department',//推荐给用人部门
 
   interviewList:Butterfly+'candidate/interview/list/',//候选人面试列表
-  insertInterview:Butterfly+'candidate/interview/insert'//插入面试
+  insertInterview:Butterfly+'candidate/interview/insert',//插入面试
+  interviewDetail:Butterfly+'candidate/interview/detail/',//查看面试详情
+  cancelInterview:Butterfly+'candidate/interview/cancel',//取消面试
+  feedbackInterview:Butterfly+'interview/h5/submit/feedback',//面试反馈
+
+  removeOffer:Butterfly+'offer/delete/',//删除offer
 }
 export default api
 

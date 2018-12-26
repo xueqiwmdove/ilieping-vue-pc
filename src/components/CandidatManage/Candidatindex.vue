@@ -4,7 +4,7 @@
      <!--候选人弹窗-->
      <addCandidate :addVisible.sync="visables.add" @hideModel="hideChildModal"></addCandidate>
      <!--候选人信息  父组件传值-->
-     <candidateSteps :addVisible.sync="visables.steps" @hideModel="hideChildModal" :candidateStepsData="candidateStepsData" :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList"></candidateSteps>
+     <candidateSteps :addVisible.sync="visables.steps" @hideModel="hideChildModal" :candidateStepsData="candidateStepsData"  :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList"></candidateSteps>
 
           <!--顶部导航-->
         <pageheader class="pageheader"></pageheader>
@@ -259,6 +259,7 @@ export default {
           steps:false,
           recommend:false,
         },
+        // candidateID:'',//候选人ID
         candidateStepsData:[],//候选人基本信息
         standardResume:[],//候选人个人信息之外的内容,
         candidateWorkExperienceDTOList:'',//工作经历
@@ -376,7 +377,6 @@ export default {
     },
     getItems() {
       this.flags = !this.flags
-      console.log(1)
       this.seen= ''
     },
   //获取状态数据
@@ -425,7 +425,7 @@ export default {
           that.candidateStepsData=[];
           that.standardResume=[];
           if(res.data.code==10000 && res.data.data !=null ){
-
+            localStorage.setItem("candidateID",id);
             that.candidateStepsData.push(res.data.data);
             that.standardResume.push(JSON.parse(res.data.data.standardResume));
             that.candidateWorkExperienceDTOList=JSON.parse(res.data.data.standardResume).candidateWorkExperienceDTOList;

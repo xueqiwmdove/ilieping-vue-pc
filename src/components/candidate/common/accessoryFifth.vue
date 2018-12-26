@@ -1,7 +1,7 @@
 <template>
   <!---->
     <div class="accessory_fifth">
-      <div v-if="dataList==[]" class="noOps">
+      <div v-if="dataList.length==0" class="noOps">
         <img src="../../../assets/img/candidate/tanchuang_pic_attachment.png" alt="">
         <p>尚无附件信息</p>
          <el-upload
@@ -80,7 +80,8 @@
         return{
           dataList:[],
           fileList:[],
-          data:{}
+          data:{},
+          candidateID:'',
           };
       },
       methods:{
@@ -89,12 +90,15 @@
       },
     //上传
       before_Upload(file) {
-        let FormDatas = new FormData()
-        FormDatas.append('file',file)
-        FormDatas.append('bizTable','candidate')
-        FormDatas.append('bizId','6')//候选人id<===========!
-        console.log(FormDatas)
-          let that = this
+        //TODO 候选人id
+        console.log(that.candidateID)
+
+        let FormDatas = new FormData();
+        FormDatas.append('file',file);
+        FormDatas.append('bizTable','candidate');
+        FormDatas.append('bizId',that.candidateID);//候选人id<===========!
+        console.log(FormDatas);
+          let that = this;
           that.$http({
             method:'post',
             url:api.uploadAnnexInfo,
@@ -108,11 +112,11 @@
               that.$message.error(res.data.msg);
             }
           })
-      },      
+      },
   //删除附件
-      deletefile(val) { 
-          let that = this
-          let annexId = val.id  
+      deletefile(val) {
+          let that = this;
+          let annexId = val.id;
           that.$http({
             method:'delete',
             url:api.deleteFile+'/'+annexId ,
@@ -125,14 +129,14 @@
               that.$message.error(res.data.msg);
             }
           })
-      }, 
-     //获取附件列表   
+      },
+     //获取附件列表
        getList() {
-          let that = this
-          let candidateId = '6'//候选人id<===========!
+          let that = this;
+         that.candidateID=localStorage.getItem('candidateID');
           that.$http({
             method:'get',
-            url:api.annexList+'/'+candidateId ,
+            url:api.annexList+'/'+that.candidateID ,
               headers:headers('application/json;charset=utf-8'),
           }).then(function(res){
             if(res.data.code==10000){
@@ -144,12 +148,12 @@
        },
      //查看
        checkfile(val) {
-         let url = val.httpUrl
-         window.location.href = url
+         let url = val.httpUrl;
+         window.location.href = url;
        },
      //下载
        downLoad(val) {
-          let url = val.httpUrl
+          let url = val.httpUrl;
           let fileTye = url.match(/.+\/(.+)$/)[1];
           let that = this;
           let formData = new FormData();
@@ -176,18 +180,18 @@
             }).catch(function (error) {
                 that.$message.error(error);
             });
-       },    
+       },
       },
       created(){
-        this.getList()
+        // this.getList()
       },
-      
+
     }
 </script>
 
 <style scoped>
  .headLine {
-   text-align: left;  
+   text-align: left;
  }
  .filename {
    float: left;
