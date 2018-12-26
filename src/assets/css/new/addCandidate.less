@@ -34,6 +34,18 @@
       overflow: auto;
       border-top:1px solid rgba(229,229,229,1);
       //padding: 20px;
+
+      .el-form-item.is-required .el-form-item__label:before {
+        content: '';
+        color: #f56c6c;
+        margin-right: 4px;
+      }
+
+      .el-form-item.is-required .el-form-item__label:after {
+        content: '*';
+        color: #f56c6c;
+        margin-left: 4px;
+      }
       .standard_status_active{
         .headImg{
           margin-top: -65px;
@@ -170,13 +182,20 @@
           height: 120px;
           resize: none;
         }
+        #salary{
+          .el-form-item__label{
+            display: block;
+            width: 100%;
+            text-align: left;
+          }
+        }
         .salary_start,.salary_end{
           display: inline-block;
           width: 100px;
           height:40px;
           background:rgba(255,255,255,1);
           border-radius:4px;
-          border:1px solid rgba(229,229,229,1);
+          //border:1px solid rgba(229,229,229,1);
           font-size: 14px;
           text-indent: 12px;
           .el-input__inner{
@@ -213,7 +232,6 @@
         text-align: left;
         padding: 0 30px;
         p{
-          width:70px;
           height:19px;
           font-size:14px;
           color:rgba(57,74,102,1);
@@ -227,7 +245,7 @@
             height:40px;
             background:rgba(255,255,255,1);
             border-radius:4px;
-            border:1px solid rgba(229,229,229,1);
+            //border:1px solid rgba(229,229,229,1);
           }
           img{
             position: absolute;
