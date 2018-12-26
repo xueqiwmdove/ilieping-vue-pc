@@ -29,8 +29,8 @@
                         </ul>
                         <div class="manage_position">
                            <span class="ly_s">
-                             <span>招聘负责人<img  src="../../assets/img/zhiwei/zhiwei_ic_bitian.png" alt=""></span>
-                             <span v-if="!isShow"  @click="addInterview('cteate')"><img class="img_icons" src="../../assets/img/zhiwei/tanchuang_ic_screen.png" alt=""></span>   
+                             <span>招聘负责人<img class="cus_img"  src="../../assets/img/zhiwei/zhiwei_ic_bitian.png" alt=""></span>
+                             <span v-if="!isShow"  @click="addInterview('cteate')"><img class="img_icons cus_img" src="../../assets/img/zhiwei/tanchuang_ic_screen.png" alt=""></span>   
                            </span> 
                            <ul v-if="isShow">
                                <li>
@@ -39,14 +39,15 @@
                                     <p>{{pagelist.employeeName}}</p> 
                                     <p>{{pagelist.deptName}}-{{pagelist.position}}</p>    
                                   </span>
-                                  <i @click="delList(0)" class="icon_close_sty"><img src="../../assets/img/zhiwei/zhiwei_ic_del.png" alt=""></i>
+                                  <i @click="delList(0)" class="icon_close_sty"><img class="cus_img" src="../../assets/img/zhiwei/zhiwei_ic_del.png" alt=""></i>
                                </li>
                            </ul>
                         </div>
                         <div class="manage_position">
                            <span class="ly_s">
                              <span>面试官 </span>
-                             <span  @click="addInterview('interview')"><img  v-if="!isShow2" class="img_icons" src="../../assets/img/zhiwei/tanchuang_ic_add.png" alt=""></span>   
+                             <span  @click="addInterview('interview')">
+                               <img  v-if="!isShow2" class="img_icons cus_img" src="../../assets/img/zhiwei/tanchuang_ic_add.png" alt=""></span>   
                            </span> 
                            <ul v-if="isShow2">
                                <li>
@@ -55,7 +56,7 @@
                                     <p>{{pagelist2.employeeName}}</p> 
                                     <p>{{pagelist2.deptName}}-{{pagelist2.position}}</p>    
                                   </span>
-                                  <i @click="delList(1)" class="icon_close_sty"><img src="../../assets/img/zhiwei/zhiwei_ic_del.png" alt=""></i>
+                                  <i @click="delList(1)" class="icon_close_sty"><img class="cus_img" src="../../assets/img/zhiwei/zhiwei_ic_del.png" alt=""></i>
                                </li>
                            </ul>
                         </div>
@@ -650,6 +651,9 @@ export default {
      color: #fff;
      margin-top: 100px;
      margin-left:35%;
+   }
+   .cus_img {
+     cursor: pointer;
    }
   /* 右侧样式结束 */
 </style>

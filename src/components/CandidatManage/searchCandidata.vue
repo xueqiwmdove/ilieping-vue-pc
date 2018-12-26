@@ -19,7 +19,7 @@
                           <i @click="del_click" slot="prefix" class="el-input__icon delete_sty el-icon-close"></i>
                     </el-input>
                     <div class="search"  v-else>
-                        <el-input v-model="name1" class="input_search" placeholder="输入你想搜索的内容" >
+                        <el-input v-model="name1" @keyup.enter.native="searchPage" class="input_search" placeholder="输入你想搜索的内容" >
                         <i @click="searchPage" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                        </el-input> 
                     </div> 
