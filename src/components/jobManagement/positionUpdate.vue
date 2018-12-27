@@ -75,7 +75,7 @@
                     <div class="positionTable">
                        <h4>职位信息</h4> 
                         <el-form :model="makeNormal" :rules="rules"  ref="makeNormal" id="re_style3">
-                              <el-row class="row_sty">
+                              <el-row class="row_a_a">
                                   <el-col :span='6' >
                                       <el-form-item label="" prop="name">
                                         <span>职位名称<img src="../../assets/img/zhiwei/zhiwei_ic_bitian.png" alt="">
@@ -93,7 +93,7 @@
                                         </span>  
                                     </el-form-item>
                                   </el-col> 
-                                  <el-col :span='6'  :offset="2"> 
+                                  <el-col class="row_a_a" :span='6'  :offset="2"> 
                                       <el-form-item label=""  prop="type">
                                           <span>职位性质<img src="../../assets/img/zhiwei/zhiwei_ic_bitian.png" alt="">
                                             <el-radio-group v-model="makeNormal.type" >
@@ -105,7 +105,7 @@
                                       </el-form-item>
                                   </el-col>    
                               </el-row>
-                              <el-row class="row_sty">
+                              <el-row class="row_a_a">
                                  <el-col :span='6'>  
                                     <el-form-item label="">
                                         <span>工作城市
@@ -139,7 +139,7 @@
                                       </el-form-item>
                                   </el-col>
                               </el-row>
-                              <el-row class="row_sty">
+                              <el-row class="row_a_a">
                                  <el-col :span='6'>  
                                     <el-form-item label="">
                                       <span>学历要求
@@ -641,7 +641,7 @@ export default {
     color: #394A66;
     letter-spacing: 0;  
    }
-   .positionTable .row_sty span {
+   .positionTable .row_a_a span {
        display: inline-block;
        width: 300px;
        height: 40px;
@@ -651,10 +651,10 @@ export default {
        /* margin-right:124px; */
        margin-top: 15px;
    }
-   .positionTable .row_sty span:nth-child(3) {
+   .positionTable .row_a_a span:nth-child(3) {
        margin-right: 0px;
    }
-   .positionTable .row_sty span img {
+   .positionTable .row_a_a span img {
       margin-left: 5px; 
    }
    #re_style3 .el-radio-button, .el-radio-button__inner {
@@ -669,19 +669,19 @@ export default {
    .content {
      min-width: 1424px;;  
    }
-   .row_sty .qian::before {
+   .row_a_a .qian::before {
      content: 'K';
      position: absolute;
      right:10px;
    }
-   .row_sty .tixin {
+   .row_a_a .tixin {
      font-size: 12px;
      display: inline-block;
      color:#F95714;
      position: relative;
      margin-left: 12px;
    }
-   .row_sty .tixin::after {
+   .row_a_a .tixin::after {
      content: '';
      background-image: url(../../assets/img/zhiwei/cuowu.png) ;
      position: absolute;
@@ -715,7 +715,7 @@ export default {
  .date_sty .el-input--prefix .el-input__inner   {
     padding-left:0px;
  }
- .row_sty .el-input--suffix .el-input__inner {
+ .row_a_a .el-input--suffix .el-input__inner {
     padding-right: 0px !important;
     padding-left:0px !important;
     width: 300px !important;
@@ -724,10 +724,12 @@ export default {
     text-indent: 12px;
     padding-left: 0px;
 } 
-.row_sty .el-radio-button__orig-radio:checked+.el-radio-button__inner {
+.row_a_a .el-radio-button__orig-radio:checked+.el-radio-button__inner {
   background-image: url('../../assets/img/zhiwei/zhiwei_ic_choose.png');
   background-repeat:no-repeat;
   background-position:100% 100%;
+  transition-delay: 0s ;
+  transition-duration: 0s; 
   border-color:#F95714;
   background-color: #fff;
   color:#F95714;
