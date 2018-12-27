@@ -93,7 +93,7 @@
                                         </span>  
                                     </el-form-item>
                                   </el-col> 
-                                  <el-col :span='6'  :offset="2"> 
+                                  <el-col class="rowspan_sty" :span='6'  :offset="2"> 
                                       <el-form-item label=""  prop="type">
                                           <span>职位性质<img src="../../assets/img/zhiwei/zhiwei_ic_bitian.png" alt="">
                                             <el-radio-group v-model="makeNormal.type" >
@@ -704,7 +704,7 @@ export default {
   background-image: url('../../assets/img/zhiwei/zhiwei_ic_choose.png');
   background-repeat:no-repeat;
   background-position:100% 100%;
-  transition-delay: 0s;
+  transition-delay: 0s ;
   transition-duration: 0s; 
   border-color:#F95714;
   background-color: #fff;

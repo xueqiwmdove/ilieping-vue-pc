@@ -91,14 +91,13 @@
     //上传
       before_Upload(file) {
         //TODO 候选人id
-        console.log(that.candidateID)
-
+        let that = this;
+        that.candidateID=localStorage.getItem('candidateID');
         let FormDatas = new FormData();
         FormDatas.append('file',file);
         FormDatas.append('bizTable','candidate');
         FormDatas.append('bizId',that.candidateID);//候选人id<===========!
         console.log(FormDatas);
-          let that = this;
           that.$http({
             method:'post',
             url:api.uploadAnnexInfo,
@@ -133,10 +132,11 @@
      //获取附件列表
        getList() {
           let that = this;
-         that.candidateID=localStorage.getItem('candidateID');
+          // that.candidateID=localStorage.getItem('candidateID');
+          let candidateId =localStorage.getItem('candidateID');
           that.$http({
             method:'get',
-            url:api.annexList+'/'+that.candidateID ,
+            url:api.annexList+'/'+candidateId ,
               headers:headers('application/json;charset=utf-8'),
           }).then(function(res){
             if(res.data.code==10000){
@@ -149,7 +149,8 @@
      //查看
        checkfile(val) {
          let url = val.httpUrl;
-         window.location.href = url;
+        //  window.location.href = url;
+        window.open(url, '_blank ')
        },
      //下载
        downLoad(val) {

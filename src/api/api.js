@@ -177,6 +177,7 @@ const api = {
 
   updateEliminate:Butterfly+'candidate/update/eliminate',//淘汰
   init:Butterfly+'candidate/cancel/init/',//恢复到初筛
+  changeCandidateStatus:Butterfly+'candidate/change/status/',//切换候选人状态
 
   removeOffer:Butterfly+'offer/delete/',//删除offer
 }

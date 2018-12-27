@@ -50,7 +50,7 @@ export default {
         type:'',
         text:'',
         radio:true,
-        sendSms:''
+        sendSms:false
         },
         candidateId:'',
 
@@ -104,7 +104,9 @@ export default {
                 that.$message.success(res.data.msg);
                 that.conShow = false;
                 that.cerateList.text = '';
-                that.$emit("getList")
+               setTimeout(function () {
+                 window.location.reload();
+               },3000)
             }else{
                 that.$message.error(res.data.msg);
             }

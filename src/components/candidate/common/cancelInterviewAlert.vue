@@ -75,6 +75,7 @@
           },
           submitBei(param) {
               let that = this;
+              that.candidateId=localStorage.getItem("candidateID");
                that.$http({
                 method:'post',
                 url:api.cancelInterview,
@@ -86,7 +87,7 @@
               }).then(function (res) {
                 if(res.data.code==10000){
                   console.log(res.data.data);
-                  // that. getInterview();
+                  that. getInterview();
                   that.$message.success(res.data.msg);
                   that.beizhu = false;
                   that.createList.content = '';

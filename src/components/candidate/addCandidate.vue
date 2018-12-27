@@ -248,7 +248,7 @@
 
                       <el-row :gutter="80">
                         <el-col :lg="8" :md="8" :sm="8">
-                          <el-form-item label="薪资" required>
+                          <el-form-item label="薪资" >
                             <el-input v-model="item.salary" placeholder="请输入薪资"></el-input>
                           </el-form-item>
                         </el-col>
@@ -445,6 +445,7 @@
       data(){
           return{
             // addVisible:false,
+            annexId:'',//附件id
             workExperienceIsShow:true,
             dialogVisible:false,
             flag:1,
@@ -686,6 +687,7 @@
             that.workExperienceIsShow=true;
           }
         },
+        //  解析标准简历
         changeTab(num){
           let that=this;
           that.flag=num;
@@ -699,6 +701,7 @@
 
           // console.log(num,that.resumeUrl);
           // that.resumeUrl="D:/z-简历/Boss直聘简历/王晨宇简历.doc";
+          // that.resumeUrl="http://192.168.2.166:81/imageTmp/8db6bc8c-ee80-4372-bd01-a44a5471c34a.doc";
           // that.resumeType=3;
           if(num==2 && that.resumeUrl!=""){
 
@@ -708,7 +711,8 @@
               url:api.parseResume,
               headers:headers(),
               data:{
-                resumeFileName:that.resumeUrl,
+                // resumeFileName:that.resumeUrl,
+                id:that.annexId,
                 type:that.resumeType
               }
             }).then(function (res) {
@@ -718,7 +722,7 @@
                 that.candidateEducationExperienceDTOList=data.educationalExperienceList;
                 that.candidateWorkExperienceDTOList= data.workExpericeList;
                 that.name=data.name;
-                that.sex=data.gender=='男'?1:0;
+                that.sex=data.gender;
                 that.description=data.selfEvaluation;
                 that.workAddress=data.workingCity;
                 that.arrival_time=data.dutyTime;
@@ -730,12 +734,12 @@
                 that.skill=data.skill;
                 that.education1=data.education;
                 that.address=data.location;
-
-                if(data.workExperience>5){
+                console.log(data.workExperience);
+               /* if(data.workExperience>5){
                   that.experience=6;
                 }else{
                   that.experience=data.workExperience>5;
-                }
+                }*/
                 that.industry=data.whereIndustry;
                 that.expected_industry=data.expectIndustry;
                 //   postId:1, //岗位
@@ -758,6 +762,25 @@
           let that=this;
           // that.addVisible=false;
           // console.log(that.add)
+          //清空数据
+          that.candidateEducationExperienceDTOList="";
+          that.candidateWorkExperienceDTOList= "";
+          that.name="";
+          that.sex="";
+          that.description="";
+          that.workAddress="";
+          that.arrival_time="";
+          that.age="";
+          that.phone="";
+          that.email="";
+          that.hobby="";
+          that.province="";
+          that.skill="";
+          that.education1="";
+          that.address="";
+          that.industry="";
+          that.expected_industry="";
+
           that.$emit('hideModel',that.add);//向父组件派发事件
         },
 
@@ -831,7 +854,8 @@
           }).then(function (res) {//成功后回调
             if(res.data.code==10000){
               that.resumeUrl=res.data.data[0].httpUrl;
-              console.log( that.resumeUrl)
+              that.annexId=res.data.data[0].id;
+              console.log( that.resumeUrl,that.annexId)
             }else{
               this.$message.error(res.data.data.msg);
             }
@@ -941,6 +965,27 @@
         //标准简历
         insertResume(){
           let that=this;
+          let sex,experience;
+          if(that.sex=='男'){
+            sex=1;
+          }else if(that.sex='女'){
+            sex=0;
+          }else{
+            sex=that.sex;
+          }
+
+          if(that.experience>5){
+            that.experience='5年以上';
+
+            experience=6;
+          }else if(that.experience='0'){
+            that.experience='无工作经验';
+            experience=0;
+          }else if(0<that.experience<=5){
+            that.experience=that.experience+'年工作经验';
+            experience=that.experience;
+          }
+          console.log(that.experience)
           that.standardResume={standardResumeDTO: {
                 head:that.imgcode,//"图片base64",
                 workCity:that.workAddress,
@@ -962,15 +1007,16 @@
                 postId:that.post1, //岗位
                 resumeChannel:that.channels,//渠道
                 resumeSource:that.resoure, //选择来源
-                candidateSex:that.sex,//候选人性别
+                candidateSex:sex,//候选人性别
                 candidateAge:that.age, //候选人年龄
                 candidatePhone:that.phone,//候选人手机号
                 candidateEmail:that.email,//候选人邮箱
-                candidateExperience:that.experience,//工作经验
+                candidateExperience:experience,//工作经验
                 candidateEducation:that.education1,//候选人学历
                 candidateLocation:that.address,//所在地
                 originalResumeAddress:that.resumeUrl, //原简历地址
-                standardResume:JSON.stringify(that.standardResume)
+                standardResume:JSON.stringify(that.standardResume),
+                annexId:that.annexId
               };
           that.$http({
             method:"post",
@@ -981,16 +1027,17 @@
               postId:that.post1, //岗位
               resumeChannel:that.channels,//渠道
               resumeSource:that.resoure, //选择来源
-              candidateSex:that.sex,//候选人性别
+              candidateSex:sex,//候选人性别
               candidateAge:that.age, //候选人年龄
               candidatePhone:that.phone,//候选人手机号
               candidateEmail:that.email,//候选人邮箱
-              candidateExperience:that.experience,//工作经验
+              candidateExperience:experience,//工作经验
               candidateEducation:that.education1,//候选人学历
               candidateLocation:that.address,//所在地
               originalResumeAddress:that.resumeUrl, //原简历地址
               commendEmployeeId:that.commendEmployeeId,//TODO 推荐人id
-              standardResume:JSON.stringify(that.standardResume)
+              standardResume:JSON.stringify(that.standardResume),
+              annexId:that.annexId,
             }
           }).then(function (res) {
             if(res.data.code==10000){
