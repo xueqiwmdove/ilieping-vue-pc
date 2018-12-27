@@ -711,7 +711,8 @@
               url:api.parseResume,
               headers:headers(),
               data:{
-                resumeFileName:that.resumeUrl,
+                // resumeFileName:that.resumeUrl,
+                id:that.annexId,
                 type:that.resumeType
               }
             }).then(function (res) {
