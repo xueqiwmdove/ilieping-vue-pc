@@ -291,7 +291,7 @@
     height:948px;
 	background: #fff;
 	float: left;
-    margin-right: 15px;
+    /* margin-right: 15px; */
     padding: 0px 25px;
     /* border-right: 1px solid #eee; */
 }
