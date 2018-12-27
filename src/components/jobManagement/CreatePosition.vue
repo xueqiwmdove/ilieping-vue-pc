@@ -164,7 +164,7 @@
                               </el-row>
                               <el-row class="area_sty">
                                   <el-form-item label="职位描述"><br>
-                                        <textarea  v-model="makeNormal.positionDescribe" style="width:1100px;height:220px" placeholder="请输入职位描述"></textarea>
+                                        <textarea  v-model="makeNormal.positionDescribe" class="postion_affter" style="width:1100px;height:220px" placeholder="请输入职位描述"></textarea>
                                   </el-form-item>
                              </el-row>
                              <el-row>
@@ -660,6 +660,16 @@ export default {
    .cus_img {
      cursor: pointer;
    }
+  .area_sty {
+    position: relative;
+  }
+  .area_sty::after {
+    content:'0/1000';
+    position: absolute;
+    bottom:24px;
+    right:110px;
+    color: #999;
+  }
   /* 右侧样式结束 */
 </style>
 <style>

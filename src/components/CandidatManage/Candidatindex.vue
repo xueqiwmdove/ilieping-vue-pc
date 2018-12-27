@@ -240,7 +240,7 @@ export default {
         totalCount:0,
         seen:'',
         texts:'招聘中的职位',
-        candidatestatus:'',
+        candidatestatus:'2',
         recruitStatus:'1',
         isflag:false,
         count0:'',
@@ -283,7 +283,7 @@ export default {
 	  			data:{
 				    "postId":that.postId || '',
 				    "candidateName":that.searchname || '',
-				    "candidateStatus":that.candidatestatus || '2',
+				    "candidateStatus":that.candidatestatus ,
 				    "pageCurrent":currPage,
 				    "pageSize ":pageSize,
 	  			}

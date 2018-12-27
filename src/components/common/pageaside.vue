@@ -293,7 +293,7 @@ export default {
       },
        click_potion26(a){//设置
         this.flag=a;
-    		this.$router.push('/jobmanageindex');
+    		this.$router.push('/option');
       },
        click_candidate(a){//候选人管理
         this.flag=a;
@@ -471,19 +471,19 @@ export default {
 				that.after3=true;
       }else if(loginUrl=='jobmanageindex'){
 				let that=this;
-        that.flag=9;
+        that.flag=21;
 				that.isShow9=true;
 				that.before9=false;
 				that.after9=true;
- 	    }else if(loginUrl=='InterviewManagement'){
+       }else if(loginUrl=='InterviewManagement'){
 				let that=this;
 				that.flag=30;
 				that.isShow9=true;
 				that.before9=false;
 				that.after9=true;
-			}else if(loginUrl=='candidatindex') {
+			}else if(loginUrl=='Candidatindex') {
         let that=this;
-				that.flag=9;
+				that.flag=22;
 				that.isShow9=true;
 				that.before9=false;
 				that.after9=true;
