@@ -1,6 +1,6 @@
 <template>
   <div >
-   <div class="main">
+   <div class="main" >
      <!--候选人弹窗-->
      <addCandidate :addVisible.sync="visables.add" @hideModel="hideChildModal"></addCandidate>
      <!--候选人信息  父组件传值-->

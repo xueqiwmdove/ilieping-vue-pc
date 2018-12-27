@@ -2,7 +2,7 @@
   <!--添加候选人弹窗-->
   <div>
     <el-dialog title="添加候选人" :visible="addVisible"  :custom-class='customclass' :before-close="hideModel"><!---->
-      <img src="../../assets/img/candidate/tanchuang_ic_save.png" class="save">
+      <!--<img src="../../assets/img/candidate/tanchuang_ic_save.png" class="save">-->
       <div class="addMain">
         <!--标准简历才有-->
         <!--<standardBasic v-if="flag==2"></standardBasic>-->
@@ -57,7 +57,7 @@
             </div>
             <div class="inputBox">
               <img src="../../assets/img/candidate/tanchuang_ic_exp.png" alt="">
-              <el-select v-model="experience" placeholder="请选择工作经验">
+              <el-select v-model="experience" placeholder="请选择工作经验"  @change="selectExperience">
                 <el-option v-for="item in experienceData" :key="item.value" :label="item.label" :value="item.value"></el-option>
               </el-select>
             </div>
@@ -83,7 +83,7 @@
             <ul class="tab_title">
               <li @click="changeTab(1)" :class="flag==1?'active':''">原始简历</li>
               <li @click="changeTab(2)" :class="flag==2?'active':''">标准简历</li>
-              <li class="button">
+              <li class="button" v-if="flag==2">
                 <img src="../../assets/img/candidate/tanchuang_ic_download.png" class="upload">
                 <img src="../../assets/img/candidate/tanchuang_ic_print.png" class="print">
               </li>
@@ -97,7 +97,7 @@
           </div>
           <!--原始简历-->
           <div v-if="flag==1" class="original_resume">
-            <label style="margin: 0 0 0 20px">请先选择简历来源 <i style="color:#f95714">*</i></label>
+          <!--  <label style="margin: 0 0 0 20px">请先选择简历来源 <i style="color:#f95714">*</i></label>
             <el-select v-model="resumeType" placeholder="请选择"  >
               <el-option
                 v-for="item in resumeTypeData"
@@ -106,7 +106,7 @@
                 :value="item.value"
               >
               </el-option>
-            </el-select>
+            </el-select>-->
             <el-upload
               class="upload-demo"
               drag
@@ -173,22 +173,23 @@
 
                     <el-row :gutter="80">
                       <el-col :lg="8" :md="8" :sm="8">
-                        <label style="display: block;margin-bottom: 10px;">期望薪资</label>
+                        <!--<label style="display: block;margin-bottom: 10px;">期望薪资</label>-->
                         <!--<div>-->
-                        <input v-model="salary_start" class="salary_start" />  -  <input v-model="salary_end" class="salary_end" />
-                       <!-- <el-form-item label="期望薪资">
-                          <div>
+                        <!--<input v-model="salary_start" class="salary_start" />  -  <input v-model="salary_end" class="salary_end" />-->
+                        <div id="salary">
+                          <el-form-item label="期望薪资">
                             <el-row>
                               <el-col :span="11">
-
+                                <el-input v-model="salary_start" class="salary_start" ></el-input>
                               </el-col>
                               <el-col class="line" :span="2" style="color:#E5E5E5;">-</el-col>
                               <el-col :span="11">
-
+                                <el-input v-model="salary_end" class="salary_end" ></el-input>
                               </el-col>
                             </el-row>
-                          </div>
-                        </el-form-item>-->
+                          </el-form-item>
+                        </div>
+
                       </el-col>
                       <el-col :lg="16" :md="16" :sm="16">
                         <el-form-item label="技能">
@@ -206,9 +207,9 @@
                     </el-row>
                   </div>
 
-                  <div v-for="(item,index) in candidateWorkExperienceDTOList" :key="item.index">
-                    <p class="headLine" v-show="candidateWorkExperienceDTOList.length<2">工作经历</p>
-                    <p class="headLine" v-show="candidateWorkExperienceDTOList.length>1">工作经历{{index+1}}</p>
+                  <div v-if="workExperienceIsShow" v-for="(item,index) in candidateWorkExperienceDTOList" :key="item.index">
+                    <p class="headLine" v-show="candidateWorkExperienceDTOList.length<2">工作经历 <i style="font-weight: normal">（必填）</i></p>
+                    <p class="headLine" v-show="candidateWorkExperienceDTOList.length>1">工作经历{{index+1}}（<i style="font-weight: normal">必填</i>）</p>
                     <div class="addButton" @click="addWorkDomain" v-show="index==0">
                       添加 <img src="../../assets/img/candidate/tanchuang_ic_add.png" alt="">
                     </div>
@@ -220,7 +221,7 @@
                     <div class="work" >
                       <el-row :gutter="80">
                         <el-col :lg="8" :md="8" :sm="8">
-                          <el-form-item label="任职时间">
+                          <el-form-item label="任职时间" required>
                             <el-date-picker
                               v-model="item.startTime"
                               type="daterange"
@@ -233,13 +234,13 @@
                           </el-form-item>
                         </el-col>
                         <el-col :lg="8" :md="8" :sm="8">
-                          <el-form-item label="公司名称">
+                          <el-form-item label="公司名称" required>
                             <el-input v-model="item.companyName" placeholder="请输入就职公司名称"></el-input>
                           </el-form-item>
                         </el-col>
 
                         <el-col :lg="8" :md="8" :sm="8">
-                          <el-form-item label="岗位">
+                          <el-form-item label="岗位" required>
                             <el-input v-model="item.post" placeholder="请输入任职的岗位"></el-input>
                           </el-form-item>
                         </el-col>
@@ -247,7 +248,7 @@
 
                       <el-row :gutter="80">
                         <el-col :lg="8" :md="8" :sm="8">
-                          <el-form-item label="薪资">
+                          <el-form-item label="薪资" required>
                             <el-input v-model="item.salary" placeholder="请输入薪资"></el-input>
                           </el-form-item>
                         </el-col>
@@ -281,8 +282,8 @@
                   </div>
 
                   <div v-for="(item,index) in candidateEducationExperienceDTOList" :key="item.index">
-                    <p class="headLine" v-show="candidateEducationExperienceDTOList.length<2">教育经历</p>
-                    <p class="headLine" v-show="candidateEducationExperienceDTOList.length>1">教育经历{{index+1}}</p>
+                    <p class="headLine" v-show="candidateEducationExperienceDTOList.length<2">教育经历<i style="font-weight: normal">（必填）</i></p>
+                    <p class="headLine" v-show="candidateEducationExperienceDTOList.length>1">教育经历{{index+1}}<i style="font-weight: normal">（必填）</i></p>
                     <div class="addButton" @click="addEducationDomain" v-show="index==0">
                       添加 <img src="../../assets/img/candidate/tanchuang_ic_add.png" alt="">
                     </div>
@@ -293,7 +294,7 @@
                     <div class="education">
                       <el-row :gutter="80">
                         <el-col :lg="8" :md="8" :sm="8">
-                          <el-form-item label="就读时间"><!--studyTime-->
+                          <el-form-item label="就读时间" required><!--studyTime-->
                             <el-date-picker
                               v-model="item.startTime"
                               type="daterange"
@@ -305,13 +306,13 @@
                           </el-form-item>
                         </el-col>
                         <el-col :lg="8" :md="8" :sm="8">
-                          <el-form-item label="学校名称">
+                          <el-form-item label="学校名称" required>
                             <el-input v-model="item.schoolName" placeholder="请输入就读学校名称"></el-input>
                           </el-form-item>
                         </el-col>
 
                         <el-col :lg="8" :md="8" :sm="8">
-                          <el-form-item label="专业">
+                          <el-form-item label="专业" required>
                             <el-input v-model="item.major" placeholder="请输入所学的专业"></el-input><!--specialty-->
                           </el-form-item>
                         </el-col>
@@ -368,11 +369,11 @@
         </div>
         <div class="addCandidate_right">
           <!--<el-button class="uploadButton" v-if="flag==1">上传简历</el-button>-->
-          <el-button class="uploadButton" v-if="flag==2" @click="insertResume">上传简历</el-button>
-          <div class="selectedBox">
+          <el-button class="uploadButton" v-if="flag==2" @click="insertResume" :disabled="resumeDisbaled">保存简历</el-button>
+          <div class="selectedBox" v-if="flag==2">
             <!--选择内推人-->
             <p>选择内推人</p>
-            <div class="selectDiv">
+            <div class="selectDiv" >
               <!--<input type="text" class="selected">-->
               <!--<img src="../../assets/img/candidate/tanchuang_ic_screen.png" alt="">-->
 
@@ -385,8 +386,22 @@
                 </el-option>
               </el-select>
             </div>
-
           </div>
+          <div class="selectedBox" v-if="flag==1">
+            <p style="margin-top: 20px;">请先选择简历来源</p>
+            <div class="selectDiv" >
+              <el-select v-model="resumeType" placeholder="请选择" class="selected">
+                <el-option
+                  v-for="item in resumeTypeData"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                >
+                </el-option>
+              </el-select>
+            </div>
+          </div>
+
         </div>
 
 
@@ -430,6 +445,7 @@
       data(){
           return{
             // addVisible:false,
+            workExperienceIsShow:true,
             dialogVisible:false,
             flag:1,
             add:'add',
@@ -646,12 +662,30 @@
             ],
           }
       },
+      computed:{
+        resumeDisbaled:function() {
+          if(this.name!="" && this.post1 !="" && this.phone !="" && this.email !="" ){
+            return false
+          }else{
+            return true
+          }
+        }
+      },
       methods:{
         // getMyEvent(flag){
         //   //接收的数据--------->我是子组件中的数据
         //   this.flag=flag;
         //   // console.log('接收的数据--------->'+flag)
         // },
+        //选择工作经验 无工作经验，工作经验隐藏
+        selectExperience(param){
+          let that=this;
+          if(param==0){
+            that.workExperienceIsShow=false;
+          }else{
+            that.workExperienceIsShow=true;
+          }
+        },
         changeTab(num){
           let that=this;
           that.flag=num;
@@ -663,7 +697,7 @@
             that.customclass="addCandidateAlert   addCandidateAlert_add";
           }
 
-          console.log(num,that.resumeUrl);
+          // console.log(num,that.resumeUrl);
           // that.resumeUrl="D:/z-简历/Boss直聘简历/王晨宇简历.doc";
           // that.resumeType=3;
           if(num==2 && that.resumeUrl!=""){
@@ -684,7 +718,7 @@
                 that.candidateEducationExperienceDTOList=data.educationalExperienceList;
                 that.candidateWorkExperienceDTOList= data.workExpericeList;
                 that.name=data.name;
-                // that.sex=data.gender;
+                that.sex=data.gender=='男'?1:0;
                 that.description=data.selfEvaluation;
                 that.workAddress=data.workingCity;
                 that.arrival_time=data.dutyTime;
@@ -696,7 +730,12 @@
                 that.skill=data.skill;
                 that.education1=data.education;
                 that.address=data.location;
-                that.experience=data.workExperience;
+
+                if(data.workExperience>5){
+                  that.experience=6;
+                }else{
+                  that.experience=data.workExperience>5;
+                }
                 that.industry=data.whereIndustry;
                 that.expected_industry=data.expectIndustry;
                 //   postId:1, //岗位

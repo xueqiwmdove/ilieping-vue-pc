@@ -4,9 +4,9 @@
     <ul class="tab_title">
       <li @click="changeTab(1)" :class="flag==1?'active':''">原始简历</li>
       <li @click="changeTab(2)" :class="flag==2?'active':''">标准简历</li>
-      <li class="button">
-        <img src="../../../assets/img/candidate/tanchuang_ic_download.png" class="upload">
-        <img src="../../../assets/img/candidate/tanchuang_ic_print.png" class="print">
+      <li class="button" style="width: 50px;" v-show="flag==1">
+        <img src="../../../assets/img/candidate/tanchuang_ic_download.png" class="upload" style="margin: 0">
+        <!--<img src="../../../assets/img/candidate/tanchuang_ic_print.png" class="print">-->
       </li>
     </ul>
     <div v-if="flag==1" class="original_resume">
@@ -243,6 +243,8 @@
       methods:{
         changeTab(flag){
           this.flag=flag;
+          //通过getFormChild，向父组件candidateSteps 传值
+          this.$emit('getFormChild',flag)
         }
       },
     }

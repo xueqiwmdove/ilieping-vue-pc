@@ -1,7 +1,7 @@
 <template >
   <!--候选人信息弹窗-->
   <el-dialog title="候选人信息" :visible="addVisible"  custom-class="candidateSteps" :before-close="hideModel">
-    <img src="../../assets/img/candidate/tanhcuang_ic_editor.png" class="save">
+    <img src="../../assets/img/candidate/tanhcuang_ic_editor.png" class="save"  v-show="step==1 && updateStatus==2" @click="updateCandidate"><!--只有基本资料 里面的标准简历可以下载 @click="updateCandidate"-->
     <div class="addMain">
       <div class="personInfo" v-for="(item,index)  in candidateStepsData" :key="index">
         <p class="primary ">
@@ -52,7 +52,7 @@
 
       <div class="candidate_content">
        <el-scrollbar style="height:100%;overflow-x: hidden">
-          <basicFirst  v-show="step==1" :candidateStepsData="candidateStepsData" :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList"></basicFirst>
+          <basicFirst  v-show="step==1"   @getFormChild="parentFlag" :candidateStepsData="candidateStepsData" :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList"></basicFirst>
 
           <interviewSecond   v-show="step==2" ref="interviewChild" :candidateStepsData="candidateStepsData"   :addressList="addressList" :commendEmployeeIdData="commendEmployeeIdData"></interviewSecond><!--:listentochild="showMsgformChild"-->
           <offerThird v-show="step==3"  ref="offerChild" :candidateStepsData="candidateStepsData"  :addressList="addressList"></offerThird>
@@ -64,26 +64,6 @@
       <!--<candidateContent></candidateContent>-->
       <candidateRight  @getList="getList"   @listento-flag="getFlag" :step="step" :signs="signs" :candidateStepsData="candidateStepsData" ></candidateRight>
       <!--右边-->
-
-      <!--取消面试弹窗-->
-      <!-- <div class = "cov"  v-clickoutside="handleClose2" >&lt;!&ndash;v-if="cancelInterview==true"&ndash;&gt;
-         <div class = "con create_dialog" style="height:340px;">
-           <p class = "ptitle">取消面试 <i class="el-icon-close closes_s"></i></p>
-           <div class="rescs beires" style="height:220px;">
-             <el-form>
-               <el-form :model="cerateList"  ref="cerateList" id="re_styles">
-                 <span class="title_bei">请填写取消面试原因</span>
-                 <el-input :rows="4" type="textarea" v-model="text" style="width:460px;margin-left:60px;" placeholder="请输入内容"></el-input>
-               </el-form>
-             </el-form>
-           </div>
-           <div slot="footer" class="dialog-footer">
-             <el-button  type="primary"    style="height:36px;" >保存</el-button>
-           </div>
-         </div>
-       </div>-->
-
-
     </div>
   </el-dialog>
 
@@ -126,6 +106,7 @@
       data(){
           return{
             // addVisible:false,
+            updateStatus:'',
             status1:'',
             step:1,
             conShow:false,//推荐人
@@ -140,7 +121,7 @@
       computed:{
       },
       methods:{
-    //调用子组件里面的方法
+      //调用子组件里面的方法
         getList() {
           this.$refs.barget.getList()
         },
@@ -173,9 +154,13 @@
           this.status1=flag;
           console.log(this.status1);
         },
+        //只有基本资料 里面的标准简历可以下载 子组件 basicFirst穿过的flag值；
+        parentFlag(updateStatus){
+          this.updateStatus=updateStatus;
+        },
         //  关闭弹窗
         hideModel(){
-          this.conShow=false
+          this.conShow=false;
           let that=this;
           that.$emit('hideModel','steps');//向父组件派发事件
         },
@@ -224,6 +209,13 @@
             }
           });
         },
+        // 基本信息里面的原始简历编辑按钮
+        updateCandidate(){
+          let that=this;
+          //关闭当前弹窗
+          that.hideModel();
+         //
+        }
       },
       mounted(){
           let that=this;
