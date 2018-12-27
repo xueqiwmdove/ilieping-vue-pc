@@ -21,15 +21,20 @@
                         <h4><img class="img_shengfen" src="../../assets/img/zhiwei/miasnhi_ic_pannei.png" alt="">
                           <span  style="margin-left:30px;">模板</span>
                         </h4>
-                        <p class="ad_change">全部职位 <i><img src="../../assets/img/zhiwei/ic_chose.png" alt=""></i></p>
-						<p @click="click_optioninterview()">面试邀约模板 <i></i></p>
-						<p>offer模板<i></i></p>
-                    </div>
+                        <p @click="click_option()" class="ad_change">面试登记表 <i><img src="../../assets/img/zhiwei/ic_chose.png" alt=""></i></p>
+                        <p @click="click_optioninterview()">面试邀约模板 <i></i></p>
+                        <p @click="click_optionoffer()">offer模板<i></i></p>
+                        <p @click="click_optionjudge()">简历评估邀请模版<i></i></p>
+                        <p @click="click_optionmaster()">面试官面试通知模版<i></i></p>
+												<p @click="click_optioncandidate()">候选人签到通知模版<i></i></p>
+												<p @click="click_optioncancel()">面试取消通知模版<i></i></p>
+									  		<p @click="click_optionrefuse()">拒信模版<i></i></p>
+										</div>
 					<div class="option-left">
 						<div class="optionTop">
 							<ul>
 								<li>
-									<img src="../../assets/img/zhiwei/shezhi_ic_diyibu.png"/>
+									<img @click="getQrcode()" src="../../assets/img/zhiwei/shezhi_ic_diyibu.png"/>
 									<h1>第一步：打印二维码</h1>
 									<h2>打印二维码放到前台，供员工扫码</h2>
 								</li>
@@ -42,6 +47,9 @@
 									<img src="../../assets/img/zhiwei/shezhi_ic_diyibu.png"/>
 									<h1>第三步：HR面试提醒</h1>
 									<h2>候选人提交登记表后HR收到提醒</h2>
+								</li>
+								<li>
+									
 								</li>
 							</ul>
 						</div>
@@ -144,7 +152,47 @@ export default {
     	click_optioninterview(){
         this.$router.push('/optioninterview');
       },
-    },
+      click_optionoffer(){
+        this.$router.push('/optionoffer');
+      },
+      click_option(){
+        this.$router.push('/option');
+      },
+      click_optionjudge(){
+        this.$router.push('/optionjudge');
+      },
+      click_optionmaster(){
+        this.$router.push('/optionmaster');
+			},
+			click_optioncandidate(){
+        this.$router.push('/optioncandidate');
+			},
+			click_optioncancel(){
+        this.$router.push('/optioncancel');
+			},
+			click_optionrefuse(){
+        this.$router.push('/optionrefuse');
+      },
+			getQrcode(){
+				let that=this;
+            that.newDepartments = false;
+            that.$http({
+            url:api.Qrcode,
+            method:'get',
+  					headers:headers("application/json;charset=utf-8"),
+  					data:{},
+  					cache:false,		
+          }).then(function(res){
+            // console.log(res);
+          if(res.data.code=10000){
+                console.log(res.data.data);
+          }
+        }).catch((res)=>{
+            // console.log(res)
+             console.log("not exsist");
+        })
+			}
+		}
 }
 </script>
 
@@ -300,7 +348,7 @@ color: #F95714;
 color: #F95714;	
 }
 .ad_input p {
-  width: 300px;
+  width: 320px;
   cursor: pointer;
   height: 30px;
   /* color: #F95714; */

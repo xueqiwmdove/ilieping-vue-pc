@@ -26,14 +26,14 @@
                         <p @click="click_optionoffer()">offer模板<i></i></p>
                         <p @click="click_optionjudge()">简历评估邀请模版<i></i></p>
                         <p @click="click_optionmaster()">面试官面试通知模版<i></i></p>
-												<p @click="click_optioncandidate()">候选人签到通知模版<i></i></p>
-												<p @click="click_optioncancel()">面试取消通知模版<i></i></p>
-									  		<p @click="click_optionrefuse()">拒信模版<i></i></p>
-										 </div>
+                        <p @click="click_optioncandidate()">候选人签到通知模版<i></i></p>
+						<p @click="click_optioncancel()">面试取消通知模版<i></i></p>
+						<p @click="click_optionrefuse()">拒信模版<i></i></p>
+					</div>
 					<div class="option-left">
 						<div class="optioninterviewTop">
 							<ul>
-                <li>面试邀约邮件模板</li>
+                <li>候选人签到通知邮件模板</li>
                 <li>+自定义（升级企业用户）</li>
 							</ul>
 						</div>
@@ -41,19 +41,19 @@
                 <div class="bottomConclude">
                   <div class="topBorder"></div>
                   <div class="content">
-                    <span><i>候选人姓名</i>，您好！</span>
-                    <span>感谢关注<i class="iSpecial">上海棋至文化有限公司</i>我是公司的HR。很高兴收到您的简历， 安排如下：</span>
-                    <span><i>阶段日期：</i><i class="iSpecial">2019/08/09</i><i class="iSpecial">14:00</i></span>
-                    <span><i>阶段形式：</i><i class="iSpecial">电话面试</i></span>
+                    <span><i>上海棋至文化有限公司</i>的<i class="iSpecial">面试官姓名</i>，您好！</span>
+                    <span>我是公司的HR，有一名投递<i class="iSpecial">岗位名称</i>岗位的候选人已到现场签到,安排如下:</span>
                     <span><i>阶段地址：</i><i class="iSpecial">上海市南京东路1288号上海商3楼</i></span>
                     <span>联系方式：<i class="iSpecial">李乾坤</i><i class="iSpecial">18809098897</i></span>
+                    <span>您可以直接通过下方链接对其进行面试评价</span>
+                    <span><i>www.lphr.com</i></span>
                   </div>
                   <div class="bottomBorder"></div>
                 </div>
 						</div>
             <div class="optioninterviewTop">
 							<ul>
-                <li>面试邀约邮件模板</li>
+                <li>候选人签到通知短信模板</li>
                 <li>+自定义（升级企业用户）</li>
 							</ul>
 						</div>
@@ -61,12 +61,12 @@
                 <div class="bottomConclude">
                   <div class="topBorder"></div>
                   <div class="content">
-                    <span><i>候选人姓名</i>，您好！</span>
-                    <span>感谢关注<i class="iSpecial">上海棋至文化有限公司</i>我是公司的HR。很高兴收到您的简历， 安排如下：</span>
-                    <span><i>阶段日期：</i><i class="iSpecial">2019/08/09</i><i class="iSpecial">14:00</i></span>
-                    <span><i>阶段形式：</i><i class="iSpecial">电话面试</i></span>
+                    <span><i>上海棋至文化有限公司</i>的<i class="iSpecial">面试官姓名</i>，您好！</span>
+                    <span>我是公司的HR，有一名投递<i class="iSpecial">岗位名称</i>岗位的候选人已到现场签到,安排如下:</span>
                     <span><i>阶段地址：</i><i class="iSpecial">上海市南京东路1288号上海商3楼</i></span>
                     <span>联系方式：<i class="iSpecial">李乾坤</i><i class="iSpecial">18809098897</i></span>
+                    <span>您可以直接通过下方链接对其进行面试评价</span>
+                    <span><i>www.lphr.com</i></span>
                   </div>
                   <div class="bottomBorder"></div>
                 </div>
@@ -95,7 +95,7 @@
     pageaside,
 	},
     methods: {
-    	click_optioninterview(){
+    click_optioninterview(){
         this.$router.push('/optioninterview');
       },
       click_optionoffer(){
@@ -119,7 +119,7 @@
 			click_optionrefuse(){
         this.$router.push('/optionrefuse');
       },
-    },
+    }
 }
 </script>
 
@@ -250,7 +250,7 @@
 	 float: left;
 	 width: 300px;
 	 display: block;
-	 height: 0;
+	 height: 21px;
  }
  .optioninterviewTop ul li:first-child{
    color: #394A66;
