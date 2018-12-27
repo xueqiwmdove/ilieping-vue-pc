@@ -701,8 +701,8 @@
 
           // console.log(num,that.resumeUrl);
           // that.resumeUrl="D:/z-简历/Boss直聘简历/王晨宇简历.doc";
-          that.resumeUrl="http://192.168.2.166:81/imageTmp/8db6bc8c-ee80-4372-bd01-a44a5471c34a.doc";
-          that.resumeType=3;
+          // that.resumeUrl="http://192.168.2.166:81/imageTmp/8db6bc8c-ee80-4372-bd01-a44a5471c34a.doc";
+          // that.resumeType=3;
           if(num==2 && that.resumeUrl!=""){
 
             //  解析标准简历
@@ -761,6 +761,25 @@
           let that=this;
           // that.addVisible=false;
           // console.log(that.add)
+          //清空数据
+          that.candidateEducationExperienceDTOList="";
+          that.candidateWorkExperienceDTOList= "";
+          that.name="";
+          that.sex="";
+          that.description="";
+          that.workAddress="";
+          that.arrival_time="";
+          that.age="";
+          that.phone="";
+          that.email="";
+          that.hobby="";
+          that.province="";
+          that.skill="";
+          that.education1="";
+          that.address="";
+          that.industry="";
+          that.expected_industry="";
+
           that.$emit('hideModel',that.add);//向父组件派发事件
         },
 
