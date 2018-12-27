@@ -45,13 +45,14 @@
         return{
           dataList:[],
           beizhu:false,
-          candidateID:localStorage.getItem('candidateID')
+          candidateID:''
 
         };
     },
     methods:{
       getList() {
         let that = this;
+        that.candidateID=localStorage.getItem('candidateID');
         that.$http({
           method:'get',
           url:api.candidateRemark+'/'+that.candidateID ,

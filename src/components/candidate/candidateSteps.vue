@@ -163,6 +163,8 @@
         hideModel(){
           this.conShow=false;
           let that=this;
+          //清数据
+          that.step=1;
           that.$emit('hideModel','steps');//向父组件派发事件
         },
         showMsgformChild(){

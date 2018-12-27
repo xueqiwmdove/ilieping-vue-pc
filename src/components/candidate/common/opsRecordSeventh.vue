@@ -30,12 +30,13 @@
             data(){
         return{
           dataList:[],
-          candidateID:localStorage.getItem('candidateID'),
+          candidateID:'',
           };
       },
       methods:{
        getList() {
           let that = this;
+          that.candidateID=localStorage.getItem('candidateID');
           that.$http({
             method:'get',
             url:api.candidateOperation+'/'+that.candidateID ,
