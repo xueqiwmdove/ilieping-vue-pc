@@ -853,7 +853,7 @@
           }).then(function (res) {//成功后回调
             if(res.data.code==10000){
               that.resumeUrl=res.data.data[0].httpUrl;
-              that.annexId=res.data.data[0].httpUrl;
+              that.annexId=res.data.data[0].id;
               console.log( that.resumeUrl,that.annexId)
             }else{
               this.$message.error(res.data.data.msg);

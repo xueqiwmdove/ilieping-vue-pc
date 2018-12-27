@@ -4,18 +4,18 @@
     <div v-if="signs != '0'">
       <div class="operating_button">
         <button class="button" v-if="flag==1" @click="changeStatus2(1)">进入用人部门筛选</button>
-        <button class="button" v-if="flag==2" @click="changeStatus2(2)">进入面试</button>
-        <button class="button" v-if="flag==3" @click="changeStatus2(3)">进入沟通offer</button>
-        <button class="button" v-if="flag==4" @click="changeStatus2(4)">进入待入职</button>
-        <button class="button" v-if="flag==5" @click="changeStatus2(5)">办理入职</button>
+        <button class="button" v-if="flag==1" @click="changeStatus2(1)">进入面试</button>
+        <button class="button" v-if="flag==2" @click="changeStatus2(2)">进入沟通offer</button>
+        <button class="button" v-if="flag==3" @click="changeStatus2(3)">进入待入职</button>
+        <button class="button" v-if="flag==4" @click="changeStatus2(4)">办理入职</button>
         <el-button class="buttonRow" :icon="status" @click="changeStatus"></el-button>
         <div class="button_pullDown" v-show="isShow">
           <ul>
             <li @click="changeli(1)" :class="flag==1?'el-icon-success':''">初筛</li>
-            <li @click="changeli(2)" :class="flag==2?'el-icon-success':''">用人部门筛选</li>
-            <li @click="changeli(3)" :class="flag==3?'el-icon-success':''">面试</li>
-            <li @click="changeli(4)" :class="flag==4?'el-icon-success':''">offer/录用</li>
-            <li @click="changeli(5)" :class="flag==5?'el-icon-success':''">待入职</li>
+            <li @click="changeli(1)" :class="flag==1?'el-icon-success':''">用人部门筛选</li>
+            <li @click="changeli(2)" :class="flag==2?'el-icon-success':''">面试</li>
+            <li @click="changeli(3)" :class="flag==3?'el-icon-success':''">offer/录用</li>
+            <li @click="changeli(4)" :class="flag==4?'el-icon-success':''">待入职</li>
           </ul>
         </div>
       </div>
@@ -79,13 +79,42 @@
       //点击切换按钮状态,关联父组件
         changeStatus2(param){
           let that=this;
-          if(param==5){
-            that.flag=1;
-          }else{
-            that.flag=that.flag+1;
+          let trueFlag;
+          that.flag=that.flag+1;
+
+          //办理入职跳转到录入新员工页面
+          if(this.flag==4){
+            this.$confirm('此操作将跳转到录入新员工, 是否继续?', '提示', {
+              confirmButtonText: '确定',
+              cancelButtonText: '取消',
+              type: 'warning'
+            }).then(() => {
+              this.$router.push('/insertNewEmployee');
+              // this.$message({
+              //   type: 'success',
+              //   message: '删除成功!'
+              // });
+            }).catch(() => {
+              this.$message({
+                type: 'info',
+                message: '已取消跳转'
+              });
+            });
+
           }
+          /*if(param==5){
+            // that.flag=1;
+            that.flag=5;
+            // trueFlag=5;
+
+          }else{
+            // that.flag=that.flag+1;
+            that.flag=that.flag;
+            // trueFlag=that.flag+1;
+          }*/
           //子组件通过父组件里面的 listento-flag，传到父组件当中；
-          that.$emit("listento-flag",that.flag)
+          that.$emit("listento-flag",that.flag);
+          // that.$emit("listento-flag",trueFlag);
         },
         changeStatus(){
           let that=this;
