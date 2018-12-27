@@ -149,7 +149,8 @@
      //查看
        checkfile(val) {
          let url = val.httpUrl;
-         window.location.href = url;
+        //  window.location.href = url;
+        window.open(url, '_blank ')
        },
      //下载
        downLoad(val) {
