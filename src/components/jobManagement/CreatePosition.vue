@@ -157,15 +157,16 @@
                                   <el-col :span='6'  :offset="2">  
                                       <el-form-item label="">
                                         <span>招聘人数
-                                            <el-input type="number" v-model="makeNormal.number" placeholder="请输入招聘人数"></el-input>
+                                            <el-input  @keyup.native="handleInput()" v-model="makeNormal.number" placeholder="请输入招聘人数"></el-input>
                                         </span>
                                       </el-form-item>
                                   </el-col>  
                               </el-row>
                               <el-row class="area_sty">
                                   <el-form-item label="职位描述"><br>
-                                        <textarea  v-model="makeNormal.positionDescribe" style="width:1100px;height:220px" placeholder="请输入职位描述"></textarea>
+                                        <textarea  @input="checkMsg" v-model="makeNormal.positionDescribe" maxlength="1000" class="postion_affter" style="width:1100px;min-width:900px;height:220px" placeholder="请输入职位描述"></textarea>
                                   </el-form-item>
+                                  <i><em>{{son}}</em>/1000</i>
                              </el-row>
                              <el-row>
                                <el-col>
@@ -244,6 +245,7 @@ export default {
        positionDetail:{},
        citys:'',//地址详情
        cityId:'',
+       son:'1',
        pageIndex: 1,
        pageSize: 10,
        createVisible:false,
@@ -305,6 +307,14 @@ export default {
      },
    directives: {clickoutside},
     methods: {
+      handleInput() {
+        this.makeNormal.number =this.makeNormal.number.replace(/[^\.\d]/g,'');
+        this.makeNormal.number = this.makeNormal.number.replace('.','')
+      },
+      checkMsg(val) {
+        var textVal = this.makeNormal.positionDescribe.length;
+        this.son = 1000 - textVal;
+      },
   // 获取员工架构
       getTree() {
           // that.$emit('updataTree')
@@ -376,15 +386,16 @@ export default {
     //创建岗位提交  
       createSubmit() {
         if(this.startTime !=='' || this.endTime !=='')  {
-            var timel =new Date().format("yyyy-MM-dd");
-                if(this.startTime <timel ) {
-                  this.$message({
-                      message: '开始招聘时间不能小于当前日期！',
-                      type: 'error'
-                  });
-                  this.startTime=''
-                  return
-                }else if(this.startTime > this.endTime) {
+            // var timel =new Date().format("yyyy-MM-dd");//当前时间
+                // if(this.startTime <timel ) {
+                //   this.$message({
+                //       message: '开始招聘时间不能小于当前日期！',
+                //       type: 'error'
+                //   });
+                //   this.startTime=''
+                //   return
+                // }else 
+                if(this.startTime > this.endTime) {
                 this.$message({
                   message:'开始招聘时间应小于目标完成时间！',
                   type:'error'
@@ -586,7 +597,7 @@ export default {
      background-color: #fff;
       padding: 0px 25px;   
       margin-left: 30px;
-      min-width: 800px;;
+      min-width: 1130px;;
    }
   .positionTable h4 {
     font-family: MicrosoftYaHei-Bold;
@@ -655,6 +666,15 @@ export default {
    .cus_img {
      cursor: pointer;
    }
+  .area_sty {
+    position: relative;
+  }
+  .area_sty i {
+    position: absolute;
+    bottom:46px;
+    right:110px;
+    color: #999;
+  }
   /* 右侧样式结束 */
 </style>
 <style>

@@ -166,16 +166,16 @@ const api = {
   handAddCandidate: Butterfly + 'candidate/getCandidateIsExist', // 标准简历
   updateResume: Butterfly + 'candidate/update', // 更新候选人简历
   getCandidate: Butterfly + 'candidate/getCandidate/',// 查询候选人信息
-  commendDepartment:Butterfly+'candidate/insert/commend/department',//推荐给用人部门
+  commendDepartment: Butterfly + 'candidate/insert/commend/department',//推荐给用人部门
 
-  interviewList:Butterfly+'candidate/interview/list/',//候选人面试列表
-  insertInterview:Butterfly+'candidate/interview/insert',//插入面试
+  interviewList: Butterfly + 'candidate/interview/list/',//候选人面试列表
+  insertInterview: Butterfly +'candidate/interview/insert',//插入面试
   interviewDetail:Butterfly+'candidate/interview/detail/',//查看面试详情
   cancelInterview:Butterfly+'candidate/interview/cancel',//取消面试
   feedbackInterview:Butterfly+'interview/h5/submit/feedback',//面试反馈
 
   updateEliminate:Butterfly+'candidate/update/eliminate',//淘汰
-    init:Butterfly+'candidate/cancel/init/',//恢复到初筛
+  init:Butterfly+'candidate/cancel/init/',//恢复到初筛
 
   removeOffer:Butterfly+'offer/delete/',//删除offer
 }
