@@ -157,7 +157,7 @@
                                   <el-col :span='6'  :offset="2">  
                                       <el-form-item label="">
                                         <span>招聘人数
-                                            <el-input type="number" v-model="makeNormal.number" placeholder="请输入招聘人数"></el-input>
+                                            <el-input  @keyup.native="handleInput()" v-model="makeNormal.number" placeholder="请输入招聘人数"></el-input>
                                         </span>
                                       </el-form-item>
                                   </el-col>  
@@ -305,6 +305,10 @@ export default {
      },
    directives: {clickoutside},
     methods: {
+      handleInput() {
+        this.makeNormal.number =this.makeNormal.number.replace(/[^\.\d]/g,'');
+        this.makeNormal.number = this.makeNormal.number.replace('.','')
+      },
   // 获取员工架构
       getTree() {
           // that.$emit('updataTree')
@@ -376,15 +380,16 @@ export default {
     //创建岗位提交  
       createSubmit() {
         if(this.startTime !=='' || this.endTime !=='')  {
-            var timel =new Date().format("yyyy-MM-dd");
-                if(this.startTime <timel ) {
-                  this.$message({
-                      message: '开始招聘时间不能小于当前日期！',
-                      type: 'error'
-                  });
-                  this.startTime=''
-                  return
-                }else if(this.startTime > this.endTime) {
+            // var timel =new Date().format("yyyy-MM-dd");//当前时间
+                // if(this.startTime <timel ) {
+                //   this.$message({
+                //       message: '开始招聘时间不能小于当前日期！',
+                //       type: 'error'
+                //   });
+                //   this.startTime=''
+                //   return
+                // }else 
+                if(this.startTime > this.endTime) {
                 this.$message({
                   message:'开始招聘时间应小于目标完成时间！',
                   type:'error'
