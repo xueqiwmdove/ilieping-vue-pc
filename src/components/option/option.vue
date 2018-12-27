@@ -187,7 +187,6 @@ export default {
           }).then(function(res){
             // console.log(res);
           if(res.data.code=10000){
-						console.log(res.data.data);
 						var qrcode = new QRCode('Qrcode', {
 							text: res.data.data,
 							width: 120,
