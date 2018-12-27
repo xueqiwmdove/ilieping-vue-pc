@@ -34,7 +34,7 @@
 						<div class="optionTop">
 							<ul>
 								<li>
-									<img @click="getQrcode()" src="../../assets/img/zhiwei/shezhi_ic_diyibu.png"/>
+									<img src="../../assets/img/zhiwei/shezhi_ic_diyibu.png"/>
 									<h1>第一步：打印二维码</h1>
 									<h2>打印二维码放到前台，供员工扫码</h2>
 								</li>
@@ -49,7 +49,8 @@
 									<h2>候选人提交登记表后HR收到提醒</h2>
 								</li>
 								<li>
-									
+									<div class="Qrcode" id="Qrcode"></div>
+									<a>打印二维码</a>
 								</li>
 							</ul>
 						</div>
@@ -133,7 +134,8 @@
   import api from '@/api/api.js';
   import {headers} from '@/assets/js/common/lp.js'
   import store from '@/store/store';
-  import {format} from '@/assets/js/date.js'
+	import {format} from '@/assets/js/date.js'
+	import QRCode from 'qrcodejs2'
   import pageheader from '@/components/common/pageheader';
   import pageaside from '@/components/common/pageaside';
   import treeSearch from '@/components/common/treeSearch'
@@ -185,14 +187,23 @@ export default {
           }).then(function(res){
             // console.log(res);
           if(res.data.code=10000){
-                console.log(res.data.data);
-          }
+						console.log(res.data.data);
+						var qrcode = new QRCode('Qrcode', {
+							text: res.data.data,
+							width: 120,
+							height: 120,
+							colorDark : '#000000',
+							colorLight : '#ffffff',
+						});
+					}
         }).catch((res)=>{
-            // console.log(res)
-             console.log("not exsist");
-        })
-			}
-		}
+             console.log("qrcode not works");
+				})
+			},
+		},
+		created(){
+    	this.getQrcode();
+  	}
 }
 </script>
 
@@ -277,6 +288,29 @@ export default {
 	 display: block;
 	 height: 160px;
  }
+.optionTop ul li a{
+	 display: inline-block;
+	 width: 100px;
+	 height: 40px;
+	 background-color:#F95714;
+	 color:#fff;
+	 font-size: 14px;
+	 line-height: 40px;
+	 text-align: center; 
+	 position: absolute;
+	 top:50%;
+	 transform: translateY(-50%);
+	 right: 0;
+	 cursor: pointer;
+}
+.optionTop ul li .Qrcode{
+	width: 120px;
+	height: 120px;
+	position: absolute;
+	top:50%;
+	left: 60px;
+	transform: translateY(-50%);
+}
  .optionTop ul li h1{
 	 font-size: 16px;
 	 float:left;
