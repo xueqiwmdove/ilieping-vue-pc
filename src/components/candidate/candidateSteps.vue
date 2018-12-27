@@ -41,24 +41,24 @@
           </div>
         </div>
         <ul class="change_tab_title">
-          <li :class="step==1?'active':''" @click="changeTab(1)">基本信息</li>
-          <li :class="step==2?'active':''" @click="changeTab(2)">面试</li>
-          <li :class="step==3?'active':''" @click="changeTab(3)">offer/录用</li>
-          <li :class="step==4?'active':''" @click="changeTab(4)">备注</li>
-          <li :class="step==5?'active':''" @click="changeTab(5)">附件管理</li>
-          <li :class="step==6?'active':''" @click="changeTab(6)">操作记录</li>
+          <li :class="step==1||step==2?'active':''" @click="changeTab(1||2)">基本信息</li>
+          <li :class="step==3?'active':''" @click="changeTab(3)">面试</li>
+          <li :class="step==4?'active':''" @click="changeTab(4)">offer/录用</li>
+          <li :class="step==5?'active':''" @click="changeTab(5)">备注</li>
+          <li :class="step==6?'active':''" @click="changeTab(6)">附件管理</li>
+          <li :class="step==7?'active':''" @click="changeTab(7)">操作记录</li>
         </ul>
       </div>
 
       <div class="candidate_content">
        <el-scrollbar style="height:100%;overflow-x: hidden">
-          <basicFirst  v-show="step==1"   @getFormChild="parentFlag" :candidateStepsData="candidateStepsData" :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList"></basicFirst>
+          <basicFirst  v-show="step==1||step==2"   @getFormChild="parentFlag" :candidateStepsData="candidateStepsData" :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList"></basicFirst>
 
-          <interviewSecond   v-show="step==2" ref="interviewChild" :candidateStepsData="candidateStepsData"   :addressList="addressList" :commendEmployeeIdData="commendEmployeeIdData"></interviewSecond><!--:listentochild="showMsgformChild"-->
-          <offerThird v-show="step==3"  ref="offerChild" :candidateStepsData="candidateStepsData"  :addressList="addressList"></offerThird>
-          <remarkForth v-show="step==4" ref="barget" @addMack="addMack" ></remarkForth>
-          <accessoryFifth v-show="step==5" ref="accessoryChild"></accessoryFifth>
-          <opsRecordSeventh v-show="step==6" ref="opsRecordChild"></opsRecordSeventh>
+          <interviewSecond   v-show="step==3" ref="interviewChild" :candidateStepsData="candidateStepsData"   :addressList="addressList" :commendEmployeeIdData="commendEmployeeIdData"></interviewSecond><!--:listentochild="showMsgformChild"-->
+          <offerThird v-show="step==4"  ref="offerChild" :candidateStepsData="candidateStepsData"  :addressList="addressList"></offerThird>
+          <remarkForth v-show="step==5" ref="barget" @addMack="addMack" ></remarkForth>
+          <accessoryFifth v-show="step==6" ref="accessoryChild"></accessoryFifth>
+          <opsRecordSeventh v-show="step==7" ref="opsRecordChild"></opsRecordSeventh>
        </el-scrollbar>
       </div>
       <!--<candidateContent></candidateContent>-->
@@ -135,24 +135,24 @@
           this.step=flag;
           if(flag==1){
 
-          }else if(flag==2){
-            this.$refs.interviewChild.getInterview();
           }else if(flag==3){
+            this.$refs.interviewChild.getInterview();
+          }else if(flag==4){
             this.$refs.offerChild.offerIsExist();
-          } else if(flag==4){
+          } else if(flag==5){
             this.$refs.barget.getList();
-          }else if(flag==5){
-            this.$refs.accessoryChild.getList();
           }else if(flag==6){
+            this.$refs.accessoryChild.getList();
+          }else if(flag==7){
             this.$refs.opsRecordChild.getList();
           }else{
 
           }
         },
-        getFlag(flag,trueFlag){
+        getFlag(flag){
           this.step=flag;//子组件穿过的flag值，赋值给step；changeli
           // this.status1=flag;//changeStatus2
-          this.status1=trueFlag;
+          this.status1=flag;
           console.log(this.status1,this.step);
         },
         //只有基本资料 里面的标准简历可以下载 子组件 basicFirst穿过的flag值；
