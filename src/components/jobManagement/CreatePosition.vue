@@ -164,8 +164,9 @@
                               </el-row>
                               <el-row class="area_sty">
                                   <el-form-item label="职位描述"><br>
-                                        <textarea  v-model="makeNormal.positionDescribe" class="postion_affter" style="width:1100px;height:220px" placeholder="请输入职位描述"></textarea>
+                                        <textarea  @input="checkMsg" v-model="makeNormal.positionDescribe" maxlength="1000" class="postion_affter" style="width:1100px;min-width:900px;height:220px" placeholder="请输入职位描述"></textarea>
                                   </el-form-item>
+                                  <i><em>{{son}}</em>/1000</i>
                              </el-row>
                              <el-row>
                                <el-col>
@@ -244,6 +245,7 @@ export default {
        positionDetail:{},
        citys:'',//地址详情
        cityId:'',
+       son:'1',
        pageIndex: 1,
        pageSize: 10,
        createVisible:false,
@@ -308,6 +310,10 @@ export default {
       handleInput() {
         this.makeNormal.number =this.makeNormal.number.replace(/[^\.\d]/g,'');
         this.makeNormal.number = this.makeNormal.number.replace('.','')
+      },
+      checkMsg(val) {
+        var textVal = this.makeNormal.positionDescribe.length;
+        this.son = 1000 - textVal;
       },
   // 获取员工架构
       getTree() {
@@ -591,7 +597,7 @@ export default {
      background-color: #fff;
       padding: 0px 25px;   
       margin-left: 30px;
-      min-width: 800px;;
+      min-width: 1130px;;
    }
   .positionTable h4 {
     font-family: MicrosoftYaHei-Bold;
@@ -663,10 +669,9 @@ export default {
   .area_sty {
     position: relative;
   }
-  .area_sty::after {
-    content:'0/1000';
+  .area_sty i {
     position: absolute;
-    bottom:24px;
+    bottom:46px;
     right:110px;
     color: #999;
   }
