@@ -41,12 +41,26 @@
               <div class="bottomConclude">
                   <div class="topBorder"></div>
                   <div class="content">
-                    <span><i>候选人姓名</i>，您好！</span>
-                    <span>感谢关注<i class="iSpecial">上海棋至文化有限公司</i>我是公司的HR。很高兴收到您的简历， 安排如下：</span>
-                    <span><i>阶段日期：</i><i class="iSpecial">2019/08/09</i><i class="iSpecial">14:00</i></span>
-                    <span><i>阶段形式：</i><i class="iSpecial">电话面试</i></span>
-                    <span><i>阶段地址：</i><i class="iSpecial">上海市南京东路1288号上海商3楼</i></span>
-                    <span>联系方式：<i class="iSpecial">李乾坤</i><i class="iSpecial">18809098897</i></span>
+                    <h1>尊敬的候选人，您好！</h1>
+                    <span>感谢您对公司的认可，非常荣幸地通知您，您已被我司正式录用。</span>
+                    <span>欢迎您加入 <i class="iSpecial">上海棋至文化有限公司</i></span>
+                    <span>入职部门：</span>
+                    <span>入职岗位：</span>
+                    <span>入职时间：</span>
+                    <span>岗位薪酬：</span>
+                    <span>试用期：</span>
+                    <span style="margin-bottom:40px;">入职地点：</span>
+                    <span>入职所需的材料和证件</span>
+                    <span>1. 原单位离职证明（加盖原单位公章）1份 </span> 
+                    <span>2. 身份证原件 </span>
+                    <span>3. 学位证、毕业证原件 </span>
+                    <span>4. 相关资格证书原件</span>
+                    <span style="margin-bottom:40px;">5. 入职体检证明 </span>
+                    <span>联系人：王力宏</span>
+                    <span>联系电话：13262255555 </span>
+                    <span style="margin-bottom:40px;">联系人邮箱： abc@abc.com </span>
+                    <span style="margin-bottom:40px;">请您仔细阅读此录用通知书并及时保存。请您在收到录用通知书后，请您点击底部按钮进行回复确认，在规定日期内报到办理入职。 </span>
+                    <span>如有问题请用以上联系方式及时与我们沟通，谢谢！（系统邮件，请勿直接回复）</span>
                   </div>
                   <div class="bottomBorder"></div>
                 </div>
@@ -117,7 +131,6 @@
         width: 77.5%;
         min-width: 500px;
         height: 30px !important;
-        margin-bottom: 30px !important;
     }
     .bottomBorder{
         background: url("../../assets/img/muban/bottomborder.jpg") no-repeat;
@@ -135,14 +148,19 @@
 	 width: 77.5%;
 	 border-bottom:1px solid #E5E5E5;
  }
+  .iSpecial{
+   margin: 0 10px;
+ }
   .bottomConclude{
    min-width: 500px;
 	 height: auto;
    margin: 60px auto 99px auto  !important;
 	 float: left;
    overflow: hidden;
+   color: #748093;
 	 width: 77.5%;
- }.optionofferBottom .content{
+ }
+ .optionofferBottom .content{
    min-width: 500px;
 	 height: auto;
    overflow: hidden;
@@ -163,11 +181,12 @@
  }
  .optionofferBottom h1{
 	 line-height: 35px;
-	 margin-top: 40px;
 	 font-size: 26px;
-	 text-align: center;
+	 text-align: left;
+   padding-left:37px; 
 	 display: inline-block;
 	 width: 100%;
+   margin: 0 0 20px 0;
  }
 .optionofferBottom ul{
 	width: 100%;
@@ -178,11 +197,10 @@
 	height: 18px;
 }
 .optionofferBottom div{
-	position: relative;
-	border-top:1px solid #E5E5E5;
-	z-index: 2;
-	padding-top: 48px;
-	height: auto;
+  overflow: hidden;
+  height: auto;
+  display: table;
+  margin: 0 auto;
 }
 .optionofferBottom h2{
 	width: 86px;
@@ -196,12 +214,12 @@
 	left: 0;
 }
 .optionofferBottom span{
-	width: 50%;
-	margin-bottom: 30px;
+	width: 100%;
+	margin-bottom: 19px;
 	font-size: 14px;
-	padding-right: 278px;
-	float: right;
-	text-align: right;
+  line-height: 19px;
+	padding:0 30px 0 60px;
+  display: block;
 }
 .optionofferBottom ul li{
 	float: left;
