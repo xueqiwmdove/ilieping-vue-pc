@@ -93,6 +93,12 @@ import SearchCandidata from  '@/components/CandidatManage/searchCandidata'
 //设置
 import option from  '@/components/option/option'//设置页面
 import optioninterview from  '@/components/option/optioninterview'//面试模板
+import optionoffer from  '@/components/option/optionoffer'//设置offer
+import optionjudge from  '@/components/option/optionjudge'//设置邀约
+import optionmaster from  '@/components/option/optionmaster'//设置面试官
+import optioncandidate from  '@/components/option/optioncandidate'//设置候选人
+import optioncancel from  '@/components/option/optioncancel'//设置取消
+import optionrefuse from  '@/components/option/optionrefuse'//设置拒绝
 //账号管理
 import businessManager from '@/components/account/businessManager'//企业经办人
 import businessCert from '@/components/account/certificate' //企业认证
@@ -485,15 +491,46 @@ const router =new Router({
       component: option,
     },
     {//设置邀约
-      path: '/option',
+      path: '/optioninterview',
       name: 'optioninterview',
       component: optioninterview,
+    },
+    {//设置offer
+      path: '/optionoffer',
+      name: 'optionoffer',
+      component: optionoffer,
+    },
+    {//评估邀请
+      path: '/optionjudge',
+      name: 'optionjude',
+      component: optionjudge,
+    },
+    {//面试官邀请
+      path: '/optionmaster',
+      name: 'optionmaster',
+      component: optionmaster,
+    },
+    {//设置候选人
+      path: '/optioncandidate',
+      name: 'optioncandidate',
+      component: optioncandidate,
+    },
+    {//设置取消
+      path: '/optioncancel',
+      name: 'optioncancel',
+      component: optioncancel,
+    },
+    {//设置拒绝
+      path: '/optionrefuse',
+      name: 'optionrefuse',
+      component: optionrefuse,
     },
      {//候选人信息弹窗
       path: '/candidateSteps',
       name: 'candidateSteps',
       component: candidateSteps,
-    },	{
+    },	
+    {
 				path: '/customContractTemplate',
 				name: 'customContractTemplate',
 				component: customContractTemplate,

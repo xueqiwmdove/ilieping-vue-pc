@@ -21,40 +21,35 @@
                         <h4><img class="img_shengfen" src="../../assets/img/zhiwei/miasnhi_ic_pannei.png" alt="">
                           <span  style="margin-left:30px;">模板</span>
                         </h4>
-                        <p class="ad_change">全部职位 <i><img src="../../assets/img/zhiwei/ic_chose.png" alt=""></i></p>
-						            <p @click="click_optioninterview()">面试邀约模板 <i></i></p>
-						            <p>offer模板<i></i></p>
-                    </div>
+                        <p @click="click_option()" class="ad_change">面试登记表 <i><img src="../../assets/img/zhiwei/ic_chose.png" alt=""></i></p>
+                        <p @click="click_optioninterview()">面试邀约模板 <i></i></p>
+                        <p @click="click_optionoffer()">offer模板<i></i></p>
+                        <p @click="click_optionjudge()">简历评估邀请模版<i></i></p>
+                        <p @click="click_optionmaster()">面试官面试通知模版<i></i></p>
+												<p @click="click_optioncandidate()">候选人签到通知模版<i></i></p>
+												<p @click="click_optioncancel()">面试取消通知模版<i></i></p>
+									  		<p @click="click_optionrefuse()">拒信模版<i></i></p>
+										</div>
 					<div class="option-left">
 						<div class="optionofferTop">
 							<ul>
-                                <li>offer邮件模板</li>
+                    <li>offer邮件模板</li>
                                 <li>+自定义（升级企业用户）</li>
 							</ul>
 						</div>
 						<div class="optionofferBottom">
-                            <div>
-                                <h1>尊敬的 候选人，您好！</h1>
-                                <span>感谢您对公司的认可，非常荣幸地通知您，您已被我司正式录用。</span>
-                                <span>欢迎您加入 上海棋至文化有限公司</span>
-                                <span>入职部门：</span>
-                                <span>入职岗位：</span>
-                                <span>入职时间：</span>
-                                <span>岗位薪酬：</span>
-                                <span>试用期：</span>
-                                <span>入职地点</span>
-                                <span>入职所需的材料和证件 </span>
-                                <span>1. 原单位离职证明（加盖原单位公章）1份 </span>
-                                <span>2. 身份证原件</span>
-                                <span>3. 学位证、毕业证原件</span>
-                                <span>4. 相关资格证书原件 </span>
-                                <span>5. 入职体检证明 </span>
-                                <span>联系人：王力宏</span>
-                                <span>联系电话：13262255555 </span>
-                                <span>联系人邮箱： abc@abc.com</span>
-                                <span>请您仔细阅读此录用通知书并及时保存。请您在收到录用通知书后，请您点击底部按钮进行回复确认，在规定日期内报到办理入职。</span>
-                                <span>如有问题请用以上联系方式及时与我们沟通，谢谢！（系统邮件，请勿直接回复）</span>
-                            </div>
+              <div class="bottomConclude">
+                  <div class="topBorder"></div>
+                  <div class="content">
+                    <span><i>候选人姓名</i>，您好！</span>
+                    <span>感谢关注<i class="iSpecial">上海棋至文化有限公司</i>我是公司的HR。很高兴收到您的简历， 安排如下：</span>
+                    <span><i>阶段日期：</i><i class="iSpecial">2019/08/09</i><i class="iSpecial">14:00</i></span>
+                    <span><i>阶段形式：</i><i class="iSpecial">电话面试</i></span>
+                    <span><i>阶段地址：</i><i class="iSpecial">上海市南京东路1288号上海商3楼</i></span>
+                    <span>联系方式：<i class="iSpecial">李乾坤</i><i class="iSpecial">18809098897</i></span>
+                  </div>
+                  <div class="bottomBorder"></div>
+                </div>
 						</div>
 					</div>
                 </el-row>
@@ -85,8 +80,29 @@
 	},
   methods: {
     click_optioninterview(){
-      this.$router.push('/optioninterview');
-    },
+        this.$router.push('/optioninterview');
+      },
+      click_optionoffer(){
+        this.$router.push('/optionoffer');
+      },
+      click_option(){
+        this.$router.push('/option');
+      },
+      click_optionjudge(){
+        this.$router.push('/optionjudge');
+      },
+      click_optionmaster(){
+        this.$router.push('/optionmaster');
+			},
+			click_optioncandidate(){
+        this.$router.push('/optioncandidate');
+			},
+			click_optioncancel(){
+        this.$router.push('/optioncancel');
+			},
+			click_optionrefuse(){
+        this.$router.push('/optionrefuse');
+      },
   },
 }
 </script>
@@ -95,15 +111,57 @@
  .content {
 	 min-width: 1520px;
  }
- .optionBottom{
+  .topBorder{
+        background: url("../../assets/img/muban/topborder.jpg") no-repeat;
+        background-size: contain;
+        width: 77.5%;
+        min-width: 500px;
+        height: 30px !important;
+        margin-bottom: 30px !important;
+    }
+    .bottomBorder{
+        background: url("../../assets/img/muban/bottomborder.jpg") no-repeat;
+        background-size: contain;
+        width: 77.5%;
+        min-width: 500px;
+        height: 30px !important; 
+        margin-top: 30px !important;
+    }
+ .optionofferBottom{
+	 min-width: 500px;
 	 height: auto;
-	 overflow: hidden;
 	 float: left;
-	 width: 1000px;
-	 margin: 0 auto;
-	 display: table;
+   overflow: hidden;
+	 width: 77.5%;
+	 border-bottom:1px solid #E5E5E5;
  }
- .optionBottom h1{
+  .bottomConclude{
+   min-width: 500px;
+	 height: auto;
+   margin: 60px auto 99px auto  !important;
+	 float: left;
+   overflow: hidden;
+	 width: 77.5%;
+ }.optionofferBottom .content{
+   min-width: 500px;
+	 height: auto;
+   overflow: hidden;
+	 width: 77.5%;
+   /* margin: 38px 0 30px 0; */
+   box-shadow: none;
+   -webkit-box-shadow:none;
+   padding-bottom: 0;
+ }
+ .optionofferBottom .content i{
+    background:rgba(242,243,245,1); 
+    font-size: 14px;
+    color: #394a66;
+    font-weight: bold;
+    padding: 0 11px;
+    line-height: 19px;
+    height: 19px;
+ }
+ .optionofferBottom h1{
 	 line-height: 35px;
 	 margin-top: 40px;
 	 font-size: 26px;
@@ -111,7 +169,7 @@
 	 display: inline-block;
 	 width: 100%;
  }
-.optionBottom ul{
+.optionofferBottom ul{
 	width: 100%;
 	margin-top: 20px;
 	display: inline-block;
@@ -119,14 +177,14 @@
 	line-height: 18px;
 	height: 18px;
 }
-.optionBottom div{
+.optionofferBottom div{
 	position: relative;
 	border-top:1px solid #E5E5E5;
 	z-index: 2;
 	padding-top: 48px;
 	height: auto;
 }
-.optionBottom h2{
+.optionofferBottom h2{
 	width: 86px;
 	height: 14px;
 	border-left: 4px solid #F95714;
@@ -137,7 +195,7 @@
 	z-index: 55;
 	left: 0;
 }
-.optionBottom span{
+.optionofferBottom span{
 	width: 50%;
 	margin-bottom: 30px;
 	font-size: 14px;
@@ -145,49 +203,70 @@
 	float: right;
 	text-align: right;
 }
-.optionBottom ul li{
+.optionofferBottom ul li{
 	float: left;
 	width: 50%;
 }
-.optionBottom strong{
+.optionofferBottom strong{
 	line-height: 18px;
 }
- .optionTop{
+ .optionofferTop{
 	 min-width: 500px;
-	 height: 160px;
+	 height: 60px;
 	 float: left;
 	 width: 77.5%;
 	 border-bottom:1px solid #E5E5E5;
 
  }
- .optionTop ul{
-	 height: 160px;
+ .optionofferTop ul{
+	 height: 60px;
 	 display: block;
  }
- .optionTop ul li{
+  .optionofferTop ul li{
 	 position: relative;
 	 float: left;
 	 width: 300px;
 	 display: block;
-	 height: 160px;
+	 height: 0;
  }
- .optionTop ul li h1{
+ .optionofferTop ul li:first-child{
+   color: #394A66;
+   font-size: 16px;
+   font-weight: bold;
+   line-height: 60px;
+ }
+ .optionofferTop ul li:last-child{
+   display: block;
+   width: 185px;
+   margin-top: 10px;
+   height: 40px;
+   background-color: #E5E5E5;
+   font-size: 14px;
+   float: right;
+   color:#97A2B3;
+   cursor: pointer;
+   text-align: center;
+   line-height: 40px;
+ }
+
+ .optionofferTop ul li h1{
 	 font-size: 16px;
 	 float:left;
 	 margin-top: 55px;
 	 margin-left:  70px;
  }
-  .optionTop ul li h2{
+  .optionofferTop ul li h2{
 	  color: #748093;
 	  font-size: 14px;
 	  float:left;
 	  margin-left: 70px;
   }
- .optionTop ul li img{
+ .optionofferTop ul li img{
 	 position: absolute;
 	 top: 50%;
 	 transform: translateY(-50%)
  }
+ 
 .asidePosition {
     width: 340px;
     min-width: 340px;;
@@ -242,7 +321,7 @@ color: #F95714;
 color: #F95714;	
 }
 .ad_input p {
-  width: 300px;
+  width: 320px;
   cursor: pointer;
   height: 30px;
   /* color: #F95714; */

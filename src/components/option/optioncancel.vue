@@ -13,7 +13,7 @@
         <div class="right-content pull-right">
             <div class="content">
                 <p class="headline">
-                    <span>设置</span>
+                    <span>面试邀约模板</span>
                 </p>
                 <el-row>
               <!--left-side-->
@@ -26,96 +26,53 @@
                         <p @click="click_optionoffer()">offer模板<i></i></p>
                         <p @click="click_optionjudge()">简历评估邀请模版<i></i></p>
                         <p @click="click_optionmaster()">面试官面试通知模版<i></i></p>
-												<p @click="click_optioncandidate()">候选人签到通知模版<i></i></p>
-												<p @click="click_optioncancel()">面试取消通知模版<i></i></p>
-									  		<p @click="click_optionrefuse()">拒信模版<i></i></p>
-										</div>
+						<p @click="click_optioncandidate()">候选人签到通知模版<i></i></p>
+						<p @click="click_optioncancel()">面试取消通知模版<i></i></p>
+						<p @click="click_optionrefuse()">拒信模版<i></i></p>
+					</div>
 					<div class="option-left">
-						<div class="optionTop">
+						<div class="optioninterviewTop">
 							<ul>
-								<li>
-									<img @click="getQrcode()" src="../../assets/img/zhiwei/shezhi_ic_diyibu.png"/>
-									<h1>第一步：打印二维码</h1>
-									<h2>打印二维码放到前台，供员工扫码</h2>
-								</li>
-								<li>
-									<img src="../../assets/img/zhiwei/shezhi_ic_diyibu.png"/>
-									<h1>第二步：候选人扫码</h1>
-									<h2>候选人扫码自助填写面试登记表</h2>
-								</li>
-								<li>
-									<img src="../../assets/img/zhiwei/shezhi_ic_diyibu.png"/>
-									<h1>第三步：HR面试提醒</h1>
-									<h2>候选人提交登记表后HR收到提醒</h2>
-								</li>
+                <li>面试取消通知短信模版-给面试官</li>
+                <li>+自定义（升级企业用户）</li>
 							</ul>
 						</div>
-						<div class="optionBottom">
-							<h1>面试登录表<i></i></h1>
+						<div class="optioninterviewBottom">
+                <div class="bottomConclude">
+                  <div class="topBorder"></div>
+                  <div class="content">
+                    <span><i>上海棋至文化有限公司</i>的<i class="iSpecial">面试官姓名</i>，您好！</span>
+                    <span>您有一场<i class="iSpecial">阶段</i>被取消了。<i class="iSpecial">阶段</i>具体信息如下</span>
+                    <span><i>岗位名称：</i><i class="iSpecial">Java工程师</i></span>
+                    <span><i>阶段日期：</i><i class="iSpecial">2019/08/09</i><i class="iSpecial">14:00</i></span>
+                    <span><i>阶段形式：</i><i class="iSpecial">电话面试</i></span>
+                    <span><i>阶段地址：</i><i class="iSpecial">上海市南京东路1288号上海商3楼</i></span>
+                    <span>联系方式：<i class="iSpecial">李乾坤</i><i class="iSpecial">18809098897</i></span>
+                    <span>请您合理安排时间，谢谢！</span>
+                  </div>
+                  <div class="bottomBorder"></div>
+                </div>
+						</div>
+            <div class="optioninterviewTop">
 							<ul>
-								<li>应聘岗位:</li>
-								<li>面试时间:</li>
+                <li>面试取消通知短信模板-给候选人</li>
+                <li>+自定义（升级企业用户）</li>
 							</ul>
-							<div class="option_baseinfo" style="height:548px;">
-								<h2>基本信息</h2>
-								<span>姓名</span>
-								<span>性别</span>
-								<span>出生年月</span>
-								<span>年龄</span>
-								<span>邮箱</span>
-								<span>手机</span>
-								<span>政治面貌</span>
-								<span>籍贯</span>
-								<span>婚姻状况</span>
-								<span>身份证号码</span>
-								<span>生育状况</span>
-								<span>现住地址</span>
-								<span>所在行业</span>
-								<span>期望行业</span>
-								<span>目前工作状态</span>
-								<span>当前薪酬</span>
-								<span>最快到岗时间</span>
-								<span>期望薪酬</span>
-								<span>工作城市</span>
-								<span>技能标签</span>
-							</div>
-							<div class="workExp" style="height:264px;">
-								<h2>工作经历</h2>
-								<span>任职时间</span>
-								<span>公司名称</span>
-								<span>岗位</span>
-								<span>薪资</span>
-								<span>离职原因</span>
-								<span>证明人</span>
-								<span>联系方式</span>
-							</div>	
-							<div class="eduExp"  style="height:264px;">
-								<h2>教育经历</h2>
-								<span>就读时间</span>
-								<span>学校名称</span>
-								<span>专业</span>
-								<span>学历</span>
-								<span>学位</span>
-								<span>是否全日制</span>
-								<span>其他</span>
-							</div>
-							<div class="personSpacial"  style="height:264px;">
-								<h2>个人特质</h2>
-								<span>特长爱好</span>
-								<span>英语水平</span>
-								<span>计算机水平</span>
-								<span>证书</span>
-								<span style="width:100%;">公司内部是否有您的亲戚朋友</span>
-								<span>应聘途径</span>
-							</div>
-							<div class="getNotice"  style="height:165px;">
-								<h2>入职声明</h2>
-								<strong>入职声明： 本人已准确理解、并接受上述各项目内容及要求，保证所填内容属实，并同意公司进行核实，如有不实之处，本人无条件接受公司辞退处分，并承担相应责任。</strong>
-								<ul>
-									<li>申请人:</li>
-									<li>日期:</li>
-								</ul>
-							</div>
+						</div>
+						<div class="optioninterviewBottom">
+                <div class="bottomConclude">
+                  <div class="topBorder"></div>
+                  <div class="content">
+                    <span><i>候选人姓名</i>，您好！</span>
+                    <span>您有一场<i class="iSpecial">阶段</i>被取消了。<i class="iSpecial">阶段</i>具体信息如下</span>
+                    <span><i>阶段日期：</i><i class="iSpecial">2019/08/09</i><i class="iSpecial">14:00</i></span>
+                    <span><i>阶段形式：</i><i class="iSpecial">电话面试</i></span>
+                    <span><i>阶段地址：</i><i class="iSpecial">上海市南京东路1288号上海商3楼</i></span>
+                    <span>联系方式：<i class="iSpecial">李乾坤</i><i class="iSpecial">18809098897</i></span>
+                    <span>请您合理安排时间，谢谢！</span>
+                  </div>
+                  <div class="bottomBorder"></div>
+                </div>
 						</div>
 					</div>
                 </el-row>
@@ -133,20 +90,15 @@
   import {format} from '@/assets/js/date.js'
   import pageheader from '@/components/common/pageheader';
   import pageaside from '@/components/common/pageaside';
-  import treeSearch from '@/components/common/treeSearch'
-//  blance
-  import addCandidate from '@/components/candidate/addCandidate';
-  import candidateSteps from '@/components/candidate/candidateSteps';
-  import recommend_depart from '@/components/candidate/common/recommend_depart';
-
-
-export default {
+  
+  export default {
+  name: 'jobmanageindex',
 	components: {
    	pageheader,
     pageaside,
 	},
     methods: {
-    	click_optioninterview(){
+      click_optioninterview(){
         this.$router.push('/optioninterview');
       },
       click_optionoffer(){
@@ -170,43 +122,73 @@ export default {
 			click_optionrefuse(){
         this.$router.push('/optionrefuse');
       },
-			getQrcode(){
-				let that=this;
-            that.newDepartments = false;
-            that.$http({
-            url:api.Qrcode,
-            method:'get',
-  					headers:headers("application/json;charset=utf-8"),
-  					data:{},
-  					cache:false,		
-          }).then(function(res){
-            // console.log(res);
-          if(res.data.code=10000){
-                console.log(res.data.data);
-          }
-        }).catch((res)=>{
-            // console.log(res)
-             console.log("not exsist");
-        })
-			}
-		}
+    },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped >
  .content {
-	 min-width: 1600px;
+	 min-width: 1520px;
  }
- .optionBottom{
+ /* .topBorder{
+   background: url("../../assets/img/muban/topborder.jpg") no-repeat;
+ } */
+ .topBorder{
+        background: url("../../assets/img/muban/topborder.jpg") no-repeat;
+        background-size: contain;
+        width: 77.5%;
+        min-width: 500px;
+        height: 30px !important;
+        margin-bottom: 30px !important;
+    }
+    .bottomBorder{
+        background: url("../../assets/img/muban/bottomborder.jpg") no-repeat;
+        background-size: contain;
+        width: 77.5%;
+        min-width: 500px;
+        height: 30px !important; 
+        margin-top: 30px !important;
+    }
+ .optioninterviewBottom{
+	 min-width: 500px;
 	 height: auto;
-	 overflow: hidden;
 	 float: left;
-	 width: 1000px;
-	 margin: 0 auto;
-	 display: table;
+   overflow: hidden;
+	 width: 77.5%;
+	 border-bottom:1px solid #E5E5E5;
  }
- .optionBottom h1{
+ .bottomConclude{
+   min-width: 500px;
+	 height: auto;
+   margin: 60px auto 99px auto  !important;
+	 float: left;
+   overflow: hidden;
+	 width: 77.5%;
+ }
+ .optioninterviewBottom .content{
+   min-width: 500px;
+	 height: auto;
+   overflow: hidden;
+	 width: 77.5%;
+   /* margin: 38px 0 30px 0; */
+   box-shadow: none;
+   -webkit-box-shadow:none;
+   padding-bottom: 0;
+ }
+ .optioninterviewBottom .content i{
+    background:rgba(242,243,245,1); 
+    font-size: 14px;
+    color: #394a66;
+    font-weight: bold;
+    padding: 0 11px;
+    line-height: 19px;
+    height: 19px;
+ }
+ .iSpecial{
+   margin: 0 10px;
+ }
+ .optioninterviewBottom h1{
 	 line-height: 35px;
 	 margin-top: 40px;
 	 font-size: 26px;
@@ -214,7 +196,7 @@ export default {
 	 display: inline-block;
 	 width: 100%;
  }
-.optionBottom ul{
+.optioninterviewBottom ul{
 	width: 100%;
 	margin-top: 20px;
 	display: inline-block;
@@ -222,14 +204,13 @@ export default {
 	line-height: 18px;
 	height: 18px;
 }
-.optionBottom div{
-	position: relative;
-	border-top:1px solid #E5E5E5;
-	z-index: 2;
-	padding-top: 48px;
-	height: auto;
+.optioninterviewBottom div{
+  overflow: hidden;
+  height: auto;
+  display: table;
+  margin: 0 auto;
 }
-.optionBottom h2{
+.optioninterviewBottom h2{
 	width: 86px;
 	height: 14px;
 	border-left: 4px solid #F95714;
@@ -240,53 +221,72 @@ export default {
 	z-index: 55;
 	left: 0;
 }
-.optionBottom span{
-	width: 50%;
-	margin-bottom: 30px;
+.optioninterviewBottom span{
+	width: 100%;
+	margin-bottom: 19px;
 	font-size: 14px;
-	padding-right: 278px;
-	float: right;
-	text-align: right;
+  line-height: 19px;
+	padding:0 30px 0 60px;
+  display: block;
 }
-.optionBottom ul li{
+.optioninterviewBottom ul li{
 	float: left;
 	width: 50%;
 }
-.optionBottom strong{
+.optioninterviewBottom strong{
 	line-height: 18px;
 }
- .optionTop{
+ .optioninterviewTop{
 	 min-width: 500px;
-	 height: 160px;
+	 height: 60px;
 	 float: left;
 	 width: 77.5%;
 	 border-bottom:1px solid #E5E5E5;
 
  }
- .optionTop ul{
-	 height: 160px;
+ .optioninterviewTop ul{
+	 height: 21px;
 	 display: block;
  }
- .optionTop ul li{
+ .optioninterviewTop ul li{
 	 position: relative;
 	 float: left;
 	 width: 300px;
 	 display: block;
-	 height: 160px;
+	 height: 21px;
  }
- .optionTop ul li h1{
+ .optioninterviewTop ul li:first-child{
+   color: #394A66;
+   font-size: 16px;
+   font-weight: bold;
+   line-height: 60px;
+ }
+ .optioninterviewTop ul li:last-child{
+   display: block;
+   width: 185px;
+   margin-top: 10px;
+   height: 40px;
+   background-color: #E5E5E5;
+   font-size: 14px;
+   float: right;
+   color:#97A2B3;
+   cursor: pointer;
+   text-align: center;
+   line-height: 40px;
+ }
+ .optioninterviewTop ul li h1{
 	 font-size: 16px;
 	 float:left;
 	 margin-top: 55px;
 	 margin-left:  70px;
  }
-  .optionTop ul li h2{
+  .optioninterviewTop ul li h2{
 	  color: #748093;
 	  font-size: 14px;
 	  float:left;
 	  margin-left: 70px;
   }
- .optionTop ul li img{
+ .optioninterviewTop ul li img{
 	 position: absolute;
 	 top: 50%;
 	 transform: translateY(-50%)
@@ -297,7 +297,7 @@ export default {
     height:948px;
 	background: #fff;
 	float: left;
-    margin-right: 15px;
+    /* margin-right: 15px; */
     padding: 0px 25px;
     /* border-right: 1px solid #eee; */
 }
