@@ -113,7 +113,7 @@
                 <P>面试时间：<i>{{interviewTime}}</i></P>
                 <p>面试形式：<i v-if="interviewMode==3">视频面试</i><i v-if="interviewMode==2">电话面试</i><i v-if="interviewMode==1">现场面试</i></p>
                 <p>面试地点：<i>{{interviewAddress}}</i></p>
-                <p>联系方式：<i>联系方式</i><i></i></p>
+                <p>联系方式：<i>{{item.chargeName}}</i><i>{{item.chargePhone}}</i></p>
               </div>
 
             </div>
@@ -347,6 +347,7 @@
               if(that.interviewList.length==0){
 
                 that.noInterviews=true;
+                that.interview_basic=false;
               }else{
                 that.interview_list_status=true;
                 that.interview_basic=false;

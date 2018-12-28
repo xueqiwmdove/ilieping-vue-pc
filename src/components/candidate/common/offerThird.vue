@@ -124,11 +124,11 @@
                               <p> 您好！尊敬的<span>{{item.candidateName}}</span></p>
                               <p>欢迎您加入<span>上海棋至文化有限公司</span>在此荣幸的要请你出任<span>{{item.postName}}</span>一职</p>
                               <p>入职时间：<span>{{makeNormal.reportTime}}</span></p>
-                              <p>薪酬：<span>{{makeNormal.salaryType}}</span><span>{{makeNormal.salary}}</span></p>
-                              <p>试用期<span style="background-color:#F5A623;color:#fff;" v-if="makeNormal.probation==0"> {{makeNormal.probation}}个月</span></p>
+                              <p>薪酬：<span v-if="makeNormal.salaryType=='1'">日薪</span><span v-if="makeNormal.salaryType=='2'">月薪</span><span v-if="makeNormal.salaryType=='3'">年薪</span><span>{{makeNormal.salary}}</span></p>
+                              <p v-if="makeNormal.probation !=0">试用期<span style="background-color:#F5A623;color:#fff;" > {{makeNormal.probation}}个月</span></p>
                               <p>入职地点：<span>{{makeNormal.reportAddr}}</span></p>
-                              <p>联系人：<span>李乾坤</span></p>
-                              <p>电话：<span>12545454444</span></p>
+                              <p>联系人：<span>{{item.chargeName}}</span></p>
+                              <p>电话：<span>{{item.chargePhone}}</span></p>
                               <p>入职所需的材料和证明</p>
                               <p>1.原单位离职证明（加盖原单位公章）1份</p>
                               <p>2.身份证原件</p>
@@ -171,12 +171,11 @@
           <div class="person_sty">
           <div class="offer_modal2">
               <p class="title2">
-                <span class="methods">2018/09/08(星期一) 发送offer</span>
+                <span class="methods"><span v-html="formatDate(createTime)"></span>({{week}}) 发送offer</span>
                 <span class="removes" @click="removeOffer">删除offer</span>
               </p>
-              <div class="content_offer">
-              <img class="up_img" src="../../../assets/img/candidate/777.png" alt="">
-                <div v-html="html"></div>
+              <div class="content_offer" v-html="html">
+              <!--<img class="up_img" src="../../../assets/img/candidate/777.png" alt="">-->
                 <!--<h2>尊敬的谢进</h2>-->
                 <!--<p>您好，欢迎您加入 <span>上海华趣文化传播有限公司</span>，在此荣幸的邀请您出任我们</p>-->
                 <!--<p><span>产品部PM</span> 一职。</p>-->
@@ -190,7 +189,7 @@
                 <!--<p>基本工资：<span>月薪10000</span>元</p>-->
                  <!--<p><span class="items">3.工作性质和试用期</span></p>-->
                 <!--<p>您的工作性质是：<span>全职</span>试用期：<span>无</span></p>-->
-              <img class="down_img" src="../../../assets/img/candidate/666.png" alt="">
+              <!--<img class="down_img" src="../../../assets/img/candidate/666.png" alt="">-->
               </div>
               <img v-if="status==1"  class="status_img" src="../../../assets/img/candidate/tanchuang_offer_pic_refused.png" alt="">
           </div>
@@ -204,6 +203,7 @@
   import http from '@/http/http'
   import api from '@/api/api.js';
   import {headers} from '@/assets/js/common/lp.js'
+  import {formatDate} from '@/assets/js/common/date_year.js';
 
     export default {
       name: "offerThird",
@@ -235,10 +235,17 @@
           pathData:[],//附件id
           status:'',
           html:[],
-          offerId:''
+          offerId:'',
+          createTime:'',
+          week:'',
         }
       },
       methods:{
+        formatDate(time) {
+          let date = new Date(time);
+          return formatDate(date, 'yyyy/MM/dd');
+          //此处formatDate是一个函数，将其封装在common/js/date.js里面，便于全局使用
+        },
         isPdf(){
           console.log(this.makeNormal.isPdf)
         },
@@ -282,10 +289,10 @@
           }).then(function (res) {
             // console.log(res)
             if(res.data.code==10000){
-              this.flag1 = false;
+              that.flag1 = false;
               that.offerIsExist();
             }else if(res.data.code==40001){
-              this.flag1 = false;
+              that.flag1 = false;
               that.offerIsExist();
             }else{
 
@@ -304,10 +311,14 @@
             console.log(res);
             if(res.data.code==10000){
               that.isShow=false;
-              that.html=res.data.html;
+              that.html=res.data.data.html;
+              // console.log(that.html);
               //邮件状态 1-等待员工确认offer 2- 拒绝 3-已确认offer待入职 4-已完成入职
-              that.status=res.data.status;
-              that.offerId=res.data.id;
+              that.status=res.data.data.status;
+              that.offerId=res.data.data.id;
+              that.week=res.data.data.week;
+              that.createTime=res.data.data.createTime;
+              that.flag1=false;
 
             }else if(res.data.code==40000){
               // offer 不存在"
@@ -324,9 +335,10 @@
       //  删除offer
         removeOffer(){
           let that=this;
+          console.log(that.offerId)
           that.$http({
             method:'post',
-            url:api.removeOffer+that.candidateID+"/"+193,//that.offerId,
+            url:api.removeOffer+that.candidateID+"/"+that.offerId,
             headers:headers(),
           }).then(function (res) {
             console.log(res);
@@ -376,7 +388,7 @@
     border:none;
   }
   .person_sty .offer_modal2 {
-      height: 600px;
+      /*height: 600px;*/
       width: 80%;
       background: #FFFFFF;
       border: 1px solid #E5E5E5;
@@ -466,17 +478,17 @@
      margin-left: 10px;
    }
    .person_sty .content_offer {
-     height: 500px;
-     width:86%;
+     /*height: 500px;*/
+     /*width:86%;*/
      background: #F9F9F9;
      margin: 30px auto;
-     padding: 40px 30px;
-     clear: #748093;
+     /*padding: 40px 30px;*/
+     /*clear: #748093;*/
      font-size: 15px;
      position: relative;
-     background-image: url('../../../assets/img/candidate/777.png') no-repeat;
+     /*background-image: url('../../../assets/img/candidate/777.png') no-repeat;*/
    }
-   .person_sty .content_offer h2 {
+  /* .person_sty .content_offer h2 {
      font-size: 18px;
      color:#394A66;
      font-weight: 700;
@@ -495,7 +507,7 @@
       font-family: MicrosoftYaHei-Bold;
       font-size: 16px;
       color: #748093;
-    }
+    }*/
 </style>
 <style>
 .person_sty .el-input--suffix .el-input__inner {
