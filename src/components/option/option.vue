@@ -2,7 +2,7 @@
   <div >
    <div class="main">
 	   <!--登记表弹窗-->
-
+		 
 		<!-- <addCandidate :addVisible.sync="visables.add" @hideModel="hideChildModal"></addCandidate> -->
           <!--顶部导航-->
         <pageheader class="pageheader"></pageheader>
@@ -94,7 +94,7 @@
 								<span>离职原因</span>
 								<span>证明人</span>
 								<span>联系方式</span>
-							</div>
+							</div>	
 							<div class="eduExp"  style="height:264px;">
 								<h2>教育经历</h2>
 								<span>就读时间</span>
@@ -140,7 +140,6 @@
 	import QRCode from 'qrcodejs2'
   import pageheader from '@/components/common/pageheader';
   import pageaside from '@/components/common/pageaside';
-  import treeSearch from '@/components/common/treeSearch'
 //  blance
 
 export default {
@@ -199,7 +198,7 @@ export default {
             method:'get',
   					headers:headers("application/json;charset=utf-8"),
   					data:{},
-  					cache:false,
+  					cache:false,		
           }).then(function(res){
             // console.log(res);
           if(res.data.code=10000){
@@ -222,7 +221,7 @@ export default {
             method:'get',
   					headers:headers("application/json;charset=utf-8"),
   					data:{},
-  					cache:false,
+  					cache:false,		
           }).then(function(res){
             // console.log(res);
           if(res.data.code=10000){
@@ -244,60 +243,7 @@ export default {
 		}
 	}
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-
-<style>
-.optionBottom  .el-message-box__headerbtn{
-	font-size: 25px;
-	top: 10px;
-	right: 20px;
-}
-.optionBottom  .el-message-box{
-	 width: 50%;
-	 position: relative;
-	 height: 70%;
- }
-.optionBottom .el-message-box__title{
-	 float: left;
-	 color: #394A66;
-	 font-size: 26px;
-	 font-weight: bold;
-	 margin:13.2% auto 0 auto;
-	 text-align: center;
-	 width: 100%;
- }
-.optionBottom .el-message-box__message span{
-	 float: left;
-	 width: 100%;
-	 margin-top: 5%;
-	 font-size: 14px;
-	 text-align: center;
- }
-.optionBottom  .el-message-box__message #Qrcode_a {
-		width:280px;
-		height:280px;
-		background-color: gray;
-		position: absolute;
-		left: 50%;
-		transform: translateX(-50%);
-		top:200px;
-	}
-.optionBottom .el-button--primary{
-	 background-color: #F95714;
-	 border-color: #F95714;
-	 width: 100px;
-	 height: 40px;
-	 position: absolute;
-	 bottom:13.1%;
-	 left: 50%;
-	 transform: translateX(-50%);
- }
-</style>
 <style scoped >
-.el-message-box{
-	width: 100px;
-}
  .content {
 	 min-width: 1600px;
  }
@@ -376,10 +322,10 @@ export default {
 	line-height: 18px;
 }
  .optionTop{
-	 min-width: 500px;
+	 /* min-width: 500px; */
 	 height: 160px;
 	 float: left;
-	 width: 77.5% !important;
+	 width: 77.5%;
 	 border-bottom:1px solid #E5E5E5;
 
  }
@@ -394,7 +340,7 @@ export default {
 	 display: block;
 	 height: 160px;
  }
-.optionTop ul li .printqrcode{
+.optionTop .printqrcode{
 	 display: inline-block;
 	 width: 100px;
 	 height: 40px;
@@ -402,7 +348,7 @@ export default {
 	 color:#fff;
 	 font-size: 14px;
 	 line-height: 40px;
-	 text-align: center;
+	 text-align: center; 
 	 position: absolute;
 	 top:50%;
 	 transform: translateY(-50%);
@@ -501,7 +447,7 @@ color: #F95714;
     margin-left: 5px;
 }
 .ad_change{
-color: #F95714;
+color: #F95714;	
 }
 .ad_input p {
   width: 320px;

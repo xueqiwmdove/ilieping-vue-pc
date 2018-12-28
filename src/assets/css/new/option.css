@@ -1,0 +1,48 @@
+.el-message-box__headerbtn{
+	font-size: 25px;
+	top: 10px;
+	right: 20px;
+}
+ .el-message-box{
+	 width: 50% !important;
+	 position: relative;
+	 height: 70%;
+ }
+ .el-message-box__title{
+	 float: left;
+	 color: #394A66 !important;
+	 font-size: 26px  !important;
+	 font-weight: bold;
+	 margin:13.2% auto 0 auto;
+	 text-align: center;
+	 width: 100%;
+ }
+ .el-message-box__message span{
+	 float: left;
+	 width: 100%;
+	 margin-top: 5%; 
+	 font-size: 14px;
+	 text-align: center;
+ }
+  .el-message-box__message #Qrcode_a {
+		width:280px;
+		height:280px;
+		background-color: gray;
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		top:200px;
+	}
+ .el-button--primary{
+	 background-color: #F95714  !important;
+	 border-color: #F95714  !important;
+	 width: 100px;
+	 height: 40px;
+	 position: absolute;
+	 bottom:13.1%;
+	 left: 50%;
+	 transform: translateX(-50%);
+ }
+.el-message-box{
+	width: 100px;
+}
