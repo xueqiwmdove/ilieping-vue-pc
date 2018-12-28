@@ -161,7 +161,7 @@
           <img src="../../../assets/img/candidate/tanchuang_offer_pic_receive.png" alt="" class="cancelInterview" v-if="item.status==2">
           <img src="../../../assets/img/candidate/tanchuang_offer_pic_refused.png" alt="" class="cancelInterview" v-if="item.status==6">
           <h4 class="title">
-            <i>{{item.interviewDate}}（星期一）· {{item.interviewModeStr}}</i>
+            <i>{{item.interviewDate}}（{{item.dateToWeek}}）· {{item.interviewModeStr}}</i>
             <el-dropdown trigger="click">
               <span class="el-dropdown-link">
                 ...
@@ -214,7 +214,7 @@
 
             <!--查看面试反馈-->
             <div class="feedbook_form_pullDown" v-show="feedbook_form_pullDown">
-              <h4>{{item.interviewerName}} ·HR </h4><!--TODO 2018/10/20 11:30反馈-->
+              <h4>{{item.interviewerName}} {{item.feedbackTime}}反馈</h4>
               <p>反馈内容：<i>{{interviewFeedback}}</i></p>
               <p>
                 反馈评价： <span v-show="item.interviewSatisfaction==1" :class="interviewSatisfaction==1?'yawp':''">不满意</span>
@@ -312,6 +312,11 @@
           }
         },
       methods: {
+        // formatDate(time) {
+        //   let date = new Date(time);
+        //   return formatDate(date, 'yyyy/MM/dd hh:mm');
+        //   //此处formatDate是一个函数，将其封装在common/js/date.js里面，便于全局使用
+        // },
         //  点击选中反馈
         selected(param){
           let that=this;

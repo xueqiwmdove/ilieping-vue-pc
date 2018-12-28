@@ -72,6 +72,10 @@
             candidateId:'',
           }
         },
+      // computed(){
+      //   this.flag= this.candidateStepsData[0].status-1;
+      //   console.log( this.flag)
+      // },
       methods:{
        getList() {
          this.$emit("getList")//触发给父组件
@@ -85,7 +89,7 @@
           //办理入职跳转到录入新员工页面
           if(this.flag==5){
             //2:初筛,3用人部门筛选,4:面试,5:offer/录用,6待入职；
-            that.changeCandidateStatus(that.candidateId,6);
+            // that.changeCandidateStatus(that.candidateId,6);
 
             this.$confirm('此操作将跳转到录入新员工, 是否继续?', '提示', {
               confirmButtonText: '确定',
@@ -109,6 +113,7 @@
             that.flag=5;
           }else{
             that.flag=param+1;
+            // console.log(that.flag)
             //2:初筛,3用人部门筛选,4:面试,5:offer/录用,6待入职；
             that.changeCandidateStatus(that.candidateId,that.flag+1)
           }
@@ -146,11 +151,16 @@
         },
         changeli(flag){
           let that=this;
-          that.flag=flag;
+          // that.flag=flag;
           that.isShow=false;
           that.status="el-icon-caret-bottom";
+          if(flag<that.flag){
 
-          that.$emit("listento-flag",that.flag)
+          }else{
+            that.$emit("listento-flag",that.flag)
+
+          }
+
         },
         //显示弹窗
         showmodel1(){
@@ -181,7 +191,19 @@
               that.$message.error(res.data.msg);
             }
           });
+        },
+
+      },
+      updated(){
+        if(this.candidateStepsData[0].status==undefined){
+          this.flag=1;
+        }else{
+          this.flag= this.candidateStepsData[0].status-1;
+          if(this.flag==3){
+            this.$emit("listento-flag",this.flag)
+          }
         }
+
       }
     }
 </script>

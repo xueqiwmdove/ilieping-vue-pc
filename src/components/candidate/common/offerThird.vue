@@ -191,7 +191,7 @@
                 <!--<p>您的工作性质是：<span>全职</span>试用期：<span>无</span></p>-->
               <!--<img class="down_img" src="../../../assets/img/candidate/666.png" alt="">-->
               </div>
-              <img v-if="status==1"  class="status_img" src="../../../assets/img/candidate/tanchuang_offer_pic_refused.png" alt="">
+              <img v-if="status==2"  class="status_img" src="../../../assets/img/candidate/tanchuang_offer_pic_refused.png" alt="">
           </div>
         </div>
       </div>
