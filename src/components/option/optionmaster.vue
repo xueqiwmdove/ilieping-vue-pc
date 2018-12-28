@@ -171,7 +171,7 @@
    min-width: 500px;
 	 height: auto;
    overflow: hidden;
-	 width: 77.5%;
+	 width: 77.5% !important;
    /* margin: 38px 0 30px 0; */
    box-shadow: none;
    -webkit-box-shadow:none;
