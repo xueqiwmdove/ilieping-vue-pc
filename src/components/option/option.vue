@@ -51,7 +51,7 @@
 								</li>
 								<li>
 									<div class="Qrcode" id="Qrcode"></div>
-									<el-button class="printqrcode" type="text" @click="open">打印二维码</el-button>
+									<el-button class="printqrcode" type="text" @click="open4">打印二维码</el-button>
 								</li>
 							</ul>
 						</div>
@@ -148,18 +148,24 @@ export default {
     pageaside,
 	},
     methods: {
-			open() {
-				var textqrcode= "请扫描下方二维码填写面试登记表，请尽可能完整的填写，并确保填写的信息准确，真实，有效。"
-        this.$alert(textqrcode, '面试登记表', {
-          confirmButtonText: '打印',
-          callback: action => {
-            this.$message({
-              type: 'info',
-              message: '打印成功'
-            });
-          }
-        });
-      },
+					open4() {
+						const h = this.$createElement;
+						this.$msgbox({
+							title: '面试登记表',
+							message: h('p', null, [
+								h('span', null, '请扫描下方二维码填写面试登记表，请尽可能完整的填写，并确保填写的信息准确，真实，有效。'),
+								h('div', {id:'Qrcode'})
+							]),
+							// showCancelButton: true,
+							confirmButtonText: '打印',
+							callback: action => {
+								this.$message({
+									type: 'info',
+									message: `action: ${ action }`
+								});
+							}
+						})
+					},
     	click_optioninterview(){
         this.$router.push('/optioninterview');
       },
@@ -205,19 +211,45 @@ export default {
 							colorLight : '#ffffff',
 						});
 					}
-        }).catch((res)=>{
-             console.log("qrcode not works");
+				})
+			},
+			getQrcode_a(){
+				let that=this;
+            that.newDepartments = false;
+            that.$http({
+            url:api.Qrcode,
+            method:'get',
+  					headers:headers("application/json;charset=utf-8"),
+  					data:{},
+  					cache:false,		
+          }).then(function(res){
+            // console.log(res);
+          if(res.data.code=10000){
+						console.log(res.data.data)
+						var qrcode = new QRCode('Qrcode_a', {
+							text: res.data.data,
+							width: 120,
+							height: 120,
+							colorDark : '#000000',
+							colorLight : '#ffffff',
+						});
+					}
 				})
 			},
 		},
 		created(){
-    	this.getQrcode();
-  	}
-}
+			this.getQrcode();
+		}
+	}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+.el-message-box__headerbtn{
+	font-size: 25px;
+	top: 10px;
+	right: 20px;
+}
  .el-message-box{
 	 width: 50%;
 	 position: relative;
@@ -226,18 +258,20 @@ export default {
  .el-message-box__title{
 	 float: left;
 	 color: #394A66;
-	 font-size: 38px;
+	 font-size: 26px;
 	 font-weight: bold;
 	 margin:13.2% auto 0 auto;
 	 text-align: center;
 	 width: 100%;
  }
- .el-message-box__message{
+ .el-message-box__message span{
 	 float: left;
 	 width: 100%;
 	 margin-top: 5%; 
+	 font-size: 14px;
 	 text-align: center;
  }
+  .el-message-box__message {}
  .el-button--primary{
 	 background-color: #F95714;
 	 border-color: #F95714;
@@ -255,6 +289,9 @@ export default {
 }
  .content {
 	 min-width: 1600px;
+ }
+ .el-message-box__errormsg{
+	 visibility: visible;
  }
  .optionBottom{
 	 height: auto;
