@@ -22,7 +22,7 @@
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
     "node-xlsx": "^0.12.1",
-    "qrcodejs2": "0.0.2",
+    "qrcodejs2": "^0.0.2",
     "qs": "^6.5.2",
     "vue": "^2.5.2",
     "vue-awesome-swiper": "^3.1.3",
