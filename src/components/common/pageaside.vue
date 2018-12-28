@@ -481,13 +481,15 @@ export default {
 				that.isShow9=true;
 				that.before9=false;
 				that.after9=true;
-			}else if(loginUrl=='Candidatindex') {
+			}
+			else if(loginUrl=='candidatindex') {
         let that=this;
 				that.flag=22;
 				that.isShow9=true;
 				that.before9=false;
 				that.after9=true;
-      }	else if(loginUrl=='option'){
+      }
+      else if(loginUrl=='option'){
         let that=this;
 				that.flag=31;
 				that.isShow9=true;

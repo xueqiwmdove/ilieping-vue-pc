@@ -2,7 +2,7 @@
   <div >
    <div class="main">
 	   <!--登记表弹窗-->
-		 
+
 		<!-- <addCandidate :addVisible.sync="visables.add" @hideModel="hideChildModal"></addCandidate> -->
           <!--顶部导航-->
         <pageheader class="pageheader"></pageheader>
@@ -94,7 +94,7 @@
 								<span>离职原因</span>
 								<span>证明人</span>
 								<span>联系方式</span>
-							</div>	
+							</div>
 							<div class="eduExp"  style="height:264px;">
 								<h2>教育经历</h2>
 								<span>就读时间</span>
@@ -199,7 +199,7 @@ export default {
             method:'get',
   					headers:headers("application/json;charset=utf-8"),
   					data:{},
-  					cache:false,		
+  					cache:false,
           }).then(function(res){
             // console.log(res);
           if(res.data.code=10000){
@@ -222,7 +222,7 @@ export default {
             method:'get',
   					headers:headers("application/json;charset=utf-8"),
   					data:{},
-  					cache:false,		
+  					cache:false,
           }).then(function(res){
             // console.log(res);
           if(res.data.code=10000){
@@ -246,6 +246,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style>
 .optionBottom  .el-message-box__headerbtn{
 	font-size: 25px;
@@ -269,7 +270,7 @@ export default {
 .optionBottom .el-message-box__message span{
 	 float: left;
 	 width: 100%;
-	 margin-top: 5%; 
+	 margin-top: 5%;
 	 font-size: 14px;
 	 text-align: center;
  }
@@ -401,7 +402,7 @@ export default {
 	 color:#fff;
 	 font-size: 14px;
 	 line-height: 40px;
-	 text-align: center; 
+	 text-align: center;
 	 position: absolute;
 	 top:50%;
 	 transform: translateY(-50%);
@@ -500,7 +501,7 @@ color: #F95714;
     margin-left: 5px;
 }
 .ad_change{
-color: #F95714;	
+color: #F95714;
 }
 .ad_input p {
   width: 320px;

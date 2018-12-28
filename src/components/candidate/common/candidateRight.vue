@@ -3,12 +3,12 @@
   <div class="candidate_right">
     <div v-if="signs != '0'">
       <div class="operating_button">
-        <button class="button" v-if="flag==1" @click="changeStatus2(1)">进入用人部门筛选</button>
-        <button class="button" v-if="flag==2" @click="changeStatus2(2)">进入面试</button>
-        <button class="button" v-if="flag==3" @click="changeStatus2(3)">进入沟通offer</button>
-        <button class="button" v-if="flag==4" @click="changeStatus2(4)">进入待入职</button>
-        <button class="button" v-if="flag==5" @click="changeStatus2(5)">办理入职</button>
-        <el-button class="buttonRow" :icon="status" ></el-button>
+        <el-button class="button" v-if="flag==1" @click="changeStatus2(1)" :icon="status">进入用人部门筛选</el-button>
+        <el-button class="button" v-if="flag==2" @click="changeStatus2(2)" :icon="status">进入面试</el-button>
+        <el-button class="button" v-if="flag==3" @click="changeStatus2(3)" :icon="status">进入沟通offer</el-button>
+        <el-button class="button" v-if="flag==4" @click="changeStatus2(4)" :icon="status">进入待入职</el-button>
+        <el-button class="button" v-if="flag==5" @click="changeStatus2(5)" :icon="status">办理入职</el-button>
+        <!--<el-button class="buttonRow" :icon="status" ></el-button>-->
         <!--<el-button class="buttonRow" :icon="status" @click="changeStatus"></el-button>
         <div class="button_pullDown" v-show="isShow">
           <ul>
