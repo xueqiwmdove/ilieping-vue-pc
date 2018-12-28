@@ -166,7 +166,11 @@
               <span class="el-dropdown-link">
                 ...
               </span>
-              <el-dropdown-menu slot="dropdown">
+              <el-dropdown-menu slot="dropdown" v-if="item.status==0">
+                <el-dropdown-item>{{item.cancelRemark}}</el-dropdown-item>
+                <!--<el-dropdown-item @click.native="updateInterview(item.id)">修改面试</el-dropdown-item>-->
+              </el-dropdown-menu>
+              <el-dropdown-menu slot="dropdown" v-if="item.status!=0">
                 <el-dropdown-item @click.native="cancelInterview(item.id)">取消面试</el-dropdown-item>
                 <!--<el-dropdown-item @click.native="updateInterview(item.id)">修改面试</el-dropdown-item>-->
               </el-dropdown-menu>
@@ -250,7 +254,7 @@
         data(){
           return{
             noOps:false,
-            noInterviews:false,
+            noInterviews:true,
             interview_basic:false,
             interview_list_status:false,
             province:'',
@@ -353,7 +357,9 @@
 
                 that.noInterviews=true;
                 that.interview_basic=false;
+                that.interview_list_status=false;
               }else{
+                that.noInterviews=false;
                 that.interview_list_status=true;
                 that.interview_basic=false;
               }
