@@ -34,8 +34,11 @@
 							<el-table-column prop="interviewerName" label="面试负责人"></el-table-column>
 							<el-table-column label="状态">
 								<template slot-scope="scope">
-									<span v-if="scope.row.status === 2" class="NoSignIn">未签到</span>
+									<span v-if="scope.row.status === 0" class="NoSignIn">面试取消</span>
+									<span v-if="scope.row.status === 1">侍确认</span>
+									<span v-if="scope.row.status === 2" class="NoSignIn">侍面试</span>
 									<span v-if="scope.row.status === 3">已签到</span>
+									<span v-if="scope.row.status === 4">已面试</span>
 								</template>
 							</el-table-column>
 						</el-table>
@@ -68,8 +71,11 @@
 							<el-table-column prop="interviewerName" label="面试负责人"></el-table-column>
 							<el-table-column label="状态">
 								<template slot-scope="scope">
-									<span v-if="scope.row.status === 2" class="NoSignIn">未签到</span>
+									<span v-if="scope.row.status === 0" class="NoSignIn">面试取消</span>
+									<span v-if="scope.row.status === 1">侍确认</span>
+									<span v-if="scope.row.status === 2" class="NoSignIn">侍面试</span>
 									<span v-if="scope.row.status === 3">已签到</span>
+									<span v-if="scope.row.status === 4">已面试</span>
 								</template>
 							</el-table-column>
 						</el-table>
@@ -102,8 +108,11 @@
 							<el-table-column prop="interviewerName" label="面试负责人"></el-table-column>
 							<el-table-column label="状态">
 								<template slot-scope="scope">
-									<span v-if="scope.row.status === 2" class="NoSignIn">未签到</span>
+									<span v-if="scope.row.status === 0" class="NoSignIn">面试取消</span>
+									<span v-if="scope.row.status === 1">侍确认</span>
+									<span v-if="scope.row.status === 2" class="NoSignIn">侍面试</span>
 									<span v-if="scope.row.status === 3">已签到</span>
+									<span v-if="scope.row.status === 4">已面试</span>
 								</template>
 							</el-table-column>
 						</el-table>
