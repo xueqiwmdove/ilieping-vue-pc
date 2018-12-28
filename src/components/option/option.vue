@@ -2,6 +2,7 @@
   <div >
    <div class="main">
 	   <!--登记表弹窗-->
+		 
 		<!-- <addCandidate :addVisible.sync="visables.add" @hideModel="hideChildModal"></addCandidate> -->
           <!--顶部导航-->
         <pageheader class="pageheader"></pageheader>
@@ -50,7 +51,7 @@
 								</li>
 								<li>
 									<div class="Qrcode" id="Qrcode"></div>
-									<a>打印二维码</a>
+									<el-button class="printqrcode" type="text" @click="open">打印二维码</el-button>
 								</li>
 							</ul>
 						</div>
@@ -140,10 +141,6 @@
   import pageaside from '@/components/common/pageaside';
   import treeSearch from '@/components/common/treeSearch'
 //  blance
-  import addCandidate from '@/components/candidate/addCandidate';
-  import candidateSteps from '@/components/candidate/candidateSteps';
-  import recommend_depart from '@/components/candidate/common/recommend_depart';
-
 
 export default {
 	components: {
@@ -151,6 +148,18 @@ export default {
     pageaside,
 	},
     methods: {
+			open() {
+				var textqrcode= "请扫描下方二维码填写面试登记表，请尽可能完整的填写，并确保填写的信息准确，真实，有效。"
+        this.$alert(textqrcode, '面试登记表', {
+          confirmButtonText: '打印',
+          callback: action => {
+            this.$message({
+              type: 'info',
+              message: '打印成功'
+            });
+          }
+        });
+      },
     	click_optioninterview(){
         this.$router.push('/optioninterview');
       },
@@ -187,6 +196,7 @@ export default {
           }).then(function(res){
             // console.log(res);
           if(res.data.code=10000){
+						console.log(res.data.data)
 						var qrcode = new QRCode('Qrcode', {
 							text: res.data.data,
 							width: 120,
@@ -207,7 +217,42 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+<style>
+ .el-message-box{
+	 width: 50%;
+	 position: relative;
+	 height: 70%;
+ }
+ .el-message-box__title{
+	 float: left;
+	 color: #394A66;
+	 font-size: 38px;
+	 font-weight: bold;
+	 margin:13.2% auto 0 auto;
+	 text-align: center;
+	 width: 100%;
+ }
+ .el-message-box__message{
+	 float: left;
+	 width: 100%;
+	 margin-top: 5%; 
+	 text-align: center;
+ }
+ .el-button--primary{
+	 background-color: #F95714;
+	 border-color: #F95714;
+	 width: 100px;
+	 height: 40px;
+	 position: absolute;
+	 bottom:13.1%;
+	 left: 50%;
+	 transform: translateX(-50%);
+ }
+</style>
 <style scoped >
+.el-message-box{
+	width: 100px;
+}
  .content {
 	 min-width: 1600px;
  }
@@ -287,7 +332,7 @@ export default {
 	 display: block;
 	 height: 160px;
  }
-.optionTop ul li a{
+.optionTop ul li .printqrcode{
 	 display: inline-block;
 	 width: 100px;
 	 height: 40px;
@@ -322,11 +367,27 @@ export default {
 	  float:left;
 	  margin-left: 70px;
   }
+.printqrcode {
+	padding: 0;
+}
  .optionTop ul li img{
 	 position: absolute;
 	 top: 50%;
 	 transform: translateY(-50%)
  }
+/* .Qrcode .el-button{
+	padding:0 !important;
+}
+.el-message-box{
+	width: 1240px !important;
+	height: 1110px !important;
+}
+.el-button--primary{
+	background-color: #F95714;
+	border-color: #F95714;
+	width: 100px;
+	height: 40px;
+} */
 .asidePosition {
     width: 340px;
     min-width: 340px;;
