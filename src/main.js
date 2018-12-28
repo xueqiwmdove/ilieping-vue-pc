@@ -30,7 +30,7 @@ import '../src/assets/css/new/vip.less'
 import '../src/assets/css/pagination/my-pagination.css'
 import '../src/assets/css/new/common.css'
 import '../src/assets/css/new/message.css'
-import '../src/assets/css/new/option.css'
+// import '../src/assets/css/new/option.css'
 
 import '../src/assets/css/new/bySinging.less'
 import '../src/assets/css/new/selectTemplates.less'
