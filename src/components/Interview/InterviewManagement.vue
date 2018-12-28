@@ -21,8 +21,8 @@
 									<span v-if="scope.row.interviewType === 1" class="firstTry">初试</span>
 									<span v-if="scope.row.interviewType === 2" class="reExamination">复试</span>
 									<span v-if="scope.row.interviewType === 3" class="finalTest">终试</span>
-									<span v-if="scope.row.interviewMode === 0" class="Interview">现场面试</span>
-									<span v-if="scope.row.interviewMode === 1" class="Interview">电话面试</span>
+									<span v-if="scope.row.interviewMode === 1" class="Interview">现场面试</span>
+									<span v-if="scope.row.interviewMode === 2" class="Interview">电话面试</span>
 									<span v-if="scope.row.interviewMode === 3" class="Interview">视频面试</span>
 									<span>{{scope.row.interviewDate}}</span>
 								</template>
@@ -39,6 +39,7 @@
 									<span v-if="scope.row.status === 2" class="NoSignIn">侍面试</span>
 									<span v-if="scope.row.status === 3">已签到</span>
 									<span v-if="scope.row.status === 4">已面试</span>
+									<span v-if="scope.row.status === 6">已拒绝</span>
 								</template>
 							</el-table-column>
 						</el-table>
@@ -58,8 +59,8 @@
 									<span v-if="scope.row.interviewType === 1" class="firstTry">初试</span>
 									<span v-if="scope.row.interviewType === 2" class="reExamination">复试</span>
 									<span v-if="scope.row.interviewType === 3" class="finalTest">终试</span>
-									<span v-if="scope.row.interviewMode === 0" class="Interview">现场面试</span>
-									<span v-if="scope.row.interviewMode === 1" class="Interview">电话面试</span>
+									<span v-if="scope.row.interviewMode === 1" class="Interview">现场面试</span>
+									<span v-if="scope.row.interviewMode === 2" class="Interview">电话面试</span>
 									<span v-if="scope.row.interviewMode === 3" class="Interview">视频面试</span>
 									<span>{{scope.row.interviewDate}}</span>
 								</template>
@@ -76,6 +77,8 @@
 									<span v-if="scope.row.status === 2" class="NoSignIn">侍面试</span>
 									<span v-if="scope.row.status === 3">已签到</span>
 									<span v-if="scope.row.status === 4">已面试</span>
+									<span v-if="scope.row.status === 6">已拒绝</span>
+
 								</template>
 							</el-table-column>
 						</el-table>
@@ -95,8 +98,8 @@
 									<span v-if="scope.row.interviewType === 1" class="firstTry">初试</span>
 									<span v-if="scope.row.interviewType === 2" class="reExamination">复试</span>
 									<span v-if="scope.row.interviewType === 3" class="finalTest">终试</span>
-									<span v-if="scope.row.interviewMode === 0" class="Interview">现场面试</span>
-									<span v-if="scope.row.interviewMode === 1" class="Interview">电话面试</span>
+									<span v-if="scope.row.interviewMode === 1" class="Interview">现场面试</span>
+									<span v-if="scope.row.interviewMode === 2" class="Interview">电话面试</span>
 									<span v-if="scope.row.interviewMode === 3" class="Interview">视频面试</span>
 									<span>{{scope.row.interviewDate}}</span>
 								</template>
@@ -113,6 +116,8 @@
 									<span v-if="scope.row.status === 2" class="NoSignIn">侍面试</span>
 									<span v-if="scope.row.status === 3">已签到</span>
 									<span v-if="scope.row.status === 4">已面试</span>
+									<span v-if="scope.row.status === 6">已拒绝</span>
+
 								</template>
 							</el-table-column>
 						</el-table>
