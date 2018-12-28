@@ -51,7 +51,7 @@
 								</li>
 								<li>
 									<div class="Qrcode" id="Qrcode"></div>
-									<el-button class="printqrcode" type="text" @click="open4">打印二维码</el-button>
+									<el-button class="optionTop printqrcode" type="text" @click="open4">打印二维码</el-button>
 								</li>
 							</ul>
 							<div class="printButton" id="printButton"></div>
@@ -155,7 +155,7 @@ export default {
 							title: '面试登记表',
 							message: h('p', null, [
 								h('span', null, '请扫描下方二维码填写面试登记表，请尽可能完整的填写，并确保填写的信息准确，真实，有效。'),
-								h('div', {class:'Qrcode_a'})
+								h('div', {id:'Qrcode_a'})
 							]),
 							// showCancelButton: true,
 							confirmButtonText: '打印',
@@ -240,23 +240,24 @@ export default {
 		},
 		created(){
 			this.getQrcode();
+			this.getQrcode_a();
 		}
 	}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-.el-message-box__headerbtn{
+.optionBottom  .el-message-box__headerbtn{
 	font-size: 25px;
 	top: 10px;
 	right: 20px;
 }
- .el-message-box{
+.optionBottom  .el-message-box{
 	 width: 50%;
 	 position: relative;
 	 height: 70%;
  }
- .el-message-box__title{
+.optionBottom .el-message-box__title{
 	 float: left;
 	 color: #394A66;
 	 font-size: 26px;
@@ -265,14 +266,14 @@ export default {
 	 text-align: center;
 	 width: 100%;
  }
- .el-message-box__message span{
+.optionBottom .el-message-box__message span{
 	 float: left;
 	 width: 100%;
 	 margin-top: 5%; 
 	 font-size: 14px;
 	 text-align: center;
  }
-  .el-message-box__message .Qrcode_a {
+.optionBottom  .el-message-box__message #Qrcode_a {
 		width:280px;
 		height:280px;
 		background-color: gray;
@@ -281,7 +282,7 @@ export default {
 		transform: translateX(-50%);
 		top:200px;
 	}
- .el-button--primary{
+.optionBottom .el-button--primary{
 	 background-color: #F95714;
 	 border-color: #F95714;
 	 width: 100px;
