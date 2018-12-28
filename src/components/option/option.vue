@@ -298,7 +298,9 @@ export default {
 	 overflow: hidden;
 	 float: left;
 	 width: 1000px;
-	 margin: 0 auto;
+	 margin: 20px 115px;
+	 padding:0 40px;
+	 border:1px solid #E5E5E5;
 	 display: table;
  }
  .optionBottom h1{
