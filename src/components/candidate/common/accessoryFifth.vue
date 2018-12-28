@@ -52,9 +52,9 @@
                 :item.type=='7'?'体验报告':''}} -->
                 </i>
               <div>
-                <i @click="checkfile(item)" class="detail" >查看</i>
+                <!--<i @click="checkfile(item)" class="detail" >查看</i>-->
                 <i @click="downLoad(item)" class="downLoad">下载</i>
-                <i @click="deletefile(item)" class="delete">删除</i>
+                <i @click="deletefile(item)" class="delete" v-if="item.type !=3">删除</i>
               </div>
 
             </div>

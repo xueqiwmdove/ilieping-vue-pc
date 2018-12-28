@@ -127,7 +127,7 @@
           }
 
           //子组件通过父组件里面的 listento-flag，传到父组件当中；
-          that.$emit("listento-flag",that.flag);
+          // that.$emit("listento-flag",that.flag);
           // that.$emit("listento-flag",trueFlag);
 
         },
