@@ -162,7 +162,7 @@
           <img src="../../../assets/img/candidate/tanchuang_offer_pic_refused.png" alt="" class="cancelInterview" v-if="item.status==6">
           <h4 class="title">
             <i>{{item.interviewDate}}（{{item.dateToWeek}}）· {{item.interviewModeStr}}</i>
-            <el-dropdown trigger="click">
+            <el-dropdown trigger="click" v-if="item.status!=6">
               <span class="el-dropdown-link">
                 ...
               </span>
@@ -219,7 +219,7 @@
             <!--查看面试反馈-->
             <div class="feedbook_form_pullDown" v-show="feedbook_form_pullDown">
               <h4>{{item.interviewerName}} {{item.feedbackTime}}反馈</h4>
-              <p>反馈内容：<i>{{interviewFeedback}}</i></p>
+              <p>反馈内容：<i>{{item.interviewFeedback}}</i></p>
               <p>
                 反馈评价： <span v-show="item.interviewSatisfaction==1" :class="interviewSatisfaction==1?'yawp':''">不满意</span>
                 <span v-show="item.interviewSatisfaction==2" :class="interviewSatisfaction==2?'common':''">一般</span>
