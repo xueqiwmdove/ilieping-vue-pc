@@ -431,7 +431,7 @@ const router =new Router({
       component: insertEmployee,
     },
     {//员工录入
-      path: '/insertNewEmployee',
+      path: '/insertNewEmployee/:candidateID',
       name: 'insertNewEmployee',
       component: insertNewEmployee,
     },
@@ -529,7 +529,7 @@ const router =new Router({
       path: '/candidateSteps',
       name: 'candidateSteps',
       component: candidateSteps,
-    },	
+    },
     {
 				path: '/customContractTemplate',
 				name: 'customContractTemplate',
