@@ -978,14 +978,15 @@
             that.experience='5年以上';
 
             experience=6;
-          }else if(that.experience='0'){
-            that.experience='无工作经验';
+          }else if(that.experience==0){
+            that.experience='应届毕业生';
             experience=0;
           }else if(0<that.experience<=5){
-            that.experience=that.experience+'年工作经验';
             experience=that.experience;
+
+            that.experience=that.experience+'年';
           }
-          console.log(that.experience)
+          // console.log(that.experience,experience)
           that.standardResume={standardResumeDTO: {
                 head:that.imgcode,//"图片base64",
                 workCity:that.workAddress,

@@ -1,13 +1,13 @@
 <template >
   <!--候选人信息弹窗-->
   <el-dialog title="候选人信息" :visible="addVisible"  custom-class="candidateSteps" :before-close="hideModel">
-    <img src="../../assets/img/candidate/tanhcuang_ic_editor.png" class="save"  v-show="step==1 && updateStatus==2" @click="updateCandidate"><!--只有基本资料 里面的标准简历可以下载 @click="updateCandidate"-->
+    <!--<img src="../../assets/img/candidate/tanhcuang_ic_editor.png" class="save"  v-show="step==1 && updateStatus==2" @click="updateCandidate">&lt;!&ndash;只有基本资料 里面的标准简历可以下载 @click="updateCandidate"&ndash;&gt;-->
     <div class="addMain">
       <div class="personInfo" v-for="(item,index)  in candidateStepsData" :key="index">
         <p class="primary ">
           <span  class="name">{{item.candidateName}}</span>
           <span class="post">{{item.postName}}.{{item.resumeChannelStr}}（<i v-if="item.resumeSource==0">主动搜索</i><i v-if="item.resumeSource==1">候选人投递</i>）</span>
-          <span class="tag">内推</span>
+          <span class="tag" v-if="item.candidateTag !=null">內推</span>
         </p>
         <p class="minor">
           <span class="phone">{{item.candidatePhone}}</span>
@@ -163,6 +163,8 @@
         hideModel(){
           this.conShow=false;
           let that=this;
+          //清数据
+          that.step=1;
           that.$emit('hideModel','steps');//向父组件派发事件
         },
         showMsgformChild(){
@@ -222,7 +224,11 @@
           let that=this;
         that.getAddress();
         that.getEmployeeList();
-      }
+      },
+      // updated(){
+      //   this.step= this.interviewStatus;
+      //   console.log( this.step)
+      // }
     }
 </script>
 

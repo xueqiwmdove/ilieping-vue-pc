@@ -113,7 +113,7 @@
                 <P>面试时间：<i>{{interviewTime}}</i></P>
                 <p>面试形式：<i v-if="interviewMode==3">视频面试</i><i v-if="interviewMode==2">电话面试</i><i v-if="interviewMode==1">现场面试</i></p>
                 <p>面试地点：<i>{{interviewAddress}}</i></p>
-                <p>联系方式：<i>联系方式</i><i></i></p>
+                <p>联系方式：<i>{{item.chargeName}}</i><i>{{item.chargePhone}}</i></p>
               </div>
 
             </div>
@@ -161,7 +161,7 @@
           <img src="../../../assets/img/candidate/tanchuang_offer_pic_receive.png" alt="" class="cancelInterview" v-if="item.status==2">
           <img src="../../../assets/img/candidate/tanchuang_offer_pic_refused.png" alt="" class="cancelInterview" v-if="item.status==6">
           <h4 class="title">
-            <i>{{item.interviewDate}}（星期一）· {{item.interviewModeStr}}</i>
+            <i>{{item.interviewDate}}（{{item.dateToWeek}}）· {{item.interviewModeStr}}</i>
             <el-dropdown trigger="click">
               <span class="el-dropdown-link">
                 ...
@@ -214,7 +214,7 @@
 
             <!--查看面试反馈-->
             <div class="feedbook_form_pullDown" v-show="feedbook_form_pullDown">
-              <h4>{{item.interviewerName}} ·HR </h4><!--TODO 2018/10/20 11:30反馈-->
+              <h4>{{item.interviewerName}} {{item.feedbackTime}}反馈</h4>
               <p>反馈内容：<i>{{interviewFeedback}}</i></p>
               <p>
                 反馈评价： <span v-show="item.interviewSatisfaction==1" :class="interviewSatisfaction==1?'yawp':''">不满意</span>
@@ -312,6 +312,11 @@
           }
         },
       methods: {
+        // formatDate(time) {
+        //   let date = new Date(time);
+        //   return formatDate(date, 'yyyy/MM/dd hh:mm');
+        //   //此处formatDate是一个函数，将其封装在common/js/date.js里面，便于全局使用
+        // },
         //  点击选中反馈
         selected(param){
           let that=this;
@@ -347,6 +352,7 @@
               if(that.interviewList.length==0){
 
                 that.noInterviews=true;
+                that.interview_basic=false;
               }else{
                 that.interview_list_status=true;
                 that.interview_basic=false;

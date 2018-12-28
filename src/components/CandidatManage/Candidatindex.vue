@@ -4,7 +4,7 @@
      <!--候选人弹窗-->
      <addCandidate :addVisible.sync="visables.add" @hideModel="hideChildModal"></addCandidate>
      <!--候选人信息  父组件传值-->
-     <candidateSteps :addVisible.sync="visables.steps" @hideModel="hideChildModal" :candidateStepsData="candidateStepsData"  :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList" :signs="signs"></candidateSteps>
+     <candidateSteps :addVisible.sync="visables.steps" @hideModel="hideChildModal" :candidateStepsData="candidateStepsData"  :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList" :signs="signs" ></candidateSteps>
 
           <!--顶部导航-->
         <pageheader class="pageheader"></pageheader>
@@ -116,10 +116,10 @@
                           </div>
                       <!--表格  -->
                           <div class="div_table_infor">
-                              <el-table :key='signs'  :data="candidateList" style="width: 100%">
+                              <el-table :key='signs'  :data="candidateList" style="width: 100%" >
                                   <el-table-column fixed prop="processNum" label="基本资料" header-align='center' align='left' width="350px">
-                                      <template slot-scope="scope">
-                                          <span class="basic_sty " @click="addCandidateShow('steps');showSteps(scope.row.id)" style="cursor: pointer">
+                                      <template slot-scope="scope" >
+                                          <span class="basic_sty " style="cursor: pointer" @click="addCandidateShow('steps');showSteps(scope.row.id)" >
                                             <span class="name_s">{{scope.row.candidateName}} <em>{{scope.row.candidateSex}}</em><em class="bom_sty"></em><em>{{scope.row.candidateExperience}}</em></span>
                                             <p><img src="../../assets/img/zhiwei/houxuan_ic_work.png" alt=""><span>{{scope.row.workExperience}}</span></p>
                                             <p><img src="../../assets/img/zhiwei/houxuan_ic_education.png" alt=""><span>{{scope.row.educationExperience}}</span></p>
@@ -144,11 +144,11 @@
                                       <template slot-scope="scope">
                                           <span v-if="scope.row.interviewStatus =='0'" style="cursor: pointer;">
                                             <p>未安排面试</p>
-                                            <el-button size="small" style="color:#fff ;background-color:#F95714;">去安排</el-button>
+                                            <el-button size="small" style="color:#fff ;background-color:#F95714;" @click="addCandidateShow('steps');showSteps(scope.row.id);">去安排</el-button>
                                           </span>
                                           <span v-if="scope.row.interviewStatus == '1'" style="cursor: pointer;">
                                             <p>已安排面试</p>
-                                            <el-button size="small" style="color:#fff ;background-color:#66ADFF;">去查看</el-button>
+                                            <el-button size="small" style="color:#fff ;background-color:#66ADFF;" @click="addCandidateShow('steps');showSteps(scope.row.id);">去查看</el-button>
                                           </span>
                                       </template>
                                   </el-table-column>
@@ -271,6 +271,10 @@ export default {
       },
    directives: {clickoutside},
     methods: {
+    /*  //列表处于面试阶段， 传给子组件选中的状态
+      interviewStatus(param){
+        this.interviewStatus=param;
+      },*/
     //获取职位列表
     getCandidate() {
       let that=this;
