@@ -51,7 +51,7 @@ export default {
     },
     methods: {
       insertNewEmployee(){
-        this.$router.push('/insertNewEmployee');
+        this.$router.push('/insertNewEmployee/0');
       },
     }
 }

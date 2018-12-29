@@ -937,7 +937,7 @@
       text-align: center;
       .operating_button{
         width: 280px;
-        position: relative;
+        //position: relative;
         margin: 41px 28px 0 32px;
         .buttonRow{
           width: 50px;
@@ -952,7 +952,8 @@
           }
         }
         .button{
-          width:228px;
+          //width:228px;
+          width: 280px;
           height:40px;
           background:#f95714;
           border-radius:4px;
@@ -960,9 +961,15 @@
           border: none;
           font-size: 14px;
           color: #fff;
-          position: absolute;
-          left:0;
-          top: 0;
+          //position: absolute;
+          //left:0;
+          //top: 0;
+          position: relative;
+          .el-icon-caret-right:before {
+            right: 16px;
+            position: absolute;
+            top:14px;
+          }
         }
         .button_pullDown{
           display: inline-block;

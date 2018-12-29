@@ -3,12 +3,13 @@
   <div class="candidate_right">
     <div v-if="signs != '0'">
       <div class="operating_button">
-        <button class="button" v-if="flag==1" @click="changeStatus2(1)">进入用人部门筛选</button>
-        <button class="button" v-if="flag==2" @click="changeStatus2(2)">进入面试</button>
-        <button class="button" v-if="flag==3" @click="changeStatus2(3)">进入沟通offer</button>
-        <button class="button" v-if="flag==4" @click="changeStatus2(4)">进入待入职</button>
-        <button class="button" v-if="flag==5" @click="changeStatus2(5)">办理入职</button>
-        <el-button class="buttonRow" :icon="status" @click="changeStatus"></el-button>
+        <el-button class="button" v-if="flag==1" @click="changeStatus2(1)" :icon="status">进入用人部门筛选</el-button>
+        <el-button class="button" v-if="flag==2" @click="changeStatus2(2)" :icon="status">进入面试</el-button>
+        <el-button class="button" v-if="flag==3" @click="changeStatus2(3)" :icon="status">进入沟通offer</el-button>
+        <el-button class="button" v-if="flag==4" @click="changeStatus2(4)" :icon="status">进入待入职</el-button>
+        <el-button class="button" v-if="flag==5" @click="changeStatus2(5)" :icon="status">办理入职</el-button>
+        <!--<el-button class="buttonRow" :icon="status" ></el-button>-->
+        <!--<el-button class="buttonRow" :icon="status" @click="changeStatus"></el-button>
         <div class="button_pullDown" v-show="isShow">
           <ul>
             <li @click="changeli(1)" :class="flag==1?'el-icon-success':''">初筛</li>
@@ -17,7 +18,7 @@
             <li @click="changeli(4)" :class="flag==4?'el-icon-success':''">offer/录用</li>
             <li @click="changeli(5)" :class="flag==5?'el-icon-success':''">待入职</li>
           </ul>
-        </div>
+        </div>-->
       </div>
 
       <button class="button recommend" v-if="flag==2&& step==2" @click="showmodel1" >推荐给用人部门</button><!--@click="addCandidateShow('recommend')"-->
@@ -61,7 +62,7 @@
         },
         data(){
           return{
-            status:'el-icon-caret-bottom',
+            status:'el-icon-caret-right',
             count:0,
             isShow:false,
             flag:1,
@@ -85,7 +86,7 @@
           let that=this;
           that.candidateId=localStorage.getItem('candidateID');
 
-          that.flag=param;
+          // that.flag=param;
           //办理入职跳转到录入新员工页面
           if(this.flag==5){
             //2:初筛,3用人部门筛选,4:面试,5:offer/录用,6待入职；
@@ -96,7 +97,7 @@
               cancelButtonText: '取消',
               type: 'warning'
             }).then(() => {
-              this.$router.push('/insertNewEmployee');
+              this.$router.push('/insertNewEmployee/'+that.candidateId);
               // this.$message({
               //   type: 'success',
               //   message: '删除成功!'
@@ -113,13 +114,20 @@
             that.flag=5;
           }else{
             that.flag=param+1;
-            // console.log(that.flag)
+            console.log("flag-"+that.flag,that.candidateStepsData[0].status-1);
             //2:初筛,3用人部门筛选,4:面试,5:offer/录用,6待入职；
             that.changeCandidateStatus(that.candidateId,that.flag+1)
+           /* if( that.flag<=that.candidateStepsData[0].status-1 ){
+            }else{
+              //2:初筛,3用人部门筛选,4:面试,5:offer/录用,6待入职；
+              that.changeCandidateStatus(that.candidateId,that.flag)
+            }*/
+
+
           }
 
           //子组件通过父组件里面的 listento-flag，传到父组件当中；
-          that.$emit("listento-flag",that.flag);
+          // that.$emit("listento-flag",that.flag);
           // that.$emit("listento-flag",trueFlag);
 
         },
@@ -195,16 +203,19 @@
 
       },
       updated(){
-        if(this.candidateStepsData[0].status==undefined){
-          this.flag=1;
-        }else{
-          this.flag= this.candidateStepsData[0].status-1;
-          if(this.flag==3){
-            this.$emit("listento-flag",this.flag)
-          }
-        }
+        // this.flag= this.candidateStepsData[0].status-1;
+        // if(this.candidateStepsData[0].status!=undefined){
+        //   this.flag= this.candidateStepsData[0].status-1;
+        //   console.log(this.flag)
+        //   // if(this.flag==3){
+        //   //   this.$emit("listento-flag",this.flag)
+        //   // }
+        // }
 
-      }
+      },
+      // mounted(){
+      //
+      // }
     }
 </script>
 

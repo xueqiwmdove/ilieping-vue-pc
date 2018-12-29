@@ -1044,7 +1044,9 @@
             if(res.data.code==10000){
               that.$message.success("候选人信息插入成功！");
               that.hideModel();
-              window.location.reload();
+              setTimeout(function () {
+                window.location.reload();
+              },3000)
             }else if(res.data.code==40001 && res.data.data==true){
               that.dialogVisible = true;
             }else{
@@ -1066,7 +1068,9 @@
               that.$message.success(res.data.msg);
               that.dialogVisible = false;
               that.hideModel();
-              window.location.reload();
+              setTimeout(function () {
+                window.location.reload();
+              },3000)
             }else{
               that.$message.error(res.data.msg);
               that.dialogVisible = false;

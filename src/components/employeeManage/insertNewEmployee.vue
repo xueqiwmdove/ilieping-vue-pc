@@ -487,56 +487,79 @@ export default {
         },
         submit(){
         let that=this;
-        if(that.employeePhone==""){
-      		that.$message.error('请填写手机号码');
-      		return false;
-      	}else if(!that.employeePhone.match(/^1[345678]\d{9}/)){
-      		that.$message.error('请填写正确手机号码');
-      		return false;
-      	}else if(that.employeeIdCard==""){
-              that.$message.error('请填写身份证号');
-      		return false;
-          }
-        else{
-          that.$http({
-  			method:"post",
-  			url:api.employInsert,
-  			headers:headers("application/json;charset=utf-8"),
-  			data:{
-					accountNature:that.accountNature,//户口性质
-					deptId:that.deptId,//部门ID
-					directlySuperior:that.directlySuperior,//直属上级
-					enterpriseEmail:that.enterpriseEmail,//企业分配员工的邮箱
-					employeeIdCard:that.employeeIdCard,//员工身份证号
-					employeeName:that.employeeName,//员工姓名
-					employeeNumber:that.employeeNumber,//员工工号
-					employeePhone:that.employeePhone,//员工手机号
-					entryTime:that.entryTime, //入职时间
-					highestEducation:that.highestEducation,//最高学历
-					position:that.position,//职位
-					probation:that.probation,//试用期
-					workAddress:that.workAddress,//工作地点
-					workType:that.workType, // 工作类型
-					employeeEmail:that.employeeEmail//个人邮箱
-  			},
-  			cache:false
-  		}).then(function(res){
-  			if(res.data.code===10000){
+          if(that.employeePhone==""){
+            that.$message.error('请填写手机号码');
+            return false;
+          }else if(!that.employeePhone.match(/^1[345678]\d{9}/)){
+            that.$message.error('请填写正确手机号码');
+            return false;
+          }else if(that.employeeIdCard==""){
+                that.$message.error('请填写身份证号');
+            return false;
+            }
+          else {
+            that.$http({
+              method: "post",
+              url: api.employInsert,
+              headers: headers("application/json;charset=utf-8"),
+              data: {
+                accountNature: that.accountNature,//户口性质
+                deptId: that.deptId,//部门ID
+                directlySuperior: that.directlySuperior,//直属上级
+                enterpriseEmail: that.enterpriseEmail,//企业分配员工的邮箱
+                employeeIdCard: that.employeeIdCard,//员工身份证号
+                employeeName: that.employeeName,//员工姓名
+                employeeNumber: that.employeeNumber,//员工工号
+                employeePhone: that.employeePhone,//员工手机号
+                entryTime: that.entryTime, //入职时间
+                highestEducation: that.highestEducation,//最高学历
+                position: that.position,//职位
+                probation: that.probation,//试用期
+                workAddress: that.workAddress,//工作地点
+                workType: that.workType, // 工作类型
+                employeeEmail: that.employeeEmail,//个人邮箱
+                candidateId: that.$route.params.candidateID,//候选人id
+              },
+              cache: false
+            }).then(function (res) {
+              if (res.data.code === 10000) {
                 console.log(res.data.data);
-                that.$router.push({name:'employeeSalary',params:{employeeId:res.data.data}});
-  			}else{
-  			  that.$message.error(res.msg||res.data.msg)
+                that.$router.push({name: 'employeeSalary', params: {employeeId: res.data.data}});
+              } else {
+                that.$message.error(res.msg || res.data.msg)
                 // alert("返回失败");
                 //   return res.data.data;
-  			}
-  		});
-     }
+              }
 
-      },
+            });
+          }
+     },
+        //blance showSteps  查询候选人信息
+        showSteps(){
+          let that=this;
+          let id=that.$route.params.candidateID;
+          that.$http({
+            url:api.getCandidate+id,
+            headers:headers(),
+            method:'get',
+          }).then(function (res) {
+            if(res.data.code==10000 && res.data.data !=null ){
+              console.log(res.data.data);
+              let data=res.data.data;
+              that.employeeName=data.candidateName;
+              that.employeePhone=data.candidatePhone;
+              that.employeeEmail=data.candidateEmail;
+              that.position=data.postName;
+              that.highestEducation=data.candidateEducation;
+
+            }
+          })
+        }
     },
     mounted() {
         let that=this;
         that.companyStructure();
+        that.showSteps();
     },
     computed:{
         disabled_newDepartment(){

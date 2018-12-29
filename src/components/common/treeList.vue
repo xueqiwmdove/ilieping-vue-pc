@@ -240,10 +240,10 @@ export default {
    methods:{
       handleClose1(e) {
           this.treeVisabled = false;
-      }, 
+      },
        handleClose4(e) {
           this.treeVisabled1 = false;
-      }, 
+      },
     //获取部门人数
       getcounts() {
           let that = this
@@ -311,7 +311,7 @@ export default {
             }
           });
       },
-   //关闭新增弹窗   
+   //关闭新增弹窗
       closeAdd(form1) {
         this.dialogFormVisible=false
         this.resetForm(form1)
@@ -321,7 +321,7 @@ export default {
       },
      //添加新员工
       addNewemployee() {
-        this.$router.push({path:'/insertNewEmployee'})
+        this.$router.push({path:'/insertNewEmployee/0'})
       },
        //保存新增部门
       addSubmit() {

@@ -51,9 +51,10 @@
 								</li>
 								<li>
 									<div class="Qrcode" id="Qrcode"></div>
-									<el-button class="printqrcode" type="text" @click="open4">打印二维码</el-button>
+									<el-button class="optionTop printqrcode" type="text" @click="open4">打印二维码</el-button>
 								</li>
 							</ul>
+							<div class="printButton" id="printButton"></div>
 						</div>
 						<div class="optionBottom">
 							<h1>面试登录表<i></i></h1>
@@ -139,7 +140,6 @@
 	import QRCode from 'qrcodejs2'
   import pageheader from '@/components/common/pageheader';
   import pageaside from '@/components/common/pageaside';
-  import treeSearch from '@/components/common/treeSearch'
 //  blance
 
 export default {
@@ -154,7 +154,7 @@ export default {
 							title: '面试登记表',
 							message: h('p', null, [
 								h('span', null, '请扫描下方二维码填写面试登记表，请尽可能完整的填写，并确保填写的信息准确，真实，有效。'),
-								h('div', {id:'Qrcode'})
+								h('div', {id:'Qrcode_a'})
 							]),
 							// showCancelButton: true,
 							confirmButtonText: '打印',
@@ -239,54 +239,11 @@ export default {
 		},
 		created(){
 			this.getQrcode();
+			this.getQrcode_a();
 		}
 	}
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
-.el-message-box__headerbtn{
-	font-size: 25px;
-	top: 10px;
-	right: 20px;
-}
- .el-message-box{
-	 width: 50%;
-	 position: relative;
-	 height: 70%;
- }
- .el-message-box__title{
-	 float: left;
-	 color: #394A66;
-	 font-size: 26px;
-	 font-weight: bold;
-	 margin:13.2% auto 0 auto;
-	 text-align: center;
-	 width: 100%;
- }
- .el-message-box__message span{
-	 float: left;
-	 width: 100%;
-	 margin-top: 5%; 
-	 font-size: 14px;
-	 text-align: center;
- }
-  .el-message-box__message {}
- .el-button--primary{
-	 background-color: #F95714;
-	 border-color: #F95714;
-	 width: 100px;
-	 height: 40px;
-	 position: absolute;
-	 bottom:13.1%;
-	 left: 50%;
-	 transform: translateX(-50%);
- }
-</style>
 <style scoped >
-.el-message-box{
-	width: 100px;
-}
  .content {
 	 min-width: 1600px;
  }
@@ -298,7 +255,10 @@ export default {
 	 overflow: hidden;
 	 float: left;
 	 width: 1000px;
-	 margin: 0 auto;
+	 margin: 20px 115px;
+	 position: relative;
+	 padding:0 40px;
+	 border:1px solid #E5E5E5;
 	 display: table;
  }
  .optionBottom h1{
@@ -335,6 +295,7 @@ export default {
 	z-index: 55;
 	left: 0;
 }
+/* .optioninterviewBottom .content */
 .optionBottom span{
 	width: 50%;
 	margin-bottom: 30px;
@@ -343,15 +304,25 @@ export default {
 	float: right;
 	text-align: right;
 }
+.optionTop .printButton{
+	position:absolute;
+	width:100px;
+	height: 40px;
+	right: 150px;
+	top:200px;
+	box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2);
+	border-radius:4px;
+}
 .optionBottom ul li{
-	float: left;
-	width: 50%;
+	float: right;
+	width: 210px;
+	text-align:left;
 }
 .optionBottom strong{
 	line-height: 18px;
 }
  .optionTop{
-	 min-width: 500px;
+	 /* min-width: 500px; */
 	 height: 160px;
 	 float: left;
 	 width: 77.5%;
@@ -369,7 +340,7 @@ export default {
 	 display: block;
 	 height: 160px;
  }
-.optionTop ul li .printqrcode{
+.optionTop .printqrcode{
 	 display: inline-block;
 	 width: 100px;
 	 height: 40px;

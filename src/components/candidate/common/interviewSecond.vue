@@ -162,11 +162,15 @@
           <img src="../../../assets/img/candidate/tanchuang_offer_pic_refused.png" alt="" class="cancelInterview" v-if="item.status==6">
           <h4 class="title">
             <i>{{item.interviewDate}}（{{item.dateToWeek}}）· {{item.interviewModeStr}}</i>
-            <el-dropdown trigger="click">
+            <el-dropdown trigger="click" v-if="item.status!=6">
               <span class="el-dropdown-link">
                 ...
               </span>
-              <el-dropdown-menu slot="dropdown">
+              <el-dropdown-menu slot="dropdown" v-if="item.status==0">
+                <el-dropdown-item>{{item.cancelRemark}}</el-dropdown-item>
+                <!--<el-dropdown-item @click.native="updateInterview(item.id)">修改面试</el-dropdown-item>-->
+              </el-dropdown-menu>
+              <el-dropdown-menu slot="dropdown" v-if="item.status!=0">
                 <el-dropdown-item @click.native="cancelInterview(item.id)">取消面试</el-dropdown-item>
                 <!--<el-dropdown-item @click.native="updateInterview(item.id)">修改面试</el-dropdown-item>-->
               </el-dropdown-menu>
@@ -215,7 +219,7 @@
             <!--查看面试反馈-->
             <div class="feedbook_form_pullDown" v-show="feedbook_form_pullDown">
               <h4>{{item.interviewerName}} {{item.feedbackTime}}反馈</h4>
-              <p>反馈内容：<i>{{interviewFeedback}}</i></p>
+              <p>反馈内容：<i>{{item.interviewFeedback}}</i></p>
               <p>
                 反馈评价： <span v-show="item.interviewSatisfaction==1" :class="interviewSatisfaction==1?'yawp':''">不满意</span>
                 <span v-show="item.interviewSatisfaction==2" :class="interviewSatisfaction==2?'common':''">一般</span>
@@ -250,7 +254,7 @@
         data(){
           return{
             noOps:false,
-            noInterviews:false,
+            noInterviews:true,
             interview_basic:false,
             interview_list_status:false,
             province:'',
@@ -353,7 +357,9 @@
 
                 that.noInterviews=true;
                 that.interview_basic=false;
+                that.interview_list_status=false;
               }else{
+                that.noInterviews=false;
                 that.interview_list_status=true;
                 that.interview_basic=false;
               }
