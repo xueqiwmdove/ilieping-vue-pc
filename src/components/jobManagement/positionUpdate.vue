@@ -422,15 +422,7 @@ export default {
     //创建岗位提交  
       createSubmit() {
         if(this.startTime !=='' || this.endTime !=='')  {
-           var timel =new Date().format("yyyy-MM-dd");
-            if(this.startTime <timel ) {
-                this.$message({
-                    message: '开始招聘时间不能小于当前日期！',
-                    type: 'error'
-                });
-                 this.startTime=''
-               return
-            }else if(this.startTime > this.endTime) {
+            if(this.startTime > this.endTime) {
                 this.$message({
                 message:'开始招聘时间应小于目标完成时间！',
                 type:'error'
