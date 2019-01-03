@@ -984,7 +984,7 @@
           }else if(0<that.experience<=5){
             experience=that.experience;
 
-            that.experience=that.experience+'年';
+            that.experience=that.experience;
           }
           // console.log(that.experience,experience)
           that.standardResume={standardResumeDTO: {
