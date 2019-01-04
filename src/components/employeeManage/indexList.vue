@@ -47,9 +47,18 @@
                             <el-form-item label="">
                               <el-input v-model="form.name"  maxlength="11" @keyup.enter.native="getList"  placeholder="请输入姓名/手机号"></el-input>
                           </el-form-item>
+                          <!-- <el-form-item label="">
+                              <div class="search">
+                              <el-input  v-model="searchName" maxlength="20" class="input_search" placeholder="输入你想搜索的内容" >
+                                <i @click="searchPage" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
+                              </el-input>
+                            </div>
+                          </el-form-item>   -->
                         </el-col>
-                        <el-col :span="4">
-                          <button class="el-icon-search btn_resite serach"  @click="getList" >搜索</button>
+                        <el-col :offset="1" :span="3">
+                          <!-- <button class="el-icon-search btn_resite serach"  @click="getList" >搜索</button> -->
+                          <button class=" btnstyle" @click="addNewemployee" >添加员工</button>
+
                         </el-col>
                       </el-row>
                     </el-form>
@@ -570,6 +579,10 @@ export default {
       getParent(val) {
         this.parentId =val.id,
         this.form1.label=val.label
+      },
+     //添加新员工
+      addNewemployee() {
+        this.$router.push({path:'/insertNewEmployee/0'})
       },
     //切换页码
       changePage(newPage) {

@@ -279,7 +279,7 @@ export default {
     		this.flag=a;
     		this.$router.push('/exposureUpload');
     	},
-    	click_account(a){
+    	click_account(a){//账号安全
     		this.flag=a;
     		this.$router.push('/account');
       },
@@ -344,7 +344,7 @@ export default {
         this.flag=a;
         this.$router.push('/hr');
       },
-      toBusinessCert(a){
+      toBusinessCert(a){//企业认证
         this.flag=a;
         this.$router.push('/businessCert');
       },
