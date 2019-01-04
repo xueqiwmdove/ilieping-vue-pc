@@ -329,7 +329,7 @@
   import api from '@/api/api.js'
   import {headers} from '@/assets/js/common/lp.js'
   import pageheader from '@/components/common/pageheader'
-  import pageaside from '@/components/common/pageaside'
+  import pageaside from '@/components/common/pageasideE'
   import { Loading } from 'element-ui';
 
   import {formatDate} from '@/assets/js/common/date_year.js'
@@ -880,10 +880,13 @@
 	  				}else{
 	  				 that.Isdatanull=false;
 	  				 that.Isdata=true;
-	  				 that.archivedFolderResponseData=res.data.data.archivedFolderResponse;
-             that.searchAgreementListData=res.data.data.listSign;
-             that.totalCount = res.data.count;
-             that.isFile=res.data.data.listSign.isArchive;//判断是否归档（1，归档)其它值未归档
+						 if(res.data.data.listSign!=null){
+							that.archivedFolderResponseData=res.data.data.archivedFolderResponse;
+							that.searchAgreementListData=res.data.data.listSign;
+							that.totalCount = res.data.count;
+							that.isFile=res.data.data.listSign.isArchive;//判断是否归档（1，归档)其它值未归档 
+						 }
+
 	  				}
 
 	  			}else{
