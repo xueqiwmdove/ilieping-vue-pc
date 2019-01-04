@@ -144,7 +144,7 @@
 						<el-col :span="5"><div class="grid-content m_t"><p class="p_title color_str">{{item.deadlineForSignatureStr | formatDate}}&nbsp;截止签约</p><p class="p_title">{{item.createTimeStr | formatDate}}&nbsp;发起签约</p></div></el-col>
 					  <el-col :span="5">
 					  	<div class="grid-content line_h">
-					  		<p v-if="nowTimeStr > item.deadlineForSignatureStr || item.status===0">逾期未签 <span v-if="item.status === 5" class="span_f95714">已公正</span></p>
+					  		<p v-if="nowTimeStr > item.deadlineForSignatureStr && item.status===0">逾期未签</p>
 					  		<p v-else-if="nowTimeStr >= item.endTimeStr">已到期 <span v-if="item.status === 5" class="span_f95714">已公正</span></p><!-- 已到期   -->
 					  		<p v-else-if="item.status===1">待员工签</p>
 					  		<p v-else-if="item.status===2">待我签</p>
@@ -880,10 +880,13 @@
 	  				}else{
 	  				 that.Isdatanull=false;
 	  				 that.Isdata=true;
-	  				 that.archivedFolderResponseData=res.data.data.archivedFolderResponse;
-             that.searchAgreementListData=res.data.data.listSign;
-             that.totalCount = res.data.count;
-             that.isFile=res.data.data.listSign.isArchive;//判断是否归档（1，归档)其它值未归档
+						 if(res.data.data.listSign!=null){
+							that.archivedFolderResponseData=res.data.data.archivedFolderResponse;
+							that.searchAgreementListData=res.data.data.listSign;
+							that.totalCount = res.data.count;
+							that.isFile=res.data.data.listSign.isArchive;//判断是否归档（1，归档)其它值未归档 
+						 }
+
 	  				}
 
 	  			}else{
