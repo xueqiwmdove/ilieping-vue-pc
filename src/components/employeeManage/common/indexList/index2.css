@@ -28,20 +28,47 @@
 }
 .btn_resite {
   display: inline-block;
-  border: 1px solid #E5E5E5;
-  background-color: #FAFBFC;
-  border-radius: 4px;
-  border-color: #E5E5E5;
+  /* border: 1px solid #E5E5E5; */
+  /* background-color: #FAFBFC;
+  border-radius: 4px; */
+  /* border-color: #E5E5E5; */
   font-size: 14px;
   color:#394A66;
   height: 40px;
-  width:24%;
+  width:40%;
   text-align: center;
   line-height: 40px;
   margin-right: 5px;
   cursor: pointer;
   padding: 0 2px;
   min-width: 68px;
+  border:none;
+  background-color: #fff;
+}
+.btnstyle {
+  background:linear-gradient(135deg,rgba(253,144,45,1) 0%,rgba(249,87,20,1) 100%);
+  width: 120px;
+  border-radius:4px;
+   border: 1px solid #E5E5E5;
+  background-color: #FAFBFC;
+  border-radius: 4px;
+  border-color: #E5E5E5;
+  font-size: 14px;
+  color:rgba(255,255,255,1);
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  margin-right: 5px;
+  cursor: pointer;
+  padding: 0 2px;
+  min-width: 68px;
+}
+.btn_resite img {
+  display: inline-block;
+  margin-bottom: -3px;
+}
+.addfonts {
+  margin-left:5px;
 }
 #resite {
   border-bottom: 1px solid #E5E5E5;

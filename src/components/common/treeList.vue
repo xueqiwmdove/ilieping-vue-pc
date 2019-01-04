@@ -2,8 +2,10 @@
     <div class="tree_style" >
       <div class="ly_aside">
       <div id="resite">
-        <button class="btn_resite" @click="addNewemployee" >添加员工</button>
-        <button class="btn_resite" @click="addPartner" >新增部门</button>
+        <!-- <button class="btn_resite" @click="addNewemployee" >添加员工</button> -->
+        <span  @click="addPartner" class="btn_resite"><img src="../../assets/img/1.5.1/new.png" alt=""><i class="addfonts">新增部门</i></span>
+
+        <!-- <button class="btn_resite" @click="addPartner" >新增部门</button> -->
         <!-- <button  class="btn_resite">批量导入</button> -->
       </div>
       <div class="company_tit" style="cursor: pointer;" @click="getAll">{{tit}} <span>({{this.countPersons}})</span></div>
