@@ -83,10 +83,10 @@
             <ul class="tab_title">
               <li @click="changeTab(1)" :class="flag==1?'active':''">原始简历</li>
               <li @click="changeTab(2)" :class="flag==2?'active':''">标准简历</li>
-              <li class="button" v-if="flag==2">
+             <!-- <li class="button" v-if="flag==2">
                 <img src="../../assets/img/candidate/tanchuang_ic_download.png" class="upload">
                 <img src="../../assets/img/candidate/tanchuang_ic_print.png" class="print">
-              </li>
+              </li>-->
             </ul>
             <div class="headImg" v-if="flag==2">
               <!--<fileUploadHeadImg @getfile="getHeadImg" ref="headImg" ></fileUploadHeadImg>-->
@@ -908,6 +908,7 @@
         },
         //上传头像,获取base64
         uploadPhoto(e) {
+          let that=this;
           // 利用fileReader对象获取file
           let file = e.target.files[0];
           let filesize = file.size;
@@ -921,8 +922,8 @@
           reader.readAsDataURL(file);
           reader.onload = function (e) {
             // 读取到的图片base64 数据编码 将此编码字符串传给后台即可
-            this.imgcode = e.target.result;
-            console.log(this.imgcode);
+            that.imgcode = e.target.result;
+            console.log(that.imgcode);
           }
         },
         //删除工作经历
@@ -986,7 +987,7 @@
 
             that.experience=that.experience;
           }
-          // console.log(that.experience,experience)
+          console.log(experience)
           that.standardResume={standardResumeDTO: {
                 head:that.imgcode,//"图片base64",
                 workCity:that.workAddress,
