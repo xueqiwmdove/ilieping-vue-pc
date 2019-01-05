@@ -20,7 +20,7 @@
                 </p>
                 <el-row>
               <!--创建职位左侧栏  -->
-                  <el-col :span='4' >
+                  <el-col :span='5'  :lg="5" :md="5">
                     <div class="asidePosition ad_input" >
                         <h4><img class="img_shengfen" src="../../assets/img/zhiwei/shengfen.png" alt="">
                           <span @click="check"  style="margin-left:30px;cursor: pointer;">{{texts}}</span>
@@ -38,9 +38,9 @@
                                </div>
                           </transition>
                          <div class="search" style="margin-top:30px;">
-                            <el-input v-model="names"  class="input_search" placeholder="输入你想搜索的内容" >
-                                <i @click="getPosition" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
+                            <el-input v-model="names"  class="input_search" placeholder="输入职位" >
                             </el-input>
+                             <i @click="getPosition" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                          </div>
                          <p style="z-index:1000"  @click="getItems" v-if="flags"> 全部职位 <i ><img  src="../../assets/img/zhiwei/ic_chose.png" alt=""></i></p>
                          <p style="color:#748093 ;" @click="getItems" v-else>全部职位  <i  ><img src="../../assets/img/zhiwei/3.png" alt=""></i></p>
@@ -56,11 +56,11 @@
                     </div>
                   </el-col>
               <!--创建职位右边部分  -->
-                  <el-col :offset="1" :span='19' >
+                  <el-col  :span='19' :lg="19" :md="19">
                     <div class="positionTable">
                           <div class='content_pad'>
                             <el-row>
-                              <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24"> 
+                              <el-col> 
                               <div class="but_stys" :class="signs=='2'? 'btn_s':''" @click="tagStyChange(2)">
                                   <p class="font_s">初筛</p>
                                   <i class="num_s">{{count2}}</i>
@@ -111,7 +111,7 @@
                               </div>
                                  <div class="search">
                                     <el-input v-model="searchname"  class="input_search" placeholder="输入你想搜索的内容" >
-                                        <i @click="searchList" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
+                                    <i @click="searchList" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                                     </el-input>
                                     <el-button class="add_btn" @click="addCandidateShow('add')">添加候选人</el-button>
                                 </div>
@@ -121,7 +121,7 @@
                       <!--表格  -->
                           <div class="div_table_infor">
                               <el-table :key='signs'  :data="candidateList" style="width: 100%" >
-                                  <el-table-column fixed prop="processNum" label="基本资料" header-align='center' align='left' width="350px">
+                                  <el-table-column fixed prop="processNum" label="基本资料" header-align='center' align='left' max-width="350px">
                                       <template slot-scope="scope" >
                                           <span class="basic_sty " style="cursor: pointer" @click="addCandidateShow('steps');showSteps(scope.row.id)" >
                                             <span class="name_s">{{scope.row.candidateName}} <em>{{scope.row.candidateSex}}</em><em class="bom_sty"></em><em>{{scope.row.candidateExperience}}</em></span>
@@ -234,6 +234,7 @@ export default {
   },
    data() {
       return {
+        screenWidth: document.documentElement.clientWidth, // 屏幕尺寸
         signs:'2' ,
         candidateList:[],//列表
         personList:[],//人员数据
@@ -270,11 +271,12 @@ export default {
         candidateEducationExperienceDTOList:''//教育经历
       };
     },
-    watch:{
-
-      },
    directives: {clickoutside},
     methods: {
+      handleResize (event) {
+        this.screenWidth = document.documentElement.clientWidth
+        console.log(this.screenWidth,55)
+        },
     /*  //列表处于面试阶段， 传给子组件选中的状态
       interviewStatus(param){
         this.interviewStatus=param;
@@ -426,7 +428,7 @@ export default {
 
     //blance showSteps  查询候选人信息
       showSteps(id){
-      let that=this;
+       let that=this;
         that.$http({
           url:api.getCandidate+id,
           headers:headers(),
@@ -449,6 +451,13 @@ export default {
      this.getCandidate()
      this.getPosition()
      this.getCount()
+       const that = this
+      window.onresize = () => {
+        return (() => {
+          that.screenWidth = document.body.clientWidth
+          
+        })()
+      }
     },
     created() {
     }
@@ -458,7 +467,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped >
  .content {
-   min-width: 1356px;
+   min-width: 820px;
    background-color: #FAFAFA;
  }
  .main .right-content .content .headline {
@@ -471,31 +480,31 @@ export default {
   box-shadow: none;
 }
 .asidePosition {
-    width: 310px;
-    min-width: 310px;;
-    height:800px;
-    background: #fff;
-    margin-right: 15px;
-    padding: 12px 20px;
-    margin-right: 10px
-    /* border-right: 1px solid #eee; */
+  /* width: 310px; */
+  min-width: 190px;; 
+  height:800px;
+  background: #fff;
+  margin-right: 15px;
+  padding: 12px 20px;
+  margin-right: 20px
+  /* border-right: 1px solid #eee; */
 }
 .asidePosition h4 {
-font-family: MicrosoftYaHei-Bold;
-font-size: 16px;
-color: #394A66;
-letter-spacing: 0;
-text-align: left;
-color: #F95714;
-position: relative;
-left: 4px;;
+  font-family: MicrosoftYaHei-Bold;
+  font-size: 16px;
+  color: #394A66;
+  letter-spacing: 0;
+  text-align: left;
+  color: #F95714;
+  position: relative;
+  left: 4px;;
 }
 .asidePosition h4 .img_shengfen {
     position: absolute;
 }
 .select_position_sty {
   position: absolute;
-  top: 28px;
+  top: 35px;
   left:114px;
   width:100px;
   height: 112px;
@@ -508,10 +517,6 @@ left: 4px;;
   content: '';
   width :0;
   height:0 ;
-  /* border-bottom:10px solid #ffff;
-  border-left:10px solid transparent;
-  border-right:10px solid transparent;
-  border-style:solid; */
   border-style: solid;
   border-width: 0 10px 10px 10px;
   border-color: transparent transparent #FAFBFC transparent;
@@ -519,7 +524,6 @@ left: 4px;;
   top: -10px;
   position: absolute;
   z-index: 10;
-
 }
 .select_position_sty ul li  {
   padding: 20px 5px;
@@ -533,43 +537,44 @@ left: 4px;;
 .select_position_sty ul li:hover {
   color: #F95714;
 }
+/* 左侧搜索框样式开始 */
 .ad_input .search {
-float: right;
-width: 260px;
-height: 40px;
-/* margin-top: 30px; */
-position: relative;
-left: -30px;
-top:10px;
+  max-width: 260px;
+  text-align: center;
+  height: 40px;
+  position: relative;
+  top:10px;
 }
 .ad_input .search .input_search {
-width: 260px;
-position: absolute;
-top:-21px;
-left: 25px;
+  max-width: 260px;
 }
-.ad_input  .search .input_search .se_icon {
-position: absolute;
-right:-244px;
-height: 30px;
-top: 3px;
-font-size: 18px;
-font-weight: 700;
-border-left: 1px solid #E5E5E5;
-color: #F95714;
+.ad_input  .search .se_icon {
+  position: absolute;
+  right:8px;
+  top: 3px;
+  height: 30px;
+  font-size: 18px;
+  font-weight: 700;
+  border-left: 1px solid #E5E5E5;
+  color: #F95714;
 }
 .ad_input .search .el-icon-search:before {
-    content: "\E619";
-    margin-left: 5px;
+  content: "\E619";
+  margin-left: 5px;
 }
+/* 左侧搜索框样式结束 */
 .ad_input p {
   height: 30px;
+  line-height: 30px;
   color: #F95714;
-  margin-top:80px;
-  /* background-color: #FAFBFC; */
+  margin-top:20px;
+  width: 100%;
+  position: relative;
 }
 .ad_input p i {
-margin-left: 175px;
+  position: absolute;
+  top: 0px;
+  right: 25px;
 }
 .position_list {
    height:500px;
@@ -590,16 +595,17 @@ margin-left: 175px;
 }
 .position_list ul li:hover {
   color: #F95714;
-  /* padding-left: 15px; */
 }
+/* 右侧样式开始 */
 .positionTable {
-    background-color: #fff;
-    padding: 12px 25px;
-    /* margin-left: 36px; */
-    /* min-width: 1125px; */
-    padding-left: 0px;
-    height:800px;
+  background-color: #fff;
+  padding: 12px 25px;
+  min-width: 729px;
+  padding-left: 0px;
+  height:800px;
+  overflow: hidden;
 }
+/* 右侧顶部样式开始 */
 .content_pad {
   margin:11px;
   margin-left: 0px;
@@ -645,8 +651,11 @@ margin-left: 175px;
   right:13px;
   font-size: 18px;
 }
+/* 右侧顶部样式结束 */
+/* 右侧搜索框样式开始 */
 .content_pad .search {
-  float: right;
+  display: inline-block ;
+  right: 0px;
   width: 400px;
   height: 40px;
   margin-top: 10px;
@@ -656,21 +665,20 @@ margin-left: 175px;
   width: 260px;
   position: absolute;
   top:-21px;
-
 }
 .content_pad .search .input_search .se_icon {
   position: absolute;
   right:-244px;
-  height: 30px;
   top: 25px;
+  height: 30px;
   font-size: 18px;
   font-weight: 700;
   border-left: 1px solid #E5E5E5;
   color: #F95714;
 }
 .content_pad .search .el-icon-search:before {
-    content: "\E619";
-    margin-left: 5px;
+  content: "\E619";
+  margin-left: 5px;
 }
 .content_pad .add_btn  {
   background: #F95714;
@@ -680,9 +688,10 @@ margin-left: 175px;
   color: #fff;
   float: right;
 }
+/* 搜索框样式结束 */
 .basic_sty .name_s {
-   font-size: 15px;
-   color:#394A66;
+  font-size: 15px;
+  color:#394A66;
 }
 .basic_sty .name_s em {
   font-size: 12px;
@@ -709,6 +718,12 @@ margin-left: 175px;
 <style>
 .position_list .el-scrollbar__wrap {
   overflow-x: hidden !important;
+ }
+ .ad_input .el-input--prefix .el-input__inner {
+   padding-left:0px;
+ }
+ .content_pad .el-input--prefix .el-input__inner {
+   padding-left:0px;
  }
 
 </style>
