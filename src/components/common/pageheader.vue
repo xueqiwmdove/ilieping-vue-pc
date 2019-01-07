@@ -9,8 +9,8 @@
 				<ul style="height:100%;"  v-clickoutside="handleClose2">
 					<li><img src="../../assets/img/1.5.1/lou.png" alt=""></li>
 					<li class="conpany_1">{{message_title}}</li>
-					<li @click="detail_click(2)" v-if="status"><span class="status_ren">请去验证</span> </li> 
-					<li  v-else><span class="status_ren2">已验证</span> <img src="../../assets/img/1.5.1/peizhi.png" alt=""></li> 
+					<li @click="detail_click(2)" v-if="status"><span class="status_ren">请去验证</span> </li>
+					<li  v-else><span class="status_ren2">已验证</span> <img src="../../assets/img/1.5.1/peizhi.png" alt=""></li>
 					<li @click="checkpoint" :class="{topLine:topLine}" class="setting" ><img src="../../assets/img/1.5.1/set.png" alt=""></li>
 					<div class="selece_option">
 							<ul v-if="topLine" class="selece_option">
@@ -25,10 +25,10 @@
 				<ul style="height:100%;width:300px" v-clickoutside="handleClose">
 						<li @click="click_phone(0)" :class="seen == '0'? 'topLine':''"  ><img src="../../assets/img/1.5.1/ipone.png" alt=""></li>
 					 	<li @click="click_msg(1)" :class="seen == '1'? 'topLine':''" ><img src="../../assets/img/1.5.1/message.png" alt=""></li>
-						<li style="	width: 160px;" @click="checkpoint1(2)" :class="seen == '2'? 'topLine':''"><img style="margin-right:5px" src="../../assets/img/1.5.1/person.png" alt=""><span class="names">你好，马德华</span></li> 
+						<li style="	width: 160px;" @click="checkpoint1(2)" :class="seen == '2'? 'topLine':''"><img style="margin-right:5px" src="../../assets/img/1.5.1/person.png" alt=""><span class="names">你好，马德华</span></li>
 					    <!-- 手机二维码 -->
 						<div v-if="topPhone" class="phoneicon">
-						  <img src="../../assets/img/1.5.1/erwei.png" alt="">	
+						  <img src="../../assets/img/1.5.1/erwei.png" alt="">
 						</div>
 						<!-- 消息展示 -->
 							<div v-if="topLines1"  class="msg_sty" >
@@ -171,7 +171,7 @@ export default {
 				this.$router.push({path:'/businessCert'})
 		}
 	},
-	
+
 	// 账号安全，放弃管理员身份
 	account(val) {
 		if(val == '1') {
@@ -185,7 +185,7 @@ export default {
 				type: 'warning',
 				center: true
 			}).then(() => {
-			
+
 			}).catch(() => {
 
 			});
@@ -219,7 +219,7 @@ export default {
 	handleClose() {
 	 	this.topPhone =false
 		this.topLines1 =false
-		this.topLines =false	
+		this.topLines =false
 		this.seen=''
 	},
 	handleClose2() {
@@ -241,7 +241,7 @@ export default {
 			}).then(function(res){
 			localStorage.clear();
 			that.$router.push('/login');
-		   });  
+		   });
 		}).catch(() => {
 
 		});
@@ -262,7 +262,7 @@ export default {
 	},
 	// 确定
 	makeSure() {
-		
+
 	}
 
     },
@@ -281,6 +281,7 @@ export default {
 .header_1 {
 	background-color: rgba(255,255,255,1);
   line-height: 48px;
+  box-shadow:0px 2px 2px 0px rgba(170,170,170,0.12);
 }
 .conpany_1 {
 	margin-left: 20px;
@@ -329,7 +330,7 @@ export default {
 	float: right !important;
 	height: 48px;
 	line-height: 48px;
-	
+
 }
 .pull-right ul li {
 	cursor: pointer;
@@ -436,23 +437,23 @@ export default {
 	text-align: left;
 	width: 100%;
   font-family: MicrosoftYaHei;
- font-size: 14px; 
+ font-size: 14px;
  color: #97A2B3;
  letter-spacing: 0;
 }
 .sty_icons {
-  display: inline-block;  
+  display: inline-block;
   width: 8px;
   height: 8px;
   border-radius:50%;
-  background-color: #FF7F7F;  
+  background-color: #FF7F7F;
   margin-right:10px;
 }
 .sty_icons span {
   font-family: MicrosoftYaHei;
   font-size: 16px;
   color: #1B002A;
-  letter-spacing: 0;  
+  letter-spacing: 0;
 }
 .phoneicon {
  width:160px;

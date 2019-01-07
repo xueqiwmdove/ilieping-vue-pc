@@ -544,7 +544,6 @@ const router =new Router({
 
 });
 
-
 router.beforeEach((to, from, next) => {
 	if(!localStorage.jingjing_login_token && to.path!=='/' && to.name !== 'phoneAuth' && to.name !== 'reg' && to.name !== 'regCompany' && to.name !== 'regSuccess' && to.name !== 'agree'  && to.name !== 'restPsd' && to.name !== 'ablityAssessment' && to.name !== 'leaveAssessment' && to.name !== 'contact' && to.name !== 'wasAsked' && to.name !== 'newWitesite_index' && to.name !== 'bySinging' && to.name !== 'brokenQuery' && to.name !== 'login'){
      router.push({path:'/login'});

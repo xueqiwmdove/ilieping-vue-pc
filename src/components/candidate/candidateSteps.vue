@@ -153,7 +153,7 @@
           this.step=flag;//子组件穿过的flag值，赋值给step；changeli
           // this.status1=flag;//changeStatus2
           this.status1=flag;
-          console.log(this.status1,this.step);
+          // console.log(this.status1,this.step);
         },
         //只有基本资料 里面的标准简历可以下载 子组件 basicFirst穿过的flag值；
         parentFlag(updateStatus){
