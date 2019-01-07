@@ -46,9 +46,9 @@
 	vertical-align: middle;
 	margin-right: 4px;
 }
-.active .icon_yuqiweiqian{
+/* .active .icon_yuqiweiqian{
  background: url(../../img/hetong/ic_yuqiweiqian2.svg) no-repeat;
-}
+} */
 .icon_yidaoqi{ /* 已到期 */
 	width: 14px;
     height: 14px;
@@ -65,12 +65,12 @@
 	vertical-align: middle;
 	margin-right: 4px;
 }
-.active .icon_jijiangjiezhi{
+/* .active .icon_jijiangjiezhi{
  background: url(../../img/hetong/fanbai.svg) no-repeat;
-}
-.active .icon_yidaoqi{
+} */
+/* .active .icon_yidaoqi{
  background: url(../../img/hetong/ic_yidaoqi2.svg) no-repeat;
-}
+} */
 .icon_yicexiao{ /* 已撤销 */
 	width: 14px;
     height: 14px;
@@ -78,9 +78,9 @@
 	background: url(../../img/hetong/ic_yicexiao.svg) no-repeat;
 	vertical-align: middle;margin-right: 4px;
 }
-.active .icon_yicexiao{
+/* .active .icon_yicexiao{
  background: url(../../img/hetong/ic_yicexiao2.svg) no-repeat;
-}
+} */
 .icon_daiwoqian{ /* 待我签 */
 	width: 14px;
     height: 14px;
@@ -88,9 +88,9 @@
 	background: url(../../img/hetong/ic_daiwoqian.svg) no-repeat;
 	vertical-align: middle;margin-right: 4px;
 }
-.active .icon_daiwoqian{
+/* .active .icon_daiwoqian{
  background: url(../../img/hetong/ic_daiwoqian2.svg) no-repeat;
-}
+} */
 .icon_daiyuangongqian{ /* 待员工签 */
 	width: 14px;
     height: 14px;
@@ -98,9 +98,9 @@
 	background: url(../../img/hetong/ic_daiyuangongqian.svg) no-repeat;
 	vertical-align: middle;margin-right: 4px;
 }
-.active .icon_daiyuangongqian{
+/* .active .icon_daiyuangongqian{
   background: url(../../img/hetong/ic_daiyuangongqian2.svg) no-repeat;
-}
+} */
 .icon_jijiangdaoqi{ /* 即将到期 */
 	width: 14px;
     height: 14px;
@@ -108,9 +108,9 @@
 	background: url(../../img/hetong/ic_jijiangdaoqi.svg) no-repeat;
 	vertical-align: middle;margin-right: 4px;
 }
-.active .icon_jijiangdaoqi{
+/* .active .icon_jijiangdaoqi{
   background: url(../../img/hetong/ic_jijiangdaoqi2.svg) no-repeat;
-}
+} */
 .icon_qianyuewancheng{ /* 签约完成 */
 	width: 14px;
     height: 14px;
@@ -118,19 +118,20 @@
 	background: url(../../img/hetong/ic_qianyuewancheng.svg) no-repeat;
 	vertical-align: middle;margin-right: 4px;
 }
-.active .icon_qianyuewancheng{
+/* .active .icon_qianyuewancheng{
   background: url(../../img/hetong/ic_qianyuewancheng2.svg) no-repeat;
-}
+} */
 .icon_quanbu{ /* 全部 */
 	width: 14px;
     height: 14px;
     display: inline-block;
-	background: url(../../img/hetong/ic_quanbu.svg) no-repeat;
+	background: url(../../img/hetong/ic_quanbu2.svg) no-repeat;
 	vertical-align: middle;margin-right: 4px;
+	background-size: 100%;
 }
-.active .icon_quanbu{
+/* .active .icon_quanbu{
   background: url(../../img/hetong/ic_quanbu2.svg) no-repeat;
-}
+} */
 .span_f95714{
 	font-family: MicrosoftYaHei;
     font-size: 12px;

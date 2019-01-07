@@ -342,7 +342,7 @@ export default {
       },
       click_hr(a){//人事流程
         this.flag=a;
-        this.$router.push('/hr');
+        this.$router.push('/personnelTransaction');
       },
       toBusinessCert(a){//企业认证
         this.flag=a;
@@ -439,7 +439,7 @@ export default {
 				that.before5=false;
 				that.after5=true;
     		that.flag=13;
-			}else if(loginUrl == 'hr'){
+			}else if(loginUrl == 'personnelTransaction'){
     		let that=this;
 				that.isShow8=true;
 				that.before8=false;
