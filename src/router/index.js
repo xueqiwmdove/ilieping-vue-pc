@@ -232,7 +232,7 @@ const router =new Router({
       component: myupload
     },
     {//曝光失信行为
-      path: '/exposure',
+      path: '/exposure/:id',
       name: 'exposure',
       component: exposure
     },
@@ -262,12 +262,12 @@ const router =new Router({
       component: searchResult
     },
     {//快速上传
-      path: '/quickUpload',
+      path: '/quickUpload/:id',
       name: 'quickUpload',
       component: quickUpload
     },
     {//上传1
-      path: '/uploadOne',
+      path: '/uploadOne/:id',
       name: 'uploadOne',
       component: uploadOne
     },

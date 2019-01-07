@@ -269,7 +269,7 @@ export default {
     	},
     	click_exposure(a){
     		this.flag=a;
-    		this.$router.push('/exposure');
+    		this.$router.push('/exposure/0');
     	},
     	click_myupload(a){
     		this.flag=a;

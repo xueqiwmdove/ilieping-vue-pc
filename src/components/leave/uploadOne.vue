@@ -324,7 +324,39 @@
               that.$message.error("系统错误，请稍后再试");
             }
           })
+        },
+        // 根据 emloyeeid 查员工档案的接口
+        getStaffData(){
+          //员工档案相关数据
+          let that=this;
+          let employeeId=that.$route.params.id;
+          this.$http({
+            url:`${api.employeeArchives}/${employeeId}`,
+            method:'GET',
+            headers:headers('application/json;charset=utf-8'),
+          }).then(function (res) {
+
+            let resData = res.data;
+            if(resData.code == 10000){
+              // that.employeeInfo = resData.data.employeeInfo;
+              that.sendData.birthDate =  resData.data.employeeInfo.employeeBrithday;
+              // that.sendData.sex =  resData.data.employeeInfo.employeeSex;
+              that.sendData.name =  resData.data.employeeInfo.employeeName;
+              that.sendData.cardNumber =  resData.data.employeeInfo.employeeIdCard;
+              that.sendData.phone =  resData.data.employeeInfo.employeePhone;
+              that.sendData.post = resData.data.employeeInfo.position;
+              that.sendData.department=resData.data.employeeInfoDetailResponse.deptName;
+            }
+
+          }).catch(function (error) {
+            that.$message.error(error);
+          });
         }
+
+    },
+    mounted(){
+      let that=this;
+      that.getStaffData();
     }
   }
 </script>

@@ -53,10 +53,10 @@ export default {
     },
     methods: {
       click_quickUpload(){
-        this.$router.push('/quickUpload');
+        this.$router.push('/quickUpload/0');
       },
       click_uploadOne(){
-        this.$router.push('/uploadOne');
+        this.$router.push('/uploadOne/0');
       }
     }
 }
