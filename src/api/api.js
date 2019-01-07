@@ -1,4 +1,4 @@
-// let Butterfly="http://101.132.66.158:8899/jersey/";
+// let Butterfly="http://101.132.66.158:8899/jersey/";//服务本地地址
 // let Butterfly="http://127.0.0.1:8899/jersey/";
 let Butterfly="http://192.168.2.166:8899/jersey/";//测试ip
 // let Butterfly="http://192.168.6.6:8899/jersey/";//薛尧

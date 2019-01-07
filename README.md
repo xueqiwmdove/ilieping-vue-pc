@@ -6,25 +6,15 @@
 
 ``` bash
 # install dependencies
-npm install
+npm install  // 安装项目依赖，等待安装完成之后 
+
+cnpm install  // 如果npm 安装项目依赖太慢，可以用cnpm install 
 
 # serve with hot reload at localhost:8080
-npm run dev
+npm run dev  // 开启服务器，浏览器访问 http://localhost:8080
 
-# build for production with minification
-npm run build
+../src/api/api.js //前端访问后端接口地址
 
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
+../http/http.js //暂不用
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

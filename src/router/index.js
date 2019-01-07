@@ -103,7 +103,7 @@ import optionrefuse from  '@/components/option/optionrefuse'//设置拒绝
 import businessManager from '@/components/account/businessManager'//企业经办人
 import businessCert from '@/components/account/certificate' //企业认证
 
-import hr from '@/components/hr/hr'//人事流程
+import personnelTransaction from '@/components/hr/personnelTransaction'//人事流程
 
 import HelloWorld from '@/components/reg/HelloWorld'
 
@@ -416,9 +416,9 @@ const router =new Router({
       component:businessCert
     },
     {// 人事流程
-      path:'/hr',
-      name:'hr',
-      component:hr,
+      path:'/personnelTransaction',
+      name:'personnelTransaction',
+      component:personnelTransaction,
     },
     {
       path:'/emailInfo/:id/:msg',
