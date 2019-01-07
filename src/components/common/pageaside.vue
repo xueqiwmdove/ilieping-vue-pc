@@ -122,11 +122,11 @@
                     </i>
                 </div>
                 <ul class="submenu" v-if="isShow9">
-                    <li @click="click_potion(21)" :class="flag==21?'active':''"><span>职位管理</span></li>
+                    <li @click="click_potion(21)" :class="flag==21?'active':''"><span>岗位管理</span></li>
                     <li @click="click_candidate(22)" :class="flag==22?'active':''"><span>候选人管理</span></li>
-                     <li @click="click_interviewMmanagement(30)" :class="flag==30?'active':''"><span>面试管理</span></li>
-                     <li @click="click_option(31)" :class="flag==31?'active':''"><span>设置</span></li>
-                    <!--<li @click="click_potion25(25)" :class="flag==25?'active':''"><span>人才库</span></li>-->
+                     <li @click="click_interviewMmanagement(30)" :class="flag==30?'active':''"><span>面试日程</span></li>
+                     <!-- <li @click="click_option(31)" :class="flag==31?'active':''"><span>设置</span></li> -->
+                    <li @click="click_potion25(25)" :class="flag==25?'active':''"><span>人才库</span></li>
                     <!--<li @click="click_potion26(26)" :class="flag==26?'active':''"><span>设置</span></li>-->
                 </ul>
             </li>
@@ -289,7 +289,7 @@ export default {
       },
        click_potion25(a){//人才库
         this.flag=a;
-    		this.$router.push('/jobmanageindex');
+    		this.$router.push('/talentPool');
       },
        click_potion26(a){//设置
         this.flag=a;
@@ -488,8 +488,13 @@ export default {
 				that.isShow9=true;
 				that.before9=false;
 				that.after9=true;
-      }
-      else if(loginUrl=='option'){
+      }else if(loginUrl=='talentPool') {
+        let that=this;
+        that.flag=25;
+        that.isShow9=true;
+        that.before9=false;
+        that.after9=true;
+      }else if(loginUrl=='option'){
         let that=this;
 				that.flag=31;
 				that.isShow9=true;

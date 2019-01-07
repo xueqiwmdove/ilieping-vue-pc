@@ -62,6 +62,7 @@ import insertEmployee from '@/components/employeeManage/insertEmployee'//新增�
 import insertNewEmployee from '@/components/employeeManage/insertNewEmployee'//新增员工
 import employeeSalary from '@/components/employeeManage/employeeSalary'//薪资福利
 import insertSuccess from '@/components/employeeManage/insertSuccess'//薪资福利
+import historicalArchiving from '../components/common/history/historicalArchiving'//历史归档
 
 /* 管网静态页面  */
 import newWitesite_index from '@/components/newWitesite/newWitesite_index'
@@ -85,6 +86,7 @@ import jobManageIndex from '@/components/jobManagement/index'//职位管理首�
 import createPosition from '@/components/jobManagement/CreatePosition'//创建职位
 import searchPage from '@/components/jobManagement/searchPage'//职位管理搜索页
 import positionUpdate from '@/components/jobManagement/positionUpdate'
+import TalentPool from '@/components/TalentPool/TalentPool'//人才库
 
 //候选人列表
 import  Candidatindex   from '@/components/CandidatManage/Candidatindex'
@@ -485,6 +487,11 @@ const router =new Router({
       name: 'searchCandidata',
       component: SearchCandidata,
     },
+    {//人才库
+      path:'/talentPool',
+      name:'talentPool',
+      component:TalentPool
+    },
     {//设置
       path: '/option',
       name: 'option',
@@ -530,10 +537,15 @@ const router =new Router({
       name: 'candidateSteps',
       component: candidateSteps,
     },
+    {//历史归档
+      path:'/historicalArchiving',
+      name:'historicalArchiving',
+      component:historicalArchiving
+    },
     {
-				path: '/customContractTemplate',
-				name: 'customContractTemplate',
-				component: customContractTemplate,
+      path: '/customContractTemplate',
+      name: 'customContractTemplate',
+      component: customContractTemplate,
 		},
 		{
 			path: '/InterviewManagement',

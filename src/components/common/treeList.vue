@@ -35,8 +35,8 @@
              </el-scrollbar>
          </div>
         <div @click="group('1')"  :class="{actives:isfalse}" class="catorgry" >未命名分组 </div>
-        <hr>
-        <div @click="quitPerson('1')"  :class="{actives:isfalse2}" class="catorgry" >离职人员 </div>
+        <!-- <hr> -->
+        <!-- <div @click="quitPerson('1')"  :class="{actives:isfalse2}" class="catorgry" >离职人员 </div> -->
       </div>
 
     </div>
@@ -153,7 +153,6 @@ export default {
           counts:{},
           tit:window.localStorage.getItem('title'),
           isfalse:false,
-          isfalse2:false,
           dialogMove:false,//移动弹窗
           dialogReset:false,//重命名弹窗
           dialogDelete:false,//删除部门
@@ -276,7 +275,6 @@ export default {
       },
     //点击获取总人数列表
       getAll() {
-        this.isfalse2 =false
         this.isfalse=false
         this.active=''
         let id = ''
@@ -286,15 +284,7 @@ export default {
       group(val) {
        this.$emit("getState",val)
        this.isfalse =true
-       this.isfalse2 =false
        this.activess=''
-      },
-    //点击获取离职人员
-      quitPerson(val) {
-        this.$emit('getStatus',val)
-        this.isfalse2 =true
-        this.isfalse=false
-        this.activess=''
       },
       // 获取员工架构
       getTree() {
@@ -499,7 +489,6 @@ export default {
           console.log(data,'<=============data')
           this.activess = data.id;
           this.$emit("getDptid",data.id)
-          this.isfalse2 =false
           this.isfalse=false
         },
       remove(node, data) {

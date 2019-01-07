@@ -17,15 +17,16 @@
             <el-row>
               <!--左侧员工架构  -->
               <el-col :span="5">
-                  <treelist v-on:getDptid="getid" @getState='getstate' @getStatus='getstatus' @getlists='getList' :countPersons='countPersons' ></treelist>
+                  <treelist v-on:getDptid="getid" @getState='getstate' @getlists='getList' :countPersons='countPersons' ></treelist>
               </el-col>
               <el-col :span="19">
-                <div class="table-parent_e">
+                <div class="table-parent_e ">
                   <!--查询条件  -->
                     <el-form ref="form" :model="form" label-width="80px" style="margin-top:20px;min-width:756px;">
-                      <el-row>
-                        <el-col :lg="6" :md="9" :sm="12">
-                          <el-form-item label="工作类型">
+                      <el-row class="content_pad">
+                        <el-col>
+
+                          <el-form-item label="工作类型" style="display:inline-block">
                             <el-select v-model="form.workType" placeholder="请选择工作类型">
                               <el-option label="不限" value=""></el-option>
                               <el-option label="全职" value="0"></el-option>
@@ -33,32 +34,29 @@
                               <el-option label="实习" value="2"></el-option>
                             </el-select>
                           </el-form-item>
-                        </el-col>
-                        <el-col :lg="6" :md="9" :sm="12">
-                            <el-form-item label="在职情况">
-                            <el-select v-model="form.serviceSituation" placeholder="请选择工作类型">
-                              <el-option label="不限" value=""></el-option>
-                              <el-option label="已转正" value="1"></el-option>
-                              <el-option label="试用期" value="0"></el-option>
-                            </el-select>
+                        
+                          <el-form-item label="在职情况" style="display:inline-block">
+                              <el-select v-model="form.serviceSituation" placeholder="请选择工作类型">
+                                <el-option label="不限" value=""></el-option>
+                                <el-option label="已转正" value="1"></el-option>
+                                <el-option label="试用期" value="0"></el-option>
+                              </el-select>
                           </el-form-item>
-                        </el-col>
-                        <el-col :lg="8" :md="9" :sm="12">
-                            <el-form-item label="">
-                              <el-input v-model="form.name"  maxlength="11" @keyup.enter.native="getList"  placeholder="请输入姓名/手机号"></el-input>
-                          </el-form-item>
-                          <!-- <el-form-item label="">
-                              <div class="search">
-                              <el-input  v-model="searchName" maxlength="20" class="input_search" placeholder="输入你想搜索的内容" >
-                                <i @click="searchPage" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
-                              </el-input>
-                            </div>
-                          </el-form-item>   -->
-                        </el-col>
-                        <el-col :offset="1" :span="3">
-                          <!-- <button class="el-icon-search btn_resite serach"  @click="getList" >搜索</button> -->
-                          <button class=" btnstyle" @click="addNewemployee" >添加员工</button>
 
+                            <div class="search">
+                                  <el-input v-model="form.name" maxlength="11" @keyup.enter.native="getList" class="input_search" placeholder="输入手机号" >
+                                    <i @click="getList" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
+                                  </el-input>
+                            </div>
+                            <div style="display:inline-block;margin-left:10%;">      
+                                  <div @click="historyList"  class="history_s">
+                                      <i ><img src="../../assets/img/1.5.1/enter.png" alt="">导入</i>
+                                      
+                                      <i  @mouseenter="enters"  v-if="fileshow"><img src="../../assets/img/1.5.1/file.png" alt="">历史归档</i>
+                                      <i  @mouseleave="leaves" v-else style="color:#F95714;"><img src="../../assets/img/1.5.1/file2.png" alt="">历史归档</i>
+                                  </div>
+                                  <el-button class="add_btn" @click="addNewemployee">添加员工</el-button>
+                           </div>   
                         </el-col>
                       </el-row>
                     </el-form>
@@ -108,23 +106,6 @@
 																  <el-dropdown-item v-if="scope.row.status=='1'" @click.native="multidimensional(scope.row)">多维度离职评价</el-dropdown-item>
 																</el-dropdown-menu>
 															</el-dropdown>
-                                	    <!-- <div class="operation" @mouseenter="enter(scope.row.id)" @mouseleave="leave()">
-                                        <div class="options">操作选项</div>
-                                        <div class="options_div" v-show="seen && scope.row.id==current">
-                                          <ul>
-                                            <li v-if="scope.row.status=='0'" @click="personDetail(scope.row)">员工资料</li>
-                                            <li v-if="(scope.row.isSign=='1')&&(scope.row.status =='0')" @click="checkSign(scope.row)">查看合同</li>
-                                            <li v-if="scope.row.isSign=='0'&&(scope.row.status =='0')"  @click="makeSign(scope.row)">签署合同</li>
-                                            <li v-if="(scope.row.serviceSituation =='0')&& (scope.row.status =='0')" @click="personRegular(scope.row)">提前转正</li>
-                                            <li v-if="scope.row.status=='0'" @click="makeQuit(scope.row)">办理离职</li>
-                                            <li v-if="scope.row.status=='0'"  @click="personChanges(scope.row)">人事异动</li>
-                                            <li @click="personDelete(scope.row)">删除员工</li>
-                                            <li v-if="scope.row.status=='1'" @click="quitDiscredit(scope.row)">离职失信曝光</li>
-                                            <li v-if="scope.row.status=='1'" @click="quitAssess(scope.row)">快速离职评价</li>
-                                            <li v-if="scope.row.status=='1'" @click="multidimensional(scope.row)">多维度离职评价</li>
-                                          </ul>
-                                        </div>
-                                      </div> -->
                             </template>
                           </el-table-column>
                     </el-table>
@@ -400,6 +381,7 @@ export default {
         disableType:true,
         seen:false,
         current:0,
+        fileshow:true,
         treeVisabled:false,
         countPersons:'',//部门总人数
         getDptid:'',//获取当前点击的部门id
@@ -507,10 +489,21 @@ export default {
      handleClose2(e) {
         this.treeVisabled=false
       },
+  // 历史归档
+      historyList() {
+        this.fileshow=false
+        this.$router.push({path:'/historicalArchiving'})
+      },
   //鼠标移入移出
       enter(index){
         this.seen = true;
         this.current = index;
+      },
+      enters() {
+        this.fileshow=false 
+      },
+      leaves() {
+        this.fileshow=true
       },
       leave(){
         this.seen = false;
@@ -565,13 +558,6 @@ export default {
         this.grouping = val
         this.status='0'
         this.deptId=''
-        this.getList()
-      },
-      //获取离职部门
-      getstatus(val) {
-        this.grouping='1'
-        this.deptId=''
-        this.status=val
         this.getList()
       },
 
@@ -952,7 +938,51 @@ created() {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @import url("./common/indexList/index2.css");
+.content_pad .search {
+  display: inline-block ;
+  width: 260px;
+  height: 40px;
+  position: relative;
+  top: 19px;
+  margin-left: 8px;
+}
+.content_pad .search .input_search {
+  width: 260px;
+  position: absolute;
+}
+.content_pad .search .input_search .se_icon {
+  position: absolute;
+  right:-244px;
+  top: 3px;
+  height: 30px;
+  font-size: 18px;
+  font-weight: 700;
+  border-left: 1px solid #E5E5E5;
+  color: #F95714;
+  cursor: pointer;
+}
+.content_pad .search .el-icon-search:before {
+  content: "\E619";
+  margin-left: 5px;
+}
+.content_pad .add_btn  {
+  background:linear-gradient(135deg,rgba(253,144,45,1) 0%,rgba(249,87,20,1) 100%);
+  border-radius: 4px;
+  width: 120px;
+  color: #fff;
+  margin-top: -17px;
 
+}
+.history_s {
+  display: inline-block;
+  /* position: absolute; */
+  cursor: pointer;
+  margin-top: 10px;
+}
+.history_s i {
+  margin-left: 5px;
+  margin-right: 5px;
+}
 </style>
 <style>
 @import url("./common/indexList/index.css");

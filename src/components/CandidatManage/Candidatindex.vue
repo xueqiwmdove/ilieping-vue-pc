@@ -60,7 +60,7 @@
                       <div class="positionTable">
                             <div class='content_pad'>
                               <el-row>
-                                <el-col> 
+                                <el-col > 
                                 <div class="but_stys" :class="signs=='2'? 'btn_s':''" @click="tagStyChange(2)">
                                     <p class="font_s">初筛</p>
                                     <i class="num_s">{{count2}}</i>
@@ -101,6 +101,10 @@
                                         <img v-else src="../../assets/img/zhiwei/houxuan_ic_wait.png" alt="">
                                     </em>
                                 </div>
+                                <div @click="historyList" class="history_s" >
+                                  <i  @mouseenter="enters"  v-if="fileshow"><img src="../../assets/img/1.5.1/file.png" alt="">历史归档</i>
+                                  <i  @mouseleave="leaves" v-else style="color:#F95714;"><img src="../../assets/img/1.5.1/file2.png" alt="">历史归档</i>
+                                </div>
                                 <!-- <div class="but_stys "  :class="signs=='0'? 'btn_s':''"  @click="tagStyChange(0)">
                                     <p class="font_s">已淘汰</p>
                                     <i class="num_s">{{count0}}</i>
@@ -109,14 +113,11 @@
                                         <img v-else src="../../assets/img/zhiwei/houxuan_ic_pass.png" alt="">
                                     </em>
                                 </div> -->
-                                <!-- <div>
-                                  <i><img src="" alt=""></i>
-                                </div> -->
                                   <div class="search">
                                       <el-input v-model="searchname"  class="input_search" placeholder="输入你想搜索的内容" >
                                       <i @click="searchList" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                                       </el-input>
-                                      <el-button class="add_btn" @click="addCandidateShow('add')">添加候选人</el-button>
+                                      <el-button style="margin-top: -17px;" class="add_btn" @click="addCandidateShow('add')">添加候选人</el-button>
                                   </div>
                                 </el-col> 
                               </el-row>
@@ -240,6 +241,7 @@ export default {
         signs:'2' ,
         candidateList:[],//列表
         personList:[],//人员数据
+        fileshow:true,
         counts:{},
         names:'',//搜素关键字
         searchname:'',
@@ -275,14 +277,12 @@ export default {
     },
    directives: {clickoutside},
     methods: {
-      handleResize (event) {
-        this.screenWidth = document.documentElement.clientWidth
-        console.log(this.screenWidth,55)
-        },
-    /*  //列表处于面试阶段， 传给子组件选中的状态
-      interviewStatus(param){
-        this.interviewStatus=param;
-      },*/
+     enters() {
+        this.fileshow=false 
+      },
+      leaves() {
+        this.fileshow=true
+      },
     //获取职位列表
     getCandidate() {
       let that=this;
@@ -308,6 +308,11 @@ export default {
 	  			}
 		    });
     },
+    // 历史归档
+      historyList() {
+        this.fileshow=false
+        this.$router.push({path:'/historicalArchiving'})
+      },
       getCandidateList(val) {
         this.postId = val.id
         this.seen = val.id
@@ -319,8 +324,6 @@ export default {
         let that=this;
         that.visables[param] = true;
         if(param=='steps'){//添加候选人信息弹窗s
-
-
         }
       },
     //关闭候选人弹窗
@@ -646,11 +649,17 @@ export default {
   right:13px;
   font-size: 18px;
 }
+.history_s {
+  display: inline-block;
+  margin-left:40px;
+  position: absolute;
+  cursor: pointer;
+}
 /* 右侧顶部样式结束 */
 /* 右侧搜索框样式开始 */
 .content_pad .search {
   display: inline-block ;
-  right: 0px;
+  right: -129px;
   width: 400px;
   height: 40px;
   margin-top: 10px;
@@ -659,7 +668,7 @@ export default {
 .content_pad .search .input_search {
   width: 260px;
   position: absolute;
-  top:-21px;
+  top:-39px;
 }
 .content_pad .search .input_search .se_icon {
   position: absolute;
