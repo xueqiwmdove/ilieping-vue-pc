@@ -82,7 +82,7 @@
                                     <i class="num_s">{{count4}}</i>
                                     <em class=" icon_s">
                                         <img v-if="signs == '4'" src="../../assets/img/zhiwei/houxuan_ic_interview_pre.png" alt="">
-                                        <img v-else src="../../assets/img/zhiwei/houxuan_ic_department.png" alt="">
+                                        <img v-else src="../../assets/img/zhiwei/houxuan_ic_interview.png" alt="">
                                     </em>
                                 </div>
                                 <div class="but_stys "  :class="signs=='5'? 'btn_s':''" @click="tagStyChange(5)">
