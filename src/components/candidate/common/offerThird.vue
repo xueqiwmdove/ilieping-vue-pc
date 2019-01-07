@@ -17,7 +17,7 @@
             </div>
          </div>
          <!-- 创建offer -->
-        <div v-if="!isshow" class="addCandidate_content">
+        <div v-if="!isshow" class="addCandidate_content" v-loading="loading">
             <div class="standard_resume">
               <el-row style="overflow-x: hidden;">
                 <el-col  :span="24">
@@ -213,6 +213,7 @@
       },
       data() {
         return {
+          loading:false,
            isshow:true,
            flag1:true,
            // workAddress:'',
@@ -288,15 +289,20 @@
             }
           }).then(function (res) {
             // console.log(res)
-            if(res.data.code==10000){
-              that.flag1 = false;
-              that.offerIsExist();
-            }else if(res.data.code==40001){
-              that.flag1 = false;
-              that.offerIsExist();
-            }else{
+            that.loading=true;
+            setTimeout(function(){
+              that.loading=false;
+              if(res.data.code==10000){
+                that.flag1 = false;
+                that.offerIsExist();
+              }else if(res.data.code==40001){
+                that.flag1 = false;
+                that.offerIsExist();
+              }else{
+                that.$message.error(res.data.data.msg);
+              }
+            },3000);
 
-            }
           })
         } ,
       //  查看是否有offer
@@ -335,7 +341,7 @@
       //  删除offer
         removeOffer(){
           let that=this;
-          console.log(that.offerId)
+          // console.log(that.offerId)
           that.$http({
             method:'post',
             url:api.removeOffer+that.candidateID+"/"+that.offerId,
@@ -343,7 +349,7 @@
           }).then(function (res) {
             console.log(res);
             if(res.data.code==10000){
-
+              that.offerIsExist();
 
             }else{
               that.$message.error(res.data.msg);
