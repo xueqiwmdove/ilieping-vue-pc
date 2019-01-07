@@ -90,7 +90,8 @@
             </ul>
             <div class="headImg" v-if="flag==2">
               <!--<fileUploadHeadImg @getfile="getHeadImg" ref="headImg" ></fileUploadHeadImg>-->
-              <img src="../../assets/img/candidate/tanchuang_ic_head.png" >
+              <img v-if="imgcode ==''"src="../../assets/img/candidate/tanchuang_ic_head.png" >
+              <img v-if="imgcode !=''" :src="imgcode"  style="width: 80px;height: 80px;border-radius: 50%;">
               <input  type="file" accept="image/*"  @change="uploadPhoto($event)"/>
               <p class="el-upload__tip">点击头像可上传照片，支持JPG/PNG等图片格式，最大不超过2M</p>
             </div>

@@ -139,7 +139,7 @@
 
             <div class="interview_button">
               <el-button class="button" @click="insertInterview">保存</el-button>
-              <el-button class="button cancel">取消</el-button>
+              <el-button class="button cancel" @click="interview_basic=false;getInterview();">取消</el-button>
             </div>
           </el-form>
 

@@ -122,7 +122,7 @@
                             </p>
                             <div class="count_offer" v-for="item in  candidateStepsData">
                               <p> 您好！尊敬的<span>{{item.candidateName}}</span></p>
-                              <p>欢迎您加入<span>上海棋至文化有限公司</span>在此荣幸的要请你出任<span>{{item.postName}}</span>一职</p>
+                              <p>欢迎您加入<span>{{title}}</span>在此荣幸的要请你出任<span>{{item.postName}}</span>一职</p>
                               <p>入职时间：<span>{{makeNormal.reportTime}}</span></p>
                               <p>薪酬：<span v-if="makeNormal.salaryType=='1'">日薪</span><span v-if="makeNormal.salaryType=='2'">月薪</span><span v-if="makeNormal.salaryType=='3'">年薪</span><span>{{makeNormal.salary}}</span></p>
                               <p v-if="makeNormal.probation !=0">试用期<span style="background-color:#F5A623;color:#fff;" > {{makeNormal.probation}}个月</span></p>
@@ -213,6 +213,7 @@
       },
       data() {
         return {
+          title:localStorage.getItem('title'),//公司名
           loading:false,
            isshow:true,
            flag1:true,
@@ -272,6 +273,7 @@
         //发送创建offer
         submit() {
           let that=this;
+          that.loading=true;
           that.$http({
             method:'post',
             url:api.sendOffer,
@@ -289,7 +291,7 @@
             }
           }).then(function (res) {
             // console.log(res)
-            that.loading=true;
+
             setTimeout(function(){
               that.loading=false;
               if(res.data.code==10000){
