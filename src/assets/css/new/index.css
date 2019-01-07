@@ -257,7 +257,7 @@ nav .pull-right .exit:before {
   width: -moz-calc(100% - 240px);
   width: -webkit-calc(100% - 240px);
   height: 100%;
-  padding: 80px 30px 30px 30px;
+  padding: 60px 10px 10px 10px;
   background: #FAFAFA;
 }
 .main .right-content .content {
