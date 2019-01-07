@@ -21,7 +21,7 @@
         </div>-->
       </div>
 
-      <button class="button recommend" v-if="flag==2&& step==2" @click="showmodel1" >推荐给用人部门</button><!--@click="addCandidateShow('recommend')"-->
+      <button class="button recommend" v-if="flag==2 && step==2" @click="showmodel1" >推荐给用人部门</button><!--@click="addCandidateShow('recommend')"-->
       <button class="button weedOut" @click="showmodel3" >淘汰</button><!--@click="visable.weekOut==true"-->
       <button class="button remark" @click="showmodel2">备注</button><!--@click="visable.remark==true"-->
     </div>
@@ -73,10 +73,6 @@
             candidateId:'',
           }
         },
-      // computed(){
-      //   this.flag= this.candidateStepsData[0].status-1;
-      //   console.log( this.flag)
-      // },
       methods:{
        getList() {
          this.$emit("getList")//触发给父组件
@@ -113,22 +109,17 @@
           }else if(this.flag>5){
             that.flag=5;
           }else{
-            that.flag=param+1;
-            console.log("flag-"+that.flag,that.candidateStepsData[0].status-1);
+            that.flag=that.flag+1;
             //2:初筛,3用人部门筛选,4:面试,5:offer/录用,6待入职；
-            that.changeCandidateStatus(that.candidateId,that.flag+1)
-           /* if( that.flag<=that.candidateStepsData[0].status-1 ){
-            }else{
-              //2:初筛,3用人部门筛选,4:面试,5:offer/录用,6待入职；
-              that.changeCandidateStatus(that.candidateId,that.flag)
-            }*/
-
+            that.changeCandidateStatus(that.candidateId,that.flag+1);
+            // 调用其父组件里面 查询候选人信息 的方法
+            this.$parent.$parent.$parent.showSteps(that.candidateId);
+            console.log("changeStatus2+"+this.flag)
 
           }
 
           //子组件通过父组件里面的 listento-flag，传到父组件当中；
-          // that.$emit("listento-flag",that.flag);
-          // that.$emit("listento-flag",trueFlag);
+          that.$emit("listento-flag",that.flag);
 
         },
         //切换候选人状态
@@ -202,20 +193,24 @@
         },
 
       },
-      updated(){
-        // this.flag= this.candidateStepsData[0].status-1;
-        // if(this.candidateStepsData[0].status!=undefined){
-        //   this.flag= this.candidateStepsData[0].status-1;
-        //   console.log(this.flag)
-        //   // if(this.flag==3){
-        //   //   this.$emit("listento-flag",this.flag)
-        //   // }
-        // }
-
-      },
-      // mounted(){
+      // updated(){
+      //   this.flag= this.candidateStepsData[0].status-1;
+      //   console.log("update+"+this.flag)
+      //   // if(this.candidateStepsData[0].status!=undefined){
+      //   //   this.flag= this.candidateStepsData[0].status-1;
+      //   //   console.log(this.flag)
+      //   //   // if(this.flag==3){
+      //   //   //   this.$emit("listento-flag",this.flag)
+      //   //   // }
+      //   // }
       //
-      // }
+      // },
+      updated(){
+        if(this.candidateStepsData[0].status!=undefined && this.candidateStepsData[0].status>2){
+          this.flag= this.candidateStepsData[0].status-1;
+        }
+
+      }
     }
 </script>
 

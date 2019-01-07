@@ -172,7 +172,7 @@
           <div class="offer_modal2">
               <p class="title2">
                 <span class="methods"><span v-html="formatDate(createTime)"></span>({{week}}) 发送offer</span>
-                <span class="removes" @click="removeOffer">删除offer</span>
+                <span class="removes" @click="removeOffer" style="cursor: pointer">删除offer</span>
               </p>
               <div class="content_offer" v-html="html">
               <!--<img class="up_img" src="../../../assets/img/candidate/777.png" alt="">-->

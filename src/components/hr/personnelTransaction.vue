@@ -81,13 +81,13 @@
           </div>
          </div>
   			 <div class="conHr">
-  			 	 <div class="div_Tips">
+<!--  			 	 <div class="div_Tips">
   			 	 	 <div class="tips_title">温馨提示：</div>
   			 	 	 <div class="tips_con">
 							<p>１、”即将生效“状态下的流程，只有到了预计生效日期之后才可以确认，如需提前确认请修改生效日期；</p>
 							<p>２、在流程”即将生效“期间，如该员工离职，则改员工的所有即将生效流程将自动被取消。</p>
 						 </div>
-  			 	 </div>
+  			 	 </div> -->
   			 	 <div class="txt_div">
 						<el-row class="searchBox">
 						  <el-col :span="6">
@@ -153,15 +153,6 @@
 													<el-dropdown-item v-if="scope.row.status===2" @click.native="options_revoke(scope.row.id)">撤销</el-dropdown-item>
 												</el-dropdown-menu>
 											</el-dropdown>
-<!-- 									    <div class="operation" @mouseenter="enter(scope.row.id)" @mouseleave="leave()">
-							  				<div class="options">操作选项</div>
-							  				<div class="options_div" v-show="seen && scope.row.id==current">
-							  					<ul>
-							  						<li @click="options_see(scope.row.id)">查看</li>
-							  						<li v-if="scope.row.status===2" @click="options_revoke(scope.row.id)">撤销</li>
-							  					</ul>
-							  				</div>
-							  			</div> -->
 							      </template>
 							    </el-table-column>
 							  </el-table>

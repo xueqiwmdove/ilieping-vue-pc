@@ -257,14 +257,14 @@ nav .pull-right .exit:before {
   width: -moz-calc(100% - 240px);
   width: -webkit-calc(100% - 240px);
   height: 100%;
-  padding: 80px 30px 30px 30px;
+  padding: 60px 10px 10px 10px;
   background: #FAFAFA;
 }
 .main .right-content .content {
   width: 100%;
   height: 100%;
   background: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);*/
   position: relative;
 }
 .main .right-content .content .headline {

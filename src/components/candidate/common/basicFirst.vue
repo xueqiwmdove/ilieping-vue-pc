@@ -17,7 +17,8 @@
     <div v-if="flag==2" class="standard_resume" >
       <div class="personal">
         <div v-for="item  in standardResume">
-          <img  :src="item.head" class="head-photo" >
+          <img  v-if="item.head==''" src="../../../assets/img/candidate/tanchuang_ic_head.png" >
+          <img  v-else  :src="item.head" class="head-photo" >
         </div>
         <div  v-for="item in  candidateStepsData">
           <p class="username">{{item.candidateName}}</p>

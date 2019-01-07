@@ -87,17 +87,23 @@
             <div class="a">员工合同管理</div>
           </div>
           <div class="contractManagement_con">
+						<el-form ref="form" :model="form" label-width="80px">
+						<el-form-item label="文件类型">
+							<el-select v-model="value" placeholder="全部文件" @change="changeSelectedfile">
+								<el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+							</el-select>
+						</el-form-item>
+						<el-input class="search_manage" v-model="search_input" placeholder="请输入合同名称" @keyup.enter.native="getDataSearchAgreementList"></el-input>
+						</el-form>
+						
 						<el-row :gutter="20" class="con_header">
-              <el-col :span="4">
+              <el-col :span="8">
               	<div class="grid-content">
-							  <el-select v-model="value" placeholder="全部文件" @change="changeSelectedfile">
-							    <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
-							  </el-select>
+
                 </div>
               </el-col>
-              <el-col :span="8"><div class="grid-content "></div></el-col>
               <el-col :span="3"><div class="grid-content "><el-button class="btn_manage" @click="Archive_folder = true">归档文件夹</el-button></div></el-col>
-              <el-col :span="6"><div class="grid-content "><el-input class="search_manage" v-model="search_input" placeholder="请输入合同名称" @keyup.enter.native="getDataSearchAgreementList"></el-input></div></el-col>
+              <el-col :span="6"><div class="grid-content "></div></el-col>
               <el-col :span="2"><div class="grid-content "><el-button class="primary_btn" icon="el-icon-search" @click="getDataSearchAgreementList">搜索</el-button></div></el-col>
 						</el-row>
 						<div class="search_con">
@@ -144,7 +150,7 @@
 						<el-col :span="5"><div class="grid-content m_t"><p class="p_title color_str">{{item.deadlineForSignatureStr | formatDate}}&nbsp;截止签约</p><p class="p_title">{{item.createTimeStr | formatDate}}&nbsp;发起签约</p></div></el-col>
 					  <el-col :span="5">
 					  	<div class="grid-content line_h">
-					  		<p v-if="nowTimeStr > item.deadlineForSignatureStr || item.status===0">逾期未签 <span v-if="item.status === 5" class="span_f95714">已公正</span></p>
+					  		<p v-if="nowTimeStr > item.deadlineForSignatureStr && item.status===0">逾期未签</p>
 					  		<p v-else-if="nowTimeStr >= item.endTimeStr">已到期 <span v-if="item.status === 5" class="span_f95714">已公正</span></p><!-- 已到期   -->
 					  		<p v-else-if="item.status===1">待员工签</p>
 					  		<p v-else-if="item.status===2">待我签</p>
@@ -874,16 +880,16 @@
 	  		}).then(function(res){
 	  			loading.close();
 	  			if(res.data.code==10000){
-	  				if(res.data.data.archivedFolderResponse=="" || res.data.data.listSign==""){
+	  				if(res.data.data.archivedFolderResponse=="" || res.data.data.listSign=="" || res.data.data.listSign==null){
 	  					that.Isdatanull=true;
 	  					that.Isdata=false;
 	  				}else{
 	  				 that.Isdatanull=false;
 	  				 that.Isdata=true;
-	  				 that.archivedFolderResponseData=res.data.data.archivedFolderResponse;
-             that.searchAgreementListData=res.data.data.listSign;
-             that.totalCount = res.data.count;
-             that.isFile=res.data.data.listSign.isArchive;//判断是否归档（1，归档)其它值未归档
+							that.archivedFolderResponseData=res.data.data.archivedFolderResponse;
+							that.searchAgreementListData=res.data.data.listSign;
+							that.totalCount = res.data.count;
+							that.isFile=res.data.data.listSign.isArchive;//判断是否归档（1，归档)其它值未归档 
 	  				}
 
 	  			}else{
@@ -1255,8 +1261,9 @@ input[type=text]{
 	padding-top: 20px;
 }
 .tab_title{
-	background: #F9F9F9;
-
+	/* background: #F9F9F9; */
+ /* border-bottom: #E5E5E5; */
+ margin: 0;
 }
 .tab_title ul li{
 	float: left;
@@ -1265,13 +1272,12 @@ input[type=text]{
 	cursor: pointer;
 	line-height: 34px;
 	height: 34px;
-	background: #F9F9F9;
+	border-bottom: #E5E5E5;
 	padding: 0 10px;
 }
 .tab_title ul li.active{
-    color: #fff;
-    background-color: #F95714;
-    border-color: #F95714;
+    color: #333;
+    border-bottom: 2px solid #F95714;
 }
 .table_con_div{
   border-top:1px solid #E5E5E5;
