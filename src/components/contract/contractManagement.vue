@@ -1417,8 +1417,8 @@ input[type=text]{
  color: #F95714;
  background: #F8FAFC;
 }
-.DataList{ height: 90px; border-bottom:1px solid #E5E5E5; margin: 0 !important;}
-
+.DataList{ height:106px; border-bottom:1px solid #E5E5E5; margin: 0 !important;}
+.DataList:hover{background:#FFFBFA; }
 .contractManagement_con .search_div{ height: 100px; line-height: 40px; padding: 20px;}
 .contractManagement_con .search_div .search_left{float: left; display: inline-block;}
 .contractManagement_con .search_div .search_left .select_title{font-size:14px;float: left; display: inline-block;margin-right: 10px;}
