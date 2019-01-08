@@ -153,7 +153,7 @@
     <div class="interview_list_status" v-show=" interview_list_status"><!--&& interviewList != ''-->
       <button @click="interview_basic=true;interview_list_status=false;" v-show="candidateStepsData[0].status!=0">继续添加面试</button>
       <div class="interview_list" >
-        <div class="interview" v-for="item in interviewList">
+        <div class="interview" v-for="(item,index) in interviewList" :key="index">
           <img src="../../../assets/img/candidate/tanhcuang_ic_tag.png" alt="" class="img_status">
           <!--status 面试状态 0 面试取消 1 待确认 2 待面试 3 已签到 4 已面试  6拒绝面试 -->
           <img src="../../../assets/img/candidate/tanchuang_mianshi_pic_cancel.png" alt="" class="cancelInterview" v-if="item.status==0">
@@ -213,11 +213,11 @@
               <span v-show="item.interviewSatisfaction==2" :class="item.interviewSatisfaction==2?'common':''">一般</span>
               <span v-show="item.interviewSatisfaction==3" :class="item.interviewSatisfaction==3?'satisfactory':''">较满意</span>
               <span v-show="item.interviewSatisfaction==4" :class="item.interviewSatisfaction==4?'great_satisfaction':''">非常满意</span>
-              <em class="interview_feedbook el-icon-caret-bottom" @click="feedbook_form_pullDown=!feedbook_form_pullDown">查看面试反馈表 </em>
+              <em class="interview_feedbook el-icon-caret-bottom" @click="show(index)">查看面试反馈表 </em>
             </p>
 
             <!--查看面试反馈-->
-            <div class="feedbook_form_pullDown" v-show="feedbook_form_pullDown">
+            <div class="feedbook_form_pullDown" v-show="activeIndex===index"><!--feedbook_form_pullDown-->
               <h4>{{item.interviewerName}} {{item.feedbackTime}}反馈</h4>
               <p>反馈内容：<i>{{item.interviewFeedback}}</i></p>
               <p>
@@ -253,6 +253,7 @@
         },
         data(){
           return{
+            activeIndex: -1,
             interviewRegistrationFormId:'',//面试登记表里面id
             noOps:false,
             noInterviews:true,
@@ -462,11 +463,15 @@
         lookForInterview(){
           let that=this;
           let phoneurl,url;
-          // url='http://www.lphr.com/a/login.html#/Hfeedback?dataId=';
-          url='http://192.168.2.166:8080/dist/a/login.html#/Hfeedback?dataId=';
+          url='http://www.lphr.com/a/login.html#/preview?tableId=';
+          // url='http://192.168.2.166:8080/dist/a/login.html#/preview?tableId=';
           phoneurl=url+that.interviewRegistrationFormId,
 
           window.open(phoneurl,'_blank')
+        },
+        show(index){
+          // item.feedbook_form_pullDown=!item.feedbook_form_pullDown;
+          this.activeIndex = this.activeIndex === index ? !index : index;
         }
 
 
