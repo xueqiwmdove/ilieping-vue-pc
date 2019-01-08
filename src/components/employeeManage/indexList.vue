@@ -49,11 +49,11 @@
                                   </el-input>
                             </div>
                             <div style="display:inline-block;margin-left:10%;">      
-                                  <div @click="historyList"  class="history_s">
+                                  <div  class="history_s">
                                       <i ><img src="../../assets/img/1.5.1/enter.png" alt="">导入</i>
                                       
-                                      <i  @mouseenter="enters"  v-if="fileshow"><img src="../../assets/img/1.5.1/file.png" alt="">历史归档</i>
-                                      <i  @mouseleave="leaves" v-else style="color:#F95714;"><img src="../../assets/img/1.5.1/file2.png" alt="">历史归档</i>
+                                      <i @click="historyList"  @mouseenter="enters"  v-if="fileshow"><img src="../../assets/img/1.5.1/file.png" alt="">历史归档</i>
+                                      <i @click="historyList"  @mouseleave="leaves" v-else style="color:#F95714;"><img src="../../assets/img/1.5.1/file2.png" alt="">历史归档</i>
                                   </div>
                                   <el-button class="add_btn" @click="addNewemployee">添加员工</el-button>
                            </div>   
