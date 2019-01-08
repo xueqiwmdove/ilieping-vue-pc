@@ -122,9 +122,9 @@
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped >
- .content {
+/* .content {
 	 min-width: 1520px;
- }
+ } */
   .topBorder{
         background: url("../../assets/img/muban/topborder.jpg") no-repeat;
         background-size: contain;
@@ -286,8 +286,8 @@
  }
  
 .asidePosition {
-    width: 340px;
-    min-width: 340px;;
+    width: 240px;
+    min-width: 240px;;
     height:948px;
 	background: #fff;
 	float: left;
@@ -339,16 +339,16 @@ color: #F95714;
 color: #F95714;	
 }
 .ad_input p {
-  width: 320px;
+  width: 220px;
   cursor: pointer;
   height: 30px;
   /* color: #F95714; */
   margin-top:30px;
   /* background-color: #FAFBFC; */
 }
-.ad_input p i {
+/* .ad_input p i {
 margin-left: 180px;
-}
+} */
 .position_list {
    height: 600px;
    width: 300px;
