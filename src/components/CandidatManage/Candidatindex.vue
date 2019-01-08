@@ -16,7 +16,7 @@
           <div class="right-content pull-right">
               <div class="content">
                   <p class="headline">
-                      <span > <img src="../../assets/img/zhiwei/houxuan_ic_weizhi.png" alt=""> 候选人管理</span>
+                      <span  @click="addCandidateShow('steps')"> <img src="../../assets/img/zhiwei/houxuan_ic_weizhi.png" alt=""> 候选人管理</span>
                   </p>
                   <el-row>
                 <!--创建职位左侧栏  -->

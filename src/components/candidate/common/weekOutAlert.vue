@@ -45,7 +45,7 @@ export default {
     components: {},
     data() {
       return {
-        quitdia:false,
+        quitdia:true,
         cerateList:{
         type:'',
         text:'',
@@ -198,9 +198,16 @@ export default {
   font-size: 14px;
   margin-bottom: 15px;
   color: #394A66;
+  position: relative;
 }
 .title_quit {
 color: #F95714 ;
+}
+/* 图标位置，勿删  ！ */
+.title_quit i {
+   display: inline-block; 
+   position: absolute;
+   left: -15px;
 }
 .dialog-footer {
     height: 60px;
