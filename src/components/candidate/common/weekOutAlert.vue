@@ -45,7 +45,7 @@ export default {
     components: {},
     data() {
       return {
-        quitdia:true,
+        quitdia:false,
         cerateList:{
         type:'',
         text:'',
