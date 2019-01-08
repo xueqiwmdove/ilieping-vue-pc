@@ -185,6 +185,8 @@
               <img src="../../../assets/img/candidate/tanchuang_ic_bumanyi_pre.png" alt="">
               暂未检测到（候选人填写完提交后显示相关数据）
             </p>
+            <p  v-if="item.interviewRegistrationFormId != null "><label>面试登记表：</label><i>已填写</i> <i class="look_Download" ><i @click="lookForInterview ">查看</i> </i></p><!--<i>下载</i>-->
+
             <!--v-show="no_feedBook" -->
             <p v-if="item.interviewSatisfaction == null"><label>面试反馈：</label><img src="../../../assets/img/candidate/tanchuang_ic_bumanyi_pre.png" alt="">暂无反馈(用户签到后可填写面试反馈) <em class="interview_feedbook" @click="feedbook_form=true">填写面试反馈表</em></p>
             <div class="feedbook_form" v-show="feedbook_form" >
@@ -205,7 +207,6 @@
               </div>
             </div>
             <!--已反馈 v-show="feedBook"-->
-            <p  v-if="item.interviewRegistrationFormId != null "><label>面试登记表：</label><i>已填写</i> <a class="look_Download" :href="phoneurl"><i>查看</i> </a></p><!--<i>下载</i>-->
             <p v-if="item.interviewSatisfaction!=null"><!--TODO v-show="feedBook"-->
               <label>面试反馈：</label>
               <span v-show="item.interviewSatisfaction==1" :class="item.interviewSatisfaction==1?'yawp':''">不满意</span>
@@ -252,7 +253,6 @@
         },
         data(){
           return{
-            phoneurl:'http://192.168.2.166:8080/dist/a/login.html#/Hfeedback?dataId='+interviewRegistrationFormId,
             interviewRegistrationFormId:'',//面试登记表里面id
             noOps:false,
             noInterviews:true,
@@ -363,9 +363,14 @@
                 that.noInterviews=false;
                 that.interview_list_status=true;
                 that.interview_basic=false;
-                that.interviewRegistrationFormId=that.interviewList[0].interviewRegistrationFormId;
+                that.interviewRegistrationFormId=res.data.data[0].interviewRegistrationFormId;
+                console.log(that.interviewRegistrationFormId)
               }
-              console.log(that.interview_basic,that.interviewList.length)
+              that.noInterviews=false;
+              that.interview_list_status=true;
+              that.interview_basic=false;
+              console.log('noInterviews='+that.noInterviews,',interview_list_status='+ that.interview_list_status,',interview_basic='+that.interview_basic)
+              // console.log(that.interview_basic,that.interviewList.length)
             }
           })
         },
@@ -453,6 +458,15 @@
           let that=this;
           that.feedbook_form=false;
 
+        },
+        lookForInterview(){
+          let that=this;
+          let phoneurl,url;
+          // url='http://www.lphr.com/a/login.html#/Hfeedback?dataId=';
+          url='http://192.168.2.166:8080/dist/a/login.html#/Hfeedback?dataId=';
+          phoneurl=url+that.interviewRegistrationFormId,
+
+          window.open(phoneurl,'_blank')
         }
 
 
