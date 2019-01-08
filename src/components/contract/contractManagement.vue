@@ -95,36 +95,14 @@
 							</el-select></div>
 							<div class="search_input_div">
 								<el-input class="search_manage" v-model="search_input" placeholder="请输入合同名称" @keyup.enter.native="getDataSearchAgreementList"></el-input>
-
-							</div><div class="icon_btn el-icon-search"></div>
+                <div class="icon_btn el-icon-search" @click="getDataSearchAgreementList"></div>
+							</div>
 						</div>
 						<div class="search_right">
-							<div class="right_history"><i></i>历史归档</div>
-							<div class="right_btn"><el-button class="primary_btn">新增合同</el-button></div>
+							<div class="right_history" @click="Archive_folder = true"><img src="../../assets/img/1.5.1/file.png" alt="">历史归档</div>
+							<div class="right_btn" @click="click_contractTemplate"><el-button class="primary_btn">新增合同</el-button></div>
 						</div>
 						</div>
-						<!-- <el-row :gutter="20" class="con_header">
-              <el-col :span="4">
-              	<div class="grid-content">
-								<el-form ref="form" :model="form" label-width="80px">
-								<el-form-item label="文件类型">
-									<el-select v-model="value" placeholder="全部文件" @change="changeSelectedfile">
-										<el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
-									</el-select>
-								</el-form-item>
-								</el-form>
-                </div>
-              </el-col>
-							<el-col :span="8">
-								<div class="grid-content">
-							   <el-input class="search_manage" v-model="search_input" placeholder="请输入合同名称" @keyup.enter.native="getDataSearchAgreementList"></el-input>
-							   <el-button class="primary_btn" icon="el-icon-search"></el-button>
-							 </div>
-							 </el-col>
-							<el-col :span="4"><div class="grid-content "></div></el-col>
-              <el-col :span="3"><div class="grid-content "><el-button class="btn_manage" @click="Archive_folder = true">历史归档</el-button></div></el-col>
-						  <el-col :span="2"><div class="grid-content "><el-button class="primary_btn">新增合同</el-button></div></el-col>
-						</el-row> -->
 						<div class="search_con">
 						<el-row :gutter="20" v-if="IsTab" class="tab_title">
 							<ul>
@@ -356,14 +334,15 @@
   import pageheader from '@/components/common/pageheader'
   import pageaside from '@/components/common/pageaside'
   import { Loading } from 'element-ui';
-
+  import search from '@/components/common/search'
   import {formatDate} from '@/assets/js/common/date_year.js'
 
     export default {
       name: "contracManagement",
       components: {
         pageheader,
-        pageaside
+        pageaside,
+				search
       },
       filters:{
       	formatDate(time){
@@ -430,6 +409,9 @@
          }
       },
       methods: {
+				click_contractTemplate(){
+					this.$router.push('/contractTemplate');
+				},
     	enter(index){
         this.seen = true;
         this.current = index;
@@ -1437,13 +1419,14 @@ input[type=text]{
 }
 .DataList{ height: 90px; border-bottom:1px solid #E5E5E5; margin: 0 !important;}
 
-.contractManagement_con .search_div{ height: 100px; line-height: 100px;}
+.contractManagement_con .search_div{ height: 100px; line-height: 40px; padding: 20px;}
 .contractManagement_con .search_div .search_left{float: left; display: inline-block;}
-.contractManagement_con .search_div .search_left .select_title{font-size:14px;float: left; display: inline-block;}
+.contractManagement_con .search_div .search_left .select_title{font-size:14px;float: left; display: inline-block;margin-right: 10px;}
 .contractManagement_con .search_div .search_left .search_input_div{ float: left;display: inline-block;}
-.contractManagement_con .search_div .search_left .search_manage{ float: left;display: inline-block;}
-.contractManagement_con .search_div .search_left .icon_btn{ float: left;display: inline-block;}
+.contractManagement_con .search_div .search_left .search_manage{ float: left;display: inline-block;}	
+.contractManagement_con .search_div .search_left .icon_btn{ float: left;display: inline-block; color: #F95714;}
 .contractManagement_con .search_div .search_right{float:right; display: inline-block;}
-.contractManagement_con .search_div .search_right .right_history{float:left; display: inline-block;}
+.contractManagement_con .search_div .search_right .right_history{float:left; display: inline-block; margin: 0 20px; cursor: pointer;}
+.contractManagement_con .search_div .search_right .right_history img{margin-right: 10px;}
 .contractManagement_con .search_div .search_right .right_btn{float:left; display: inline-block;}
 </style>
