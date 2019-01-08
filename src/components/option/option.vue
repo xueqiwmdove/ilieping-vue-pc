@@ -50,11 +50,11 @@
 									<h2>候选人提交登记表后HR收到提醒</h2>
 								</li>
 								<li>
-									<div class="Qrcode" id="Qrcode"></div>
+									<div id="qrcode" ref="qrcode"></div>
 									<el-button class="optionTop printqrcode" type="text" @click="open4">打印二维码</el-button>
 								</li>
 							</ul>
-							<div class="printButton" id="printButton"></div>
+							<!-- <div class="printButton" id="printButton"></div> -->
 						</div>
 						<div class="optionBottom">
 							<h1>面试登录表<i></i></h1>
@@ -62,7 +62,7 @@
 								<li>应聘岗位:</li>
 								<li>面试时间:</li>
 							</ul>
-							<div class="option_baseinfo" style="height:548px;">
+							<div class="option_baseinfo" style="height: 500px;">
 								<h2>基本信息</h2>
 								<span>姓名</span>
 								<span>性别</span>
@@ -147,25 +147,21 @@ export default {
    	pageheader,
     pageaside,
 	},
+	data(){
+		return{
+			dataUlr:''
+		 }
+		},
     methods: {
-					open4() {
-						const h = this.$createElement;
-						this.$msgbox({
-							title: '面试登记表',
-							message: h('p', null, [
-								h('span', null, '请扫描下方二维码填写面试登记表，请尽可能完整的填写，并确保填写的信息准确，真实，有效。'),
-								h('div', {id:'Qrcode_a'})
-							]),
-							// showCancelButton: true,
-							confirmButtonText: '打印',
-							callback: action => {
-								this.$message({
-									type: 'info',
-									message: `action: ${ action }`
-								});
-							}
-						})
-					},
+			open4() {
+				let tmp = document.getElementById("qrcode");
+				let img = tmp.getElementsByTagName("img");
+				//必须同源才能下载
+				let alink = document.createElement("a");
+				alink.href = img[0].src;
+				alink.download = "二维码"; //图片名
+				alink.click();
+			},
     	click_optioninterview(){
         this.$router.push('/optioninterview');
       },
@@ -196,57 +192,36 @@ export default {
             that.$http({
             url:api.Qrcode,
             method:'get',
-  					headers:headers("application/json;charset=utf-8"),
-  					data:{},
+  					headers:headers(),
   					cache:false,		
           }).then(function(res){
             // console.log(res);
           if(res.data.code=10000){
-						console.log(res.data.data)
-						var qrcode = new QRCode('Qrcode', {
-							text: res.data.data,
-							width: 120,
-							height: 120,
-							colorDark : '#000000',
-							colorLight : '#ffffff',
+						// console.log(res.data.data);
+						that.$nextTick(() => {
+							that.qrcode(res.data.data);
 						});
 					}
 				})
 			},
-			getQrcode_a(){
-				let that=this;
-            that.newDepartments = false;
-            that.$http({
-            url:api.Qrcode,
-            method:'get',
-  					headers:headers("application/json;charset=utf-8"),
-  					data:{},
-  					cache:false,		
-          }).then(function(res){
-            // console.log(res);
-          if(res.data.code=10000){
-						console.log(res.data.data)
-						var qrcode = new QRCode('Qrcode_a', {
-							text: res.data.data,
-							width: 120,
-							height: 120,
-							colorDark : '#000000',
-							colorLight : '#ffffff',
-						});
-					}
-				})
+			qrcode (url) {//生成二维码
+				let qrcode = new QRCode('qrcode',{
+						width: 120, // 设置宽度，单位像素
+						height: 120, // 设置高度，单位像素
+						text: url,   // 设置二维码内容或跳转地址
+				});
+				
 			},
 		},
 		created(){
 			this.getQrcode();
-			this.getQrcode_a();
 		}
 	}
 </script>
 <style scoped >
- .content {
+/* .content {
 	 min-width: 1600px;
- }
+ } */
  .el-message-box__errormsg{
 	 visibility: visible;
  }
@@ -255,7 +230,7 @@ export default {
 	 overflow: hidden;
 	 float: left;
 	 width: 1000px;
-	 margin: 20px 115px;
+	 margin: 20px 60px;
 	 position: relative;
 	 padding:0 40px;
 	 border:1px solid #E5E5E5;
@@ -336,7 +311,7 @@ export default {
  .optionTop ul li{
 	 position: relative;
 	 float: left;
-	 width: 300px;
+	 width: 25%;
 	 display: block;
 	 height: 160px;
  }
@@ -397,8 +372,8 @@ export default {
 	height: 40px;
 } */
 .asidePosition {
-    width: 340px;
-    min-width: 340px;;
+    width: 240px;
+    min-width: 240px;;
     height:948px;
 	background: #fff;
 	float: left;
@@ -450,16 +425,16 @@ color: #F95714;
 color: #F95714;	
 }
 .ad_input p {
-  width: 320px;
+  width: 220px;
   cursor: pointer;
   height: 30px;
   /* color: #F95714; */
   margin-top:30px;
   /* background-color: #FAFBFC; */
 }
-.ad_input p i {
+/* .ad_input p i {
 margin-left: 180px;
-}
+} */
 .position_list {
    height: 600px;
    width: 300px;
