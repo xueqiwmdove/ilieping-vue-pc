@@ -180,7 +180,7 @@
             <p><label>面试地点：</label><i>{{item.interviewAddress}}</i></p>
             <p><label>面试负责人：</label><i>{{item.interviewerName}}</i><i>{{item.interviewerPhone}}</i></p>
             <p><label>面试信息：</label><i v-html="formatDate(item.interviewDate)">开始</i> <em class="interview_status">{{item.interviewTypeStr}}</em></p>
-            <p  v-if="item.interviewFormTemplate == null "><!--v-show="no_feedBook" -->
+            <p  v-if="item.interviewRegistrationFormId == null "><!--v-show="no_feedBook" -->
               <label>面试登记表：</label>
               <img src="../../../assets/img/candidate/tanchuang_ic_bumanyi_pre.png" alt="">
               暂未检测到（候选人填写完提交后显示相关数据）
@@ -205,7 +205,7 @@
               </div>
             </div>
             <!--已反馈 v-show="feedBook"-->
-            <p  v-if="item.interviewFormTemplate != null "><label>面试登记表：</label><i>已填写</i> <span class="look_Download"><i>查看</i> </span></p><!--<i>下载</i>-->
+            <p  v-if="item.interviewRegistrationFormId != null "><label>面试登记表：</label><i>已填写</i> <a class="look_Download" :href="phoneurl"><i>查看</i> </a></p><!--<i>下载</i>-->
             <p v-if="item.interviewSatisfaction!=null"><!--TODO v-show="feedBook"-->
               <label>面试反馈：</label>
               <span v-show="item.interviewSatisfaction==1" :class="item.interviewSatisfaction==1?'yawp':''">不满意</span>
@@ -252,6 +252,8 @@
         },
         data(){
           return{
+            phoneurl:'http://192.168.2.166:8080/dist/a/login.html#/Hfeedback?dataId='+interviewRegistrationFormId,
+            interviewRegistrationFormId:'',//面试登记表里面id
             noOps:false,
             noInterviews:true,
             interview_basic:false,
@@ -361,6 +363,7 @@
                 that.noInterviews=false;
                 that.interview_list_status=true;
                 that.interview_basic=false;
+                that.interviewRegistrationFormId=that.interviewList[0].interviewRegistrationFormId;
               }
               console.log(that.interview_basic,that.interviewList.length)
             }
