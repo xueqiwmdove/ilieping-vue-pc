@@ -368,7 +368,7 @@
 
           </div>
         </div>
-        <div class="addCandidate_right">
+        <div class="addCandidate_right" v-if="flag==2">
           <!--<el-button class="uploadButton" v-if="flag==1">上传简历</el-button>-->
           <el-button class="uploadButton" v-if="flag==2" @click="insertResume" :disabled="resumeDisbaled">保存简历</el-button>
           <div class="selectedBox" v-if="flag==2">
@@ -388,7 +388,7 @@
               </el-select>
             </div>
           </div>
-          <div class="selectedBox" v-if="flag==1">
+          <!--<div class="selectedBox" v-if="flag==1">
             <p style="margin-top: 20px;">请先选择简历来源</p>
             <div class="selectDiv" >
               <el-select v-model="resumeType" placeholder="请选择" class="selected">
@@ -401,7 +401,7 @@
                 </el-option>
               </el-select>
             </div>
-          </div>
+          </div>-->
 
         </div>
 
@@ -422,6 +422,28 @@
         </span>
     </el-dialog>
 
+    <!--选择简历-->
+    <el-dialog title="选择简历" :visible.sync="addCandidateStatus"  custom-class='selectResume' :before-close="closeSelectResume">
+      <div class="selectedBox" v-if="flag==1">
+        <p><img src="../../assets/images/reg/info.svg" alt="">请选择简历来源，其他来源的简历请在标准简历中手动填写</p>
+        <div class="selectDiv" >
+          <label>简历来源</label>
+          <el-select v-model="resumeType" placeholder="请选择" class="selected">
+            <el-option
+              v-for="item in resumeTypeData"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
+        </div>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" class="confirm" @click="closeSelectResume">确 定</el-button>
+      </span>
+    </el-dialog>
+
   </div>
 </template>
 
@@ -437,7 +459,7 @@
 
     export default {
         name: "addCandidate",
-        props:['addVisible'],
+        props:['addVisible','addCandidateStatus'],
         components:{
           // addCandidate_content,
           // addCandidate_right,
@@ -445,6 +467,7 @@
         },
       data(){
           return{
+            selectResume:true,//选择简历弹窗
             // addVisible:false,
             annexId:'',//附件id
             workExperienceIsShow:true,
@@ -674,6 +697,12 @@
         }
       },
       methods:{
+        //  关掉简历,调用父组件里面的方法
+
+        closeSelectResume(){
+          let that=this;
+          that.$parent.closeResume();
+        },
         // getMyEvent(flag){
         //   //接收的数据--------->我是子组件中的数据
         //   this.flag=flag;
@@ -696,6 +725,8 @@
           //切换简历类型，切换样式
           if(num==1){
             that.customclass='addCandidateAlert';
+            //展示简历,调用父组件里面的方法
+            that.$parent.openResume();
           }else{
             that.customclass="addCandidateAlert   addCandidateAlert_add";
           }
@@ -856,7 +887,11 @@
             if(res.data.code==10000){
               that.resumeUrl=res.data.data[0].httpUrl;
               that.annexId=res.data.data[0].id;
-              console.log( that.resumeUrl,that.annexId)
+              console.log( that.resumeUrl,that.annexId);
+
+              //成功之后自动跳转到标准简历页面
+              that.flag=2;
+              that.changeTab(2)
             }else{
               this.$message.error(res.data.data.msg);
             }

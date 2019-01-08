@@ -1,12 +1,12 @@
 <template>
   <div >
    <div class="main" >
-     <!--候选人弹窗-->
-     <addCandidate :addVisible.sync="visables.add" @hideModel="hideChildModal"></addCandidate>
+     <!--候选人弹窗 addCandidateStatus(候选人页面显示与否） -->
+     <addCandidate :addVisible.sync="visables.add" @hideModel="hideChildModal"  :addCandidateStatus="addCandidateStatus"></addCandidate>
      <!--候选人信息  父组件传值-->
-     <candidateSteps :addVisible.sync="visables.steps" @hideModel="hideChildModal" :candidateStepsData="candidateStepsData"  :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList" :signs="signs" ></candidateSteps>
+     <candidateSteps  :addVisible.sync="visables.steps"  @hideModel="hideChildModal" :candidateStepsData="candidateStepsData"  :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList" :signs="signs" ></candidateSteps>
 
-          <!--顶部导航-->
+     <!--顶部导航-->
         <pageheader class="pageheader"></pageheader>
           <!--侧边栏-->
           <div class="aside">
@@ -60,7 +60,7 @@
                       <div class="positionTable">
                             <div class='content_pad'>
                               <el-row>
-                                <el-col> 
+                                <el-col>
                                 <div class="but_stys" :class="signs=='2'? 'btn_s':''" @click="tagStyChange(2)">
                                     <p class="font_s">初筛</p>
                                     <i class="num_s">{{count2}}</i>
@@ -113,9 +113,9 @@
                                       <el-input v-model="searchname"  class="input_search" placeholder="输入你想搜索的内容" >
                                       <i @click="searchList" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                                       </el-input>
-                                      <el-button class="add_btn" @click="addCandidateShow('add')">添加候选人</el-button>
+                                      <el-button class="add_btn" @click="addCandidateShow('add');">添加候选人</el-button>
                                   </div>
-                                </el-col> 
+                                </el-col>
                               </el-row>
                             </div>
                         <!--表格  -->
@@ -234,6 +234,7 @@ export default {
   },
    data() {
       return {
+        addCandidateStatus:false,//添加候选人页面整体
         signs:'2' ,
         candidateList:[],//列表
         personList:[],//人员数据
@@ -315,9 +316,12 @@ export default {
       addCandidateShow(param){
         let that=this;
         that.visables[param] = true;
+
         if(param=='steps'){//添加候选人信息弹窗s
 
 
+        }else{
+          that.addCandidateStatus=true;
         }
       },
     //关闭候选人弹窗
@@ -441,9 +445,18 @@ export default {
             that.standardResume.push(JSON.parse(res.data.data.standardResume));
             that.candidateWorkExperienceDTOList=JSON.parse(res.data.data.standardResume).candidateWorkExperienceDTOList;
             that.candidateEducationExperienceDTOList=JSON.parse(res.data.data.standardResume).candidateEducationExperienceDTOList;
-
+            console.log( that.candidateStepsData[0].status)
           }
         })
+      },
+    //  关掉原始简历上的选择简历来源
+      closeResume(){
+        let that=this;
+        that.addCandidateStatus=false;
+      },
+      openResume(){
+        let that=this;
+        that.addCandidateStatus=true;
       }
     },
     mounted() {
@@ -473,7 +486,7 @@ export default {
 }
 .asidePosition {
   /* width: 310px; */
-  min-width: 190px;; 
+  min-width: 190px;;
   height:800px;
   background: #fff;
   margin-right: 15px;

@@ -9,7 +9,7 @@
     <div class="noInterviews" v-show="noInterviews"><!--!interview_basic && interviewList == ''-->
       <img src="../../../assets/img/candidate/tanchuang_pic_interview1.png" alt="">
       <p>暂未添加面试</p>
-      <button @click="interview_basic=true;noInterviews=false">添加面试</button>
+      <button @click="interview_basic=true;noInterviews=false" v-show="candidateStepsData[0].status!=0">添加面试</button>
     </div>
 
     <!--面试基本信息-->
@@ -138,8 +138,8 @@
             </div>
 
             <div class="interview_button">
-              <el-button class="button" @click="insertInterview">保存</el-button>
-              <el-button class="button cancel" @click="interview_basic=false;getInterview();">取消</el-button>
+              <el-button class="button" @click="insertInterview" >保存</el-button>
+              <el-button class="button cancel" @click="interview_basic=false;getInterview();" >取消</el-button>
             </div>
           </el-form>
 
@@ -151,7 +151,7 @@
 
     <!--面试列表以及状态-->
     <div class="interview_list_status" v-show=" interview_list_status"><!--&& interviewList != ''-->
-      <button @click="interview_basic=true;interview_list_status=false;">继续添加面试</button>
+      <button @click="interview_basic=true;interview_list_status=false;" v-show="candidateStepsData[0].status!=0">继续添加面试</button>
       <div class="interview_list" >
         <div class="interview" v-for="item in interviewList">
           <img src="../../../assets/img/candidate/tanhcuang_ic_tag.png" alt="" class="img_status">
@@ -171,7 +171,7 @@
                 <!--<el-dropdown-item @click.native="updateInterview(item.id)">修改面试</el-dropdown-item>-->
               </el-dropdown-menu>
               <el-dropdown-menu slot="dropdown" v-if="item.status!=0">
-                <el-dropdown-item @click.native="cancelInterview(item.id)">取消面试</el-dropdown-item>
+                <el-dropdown-item @click.native="cancelInterview(item.id)" :disabled="candidateStepsData[0].status==0">取消面试</el-dropdown-item>
                 <!--<el-dropdown-item @click.native="updateInterview(item.id)">修改面试</el-dropdown-item>-->
               </el-dropdown-menu>
             </el-dropdown>
@@ -185,7 +185,6 @@
               <img src="../../../assets/img/candidate/tanchuang_ic_bumanyi_pre.png" alt="">
               暂未检测到（候选人填写完提交后显示相关数据）
             </p>
-
             <!--v-show="no_feedBook" -->
             <p v-if="item.interviewSatisfaction == null"><label>面试反馈：</label><img src="../../../assets/img/candidate/tanchuang_ic_bumanyi_pre.png" alt="">暂无反馈(用户签到后可填写面试反馈) <em class="interview_feedbook" @click="feedbook_form=true">填写面试反馈表</em></p>
             <div class="feedbook_form" v-show="feedbook_form" >
@@ -201,8 +200,8 @@
                <span class="great_satisfaction" :class="interviewSatisfaction==4?'active':''" @click="selected(4)">非常满意</span>
              </div>
               <div class="form-group vertical">
-                <input type="button" class="button" value="保存" @click="saveFeedbookForm(item.id)">
-                <input type="button" class="button cancel" value="取消" @click="cancelFeedbookForm">
+                <input type="button" class="button" value="保存" @click="saveFeedbookForm(item.id)" >
+                <input type="button" class="button cancel" value="取消" @click="cancelFeedbookForm" >
               </div>
             </div>
             <!--已反馈 v-show="feedBook"-->

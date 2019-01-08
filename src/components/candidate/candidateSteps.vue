@@ -56,9 +56,9 @@
 
           <interviewSecond   v-show="step==3" ref="interviewChild" :candidateStepsData="candidateStepsData"   :addressList="addressList" :commendEmployeeIdData="commendEmployeeIdData"></interviewSecond><!--:listentochild="showMsgformChild"-->
           <offerThird v-show="step==4"  ref="offerChild" :candidateStepsData="candidateStepsData"  :addressList="addressList"></offerThird>
-          <remarkForth v-show="step==5" ref="barget" @addMack="addMack" ></remarkForth>
-          <accessoryFifth v-show="step==6" ref="accessoryChild"></accessoryFifth>
-          <opsRecordSeventh v-show="step==7" ref="opsRecordChild"></opsRecordSeventh>
+          <remarkForth v-show="step==5" ref="barget" @addMack="addMack" :candidateStepsData="candidateStepsData"></remarkForth>
+          <accessoryFifth v-show="step==6" ref="accessoryChild" :candidateStepsData="candidateStepsData"></accessoryFifth>
+          <opsRecordSeventh v-show="step==7" ref="opsRecordChild" :candidateStepsData="candidateStepsData"></opsRecordSeventh>
        </el-scrollbar>
       </div>
       <!--<candidateContent></candidateContent>-->

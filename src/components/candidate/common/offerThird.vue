@@ -13,7 +13,7 @@
             <div class="noOffer">
               <img src="../../../assets/img/candidate/tanchuang_pic_offer1.png" alt="">
               <p>尚无offer</p>
-              <button @click="isshow = false">创建offer</button>
+              <button @click="isshow = false" v-show="candidateStepsData[0].status!=0">创建offer</button>
             </div>
          </div>
          <!-- 创建offer -->
@@ -157,8 +157,8 @@
                   </el-form>
                     <el-row >
                           <el-col :offset="10"  >
-                              <el-button type="primary" @click="submit"  style="height:36px;">保存</el-button>
-                              <el-button   style="height:36px;">取 消</el-button>
+                              <el-button type="primary" @click="submit" style="height:36px;">保存</el-button>
+                              <el-button   style="height:36px;" >取 消</el-button>
                           </el-col>
                     </el-row>
                 </el-col>
@@ -172,7 +172,7 @@
           <div class="offer_modal2">
               <p class="title2">
                 <span class="methods"><span v-html="formatDate(createTime)"></span>({{week}}) 发送offer</span>
-                <span class="removes" @click="removeOffer" style="cursor: pointer">删除offer</span>
+                <span class="removes" @click="removeOffer" style="cursor: pointer" v-show="candidateStepsData[0].status!=0">删除offer</span>
               </p>
               <div class="content_offer" v-html="html">
               <!--<img class="up_img" src="../../../assets/img/candidate/777.png" alt="">-->

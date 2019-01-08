@@ -14,7 +14,7 @@
            multiple
           :file-list="fileList"
           >
-          <el-button style="background-color:#F95714;border-radius:4px;width:220px;height:40px;color:#fff" >上传附件</el-button>
+          <el-button style="background-color:#F95714;border-radius:4px;width:220px;height:40px;color:#fff"  v-show="candidateStepsData[0].status!=0">上传附件</el-button>
           <!-- <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div> -->
         </el-upload>
       </div>
@@ -34,7 +34,7 @@
           :show-file-list="false"
           :file-list="fileList"
           >
-          <el-button style="background-color:#F95714;border-radius:4px;width:220px;height:40px;color:#fff" >上传附件</el-button>
+          <el-button style="background-color:#F95714;border-radius:4px;width:220px;height:40px;color:#fff" v-show="candidateStepsData[0].status!=0">上传附件</el-button>
         </el-upload>
         <p  class="headLine">附件列表</p>
         <div class="file_text_box"><!--v-for="(item,index) of imgList" :key="index" -->
@@ -54,7 +54,7 @@
               <div>
                 <!--<i @click="checkfile(item)" class="detail" >查看</i>-->
                 <i @click="downLoad(item)" class="downLoad">下载</i>
-                <i @click="deletefile(item)" class="delete" v-if="item.type !=3">删除</i>
+                <i @click="deletefile(item)" class="delete" v-if="item.type !=3" v-show="candidateStepsData[0].status!=0">删除</i>
               </div>
 
             </div>
@@ -73,6 +73,7 @@
   import store from '@/store/store';
     export default {
         name: "accessoryFifth",
+        props:['candidateStepsData'],
         components:{
 
         },
