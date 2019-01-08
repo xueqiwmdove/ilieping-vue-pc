@@ -187,18 +187,6 @@
         integral:5,
       }
     },
-    watch:{
-
-    /*  personChild(){
-        this.$refs.personChild.name;
-        console.log(12+this.$refs.personChild.name)
-      },*/
-        // parent(){
-        //   this.$.refs.mychild.closeAlertFun()
-        // }
-
-
-    },
     computed:{
       disabled(){
         let that=this;
@@ -402,14 +390,42 @@
       },
       goTwoUpload(){
         this.$router.push('/twoUpload')
+      },
+      // 根据 emloyeeid 查员工档案的接口
+      getStaffData(){
+        //员工档案相关数据
+        let that=this;
+        let employeeId=that.$route.params.id;
+        this.$http({
+          url:`${api.employeeArchives}/${employeeId}`,
+          method:'GET',
+          headers:headers('application/json;charset=utf-8'),
+        }).then(function (res) {
+
+          let resData = res.data;
+          if(resData.code == 10000){
+            // that.employeeInfo = resData.data.employeeInfo;
+            that.sendData.birthDate =  resData.data.employeeInfo.employeeBrithday;
+            // that.sendData.sex =  resData.data.employeeInfo.employeeSex;
+            that.sendData.name =  resData.data.employeeInfo.employeeName;
+            that.sendData.cardNumber =  resData.data.employeeInfo.employeeIdCard;
+            that.sendData.phone =  resData.data.employeeInfo.employeePhone;
+            that.sendData.post = resData.data.employeeInfo.position;
+            that.sendData.department=resData.data.employeeInfoDetailResponse.deptName;
+          }
+
+        }).catch(function (error) {
+          that.$message.error(error);
+        });
       }
+
 
     },
     mounted(){
       //页面加载调用方法
       let that=this;
       that.getIndustryData();
-
+      that.getStaffData();
 
     }
   }

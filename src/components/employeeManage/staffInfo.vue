@@ -58,9 +58,9 @@
                     <router-link :to="{path:'/contractManagement',query: { id: id }}" v-if='isSign == 1 && status== 0'>查看合同</router-link>
                     <router-link :to="{path:'/bySinging',query: { id: id }}" v-if='isSign == 0 && status== 0'>签署合同</router-link>
 
-                  <router-link :to="{path:'/quickUpload'}" v-if='status== 1'>快速评价离职</router-link>
-                  <router-link :to="{path:'/uploadOne'}" v-if='status== 1'>多维度离职评价</router-link>
-                  <router-link :to="{path:'/exposure'}" v-if=' status== 1'>离职失信曝光</router-link>
+                  <router-link :to="{path:'/quickUpload/0'}" v-if='status== 1'>快速评价离职</router-link>
+                  <router-link :to="{path:'/uploadOne/0'}" v-if='status== 1'>多维度离职评价</router-link>
+                  <router-link :to="{path:'/exposure/0'}" v-if=' status== 1'>离职失信曝光</router-link>
                 </div>
 
                 <div class="staff-box">

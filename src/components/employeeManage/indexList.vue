@@ -101,9 +101,9 @@
 																  <el-dropdown-item v-if="scope.row.status=='0'" @click.native="makeQuit(scope.row)">办理离职</el-dropdown-item>
 																  <el-dropdown-item v-if="scope.row.status=='0'"  @click.native="personChanges(scope.row)">人事变更</el-dropdown-item>
 																  <el-dropdown-item @click.native="personDelete(scope.row)">删除员工</el-dropdown-item>
-																  <el-dropdown-item v-if="scope.row.status=='1'" @click.native="quitDiscredit(scope.row)">离职失信曝光</el-dropdown-item>
-																  <el-dropdown-item v-if="scope.row.status=='1'" @click.native="quitAssess(scope.row)">快速离职评价</el-dropdown-item>
-																  <el-dropdown-item v-if="scope.row.status=='1'" @click.native="multidimensional(scope.row)">多维度离职评价</el-dropdown-item>
+																  <el-dropdown-item v-if="scope.row.status=='1'" @click.native="quitDiscredit(scope.row.id)">离职失信曝光</el-dropdown-item>
+																  <el-dropdown-item v-if="scope.row.status=='1'" @click.native="quitAssess(scope.row.id)">快速离职评价</el-dropdown-item>
+																  <el-dropdown-item v-if="scope.row.status=='1'" @click.native="multidimensional(scope.row.id)">多维度离职评价</el-dropdown-item>
 																</el-dropdown-menu>
 															</el-dropdown>
                             </template>
@@ -665,15 +665,15 @@ export default {
       },
   //快速离职评价
       quitAssess(val) {
-        this.$router.push({path:'/quickUpload',query:{id:val}})
+        this.$router.push({path:'/quickUpload/'+val})
       },
   //多维度评价
       multidimensional (val) {
-        this.$router.push({path:'/uploadOne',query:{id:val}})
+        this.$router.push({path:'/uploadOne/'+val})
       },
   //离职失信曝光
-      quitDiscredit() {
-      this.$router.push({path:'/exposure'})
+      quitDiscredit(val) {
+      this.$router.push({path:'/exposure/'+val})
       },
  //获取上传文件
       getFiles(val) {
