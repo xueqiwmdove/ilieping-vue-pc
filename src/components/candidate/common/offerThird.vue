@@ -13,11 +13,11 @@
             <div class="noOffer">
               <img src="../../../assets/img/candidate/tanchuang_pic_offer1.png" alt="">
               <p>尚无offer</p>
-              <button @click="isshow = false">创建offer</button>
+              <button @click="isshow = false" v-show="candidateStepsData[0].status!=0">创建offer</button>
             </div>
          </div>
          <!-- 创建offer -->
-        <div v-if="!isshow" class="addCandidate_content">
+        <div v-if="!isshow" class="addCandidate_content" v-loading="loading">
             <div class="standard_resume">
               <el-row style="overflow-x: hidden;">
                 <el-col  :span="24">
@@ -122,7 +122,7 @@
                             </p>
                             <div class="count_offer" v-for="item in  candidateStepsData">
                               <p> 您好！尊敬的<span>{{item.candidateName}}</span></p>
-                              <p>欢迎您加入<span>上海棋至文化有限公司</span>在此荣幸的要请你出任<span>{{item.postName}}</span>一职</p>
+                              <p>欢迎您加入<span>{{title}}</span>在此荣幸的要请你出任<span>{{item.postName}}</span>一职</p>
                               <p>入职时间：<span>{{makeNormal.reportTime}}</span></p>
                               <p>薪酬：<span v-if="makeNormal.salaryType=='1'">日薪</span><span v-if="makeNormal.salaryType=='2'">月薪</span><span v-if="makeNormal.salaryType=='3'">年薪</span><span>{{makeNormal.salary}}</span></p>
                               <p v-if="makeNormal.probation !=0">试用期<span style="background-color:#F5A623;color:#fff;" > {{makeNormal.probation}}个月</span></p>
@@ -157,8 +157,8 @@
                   </el-form>
                     <el-row >
                           <el-col :offset="10"  >
-                              <el-button type="primary" @click="submit"  style="height:36px;">保存</el-button>
-                              <el-button   style="height:36px;">取 消</el-button>
+                              <el-button type="primary" @click="submit" style="height:36px;">保存</el-button>
+                              <el-button   style="height:36px;" >取 消</el-button>
                           </el-col>
                     </el-row>
                 </el-col>
@@ -172,7 +172,7 @@
           <div class="offer_modal2">
               <p class="title2">
                 <span class="methods"><span v-html="formatDate(createTime)"></span>({{week}}) 发送offer</span>
-                <span class="removes" @click="removeOffer" style="cursor: pointer">删除offer</span>
+                <span class="removes" @click="removeOffer" style="cursor: pointer" v-show="candidateStepsData[0].status!=0">删除offer</span>
               </p>
               <div class="content_offer" v-html="html">
               <!--<img class="up_img" src="../../../assets/img/candidate/777.png" alt="">-->
@@ -213,6 +213,8 @@
       },
       data() {
         return {
+          title:localStorage.getItem('title'),//公司名
+          loading:false,
            isshow:true,
            flag1:true,
            // workAddress:'',
@@ -271,6 +273,7 @@
         //发送创建offer
         submit() {
           let that=this;
+          that.loading=true;
           that.$http({
             method:'post',
             url:api.sendOffer,
@@ -288,15 +291,20 @@
             }
           }).then(function (res) {
             // console.log(res)
-            if(res.data.code==10000){
-              that.flag1 = false;
-              that.offerIsExist();
-            }else if(res.data.code==40001){
-              that.flag1 = false;
-              that.offerIsExist();
-            }else{
 
-            }
+            setTimeout(function(){
+              that.loading=false;
+              if(res.data.code==10000){
+                that.flag1 = false;
+                that.offerIsExist();
+              }else if(res.data.code==40001){
+                that.flag1 = false;
+                that.offerIsExist();
+              }else{
+                that.$message.error(res.data.data.msg);
+              }
+            },3000);
+
           })
         } ,
       //  查看是否有offer
@@ -335,7 +343,7 @@
       //  删除offer
         removeOffer(){
           let that=this;
-          console.log(that.offerId)
+          // console.log(that.offerId)
           that.$http({
             method:'post',
             url:api.removeOffer+that.candidateID+"/"+that.offerId,
@@ -343,7 +351,7 @@
           }).then(function (res) {
             console.log(res);
             if(res.data.code==10000){
-
+              that.offerIsExist();
 
             }else{
               that.$message.error(res.data.msg);

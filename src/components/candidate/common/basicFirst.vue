@@ -5,7 +5,7 @@
       <li @click="changeTab(1)" :class="flag==1?'active':''">原始简历</li>
       <li @click="changeTab(2)" :class="flag==2?'active':''">标准简历</li>
       <li class="button" style="width: 50px;" v-show="flag==1">
-        <img src="../../../assets/img/candidate/tanchuang_ic_download.png" class="upload" style="margin: 0" @click="upload(candidateStepsData.originalResumeAddress)">
+        <img src="../../../assets/img/candidate/tanchuang_ic_download.png" class="upload" style="margin: 0" @click="upload()">
         <!--<img src="../../../assets/img/candidate/tanchuang_ic_print.png" class="print">-->
       </li>
     </ul>
@@ -248,8 +248,10 @@
           this.$emit('getFormChild',flag)
         },
       //  原始简历下载
-        upload(url){
+        upload(){
           let that=this;
+          let url=that.candidateStepsData[0].originalResumeAddress;
+          // console.log(that.candidateStepsData,url)
           if(url !="" || url != undefined){
          /*   let url = url.httpUrl;
             let fileTye = url.match(/.+\/(.+)$/)[1];
@@ -275,9 +277,9 @@
             }).catch(function (error) {
               that.$message.error(error);
             });*/
-            window.location.href = url;
+            // window.location.href = url;
             // console.log(url);
-            // window.open(url, '_blank'); // 新开窗口下载
+            window.open(url, '_blank'); // 新开窗口下载
           }else{
             this.$message.error("原始简历地址不存在！")
 

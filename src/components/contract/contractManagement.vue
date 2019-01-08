@@ -891,8 +891,7 @@
 							that.searchAgreementListData=res.data.data.listSign;
 							that.totalCount = res.data.count;
 							that.isFile=res.data.data.listSign.isArchive;//判断是否归档（1，归档)其它值未归档 
-	  				}
-
+						 }
 	  			}else{
 	  				that.$message.error(res.data.msg);
 	  			}
@@ -1430,3 +1429,4 @@ input[type=text]{
 .contractManagement_con .search_div .search_right .right_history img{margin-right: 10px;}
 .contractManagement_con .search_div .search_right .right_btn{float:left; display: inline-block;}
 </style>
+
