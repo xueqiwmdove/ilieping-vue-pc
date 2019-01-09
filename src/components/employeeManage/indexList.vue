@@ -980,8 +980,18 @@ created() {
   margin-top: 10px;
 }
 .history_s i {
-  margin-left: 5px;
-  margin-right: 5px;
+  display: inline-block;
+  height: 30px;
+  line-height: 30px;
+  margin-left: 20px;
+  position: relative;
+  left: -5px;
+}
+.history_s i img {
+  display: inline-block;
+  position: absolute;
+  top: 8px;
+  left: -16px;
 }
 </style>
 <style>

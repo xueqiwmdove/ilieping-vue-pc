@@ -655,6 +655,12 @@ export default {
   position: absolute;
   cursor: pointer;
 }
+.history_s i img {
+  display: inline-block;
+  position: absolute;
+  top: 32px;
+  left: -19px;
+}
 /* 右侧顶部样式结束 */
 /* 右侧搜索框样式开始 */
 .content_pad .search {
