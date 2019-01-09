@@ -25,7 +25,7 @@ import address from '@/components/account/address' //企业信息-企业地址
 import scale from '@/components/account/scale' //企业信息-企业地址
 import industry from '@/components/account/industry' //企业信息-所属行业
 
-import exposureupload from '@/components/leave/exposureupload'
+import exposureUpload from '@/components/leave/exposureUpload'
 import myupload from '@/components/leave/myupload'
 import exposure from '@/components/leave/exposure'
 import twoUpload from '@/components/leave/twoUpload'
@@ -105,7 +105,7 @@ import optionrefuse from  '@/components/option/optionrefuse'//设置拒绝
 import businessManager from '@/components/account/businessManager'//企业经办人
 import businessCert from '@/components/account/certificate' //企业认证
 
-import personnelTransaction from '@/components/hr/personnelTransaction'//人事流程
+import personnelTransaction from '@/components/matters/personnelTransaction'//人事流程
 
 import HelloWorld from '@/components/reg/HelloWorld'
 
@@ -224,9 +224,9 @@ const router =new Router({
       }
     },
     {//上传曝光记录
-      path: '/exposureupload',
-      name: 'exposureupload',
-      component: exposureupload
+      path: '/exposureUpload',
+      name: 'exposureUpload',
+      component: exposureUpload
     },
     {//上传离职记录
       path: '/myupload',

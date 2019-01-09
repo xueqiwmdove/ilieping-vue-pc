@@ -90,7 +90,7 @@
   			 	 </div> -->
   			 	 <div class="txt_div">
 						<el-row class="searchBox">
-						  <el-col :span="6">
+						  <el-col :span="5">
 						  	<div class="grid-content bg-purple-dark">
 								  <div class="select_div">
 								  	<div class="select_title">状态</div>
@@ -103,7 +103,7 @@
 								  </div>
 						  	</div>
 						  </el-col>
-						  <el-col :span="6">
+						  <el-col :span="5">
 						  	<div class="grid-content bg-purple-dark">
 								  <div class="select_div">
 								  	<div class="select_title">流程</div>
@@ -116,12 +116,15 @@
 								  </div>
 						  	</div>
 						  </el-col>
-						  <el-col :span="12">
+						  <el-col :span="6">
 						  	<div class="grid-content bg-purple-dark">
 								  <div class="search_div">
-								  	<div class="search_title">关键词</div>
-				            <el-col :span="12"><el-input class="search_input" placeholder="姓名/手机号" v-model="searchContent" @keyup.enter.native="gethrList"></el-input></el-col>
-										<el-button class="primary_btn" icon="el-icon-search" @click="gethrList">搜索</el-button>
+										<div class="search_input_div" :span="6">
+											<el-input class="search_manage" placeholder="姓名/手机号" v-model="searchContent" @keyup.enter.native="gethrList"></el-input>
+											<div class="icon_btn el-icon-search" @click="gethrList"></div>
+										</div>
+<!-- 				            <el-col :span="12"><el-input class="search_input" placeholder="姓名/手机号" v-model="searchContent" @keyup.enter.native="gethrList"></el-input></el-col>
+										<el-button class="primary_btn" icon="el-icon-search" @click="gethrList">搜索</el-button> -->
 								  </div>
 						  	</div>
 						  </el-col>

@@ -1,12 +1,12 @@
 <template>
   <div >
    <div class="main" >
-     <!--候选人弹窗-->
-     <addCandidate :addVisible.sync="visables.add" @hideModel="hideChildModal"></addCandidate>
+     <!--候选人弹窗 addCandidateStatus(候选人页面显示与否） -->
+     <addCandidate :addVisible.sync="visables.add" @hideModel="hideChildModal"  :addCandidateStatus="addCandidateStatus"></addCandidate>
      <!--候选人信息  父组件传值-->
-     <candidateSteps :addVisible.sync="visables.steps" @hideModel="hideChildModal" :candidateStepsData="candidateStepsData"  :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList" :signs="signs" ></candidateSteps>
+     <candidateSteps  :addVisible.sync="visables.steps"  @hideModel="hideChildModal" :candidateStepsData="candidateStepsData"  :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList" :signs="signs" ></candidateSteps>
 
-          <!--顶部导航-->
+     <!--顶部导航-->
         <pageheader class="pageheader"></pageheader>
           <!--侧边栏-->
           <div class="aside">
@@ -16,7 +16,7 @@
           <div class="right-content pull-right">
               <div class="content">
                   <p class="headline">
-                      <span > <img src="../../assets/img/zhiwei/houxuan_ic_weizhi.png" alt=""> 候选人管理</span>
+                      <span> <img src="../../assets/img/zhiwei/houxuan_ic_weizhi.png" alt=""> 候选人管理</span>
                   </p>
                   <el-row>
                 <!--创建职位左侧栏  -->
@@ -60,7 +60,7 @@
                       <div class="positionTable">
                             <div class='content_pad'>
                               <el-row>
-                                <el-col > 
+                                <el-col>
                                 <div class="but_stys" :class="signs=='2'? 'btn_s':''" @click="tagStyChange(2)">
                                     <p class="font_s">初筛</p>
                                     <i class="num_s">{{count2}}</i>
@@ -101,25 +101,21 @@
                                         <img v-else src="../../assets/img/zhiwei/houxuan_ic_wait.png" alt="">
                                     </em>
                                 </div>
-                                <div @click="historyList" class="history_s" >
-                                  <i  @mouseenter="enters"  v-if="fileshow"><img src="../../assets/img/1.5.1/file.png" alt="">历史归档</i>
-                                  <i  @mouseleave="leaves" v-else style="color:#F95714;"><img src="../../assets/img/1.5.1/file2.png" alt="">历史归档</i>
-                                </div>
-                                <!-- <div class="but_stys "  :class="signs=='0'? 'btn_s':''"  @click="tagStyChange(0)">
+                                <div class="but_stys "  :class="signs=='0'? 'btn_s':''"  @click="tagStyChange(0)">
                                     <p class="font_s">已淘汰</p>
                                     <i class="num_s">{{count0}}</i>
                                     <em class=" icon_s">
                                         <img v-if="signs == '0'" src="../../assets/img/zhiwei/houxuan_ic_pass_pre.png" alt="">
                                         <img v-else src="../../assets/img/zhiwei/houxuan_ic_pass.png" alt="">
                                     </em>
-                                </div> -->
+                                </div>
                                   <div class="search">
                                       <el-input v-model="searchname"  class="input_search" placeholder="输入你想搜索的内容" >
                                       <i @click="searchList" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                                       </el-input>
-                                      <el-button style="margin-top: -17px;" class="add_btn" @click="addCandidateShow('add')">添加候选人</el-button>
+                                      <el-button class="add_btn" @click="addCandidateShow('add');">添加候选人</el-button>
                                   </div>
-                                </el-col> 
+                                </el-col>
                               </el-row>
                             </div>
                         <!--表格  -->
@@ -238,10 +234,10 @@ export default {
   },
    data() {
       return {
+        addCandidateStatus:false,//添加候选人页面整体
         signs:'2' ,
         candidateList:[],//列表
         personList:[],//人员数据
-        fileshow:true,
         counts:{},
         names:'',//搜素关键字
         searchname:'',
@@ -277,12 +273,14 @@ export default {
     },
    directives: {clickoutside},
     methods: {
-     enters() {
-        this.fileshow=false 
-      },
-      leaves() {
-        this.fileshow=true
-      },
+      handleResize (event) {
+        this.screenWidth = document.documentElement.clientWidth
+        console.log(this.screenWidth,55)
+        },
+    /*  //列表处于面试阶段， 传给子组件选中的状态
+      interviewStatus(param){
+        this.interviewStatus=param;
+      },*/
     //获取职位列表
     getCandidate() {
       let that=this;
@@ -308,11 +306,6 @@ export default {
 	  			}
 		    });
     },
-    // 历史归档
-      historyList() {
-        this.fileshow=false
-        this.$router.push({path:'/historicalArchiving'})
-      },
       getCandidateList(val) {
         this.postId = val.id
         this.seen = val.id
@@ -323,7 +316,12 @@ export default {
       addCandidateShow(param){
         let that=this;
         that.visables[param] = true;
+
         if(param=='steps'){//添加候选人信息弹窗s
+
+
+        }else{
+          that.addCandidateStatus=true;
         }
       },
     //关闭候选人弹窗
@@ -447,9 +445,18 @@ export default {
             that.standardResume.push(JSON.parse(res.data.data.standardResume));
             that.candidateWorkExperienceDTOList=JSON.parse(res.data.data.standardResume).candidateWorkExperienceDTOList;
             that.candidateEducationExperienceDTOList=JSON.parse(res.data.data.standardResume).candidateEducationExperienceDTOList;
-
+            console.log( that.candidateStepsData[0].status)
           }
         })
+      },
+    //  关掉原始简历上的选择简历来源
+      closeResume(){
+        let that=this;
+        that.addCandidateStatus=false;
+      },
+      openResume(){
+        let that=this;
+        that.addCandidateStatus=true;
       }
     },
     mounted() {
@@ -479,7 +486,7 @@ export default {
 }
 .asidePosition {
   /* width: 310px; */
-  min-width: 190px;; 
+  min-width: 190px;;
   height:800px;
   background: #fff;
   margin-right: 15px;
@@ -665,7 +672,7 @@ export default {
 /* 右侧搜索框样式开始 */
 .content_pad .search {
   display: inline-block ;
-  right: -129px;
+  right: 0px;
   width: 400px;
   height: 40px;
   margin-top: 10px;
@@ -674,7 +681,7 @@ export default {
 .content_pad .search .input_search {
   width: 260px;
   position: absolute;
-  top:-39px;
+  top:-21px;
 }
 .content_pad .search .input_search .se_icon {
   position: absolute;
@@ -737,4 +744,3 @@ export default {
  }
 
 </style>
-

@@ -15,34 +15,38 @@
                 </p>
               <div style="padding:5px 20px;">  
                 <!-- 搜索栏 -->
-                 <div class='content_pad'>
-                    <div class="but_stys"  :class="signs1=='1'? 'btn_s':''"   @click="tagTable('1')">
-                      <p class="font_s">招聘中职位</p>
-                      <i class="num_s">{{counts.recruitStatus1}}</i>
-                        <em class=" icon_s">
-                           <img v-if="signs1 == '1'" src="../../assets/img/zhiwei/zhiwei_ic_recruitment_pre.png" alt="">
-                           <img v-else src="../../assets/img/zhiwei/zhiwei_ic_recruitment.png" alt="">
-                        </em>
-                    </div>
-                    <div class="but_stys "  :class="signs1=='0'? 'btn_s':''" @click="tagTable('0')">
-                      <p class="font_s">停止招聘</p>
-                      <i class="num_s">{{counts.recruitStatus0}}</i>
-                      <em class=" icon_s">
-                           <img v-if="signs1 == '0'" src="../../assets/img/zhiwei/zhiwei_ic_notrecruitment_pre.png" alt="">
-                           <img v-else src="../../assets/img/zhiwei/zhiwei_ic_notrecruitment.png" alt="">
-                      </em>
-                    </div>
-                    <div class="search">
-                      <el-input  v-model="searchName" maxlength="20" class="input_search" placeholder="输入你想搜索的内容" >
-                        <i @click="searchPage" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
-                      </el-input>
-                      <el-button class="add_btn" @click="createPosition">添加招聘职位</el-button>
-                    </div>
+                 <div class='contentsty'>
+                   <el-row>
+                     <el-col>
+                        <div class="but_stys"  :class="signs1=='1'? 'btn_s':''"   @click="tagTable('1')">
+                          <p class="font_s">招聘中职位</p>
+                          <i class="num_s">{{counts.recruitStatus1}}</i>
+                            <em class=" icon_s">
+                              <img v-if="signs1 == '1'" src="../../assets/img/zhiwei/zhiwei_ic_recruitment_pre.png" alt="">
+                              <img v-else src="../../assets/img/zhiwei/zhiwei_ic_recruitment.png" alt="">
+                            </em>
+                        </div>
+                        <div class="but_stys "  :class="signs1=='0'? 'btn_s':''" @click="tagTable('0')">
+                          <p class="font_s">停止招聘</p>
+                          <i class="num_s">{{counts.recruitStatus0}}</i>
+                          <em class=" icon_s">
+                              <img v-if="signs1 == '0'" src="../../assets/img/zhiwei/zhiwei_ic_notrecruitment_pre.png" alt="">
+                              <img v-else src="../../assets/img/zhiwei/zhiwei_ic_notrecruitment.png" alt="">
+                          </em>
+                        </div>
+                        <div class="search">
+                          <el-input  v-model="searchName" maxlength="20" class="input_search" placeholder="输入你想搜索的内容" >
+                            <i @click="searchPage" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
+                          </el-input>
+                          <el-button class="add_btn" @click="createPosition">添加招聘职位</el-button>
+                        </div>
+                       </el-col> 
+                    </el-row>
                 </div>  
                <!--表格  -->
                 <div class="div_table_infor">
                     <el-table  :key='signs1' :data="hrList" style="width: 100%">
-                      <el-table-column fixed prop="processNum" label="基本资料" header-align='center' align='left' width="280px">
+                      <el-table-column fixed prop="processNum" label="基本资料" header-align='center' align='left' max-width="280px">
                           <template  slot-scope="scope">
                               <span @click="updateData(scope.row)" class="basic_sty slots_sty">
                                 <span class="name_s">{{scope.row.name}} </span> 
@@ -209,12 +213,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped >
+.content_stys {
+  min-width: 754px;
+}
 /* 搜索栏样式开始 */
-.content_pad {
+.contentsty {
   margin:11px;  
   height:80px;
   line-height:80px; 
   margin-top: 0px;
+  width: 100%;
+  min-width: 695px;;
+  position: relative;
 }
 .but_stys {
   width:120px;
@@ -233,7 +243,7 @@ export default {
   border-radius: 4px;
   margin-left: 10px;
 }
-.content_pad .but_stys .font_s {
+.contentsty .but_stys .font_s {
   width: 100%;
   height: 30px;
   display: inline-block;
@@ -241,31 +251,32 @@ export default {
   top:-20px;
   left:11px;
 }
-.content_pad .but_stys .num_s {
+.contentsty .but_stys .num_s {
   position: absolute;
   top:18px;
   left:13px;
 }
-.content_pad .but_stys .icon_s {
+.contentsty .but_stys .icon_s {
   position: absolute;
   top:20px;
   right:13px;
   font-size: 18px;
 }
-.content_pad .search {
-  float: right;
+.contentsty .search {
+  display: inline-block;
   width: 400px;
   height: 40px;
   margin-top: 30px;
-  position: relative;
+  position: absolute;
+  right: 20px;;
 }
-.content_pad .search .input_search {
+.contentsty .search .input_search {
   width: 260px;
   position: absolute;
   top:-21px;
   
 }
-.content_pad .search .input_search .se_icon {
+.contentsty .search .input_search .se_icon {
   position: absolute;
   right:-244px;
   height: 30px;
@@ -275,7 +286,7 @@ export default {
   border-left: 1px solid #E5E5E5;
   color: #F95714;
 }
-.content_pad .search .el-icon-search:before {
+.contentsty .search .el-icon-search:before {
     content: "\E619";
     margin-left: 5px;
 }
@@ -297,7 +308,7 @@ export default {
   border-radius: 4px;
   color: #fff;
 }
-.content_pad .add_btn  {
+.contentsty .add_btn  {
   background: #F95714;
   border-radius: 4px;
   width: 120px;
@@ -336,7 +347,7 @@ export default {
 /* 表格样式结束 */
 </style>
 <style>
- .content_pad .search .el-input--prefix .el-input__inner {
+ .contentsty .search .el-input--prefix .el-input__inner {
     padding-left: 1px;
 }
 </style>

@@ -11,9 +11,9 @@
         <div class="record" v-for="(item,index) in dataList" :key="index">
           <img src="../../../assets/img/candidate/records_left.png" alt="">
           <p class="time">{{item.createTime}}</p>
-          <p class="ops">系统管理员{{item.operationDescription}}</p>
+          <p class="ops">{{item.operationDescription}}</p>
           <p class="remark">备注：{{item.remark}}</p>
-          <p class="ops_person">由 系统管理员操作</p>
+          <p class="ops_person">{{item.operatorName}}</p>
         </div>
 
       </div>

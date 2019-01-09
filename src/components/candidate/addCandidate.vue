@@ -83,14 +83,15 @@
             <ul class="tab_title">
               <li @click="changeTab(1)" :class="flag==1?'active':''">原始简历</li>
               <li @click="changeTab(2)" :class="flag==2?'active':''">标准简历</li>
-              <li class="button" v-if="flag==2">
+             <!-- <li class="button" v-if="flag==2">
                 <img src="../../assets/img/candidate/tanchuang_ic_download.png" class="upload">
                 <img src="../../assets/img/candidate/tanchuang_ic_print.png" class="print">
-              </li>
+              </li>-->
             </ul>
             <div class="headImg" v-if="flag==2">
               <!--<fileUploadHeadImg @getfile="getHeadImg" ref="headImg" ></fileUploadHeadImg>-->
-              <img src="../../assets/img/candidate/tanchuang_ic_head.png" >
+              <img v-if="imgcode ==''"src="../../assets/img/candidate/tanchuang_ic_head.png" >
+              <img v-if="imgcode !=''" :src="imgcode"  style="width: 80px;height: 80px;border-radius: 50%;">
               <input  type="file" accept="image/*"  @change="uploadPhoto($event)"/>
               <p class="el-upload__tip">点击头像可上传照片，支持JPG/PNG等图片格式，最大不超过2M</p>
             </div>
@@ -367,7 +368,7 @@
 
           </div>
         </div>
-        <div class="addCandidate_right">
+        <div class="addCandidate_right" v-if="flag==2">
           <!--<el-button class="uploadButton" v-if="flag==1">上传简历</el-button>-->
           <el-button class="uploadButton" v-if="flag==2" @click="insertResume" :disabled="resumeDisbaled">保存简历</el-button>
           <div class="selectedBox" v-if="flag==2">
@@ -387,7 +388,7 @@
               </el-select>
             </div>
           </div>
-          <div class="selectedBox" v-if="flag==1">
+          <!--<div class="selectedBox" v-if="flag==1">
             <p style="margin-top: 20px;">请先选择简历来源</p>
             <div class="selectDiv" >
               <el-select v-model="resumeType" placeholder="请选择" class="selected">
@@ -400,7 +401,7 @@
                 </el-option>
               </el-select>
             </div>
-          </div>
+          </div>-->
 
         </div>
 
@@ -421,6 +422,28 @@
         </span>
     </el-dialog>
 
+    <!--选择简历-->
+    <el-dialog title="选择简历" :visible.sync="addCandidateStatus"  custom-class='selectResume' :before-close="closeSelectResume">
+      <div class="selectedBox" v-if="flag==1">
+        <p><img src="../../assets/images/reg/info.svg" alt="">请选择简历来源，其他来源的简历请在标准简历中手动填写</p>
+        <div class="selectDiv" >
+          <label>简历来源</label>
+          <el-select v-model="resumeType" placeholder="请选择" class="selected">
+            <el-option
+              v-for="item in resumeTypeData"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
+        </div>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" class="confirm" @click="closeSelectResume">确 定</el-button>
+      </span>
+    </el-dialog>
+
   </div>
 </template>
 
@@ -436,7 +459,7 @@
 
     export default {
         name: "addCandidate",
-        props:['addVisible'],
+        props:['addVisible','addCandidateStatus'],
         components:{
           // addCandidate_content,
           // addCandidate_right,
@@ -444,6 +467,7 @@
         },
       data(){
           return{
+            selectResume:true,//选择简历弹窗
             // addVisible:false,
             annexId:'',//附件id
             workExperienceIsShow:true,
@@ -673,6 +697,12 @@
         }
       },
       methods:{
+        //  关掉简历,调用父组件里面的方法
+
+        closeSelectResume(){
+          let that=this;
+          that.$parent.closeResume();
+        },
         // getMyEvent(flag){
         //   //接收的数据--------->我是子组件中的数据
         //   this.flag=flag;
@@ -695,6 +725,8 @@
           //切换简历类型，切换样式
           if(num==1){
             that.customclass='addCandidateAlert';
+            //展示简历,调用父组件里面的方法
+            that.$parent.openResume();
           }else{
             that.customclass="addCandidateAlert   addCandidateAlert_add";
           }
@@ -855,7 +887,11 @@
             if(res.data.code==10000){
               that.resumeUrl=res.data.data[0].httpUrl;
               that.annexId=res.data.data[0].id;
-              console.log( that.resumeUrl,that.annexId)
+              console.log( that.resumeUrl,that.annexId);
+
+              //成功之后自动跳转到标准简历页面
+              that.flag=2;
+              that.changeTab(2)
             }else{
               this.$message.error(res.data.data.msg);
             }
@@ -908,6 +944,7 @@
         },
         //上传头像,获取base64
         uploadPhoto(e) {
+          let that=this;
           // 利用fileReader对象获取file
           let file = e.target.files[0];
           let filesize = file.size;
@@ -921,8 +958,8 @@
           reader.readAsDataURL(file);
           reader.onload = function (e) {
             // 读取到的图片base64 数据编码 将此编码字符串传给后台即可
-            this.imgcode = e.target.result;
-            console.log(this.imgcode);
+            that.imgcode = e.target.result;
+            console.log(that.imgcode);
           }
         },
         //删除工作经历
@@ -986,7 +1023,7 @@
 
             that.experience=that.experience;
           }
-          // console.log(that.experience,experience)
+          console.log(experience)
           that.standardResume={standardResumeDTO: {
                 head:that.imgcode,//"图片base64",
                 workCity:that.workAddress,

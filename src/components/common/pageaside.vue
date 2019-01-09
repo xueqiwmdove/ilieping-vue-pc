@@ -69,7 +69,7 @@
               </i>
             </div>
             <ul class="submenu" v-if="isShow8">
-              <li @click="click_hr(25)" :class="flag==25?'active':''"><span>人事异动</span></li>
+              <li @click="click_personnelTransaction(25)" :class="flag==25?'active':''"><span>人事异动</span></li>
             </ul>
           </li>
             <li>
@@ -340,7 +340,7 @@ export default {
         this.flag=a;
         this.$router.push('/insertEmployee');
       },
-      click_hr(a){//人事流程
+      click_personnelTransaction(a){//人事流程
         this.flag=a;
         this.$router.push('/personnelTransaction');
       },
