@@ -51,121 +51,162 @@
 
           <!--标准模板  -->
           <div class="content_h">
-            <!--<div class="fixation">-->
-              <!--<div class="left">-->
-                <!--<div class="inputBox">-->
-                  <!--<label>合同名称<i>*</i></label>-->
-                  <!--<input type="text" class="contractName" :maxlength="100"  v-model="contractName"/>-->
-                  <!--<el-tooltip class="item" effect="dark" content="合同民称请不要包含特殊字符且长度不超过100字" placement="right-start">-->
-                    <!--<img src="../../assets/images/reg/info.svg" alt="提示">-->
-                  <!--</el-tooltip>-->
-                <!--</div>-->
-
-                <!--<div class="inputBox">-->
-                  <!--<label>合同起止时间<i>*</i></label>-->
-                  <!--<el-date-picker-->
-                    <!--v-model="startEndTime"-->
-                    <!--type="daterange"-->
-                    <!--range-separator="-"-->
-                    <!--start-placeholder="请选择合同开始时间"-->
-                    <!--end-placeholder="请选择合同截止时间"-->
-                    <!--value-format="yyyy-MM-dd"-->
-                    <!--style="height: 40px;width: 400px;border-radius: 0;"-->
-                    <!--:picker-options="pickerOptions">-->
-                  <!--</el-date-picker>-->
-                  <!--<el-tooltip class="item" effect="dark" content="合同起止时间将作为合同的实际有效期，合同到期前，系统将提醒您" placement="right-start">-->
-                    <!--<img src="../../assets/images/reg/info.svg" alt="提示">-->
-                  <!--</el-tooltip>-->
-                <!--</div>-->
-
-                <!--<div class="inputBox">-->
-                  <!--<label>签署截止日期<i>*</i></label>-->
-                  <!--<el-date-picker-->
-                    <!--v-model="endTime"-->
-                    <!--type="date"-->
-                    <!--placeholder="请选择签署截止时间"-->
-                    <!--class="endTime"-->
-                    <!--value-format="yyyy-MM-dd"-->
-                    <!--style="height: 40px;width: 400px;border-radius: 0;">-->
-                  <!--</el-date-picker>-->
-                  <!--<el-tooltip class="item" effect="dark" content="所有签署方需要在截止日期前完成签署" placement="right-start">-->
-                    <!--<img src="../../assets/images/reg/info.svg" alt="提示">-->
-                  <!--</el-tooltip>-->
-                <!--</div>-->
-
-              <!--</div>-->
-              <!--<div class="buttonBox" @click="addEmployee=true" v-show="buttonIsShow">-->
-                <!--添加签约员工-->
-              <!--</div>-->
-              <!--<div class="right" v-show="!buttonIsShow">-->
-                <!--<img :src="profilePhotoUrl" alt="加载失败" v-show="profilePhotoUrl != null" width="80px" height="80px" style="border-radius: 50%;">-->
-                <!--<img src="../../assets/img/dismission/women_19_32.svg" alt="icon" class="female" width="80px" height="80px" v-show="employeeSex=='女' && profilePhotoUrl == null">&lt;!&ndash; 女19-32 &ndash;&gt;-->
-                <!--<img src="../../assets/img/dismission/men_19_32.svg" alt="icon" class="female" width="80px" height="80px" v-show="employeeSex=='男' && profilePhotoUrl == null">-->
-                <!--<div>-->
-                  <!--<p class="userName">{{userName}}</p>-->
-                  <!--<p class="department">{{department}}</p>-->
-                  <!--<p class="post">{{post}}</p>-->
-                <!--</div>-->
-                <!--<img src="../../assets/img/dismission/ic_delete.svg" alt="x" class="delete_this" @click="addEmployee=true">&lt;!&ndash;buttonIsShow=true;&ndash;&gt;-->
-              <!--</div>-->
-            <!--</div>-->
 
             <div class="html_div"><!-- htmldata start -->
               <p class="uploadTitle">基本信息</p><!-- htmldata 一级标题 -->
-              <div class="div_input" >
+              <div class="div_input basic" >
                 <div  class="from" >
                   <div class="input_div">
                     <label>员工姓名<span class="class_required">*</span></label>
-                    <input type="text" autocomplete="off" id="id" name="id" placeholder="title"/>
-                  </div>
-              <!--  <div v-for="(itemcontent,i) in item.content" class="from" :key='i'>
-                  <div v-if="itemcontent.type==='text'" class="input_div">
-                    <label>{{itemcontent.title}}<span v-if="itemcontent.required===true" class="class_required">*</span></label>
-                    <input type="text" autocomplete="off" :id="itemcontent.id" :name="itemcontent.id" :placeholder="itemcontent.title"/>
-                  </div>
-                  <div v-if="itemcontent.type==='select'" class="input_div">
-                    <label>{{itemcontent.title}}<span v-if="itemcontent.required===true" class="class_required">*</span></label>
-                    &lt;!&ndash;              <el-select class="classSelect" :id="itemcontent.id" v-model="itemcontent.defaultSelectStr" :name="itemcontent.defaultSelectStr" @change="changeSelected(itemcontent.id,itemcontent.select)">
-                                    <el-option v-for="(itemselect, index) in itemcontent.select" :key="itemselect.val" :label="itemselect.val" :value="itemselect.val">{{itemselect.val}}</el-option>
-                                  </el-select> &ndash;&gt;
-                    <select :id="itemcontent.id">
-                      <option value="-1">{{itemcontent.defaultSelectStr}}</option>
-                      <option v-for="(itemselect, index) in itemcontent.select" :value="itemselect.key">{{itemselect.val}}</option>
-                    </select>
-                  </div>
-                  <div v-if="itemcontent.type==='radio'" class="input_div">
-                    <label>{{itemcontent.title}}<span v-if="itemcontent.required===true" class="class_required">*</span></label>
-                    &lt;!&ndash; <el-radio-group class="classradio" :id="itemcontent.id" v-model="itemcontent.defaultSelectStr" :name="itemcontent.defaultSelectStr">
-                       <el-radio v-for="(itemradio, index) in itemcontent.radio" :label="itemradio.val" :value="itemradio.key" :key="index">{{itemradio.val}}</el-radio>
-                     </el-radio-group> &ndash;&gt;
-                    <div class="radio_div" :id="itemcontent.id">
-                      <div class="radio-inline" v-for="(itemradio, index) in itemcontent.radio">
-                        <input class="classRadio" :name="itemcontent.id" type="radio" :value="itemradio.key" />
-                        <span class="b-radio"></span>
-                        <span for="itemcontent.id">{{itemradio.val}}</span>
-                      </div>
+                    <!--<input type="text" autocomplete="off" v-model="employee" placeholder="请选择员工姓名"/>-->
+                    <input type="text" placeholder="请选择员工姓名" class="selectDepartment" v-model="employee" @click.stop="isShow2=true;" ><!--@click="isShow2=!isShow2"-->
+                    <div class="treePullDown" v-show="isShow2">
+                      <el-input
+                        placeholder="输入关键字进行过滤"
+                        v-model="filterText2" class="filterInput">
+                      </el-input>
+                      <!-- :data="data"-->
+                      <el-tree
+                        class="filter-tree departmentTree"
+                        :props="defaultProps"
+                        :load="loadNode"
+                        lazy
+                        :filter-node-method="filterNode"
+                        @node-click="getParent2"
+                        ref="tree2">
+                      </el-tree>
                     </div>
                   </div>
-                  <div v-if="itemcontent.type==='date'" class="input_div">
-                    <label>{{itemcontent.title}}<span v-if="itemcontent.required===true" class="class_required">*</span></label>
-                    <input type="text" autocomplete="off" :id="itemcontent.id" :name="itemcontent.id" :placeholder="itemcontent.title"/>
+                  <div class="input_div">
+                    <label>合同名称<span class="class_required">*</span></label>
+                    <input type="text" autocomplete="off" class="contractName"  v-model="contractName" placeholder="请输入合同名称"/>
                   </div>
-                  <div v-if="itemcontent.type==='textarea'" class="input_div">
-                    <label>{{itemcontent.title}}<span v-if="itemcontent.required===true" class="class_required">*</span></label>
-                    <input type="textarea" class="textareaClass" autocomplete="off" :id="itemcontent.id" :name="itemcontent.id" :placeholder="itemcontent.title"/>
+                  <div class="input_div">
+                    <label>合同起止时间<span class="class_required">*</span></label>
+                    <el-date-picker
+                      v-model="startEndTime"
+                      type="daterange"
+                      range-separator="-"
+                      start-placeholder="请选择合同开始时间"
+                      end-placeholder="请选择合同截止时间"
+                      value-format="yyyy-MM-dd"
+                      style="height: 40px;width: 400px;border-radius: 0;"
+                      :picker-options="pickerOptions">
+                    </el-date-picker>
                   </div>
-                </div>-->
+                  <div class="input_div">
+                    <label>签署截止时间<span class="class_required">*</span></label>
+                    <el-date-picker
+                      v-model="endTime"
+                      type="date"
+                      placeholder="请选择签署截止时间"
+                      class="endTime"
+                      value-format="yyyy-MM-dd"
+                      style="height: 40px;width: 400px;border-radius: 0;">
+                    </el-date-picker>
+                  </div>
+                </div>
               </div>
-            </div><!-- htmldata end -->
-            <div class="submin_div">
-              <button id="step2_entry" class="uploadLeaveSetup4 active click_btn" >提交</button>
+
+              <p class="uploadTitle">合同填充项目</p>
+              <div class="div_input" >
+                <div  class="from" >
+                  <div class="input_div">
+                    <label>岗位<span class="class_required">*</span></label>
+                    <input type="text" autocomplete="off" v-model="station" placeholder="请输入岗位"/>
+                  </div>
+                  <div class="input_div">
+                    <label>合同期限<span class="class_required">*</span></label>
+                    <el-select v-model="selectTimeLimit" placeholder="请选择合同期限" style="width: 400px;">
+                      <el-option
+                        v-for="item in selectTimeLimitData"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                      </el-option>
+                    </el-select>
+                  </div>
+                  <div class="input_div">
+                    <label>试用期<span class="class_required">*</span></label>
+                    <el-radio v-model="selectProbation" label="1" class="classRadio" >有</el-radio>
+                    <el-radio v-model="selectProbation" label="2" class="classRadio">无</el-radio>
+                     <!-- <div class="radio_div" >
+                        <div class="radio-inline" >
+                          <input class="classRadio"  />
+                          <span class="b-radio"></span>
+                          <span for="itemcontent.id">{{itemradio.val}}</span>
+                        </div>
+                      </div>-->
+                    </div>
+                  <div class="input_div">
+                    <label>试用期起止时间<span class="class_required">*</span></label>
+                    <el-date-picker
+                      v-model="probationStartEndDate"
+                      type="daterange"
+                      range-separator="-"
+                      start-placeholder="请选择试用期起止时间"
+                      end-placeholder=""
+                      value-format="yyyy-MM-dd"
+                      style="height: 40px;width: 400px;border-radius: 0;">
+                    </el-date-picker>
+                  </div>
+                  <div class="input_div">
+                    <label>试用期工资<span class="class_required">*</span></label>
+                    <input type="text" autocomplete="off" v-model="promotionWages" placeholder="试用期工资"/>
+                  </div>
+                  <div class="input_div">
+                    <label>工时制度<span class="class_required">*</span></label>
+                    <el-select v-model="manHourSystem" placeholder="请选择工时制度" style="width: 400px;">
+                      <el-option
+                        v-for="item in manHourSystemData"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                      </el-option>
+                    </el-select>
+                  </div>
+                  <div class="input_div">
+                    <label>转正工资方案<span class="class_required">*</span></label>
+                    <el-select v-model="selectBasicWagesProgramme" placeholder="请选择转正工资方案" style="width: 400px;">
+                      <el-option
+                        v-for="item in selectBasicWagesProgrammeData"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                      </el-option>
+                    </el-select>
+                  </div>
+                  <div class="input_div">
+                    <label>工资发放日(例: 25)<span class="class_required">*</span></label>
+                    <input type="text" autocomplete="off" v-model="payrollTime" placeholder="请输入日期"/>
+                  </div>
+                  <!--enterpriseAddress-->
+                  <div class="input_div textarea_div">
+                    <label>工作地址<span class="class_required">*</span></label>
+                    <textarea class="textareaClass" autocomplete="off" v-model="enterpriseAddress" placeholder="请输入工作地址"></textarea>
+                  </div>
+                  <div class="input_div textarea_div">
+                    <label>转正条件<span class="class_required">*</span></label>
+                    <textarea class="textareaClass" autocomplete="off" v-model="promotionCondition" placeholder="请输入转正条件"></textarea>
+                  </div>
+                  <div class="input_div textarea_div">
+                    <label>福利待遇<span class="class_required">*</span></label>
+                    <textarea class="textareaClass" autocomplete="off" v-model="welfareTreatment" placeholder="请输入福利待遇"></textarea>
+                  </div>
+
+                  </div>
+              </div>
+
+              <div class="submin_div text-center">
+                <button id="step2_entry" class="uploadLeaveSetup4 active click_btn" @click="submitContract">提交</button>
+              </div>
             </div>
-          </div>
 
           <!--标准模板-->
 
 
           <!--主体内容-->
+        </div>
         </div>
       </div>
     </div>
@@ -193,11 +234,201 @@
       },
       data(){
          return{
+           userName:'',
+           userNameId:'',
 
+           employee:'',
+           employeeId:'',
+           isShow2:false,
+           filterText2:'',
+           data:[],//员工数据
+           childrendata:[],
+
+           contractName:'',
+           startEndTime:[],
+           pickerOptions:{},
+           endTime:[],
+
+           station:'',//岗位
+           selectTimeLimit:'',//合同期限
+           selectTimeLimitData:[{
+               value: '1',
+               label: '固定期限(合同 开始/结束 日期)'
+             }, {
+               value: '2',
+               label: '不固定期限 (合同开始日期)'
+             }, {
+               value: '3',
+               label: '已完成一定工作为期限(合同开始日期)'
+             }],
+           selectProbation:'',//有无试用期
+           probationStartEndDate:[],//试用期起止时间
+           promotionWages:'',//试用期工资
+           manHourSystem:'',//工时制度
+           manHourSystemData:[
+             {
+               value:"1",
+               label:"标准工时制度"
+             },
+             {
+               value:"2",
+               label:"综合计算工时制度"
+             },
+             {
+               value:"3",
+               label:"不定时工时制度"
+             }
+           ],
+           selectBasicWagesProgramme:'', //转正公司方案
+           selectBasicWagesProgrammeData:[
+             {
+               value:"1",
+               label:"基本工资制"
+             },
+             {
+               value:"2",
+               label:"基本工资和绩效工资相结合制度"
+             },
+             {
+               value:"3",
+               label:"记件工资制"
+             }
+           ],
+           payrollTime:'',// 工资发放日(例: 25)：
+           enterpriseAddress:'',
+           promotionCondition:'',// 转正条件
+           welfareTreatment:'',// 福利待遇
+           id:JSON.parse(localStorage.getItem("item")).templateNumber,
          }
       },
       methods: {
+        /*
+* @param node:当前点击节点信息
+  @param resolve:传递参数方法
+* */
+        loadNode(node, resolve) {
+          //  debugger
+          if (node.level === 0) {
+            let that=this;
+            that.$http({
+              url:api.employeList+"0",
+              method:'get',
+              headers:headers()
+            }).then((res)=>{
+              // console.log(res);
+              if(res.data.code==10000){
+                that.data=res.data.data;
+                resolve(that.data);
+              }
+            }).catch((res)=>{
+              resolve([]);
+              that.$message.error("获取员工列表失败！")
+            })
+          }else{
+            let that=this;
+            that.$http({
+              url:api.employeList+node.data.id,
+              method:'get',
+              headers:headers()
+            }).then((res)=>{
+              // console.log(res);
+              if(res.data.code==10000){
+                that.data=res.data.data;
+                resolve(that.data);
+              }
+            }).catch((res)=>{
+              resolve([]);
+              that.$message.error("获取员工列表失败！")
+            })
+          }
+        },
+        /*
+        * 选中员工
+        * type=1 没有子节点
+        * */
+        getParent2(data) {
+          let that=this;
+          console.log(data);
+          if(data.type==1){
+            that.employee=data.label;
+            that.isShow2=false;
+            that.employeeId=data.id;
+          }
 
+        },
+
+        //合同管理回显员工信息
+        returnEmployeeDetail(){
+          let that=this;
+          that.$http({
+            method:"get",
+            url:api.returnEmployeeDetail+that.employeeId,
+            headers:headers(),
+          }).then(function(res){
+            if(res.data.code==10000){
+              that.returnEmployeeData=res.data.data;
+              console.log(that.returnEmployeeData);
+              // that.userName=res.data.data.employeeName;
+              for(let i in that.returnEmployeeData) {
+                /*if(document.getElementById(i) !=null){
+                  document.getElementById(i).value = that.returnEmployeeData[i];
+                }*/
+
+                /* try {
+                   document.getElementById(i).value = that.returnEmployeeData[i];
+                 }catch (e) {
+                   console.log("err :" + i);
+                   console.log()
+                 }*/
+                //}
+              }
+            }
+            else{
+              that.$message.error(res.data.msg);
+            }
+          });
+        },
+        //创建待定合同
+        submitContract() {
+          let that = this;
+          that.$http({
+            method: "post",
+            url: api.createContract,
+            data: {
+              agreementName: that.contractName,//合同名称
+              templateNumber: that.id,//合同模板编号
+              startTime: that.startEndTime[0],
+              endTime: that.startEndTime[1],
+              deadlineForSignature: that.endTime,//截止签字时间
+              employeeId: that.userNameId,
+              pageDate: {
+                station:that.station,//岗位
+                selectTimeLimit:that.selectTimeLimit,//合同期限
+                selectProbation:that.selectProbation,//有无试用期
+                probationEndDate:that.probationStartEndDate[0],//试用期起止时间
+                probationStartDate:that.probationStartEndDate[1],
+                promotionWages:that.promotionWages,//试用期工资
+                manHourSystem:that.manHourSystem,//工时制度
+                selectBasicWagesProgramme:that.selectBasicWagesProgramme, //转正公司方案
+                payrollTime:that.payrollTime,// 工资发放日(例: 25)：
+                enterpriseAddress:that.enterpriseAddress,
+                promotionCondition:that.promotionCondition,// 转正条件
+                welfareTreatment:that.welfareTreatment,// 福利待遇
+              }
+
+            },
+            headers: headers()
+          }).then(function (res) {
+            console.log(res);
+            if (res.data.code == 10000) {
+              let contractId = res.data.data;
+              // that.$message.success("合同发送成功");
+              that.$router.push('/contractDetail/' + contractId);
+            } else {
+              that.$message.error(res.message || res.data.msg);
+            }
+          })
+        }
       },
       mounted(){
         let that=this;
@@ -236,6 +467,10 @@
   .sendOfferSteps .sendOffer-status .sendOffer_one .step_a{
     background: #C9EACC;
   }
+  textarea{
+    width: 400px;
+    height: 80px;
+  }
 .text-center{text-align: center;}
 .confirm{
   width:400px;
@@ -246,6 +481,149 @@
   margin: 120px auto 0
 ;
 }
+
+
+
+
+  .classSelect input[type=text]{
+    text-indent: 12px;
+  }
+  .class_required{
+    font-family: MicrosoftYaHei;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 19px;
+    color: #F95714;
+  }
+  .textareaClass{
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    padding-left: 10px;
+  }
+
+
+
+  .content_h{background: #fff; padding: 20px;}
+
+  .content_h .inputBox .el-input__icon.el-range__icon.el-icon-date{
+    position: absolute;
+    right: 0;
+  }
+  .content_h .inputBox img{
+    margin-left: 9px;
+    vertical-align: middle;
+  }
+  .content_h .inputBox .el-date-editor.endTime.el-input.el-input--prefix.el-input--suffix.el-date-editor--date .el-input__inner{
+    width: 400px;
+    height: 44px;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    border-radius:0;
+  }
+  .content_h .inputBox input{
+    width: 400px;
+    height: 40px;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    border-radius:0;
+    font-size: 16px;
+  }
+  .content_h .inputBox label{
+    width: 104px;
+    display: inline-block;
+    font-size: 16px;
+    color: #394A66;
+    letter-spacing: 0;
+    margin-right: 10px;
+    text-align: right;
+  }
+  .content_h .inputBox label i{
+    color: #f95714;
+  }
+
+  .div_input{
+    background: #fafbfc;
+    border: 1px solid #e5e5e5;
+    color: #748093;
+    margin: 0 21px;
+    min-height: 200px;
+    overflow: hidden;
+    padding-bottom: 20px;
+  }
+  .div_input.basic{
+    background:none;
+    border: none;
+    min-height: auto;
+  }
+  .div_input .from{
+    width:  100%;
+    float:  left;
+    display:  inline-block;
+
+  }
+  .div_input .from .input_div{
+    width: 49%;
+    float: left;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    margin-top: 20px;
+  }
+  .div_input .from .input_div.textarea_div{
+    height: 80px;
+    margin-top: 20px;
+  }
+  .div_input .from .input_div.textarea_div label{
+   vertical-align: top;
+  }
+  .div_input .from .input_div label{
+    margin-right: 10px;
+    height: 34px;
+    line-height: 34px;
+    text-align: right;
+    display: inline-block;
+    width: 30%;
+  }
+  .div_input .from .input_div .classRadio{
+    width: 30px;
+  }
+  .div_input .from .input_div input{
+    min-width: 400px;
+    width: 400px;
+    height: 40px;
+    /*left: 18px;*/
+  }
+  .div_input .from .input_div  input[type=radio]{
+    opacity: 0;
+    z-index: 2;
+  }
+
+  .classSelect{
+    min-width: 300px;
+    width: 300px;
+    height: 34px;
+  }
+  .el-dialog.newDepartAlert_Content .input-group{
+    margin-bottom: 72px;
+  }
+  .input_div select{
+    min-width: 300px;
+    width: 300px;
+    height: 34px;
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none; /* 火狐、谷歌清除 */
+    background-size:10%;
+    background: url(../../assets/images/dismission/sprite_up.png) no-repeat 276px center;
+    font-size: 14px;
+    color: #394A66;
+    outline:none;
+    border: 1px solid #E5E5E5;
+    text-indent: 12px;
+    background-color: #fff;
+  }
+  .input_div select::-ms-expand{ display: none; } /* ie清除 */
+
 
 </style>
 

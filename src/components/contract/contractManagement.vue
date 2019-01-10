@@ -410,7 +410,7 @@
       },
       methods: {
 				click_contractTemplate(){
-					this.$router.push('/newContract1');
+					this.$router.push('/newContract');
 				},
     	enter(index){
         this.seen = true;
