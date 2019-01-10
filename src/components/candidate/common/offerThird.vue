@@ -352,7 +352,7 @@
           }).then(function (res) {
             console.log(res);
             if(res.data.code==10000){
-              // that.offerIsExist();
+              that.offerIsExist();
               that.isshow=true;
               // workAddress:'',
               that.makeNormal={
@@ -364,6 +364,7 @@
                   salaryType:'',
                   salary:'',
               };
+
             }else{
               that.$message.error(res.data.msg);
             }
