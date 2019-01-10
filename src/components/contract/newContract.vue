@@ -12,7 +12,7 @@
         <div class="content">
           <!--主体内容-->
           <p class="headline">
-            <a>发起签约</a>
+            <a>新增合同</a>
           </p>
           <!--<breadcrumb></breadcrumb>-->
           <div class="sendOfferSteps">
@@ -51,52 +51,31 @@
           </div>
 
           <!--选择模板  :before-close="handleClose"-->
-          <el-dialog
-            title="选择模板"
-            :visible.sync="modelAlert"
-            class="modelAlert"
-            custom-class="modelAlertCotent">
-            <div class="modelCarsouel">
-              <swiper :options="swiperOption"   ref="mySwiper"  v-loading="loading">
-                <swiper-slide v-for="(item,index) in templateData"  :key="index"   :class="current==index?'active':''" :title="JSON.stringify(item)"  ><!-- @clcik.native="clickSelect(index,item)"-->
-                     <div class="singleTemplate">
-                       <p class="title">{{item.templateName}}</p>
-                       <p style="display: none" class="totalPage">{{item.totalPage}}</p>
-                       <p style="display: none" class="templateNumber">{{item.templateNumber}}</p>
-                       <p class="lookContract" @click="lookPdf(item.templateAddress)">
-                         查看合同
-                       </p>
-                     </div>
-                </swiper-slide>
-                <div class="swiper-button-prev" slot="button-prev"> < </div>
-                <div class="swiper-button-next" slot="button-next"> > </div>
-              </swiper>
-             <!-- <el-carousel trigger="click" height="226px" arrow="always"
-                           indicator-position="none"  :autoplay="false">&lt;!&ndash;type="card" :autoplay="false"&ndash;&gt;
-                <el-carousel-item  v-for="(item,index) in templateData"  :key="index" @click.native="clickSelect(index,item)" :class="current==index?'active':''" :style="transform(index)" >&lt;!&ndash;v-bind="transform(index)"&ndash;&gt;&lt;!&ndash; v-for="item in 4" :key="item" &ndash;&gt;
-                  <div class="singleTemplate" >
-                    <p class="title">{{item.templateName}}</p>
-                    <p style="display: none" class="totalPage">{{item.totalPage}}</p>
-                    <p style="display: none" class="templateNumber">{{item.templateNumber}}</p>
-                    <p class="lookContract">
-                      查看合同
-                    </p>
-                  </div>
-                </el-carousel-item>
-              </el-carousel>-->
-            </div>
+          <div class="modelCarsouel">
+            <swiper :options="swiperOption"   ref="mySwiper"  v-loading="loading" style="padding: 0 100px">
+              <swiper-slide v-for="(item,index) in templateData"  :key="index"   :class="current==index?'active':''" :title="JSON.stringify(item)"  ><!-- @clcik.native="clickSelect(index,item)"-->
+                <div class="singleTemplate">
+                  <p class="title">{{item.templateName}}</p>
+                  <p style="display: none" class="totalPage">{{item.totalPage}}</p>
+                  <p style="display: none" class="templateNumber">{{item.templateNumber}}</p>
+                  <p class="lookContract" @click="lookPdf(item.templateAddress)">
+                    查看合同
+                  </p>
+                </div>
+              </swiper-slide>
+              <!--<div class="swiper-button-prev" slot="button-prev"> < </div>-->
+              <!--<div class="swiper-button-next" slot="button-next"> > </div>-->
+            </swiper>
+          </div>
+          <div class="modelInfo">
+            <p>模板介绍：</p>
+            支持重复、批量发送标准合同；<br>
+            试用场景：劳动合同、经销商合同、服务协议等任何需要批量发送标准合同的场景。
+          </div>
+          <div class="text-center">
+            <el-button type="primary" @click="goTO_selectTemplates" class="confirm">下一步</el-button>
+          </div>
 
-            <div class="modelInfo">
-              <p>模板介绍：</p>
-              支持重复、批量发送标准合同；<br>
-              试用场景：劳动合同、经销商合同、服务协议等任何需要批量发送标准合同的场景。
-            </div>
-            　
-            <span slot="footer" class="dialog-footer">
-              <el-button type="primary" @click="goTO_selectTemplates" class="confirm">确 定</el-button>
-              <el-button @click="modelAlert = false" class="cancel">取 消</el-button>
-            </span>
-          </el-dialog>
           <!--选择模板-->
 
 
@@ -120,7 +99,7 @@
   import {mapState,mapActions} from 'vuex'
     let vm = null;
     export default {
-      name: "newContract1",
+      name: "newContract",
       components: {
         pageheader,
         pageaside,
@@ -132,9 +111,7 @@
          return{
            signAlert: false,
            flag:1,//默认显示（使用模板）
-           modelAlert: false,
            loading:true,
-
            swiperOption: {//swiper3
              speed: 1000,
              slidesPerView:4,
@@ -171,59 +148,11 @@
         swiper() {
           return this.$refs.mySwiper.swiper;
         },
-       /* transform:function (index) {
-            return function (index) {
-              /!** 处理逻辑 *!/
-              let that=this;
-              let current=index;
-              console.log(index);
-
-
-              if(current==0){
-                // that.style.translate=0;
-                let arr = new Array();
-                arr.push('transform:');
-                arr.push('translateX(0px)');
-                return arr.join("");
-              }else{
-                // that.style.translate=160*index+20;
-                let arr = new Array();
-                arr.push('transform:');
-                for(let i=1;i<current;i++){
-                  arr.push('translateX('+this.pngtranslateX+'px) ');
-                }
-                return arr.join("");
-              }
-            }
-
-
-
-
-        }*/
       },
       created() {
         vm = this;
       },
       methods: {
-          //4个签约状态的数据
-          getCountContract(){
-            let that=this;
-            that.$http({
-              method:"get",
-              url:api.countContract,
-              headers:headers(),
-            }).then(function(res){
-              if(res.data.code==10000 || res.data.data==null){
-               let data=res.data.data;
-               that.waiteMeSign=data.companySignLength;
-                that.waiteHeSign=data.employeeSignLength;//待他人签
-                that.cutOff=data.expiringLength;//即将截止
-                that.signed=data.completeLength;//已签约
-              }else{
-                that.$message.error(res.data.msg);
-              }
-            });
-          },
           //发起签约调接口
          clickSign(){
           let that=this;
@@ -271,51 +200,6 @@
           })
         },
 
-          //点击跳转到合同管理之前，先判断企业已认证
-        clickHref(flag){
-           console.log(flag);
-          let that=this;
-          that.$http({
-            url:api.clickSign,
-            method:"post",
-            headers:headers(),
-          }).then(function (result) {
-            // console.log(result);
-            if(result.data.code==10000){
-              // that.$router.push("/contractManagement");
-              that.$router.push("/contractManagement?flag="+flag);
-            }else if(result.data.code==40007){
-              let isAuthentication=result.data.data.isAuthentication;
-              //TODO 审核中 您的企业正在审核中，审核通过后即可使用合同签约功能
-
-              if(isAuthentication==1||isAuthentication==0){
-                that.$confirm('需要通过企业认证才能发起签署', '提示', {
-                  confirmButtonText: '去认证',
-                  cancelButtonText: '稍后再说',
-                  center:'true',
-                }).then(() => {
-                  that.$router.push("/businessCert");
-                });
-              }else if(isAuthentication==2){
-                that.$confirm('您的企业正在审核中，审核通过后即可使用合同签约功能！', '提示', {
-                  confirmButtonText: '确定',
-                  cancelButtonText: '取消',
-                  center:'true',
-                }).then(() => {
-
-                }).catch(() => {
-                  that.$message({
-                    type: 'info',
-                    message: '已取消'
-                  });
-                });
-              }
-
-            }else{
-              that.$message.error(result.message || result.data.msg)
-            }
-          })
-        },
         changeClass(a){
           let  that=this;
           that.flag=a;
@@ -332,14 +216,16 @@
             headers:headers(),
           }).then(function (result) {
             // console.log(result);
+            that.templateData=[];
             if(result.data.code==10000){
-              that.templateData=result.data.data;
+              // that.templateData=result.data.data;
+              that.templateData.push(result.data.data[0]);
+              // console.log(that.templateData);
               setTimeout(function () {
                 that.loading=false;
 
-              },1000)
+              },1000);
 
-              // console.log(that.templateData);
               //默认选中的合同模板第一个，将合同相关数据存到缓存里
               // console.log(that.templateData[0]);
               localStorage.setItem("item",(JSON.stringify(that.templateData[0])));
@@ -352,14 +238,14 @@
         //点击模板弹窗确定按钮跳转到选择模板页面
         goTO_selectTemplates(){
           let that=this;
-          that.modelAlert = false;
-
           //选中的合同模板，将合同相关数据存到缓存里
           // document.getElementsByClassName("templateNumber");
           // localStorage.setItem("templateNumber",)
 
           // that.$router.push({name:'selectTemplates'});
-          that.$router.push({name:'customContractTemplate'});
+          // that.$router.push({name:'customContractTemplate'});
+            that.$router.push({name:'standardContract'});
+
         },
         //TODO swiper 点击当前滑块执行无效 ,换成走马灯点击效果可以
           clickSelect(index,item){
@@ -388,8 +274,8 @@
         },
       mounted(){
         let that=this;
-        that.getCountContract();
-        // console.log(1+JSON.stringify(this.$store.state.breadListState));
+        //that.getCountContract();
+        that.showModels();
 
       }
     }
@@ -399,6 +285,9 @@
     margin: 0;
   }
 
+  .sendOfferSteps{
+    border-bottom: 1px solid #E5E5E5;
+  }
   .sendOfferSteps .sendOffer-status .sendOffer_one p,
   .sendOfferSteps .sendOffer-status .sendOffer_three p,
   .sendOfferSteps .sendOffer-status .sendOffer_two p{
@@ -425,7 +314,22 @@
   .sendOfferSteps .sendOffer-status .sendOffer_two span{
     color: #97A2B3;
   }
-
+.modelCarsouel{
+  margin: 100px auto 20px;
+}
+.swiper-container swiper-container-horizontal{
+  padding: 0 100px;
+}
+.text-center{text-align: center;}
+.confirm{
+  width:400px;
+  height:44px;
+  background:rgba(249,87,20,1);
+  border-radius:4px;
+  opacity:0.6;
+  margin: 120px auto 0
+;
+}
   .el-dialog__title {
     font-size: 18px;
     color: #21324E;
@@ -476,12 +380,6 @@
 /*选择模板弹窗 TODO elementUi 走马灯*/
 
 
-  .modelCarsouel{
-    /*width: 700px;*/
-    /*padding: 0 30px 20px;*/
-    padding: 0 0 20px;
-    border-bottom:1px solid #E5E5E5 ;
-  }
   .modelAlert .el-carousel__item{
     width: 160px;
     box-shadow: 0 0 1px 0 rgba(0,0,0,0.08);
@@ -528,11 +426,11 @@
     /*transition: all 0.6s;*/
   }
   .swiper-slide.active .singleTemplate{
-    border: 0.5px solid #f95714;
+    border: 1px solid #f95714;
     background:url("../../assets/img/contract/ic_xuanzhong.svg") #F9F9F9 no-repeat bottom;
   }
   .singleTemplate:hover{
-    border: 0.5px solid #f95714;
+    border: 1px solid #f95714;
     background:url("../../assets/img/contract/ic_xuanzhong.svg") #F9F9F9 no-repeat bottom;
     /*transform: scale(1.1);*/
   }
@@ -559,7 +457,7 @@
     position: absolute;
     bottom: 0;
     left:0.5px;
-    width: 158px;
+    width: 157px;
     height: 25px;
     line-height: 25px;
     text-indent: 25px;
@@ -578,6 +476,7 @@
     color: #7A8699;
     letter-spacing: 0;
     line-height: 24px;
+    padding: 0 0 0 100px;
   }
   .modelInfo p{
     font-size: 16px;

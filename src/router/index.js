@@ -48,8 +48,8 @@ import quickReport from '@/components/leave/quickReport'
 //合同管理
 import bySinging from '@/components/contract/bySinging'
 import contractManagement from '@/components/contract/contractManagement'//合同管理
-import newContract1 from '@/components/contract/newContract1'//新增合同选择模板
-import newContract2 from '@/components/contract/newContract1'//新增合同选标准模板
+import newContract from '@/components/contract/newContract'//新增合同选择模板
+import standardContract from '@/components/contract/standardContract'//新增合同选标准模板
 import contractTemplate from '@/components/contract/contractTemplate'
 import selectTemplates from '@/components/contract/selectTemplates'//发起签约，选择模板
 import contractDetail from '@/components/contract/contractDetail'//合同签约
@@ -555,14 +555,14 @@ const router =new Router({
 			component: InterviewManagement,
 		},
     {
-      path: '/newContract1',//新增合同选择模板1
-      name: 'newContract1',
-      component: newContract1,
+      path: '/newContract',//新增合同选择模板1
+      name: 'newContract',
+      component: newContract,
     },
     {
-      path: '/newContract2',//新增合同选择标准模板
-      name: 'newContract2',
-      component: newContract2,
+      path: '/standardContract',//新增合同选择标准模板
+      name: 'standardContract',
+      component: standardContract,
     }
   ]
 
