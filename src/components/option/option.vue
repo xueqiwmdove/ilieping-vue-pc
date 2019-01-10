@@ -16,8 +16,9 @@
                 <p class="headline">
                     <span>设置</span>
                 </p>
-                <el-row>
+                <el-row :gutter="10">
               <!--left-side-->
+							<el-col :xs="8" :sm="6" :md="4" :lg="5" :xl="2"><div class="grid-content bg-purple">
                     <div class="asidePosition ad_input">
                         <h4><img class="img_shengfen" src="../../assets/img/zhiwei/miasnhi_ic_pannei.png" alt="">
                           <span  style="margin-left:30px;">模板</span>
@@ -31,6 +32,8 @@
 												<p @click="click_optioncancel()">面试取消通知模版<i></i></p>
 									  		<p @click="click_optionrefuse()">拒信模版<i></i></p>
 										</div>
+					  </div></el-col>
+					<el-col :xs="16" :sm="6" :md="20" :lg="19" :xl="22"><div class="grid-content bg-purple-light">	
 					<div class="option-left">
 						<div class="optionTop">
 							<ul>
@@ -124,6 +127,7 @@
 							</div>
 						</div>
 					</div>
+					</div></el-col>
                 </el-row>
             </div>
         </div>
@@ -219,9 +223,9 @@ export default {
 	}
 </script>
 <style scoped >
-/* .content {
-	 min-width: 1600px;
- } */
+.content {
+	 min-width: 1280px;
+ }
  .el-message-box__errormsg{
 	 visibility: visible;
  }
@@ -229,9 +233,9 @@ export default {
 	 height: auto;
 	 overflow: hidden;
 	 float: left;
-	 width: 1000px;
-	 margin: 20px 60px;
-	 position: relative;
+	 /* width: 1000px; */
+	 margin: 10px 40px;
+	 /* position: relative; */
 	 padding:0 40px;
 	 border:1px solid #E5E5E5;
 	 display: table;
@@ -275,7 +279,7 @@ export default {
 	width: 50%;
 	margin-bottom: 30px;
 	font-size: 14px;
-	padding-right: 278px;
+	padding-right:20%;
 	float: right;
 	text-align: right;
 }
@@ -293,14 +297,16 @@ export default {
 	width: 210px;
 	text-align:left;
 }
+.optionTop ul #qrcode{
+	margin-left: 10px;
+}
 .optionBottom strong{
 	line-height: 18px;
 }
  .optionTop{
-	 /* min-width: 500px; */
 	 height: 160px;
 	 float: left;
-	 width: 77.5%;
+	 padding: 0 10px;
 	 border-bottom:1px solid #E5E5E5;
 
  }
@@ -376,7 +382,7 @@ export default {
     min-width: 240px;;
     height:948px;
 	background: #fff;
-	float: left;
+	float: left; display: inline-block;
     margin-right: 15px;
     padding: 0px 25px;
     /* border-right: 1px solid #eee; */
