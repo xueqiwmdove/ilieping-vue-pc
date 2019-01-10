@@ -151,7 +151,7 @@
 
     <!--面试列表以及状态-->
     <div class="interview_list_status" v-show=" interview_list_status"><!--&& interviewList != ''-->
-      <button @click="interview_basic=true;interview_list_status=false;" v-show="candidateStepsData[0].status!=0">继续添加面试</button>
+      <button @click="continueInterview();interview_basic=true;interview_list_status=false;" v-show="candidateStepsData[0].status!=0">继续添加面试</button>
       <div class="interview_list" >
         <div class="interview" v-for="(item,index) in interviewList" :key="index">
           <img src="../../../assets/img/candidate/tanhcuang_ic_tag.png" alt="" class="img_status">
@@ -472,6 +472,17 @@
         show(index){
           // item.feedbook_form_pullDown=!item.feedbook_form_pullDown;
           this.activeIndex = this.activeIndex === index ? !index : index;
+        },
+      //  继续添加面试
+        continueInterview(){
+          let that=this;
+          that.interview_basic=true;
+          that.interviewAddress='';
+          that.interviewType='';
+          that.interviewMode='';//面试形式
+          that.interviewer='';
+          that.notifyTemplate='';
+          that.interviewTime='';
         }
 
 

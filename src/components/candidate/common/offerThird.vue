@@ -274,6 +274,7 @@
         submit() {
           let that=this;
           that.loading=true;
+          that.candidateID=localStorage.getItem('candidateID');
           that.$http({
             method:'post',
             url:api.sendOffer,
@@ -301,7 +302,7 @@
                 that.flag1 = false;
                 that.offerIsExist();
               }else{
-                that.$message.error(res.data.data.msg);
+                that.$message.error(res.data.msg);
               }
             },3000);
 
@@ -351,8 +352,18 @@
           }).then(function (res) {
             console.log(res);
             if(res.data.code==10000){
-              that.offerIsExist();
-
+              // that.offerIsExist();
+              that.isshow=true;
+              // workAddress:'',
+              that.makeNormal={
+                  reportTime:'',
+                  reportAddr:'',
+                  model:'',
+                  isPdf:false,
+                  expectedEntrytime:'',
+                  salaryType:'',
+                  salary:'',
+              };
             }else{
               that.$message.error(res.data.msg);
             }

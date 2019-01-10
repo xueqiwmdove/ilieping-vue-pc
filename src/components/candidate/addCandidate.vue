@@ -843,7 +843,7 @@
             });
             return;
           }
-          if (!extension && that.resumeType==1) {
+          if (extension && that.resumeType==1) {
             that.$message({
               message: '暂不支持51job的docx格式的简历，请选择其他格式的简历!',
               type: 'warning'

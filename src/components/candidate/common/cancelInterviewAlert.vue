@@ -87,10 +87,10 @@
               }).then(function (res) {
                 if(res.data.code==10000){
                   console.log(res.data.data);
-                  that. getInterview();
                   that.$message.success(res.data.msg);
                   that.beizhu = false;
                   that.createList.content = '';
+                  that.$parent.getInterview();
                 }else {
                   that.$message.error(res.data.msg)
                 }
