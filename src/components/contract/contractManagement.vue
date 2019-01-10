@@ -410,7 +410,7 @@
       },
       methods: {
 				click_contractTemplate(){
-					this.$router.push('/contractTemplate');
+					this.$router.push('/newContract1');
 				},
     	enter(index){
         this.seen = true;
@@ -890,7 +890,7 @@
 							that.archivedFolderResponseData=res.data.data.archivedFolderResponse;
 							that.searchAgreementListData=res.data.data.listSign;
 							that.totalCount = res.data.count;
-							that.isFile=res.data.data.listSign.isArchive;//判断是否归档（1，归档)其它值未归档 
+							that.isFile=res.data.data.listSign.isArchive;//判断是否归档（1，归档)其它值未归档
 						 }
 	  			}else{
 	  				that.$message.error(res.data.msg);
@@ -1422,7 +1422,7 @@ input[type=text]{
 .contractManagement_con .search_div .search_left{float: left; display: inline-block;}
 .contractManagement_con .search_div .search_left .select_title{font-size:14px;float: left; display: inline-block;margin-right: 10px;}
 .contractManagement_con .search_div .search_left .search_input_div{ float: left;display: inline-block;}
-.contractManagement_con .search_div .search_left .search_manage{ float: left;display: inline-block;}	
+.contractManagement_con .search_div .search_left .search_manage{ float: left;display: inline-block;}
 .contractManagement_con .search_div .search_left .icon_btn{ float: left;display: inline-block; color: #F95714;}
 .contractManagement_con .search_div .search_right{float:right; display: inline-block;}
 .contractManagement_con .search_div .search_right .right_history{float:left; display: inline-block; margin: 0 20px; cursor: pointer;}

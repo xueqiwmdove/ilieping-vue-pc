@@ -15,43 +15,40 @@
             <a>发起签约</a>
           </p>
           <!--<breadcrumb></breadcrumb>-->
+          <div class="sendOfferSteps">
+            <div class="sendOffer-status">
+              <div class="sendOffer_one">
+                <div>
+                  <img src="../../assets/img/dismission/step1_a.svg" />
+                  <i class="step_a" ></i>
+                </div>
+                <p>
+                  <span>选择</span>
+                  <span>合同模板</span>
+                </p>
+              </div>
+              <!--<i class="step_a" ></i>-->
+              <div class="sendOffer_two">
+                <div>
+                  <img src="../../assets/img/dismission/step2.svg" />
+                  <i class="step_a" ></i>
+                </div>
+                <p>
+                  <span>选择</span>
+                  <span>签约员工并填写合同</span>
+                </p>
 
-      <!--发起签约弹出框   :before-close="handleClose"-->
-          <el-dialog
-            title="选择签约方式"
-            :visible.sync="signAlert"
-            class="signAlert"
-            custom-class="signAlertCotent">
-            <div class="signKind" @click="changeClass(1)" :class="flag==1?'active':''">
-              <img src="../../assets/img/contract/ic_shiyongmoban.svg" alt="" v-if="flag==1">
-              <img src="../../assets/img/contract/ic_shiyongmoban2.svg" alt="" v-if="flag==2">
-              <p>使用模板</p>
+              </div>
+              <!--<i class="step_a" ></i>-->
+              <div class="sendOffer_three">
+                <img src="../../assets/img/dismission/step3.svg" />
+                <p>
+                  <span>发起</span>
+                  <span>合同签署</span>
+                </p>
+              </div>
             </div>
-            <div class="signKind" @click="changeClass(2)" :class="flag==2?'active':''">
-              <img src="../../assets/img/contract/ic_shangchuangbendi.svg" alt="" v-if="flag==2">
-              <img src="../../assets/img/contract/ic_shangchuangbendi2.svg" alt="" v-if="flag==1">
-              <p>上传本地文件</p>
-            </div>
-            <div class="signError">
-              <img src="../../assets/img/contract/ic_prompt.svg" alt="">
-              行业标准模板创建合同，无
-              需为合同条款发愁，简单三步直
-              接完成签署。
-            </div>
-            <div class="signError">
-              <img src="../../assets/img/contract/ic_prompt.svg" alt="">
-              请上传单个文件，且文件大小
-              在5M以下，仅支持doc、docx、
-              pdf、jpg、jpeg、png格式的文件。
-            </div>
-            　
-            <span slot="footer" class="dialog-footer">
-              <el-button type="primary" @click="showModels()" class="confirm" v-show="flag==1">确 定</el-button><!--使用模板确定-->
-               <!--<el-button type="primary" class="confirm"  v-show="flag==2">确 定</el-button>&lt;!&ndash;上传文件确定&ndash;&gt;-->
-              <el-button @click="signAlert = false" class="cancel">取 消</el-button>
-            </span>
-          </el-dialog>
-      <!--发起签约弹出框-->
+          </div>
 
           <!--选择模板  :before-close="handleClose"-->
           <el-dialog
@@ -123,7 +120,7 @@
   import {mapState,mapActions} from 'vuex'
     let vm = null;
     export default {
-      name: "bySinging",
+      name: "newContract1",
       components: {
         pageheader,
         pageaside,
@@ -400,6 +397,33 @@
 <style scoped>
   .main .right-content .content .headline{
     margin: 0;
+  }
+
+  .sendOfferSteps .sendOffer-status .sendOffer_one p,
+  .sendOfferSteps .sendOffer-status .sendOffer_three p,
+  .sendOfferSteps .sendOffer-status .sendOffer_two p{
+    text-align: center;
+  }
+  .sendOfferSteps .sendOffer-status .sendOffer_one span,
+  .sendOfferSteps .sendOffer-status .sendOffer_three span,
+  .sendOfferSteps .sendOffer-status .sendOffer_two span{
+    display: inline-block;
+    width: 100%;
+    margin: 10px 0 0 0;
+  }
+  .sendOfferSteps .sendOffer-status .sendOffer_one span,
+  .sendOfferSteps .sendOffer-status .sendOffer_two span{
+    text-indent: -201px;
+  }
+  .sendOfferSteps .sendOffer-status .sendOffer_three span{
+    text-indent: -20px;
+    color: #97A2B3;
+  }
+  /*.sendOfferSteps .sendOffer-status .sendOffer_one .step_a{
+    background: #C9EACC;
+  }*/
+  .sendOfferSteps .sendOffer-status .sendOffer_two span{
+    color: #97A2B3;
   }
 
   .el-dialog__title {
