@@ -139,7 +139,7 @@
 
             <div class="interview_button">
               <el-button class="button" @click="insertInterview" >保存</el-button>
-              <el-button class="button cancel" @click="interview_basic=false;getInterview();" >取消</el-button>
+              <el-button class="button cancel" @click="interview_basic=false;getInterview();continueInterview();" >取消</el-button>
             </div>
           </el-form>
 
@@ -352,7 +352,7 @@
             url:api.interviewList+that.candidateID,
             headers:headers(),
           }).then(function (res) {
-            if(res.data.code==10000){
+            if(res.data.code==10000 && res.data.data!=null){
               console.log(res.data.data);
               that.interviewList=res.data.data;
               if(that.interviewList.length==0){
@@ -367,11 +367,10 @@
                 that.interviewRegistrationFormId=res.data.data[0].interviewRegistrationFormId;
                 console.log(that.interviewRegistrationFormId)
               }
-              that.noInterviews=false;
-              that.interview_list_status=true;
+            }else{
+              that.noInterviews=true;
+              that.interview_list_status=false;
               that.interview_basic=false;
-              console.log('noInterviews='+that.noInterviews,',interview_list_status='+ that.interview_list_status,',interview_basic='+that.interview_basic)
-              // console.log(that.interview_basic,that.interviewList.length)
             }
           })
         },
@@ -476,7 +475,7 @@
       //  继续添加面试
         continueInterview(){
           let that=this;
-          that.interview_basic=true;
+          // that.interview_basic=true;
           that.interviewAddress='';
           that.interviewType='';
           that.interviewMode='';//面试形式
