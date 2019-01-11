@@ -57,12 +57,12 @@
               <div class="div_input basic" >
                 <div  class="from" >
                   <div class="input_div">
-                    <div class="input_group">
                       <label>员工姓名<span class="class_required">*</span></label>
                       <!--<input type="text" autocomplete="off" v-model="employee" placeholder="请选择员工姓名"/>-->
+                    <div class="input_group" v-clickOutSide="handleClose">
                       <input type="text" placeholder="请选择员工姓名" class="selectDepartment" v-model="employee" @click.stop="isShow2=true;" ><!--@click="isShow2=!isShow2"-->
                       <div class="treePullDown" v-show="isShow2">
-                       <!-- <el-input
+                        <!--<el-input
                           placeholder="输入关键字进行过滤"
                           v-model="filterText2" class="filterInput">
                         </el-input>-->
@@ -141,7 +141,7 @@
                       </div>-->
                     </div>
                   <div class="input_div">
-                    <label>试用期起止时间<span class="class_required">*</span></label>
+                    <label>试用期起止时间</label>
                     <el-date-picker
                       v-model="probationStartEndDate"
                       type="daterange"
@@ -192,7 +192,7 @@
                     <textarea class="textareaClass" autocomplete="off" v-model="promotionCondition" placeholder="请输入转正条件"></textarea>
                   </div>
                   <div class="input_div textarea_div">
-                    <label>福利待遇<span class="class_required">*</span></label>
+                    <label>福利待遇</label>
                     <textarea class="textareaClass" autocomplete="off" v-model="welfareTreatment" placeholder="请输入福利待遇"></textarea>
                   </div>
 
@@ -200,7 +200,7 @@
               </div>
 
               <div class="submin_div text-center">
-                <button id="step2_entry" class="uploadLeaveSetup4 active click_btn" @click="submitContract">提交</button>
+                <button id="step2_entry" class="uploadLeaveSetup4 active click_btn" :class="nextClass" :disabled="nextDisabled" @click="submitContract">提交</button>
               </div>
             </div>
 
@@ -234,10 +234,30 @@
         pageaside,
         breadcrumb
       },
+      directives : {
+        //树形下拉点击其他地方收起
+        clickOutSide:{
+          bind:function(el,binding,vnode){
+            function documentHandler(e){
+              // console.log(e.target,el.contains(e.target))
+              if(el.contains(e.target)){
+                return false;
+              }
+              if(binding.expression){
+                binding.value(e)
+              }
+            }
+            el._vueClickOutside_ = documentHandler;
+            document.addEventListener('click',documentHandler);
+          },
+          unbind:function(el,binding){
+            document.removeEventListener('click',el._vueClickOutside_);
+            delete el._vueClickOutside_;
+          }
+        }
+      },
       data(){
          return{
-           userName:'',
-           userNameId:'',
 
            employee:localStorage.getItem('employeeName')||'',
            employeeId:localStorage.getItem('employeeId')||'',
@@ -311,6 +331,56 @@
       watch: {
         filterText2(val) {
           this.$refs.tree2.filter(val);
+        }
+      },
+      computed:{
+        //下一步按钮是否禁止 disabled true
+        nextDisabled:function () {
+         /* employee:localStorage.getItem('employeeName')||'',
+            employeeId:localStorage.getItem('employeeId')||'',
+          contractName:'',
+            startEndTime:[],
+          endTime:'',
+            station:'',//岗位
+            selectTimeLimit:'',//合同期限
+            selectProbation:'',//有无试用期
+            probationStartEndDate:[],//试用期起止时间
+            promotionWages:'',//试用期工资
+            manHourSystem:'',//工时制度
+            selectBasicWagesProgramme:'', //转正公司方案
+            payrollTime:'',// 工资发放日(例: 25)：
+            enterpriseAddress:'',
+            promotionCondition:'',// 转正条件
+            welfareTreatment:'',// 福利待遇
+            id:JSON.parse(localStorage.getItem("item")).templateNumber,*/
+
+          if(this.employee!="" && this.employeeId!="" && this.contractName!="" && this.startEndTime!="" &&
+            this.endTime!="" && this.station!="" && this.selectTimeLimit!="" && this.selectProbation!="" &&
+             this.promotionWages!="" && this.manHourSystem!="" &&
+            this.selectBasicWagesProgramme!="" && this.payrollTime!="" && this.enterpriseAddress!="" &&
+            this.promotionCondition!="" &&  this.id!=""
+          ){
+            return false
+          }else{
+            return true
+          }
+        },
+        nextClass:function () {
+          if(
+            this.employee!="" && this.employeeId!="" && this.contractName!="" && this.startEndTime!="" &&
+            this.endTime!="" && this.station!="" && this.selectTimeLimit!="" && this.selectProbation!="" &&
+             this.promotionWages!="" && this.manHourSystem!="" &&
+            this.selectBasicWagesProgramme!="" && this.payrollTime!="" && this.enterpriseAddress!="" &&
+            this.promotionCondition!="" && this.id!=""
+          ){
+            return {
+              click_opacity:false
+            }
+          }else{
+            return {
+              click_opacity:true
+            }
+          }
         }
       },
       methods: {
@@ -610,11 +680,14 @@
   .input_div select::-ms-expand{ display: none; } /* ie清除 */
   .input_group{
     position: relative;
+    min-width: 400px;
+    width: 400px;
+    display: inline-block;
   }
   .treePullDown{
     position: absolute;
     top: 43px;
-    left: 244px;
+    left: 0px;
     width: 400px;
     height: 300px;
     padding: 0 0 4px 0;
