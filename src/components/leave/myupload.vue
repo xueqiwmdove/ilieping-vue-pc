@@ -280,18 +280,25 @@ export default {
 	margin-bottom: 0;
 }
 #uploadTabs{
-	padding: 0 0 20px 20px;
+	/*padding: 0 0 20px 20px;*/
 	border-bottom: none;
-	margin-bottom: 0;
+	/*margin-bottom: 0;*/
 	list-style: none;
-	height: 54px;
-  margin-top: 20px;
+	/*height: 54px;*/
+  /*margin-top: 20px;*/
+  border-bottom: none;
+  margin: 20px 40px 20px 40px;
+  /* padding: 0 40px; */
+  height: 34px;
+  border-bottom: 2px solid #e5e5e5;
 }
 #uploadTabs .active span{
-    color: #FFFFFF;
-    background: #F95714;
-    border: none;
+    /*color: #FFFFFF;*/
+    /*background: #F95714;*/
+    /*border: none;*/
     border-radius: 2px;
+  color: #394A66;
+  border-bottom: 2px solid #f95714;
 }
 #uploadTabs li {
     width: 88px;
@@ -315,12 +322,12 @@ export default {
     height: 34px;
     line-height: 34px;
     color: #394A66;
-    background: #FAFBFC;
+    /*background: #FAFBFC;*/
     cursor: pointer;
     padding: 0;
     margin: 0;
-    border: 1px solid #E5E5E5;
-    border-radius: 2px;
+    /*border: 1px solid #E5E5E5;*/
+    /*border-radius: 2px;*/
 }
 .nav > li > span {
     position: relative;
