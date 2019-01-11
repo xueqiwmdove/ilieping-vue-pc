@@ -109,7 +109,7 @@
               <h4 class="title"></h4>
               <div v-for="item in candidateStepsData">
                 <p><i>{{item.candidateName}}</i>您好</p>
-                <p>感谢关注上海棋至文化有限公司！我是该公司的HR。很高兴收到您的简历。面试安排如下：</p>
+                <p>感谢关注 {{title}}！我是该公司的HR。很高兴收到您的简历。面试安排如下：</p>
                 <P>面试时间：<i>{{interviewTime}}</i></P>
                 <p>面试形式：<i v-if="interviewMode==3">视频面试</i><i v-if="interviewMode==2">电话面试</i><i v-if="interviewMode==1">现场面试</i></p>
                 <p>面试地点：<i>{{interviewAddress}}</i></p>
@@ -253,6 +253,7 @@
         },
         data(){
           return{
+            title:localStorage.getItem('title'),//公司名
             activeIndex: -1,
             interviewRegistrationFormId:'',//面试登记表里面id
             noOps:false,

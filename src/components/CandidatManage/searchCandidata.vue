@@ -1,4 +1,4 @@
-<template>  
+<template>
   <div >
    <div class="main">
           <!--顶部导航-->
@@ -21,11 +21,11 @@
                     <div class="search"  v-else>
                         <el-input v-model="name1" @keyup.enter.native="searchPage" class="input_search" placeholder="输入你想搜索的内容" >
                         <i @click="searchPage" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
-                       </el-input> 
-                    </div> 
+                       </el-input>
+                    </div>
                      <br>
                     <p class="end_msg">已为您筛选到<i style="color:#F95714;">{{totalCount}}</i>条结果</p>
-                </div>  
+                </div>
                <!--表格  -->
                 <div class="div_table_infor ">
                     <el-table  :data="candidateList" style="width: 100%">
@@ -83,10 +83,10 @@
                         <div class="bottom-pagination" v-if="totalCount > 5">
                             <el-pagination @current-change="changePage" @size-change="changeSize" :current-page="pageIndex" :page-size="pageSize" :page-sizes="[5,10, 25, 50, 100]" layout="total, prev, pager, next, sizes, jumper" :total="totalCount">
                             </el-pagination>
-                        </div> 
+                        </div>
             </div>
-        </div>      
-    </div>        
+        </div>
+    </div>
   </div>
 </template>
 
@@ -119,7 +119,7 @@ export default {
       };
     },
     watch:{
-       
+
       },
     methods: {
       changePage(newPage) {
@@ -144,11 +144,11 @@ export default {
             url:api.candidateList,
             headers:headers('application/json;charset=utf-8'),
             data:{
-              "postId":that.postId || '',
-              "candidateName":that.name || '',
-              "candidateStatus":that.status ||'',
-              "pageCurrent":currPage,
-              "pageSize":pageSize,
+              postId:that.postId || '',
+              candidateName:that.name || '',
+              candidateStatus:that.status ||'',
+              pageCurrent:currPage,
+              pageSize:pageSize,
             }
           }).then(function(res){
             if(res.data.code==10000){
@@ -165,7 +165,7 @@ export default {
         this.name = this.name1
         this.gethrList()
       },
-        //清除搜索关键字   
+        //清除搜索关键字
       del_click() {
         this.name1 =''
       },
@@ -190,17 +190,17 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped >
 .content_sty {
-  padding: 5px 20px;  
+  padding: 5px 20px;
 }
 .content_sty .div_table_infor .el-table {
-  border:none;  
+  border:none;
 }
 .content_pad {
-  margin:20px;  
+  margin:20px;
   height:80px;
-  line-height:80px; 
+  line-height:80px;
   margin-top: -25px;;
-} 
+}
 .content_pad .end_msg {
   height: 20px;
   position: absolute;
@@ -243,11 +243,11 @@ export default {
 }
 .basic_sty .name_s {
    font-size: 15px;
-   color:#394A66; 
+   color:#394A66;
 }
 .basic_sty .name_s em {
   font-size: 12px;
-  color: #748093;  
+  color: #748093;
 }
 .search {
   /* float: right; */
@@ -259,7 +259,7 @@ export default {
  .search .input_search {
   width: 260px;
   position: absolute;
-  
+
 }
 .search .input_search .se_icon {
   position: absolute;
@@ -288,7 +288,7 @@ export default {
 </style>
 <style>
  .content_pad .el-input--suffix .el-input__inner {
-    padding-left:0px;  
+    padding-left:0px;
  }
  .case_sty  .el-icon-close:before {
     content: "\E60F";
@@ -298,7 +298,7 @@ export default {
   height: 82%;
 }
 .el-icon-circle-close:before {
-    display:none; 
+    display:none;
 }
 </style>
 

@@ -19,7 +19,7 @@
         data() {
           return {
               filterText:'',
-          }  
+          }
         },
    props :{
       treeDatas:{
@@ -28,14 +28,14 @@
           return {
 
           }
-        }  
-      }  
+        }
+      }
     },
    watch: {
       filterText(val) {
         this.$refs.tree2.filter(val);
       }
-   }  , 
+   }  ,
     methods:{
        append(data) {
          console.log(data,'<============parentId')
@@ -75,8 +75,9 @@
    height: 45px;;
 }
 
-  .el-icon-caret-bottom::before{
-      content: "\E603" !important;
+  .filter-tree .el-icon-caret-bottom::before{
+      /*content: "\E603" !important;*/
+      /*content: "\E60B";*/
       color: #c0c4cc;
       width: 5px;
       font-weight: bolder;
