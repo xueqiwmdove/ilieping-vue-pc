@@ -17,7 +17,9 @@
             <span  v-show="breadNav==''?false:true">
               <router-link :to="breadNav">{{breadNav}}</router-link>
             </span>
-            <a :class="breadNav==''?'':'active'">{{userData.userName}}离职报告</a>
+            <span>
+              <a :class="breadNav==''?'':'active'">{{userData.userName}}离职报告</a>
+            </span>
           </p>
           <!--start-->
           <div class="leaveReport">

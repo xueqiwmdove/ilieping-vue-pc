@@ -10,8 +10,11 @@
   		<!--右侧内容栏-->
   		<div class="right-content pull-right">
   			<!--主内容 start-->
-				<div class="header_title"><i class="header_home"></i><span>面试管理</span></div>
+				<!--<div class="header_title"><i class="header_home"></i><span>面试管理</span></div>-->
 				<div class="content">
+          <p class="headline">
+            <span><i>招聘管理</i> /面试日程</span>
+          </p>
 				  <div class="con_today"><!--主内容 今天的面试 start-->
 					 <div class="con_title">今天的面试（{{totalCountTodoy}}）</div>
 					 <div class="today_table">

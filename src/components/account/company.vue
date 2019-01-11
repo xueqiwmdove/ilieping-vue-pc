@@ -12,7 +12,7 @@
   			<div class="content">
   				<!--主体内容-->
   				<p class="headline">
-			      <a >企业资料</a>
+			      <span>企业资料</span>
 			    </p>
     <div class="company-content" >
         <div class="module">
@@ -25,7 +25,7 @@
                 </span>
                 <span v-if="companyData.isAuthentication=='1'">
                     <img src="../../assets/images/account/authentication.png">
-                    <span class="span_color">未认证</span>  
+                    <span class="span_color">未认证</span>
                     <span class="pull-right" @click="certificate">企业认证</span>
                 </span>
                 <span class="activing" v-if="companyData.isAuthentication=='2'">
@@ -74,18 +74,18 @@
             <div class="adress_sty">
                <ul>
                    <li v-for="(item,index) in companyData.enterpriseAddressList " :key="index" style="margin-bottom:10px">
-                     <span style="display:inline-block;width:20%;color:#394A66;font-size:14px;">{{item.city?item.city:''}}{{item.address}}</span>  
+                     <span style="display:inline-block;width:20%;color:#394A66;font-size:14px;">{{item.city?item.city:''}}{{item.address}}</span>
                    </li>
                </ul>
-            </div>   
+            </div>
         </div>
     </div>
-  
-  				
+
+
   			</div>
   		</div>
   	</div>
-  	
+
   </div>
 </template>
 
@@ -95,7 +95,7 @@
 	import {headers} from '@/assets/js/common/lp.js'
   import pageheader from '@/components/common/pageheader';
   import pageaside from '@/components/common/pageaside';
-  
+
 export default {
   name: 'company',
 	components: {
@@ -111,7 +111,7 @@ export default {
 	        enterpriseAddress:"",
 	        isAuthentication:0,
       	}],
-      	
+
       };
     },
     methods: {
@@ -127,7 +127,7 @@ export default {
 	  				that.companyData=res.data.data;
 	  				localStorage.setItem('companyData',JSON.stringify(that.companyData));
 	  				localStorage.setItem('enterpriseName',res.data.data.enterpriseName);
-	  			}  
+	  			}
 		    });
     	},
     	certificate(){

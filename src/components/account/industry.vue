@@ -13,8 +13,8 @@
   				<!--主体内容-->
 
 		<p class="headline">
-		    <router-link to="/company">企业资料</router-link>
-		    <a class="active">所属行业</a>
+		    <!--<router-link to="/company">企业资料</router-link>-->
+		    <span><i>企业资料</i> /所属行业</span>
 		</p>
 		<div class="company-content">
 		    <div class="form-group">

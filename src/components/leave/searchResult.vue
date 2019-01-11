@@ -15,7 +15,7 @@
 
             <router-link class="leaveSearchTitle"  v-show="type=='searchbefore'" to="/searchBefore">离职评价查询</router-link>
             <router-link class="exposureSearchTitle" v-show="type=='searchbefore2'" to="/searchBefore2">失信曝光查询</router-link>
-            <a class="active">查询结果</a>
+            <span class="active">查询结果</span>
           </p>
           <div class="searchResult" >
             <p class="search-num">共找到<i>{{searchData.length}}</i>条符合条件的数据</p>

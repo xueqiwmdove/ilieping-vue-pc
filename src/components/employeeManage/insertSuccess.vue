@@ -11,9 +11,9 @@
   		<div class="right-content pull-right">
   			<div class="content">
   				<!--主体内容-->
-                <p class="headline">
-                    <a>录入新员工</a>
-                </p>
+              <p class="headline">
+                <span><i>员工管理</i> /添加成功</span>
+              </p>
                 <div class="sendOfferMain">
                     <div class="sendOfferSteps">
                         <div class="sendOffer-status">
@@ -86,7 +86,7 @@ export default {
         this.$router.push('/insertEmployee');
       },
       indexList(){
-         this.$router.push('/indexList'); 
+         this.$router.push('/indexList');
       }
     }
 

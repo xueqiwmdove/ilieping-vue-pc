@@ -63,10 +63,8 @@
 
           </div>
          <!-- <industryArea ref="mychild"  v-show="isShowIndustry"></industryArea>-->
-
           <p class="headline">
-            <router-link to="/twoUpload">上传离职评价</router-link>
-            <a class="active">快速评价</a>
+            <span><i>猎评曝光</i> /快速评价</span>
           </p>
           <!--成功提示-->
           <div class="uploadLeaveSetp6" v-if='isSuccess'>

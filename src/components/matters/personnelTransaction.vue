@@ -76,9 +76,9 @@
     <!--人事流程详情 end-->
         <div class="border_none">
           <!--主体内容-->
-          <div class="headline_title">
-            <div class="a">人事异动</div>
-          </div>
+          <p class="headline">
+            <span><i>员工管理</i> /人事异动</span>
+          </p>
          </div>
   			 <div class="conHr">
 <!--  			 	 <div class="div_Tips">
@@ -408,7 +408,7 @@ export default {
 .div_table_infor{width: 100%; height: auto;margin-top: 30px;}
 .operation{
 	/* display: inline-block; */
-	
+
 }
 .options{
 	color: #2569F6;

@@ -11,7 +11,7 @@
         <div class="right-content pull-right">
             <div class="content content_sty">
                 <p class="headline" style="margin-bottom: 20px;">
-                  <span> <img src="../../assets/img/zhiwei/houxuan_ic_weizhi.png" alt=""> 候选人管理</span>
+                  <span>候选人管理</span>
                 </p>
                 <!-- 搜索栏 -->
                  <div class='content_pad  del_icon'>

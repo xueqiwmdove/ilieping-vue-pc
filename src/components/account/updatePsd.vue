@@ -13,8 +13,7 @@
   				<!--主体内容-->
 
     <p class="headline">
-      <router-link to="/account">账号安全</router-link>
-      <a class="active">修改密码</a>
+      <span><i>账号安全</i> /修改密码</span>
     </p>
     <div class="account-content">
     <!--第一步-->

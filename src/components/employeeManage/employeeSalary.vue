@@ -12,7 +12,7 @@
   			<div class="content">
   				<!--主体内容-->
                 <p class="headline">
-                    <a>录入新员工</a>
+                  <span><i>员工管理</i> /薪资福利</span>
                 </p>
                 <div class="sendOfferMain">
                     <div class="sendOfferSteps">
@@ -133,7 +133,7 @@ export default {
           providentFundAccount:'',
           employeeId:this.$route.params.employeeId,
 					providentFund:'',//公积金号
-					
+
 					insertData:[],
 					isDimissionAll_count:false,
 					liHtml:'',

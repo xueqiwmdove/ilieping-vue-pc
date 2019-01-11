@@ -83,9 +83,9 @@
         <!--重命名文件夹-->
         <div class="content border_none" v-if="IsList">
           <!--主体内容-->
-          <div class="headline_title">
-            <div class="a">员工合同管理</div>
-          </div>
+          <p class="headline">
+            <span><i>员工管理</i> /合同列表</span>
+          </p>
           <div class="contractManagement_con">
             <div class="search_div">
               <div class="search_left">

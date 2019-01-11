@@ -13,7 +13,7 @@
           <!---->
           <p class="headline">
             <!--<a  class="leaveSearchDismiss-title">失信曝光查询</a>-->
-            <a class="active">{{userData.userName}}失信报告</a>
+            <span>{{userData.userName}}失信报告</span>
           </p>
 
           <div class="leaveReport">

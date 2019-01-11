@@ -11,7 +11,7 @@
       <div class="right-content pull-right">
         <div class="content">
             <p class="headline">
-                <span>员工列表</span>
+                <span><i>员工管理</i> /员工列表</span>
             </p>
             <ul class="nav-tabs nav" id="uploadTabs"></ul>
             <el-row>

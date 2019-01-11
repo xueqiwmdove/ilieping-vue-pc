@@ -11,7 +11,7 @@
           <div class="right-content pull-right">
               <div class="content">
                   <p class="headline">
-                      <span > <img src="../../assets/img/zhiwei/houxuan_ic_weizhi.png" alt=""> 人才库</span>
+                      <span><i>招聘管理</i> /人才库</span>
                   </p>
                   <el-row>
                 <!--创建职位左侧栏  -->

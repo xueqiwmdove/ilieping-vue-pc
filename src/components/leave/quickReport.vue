@@ -11,7 +11,7 @@
       <div class="right-content pull-right">
         <div class="content">
           <p class="headline">
-            <a>{{userData.userName}}的离职报告</a>
+            <span>{{userData.userName}}的离职报告</span>
           </p>
           <!--start-->
           <div class="leaveReport">

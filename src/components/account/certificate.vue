@@ -1,4 +1,4 @@
-<!-- 
+<!--
     Author:周双
     日期：2018/11/27
 -->
@@ -13,7 +13,7 @@
             <div class="right-content pull-right">
                 <div class="content">
                 <!--主体内容-->
-                    <p class="headline"><a class="company">企业认证</a></p>
+                    <p class="headline"><span >企业认证</span></p>
                     <!--错误提示-->
                     <div class="phone-error-info" v-if="err_div">
                         <img src="../../assets/images/reg/info.svg" alt="提示">
@@ -21,7 +21,7 @@
                     </div>
 
                     <form class="certificate-content" enctype="multipart/form-data" id="form">
-                        
+
                         <div class="form-group inline">
                             <label>企业名称</label>
                             <input v-if="flag" type="text" placeholder="请填写与营业执照一致的合法公司全称" v-model="enterpriseName">
@@ -79,7 +79,7 @@
                             <input type="button" value="提交" class="submit click_acive" :class="{click_opacity:opacity}" :disabled="click_dis" @click="submit">
                         </div>
                     </form>
-                    
+
                 </div>
             </div>
 
@@ -96,7 +96,7 @@
   import pageaside from '@/components/common/pageaside';
   import upLoad from '@/components/common/upLoad';
   import noticeModel from '@/components/common/account/noticeModel';
-  
+
 export default {
     name: 'account',
 	components: {
@@ -147,22 +147,22 @@ export default {
             this.errorNotice(newVal,'请填写法人代表','null');
             this.click_dis = this.getClickDis();
             this.opacity = this.getClickOpacity();
-        },   
+        },
         getManagerName(newVal){
             this.errorNotice(newVal,'请填写企业经办人姓名','null');
             this.click_dis = this.getClickDis();
             this.opacity = this.getClickOpacity();
-        },  
+        },
         getManagerIdCard(newVal){
             this.errorNotice(newVal,'请正确填写身份证号','idCard');
             this.click_dis = this.getClickDis();
             this.opacity = this.getClickOpacity();
-        },  
+        },
         getManagerPhone(newVal){
             this.errorNotice(newVal,'请正确填写手机号','phone');
             this.click_dis = this.getClickDis();
             this.opacity = this.getClickOpacity();
-        },  
+        },
         getFile(newVal){
             if(newVal =='' || newVal == undefined){
                 this.file = newVal;
@@ -176,22 +176,22 @@ export default {
     },
     computed:{
         getEnterpriseName(){
-           return this.enterpriseName; 
+           return this.enterpriseName;
         },
         getRegisterNum(){
-           return this.registerNum; 
+           return this.registerNum;
         },
         getLegalPerson(){
-           return this.legalPerson; 
+           return this.legalPerson;
         },
         getManagerName(){
-           return this.managerName; 
+           return this.managerName;
         },
         getManagerIdCard(){
-           return this.managerIdCard; 
+           return this.managerIdCard;
         },
         getManagerPhone(){
-           return this.managerPhone; 
+           return this.managerPhone;
         },
         getFile(){
             return this.file;
@@ -233,11 +233,11 @@ export default {
                         that.authNotice = false;
                         that.flag = false;
                     }
-                }   
+                }
 		    });
     	},
         errorNotice(curState,noticeTxt,type){
-            
+
             if(type == 'null') {
                 if(curState ==''){
                     this.err_div = true;
@@ -250,7 +250,7 @@ export default {
                 if(!this.regPhone.test(curState)){
                     this.err_div = true;
                     this.err_info = noticeTxt;
-                    return false;                
+                    return false;
                 }else{
                     this.err_div = false;
                 };
@@ -258,7 +258,7 @@ export default {
                 if(!this.regIdCard.test(curState) ){
                     this.err_div = true;
                     this.err_info = noticeTxt;
-                    return false;                
+                    return false;
                 }else{
                     this.err_div = false;
                 };
@@ -274,13 +274,13 @@ export default {
 
         },
     	getClickDis:function(){
-            if ((this.enterpriseName != "" 
+            if ((this.enterpriseName != ""
                 && this.str18.test(this.registerNum)
-                && this.legalPerson!="" 
-                && this.managerName != "" 
-                && this.regIdCard.test(this.managerIdCard) 
+                && this.legalPerson!=""
+                && this.managerName != ""
+                && this.regIdCard.test(this.managerIdCard)
                 && this.regPhone.test(this.managerPhone)
-                && (this.file != "" && this.file != undefined)) 
+                && (this.file != "" && this.file != undefined))
                 || this.isLoading){
                 return false;
             }else {
@@ -291,10 +291,10 @@ export default {
             if ((this.enterpriseName != ""
                 && this.str18.test(this.registerNum)
                 && this.legalPerson!=""
-                && this.managerName != "" 
-                && this.regIdCard.test(this.managerIdCard) 
+                && this.managerName != ""
+                && this.regIdCard.test(this.managerIdCard)
                 && this.regPhone.test(this.managerPhone)
-                && (this.file != "" && this.file != undefined)) 
+                && (this.file != "" && this.file != undefined))
                 && !this.isLoading ) {
                 return false;
             }else {
@@ -312,7 +312,7 @@ export default {
             this.click_dis = true;
             let that=this;
             let params = new FormData() ;
-            params.append('file',this.file,this.file.name); 
+            params.append('file',this.file,this.file.name);
             params.append('enterpriseName',this.enterpriseName);
             params.append('registerNum',this.registerNum);
             params.append('legalPerson',this.legalPerson);
@@ -337,7 +337,7 @@ export default {
                         that.$message.error(res.data.msg);
                     }
                 })
-            
+
         },
 		//实时显示该图片在页面
 		great(){
@@ -372,7 +372,7 @@ export default {
 <style scoped>
     .result-txt{
         display: inline-block;
-        width: calc(100% - 140px); 
+        width: calc(100% - 140px);
         margin-bottom: 0 !important;
     }
     .upfile-box{

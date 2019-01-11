@@ -12,7 +12,7 @@
   			<div class="content">
   				<!--主体内容-->
     <p class="headline">
-        <a>查询记录</a>
+        <span>查询记录</span>
     </p>
     <div class="table-parent">
         <table class="table " id="table">
@@ -40,7 +40,7 @@
 <script>
   import pageheader from '@/components/common/pageheader';
   import pageaside from '@/components/common/pageaside';
-  
+
 export default {
   name: 'exposure',
 	components: {
@@ -49,11 +49,11 @@ export default {
 	},
    data() {
       return {
-      
+
       };
     },
     methods: {
-      
+
     }
 }
 </script>
@@ -71,7 +71,7 @@ export default {
     position: relative;
     display: block;
 }
-.nav-tabs > li{    
+.nav-tabs > li{
 	float: left;
 }
 #msgTabs{

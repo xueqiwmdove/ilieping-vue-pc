@@ -53,8 +53,7 @@
 
           <!--主体内容-->
           <p class="headline">
-            <router-link to="/twoUpload">上传离职评价</router-link>
-            <a class="active">多维度评价</a>
+            <span><i>猎评曝光</i> /多维度评价</span>
           </p>
 
           <div class="uploadleave">

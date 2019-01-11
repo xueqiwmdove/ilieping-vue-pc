@@ -13,8 +13,8 @@
   				<!--主体内容-->
 
 		<p class="headline">
-		    <router-link to="/company">企业资料</router-link>
-		    <a class="active">企业地址</a>
+		    <!--<router-link to="/company">企业资料</router-link>-->
+		    <span><i>企业资料</i> /企业地址</span>
 		</p>
 		<div class="company-content" ref="content">
 		    <!-- <div class="form-group">
@@ -28,7 +28,7 @@
 								<span @click="update(item)" class="btn_stys">编辑</span>
 								<span @click="deletes(item.id)"  class="btn_stys">删除</span>
 							</li>
-						</ul> 
+						</ul>
 		    	</div>
 		    <div class="form-group" >
 						<div v-if="flag" class="wei">
@@ -51,11 +51,11 @@
 													</el-option>
 												</el-select>
 								</div>
-								<div> 
+								<div>
 									<label style="color:#748093;font-size:16px;" for="address">详细地址</label>
 									<input type="text"  class="input_sty"  placeholder="请输入详细地址" v-model="address" id="address" maxlength="50">
 								</div>
-								</el-form>	
+								</el-form>
 						</div>
 						<span v-else class="add_sty" @click="addAdress"><i style="font-size:18px">＋</i> 添加企业地址</span>
 		    </div>
@@ -160,21 +160,21 @@ export default {
 						}
 					}
 			},
-			
+
 		},
 		directives: {clickoutside},
    methods: {
 		 handleClose(e) {
         this.flag9 = false;
     },
-	 //点击获取省市区框		
+	 //点击获取省市区框
 			getdata() {
         this.flag9 =!this.flag9
 			},
 			leave() {
 				this.flag9=false
-			},		
-	//添加地址显示输入框		
+			},
+	//添加地址显示输入框
 			addAdress() {
 				this.flag = true
 				this.hiden =false
@@ -182,7 +182,7 @@ export default {
 				this.msg =''
 				this.address=''
 			},
-  //取消按钮			
+  //取消按钮
 			cancel() {
 				this.flag=false
 				this.flag9=false
@@ -192,7 +192,7 @@ export default {
 				this.add = false
 				this.hiden = false
 			},
-	//获取地址集合		
+	//获取地址集合
 			getaddress() {
 			  let that = this
           this.$http({
@@ -207,7 +207,7 @@ export default {
             }else{
             that.$message.error(res.data.msg);
             }
-          });		
+          });
 			},
 			//编辑地址
 			update(val) {
@@ -260,7 +260,7 @@ export default {
             }else{
             that.$message.error(res.data.msg);
             }
-					});		
+					});
 				}).catch(() => {});
 			},
    //添加企业地址
@@ -325,7 +325,7 @@ export default {
 	  				that.$message.error(res.message || res.data.message);
 	  			}
 		    });
-			}, 
+			},
 			// 加载china地点数据，三级
       getCityData:function(){
         var that = this
@@ -383,7 +383,7 @@ export default {
 				    this.msg = this.sheng1+'/'+ this.shi+'/'+this.qu
           }
 				}
-		
+
       },
       // 选市
       choseCity:function(e) {
@@ -465,7 +465,7 @@ letter-spacing: 0;
 	cursor: pointer;
 }
 .add_sty {
-display: inline-block;	
+display: inline-block;
 background: #FAFBFC;
 border: 1px solid #E5E5E5;
 border-radius: 2px;
@@ -494,7 +494,7 @@ font-size: 16px;
 .input_sty {
 	width: 360px !important;
 	background: #FAFBFC;
-  border: 1px solid #E5E5E5 !important;  
+  border: 1px solid #E5E5E5 !important;
 }
 
 </style>

@@ -12,7 +12,7 @@
   			<div class="content">
   				<!--主体内容-->
                 <p class="headline">
-                    <a>录入新员工</a>
+                  <span><i>员工管理</i> /添加员工</span>
                 </p>
                 <div class="sendOfferMain">
                     <div class="sendOfferSteps">

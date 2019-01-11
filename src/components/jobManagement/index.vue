@@ -1,4 +1,4 @@
-<template>  
+<template>
   <div >
    <div class="main">
           <!--顶部导航-->
@@ -11,9 +11,9 @@
         <div class="right-content pull-right">
             <div class="content content_stys">
                 <p class="headline">
-                    <span>职位管理</span>
+                    <span><i>招聘管理</i> /岗位管理</span>
                 </p>
-              <div style="padding:5px 20px;">  
+              <div style="padding:5px 20px;">
                 <!-- 搜索栏 -->
                  <div class='contentsty'>
                    <el-row>
@@ -40,28 +40,28 @@
                           </el-input>
                           <el-button class="add_btn" @click="createPosition">添加招聘职位</el-button>
                         </div>
-                       </el-col> 
+                       </el-col>
                     </el-row>
-                </div>  
+                </div>
                <!--表格  -->
                 <div class="div_table_infor">
                     <el-table  :key='signs1' :data="hrList" style="width: 100%">
                       <el-table-column fixed prop="processNum" label="基本资料" header-align='center' align='left' max-width="280px">
                           <template  slot-scope="scope">
                               <span @click="updateData(scope.row)" class="basic_sty slots_sty">
-                                <span class="name_s">{{scope.row.name}} </span> 
-                                <p>{{scope.row.cityName}}{{scope.row.address}}<em class="bom_sty"></em><span>{{scope.row.deptName}}</span></p> 
+                                <span class="name_s">{{scope.row.name}} </span>
+                                <p>{{scope.row.cityName}}{{scope.row.address}}<em class="bom_sty"></em><span>{{scope.row.deptName}}</span></p>
                               </span>
-                          </template> 
+                          </template>
                       </el-table-column>
                       <el-table-column  prop="chargeName" label="招聘负责人" header-align='center' align='center'>
                         <template slot-scope="scope">
-                         <span class="slots_sty"   @click="updateData(scope.row)" >{{scope.row.chargeName}}</span> 
+                         <span class="slots_sty"   @click="updateData(scope.row)" >{{scope.row.chargeName}}</span>
                         </template>
                       </el-table-column>
                       <el-table-column  prop="deptName" label="招聘部门" header-align='center' align='center'>
                           <template slot-scope="scope">
-                            <span  class="slots_sty"  @click="updateData(scope.row)" >{{scope.row.deptName}}</span> 
+                            <span  class="slots_sty"  @click="updateData(scope.row)" >{{scope.row.deptName}}</span>
                          </template>
                       </el-table-column>
                       <el-table-column  prop="candidateCount" label="候选人总数" header-align='center' align='center'>
@@ -80,12 +80,12 @@
                       </el-table-column>
                       <el-table-column prop="number" label="招聘人数" header-align='center' align='center'>
                          <template slot-scope="scope">
-                           <span  class="slots_sty"  @click="updateData(scope.row)" >{{scope.row.number}}</span> 
+                           <span  class="slots_sty"  @click="updateData(scope.row)" >{{scope.row.number}}</span>
                         </template>
                       </el-table-column>
                       <el-table-column prop="createTime" label="创建时间" header-align='center' align='center'>
                           <template slot-scope="scope">
-                             <span  class="slots_sty" @click="updateData(scope.row)" >{{scope.row.createTime}}</span> 
+                             <span  class="slots_sty" @click="updateData(scope.row)" >{{scope.row.createTime}}</span>
                          </template>
                       </el-table-column>
                     </el-table>
@@ -94,11 +94,11 @@
 								<div class="bottom-pagination" v-if="totalCount > 5">
 									<el-pagination @current-change="changePage" @size-change="changeSize" :current-page="pageIndex" :page-size="pageSize" :page-sizes="[5,10, 25, 50, 100]" layout="total, prev, pager, next, sizes, jumper" :total="totalCount">
 									</el-pagination>
-								</div> 
-              </div>  
+								</div>
+              </div>
             </div>
-        </div>      
-    </div>        
+        </div>
+    </div>
   </div>
 </template>
 
@@ -130,7 +130,7 @@ export default {
       };
     },
     watch:{
-       
+
       },
     methods: {
       changePage(newPage) {
@@ -174,7 +174,7 @@ export default {
 	  			}
 		    });
       },
-   //统计各状态人数   
+   //统计各状态人数
       getCount() {
         let that = this
         that.$http({
@@ -195,10 +195,10 @@ export default {
     //搜索
     searchPage() {
       this.$router.push({path:'/searchPage',query:{code:this.searchName,status:this.status1}})
-    }, 
+    },
     //创建职位
     createPosition() {
-      this.$router.push({path:'/createposition'}) 
+      this.$router.push({path:'/createposition'})
     },
     },
     mounted() {
@@ -218,9 +218,9 @@ export default {
 }
 /* 搜索栏样式开始 */
 .contentsty {
-  margin:11px;  
+  margin:11px;
   height:80px;
-  line-height:80px; 
+  line-height:80px;
   margin-top: 0px;
   width: 100%;
   min-width: 695px;;
@@ -229,7 +229,7 @@ export default {
 .but_stys {
   width:120px;
   height:80px;
-   border-radius: 4px;  
+   border-radius: 4px;
   display:inline-block;
   position: relative;
   cursor: pointer;
@@ -274,7 +274,7 @@ export default {
   width: 260px;
   position: absolute;
   top:-21px;
-  
+
 }
 .contentsty .search .input_search .se_icon {
   position: absolute;
@@ -317,23 +317,23 @@ export default {
   float: right;
 }
 .content_stys .div_table_infor .el-table {
-  border:none;  
+  border:none;
 }
 /* 搜索栏样式结束 */
 
 /* 表格样式开始 */
 .basic_sty .name_s {
    font-size: 15px;
-   color:#394A66; 
+   color:#394A66;
 }
 .basic_sty .name_s em {
   font-size: 12px;
-  color: #748093;  
+  color: #748093;
 }
 .bom_sty {
   width: 2px;
   height: 2px;
-  background-color: #748093;  
+  background-color: #748093;
   border-radius: 50%;
   display: inline-block;
   margin: 0 4px;

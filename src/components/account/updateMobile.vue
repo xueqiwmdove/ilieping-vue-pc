@@ -13,8 +13,7 @@
   				<!--主体内容-->
 
     <p class="headline">
-        <router-link to="/account">账号安全</router-link>
-        <a class="active">修改手机号</a>
+        <span><i>账号安全</i> /修改手机号</span>
     </p>
     <div class="account-content">
     <!--第一步-->
@@ -276,11 +275,11 @@ export default {
       			cache:false
       		}).then(function(res){
       			if(res.data.code===10000){
-      		    
+
 				     that.$message({
 		          message: '成功发送验证码，请查看',
 		          type: 'success'
-		         }); 
+		         });
       			}else{
       				that.$message.error(res.message || res.data.msg);
       				that.codeState_new = true;

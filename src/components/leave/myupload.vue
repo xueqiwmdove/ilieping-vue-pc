@@ -40,9 +40,9 @@
     </div>
 
 				<!--上传离职记录-->
-				<p class="headline">
-				    <span>上传记录</span>
-				</p>
+        <p class="headline">
+          <span><i>猎评曝光</i> /上传记录</span>
+        </p>
 		    <ul class="nav-tabs nav" id="uploadTabs">
 	        <li @click="uploadTabs(1)" :class="flag==1?'active':''"><span>多维度评价</span></li>
 	        <li @click="uploadTabs(2)" :class="flag==2?'active':''"><span>失信曝光</span></li>

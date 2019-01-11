@@ -12,7 +12,7 @@
   			<div class="content">
   				<!--主体内容-->
 			    <p class="headline">
-			        <a>上传离职评价</a>
+			        <span><i>猎评曝光</i> /上传离职评价</span>
 			    </p>
        <!--上传离职评价两种方式-->
     <div class="twoMethod">

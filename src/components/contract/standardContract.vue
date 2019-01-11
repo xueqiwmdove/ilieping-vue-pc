@@ -12,7 +12,7 @@
         <div class="content">
           <!--主体内容-->
           <p class="headline">
-            <a>新增合同</a>
+            <span><i>员工管理</i> /新增合同</span>
           </p>
           <!--<breadcrumb></breadcrumb>-->
           <div class="sendOfferSteps">
