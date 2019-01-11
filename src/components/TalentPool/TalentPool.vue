@@ -35,7 +35,7 @@
                                             <span>
                                                 <i @click="edit()"><img src="../../assets/img/zhiwei/bian.png" alt=""></i>
                                                 <i @click="deletes()"><img src="../../assets/img/zhiwei/zhiwei_ic_del.png" alt=""></i>
-                                            </span>    
+                                            </span>
                                       </li>
                                   </ul>
                               </el-scrollbar>
@@ -47,7 +47,7 @@
                       <div class="positionTable">
                             <div class='content_pad'>
                               <el-row>
-                                <el-col :span="16"> 
+                                <el-col :span="16">
                                 <div class="listitem bordersty" >
                                     <p class="font_s">454</p>
                                     <p class="num_s">该人才库候选总数</p>
@@ -56,10 +56,10 @@
                                     <p class="font_s " style="color:#FF9C6E">45</p>
                                     <p class="num_s num1-s">今日归档人数</p>
                                 </div>
-                                </el-col> 
+                                </el-col>
                                 <el-col :span="6">
                                      <div class="search">
-                                        <el-input v-model="searchname"  class="input_search" placeholder="输入你想搜索的内容" >
+                                        <el-input v-model="searchname"  class="input_search" placeholder="输入你想搜索的内容" @enter.click="searchList" >
                                         <i @click="searchList" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                                         </el-input>
                                         <el-button class="add_btn" @click="addCandidateShow()">新建人才库</el-button>
@@ -117,6 +117,20 @@
             <el-button style="height:36px" @click="closeAdd(form1)">取 消</el-button>
         </div>
       </el-dialog>
+
+    <!--编辑人才库-->
+    <el-dialog title="新建人才库" :visible.sync="updateVisible" class="add_dialog" custom-class="sty_dialogs" :before-close="closeAdd">
+      <el-form style="margin-left:50px;" :model="form1" :rules="rules"  ref="form1" >
+        <el-form-item label="人才库名称"  prop="deptName">
+          <el-input style="width:280px;" v-model="form1.deptName" maxlength="32"  placeholder="请输入名称"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary"  :class="searchBtnClass" :disabled="searchDisabled" style="height:36px;background: #F95714;" @click="addSubmit">提交</el-button>
+        <el-button style="height:36px" @click="closeAdd(form1)">取 消</el-button>
+      </div>
+    </el-dialog>
+
        <!-- 弹窗-删除人才库  -->
       <el-dialog title="" :visible.sync="dialogDelete" class="del_dialog " style="border-bottom: 0px solid #E5E5E5;" custom-class="sty_dialogs del_dialog">
              <div style="text-align:center;"><i class="el-icon-warning" style="font-size:27px;color:#F5A623;"></i></div>
@@ -147,6 +161,8 @@ export default {
   },
    data() {
       return {
+        updateVisible:false,
+        seen:'',
         signs:'2' ,
         candidateList:[],//列表
         personList:[],//人员数据
@@ -164,7 +180,7 @@ export default {
         addVisible:false,//新建人才库
         dialogDelete:false,//删除人才库
         form1:{
-          deptName:''  
+          deptName:''
         },
         rules: {
         deptName:[
@@ -174,7 +190,7 @@ export default {
         },
       };
     },
-      computed:{
+    computed:{
         //搜索按钮样式
         searchBtnClass:function () {
           if(this.form1.deptName!="" ){
@@ -197,13 +213,13 @@ export default {
         },
    },
     methods: {
-   //编辑 
+   //编辑
      edit() {
 
      },
   // 删除
     deletes() {
-     this.dialogDelete = true      
+     this.dialogDelete = true
     },
     addSubmit() {
 
@@ -218,11 +234,11 @@ export default {
 	  			url:api.candidateList,
 	  			headers:headers('application/json;charset=utf-8'),
 	  			data:{
-				    "postId":that.postId || '',
-				    "candidateName":that.searchname || '',
-				    "candidateStatus":that.candidatestatus ,
-				    "pageCurrent":currPage,
-				    "pageSize ":pageSize,
+				    postId:that.postId || '',
+				    candidateName:that.searchname || '',
+				    candidateStatus:that.candidatestatus ,
+				    pageCurrent:currPage,
+				    pageSize:pageSize,
 	  			}
 	  		}).then(function(res){
 	  			if(res.data.code==10000){
@@ -280,16 +296,16 @@ export default {
       });
     },
     searchList() {
-     this.getCandidate()
-     
+     // this.getCandidate()
+      this.$router.push({path:'/searchCandidata',query:{code:this.searchname,postId:this.postId,candidatestatus:this.candidatestatus}})
     },
     getItems() {
-      this.flags = !this.flags
-      this.seen= ''
-      this.postId = ''
+      this.flags = !this.flags;
+      this.seen= '';
+      this.postId = '';
       this.getCandidate()
     },
-   //删除人才库 
+   //删除人才库
     deletenode() {
 
     }
@@ -320,7 +336,7 @@ export default {
 }
 .asidePosition {
   /* width: 310px; */
-  min-width: 190px;; 
+  min-width: 190px;;
   height:800px;
   background: #fff;
   margin-right: 15px;
@@ -437,7 +453,7 @@ export default {
 .position_list ul li span {
    position: absolute;
    top: 0px;
-   right: 20px; 
+   right: 20px;
 }
 .position_list ul li:hover {
   color: #F95714;
@@ -472,16 +488,16 @@ export default {
   color: #748093;
 }
 .listitem p {
-  width: 100%;  
+  width: 100%;
   line-height: 30px;
   text-align: center;
   height: 30px;
 }
 .bordersty {
- border: 1px solid #80CBC4;  
+ border: 1px solid #80CBC4;
 }
 .today {
- border: 1px solid #FF9C6E;   
+ border: 1px solid #FF9C6E;
 }
 .content_pad .listitem .font_s {
   font-size: 18px;
@@ -495,7 +511,7 @@ export default {
   margin-top:18px;
 }
 .content_pad .listitem  .num1-s {
-  background-color: #FF9C6E;   
+  background-color: #FF9C6E;
 }
 /* 右侧顶部样式结束 */
 /* 右侧搜索框样式开始 */
@@ -569,7 +585,7 @@ export default {
    padding-left:0px;
  }
 .del_dialog .el-dialog__header {
-   border-bottom:none; 
+   border-bottom:none;
    height: 40px;;
 }
 </style>

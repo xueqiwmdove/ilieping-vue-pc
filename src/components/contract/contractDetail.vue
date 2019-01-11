@@ -395,7 +395,8 @@
         goToSelectTemplates(){
           let that=this;
           // that.$router.push("/selectTemplates")
-          that.$router.push("/customContractTemplate")
+          // that.$router.push("/customContractTemplate")
+          that.$router.push("/standardContract")
         },
        /* company_detail(){
           let that=this;
@@ -451,44 +452,6 @@
             }
           })
         },
-        //发送合同
-      /*  sendContract(){
-          let that=this;
-          let obj=JSON.parse(localStorage.getItem("contract"));
-          //合同里所有的数据
-          let section=document.getElementsByClassName("section0")[0];
-          let inputs=section.getElementsByTagName("input");
-          // console.log(inputs)
-          for(let i=0;i<inputs.length;i++){
-            that.arr.push(inputs[i].value);
-            // console.log(inputs[i].value)
-          }
-          // that.arr.push(inputs.value);
-
-          that.$http({
-            method:"post",
-            url:api.hrSendContract,
-             data:{
-               agreementName:obj.agreementName,//合同名称
-               templateNumber:obj.templateNumber,//合同模板编号
-               startTime:obj.startTime,
-               endTime:obj.endTime,
-               deadlineForSignature:obj.deadlineForSignature,//截止签字时间
-               hrEmployeeAlias:obj.hrEmployeeAlias,
-               employeePhone:obj.employeePhone,
-               data:JSON.stringify(that.arr),//合同里面所有的input
-             },
-            headers:headers()
-          }).then(function(res){
-            console.log(res);
-            if(res.data.code==10000){
-              // that.$message.success("合同发送成功");
-              that.contractAlert=true;
-            }else{
-              that.$message.error(res.message || res.data.msg);
-            }
-          })
-        },*/
         goToContractManagement(){
           let that=this;
           that.$router.push("/contractManagement");
@@ -496,7 +459,7 @@
         },
         goTobySing(){
           let that=this;
-          that.$router.push("/bySinging")
+          that.$router.push("/newContract")
         }
       },
       mounted(){

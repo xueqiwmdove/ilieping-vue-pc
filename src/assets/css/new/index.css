@@ -271,11 +271,18 @@ nav .pull-right .exit:before {
   height: 50px;
   line-height: 50px;
   text-indent: 23px;
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
   font-size: 16px;
   color: #21324E;
   letter-spacing: 0;
-  border-bottom: 1px solid #E5E5E5;
+  /*border-bottom: 1px solid #E5E5E5;*/
+  margin-bottom: 0px;
+  border-bottom: none;
+  background-color: #FAFAFA;
+}
+.main .right-content .content .headline img {
+  cursor: pointer;
+  vertical-align: text-bottom;
 }
 .main .right-content .content .headline a {
   display: inline-block;

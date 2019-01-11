@@ -19,7 +19,7 @@
         data() {
           return {
               filterText:'',
-          }  
+          }
         },
    props :{
       treeDatas:{
@@ -28,14 +28,14 @@
           return {
 
           }
-        }  
-      }  
+        }
+      }
     },
    watch: {
       filterText(val) {
         this.$refs.tree2.filter(val);
       }
-   }  , 
+   }  ,
     methods:{
        append(data) {
          console.log(data,'<============parentId')
@@ -71,9 +71,9 @@
   .node_icon:visited {
     color:#F95714;
   }
-   .filter-tree .el-tree-node__content {
+/*   .filter-tree .el-tree-node__content {
    height: 45px;;
-}
+}*/
 
   .el-icon-caret-bottom::before{
       content: "\E603" !important;

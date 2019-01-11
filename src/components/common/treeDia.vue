@@ -20,7 +20,7 @@
         data() {
           return {
             filterText:'',
-          }  
+          }
         },
     watch: {
       filterText(val) {
@@ -32,8 +32,8 @@
          type: Array,
         default () {
           return {}
-        }  
-      }  
+        }
+      }
     },
     methods:{
        append(data) {
@@ -68,7 +68,7 @@
     color:#F95714;
   }
   .filter-tree .el-tree-node__content {
-   height: 45px;;
+   height: 34px;;
 }
 </style>
 

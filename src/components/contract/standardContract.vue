@@ -52,30 +52,32 @@
           <!--标准模板  -->
           <div class="content_h">
 
-            <div class="html_div"><!-- htmldata start -->
-              <p class="uploadTitle">基本信息</p><!-- htmldata 一级标题 -->
+            <div class="html_div">
+              <p class="uploadTitle">基本信息</p><!-- 一级标题 -->
               <div class="div_input basic" >
                 <div  class="from" >
                   <div class="input_div">
-                    <label>员工姓名<span class="class_required">*</span></label>
-                    <!--<input type="text" autocomplete="off" v-model="employee" placeholder="请选择员工姓名"/>-->
-                    <input type="text" placeholder="请选择员工姓名" class="selectDepartment" v-model="employee" @click.stop="isShow2=true;" ><!--@click="isShow2=!isShow2"-->
-                    <div class="treePullDown" v-show="isShow2">
-                      <el-input
-                        placeholder="输入关键字进行过滤"
-                        v-model="filterText2" class="filterInput">
-                      </el-input>
-                      <!-- :data="data"-->
-                      <el-tree
-                        class="filter-tree departmentTree"
-                        :props="defaultProps"
-                        :load="loadNode"
-                        lazy
-                        :filter-node-method="filterNode"
-                        @node-click="getParent2"
-                        ref="tree2">
-                      </el-tree>
+                    <div class="input_group">
+                      <label>员工姓名<span class="class_required">*</span></label>
+                      <!--<input type="text" autocomplete="off" v-model="employee" placeholder="请选择员工姓名"/>-->
+                      <input type="text" placeholder="请选择员工姓名" class="selectDepartment" v-model="employee" @click.stop="isShow2=true;" ><!--@click="isShow2=!isShow2"-->
+                      <div class="treePullDown" v-show="isShow2">
+                       <!-- <el-input
+                          placeholder="输入关键字进行过滤"
+                          v-model="filterText2" class="filterInput">
+                        </el-input>-->
+                        <el-tree
+                          class="filter-tree departmentTree"
+                          :props="defaultProps"
+                          :load="loadNode"
+                          lazy
+                          :filter-node-method="filterNode"
+                          @node-click="getParent2"
+                          ref="tree2">
+                        </el-tree>
+                      </div>
                     </div>
+
                   </div>
                   <div class="input_div">
                     <label>合同名称<span class="class_required">*</span></label>
@@ -237,17 +239,22 @@
            userName:'',
            userNameId:'',
 
-           employee:'',
-           employeeId:'',
+           employee:localStorage.getItem('employeeName')||'',
+           employeeId:localStorage.getItem('employeeId')||'',
            isShow2:false,
            filterText2:'',
            data:[],//员工数据
            childrendata:[],
+           defaultProps: {
+             children: 'children',
+             label: 'label',
+             isLeaf: 'leaf'
+           },
 
            contractName:'',
            startEndTime:[],
            pickerOptions:{},
-           endTime:[],
+           endTime:'',
 
            station:'',//岗位
            selectTimeLimit:'',//合同期限
@@ -301,7 +308,20 @@
            id:JSON.parse(localStorage.getItem("item")).templateNumber,
          }
       },
+      watch: {
+        filterText2(val) {
+          this.$refs.tree2.filter(val);
+        }
+      },
       methods: {
+        //树形下拉点击其他地方收起
+        handleClose(){
+          this.isShow2=false;
+        },
+        filterNode(value, data) {
+          if (!value) return true;
+          return data.label.indexOf(value) !== -1;
+        },
         /*
 * @param node:当前点击节点信息
   @param resolve:传递参数方法
@@ -353,6 +373,7 @@
             that.employee=data.label;
             that.isShow2=false;
             that.employeeId=data.id;
+            that.returnEmployeeDetail();
           }
 
         },
@@ -368,20 +389,8 @@
             if(res.data.code==10000){
               that.returnEmployeeData=res.data.data;
               console.log(that.returnEmployeeData);
-              // that.userName=res.data.data.employeeName;
-              for(let i in that.returnEmployeeData) {
-                /*if(document.getElementById(i) !=null){
-                  document.getElementById(i).value = that.returnEmployeeData[i];
-                }*/
-
-                /* try {
-                   document.getElementById(i).value = that.returnEmployeeData[i];
-                 }catch (e) {
-                   console.log("err :" + i);
-                   console.log()
-                 }*/
-                //}
-              }
+              that.station=res.data.data.position;
+              that.enterpriseAddress=res.data.data.enterpriseAddress;
             }
             else{
               that.$message.error(res.data.msg);
@@ -400,7 +409,7 @@
               startTime: that.startEndTime[0],
               endTime: that.startEndTime[1],
               deadlineForSignature: that.endTime,//截止签字时间
-              employeeId: that.userNameId,
+              employeeId: that.employeeId,
               pageDate: {
                 station:that.station,//岗位
                 selectTimeLimit:that.selectTimeLimit,//合同期限
@@ -547,7 +556,7 @@
     color: #748093;
     margin: 0 21px;
     min-height: 200px;
-    overflow: hidden;
+    /*overflow: hidden;*/
     padding-bottom: 20px;
   }
   .div_input.basic{
@@ -557,13 +566,13 @@
   }
   .div_input .from{
     width:  100%;
-    float:  left;
+    /*float:  left;*/
     display:  inline-block;
 
   }
   .div_input .from .input_div{
     width: 49%;
-    float: left;
+    /*float: left;*/
     display: inline-block;
     height: 40px;
     line-height: 40px;
@@ -598,33 +607,28 @@
     z-index: 2;
   }
 
-  .classSelect{
-    min-width: 300px;
-    width: 300px;
-    height: 34px;
-  }
-  .el-dialog.newDepartAlert_Content .input-group{
-    margin-bottom: 72px;
-  }
-  .input_div select{
-    min-width: 300px;
-    width: 300px;
-    height: 34px;
-    appearance:none;
-    -moz-appearance:none;
-    -webkit-appearance:none; /* 火狐、谷歌清除 */
-    background-size:10%;
-    background: url(../../assets/images/dismission/sprite_up.png) no-repeat 276px center;
-    font-size: 14px;
-    color: #394A66;
-    outline:none;
-    border: 1px solid #E5E5E5;
-    text-indent: 12px;
-    background-color: #fff;
-  }
   .input_div select::-ms-expand{ display: none; } /* ie清除 */
+  .input_group{
+    position: relative;
+  }
+  .treePullDown{
+    position: absolute;
+    top: 43px;
+    left: 244px;
+    width: 400px;
+    height: 300px;
+    padding: 0 0 4px 0;
+    background: #FFFFFF;
+    -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+    z-index: 2;
+  }
 
-
+</style>
+<style>
+  .basic .input-group .treePullDown .departmentTree .el-tree-node__content {
+    height: 34px;
+  }
 </style>
 
 
