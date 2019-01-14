@@ -16,10 +16,10 @@
             <div class="content"><!--主体内容-->
 
                 <p class="headline">
-                    <span @click="closeCurPage" style="cursor:pointer">员工列表</span>
-                    <span class="sub-tit">员工资料
-                        <!-- <i class="el-icon-close" ></i> -->
-                    </span>
+                    <span @click="closeCurPage" style="cursor:pointer">员工列表 /员工资料</span>
+                    <!--<span class="sub-tit">
+                        &lt;!&ndash; <i class="el-icon-close" ></i> &ndash;&gt;
+                    </span>-->
                 </p>
 
                 <div class="base-info-box">
