@@ -144,11 +144,11 @@ export default {
             url:api.candidateList,
             headers:headers('application/json;charset=utf-8'),
             data:{
-              "postId":that.postId || '',
-              "candidateName":that.name || '',
-              "candidateStatus":that.status ||'',
-              "pageCurrent":currPage,
-              "pageSize":pageSize,
+              postId:that.postId || '',
+              candidateName:that.name || '',
+              candidateStatus:that.status ||'',
+              pageCurrent:currPage,
+              pageSize:pageSize,
             }
           }).then(function(res){
             if(res.data.code==10000){

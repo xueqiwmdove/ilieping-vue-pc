@@ -121,9 +121,9 @@
                         <!--表格  -->
                             <div class="div_table_infor">
                                 <el-table :key='signs'  :data="candidateList" style="width: 100%" >
-                                    <el-table-column fixed prop="processNum" label="基本资料" header-align='center' align='left' max-width="350px">
+                                    <el-table-column fixed prop="processNum" label="基本资料" header-align='center' align='left' min-width="520px">
                                         <template slot-scope="scope" >
-                                            <span class="basic_sty " style="cursor: pointer" @click="addCandidateShow('steps');showSteps(scope.row.id)" >
+                                            <span class="basic_sty " style="cursor: pointer"  @click="addCandidateShow('steps');showSteps(scope.row.id)">
                                               <span class="name_s">{{scope.row.candidateName}} <em>{{scope.row.candidateSex}}</em><em class="bom_sty"></em><em>{{scope.row.candidateExperience}}</em></span>
                                               <p><img src="../../assets/img/zhiwei/houxuan_ic_work.png" alt=""><span>{{scope.row.workExperience}}</span></p>
                                               <p><img src="../../assets/img/zhiwei/houxuan_ic_education.png" alt=""><span>{{scope.row.educationExperience}}</span></p>
@@ -291,16 +291,17 @@ export default {
 	  			url:api.candidateList,
 	  			headers:headers('application/json;charset=utf-8'),
 	  			data:{
-				    "postId":that.postId || '',
-				    "candidateName":that.searchname || '',
-				    "candidateStatus":that.candidatestatus ,
-				    "pageCurrent":currPage,
-				    "pageSize ":pageSize,
+				    postId:that.postId || '',
+				    candidateName:that.searchname || '',
+				    candidateStatus:that.candidatestatus ,
+				    pageCurrent:currPage,
+				    pageSize:pageSize,
 	  			}
 	  		}).then(function(res){
 	  			if(res.data.code==10000){
              that.candidateList=res.data.data;
             that.totalCount=res.data.count;
+            console.log(that.totalCount)
 	  			}else{
 	  				that.$message.error(res.data.msg);
 	  			}
@@ -742,5 +743,7 @@ export default {
  .content_pad .el-input--prefix .el-input__inner {
    padding-left:0px;
  }
-
+.bottom-pagination{
+  margin: 20px 0;
+}
 </style>

@@ -24,7 +24,7 @@
           <p class="username">{{item.candidateName}}</p>
           <p>
             <span class="sex">{{item.candidateAge}}岁.</span>
-            <span class="workExp" v-if="item.candidateExperience!=0">{{item.candidateExperience}}工作经验.</span>
+            <span class="workExp" v-if="item.candidateExperience!=0">{{item.candidateExperience}}年工作经验.</span>
             <span class="workExp" v-if="item.candidateExperience==0">无工作经验.</span>
             <span class="educationBg">{{item.candidateEducation}}.</span>
             {{item.candidateLocation}}

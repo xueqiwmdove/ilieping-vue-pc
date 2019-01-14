@@ -424,7 +424,7 @@
 
     <!--选择简历-->
     <el-dialog title="选择简历" :visible.sync="addCandidateStatus"  custom-class='selectResume' :before-close="closeSelectResume">
-      <div class="selectedBox" v-if="flag==1">
+      <div class="selectedBox" >
         <p><img src="../../assets/images/reg/info.svg" alt="">请选择简历来源，其他来源的简历请在标准简历中手动填写</p>
         <div class="selectDiv" >
           <label>简历来源</label>
@@ -784,6 +784,14 @@
                 //   salaryMax:that.salary_end,//"最高薪资",
               }else{
                 that.$message.error(res.data.msg);
+                setTimeout(function () {
+                  that.$emit('hideModel',that.add);//向父组件派发事件
+                  that.resumeType='';
+                  that.resumeUrl="";
+                  that.changeTab(1);
+                  that.$parent.closeResume();
+
+                },2000);
               }
             })
           }
@@ -843,7 +851,7 @@
             });
             return;
           }
-          if (!extension && that.resumeType==1) {
+          if (extension && that.resumeType==1) {
             that.$message({
               message: '暂不支持51job的docx格式的简历，请选择其他格式的简历!',
               type: 'warning'

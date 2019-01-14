@@ -109,7 +109,7 @@
               <h4 class="title"></h4>
               <div v-for="item in candidateStepsData">
                 <p><i>{{item.candidateName}}</i>您好</p>
-                <p>感谢关注上海棋至文化有限公司！我是该公司的HR。很高兴收到您的简历。面试安排如下：</p>
+                <p>感谢关注 {{title}}！我是该公司的HR。很高兴收到您的简历。面试安排如下：</p>
                 <P>面试时间：<i>{{interviewTime}}</i></P>
                 <p>面试形式：<i v-if="interviewMode==3">视频面试</i><i v-if="interviewMode==2">电话面试</i><i v-if="interviewMode==1">现场面试</i></p>
                 <p>面试地点：<i>{{interviewAddress}}</i></p>
@@ -139,7 +139,7 @@
 
             <div class="interview_button">
               <el-button class="button" @click="insertInterview" >保存</el-button>
-              <el-button class="button cancel" @click="interview_basic=false;getInterview();" >取消</el-button>
+              <el-button class="button cancel" @click="interview_basic=false;getInterview();continueInterview();" >取消</el-button>
             </div>
           </el-form>
 
@@ -151,9 +151,9 @@
 
     <!--面试列表以及状态-->
     <div class="interview_list_status" v-show=" interview_list_status"><!--&& interviewList != ''-->
-      <button @click="interview_basic=true;interview_list_status=false;" v-show="candidateStepsData[0].status!=0">继续添加面试</button>
+      <button @click="continueInterview();interview_basic=true;interview_list_status=false;" v-show="candidateStepsData[0].status!=0">继续添加面试</button>
       <div class="interview_list" >
-        <div class="interview" v-for="item in interviewList">
+        <div class="interview" v-for="(item,index) in interviewList" :key="index">
           <img src="../../../assets/img/candidate/tanhcuang_ic_tag.png" alt="" class="img_status">
           <!--status 面试状态 0 面试取消 1 待确认 2 待面试 3 已签到 4 已面试  6拒绝面试 -->
           <img src="../../../assets/img/candidate/tanchuang_mianshi_pic_cancel.png" alt="" class="cancelInterview" v-if="item.status==0">
@@ -185,6 +185,8 @@
               <img src="../../../assets/img/candidate/tanchuang_ic_bumanyi_pre.png" alt="">
               暂未检测到（候选人填写完提交后显示相关数据）
             </p>
+            <p  v-if="item.interviewRegistrationFormId != null "><label>面试登记表：</label><i>已填写</i> <i class="look_Download" ><i @click="lookForInterview ">查看</i> </i></p><!--<i>下载</i>-->
+
             <!--v-show="no_feedBook" -->
             <p v-if="item.interviewSatisfaction == null"><label>面试反馈：</label><img src="../../../assets/img/candidate/tanchuang_ic_bumanyi_pre.png" alt="">暂无反馈(用户签到后可填写面试反馈) <em class="interview_feedbook" @click="feedbook_form=true">填写面试反馈表</em></p>
             <div class="feedbook_form" v-show="feedbook_form" >
@@ -205,18 +207,17 @@
               </div>
             </div>
             <!--已反馈 v-show="feedBook"-->
-            <p  v-if="item.interviewRegistrationFormId != null "><label>面试登记表：</label><i>已填写</i> <a class="look_Download" :href="phoneurl"><i>查看</i> </a></p><!--<i>下载</i>-->
             <p v-if="item.interviewSatisfaction!=null"><!--TODO v-show="feedBook"-->
               <label>面试反馈：</label>
               <span v-show="item.interviewSatisfaction==1" :class="item.interviewSatisfaction==1?'yawp':''">不满意</span>
               <span v-show="item.interviewSatisfaction==2" :class="item.interviewSatisfaction==2?'common':''">一般</span>
               <span v-show="item.interviewSatisfaction==3" :class="item.interviewSatisfaction==3?'satisfactory':''">较满意</span>
               <span v-show="item.interviewSatisfaction==4" :class="item.interviewSatisfaction==4?'great_satisfaction':''">非常满意</span>
-              <em class="interview_feedbook el-icon-caret-bottom" @click="feedbook_form_pullDown=!feedbook_form_pullDown">查看面试反馈表 </em>
+              <em class="interview_feedbook el-icon-caret-bottom" @click="show(index)">查看面试反馈表 </em>
             </p>
 
             <!--查看面试反馈-->
-            <div class="feedbook_form_pullDown" v-show="feedbook_form_pullDown">
+            <div class="feedbook_form_pullDown" v-show="activeIndex===index"><!--feedbook_form_pullDown-->
               <h4>{{item.interviewerName}} {{item.feedbackTime}}反馈</h4>
               <p>反馈内容：<i>{{item.interviewFeedback}}</i></p>
               <p>
@@ -252,7 +253,8 @@
         },
         data(){
           return{
-            phoneurl:'http://192.168.2.166:8080/dist/a/login.html#/Hfeedback?dataId='+interviewRegistrationFormId,
+            title:localStorage.getItem('title'),//公司名
+            activeIndex: -1,
             interviewRegistrationFormId:'',//面试登记表里面id
             noOps:false,
             noInterviews:true,
@@ -351,7 +353,7 @@
             url:api.interviewList+that.candidateID,
             headers:headers(),
           }).then(function (res) {
-            if(res.data.code==10000){
+            if(res.data.code==10000 && res.data.data!=null){
               console.log(res.data.data);
               that.interviewList=res.data.data;
               if(that.interviewList.length==0){
@@ -363,9 +365,13 @@
                 that.noInterviews=false;
                 that.interview_list_status=true;
                 that.interview_basic=false;
-                that.interviewRegistrationFormId=that.interviewList[0].interviewRegistrationFormId;
+                that.interviewRegistrationFormId=res.data.data[0].interviewRegistrationFormId;
+                console.log(that.interviewRegistrationFormId)
               }
-              console.log(that.interview_basic,that.interviewList.length)
+            }else{
+              that.noInterviews=true;
+              that.interview_list_status=false;
+              that.interview_basic=false;
             }
           })
         },
@@ -453,6 +459,30 @@
           let that=this;
           that.feedbook_form=false;
 
+        },
+        lookForInterview(){
+          let that=this;
+          let phoneurl,url;
+          url='http://www.lphr.com/a/login.html#/preview?tableId=';
+          // url='http://192.168.2.166:8080/dist/a/login.html#/preview?tableId=';
+          phoneurl=url+that.interviewRegistrationFormId,
+
+          window.open(phoneurl,'_blank')
+        },
+        show(index){
+          // item.feedbook_form_pullDown=!item.feedbook_form_pullDown;
+          this.activeIndex = this.activeIndex === index ? !index : index;
+        },
+      //  继续添加面试
+        continueInterview(){
+          let that=this;
+          // that.interview_basic=true;
+          that.interviewAddress='';
+          that.interviewType='';
+          that.interviewMode='';//面试形式
+          that.interviewer='';
+          that.notifyTemplate='';
+          that.interviewTime='';
         }
 
 

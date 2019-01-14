@@ -79,8 +79,9 @@ height: 35px;
   font-size:15px;
   color:#748093;
 }
-.el-icon-caret-bottom:before {
-  content: "\E60B";
+.el-dialog.change_sty .el-icon-caret-bottom:before {
+  /*content: "\E60B";*/
+  content: "\E603";
   position: absolute;
   right: 10px;
   top: 10px;

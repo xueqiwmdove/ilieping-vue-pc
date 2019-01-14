@@ -158,7 +158,7 @@
                     <el-row >
                           <el-col :offset="10"  >
                               <el-button type="primary" @click="submit" style="height:36px;">保存</el-button>
-                              <el-button   style="height:36px;" >取 消</el-button>
+                              <el-button   style="height:36px;" @click="isshow=true; clearContent();">取 消</el-button>
                           </el-col>
                     </el-row>
                 </el-col>
@@ -274,6 +274,7 @@
         submit() {
           let that=this;
           that.loading=true;
+          that.candidateID=localStorage.getItem('candidateID');
           that.$http({
             method:'post',
             url:api.sendOffer,
@@ -301,7 +302,7 @@
                 that.flag1 = false;
                 that.offerIsExist();
               }else{
-                that.$message.error(res.data.data.msg);
+                that.$message.error(res.data.msg);
               }
             },3000);
 
@@ -352,11 +353,26 @@
             console.log(res);
             if(res.data.code==10000){
               that.offerIsExist();
+              that.isshow=true;
+              // workAddress:'',
+              that.clearContent();
 
             }else{
               that.$message.error(res.data.msg);
             }
           })
+        },
+        clearContent(){
+          let that=this;
+          that.makeNormal={
+            reportTime:'',
+            reportAddr:'',
+            model:'',
+            isPdf:false,
+            expectedEntrytime:'',
+            salaryType:'',
+            salary:'',
+          };
         }
       },
       mounted(){

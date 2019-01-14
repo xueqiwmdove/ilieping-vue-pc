@@ -75,8 +75,9 @@
    height: 45px;;
 }*/
 
-  .el-icon-caret-bottom::before{
-      content: "\E603" !important;
+  .filter-tree .el-icon-caret-bottom::before{
+      /*content: "\E603" !important;*/
+      /*content: "\E60B";*/
       color: #c0c4cc;
       width: 5px;
       font-weight: bolder;
