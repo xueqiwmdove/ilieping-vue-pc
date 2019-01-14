@@ -179,6 +179,10 @@
                     </el-select>
                   </div>
                   <div class="input_div">
+                    <label>转正工资<span class="class_required">*</span></label>
+                    <input type="text" autocomplete="off" v-model="basicWages" placeholder="转正工资"/>
+                  </div>
+                  <div class="input_div">
                     <label>工资发放日(例: 25)<span class="class_required">*</span></label>
                     <input type="text" autocomplete="off" v-model="payrollTime" placeholder="请输入日期"/>
                   </div>
@@ -306,6 +310,7 @@
                label:"不定时工时制度"
              }
            ],
+           basicWages:'',//转正工资
            selectBasicWagesProgramme:'', //转正公司方案
            selectBasicWagesProgrammeData:[
              {
@@ -356,7 +361,7 @@
 
           if(this.employee!="" && this.employeeId!="" && this.contractName!="" && this.startEndTime!="" &&
             this.endTime!="" && this.station!="" && this.selectTimeLimit!="" && this.selectProbation!="" &&
-             this.promotionWages!="" && this.manHourSystem!="" &&
+             this.promotionWages!="" && this.manHourSystem!="" && this.basicWages!="" &&
             this.selectBasicWagesProgramme!="" && this.payrollTime!="" && this.enterpriseAddress!="" &&
             this.promotionCondition!="" &&  this.id!=""
           ){
@@ -369,7 +374,7 @@
           if(
             this.employee!="" && this.employeeId!="" && this.contractName!="" && this.startEndTime!="" &&
             this.endTime!="" && this.station!="" && this.selectTimeLimit!="" && this.selectProbation!="" &&
-             this.promotionWages!="" && this.manHourSystem!="" &&
+             this.promotionWages!="" && this.manHourSystem!="" && this.basicWages!="" &&
             this.selectBasicWagesProgramme!="" && this.payrollTime!="" && this.enterpriseAddress!="" &&
             this.promotionCondition!="" && this.id!=""
           ){
@@ -489,6 +494,7 @@
                 promotionWages:that.promotionWages,//试用期工资
                 manHourSystem:that.manHourSystem,//工时制度
                 selectBasicWagesProgramme:that.selectBasicWagesProgramme, //转正公司方案
+                basicWages:that.basicWages,//转正工资
                 payrollTime:that.payrollTime,// 工资发放日(例: 25)：
                 enterpriseAddress:that.enterpriseAddress,
                 promotionCondition:that.promotionCondition,// 转正条件
