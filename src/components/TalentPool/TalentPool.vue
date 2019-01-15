@@ -21,17 +21,17 @@
                             <span  style="margin-left:30px;cursor: pointer;">{{texts}}</span>
                           </h4>
                           <div class="search" style="margin-top:30px;">
-                              <el-input v-model="names"  class="input_search" placeholder="请搜索人才库" >
+                              <el-input v-model="searchContent"  class="input_search" placeholder="请搜索人才库" @keyup.enter.native="getTalent">
                               </el-input>
-                              <i @click="getPosition" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
+                              <i  @click="getTalent" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                           </div>
-                          <p  @click="getItems" v-if="flags"> 全部淘汰候选人 <i ><img  src="../../assets/img/zhiwei/ic_chose.png" alt=""></i></p>
-                          <p style="color:#748093 ;" @click="getItems" v-else>全部淘汰候选人  <i  ><img src="../../assets/img/zhiwei/3.png" alt=""></i></p>
+                          <p  @click="getItems" v-if="flags"> 全部人才 <i ><img  src="../../assets/img/zhiwei/ic_chose.png" alt=""></i></p>
+                          <p style="color:#748093 ;" @click="getItems" v-else>全部人才  <i  ><img src="../../assets/img/zhiwei/3.png" alt=""></i></p>
                           <div class="position_list">
                               <el-scrollbar style="height:100%" >
                                   <ul>
                                       <li :class="seen==item.id ? 'heightlight':''" @click="getCandidateList(item)" v-for="(item,index) in personList " :key="index">
-                                          {{item.name}}
+                                          {{item.tagName}}
                                             <span>
                                                 <i @click="edit()"><img src="../../assets/img/zhiwei/bian.png" alt=""></i>
                                                 <i @click="deletes()"><img src="../../assets/img/zhiwei/zhiwei_ic_del.png" alt=""></i>
@@ -49,30 +49,30 @@
                               <el-row>
                                 <el-col :span="16">
                                 <div class="listitem bordersty" >
-                                    <p class="font_s">454</p>
+                                    <p class="font_s">{{totalCounts}}</p>
                                     <p class="num_s">该人才库候选总数</p>
                                 </div>
-                                <div class="listitem today "  >
-                                    <p class="font_s " style="color:#FF9C6E">45</p>
+                                <div class="listitem today ">
+                                    <p class="font_s " style="color:#FF9C6E">{{todayTotal}}</p>
                                     <p class="num_s num1-s">今日归档人数</p>
                                 </div>
                                 </el-col>
                                 <el-col :span="6">
                                      <div class="search">
-                                        <el-input v-model="searchname"  class="input_search" placeholder="输入你想搜索的内容" @enter.click="searchList" >
+                                        <el-input v-model="searchname"  class="input_search" placeholder="输入你想搜索的内容" @keyup.enter.native="searchList" >
                                         <i @click="searchList" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                                         </el-input>
-                                        <el-button class="add_btn" @click="addCandidateShow()">新建人才库</el-button>
+                                        <el-button class="add_btn" @click="addVisible=true">新建人才库</el-button>
                                      </div>
                                 </el-col>
                               </el-row>
                             </div>
                         <!--表格  -->
                             <div class="div_table_infor">
-                                <el-table :key='signs'  :data="candidateList" style="width: 100%" >
-                                    <el-table-column fixed prop="processNum" label="基本资料" header-align='center' align='left' max-width="350px">
+                                <el-table :key='signs'  :data="TalentList" style="width: 100%" >
+                                    <el-table-column fixed prop="processNum" label="基本资料" header-align='center' align='left' width="520px">
                                         <template slot-scope="scope" >
-                                            <span class="basic_sty " style="cursor: pointer"  >
+                                            <span class="basic_sty " style="cursor: pointer"  @click="addCandidateShow('steps');showSteps(scope.row.id)">
                                               <span class="name_s">{{scope.row.candidateName}} <em>{{scope.row.candidateSex}}</em><em class="bom_sty"></em><em>{{scope.row.candidateExperience}}</em></span>
                                               <p><img src="../../assets/img/zhiwei/houxuan_ic_work.png" alt=""><span>{{scope.row.workExperience}}</span></p>
                                               <p><img src="../../assets/img/zhiwei/houxuan_ic_education.png" alt=""><span>{{scope.row.educationExperience}}</span></p>
@@ -106,28 +106,28 @@
           </div>
     </div>
       <!-- 弹窗-新增人才库  -->
-     <el-dialog title="新建人才库" :visible.sync="addVisible" class="add_dialog" custom-class="sty_dialogs" :before-close="closeAdd">
-        <el-form style="margin-left:50px;" :model="form1" :rules="rules"  ref="form1" >
+     <el-dialog title="新建人才库" :visible.sync="addVisible" class="add_dialog" custom-class="sty_dialogs" >
+        <el-form style="margin-left:50px;" :model="form1" :rules="rules"  ref="form1" @submit.native.prevent="addSubmit">
           <el-form-item label="人才库名称"  prop="deptName">
-            <el-input style="width:280px;" v-model="form1.deptName" maxlength="32"  placeholder="请输入名称"></el-input>
+            <el-input style="width:280px;" v-model="form1.deptName" maxlength="32"  placeholder="请输入名称"  @keyup.enter.native="addSubmit"></el-input>
           </el-form-item>
         </el-form>
          <div slot="footer" class="dialog-footer">
          <el-button type="primary"  :class="searchBtnClass" :disabled="searchDisabled" style="height:36px;background: #F95714;" @click="addSubmit">提交</el-button>
-            <el-button style="height:36px" @click="closeAdd(form1)">取 消</el-button>
+            <el-button style="height:36px" @click="addVisible=false">取 消</el-button>
         </div>
       </el-dialog>
 
     <!--编辑人才库-->
-    <el-dialog title="新建人才库" :visible.sync="updateVisible" class="add_dialog" custom-class="sty_dialogs" :before-close="closeAdd">
-      <el-form style="margin-left:50px;" :model="form1" :rules="rules"  ref="form1" >
-        <el-form-item label="人才库名称"  prop="deptName">
-          <el-input style="width:280px;" v-model="form1.deptName" maxlength="32"  placeholder="请输入名称"></el-input>
+    <el-dialog title="编辑人才库" :visible.sync="updateVisible" class="add_dialog" custom-class="sty_dialogs" >
+      <el-form style="margin-left:50px;" :model="form1" :rules="rule"  ref="form2"  @submit.native.prevent="updateSubmit">
+        <el-form-item label="人才库名称"  prop="updateDeptName">
+          <el-input style="width:280px;" v-model="form2.updateDeptName" maxlength="32"  placeholder="请输入名称"  @keyup.enter.native="updateSubmit"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary"  :class="searchBtnClass" :disabled="searchDisabled" style="height:36px;background: #F95714;" @click="addSubmit">提交</el-button>
-        <el-button style="height:36px" @click="closeAdd(form1)">取 消</el-button>
+        <el-button type="primary"   style="height:36px;background: #F95714;" :class="searchBtnClass2" :disabled="searchDisabled2" @click="updateSubmit">提交</el-button>
+        <el-button style="height:36px"  @click="updateVisible=false">取 消</el-button>
       </div>
     </el-dialog>
 
@@ -137,10 +137,12 @@
              <div style="text-align:center;font-size:16px;color:#394A66;margin:10px 0 ;">您是否确认删除该人才库？</div>
              <div style="text-align:center;font-size:16px;color:#394A66">（删除后您只能在全部淘汰候选人中找到该人才库中的数据）</div>
         <div slot="footer" class="dialog-footer">
-          <el-button type="primary" @click="deletenode" style="height:36px">确 定</el-button>
+          <el-button type="primary" @click="deleteTalent " style="height:36px">确 定</el-button>
           <el-button style="height:36px" @click="dialogDelete = false">取 消</el-button>
         </div>
       </el-dialog>
+    <!--候选人信息  父组件传值-->
+    <candidateSteps  :addVisible.sync="visables.steps"  @hideModel="hideChildModal" :candidateStepsData="candidateStepsData"  :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList" :signs="signs" ></candidateSteps>
   </div>
 </template>
 
@@ -152,28 +154,39 @@
   import {format} from '@/assets/js/date.js'
   import pageheader from '@/components/common/pageheader';
   import pageaside from '@/components/common/pageaside';
+  import candidateSteps from '@/components/candidate/candidateSteps';
 //  blance
 export default {
   name: 'jobmanageindex',
 	components: {
    	pageheader,
     pageaside,
+    candidateSteps,
   },
    data() {
       return {
+        candidateStepsData:[],//候选人基本信息
+        standardResume:[],//候选人个人信息之外的内容,
+        candidateWorkExperienceDTOList:'',//工作经历
+        candidateEducationExperienceDTOList:'',//教育经历
+        visables:{
+          steps:false,
+        },
+        searchType:'all',
+        totalCounts:0,//人才库总数
+        todayTotal:0,//今日归档总数
         updateVisible:false,
         seen:'',
-        signs:'2' ,
-        candidateList:[],//列表
-        personList:[],//人员数据
+        signs:0 ,
+        TalentList:[],//列表
+        personList:[],//人才库数据
         counts:{},
-        names:'',//搜素关键字
+        searchContent:'',//搜素关键字
         searchname:'',
-        postId:'',//职位id
+        id:'',//人才库id
         totalCount:0,
         texts:'人才库',
-        candidatestatus:'2',
-        recruitStatus:'1',
+        candidatestatus:0,
         flags:true,
         pageIndex: 1,
         pageSize: 5,
@@ -183,10 +196,19 @@ export default {
           deptName:''
         },
         rules: {
-        deptName:[
-            { required: true, message: '请输入部门名称', trigger: 'blur' },
+          deptName:[
+            { required: true, message: '请输入人才库名称', trigger: 'blur' },
             { min:1, max: 32, message: '长度在32个字符内', trigger: 'blur' }
            ],
+        },
+        form2:{
+          updateDeptName:''
+        },
+        rule: {
+          updateDeptName:[
+            { required: true, message: '请输入人才库名称', trigger: 'blur' },
+            { min:1, max: 32, message: '长度在32个字符内', trigger: 'blur' }
+          ],
         },
       };
     },
@@ -211,108 +233,234 @@ export default {
             return true
           }
         },
+        //搜索按钮样式
+        searchBtnClass2:function () {
+          if(this.form2.updateDeptName!="" ){
+            return{
+              click_opacity:false
+            }
+          }else{
+            return{
+              click_opacity:true
+            }
+          }
+        },
+        //按钮禁用 true
+        searchDisabled2:function () {
+          if(this.form2.updateDeptName!=""  ){
+            return false
+          }else{
+            return true
+          }
+        },
    },
     methods: {
-   //编辑
-     edit() {
-
-     },
-  // 删除
-    deletes() {
-     this.dialogDelete = true
-    },
-    addSubmit() {
-
-    },
-    //获取职位列表
-    getCandidate() {
-      let that=this;
-      let currPage=that.pageIndex || 1;
-      let pageSize=that.pageSize || 5;
+     //编辑
+       edit() {
+         this.updateVisible = true
+       },
+    // 删除
+      deletes() {
+       this.dialogDelete = true
+      },
+      //新建人才库提交
+      addSubmit() {
+       let that=this;
         that.$http({
-	  			method:"post",
-	  			url:api.candidateList,
-	  			headers:headers('application/json;charset=utf-8'),
-	  			data:{
-				    postId:that.postId || '',
-				    candidateName:that.searchname || '',
-				    candidateStatus:that.candidatestatus ,
-				    pageCurrent:currPage,
-				    pageSize:pageSize,
-	  			}
-	  		}).then(function(res){
-	  			if(res.data.code==10000){
-             that.candidateList=res.data.data;
-            that.totalCount=res.data.count;
-	  			}else{
-	  				that.$message.error(res.data.msg);
-	  			}
-		    });
-    },
-    getCandidateList(val) {
-    this.postId = val.id
-    this.seen = val.id
-    this.getCandidate()
-    this.flags =false
-    },
-    //展示候选人弹窗
-    addCandidateShow(){
-    let that=this;
-    that.addVisible = true;
-    },
-    closeAdd() {
-      this.addVisible = false
-    },
-    changePage(newPage) {
-          let that=this;
-          if(that.pageIndex === newPage) {
-            return;
+          method:'post',
+          url:api.addTalent,
+          data:{
+            tagName:that.form1.deptName
+          },
+          headers:headers(),
+        }).then(function (res) {
+          that.addVisible=false;
+          that.form1.deptName='';
+          if(res.data.code==10000){
+            that.$message.success(res.data.msg);
+            that.getTalent();
+          }else{
+            that.$message.error(res.data.msg)
           }
-          that.pageIndex = newPage;
-          that.getCandidate();
-        },
-        changeSize(newSize) {
-          let that=this;
-          that.pageSize = newSize;
-          that.getCandidate();
-    },
-  //获取左侧职位列表
-    getPosition(){
-      let that=this;
-      that.$http({
-        method:"post",
-        url:api.getPosition,
-        headers:headers('application/json;charset=utf-8'),
-        data:{
-          'name':that.names,
-          'recruitStatus':that.recruitStatus,
-        }
-      }).then(function(res){
-        if(res.data.code==10000){
+        })
+      },
+      //编辑人才库提交
+      updateSubmit() {
+         let that=this;
+        that.$http({
+          method:'post',
+          url:api.updateTalent,
+          data:{
+            tagId:that.id,
+            tagName:that.form2.updateDeptName
+          },
+          headers:headers(),
+        }).then(function (res) {
+          that.updateVisible=false;
+          that.form2.updateDeptName='';
+          if(res.data.code==10000){
+            that.$message.success(res.data.msg);
+            that.getTalent();
+          }else{
+            that.$message.error(res.data.msg)
+          }
+        })
+      },
+      //删除人才库
+      deleteTalent() {
+        let that=this;
+        that.$http({
+          method:'post',
+          url:api.removeTalent,
+          data:{
+            tagId:that.id,
+          },
+          headers:headers(),
+        }).then(function (res) {
+          that.dialogDelete=false;
+          if(res.data.code==10000){
+            that.$message.success(res.data.msg);
+            that.getTalent();
+          }else{
+            that.$message.error(res.data.msg)
+          }
+        })
+      },
+      //统计人才库中人才数量
+      talentCounts(){
+        let that=this;
+        that.$http({
+          method:'get',
+          url:api.talentCounts,
+          headers:headers(),
+        }).then(function (res) {
+          if(res.data.code==10000){
+            let data=res.data.data;
+            that.totalCounts=data.aLLCount;//人才库总数
+            that.todayTotal=data.todayCount;
+          }
+        })
+      },
+      //获取左侧人才库列表
+      getTalent(){
+        let that=this;
+        that.$http({
+          method:"post",
+          url:api.talentTag+'all',
+          headers:headers(),
+          data:{
+            searchContent:that.searchContent,
+          }
+        }).then(function(res){
+          if(res.data.code==10000){
             that.personList=res.data.data;
-        }else{
-          that.$message.error(res.data.msg);
+          }else{
+            that.$message.error(res.data.msg);
+          }
+        });
+      },
+      //获取人才库数据列表
+      getTalentList() {
+        let that=this;
+        let currPage=that.pageIndex || 1;
+        let pageSize=that.pageSize || 5;
+          that.$http({
+            method:"post",
+            url:api.talentList,
+            headers:headers(),
+            data:{
+              tagId:that.id || null,
+              enterpriseId:that.enterpriseId || '',
+              searchType:that.searchType,//'all'||'tag',
+              candidateName:that.searchname,
+              pageCurrent:currPage,
+              pageSize:pageSize,
+            }
+          }).then(function(res){
+            if(res.data.code==10000){
+               that.TalentList=res.data.data;
+              that.totalCount=res.data.count;
+            }else{
+              that.$message.error(res.data.msg);
+            }
+          });
+      },
+      //选择人才库类型查询所有人才
+      getCandidateList(item) {
+        this.id = item.id;
+        this.searchType='tag';
+        this.seen = item.id;//选中样式
+        this.getTalentList();
+        this.flags =false;
+      },
+      changePage(newPage) {
+        let that=this;
+        if(that.pageIndex === newPage) {
+          return;
         }
-      });
-    },
-    searchList() {
-     // this.getCandidate()
-      this.$router.push({path:'/searchCandidata',query:{code:this.searchname,postId:this.postId,candidatestatus:this.candidatestatus}})
-    },
-    getItems() {
-      this.flags = !this.flags;
-      this.seen= '';
-      this.postId = '';
-      this.getCandidate()
-    },
-   //删除人才库
-    deletenode() {
+        that.pageIndex = newPage;
+        that.getTalentList();
+      },
+      changeSize(newSize) {
+        let that=this;
+        that.pageSize = newSize;
+        that.getTalentList();
+      },
 
-    }
+      searchList() {
+       this.getTalentList()
+       //  this.$router.push({path:'/searchCandidata',query:{code:this.searchname,postId:this.postId,candidatestatus:this.candidatestatus}})
+      },
+      getItems() {
+        this.flags = !this.flags;
+        this.seen= '';
+        this.id = '';
+        this.searchType='tag';
+        this.getTalentList()
+      },
+
+      //展示候选人弹窗
+      addCandidateShow(param){
+        let that=this;
+        that.visables[param] = true;
+
+        if(param=='steps'){//添加候选人信息弹窗s
+
+
+        }else{
+          that.addCandidateStatus=true;
+        }
+      },
+      //关闭候选人弹窗
+      hideChildModal(param){
+        console.log('接收的子组件数据--------->'+param);
+        this.visables[param]= false;
+      },
+      //blance showSteps  查询候选人信息
+      showSteps(id){
+        let that=this;
+        that.$http({
+          url:api.getCandidate+id,
+          headers:headers(),
+          method:'get',
+        }).then(function (res) {
+          that.candidateStepsData=[];
+          that.standardResume=[];
+          if(res.data.code==10000 && res.data.data !=null ){
+            localStorage.setItem("candidateID",id);
+            that.candidateStepsData.push(res.data.data);
+            that.standardResume.push(JSON.parse(res.data.data.standardResume));
+            that.candidateWorkExperienceDTOList=JSON.parse(res.data.data.standardResume).candidateWorkExperienceDTOList;
+            that.candidateEducationExperienceDTOList=JSON.parse(res.data.data.standardResume).candidateEducationExperienceDTOList;
+            // console.log( that.candidateStepsData[0].status)
+          }
+        })
+      },
     },
     mounted() {
-     this.getCandidate()
-     this.getPosition()
+     this.getTalentList();
+     this.getTalent();
+     this.talentCounts();
     },
     created() {
     }
@@ -406,12 +554,13 @@ export default {
 .ad_input  .search .se_icon {
   position: absolute;
   right:8px;
-  top: 3px;
-  height: 30px;
+  top: 5px;
+  height: 25px;
   font-size: 18px;
   font-weight: 700;
   border-left: 1px solid #E5E5E5;
   color: #F95714;
+  cursor: pointer;
 }
 .ad_input .search .el-icon-search:before {
   content: "\E619";
@@ -454,7 +603,11 @@ export default {
    position: absolute;
    top: 0px;
    right: 20px;
+    display: none;
 }
+ .position_list ul li:hover span{
+   display: inline-block;
+ }
 .position_list ul li:hover {
   color: #F95714;
 }
@@ -528,12 +681,13 @@ export default {
 .content_pad .search .input_search .se_icon {
   position: absolute;
   right:-244px;
-  top: 25px;
-  height: 30px;
+  top: 30px;
+  height: 25px;
   font-size: 18px;
   font-weight: 700;
   border-left: 1px solid #E5E5E5;
   color: #F95714;
+  cursor: pointer;
 }
 .content_pad .search .el-icon-search:before {
   content: "\E619";
@@ -546,6 +700,7 @@ export default {
   height: 100%;
   color: #fff;
   margin-left: 10px;
+  border: none;
 }
 /* 搜索框样式结束 */
 .basic_sty .name_s {

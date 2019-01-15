@@ -32,7 +32,7 @@
       <P><i>分类:</i>我们拒绝了候选人</P>
       <P><i>原因:</i>{{item.archivingReason}}</P>
       <P><i>说明:</i>{{item.detailedReasons}}</P>
-      <button  class="button weedOut" @click="renew">恢复到初筛</button>
+      <button  class="button weedOut" @click="renew">恢复到淘汰前状态</button>
       <button class="button weedOut" @click="showmodel2">备注</button><!--@click="visable.remark==true"-->
     </div>
     <!-- 弹窗备注 -->

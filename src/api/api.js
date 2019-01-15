@@ -1,11 +1,11 @@
 // let Butterfly="http://101.132.66.158:8899/jersey/";//服务本地地址
 // let Butterfly="http://127.0.0.1:8899/jersey/";
-let Butterfly="http://192.168.2.166:8899/jersey/";//测试ip
+// let Butterfly="http://192.168.2.166:8899/jersey/";//测试ip
 // let Butterfly="http://192.168.6.6:8899/jersey/";//薛尧
 // let Butterfly="http://192.168.6.251:8899/jersey/";//潘述钱ip
 // let Butterfly="http://192.168.6.209:8899/jersey/";//潘述钱ip
 // let Butterfly = 'http://192.168.6.208:8899/jersey/'// 郭峰ips
-// let Butterfly="http://192.168.6.207:8899/jersey/";//施玮ip
+let Butterfly="http://192.168.6.207:8899/jersey/";//施玮ip
 // let Butterfly="http://192.168.6.244:8899/jersey/";//李博
 // let Butterfly="http://192.168.6.188:8899/jersey/";//曹莉
 // let Butterfly="http://192.168.6.252:8899/jersey/";//王恒
@@ -177,6 +177,13 @@ const api = {
   updateEliminate:Butterfly+'candidate/update/eliminate',//淘汰
   init:Butterfly+'candidate/cancel/init/',//恢复到初筛
   changeCandidateStatus:Butterfly+'candidate/change/status/',//切换候选人状态
+  talentCounts:Butterfly+'talent/pool/count/data',//统计人才库中人才数量
+  talentTag:Butterfly+'talent/pool/tag/search/',//查询企业下所有的人才库标签 get
+  talentList:Butterfly+'talent/pool/list',// 获取人指定才库列表
+
+  addTalent:Butterfly+'talent/pool/tag/add',//新增企业人才库标签
+  removeTalent:Butterfly+'talent/pool/tag/remove',//删除人才库
+  updateTalent:Butterfly+'talent/pool/tag/modify',
 
   removeOffer:Butterfly+'offer/delete/',//删除offer
 }

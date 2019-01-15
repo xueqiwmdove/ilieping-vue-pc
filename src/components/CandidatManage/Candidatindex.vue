@@ -101,14 +101,18 @@
                                         <img v-else src="../../assets/img/zhiwei/houxuan_ic_wait.png" alt="">
                                     </em>
                                 </div>
-                                <div class="but_stys "  :class="signs=='0'? 'btn_s':''"  @click="tagStyChange(0)">
+                               <!-- <div class="but_stys "  :class="signs=='0'? 'btn_s':''"  @click="tagStyChange(0)">
                                     <p class="font_s">已淘汰</p>
                                     <i class="num_s">{{count0}}</i>
                                     <em class=" icon_s">
                                         <img v-if="signs == '0'" src="../../assets/img/zhiwei/houxuan_ic_pass_pre.png" alt="">
                                         <img v-else src="../../assets/img/zhiwei/houxuan_ic_pass.png" alt="">
                                     </em>
-                                </div>
+                                </div>-->
+                                  <div  class="history_s">
+                                    <i @click="$router.push('/talentPool');fileshow=false"  @mouseenter="fileshow=false"  v-if="fileshow"><img src="../../assets/img/1.5.1/file.png" alt="">历史归档</i>
+                                    <i @click="$router.push('/talentPool');fileshow=true;"  @mouseleave="fileshow=true;" v-else style="color:#F95714;"><img src="../../assets/img/1.5.1/file2.png" alt="">历史归档</i>
+                                  </div>
                                   <div class="search">
                                       <el-input v-model="searchname"  class="input_search" placeholder="输入你想搜索的内容" >
                                       <i @click="searchList" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
@@ -234,6 +238,7 @@ export default {
   },
    data() {
       return {
+        fileshow:true,
         addCandidateStatus:false,//添加候选人页面整体
         signs:'2' ,
         candidateList:[],//列表
@@ -557,8 +562,10 @@ export default {
 .ad_input  .search .se_icon {
   position: absolute;
   right:8px;
-  top: 3px;
-  height: 30px;
+  top: 6px;
+  height: 25px;
+  /*top: 3px;*/
+  /*height: 30px;*/
   font-size: 18px;
   font-weight: 700;
   border-left: 1px solid #E5E5E5;
@@ -605,7 +612,7 @@ export default {
 /* 右侧样式开始 */
 .positionTable {
   background-color: #fff;
-  padding: 12px 25px;
+  padding: 20px 25px;
   min-width: 729px;
   padding-left: 0px;
   height:800px;
@@ -618,6 +625,7 @@ export default {
   height:80px;
   line-height:80px;
   margin-top: 0px;
+  clear: both;
 }
 .but_stys {
   width:120px;
@@ -676,8 +684,9 @@ export default {
   right: 0px;
   width: 400px;
   height: 40px;
-  margin-top: 10px;
+  margin-top: 21px;
   position: relative;
+  float: right;
 }
 .content_pad .search .input_search {
   width: 260px;
@@ -687,8 +696,10 @@ export default {
 .content_pad .search .input_search .se_icon {
   position: absolute;
   right:-244px;
-  top: 25px;
-  height: 30px;
+  top: 30px;
+  height: 25px;
+  /*top: 25px;*/
+  /*height: 30px;*/
   font-size: 18px;
   font-weight: 700;
   border-left: 1px solid #E5E5E5;
@@ -705,6 +716,7 @@ export default {
   height: 100%;
   color: #fff;
   float: right;
+  border: none;
 }
 /* 搜索框样式结束 */
 .basic_sty .name_s {
@@ -731,6 +743,25 @@ export default {
 .heightlight {
   color:#F95714 !important;
 }
+  .history_s {
+    display: inline-block;
+    cursor: pointer;
+    /*margin-top: 10px;*/
+  }
+ .history_s i {
+   display: inline-block;
+   height: 30px;
+   line-height: 30px;
+   margin-left: 80px;
+   position: relative;
+   left: -5px;
+ }
+ .history_s i img {
+   display: inline-block;
+   position: absolute;
+   top: 8px;
+   left: -16px;
+ }
 
 </style>
 <style>

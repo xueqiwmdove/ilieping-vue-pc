@@ -182,7 +182,7 @@
                     <label>转正工资<span class="class_required">*</span></label>
                     <input type="text" autocomplete="off" v-model="basicWages" placeholder="转正工资"/>
                   </div>
-                  <div class="input_div">
+                  <div class="input_div" style="vertical-align: top;">
                     <label>工资发放日(例: 25)<span class="class_required">*</span></label>
                     <input type="text" autocomplete="off" v-model="payrollTime" placeholder="请输入日期"/>
                   </div>

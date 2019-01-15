@@ -291,6 +291,7 @@ export default {
 }
 .status_ren{
 	margin-left: 20px;
+  padding: 2px 10px;
 	cursor: pointer;
 	font-size: 12px;
 	color: #F95714;
@@ -359,7 +360,8 @@ export default {
 .selece_option ul li {
  height: 45px;
  width: 100%;
- text-align: center;
+ text-indent: 30px;
+ text-align: left;
  font-size:14px;
  font-family:PingFangSC-Regular;
  font-weight:400;
