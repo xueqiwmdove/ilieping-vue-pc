@@ -1,19 +1,19 @@
 <template>
-  <div id="app">
-  
+  <div id="app" class="fillcontain">
     <router-view/>
-  
   </div>
 </template>
 
 <script>
   export default {
-  
     name: 'App',
-  
   }
 </script>
 <style lang="less">
+.fillcontain, body, html{
+		height: 100%;
+    width: 100%;
+	}
   .pull-right {
   
     float: right;

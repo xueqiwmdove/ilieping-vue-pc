@@ -160,22 +160,36 @@ nav .pull-right .exit:before {
   margin: 0 16px;
   vertical-align: top;
 }
+
 /*左边导航栏*/
 .main {
-  width: 100%;
+/*  width: 100%;
   min-height: calc(100% - 48px);
   vertical-align: top;
-  position: relative;
+  position: relative; */
+	display: flex;
+    position: absolute;
+    top: 48px;
+    bottom: 0;
+    overflow: hidden;
 }
 .main .aside {
-  width: 240px;
+/*  width: 210px;
   background: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
   display: inline-block;
   height: 100%;
   position: fixed;
   top: 48px;
-  bottom: 0px;
+  bottom: 0px; */
+	-ms-flex: 0 0 210px;
+	flex:0 0 210px;
+	width: 210px;
+}
+.main .aside_collapsed{
+    -ms-flex: 0 0 60px;
+    flex: 0 0 60px;
+    width: 60px;
 }
 .main .aside .accordion {
   width: 100%;
@@ -253,12 +267,15 @@ nav .pull-right .exit:before {
   clear: both;
 }
 .main .right-content {
-  width: calc(100% - 240px);
-  width: -moz-calc(100% - 240px);
-  width: -webkit-calc(100% - 240px);
+/*  width: calc(100% - 210px);
+  width: -moz-calc(100% - 210px);
+  width: -webkit-calc(100% - 210px);
   height: 100%;
   padding: 60px 10px 10px 10px;
-  background: #FAFAFA;
+  background: #FAFAFA; */
+	    flex: 1;
+    overflow-y: scroll;
+    padding: 20px;
 }
 .main .right-content .content {
   width: 100%;
@@ -271,26 +288,11 @@ nav .pull-right .exit:before {
   height: 50px;
   line-height: 50px;
   text-indent: 23px;
-  /*margin-bottom: 20px;*/
+  margin-bottom: 20px;
   font-size: 16px;
   color: #21324E;
   letter-spacing: 0;
-  /*border-bottom: 1px solid #E5E5E5;*/
-  margin-bottom: 0px;
-  border-bottom: none;
-  background-color: #FAFAFA;
-}
-.main .right-content .content .headline span{
-  background:url("../../../assets/img/zhiwei/houxuan_ic_weizhi.png") no-repeat left;
-  padding-left: 20px;
-}
-.main .right-content .content .headline span i{
-  font-style: normal;
-  color: #999999;
-}
-.main .right-content .content .headline img {
-  cursor: pointer;
-  vertical-align: text-bottom;
+  border-bottom: 1px solid #E5E5E5;
 }
 .main .right-content .content .headline a {
   display: inline-block;
