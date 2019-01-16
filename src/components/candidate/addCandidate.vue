@@ -12,7 +12,7 @@
         <!--<addCandidate_right></addCandidate_right>-->
 
         <!--标准简历才有-->
-        <div class="standard_required" v-if="flag==2">
+        <!--<div class="standard_required" v-if="flag==2">
           <div class="basic">
             <div class="inputBox">
               <img src="../../assets/img/candidate/tanchuang_ic_name.png" alt="">
@@ -70,12 +70,9 @@
             <div class="inputBox">
               <img src="../../assets/img/candidate/tanchuang_ic_place.png" alt="">
               <el-input v-model="address" placeholder="所在地"></el-input>
-              <!--<el-select v-model="address" placeholder="所在地">
-                <el-option v-for="item in addressData" :key="item.value" :label="item.label" :value="item.value"></el-option>
-              </el-select>-->
             </div>
           </div>
-        </div>
+        </div>-->
 
         <div class="addCandidate_content">
 
@@ -127,7 +124,89 @@
           <div v-if="flag==2" class="standard_resume">
             <el-row>
               <el-col  :span="24">
-                <el-form>
+                <el-form :rules="rules">
+                  <p class="headLine">基本信息</p>
+                  <div class="personInfo">
+                    <el-row :gutter="80">
+                      <el-col :lg="8" :md="8" :sm="8">
+                        <el-form-item label="姓名" required prop="name">
+                          <el-input v-model="name" placeholder="请输入候选人姓名"></el-input>
+                        </el-form-item>
+                      </el-col>
+                      <el-col :lg="8" :md="8" :sm="8">
+                        <el-form-item label="岗位" required prop="post1">
+                          <el-select v-model="post1" placeholder="选择岗位">
+                            <el-option v-for="item in post1Data" :key="item.name" :label="item.name" :value="item.id"></el-option>
+                          </el-select>
+                        </el-form-item>
+                      </el-col>
+
+                      <el-col :lg="8" :md="8" :sm="8">
+                        <el-form-item label="手机号码"  required prop="phone">
+                          <el-input v-model="phone" placeholder="请输入手机号"></el-input>
+                        </el-form-item>
+                      </el-col>
+                    </el-row>
+
+                    <el-row :gutter="80">
+                      <el-col :lg="8" :md="8" :sm="8">
+                        <el-form-item label="邮箱号码" required prop="email">
+                          <el-input v-model="email" placeholder="请输入邮箱号码"></el-input>
+                        </el-form-item>
+                      </el-col>
+                      <el-col :lg="8" :md="8" :sm="8">
+                        <el-form-item label="面试渠道">
+                          <el-select v-model="channels" placeholder="面试渠道">
+                            <el-option v-for="item in channelsData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                          </el-select>
+                        </el-form-item>
+                      </el-col>
+
+                      <el-col :lg="8" :md="8" :sm="8">
+                        <el-form-item label="来源">
+                          <el-select v-model="resoure" placeholder="选择来源">
+                            <el-option v-for="item in resoureData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                          </el-select>
+                        </el-form-item>
+                      </el-col>
+                    </el-row>
+
+                    <el-row :gutter="80">
+                      <el-col :lg="8" :md="8" :sm="8">
+                          <el-form-item label="性别">
+                            <el-select v-model="sex" placeholder="请选择候选人性别">
+                              <el-option v-for="item in sexData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                            </el-select>
+                          </el-form-item>
+                      </el-col>
+                      <el-col :lg="8" :md="8" :sm="8">
+                        <el-form-item label="年龄">
+                          <el-input v-model="age" placeholder="请输入年龄"></el-input>
+                        </el-form-item>
+                      </el-col>
+                      <el-col :lg="8" :md="8" :sm="8">
+                        <el-form-item label="工作经验">
+                          <el-select v-model="experience" placeholder="请选择工作经验"  @change="selectExperience">
+                            <el-option v-for="item in experienceData" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                          </el-select>
+                        </el-form-item>
+                      </el-col>
+                      <el-col :lg="8" :md="8" :sm="8">
+                        <el-form-item label="所在地">
+                          <el-input v-model="address" placeholder="所在地"></el-input>
+                        </el-form-item>
+                      </el-col>
+                    </el-row>
+
+                    <el-row>
+                      <el-col :lg="24" :md="24" :sm="24">
+                        <el-form-item label="兴趣爱好">
+                          <el-input type="textarea" v-model="hobby" placeholder="请输入兴趣爱好"></el-input>
+                        </el-form-item>
+                      </el-col>
+                    </el-row>
+                  </div>
+
                   <p class="headLine">个人信息</p>
                   <div class="personInfo">
                     <el-row :gutter="80">
@@ -209,8 +288,8 @@
                   </div>
 
                   <div v-if="workExperienceIsShow" v-for="(item,index) in candidateWorkExperienceDTOList" :key="item.index">
-                    <p class="headLine" v-show="candidateWorkExperienceDTOList.length<2">工作经历 <i style="font-weight: normal">（必填）</i></p>
-                    <p class="headLine" v-show="candidateWorkExperienceDTOList.length>1">工作经历{{index+1}}（<i style="font-weight: normal">必填</i>）</p>
+                    <p class="headLine" v-show="candidateWorkExperienceDTOList.length<2">工作经历</p>
+                    <p class="headLine" v-show="candidateWorkExperienceDTOList.length>1">工作经历{{index+1}}</p>
                     <div class="addButton" @click="addWorkDomain" v-show="index==0">
                       添加 <img src="../../assets/img/candidate/tanchuang_ic_add.png" alt="">
                     </div>
@@ -222,7 +301,7 @@
                     <div class="work" >
                       <el-row :gutter="80">
                         <el-col :lg="8" :md="8" :sm="8">
-                          <el-form-item label="任职时间" required>
+                          <el-form-item label="任职时间" >
                             <el-date-picker
                               v-model="item.startTime"
                               type="daterange"
@@ -235,13 +314,13 @@
                           </el-form-item>
                         </el-col>
                         <el-col :lg="8" :md="8" :sm="8">
-                          <el-form-item label="公司名称" required>
+                          <el-form-item label="公司名称" >
                             <el-input v-model="item.companyName" placeholder="请输入就职公司名称"></el-input>
                           </el-form-item>
                         </el-col>
 
                         <el-col :lg="8" :md="8" :sm="8">
-                          <el-form-item label="岗位" required>
+                          <el-form-item label="岗位" >
                             <el-input v-model="item.post" placeholder="请输入任职的岗位"></el-input>
                           </el-form-item>
                         </el-col>
@@ -283,8 +362,8 @@
                   </div>
 
                   <div v-for="(item,index) in candidateEducationExperienceDTOList" :key="item.index">
-                    <p class="headLine" v-show="candidateEducationExperienceDTOList.length<2">教育经历<i style="font-weight: normal">（必填）</i></p>
-                    <p class="headLine" v-show="candidateEducationExperienceDTOList.length>1">教育经历{{index+1}}<i style="font-weight: normal">（必填）</i></p>
+                    <p class="headLine" v-show="candidateEducationExperienceDTOList.length<2">教育经历</i></p>
+                    <p class="headLine" v-show="candidateEducationExperienceDTOList.length>1">教育经历{{index+1}}</p>
                     <div class="addButton" @click="addEducationDomain" v-show="index==0">
                       添加 <img src="../../assets/img/candidate/tanchuang_ic_add.png" alt="">
                     </div>
@@ -295,7 +374,7 @@
                     <div class="education">
                       <el-row :gutter="80">
                         <el-col :lg="8" :md="8" :sm="8">
-                          <el-form-item label="就读时间" required><!--studyTime-->
+                          <el-form-item label="就读时间" ><!--studyTime-->
                             <el-date-picker
                               v-model="item.startTime"
                               type="daterange"
@@ -307,13 +386,13 @@
                           </el-form-item>
                         </el-col>
                         <el-col :lg="8" :md="8" :sm="8">
-                          <el-form-item label="学校名称" required>
+                          <el-form-item label="学校名称" >
                             <el-input v-model="item.schoolName" placeholder="请输入就读学校名称"></el-input>
                           </el-form-item>
                         </el-col>
 
                         <el-col :lg="8" :md="8" :sm="8">
-                          <el-form-item label="专业" required>
+                          <el-form-item label="专业" >
                             <el-input v-model="item.major" placeholder="请输入所学的专业"></el-input><!--specialty-->
                           </el-form-item>
                         </el-col>
@@ -685,6 +764,21 @@
                 other:'',//"其他"
               }
             ],
+            rules: {
+              name: [
+                { required: true, message: '请输入姓名', trigger: 'blur' },
+              ],
+              post1: [
+                { required: true, message: '请选择岗位', trigger: 'change' }
+              ],
+              phone: [
+                { type: 'phone', required: true, message: '请输入手机号', trigger: 'blur' }
+              ],
+              email: [
+                { type: 'email', required: true, message: '请输入邮箱号码', trigger: 'blur' }
+              ],
+
+            }
           }
       },
       computed:{
@@ -803,8 +897,30 @@
           // that.addVisible=false;
           // console.log(that.add)
           //清空数据
-          that.candidateEducationExperienceDTOList="";
-          that.candidateWorkExperienceDTOList= "";
+          that.candidateEducationExperienceDTOList=[
+            {
+              startTime:'',//"就读时间",['2018-1-1','2018-1-1']
+              schoolName:'',//"学校名称",
+              major:'',//"专业",
+              qualification:'',//"学历",
+              degree:'',//"学位",
+              isFullTime:'',//"是否全日制",
+              other:'',//"其他"
+            }
+          ];
+          that.candidateWorkExperienceDTOList=[//工作经历
+            {
+              startTime:'',//"任职时间",
+              companyName:'',//"公司名称",
+              post:'',//"岗位",
+              salary:'',//"薪资",
+              reterence:'',//"证明人",
+              reterenceContact:'',//"证明人联系方式",
+              workContent:'',//"工作内容",
+              dimissionReason:'',//"离职原因"
+            }
+          ];
+
           that.name="";
           that.sex="";
           that.description="";
@@ -1030,7 +1146,10 @@
             experience=that.experience;
 
             that.experience=that.experience;
+          }else if(that.experience=='5年以上'){
+            experience=6;
           }
+
           console.log(experience)
           that.standardResume={standardResumeDTO: {
                 head:that.imgcode,//"图片base64",

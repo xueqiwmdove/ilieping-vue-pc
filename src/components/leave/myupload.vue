@@ -313,6 +313,8 @@ export default {
 .nav-tabs > li {
     float: left;
     margin-bottom: -1px;
+  text-indent: 16px;
+  cursor: pointer;
 }
 .nav > li {
     position: relative;
@@ -328,6 +330,15 @@ export default {
     margin: 0;
     /*border: 1px solid #E5E5E5;*/
     /*border-radius: 2px;*/
+}
+#uploadTabs li:first-child span{
+  background: url("../../assets/img/dismission/uploadLeave.svg") no-repeat left;
+}
+#uploadTabs li:nth-child(2) span{
+  background: url("../../assets/img/dismission/exposure.svg") no-repeat left;
+}
+#uploadTabs li:nth-child(3) span{
+  background: url("../../assets/img/dismission/quickUpload.svg") no-repeat left;
 }
 .nav > li > span {
     position: relative;
