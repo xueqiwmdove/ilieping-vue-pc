@@ -1,14 +1,11 @@
 <template>
-  <div :class="isCollapse?'aside_collapsed':'aside'">
+  <div>
    <!--侧边栏-->
-<!-- <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
+<el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
   <el-radio-button :label="false">展开</el-radio-button>
   <el-radio-button :label="true">收起</el-radio-button>
-</el-radio-group> -->
-	<div class="tools" @click.prevent="collapse">
-		<i class="el-icon-menu"></i>
-	</div>
-<el-menu default-active="1-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+</el-radio-group>
+<el-menu default-active="1-1" unique-opened="true" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
   <el-submenu index="1">
     <template slot="title">
       <i class="icon_select"></i>
@@ -54,7 +51,7 @@
 			<el-menu-item index="5-2">合同模版</el-menu-item>
 	</el-submenu>
 </el-menu>
-</aside>
+
   </div>
 </template>
 
@@ -66,10 +63,6 @@
       };
     },
     methods: {
-			//折叠导航栏
-			collapse:function(){
-				this.isCollapse=!this.isCollapse;
-			},
       handleOpen(key, keyPath) {
         console.log(key, keyPath);
       },

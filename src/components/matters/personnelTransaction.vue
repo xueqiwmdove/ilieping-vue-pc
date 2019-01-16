@@ -1,13 +1,12 @@
 <template>
-  <div class="el-row container">
-		<!--顶部导航-->
-		<pageheader class="pageheader"></pageheader>
-  	<div class="main el-col el-col-24">
-
+  <div>
+  	<div class="main">
+  		<!--顶部导航-->
+  	  <pageheader class="pageheader"></pageheader>
       <!--侧边栏-->
-      <!-- <div> -->
+      <div class="aside">
         <pageaside></pageaside>
-      <!-- </div> -->
+      </div>
   		<!--右侧内容栏-->
   		<div class="right-content pull-right">
   			<div class="content">
@@ -77,9 +76,9 @@
     <!--人事流程详情 end-->
         <div class="border_none">
           <!--主体内容-->
-          <div class="headline_title">
-            <div class="a">人事异动</div>
-          </div>
+          <p class="headline">
+            <span><i>员工管理</i> /人事异动</span>
+          </p>
          </div>
   			 <div class="conHr">
 <!--  			 	 <div class="div_Tips">
@@ -90,8 +89,8 @@
 						 </div>
   			 	 </div> -->
   			 	 <div class="txt_div">
-						<el-row class="searchBox" :gutter="10">
-						  <el-col :xs="6" :sm="6" :md="8" :lg="5" :xl="3">
+						<el-row class="searchBox">
+						  <el-col :span="5">
 						  	<div class="grid-content bg-purple-dark">
 								  <div class="select_div">
 								  	<div class="select_title">状态</div>
@@ -104,7 +103,7 @@
 								  </div>
 						  	</div>
 						  </el-col>
-						  <el-col :xs="6" :sm="6" :md="8" :lg="5" :xl="3">
+						  <el-col :span="5">
 						  	<div class="grid-content bg-purple-dark">
 								  <div class="select_div">
 								  	<div class="select_title">流程</div>
@@ -117,10 +116,10 @@
 								  </div>
 						  	</div>
 						  </el-col>
-						  <el-col :xs="8" :sm="8" :md="8" :lg="4" :xl="6">
+						  <el-col :span="6">
 						  	<div class="grid-content bg-purple-dark">
 								  <div class="search_div">
-										<div class="search_input_div">
+										<div class="search_input_div" :span="6">
 											<el-input class="search_manage" placeholder="姓名/手机号" v-model="searchContent" @keyup.enter.native="gethrList"></el-input>
 											<div class="icon_btn el-icon-search" @click="gethrList"></div>
 										</div>
@@ -182,7 +181,7 @@
   import api from '@/api/api.js'
   import {headers} from '@/assets/js/common/lp.js'
   import pageheader from '@/components/common/pageheader';
-  import pageaside from '@/components/common/pageasideE';
+  import pageaside from '@/components/common/pageaside';
 
 export default {
   name: 'hr',
@@ -366,12 +365,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.container{
-	    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-}
+
 .main .right-content .content .headline_title{
     height: 50px;
     line-height: 50px;
@@ -414,7 +408,7 @@ export default {
 .div_table_infor{width: 100%; height: auto;margin-top: 30px;}
 .operation{
 	/* display: inline-block; */
-	
+
 }
 .options{
 	color: #2569F6;
