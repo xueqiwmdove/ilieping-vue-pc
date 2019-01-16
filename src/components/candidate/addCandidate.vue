@@ -127,17 +127,17 @@
           <div v-if="flag==2" class="standard_resume">
             <el-row>
               <el-col  :span="24">
-                <el-form>
+                <el-form >
                   <p class="headLine">基本信息</p>
                   <div class="personInfo">
                     <el-row :gutter="80">
-                      <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="姓名" required prop="name">
-                          <el-input v-model="name" placeholder="请输入候选人姓名"></el-input>
+                      <el-col :lg="8" :md="8" :sm="8" >
+                        <el-form-item label="姓名"  required>
+                          <el-input v-model.trim="name" placeholder="请输入候选人姓名"></el-input>
                         </el-form-item>
                       </el-col>
-                      <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="岗位" required prop="post1">
+                      <el-col :lg="8" :md="8" :sm="8" >
+                        <el-form-item label="岗位"  required>
                           <el-select v-model="post1" placeholder="选择岗位">
                             <el-option v-for="item in post1Data" :key="item.name" :label="item.name" :value="item.id"></el-option>
                           </el-select>
@@ -145,21 +145,21 @@
                       </el-col>
 
                       <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="手机号码"  required prop="phone">
-                          <el-input v-model="phone" placeholder="请输入手机号"></el-input>
+                        <el-form-item label="手机号码"  required>
+                          <el-input v-model.trim="phone" placeholder="请输入手机号" maxlength="11"></el-input>
                         </el-form-item>
                       </el-col>
                     </el-row>
 
                     <el-row :gutter="80">
                       <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="邮箱号码" required prop="email">
-                          <el-input v-model="email" placeholder="请输入邮箱号码"></el-input>
+                        <el-form-item label="邮箱号码" required>
+                          <el-input v-model.trim="email" placeholder="请输入邮箱号码"></el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :lg="8" :md="8" :sm="8">
                         <el-form-item label="面试渠道">
-                          <el-select v-model="channels" placeholder="面试渠道">
+                          <el-select v-model.trim="channels" placeholder="面试渠道">
                             <el-option v-for="item in channelsData" :key="item.value" :label="item.label" :value="item.value"></el-option>
                           </el-select>
                         </el-form-item>
@@ -184,7 +184,7 @@
                       </el-col>
                       <el-col :lg="8" :md="8" :sm="8">
                         <el-form-item label="年龄">
-                          <el-input v-model="age" placeholder="请输入年龄"></el-input>
+                          <el-input v-model.tirm="age" placeholder="请输入年龄"></el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :lg="8" :md="8" :sm="8">
@@ -215,7 +215,7 @@
                     <el-row :gutter="80">
                       <el-col :lg="8" :md="8" :sm="8">
                         <el-form-item label="工作城市">
-                          <el-input v-model="workAddress" placeholder="请输入工作城市"></el-input>
+                          <el-input v-model.trim="workAddress" placeholder="请输入工作城市"></el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :lg="8" :md="8" :sm="8">
@@ -236,7 +236,7 @@
                     <el-row :gutter="80">
                       <el-col :lg="8" :md="8" :sm="8">
                         <el-form-item label="期望行业">
-                          <el-input v-model="expected_industry" placeholder="请输入期望行业"></el-input>
+                          <el-input v-model.tirm="expected_industry" placeholder="请输入期望行业"></el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :lg="8" :md="8" :sm="8">
@@ -247,7 +247,7 @@
 
                       <el-col :lg="8" :md="8" :sm="8">
                         <el-form-item label="是否有亲友在本公司工作">
-                          <el-select v-model="isHave" placeholder="请选择">
+                          <el-select v-model.trim="isHave" placeholder="请选择">
                             <el-option v-for="item in isHaveData" :key="item.value" :label="item.label" :value="item.value"></el-option>
                           </el-select>
                         </el-form-item>
@@ -767,6 +767,21 @@
                 other:'',//"其他"
               }
             ],
+            // rules:{
+            //   name: [
+            //     { type:'string', required: true, message: '请输入姓名', trigger: 'blur'  }
+            //   ],
+            //   post1: [
+            //     { required: true, message: '请选择岗位',trigger: 'change' }
+            //   ],
+            //   phone: [
+            //     { type:'number', required: true, message: '请输入手机号', trigger: 'blur' , },
+            //     { min: 11, max: 11, message: '请输入11位手机号', trigger: 'blur' }
+            //   ],
+            //   email: [
+            //     { type:'email', required: true, message: '请输入邮箱号码', trigger: 'blur' , },
+            //   ],
+            // }
           }
       },
       computed:{
@@ -855,11 +870,15 @@
                   that.experience=data.workExperience>5;
                 }*/
 
-                /* if(data.workExperience>5){
-                   that.experience=6;
+                 if(data.workExperience>5){
+                   that.experience='5年以上';
+                 }else if(data.workExperience==null||data.workExperience==''){
+                   that.experience='';
                  }else if(0<data.workExperience<=5){
-                   that.experience=data.workExperience;
-                 }*/
+                   that.experience=data.workExperience+'年';
+                 }else if(data.workExperience==0){
+                   that.experience='应届毕业生';
+                 }
 
                 that.industry=data.whereIndustry;
                 that.expected_industry=data.expectIndustry;
@@ -874,11 +893,12 @@
               }else{
                 that.$message.error(res.data.msg);
                 setTimeout(function () {
-                  that.$emit('hideModel',that.add);//向父组件派发事件
+                  // that.$emit('hideModel',that.add);//向父组件派发事件
                   that.resumeType='';
                   that.resumeUrl="";
-                  that.changeTab(1);
-                  that.$parent.closeResume();
+                  that.flag=2;
+                  // that.changeTab(1);
+                  // that.$parent.closeResume();
 
                 },2000);
               }
