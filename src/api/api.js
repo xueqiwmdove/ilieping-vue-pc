@@ -184,6 +184,8 @@ const api = {
   addTalent:Butterfly+'talent/pool/tag/add',//新增企业人才库标签
   removeTalent:Butterfly+'talent/pool/tag/remove',//删除人才库
   updateTalent:Butterfly+'talent/pool/tag/modify',
+  abandonAuth:Butterfly+'account/abandon',//放弃管理员权限
+
 
   removeOffer:Butterfly+'offer/delete/',//删除offer
 }

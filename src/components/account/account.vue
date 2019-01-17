@@ -13,7 +13,7 @@
   				<!--主体内容-->
 
     <p class="headline">
-        <spam>账号安全</spam>
+        <span>账号安全</span>
     </p>
     <div class="account-content">
         <p>账户信息</p>

@@ -367,14 +367,22 @@
             welfareTreatment:'',// 福利待遇
             id:JSON.parse(localStorage.getItem("item")).templateNumber,*/
 
-          if(this.employee!="" && this.employeeId!="" && this.contractName!="" && this.startEndTime!="" &&
-            this.endTime!="" && this.station!="" && this.selectTimeLimit!="" && this.selectProbation!="" &&
+          if( this.employee!="" && this.employeeId!="" && this.contractName!="" && this.startEndTime!="" &&
+            this.endTime!="" && this.station!="" && this.selectTimeLimit!="" && this.selectProbation!="" && this.selectProbation== 2 &&
              this.promotionWages!="" && this.manHourSystem!="" && this.basicWages!="" &&
             this.selectBasicWagesProgramme!="" && this.payrollTime!="" && this.enterpriseAddress!="" &&
             this.promotionCondition!="" &&  this.id!=""
           ){
             return false
-          }else{
+          } else if( this.employee!="" && this.employeeId!="" && this.contractName!="" && this.startEndTime!="" &&
+            this.endTime!="" && this.station!="" && this.selectTimeLimit!="" && this.selectProbation!="" && this.selectProbation== 1
+             && this.manHourSystem!="" && this.basicWages!="" &&
+            this.selectBasicWagesProgramme!="" && this.payrollTime!="" && this.enterpriseAddress!="" &&
+            this.promotionCondition!="" &&  this.id!=""
+          ){
+            return false
+          }
+          else{
             return true
           }
         },
@@ -389,7 +397,15 @@
             return {
               click_opacity:false
             }
-          }else{
+          } else if( this.employee!="" && this.employeeId!="" && this.contractName!="" && this.startEndTime!="" &&
+            this.endTime!="" && this.station!="" && this.selectTimeLimit!="" && this.selectProbation!="" && this.selectProbation== 1
+            && this.manHourSystem!="" && this.basicWages!="" &&
+            this.selectBasicWagesProgramme!="" && this.payrollTime!="" && this.enterpriseAddress!="" &&
+            this.promotionCondition!="" &&  this.id!=""
+          ){
+            return false
+          }
+          else{
             return {
               click_opacity:true
             }
@@ -503,8 +519,8 @@
                 contractStartDate:that.startEndTime[0],//合同开始日期
                 contractEndDate:that.startEndTime[1],//结束
                 selectProbation:that.selectProbation,//有无试用期
-                probationEndDate:that.probationStartEndDate[0],//试用期起止时间
-                probationStartDate:that.probationStartEndDate[1],
+                probationEndDate:that.probationStartEndDate[1],//试用期起止时间
+                probationStartDate:that.probationStartEndDate[0],
                 promotionWages:that.promotionWages,//试用期工资
                 manHourSystem:that.manHourSystem,//工时制度
                 selectBasicWagesProgramme:that.selectBasicWagesProgramme, //转正公司方案
