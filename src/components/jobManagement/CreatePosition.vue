@@ -8,7 +8,7 @@
             <pageaside></pageaside>
           </div>
           <!-- 弹窗-添加招聘负责人 -->
-            <createLd   @dataList ="getPageList" :createVisible.sync="dialog.cteate" @hideModel="hideChildModal"></createLd>
+            <createLd @dataList="getPageList" :createVisible.sync="dialog.cteate" @hideModel="hideChildModal"></createLd>
           <!-- 弹窗-添加面试官 -->
             <inteview  @dataList ="getPageList2" :createVisible.sync="dialog.interview" @hideModel="hideChildModal"></inteview>
           <!--右侧内容栏-->

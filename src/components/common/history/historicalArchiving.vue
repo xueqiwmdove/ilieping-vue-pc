@@ -12,7 +12,7 @@
             <div class="content content_sty">
                 
                 <!-- 搜索栏 -->
-                 <div class='content_pad  del_icon'>
+                 <div class='content_pad del_icon'>
                     <div class="search" >
                         <el-input maxlength="11" @keyup.enter.native="searchPage"  v-model="searchName1" class="input_search" placeholder="输入姓名手机号" >
                         <i @click="searchPage"  slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
@@ -21,6 +21,7 @@
                      <br>
                 </div>  
                <!--表格  -->
+                <div class="div_table_infor">   
                     <el-table :data="tableData" style="width: 100%; min-width:756px;">
                           <el-table-column prop="employeeName" label="员工" header-align='center' align='center'>
                              <template slot-scope="scope" >
@@ -69,6 +70,7 @@
                             </template>
                           </el-table-column>
                     </el-table>
+                    </div>
                 <!-- 分页  -->
                     <div class="bottom-pagination" v-if="totalCount > 5">
                         <el-pagination @current-change="changePage" @size-change="changeSize" :current-page="pageIndex" :page-size="pageSize" :page-sizes="[5,10, 25, 50, 100]" layout="total, prev, pager, next, sizes, jumper" :total="totalCount">
@@ -108,6 +110,9 @@ export default {
        
       },
     methods: {
+      personDetail(val) {//员工资料跳转
+        this.$router.push({path:'/staffInfo',query:{id:val.id}})
+      },
       changePage(newPage) {
           let that=this;
           if(that.pageIndex === newPage) {
@@ -124,24 +129,24 @@ export default {
     //获取表格数据
       getList() {
         let that =this
-          let currentPage=that.pageIndex || 1;
-          let pageSize  =that.pageSize || 10;
-          　  let re = /^[0-9]+.?[0-9]*/;
-              let re2 =/^1[34578]\d{9}$/
-          　if (re.test(that.searchName1) &&  !re2.test(that.searchName1)) {
-               that.$message({
-                 message:'请输入正确手机号！',
-                 type:'error'
-               })
-               return
-        　　} else {
-             this.$http({
+	      let currentPage=that.pageIndex || 1;
+	      let pageSize=that.pageSize || 10;
+	      　      let re = /^[0-9]+.?[0-9]*/;
+	      let re2 =/^1[34578]\d{9}$/;
+          　      if (re.test(that.searchName1) &&  !re2.test(that.searchName1)) {
+           that.$message({
+             message:'请输入正确手机号！',
+             type:'error'
+           })
+           return
+        　　   } else {
+          that.$http({
             method:"post",
             url:api.employeeList+'/'+currentPage+'/'+pageSize,
             headers:headers('application/json;charset=utf-8'),
             data:{
               "status": that.status || "1",
-              "grouping":that.grouping || '0',
+              "grouping":that.grouping,
               "deptId":that.deptId||"",
             },
             cache:false
@@ -162,10 +167,10 @@ export default {
     },
     },
     mounted() {
-     
+     this.getList();
     },
     created() {
-       this.getList();
+       
     }
 }
 </script>
@@ -173,7 +178,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped >
 .content_sty {
-  padding: 30px 20px;  
+  padding: 30px 0;  
 }
 .content_sty .div_table_infor .el-table {
   border:none;  

@@ -186,5 +186,11 @@ const api = {
   updateTalent:Butterfly+'talent/pool/tag/modify',
 
   removeOffer:Butterfly+'offer/delete/',//删除offer
+  
+  //管理员权限设置
+  adminList:Butterfly+'account/list',//获取管理员权限设置
+  admindel:Butterfly+'account/del/',//删除
+  adminadd:Butterfly+'account/add/',//添加管理员
+  adminaddList:Butterfly+'account/employee/list',//添加员工列表信息
 }
 export default api
