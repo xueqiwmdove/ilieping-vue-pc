@@ -104,6 +104,7 @@
                       placeholder="请选择签署截止时间"
                       class="endTime"
                       value-format="yyyy-MM-dd"
+                      :picker-options="pickerOptions0"
                       style="height: 40px;width: 400px;border-radius: 0;">
                     </el-date-picker>
                   </div>
@@ -282,7 +283,11 @@
            startEndTime:[],
            pickerOptions:{},
            endTime:'',
-
+           pickerOptions0: {
+             disabledDate(time) {
+               return time.getTime() < Date.now() - 8.64e7;//如果没有后面的-8.64e7就是不可以选择今天的
+             }
+           },
            station:'',//岗位
            selectTimeLimit:'',//合同期限
            selectTimeLimitData:[{
