@@ -25,8 +25,8 @@
                               </el-input>
                               <i  @click="getTalent" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                           </div>
-                          <p  @click="getItems" v-if="flags"> 全部人才 <i ><img  src="../../assets/img/zhiwei/ic_chose.png" alt=""></i></p>
-                          <p style="color:#748093 ;" @click="getItems" v-else>全部人才  <i  ><img src="../../assets/img/zhiwei/3.png" alt=""></i></p>
+                          <p  @click="getItems" v-if="flags"> 全部人才 <i ><img  src="../../assets/img/zhiwei/ic_chose.png" alt="" style="cursor: pointer;"></i></p>
+                          <p style="color:#748093 ;" @click="getItems" v-else>全部人才  <i  ><img src="../../assets/img/zhiwei/3.png" alt="" style="cursor: pointer;"></i></p>
                           <div class="position_list">
                               <el-scrollbar style="height:100%" >
                                   <ul>
@@ -415,7 +415,7 @@ export default {
         this.flags = !this.flags;
         this.seen= '';
         this.id = '';
-        this.searchType='tag';
+        this.searchType='all';
         this.getTalentList()
       },
 

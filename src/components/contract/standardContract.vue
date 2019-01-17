@@ -130,8 +130,11 @@
                   </div>
                   <div class="input_div">
                     <label>试用期<span class="class_required">*</span></label>
-                    <el-radio v-model="selectProbation" label="1" class="classRadio" >有</el-radio>
-                    <el-radio v-model="selectProbation" label="2" class="classRadio">无</el-radio>
+                    <el-radio-group v-model="selectProbation" @change="selectRadio">
+                      <el-radio  label="1" class="classRadio" >无</el-radio>
+                      <el-radio  label="2" class="classRadio" >有</el-radio>
+                    </el-radio-group>
+
                      <!-- <div class="radio_div" >
                         <div class="radio-inline" >
                           <input class="classRadio"  />
@@ -140,7 +143,7 @@
                         </div>
                       </div>-->
                     </div>
-                  <div class="input_div">
+                  <div class="input_div" v-if="selectRadios==2">
                     <label>试用期起止时间</label>
                     <el-date-picker
                       v-model="probationStartEndDate"
@@ -152,7 +155,7 @@
                       style="height: 40px;width: 400px;border-radius: 0;">
                     </el-date-picker>
                   </div>
-                  <div class="input_div">
+                  <div class="input_div" v-if="selectRadios==2">
                     <label>试用期工资<span class="class_required">*</span></label>
                     <input type="text" autocomplete="off" v-model="promotionWages" placeholder="试用期工资"/>
                   </div>
@@ -262,7 +265,7 @@
       },
       data(){
          return{
-
+           selectRadios:2,
            employee:localStorage.getItem('employeeName')||'',
            employeeId:localStorage.getItem('employeeId')||'',
            isShow2:false,
@@ -389,6 +392,10 @@
         }
       },
       methods: {
+        selectRadio(param){
+          let that=this;
+          that.selectRadios=param;
+        },
         //树形下拉点击其他地方收起
         handleClose(){
           this.isShow2=false;
@@ -488,6 +495,8 @@
               pageDate: {
                 station:that.station,//岗位
                 selectTimeLimit:that.selectTimeLimit,//合同期限
+                contractStartDate:that.startEndTime[0],//合同开始日期
+                contractEndDate:that.startEndTime[1],//结束
                 selectProbation:that.selectProbation,//有无试用期
                 probationEndDate:that.probationStartEndDate[0],//试用期起止时间
                 probationStartDate:that.probationStartEndDate[1],

@@ -306,7 +306,7 @@ export default {
 	  			if(res.data.code==10000){
              that.candidateList=res.data.data;
             that.totalCount=res.data.count;
-            console.log(that.totalCount)
+            // console.log(that.totalCount)
 	  			}else{
 	  				that.$message.error(res.data.msg);
 	  			}

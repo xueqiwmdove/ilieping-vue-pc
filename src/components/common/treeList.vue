@@ -247,7 +247,7 @@ export default {
       },
     //获取部门人数
       getcounts() {
-          let that = this
+          let that = this;
           this.$http({
             method:"post",
             url:api.counts,
@@ -255,10 +255,10 @@ export default {
             cache:false
           }).then(function(res){
             if(res.data.code==10000 || res.data.data==null){
-                that.counts=res.data.data
-              console.log(res.data.data,'<=======counts')
+                that.counts=res.data.data;
+              // console.log(res.data.data,'<=======counts')
                for(let item in that.counts) {
-              console.log(item,that.counts[item],'<====item')
+              // console.log(item,that.counts[item],'<====item')
                }
             }else{
             that.$message.error(res.data.msg);

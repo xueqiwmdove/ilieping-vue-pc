@@ -9,7 +9,7 @@
 				<ul style="height:100%;"  v-clickoutside="handleClose2">
 					<li><img src="../../assets/img/1.5.1/lou.png" alt=""></li>
 					<li class="conpany_1">{{message_title}}</li>
-					<li @click="detail_click(2)" v-if="status"><span class="status_ren">请去验证</span> </li>
+					<li @click="detail_click(2)" v-if="status!=3"><span class="status_ren">请去验证</span> </li>
 					<li  v-else><span class="status_ren2">已验证</span> <img src="../../assets/img/1.5.1/peizhi.png" alt=""></li>
 					<li @click="checkpoint" :class="{topLine:topLine}" class="setting" ><img src="../../assets/img/1.5.1/set.png" alt=""></li>
 					<div class="selece_option">
@@ -106,15 +106,15 @@ export default {
   name: 'pageheader',
    data() {
       return {
-		message_title:"",
-		tableData: [],
-		seen:'',
-		topLine:'',
-		topPhone:false,//手机二维码
-		topLines:false,//账号安全
-		topLines1:false,//信息展示
-		status:true,
-		flag:false,//消息原点显示
+        message_title:"",
+        tableData: [],
+        seen:'',
+        topLine:'',
+        topPhone:false,//手机二维码
+        topLines:false,//账号安全
+        topLines1:false,//信息展示
+        status:3,
+        flag:false,//消息原点显示
       };
 	},
    directives: {clickoutside},
@@ -123,155 +123,151 @@ export default {
 // //      window.location.href="http://192.168.1.46:8080/ALiePing/tpl/newWitesite/index.html"
 //         this.$router.push('/');
 // 			},
-    //  企业验证信息
-      checkpoint () {
-		this.topLines1=false
-		this.topLine =!this.topLine
-	},
+      //  企业验证信息
+        checkpoint () {
+          this.topLines1=false
+          this.topLine =!this.topLine
+        },
 
-	getpagetableData(){
-		let that=this;
-		that.type= '0';
-		let currPage=that.pageIndex || 1;
-		let pageSize=that.pageSize || 10;
-		that.$http({
-			method:"get",
-			url:api.messageLists+'/'+that.type+'/'+currPage+'/'+pageSize,
-			headers:headers('application/json;charset=utf-8'),
-		}).then(function(res){
-			if(res.data.code==10000 && res.data!=""){
-				that.tableData=res.data.data;
-				that.totalCount = res.data.count;
-			}else{
-				that.$message.error(res.message || res.data.msg);
-			}
-		});
-	},
-    company_detail(){
-	   let token=window.localStorage.getItem('jingjing_login_token');
-		let that=this;
-		that.$http({
-			method:"get",
-			url:api.detail,
-			headers:headers("application/json;charset=utf-8",token),
-			cache:false
-		}).then(function(res){
-			if(res.data.code==10000 && res.data!=""){
-					that.message_title=res.data.data.enterpriseName;
-					let companyTit = window.localStorage.setItem('title',that.message_title)
-			}
-		});
-	},
-	//企业资料 、 企业认证
-	detail_click(val) {
-		if(val == '1') {
-				this.$router.push({path:'/company'})
-		}
-		if(val == '2') {
-				this.$router.push({path:'/businessCert'})
-		}
-	},
+        getpagetableData(){
+          let that=this;
+          that.type= '0';
+          let currPage=that.pageIndex || 1;
+          let pageSize=that.pageSize || 10;
+          that.$http({
+            method:"get",
+            url:api.messageLists+'/'+that.type+'/'+currPage+'/'+pageSize,
+            headers:headers('application/json;charset=utf-8'),
+          }).then(function(res){
+            if(res.data.code==10000 && res.data!=""){
+              that.tableData=res.data.data;
+              that.totalCount = res.data.count;
+            }else{
+              that.$message.error(res.message || res.data.msg);
+            }
+          });
+        },
+        company_detail(){
+         let token=window.localStorage.getItem('jingjing_login_token');
+          let that=this;
+          that.$http({
+            method:"get",
+            url:api.detail,
+            headers:headers("application/json;charset=utf-8",token),
+            cache:false
+          }).then(function(res){
+            if(res.data.code==10000 && res.data!=""){
+                that.message_title=res.data.data.enterpriseName;
+                that.status=res.data.data.isAuthentication;
+                let companyTit = window.localStorage.setItem('title',that.message_title)
+            }
+          });
+        },
+        //企业资料 、 企业认证
+        detail_click(val) {
+          if(val == '1') {
+              this.$router.push({path:'/company'})
+          }
+          if(val == '2') {
+              this.$router.push({path:'/businessCert'})
+          }
+        },
 
-	// 账号安全，放弃管理员身份
-	account(val) {
-		if(val == '1') {
-				this.$router.push({path:'/account'})
-		}
-		if(val == '2') {
-		    let that=this;
-			that.$confirm('您是否要放弃管理员身份！', '', {
-				confirmButtonText: '确定',
-				cancelButtonText: '取消',
-				type: 'warning',
-				center: true
-			}).then(() => {
+        // 账号安全，放弃管理员身份
+        account(val) {
+          if(val == '1') {
+              this.$router.push({path:'/account'})
+          }
+          if(val == '2') {
+              let that=this;
+            that.$confirm('您是否要放弃管理员身份！', '', {
+              confirmButtonText: '确定',
+              cancelButtonText: '取消',
+              type: 'warning',
+              center: true
+            }).then(() => {
 
-			}).catch(() => {
+            }).catch(() => {
 
-			});
-		}
-	},
-	// 点击显示二维码
-	click_phone(val) {
-		this.seen=val
-		this.topPhone =!this.topPhone
-		this.topLines =false
-		this.topLines1=false
+            });
+          }
+        },
+        // 点击显示二维码
+        click_phone(val) {
+          this.seen=val
+          this.topPhone =!this.topPhone
+          this.topLines =false
+          this.topLines1=false
 
-	},
-	// 点击显示信息栏
-	click_msg(val){
-		this.seen = val
-		this.topLines =false
-		this.topPhone =false
-		this.topLines1 =!this.topLines1
-			// this.$router.push('/newMessage');
-			// this.flag = false
-		},
-	// 点击显示个人信息
-	checkpoint1(val) {
-		this.seen =val
-		this.topPhone =false
-		this.topLines1 =false
-		this.topLines =!this.topLines
-	},
-	// 关闭下拉栏
-	handleClose() {
-	 	this.topPhone =false
-		this.topLines1 =false
-		this.topLines =false
-		this.seen=''
-	},
-	handleClose2() {
-		this.topLine=false
-	},
-	exit(){
-		let that=this;
-		that.$confirm('确定退出当前账户吗？', '提示', {
-			confirmButtonText: '确定',
-			cancelButtonText: '取消',
-			type: 'warning',
-			center: true
-		}).then(() => {
-			that.$http({
-				method:"post",
-				url:api.logout,
-				headers:headers(),
-				cache:false
-			}).then(function(res){
-			localStorage.clear();
-			that.$router.push('/login');
-		   });
-		}).catch(() => {
+        },
+      // 点击显示信息栏
+      click_msg(val){
+        this.seen = val
+        this.topLines =false
+        this.topPhone =false
+        this.topLines1 =!this.topLines1
+          // this.$router.push('/newMessage');
+          // this.flag = false
+        },
+      // 点击显示个人信息
+      checkpoint1(val) {
+        this.seen =val
+        this.topPhone =false
+        this.topLines1 =false
+        this.topLines =!this.topLines
+      },
+      // 关闭下拉栏
+      handleClose() {
+        this.topPhone =false
+        this.topLines1 =false
+        this.topLines =false
+        this.seen=''
+      },
+      handleClose2() {
+        this.topLine=false
+      },
+      exit(){
+        let that=this;
+        that.$confirm('确定退出当前账户吗？', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+          center: true
+        }).then(() => {
+          that.$http({
+            method:"post",
+            url:api.logout,
+            headers:headers(),
+            cache:false
+          }).then(function(res){
+          localStorage.clear();
+          that.$router.push('/login');
+           });
+        }).catch(() => {
 
-		});
-	},
-	getdot() {
-			let that=this;
-			that.$http({
-				method:"get",
-				url:api.dot,
-				headers:headers('application/json;charset=utf-8'),
-			}).then(function(res){
-				if(res.data.code==10000 && res.data!=""){
-					that.flag = res.data.data
-				}else{
-					that.$message.error(res.message || res.data.msg);
-				}
-			});
-	},
-	// 确定
-	makeSure() {
-
-	}
-
+        });
+      },
+      getdot() {
+          let that=this;
+          that.$http({
+            method:"get",
+            url:api.dot,
+            headers:headers('application/json;charset=utf-8'),
+          }).then(function(res){
+            if(res.data.code==10000 && res.data!=""){
+              that.flag = res.data.data
+            }else{
+              that.$message.error(res.message || res.data.msg);
+            }
+          });
+      },
     },
-	mounted(){
-	let that=this;
-		that.company_detail();
-		that.getpagetableData();
-		that.getdot()
-	}
+    mounted(){
+      let that=this;
+      that.company_detail();
+      that.getpagetableData();
+      that.getdot()
+    }
 }
 </script>
 
@@ -317,15 +313,13 @@ export default {
 .pull-left ul li {
 	float: left;
 }
-.topLine {
-	border-top:2px solid rgba(249,87,20,1)
-}
 .setting {
 	margin-left:20px;
 	cursor: pointer;
 	width:45px;
+  height: 48px;
 	text-align: center;
-
+  border-top: 2px solid transparent;
 }
 .pull-right {
 	float: right !important;
@@ -339,14 +333,22 @@ export default {
 	width: 45px;
 	text-align: center;
 }
+.pull-right ul li img{
+  vertical-align: middle;
+}
 .pull-right ul li:nth-child(3) {
+  height: 48px;
   font-size:15px;
 	text-align: center;
 	font-family:PingFangSC-Regular;
 	font-weight:400;
 	margin-right: 0px;
-	margin-top: 0px;
-	color:rgba(51,51,51,1);
+  margin-top: 0;
+  color: rgba(51,51,51,1);
+  border-top: 2px solid transparent;
+}
+.pull-right ul li.topLine,.pull-left ul li.setting.topLine{
+  border-top:2px solid rgba(249,87,20,1);
 }
 .selece_option ul{
 	width:160px;
