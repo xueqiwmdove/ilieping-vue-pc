@@ -124,34 +124,34 @@
           <div v-if="flag==2" class="standard_resume">
             <el-row>
               <el-col  :span="24">
-                <el-form :rules="rules">
+                <el-form :rules="rules" :model="form" ref="form">
                   <p class="headLine">基本信息</p>
                   <div class="personInfo">
                     <el-row :gutter="80">
                       <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="姓名" required prop="name">
-                          <el-input v-model="name" placeholder="请输入候选人姓名"></el-input>
+                        <el-form-item label="姓名"  prop="name">
+                          <el-input v-model="form.name" placeholder="请输入候选人姓名"></el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="岗位" required prop="post1">
-                          <el-select v-model="post1" placeholder="选择岗位">
+                        <el-form-item label="岗位"  prop="post1">
+                          <el-select v-model="form.post1" placeholder="选择岗位">
                             <el-option v-for="item in post1Data" :key="item.name" :label="item.name" :value="item.id"></el-option>
                           </el-select>
                         </el-form-item>
                       </el-col>
 
                       <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="手机号码"  required prop="phone">
-                          <el-input v-model="phone" placeholder="请输入手机号"></el-input>
+                        <el-form-item label="手机号码"   prop="phone">
+                          <el-input v-model.number="form.phone" placeholder="请输入手机号" maxlength="11"></el-input>
                         </el-form-item>
                       </el-col>
                     </el-row>
 
                     <el-row :gutter="80">
                       <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="邮箱号码" required prop="email">
-                          <el-input v-model="email" placeholder="请输入邮箱号码"></el-input>
+                        <el-form-item label="邮箱号码"  prop="email">
+                          <el-input v-model="form.email" placeholder="请输入邮箱号码"></el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :lg="8" :md="8" :sm="8">
@@ -545,6 +545,19 @@
           // standardBasic
         },
       data(){
+        let checkPhone = (rule, value, callback) => {
+          if (!value) {
+            return callback(new Error('手机号不能为空'));
+          } else {
+            const reg = /^1[3|4|5|7|8][0-9]\d{8}$/
+            console.log(reg.test(value));
+            if (reg.test(value)) {
+              callback();
+            } else {
+              return callback(new Error('请输入正确的手机号'));
+            }
+          }
+        };
           return{
             selectResume:true,//选择简历弹窗
             // addVisible:false,
@@ -672,8 +685,13 @@
             other:'',
             self_description:'',
 
-            name:'',
-            post1:'',//选择岗位
+            form:{
+              name:'',
+              post1:'',//选择岗位
+              email:'',
+              phone:'',
+            },
+
             post1Data:[],
             channels:'',
             channelsData:[
@@ -702,8 +720,6 @@
               {value:'0',label:'女'}
             ],
             age:'',
-            email:'',
-            phone:'',
             experience:'',
             experienceData:[
               {
@@ -772,7 +788,7 @@
                 { required: true, message: '请选择岗位', trigger: 'change' }
               ],
               phone: [
-                { type: 'phone', required: true, message: '请输入手机号', trigger: 'blur' }
+                {  required: true, validator: checkPhone, message: '请输入正确手机号', trigger: 'blur' },
               ],
               email: [
                 { type: 'email', required: true, message: '请输入邮箱号码', trigger: 'blur' }
