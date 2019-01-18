@@ -1,6 +1,6 @@
 <template>
   <div >
-   <div class="main" >
+   <div class="mainCon el-col-24">
      <!--候选人弹窗 addCandidateStatus(候选人页面显示与否） -->
      <addCandidate :addVisible.sync="visables.add" @hideModel="hideChildModal"  :addCandidateStatus="addCandidateStatus"></addCandidate>
      <!--候选人信息  父组件传值-->
@@ -9,9 +9,9 @@
      <!--顶部导航-->
         <pageheader class="pageheader"></pageheader>
           <!--侧边栏-->
-          <div class="aside">
+          <!--<div class="aside">-->
             <pageaside></pageaside>
-          </div>
+          <!--</div>-->
           <!--右侧内容栏-->
           <div class="right-content pull-right">
               <div class="content">
