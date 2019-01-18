@@ -548,11 +548,6 @@ const router =new Router({
       name:'historicalArchiving',
       component:historicalArchiving
     },
-    {
-      path: '/customContractTemplate',
-      name: 'customContractTemplate',
-      component: customContractTemplate,
-		},
 		{
 			path: '/InterviewManagement',
 			name: 'InterviewManagement',

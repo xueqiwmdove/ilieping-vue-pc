@@ -14,7 +14,6 @@ import echarts from 'echarts'
 
 import FileSaver from 'file-saver'
 
-/* */
 import '../src/assets/css/static/layui/css/layui.css'
 import '../src/assets/css/static/swiper/swiper-4.3.3.min.css'
 import '../src/assets/css/static/init.css'
@@ -31,7 +30,6 @@ import '../src/assets/css/new/vip.less'
 import '../src/assets/css/pagination/my-pagination.css'
 import '../src/assets/css/new/common.css'
 import '../src/assets/css/new/message.css'
-// import '../src/assets/css/new/option.css'
 
 import '../src/assets/css/new/bySinging.less'
 import '../src/assets/css/new/selectTemplates.less'
@@ -64,22 +62,76 @@ import '../static/ueditor/ueditor.parse.min.js'
 
 //开启debug模式
 Vue.config.debug = true;
+Vue.prototype.$axios = axios;
 axios.defaults.withCredentials=true;//withCredentials默认是false，意思就是不携带cookie信息，那就让它为true，我是全局性配置的
 axios.defaults.timeout = 40000;
-axios.interceptors.response.use((res) => {
-  if (res.status === 200) {
-   if(res.data.code == 40401){
-		router.replace({
-		  path: '/login',
-		});
-   }
-	return res;
-	} else {
-		alert('网络错误');
-	}
+// axios.interceptors.response.use((res) => {
+//   if (res.status === 200) {
+//    if(res.data.code == 40401){
+// 		router.replace({
+// 		  path: '/login',
+// 		});
+//    }
+// 	return res;
+// 	} else {
+// 		alert('网络错误');
+// 	}
+// });
+import { Message, Loading } from 'element-ui';
+let loading;        //定义loading变量
+
+function startLoading() {    //使用Element loading-start 方法
+  loading = Loading.service({
+    lock: true,
+    text: '加载中……',
+    background: 'rgba(0, 0, 0, 0.7)'
+  })
+}
+function endLoading() {    //使用Element loading-close 方法
+  loading.close()
+}
+
+//那么 showFullScreenLoading() tryHideFullScreenLoading() 要干的事儿就是将同一时刻的请求合并。
+//声明一个变量 needLoadingRequestCount，每次调用showFullScreenLoading方法 needLoadingRequestCount + 1。
+//调用tryHideFullScreenLoading()方法，needLoadingRequestCount - 1。needLoadingRequestCount为 0 时，结束 loading。
+let needLoadingRequestCount = 0;
+export function showFullScreenLoading() {
+  if (needLoadingRequestCount === 0) {
+    startLoading()
+  }
+  needLoadingRequestCount++
+}
+
+export function tryHideFullScreenLoading() {
+  if (needLoadingRequestCount <= 0) return;
+  needLoadingRequestCount--;
+  if (needLoadingRequestCount === 0) {
+    endLoading()
+  }
+}
+
+
+axios.interceptors.request.use(function(config){
+  showFullScreenLoading();
+  return config
+},function(err){
+  return Promise.reject(err)
 });
 
-Vue.prototype.$axios = axios;
+axios.interceptors.response.use(function(response){
+  tryHideFullScreenLoading();
+  if (response.status === 200) {
+    if(response.data.code == 40401){
+      router.replace({
+        path: '/login',
+      });
+    }
+    return response;
+  }
+},function(err) {
+  return Promise.reject(err)
+})
+
 
 Vue.use(Vuex)
 Vue.use(VueCookies)
