@@ -181,7 +181,7 @@
   import api from '@/api/api.js'
   import {headers} from '@/assets/js/common/lp.js'
   import pageheader from '@/components/common/pageheader';
-  import pageaside from '@/components/common/pageasideE';
+  import pageaside from '@/components/common/pageaside';
 
 export default {
   name: 'personnelTransaction',

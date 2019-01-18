@@ -1,12 +1,12 @@
 <template>
   <div>
-  	<div class="main">
+  	<div class="mainCon el-col-24">
   		<!--顶部导航-->
   	  <pageheader class="pageheader"></pageheader>
       <!--侧边栏-->
-      <div class="aside">
+      <!--<div class="aside">-->
         <pageaside></pageaside>
-      </div>
+      <!--</div>-->
   		<!--右侧内容栏-->
   		<div class="right-content pull-right">
   			<div class="content">
@@ -111,7 +111,7 @@
   import api from '@/api/api.js'
   import {headers} from '@/assets/js/common/lp.js'
   import pageheader from '@/components/common/pageheader';
-  import pageaside from '@/components/common/pageasideE';
+  import pageaside from '@/components/common/pageaside';
 
 export default {
   name: 'admin',

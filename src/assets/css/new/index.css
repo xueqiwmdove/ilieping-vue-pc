@@ -531,3 +531,153 @@ nav .pull-right .exit:before {
   background: #FAFBFC;
   border-top: 1px solid #e5e5e5;
 }
+/* 动态 aside */
+.mainCon {
+	display: flex;
+    position: absolute;
+    top: 48px;
+    bottom: 0;
+    overflow: hidden;
+}
+.mainCon .aside {
+	-ms-flex: 0 0 210px;
+	flex:0 0 210px;
+	width: 210px;
+}
+.mainCon .aside .accordion {
+  width: 100%;
+  max-width: 210px;
+  margin: 20px auto 20px;
+  background: #FFF;
+  border-radius: 4px;
+}
+.mainCon .aside .accordion li.open,
+.mainCon .aside .accordion li.open .submenu {
+  background: #F8FAFC;
+}
+.mainCon .aside .accordion li.open .link {
+  color: #394A66;
+}
+.mainCon .aside .accordion li.open .link i.fa-chevron-down img {
+  width: 8px;
+  height: 4.7px;
+}
+.mainCon .aside .accordion li .link i.fa-chevron-down img {
+  width: 4.7px;
+  height: 8px;
+}
+.mainCon .aside .accordion .link {
+  height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+  display: block;
+  padding: 0 0 0 60px;
+  color: #394A66;
+  font-size: 14px;
+  position: relative;
+  transition: all 0.4s ease;
+}
+.mainCon .aside .accordion .link .false {
+  display: none;
+}
+.mainCon .aside .accordion .link i img {
+  vertical-align: middle;
+  width: 22px;
+  height: 20px;
+}
+.mainCon .aside .accordion li i {
+  position: absolute;
+  left: 23px;
+  transition: all 0.4s ease;
+}
+.mainCon .aside .accordion .fa-chevron-down {
+  right: 10px;
+  left: auto;
+  font-size: 16px;
+}
+.mainCon .aside .accordion .submenu {
+  background: #fff;
+  font-size: 14px;
+}
+.mainCon .aside .accordion .submenu li {
+  color: #7A8699;
+  height: 32px;
+  line-height: 32px;
+}
+.mainCon .aside .accordion .submenu li a {
+  display: block;
+  text-decoration: none;
+  color: #7A8699;
+  padding: 0 60px;
+  transition: all 0.25s ease;
+}
+.mainCon .aside .accordion .submenu li a:hover,
+.mainCon .aside .accordion .submenu li a.active {
+  color: #F95714;
+}
+.mainCon .right-content:after {
+  content: "";
+  clear: both;
+}
+.mainCon .right-content {
+    -ms-flex: 1;
+    flex: 1;
+    overflow-y: scroll;
+    padding: 20px;
+}
+.mainCon .right-content .content {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);*/
+  position: relative;
+}
+.mainCon .right-content .content .headline {
+  height: 50px;
+  line-height: 50px;
+  text-indent: 23px;
+  /*margin-bottom: 20px;*/
+  font-size: 16px;
+  color: #21324E;
+  letter-spacing: 0;
+  /*border-bottom: 1px solid #E5E5E5;*/
+  margin-bottom: 0px;
+  border-bottom: none;
+  background-color: #FAFAFA;
+}
+.mainCon .right-content .content .headline span{
+  background:url("../../../assets/img/zhiwei/houxuan_ic_weizhi.png") no-repeat left;
+  padding-left: 20px;
+}
+.mainCon .right-content .content .headline span i{
+  font-style: normal;
+  color: #999999;
+}
+.mainCon .right-content .content .headline img {
+  cursor: pointer;
+  vertical-align: text-bottom;
+}
+.mainCon .right-content .content .headline a {
+  display: inline-block;
+  height: 100%;
+  text-align: left;
+  line-height: 50px;
+  /*  padding: 0 10px;
+            margin: 0 10px;*/
+  color: #21324E;
+  border: none;
+}
+.mainCon .right-content .content .headline .actived {
+  border-bottom: 2px solid #21324E;
+}
+.mainCon .right-content .content .headline .active {
+  width: auto;
+  margin: 0 10px;
+  padding: 0 10px;
+  text-align: center;
+  color: #FC8E00;
+  border-bottom: 2px solid #FC8E00;
+}
+.mainCon .right-content .content .headline img {
+  cursor: pointer;
+}
