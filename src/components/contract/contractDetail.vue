@@ -47,7 +47,7 @@
               </ul>
             </div>
             <!--<vue-scroll :ops="ops">-->
-            <div class="contractContent" v-loading="loading">
+            <div class="contractContent">
               <div class="contractBox" >
                 <!--<div class="section0">
                     <h1>劳动用工合同</h1>
@@ -386,7 +386,6 @@
            imgs:[],
            employeeName:'',
            enterpriseName:'',
-           loading:true,
 
          }
       },
@@ -426,9 +425,6 @@
               that.employeeName=res.data.data.employeeName;
               that.enterpriseName=res.data.data.enterpriseName;
               // that.$message.success("合同发送成功");
-              setTimeout(() => {
-                that.loading=false;
-              }, 2000);
             }else{
               that.$message.error(res.message || res.data.msg);
             }

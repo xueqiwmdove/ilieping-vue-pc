@@ -52,7 +52,7 @@
 
           <!--选择模板  :before-close="handleClose"-->
           <div class="modelCarsouel">
-            <swiper :options="swiperOption"   ref="mySwiper"  v-loading="loading" style="padding: 0 100px">
+            <swiper :options="swiperOption"   ref="mySwiper"   style="padding: 0 100px">
               <swiper-slide v-for="(item,index) in templateData"  :key="index"   :class="current==index?'active':''" :title="JSON.stringify(item)"  ><!-- @clcik.native="clickSelect(index,item)"-->
                 <div class="singleTemplate">
                   <p class="title">{{item.templateName}}</p>
@@ -111,7 +111,6 @@
          return{
            signAlert: false,
            flag:1,//默认显示（使用模板）
-           loading:true,
            swiperOption: {//swiper3
              speed: 1000,
              slidesPerView:4,
@@ -221,10 +220,6 @@
               // that.templateData=result.data.data;
               that.templateData.push(result.data.data[0]);
               // console.log(that.templateData);
-              setTimeout(function () {
-                that.loading=false;
-
-              },1000);
 
               //默认选中的合同模板第一个，将合同相关数据存到缓存里
               // console.log(that.templateData[0]);
