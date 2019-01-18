@@ -2,7 +2,7 @@
     <div>
     <!-- 弹窗-添加招聘负责人 -->
         <el-dialog title="添加招聘负责人" width="540px" :visible.sync="createVisible" class="create_dialog" custom-class="create_dialog" :before-close="hideModel" >
-                <el-form :model="cerateList"  ref="cerateList" >
+                <el-form :model="cerateList" ref="cerateList" >
                     <el-form-item  style="text-align:center;" >
                         <div v-if="isflag" class="manage_se">
                         <ul>

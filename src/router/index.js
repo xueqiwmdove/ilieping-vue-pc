@@ -118,6 +118,10 @@ import InterviewManagement from '@/components/Interview/InterviewManagement' //�
 //候选人管理
 import addCandidate from '@/components/candidate/addCandidate'
 import candidateSteps from '@/components/candidate/candidateSteps'
+
+//管理员权限设置
+import admin from '@/components/admin/admin'//人事流程
+
 Vue.use(Router);
 const router =new Router({
   linkActiveClass:'active',
@@ -563,6 +567,10 @@ const router =new Router({
       path: '/standardContract',//新增合同选择标准模板
       name: 'standardContract',
       component: standardContract,
+    },{
+    	path: '/admin',//管理权限设置
+      name: 'admin',
+      component: admin,
     }
   ]
 

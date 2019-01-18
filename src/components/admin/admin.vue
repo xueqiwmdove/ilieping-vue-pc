@@ -12,139 +12,70 @@
   			<div class="content">
   				<!--主体内容-->
     <!--撤销离职流程   :before-close="handleClose"-->
-      <el-dialog title="撤销离职流程" :visible.sync="Revoke_model" class="Revoke_model" custom-class="Revoke_model">
+      <el-dialog title="添加管理员" :visible.sync="Revoke_model" class="Revoke_model" custom-class="Revoke_model">
         <div class="folder_div">
-				  <el-form ref="form" :model="Revokeform" label-width="80px">
-					  <el-form-item label="撤销原因">
-					    <el-input type="textarea" v-model="Revokeform.desc" placeholder="请输入撤销原因" rows="3" autofocus="true" maxlength="100" resize="none" @input="descInput"></el-input>
-					  </el-form-item>
+				  <el-form ref="form" :model="form" label-width="80px">
+				  <el-form-item label="姓名">
+          <el-input v-model="form.name" readonly placeholder="请选择员工" @click.native="ldClick" class="el-icon-arrow-down"></el-input>
+          <input type="hidden" v-model="form.employeeId" />
+           <div v-if="ldVisabled" class="creat-tree create-trees " >
+            <el-scrollbar style="height:100%" >   
+                <div style="height:100%">
+                <div class="search">
+                    <el-input  class="input_search" v-model="names" placeholder="输入你想搜索的内容" >
+                        <i @click="searchName()" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
+                    </el-input>
+                </div>
+                <ul>
+                    <li @click="selectItem(item)" v-for="(item,index) in employeeList" :key='index'>
+                        <span class="name_f">{{item.employeeName.substr(0, 1)}}</span> 
+                        <span style="float:left;">
+                            <p>{{item.employeeName}}</p> 
+                            <p>{{item.deptName}}-{{item.position}}</p>    
+                        </span>
+                    </li>
+                </ul>
+                </div>  
+            </el-scrollbar> 
+            </div>
+				  </el-form-item>
+				  <el-form-item label="手机号码">
+				    <el-input v-model="form.phone" readonly placeholder="请先选择需要添加的管理员"></el-input>
+				  </el-form-item>
 				  </el-form>
-				  <div class="font_count">{{wordCount}}/100字</div>
         </div>
         <span slot="footer" class="dialog-footer">
-          <el-button type="primary" @click="confirm_Revoke_btn" class="confirm">确 定</el-button>
-          <el-button @click="Revoke_model = false" class="cancel">取 消</el-button>
+          <el-button type="primary" @click="confirm_Revoke_btn" class="confirm">确 认</el-button>
         </span>
       </el-dialog>
     <!--撤销离职流程 end-->
-    <!--人事流程详情   :before-close="handleClose"-->
-      <el-dialog title="人事流程详情" :visible.sync="details_model" class="details_model" custom-class="details_model">
-        <div class="folder_div">
-				  <div class="details_div">
-				  	<div class="details_title">流程号</div>
-				  	<div class="detail_con">{{hrdetails.processNum}}</div>
-				  </div>
-				  <div class="details_div">
-				  	<div class="details_title">员工</div>
-				  	<div class="detail_con">{{hrdetails.employeeName}}</div>
-				  </div>
-				  <div class="details_div">
-				  	<div class="details_title">流程</div>
-				  	<div class="detail_con" v-html="hrdetails.processRecord"></div>
-				  </div>
-				  <div class="details_div">
-				  	<div class="details_title">状态</div>
-				  	<div class="detail_con">
-	      			 <span v-if="hrdetails.status===0">已撤销</span>
-	      			 <span v-if="hrdetails.status===1">已生效</span>
-	      			 <span v-if="hrdetails.status===2">即将生效</span>
-				  	</div>
-				  </div>
-				  <div class="details_div">
-				  	<div class="details_title">备注</div>
-				  	<div class="detail_con">{{hrdetails.remark}}</div>
-				  </div>
-				  <div class="details_div">
-				  	<div class="details_title">生效日期</div>
-				  	<div class="detail_con">{{hrdetails.effectiveDate}}</div>
-				  </div>
-				  <div class="details_div">
-				  	<div class="details_title">创建时间</div>
-				  	<div class="detail_con">{{hrdetails.createDate}}</div>
-				  </div>
-				  <div class="details_div">
-				  	<div class="details_title">附件</div>
-				  	<div class="detail_con">
-				  		<div v-for="(item,index) of annexInfoList" :key="index" class="exp_div">
-								<div class="exp_title">{{item.file_name}}</div>
-								<div class="exp" @click="expDoc(hrdetails.id,item.id,item.file_name)">下载</div>
-							</div>
-				  	</div>
-				  </div>
-        </div>
-      </el-dialog>
-    <!--人事流程详情 end-->
         <div class="border_none">
           <!--主体内容-->
           <p class="headline">
-            <span><i>员工管理</i> /人事异动</span>
+            <span><i>管理权限设置</i></span>
           </p>
          </div>
   			 <div class="conHr">
-<!--  			 	 <div class="div_Tips">
-  			 	 	 <div class="tips_title">温馨提示：</div>
-  			 	 	 <div class="tips_con">
-							<p>１、”即将生效“状态下的流程，只有到了预计生效日期之后才可以确认，如需提前确认请修改生效日期；</p>
-							<p>２、在流程”即将生效“期间，如该员工离职，则改员工的所有即将生效流程将自动被取消。</p>
-						 </div>
-  			 	 </div> -->
   			 	 <div class="txt_div">
-						<el-row class="searchBox">
-						  <el-col :span="5">
-						  	<div class="grid-content bg-purple-dark">
-								  <div class="select_div">
-								  	<div class="select_title">状态</div>
-								    <el-select class="classSelect" v-model="select_state" placeholder="请选择员工类型" @change="changeSelectedstate">
-								      <el-option label="全部" value=""></el-option>
-								      <el-option label="已生效" value="1"></el-option>
-								      <el-option label="即将生效" value="2"></el-option>
-								      <el-option label="已撤销" value="0"></el-option>
-								    </el-select>
-								  </div>
-						  	</div>
-						  </el-col>
-						  <el-col :span="5">
-						  	<div class="grid-content bg-purple-dark">
-								  <div class="select_div">
-								  	<div class="select_title">流程</div>
-								    <el-select v-model="select_process" placeholder="请选择员工类型" @change="changeSelectedprocess">
-								      <el-option label="全部" value=""></el-option>
-								      <el-option label="转正" value="1"></el-option>
-								      <el-option label="人事变更" value="2"></el-option>
-								      <el-option label="离职" value="0"></el-option>
-								    </el-select>
-								  </div>
-						  	</div>
-						  </el-col>
-						  <el-col :span="6">
-						  	<div class="grid-content bg-purple-dark">
-								  <div class="search_div">
-										<div class="search_input_div" :span="6">
-											<el-input class="search_manage" placeholder="姓名/手机号" v-model="searchContent" @keyup.enter.native="gethrList"></el-input>
-											<div class="icon_btn el-icon-search" @click="gethrList"></div>
-										</div>
-<!-- 				            <el-col :span="12"><el-input class="search_input" placeholder="姓名/手机号" v-model="searchContent" @keyup.enter.native="gethrList"></el-input></el-col>
-										<el-button class="primary_btn" icon="el-icon-search" @click="gethrList">搜索</el-button> -->
-								  </div>
-						  	</div>
-						  </el-col>
+						<el-row class="searchdiv">
+              <el-button class="primary_btn" @click="Revoke_model = true">添加管理员</el-button>
 						</el-row>
   			 	 </div>
 			      <div>
 		          <div class="div_table_infor">
-							  <el-table :data="hrList" style="width: 100%">
-							    <el-table-column fixed prop="processNum" label="流程号" header-align='center' align='center' width="200px"></el-table-column>
-							    <el-table-column prop="employeeName" label="员工" header-align='center' align='center'></el-table-column>
-							    <el-table-column prop="processTitle" label="流程" header-align='center' align='center'></el-table-column>
-							    <el-table-column label="状态" header-align='center' align='center'>
+							  <el-table :data="adminList" style="width: 100%">
+							    <el-table-column fixed prop="name" label="姓名" header-align='center' align='center' width="200px"></el-table-column>
+							    <el-table-column prop="phone" label="手机号" header-align='center' align='center'></el-table-column>
+							    <el-table-column label="管理模块" header-align='center' align='center'>
 								    <template slot-scope="scope">
-								    	<span v-if="scope.row.status === 0">已撤销</span>
-								      <span v-if="scope.row.status === 1">已生效</span>
-								      <span v-if="scope.row.status === 2">即将生效</span>
+								    	<span class="buleSpan">全部</span>
 								    </template>
 							    </el-table-column>
-							    <el-table-column prop="effectiveDate" label="生效日期" header-align='center' align='center'></el-table-column>
-							    <el-table-column prop="createDate" label="创建日期" header-align='center' align='center'></el-table-column>
+							    <el-table-column label="管理部门" header-align='center' align='center'>
+								    <template slot-scope="scope">
+								    	<span class="buleSpan">全部</span>
+								    </template>
+							    </el-table-column>
 							    <el-table-column label="操作" width="160" header-align='center' align='center'>
 							      <template slot-scope="scope">
 											<el-dropdown placement='bottom'>
@@ -152,8 +83,7 @@
 													操作选项
 											 </span>
 												<el-dropdown-menu slot="dropdown" class="options_div">
-													<el-dropdown-item @click.native="options_see(scope.row.id)">查看</el-dropdown-item>
-													<el-dropdown-item v-if="scope.row.status===2" @click.native="options_revoke(scope.row.id)">撤销</el-dropdown-item>
+													<el-dropdown-item @click.native="click_del(scope.row.id)">删除</el-dropdown-item>
 												</el-dropdown-menu>
 											</el-dropdown>
 							      </template>
@@ -184,16 +114,14 @@
   import pageaside from '@/components/common/pageasideE';
 
 export default {
-  name: 'personnelTransaction',
+  name: 'admin',
 	components: {
 	  pageheader,
 	  pageaside
 	},
    data() {
       return {
-       select_state:'',
-       select_process:'',
-       hrList:[],
+       adminList:[],
 	     totalCount:0,
 			 pageIndex: 1,
 			 pageSize: 5,
@@ -209,6 +137,14 @@ export default {
 			hrdetails:[],
 			annexInfoList:[],
 			searchContent:'',
+			form: {
+          name: '',
+          phone: '',
+			   employeeId:''
+			},
+      employeeList:[],
+      ldVisabled:false,//选择人员下拉框
+      names:'',//搜索人员名称
       };
     },
     methods: {
@@ -254,20 +190,19 @@ export default {
 			descInput(){//统计textarea 输入字数
 				this.wordCount=this.Revokeform.desc.length;
 			},
-    	confirm_Revoke_btn(){//提交撤销流程
+    	confirm_Revoke_btn(){//确认添加管理员
     		let that=this;
-    		if(that.Revokeform.desc==""){
-    			that.$message.error("请输入撤销原因");
+    		if(that.form.name==""){
+    			that.$message.error("请选择员工姓名");
+    			return false;
+    		}else if(that.form.phone==""){
+    			that.$message.error("请输入手机号码");
     			return false;
     		}else{
 	        that.$http({
 		  			method:"post",
-		  			url:api.hr_revoke,
+		  			url:api.adminadd+that.form.employeeId,
 		  			headers:headers('application/json;charset=utf-8'),
-		  			data:{
-					    "id":that.hrListId,
-					    "revokeCause":that.Revokeform.desc
-		  			}
 		  		}).then(function(res){
 		  			if(res.data.code==10000){
 	            that.Revoke_model=false;
@@ -275,7 +210,7 @@ export default {
 			          message: '恭喜你，提交成功',
 			          type: 'success'
 			        });
-			        that.gethrList();
+			        that.getadminList();
 		  			}else{
 		  				that.$message.error(res.data.msg);
 		  			}
@@ -283,36 +218,61 @@ export default {
     		}
 
     	},
-    	options_see(id){//查看
+    	     
+      searchName() {//搜索
+        this.getEmployeeList()
+      }, 
+    	selectItem(val) {
+        this.ldVisabled=false;
+        this.form.name = val.employeeName;
+        this.form.employeeId = val.id;
+        this.form.phone = val.employeePhone;
+      },
+    	ldClick() {
+        this.getEmployeeList();
+        this.ldVisabled = !this.ldVisabled
+      },     
+      getEmployeeList() {//获取面试官，负责人列表  
+        let that = this
+        let currPage=that.pageIndex || 1;
+        let pageSize=10;
+        let employeeName = that.names || ''
+        this.$http({
+          method:"get",
+          url:api.adminaddList,
+          headers:headers('application/json;charset=utf-8'),
+          data:{
+          "currPage":currPage,
+          "pageSize":pageSize,
+          'employeeName':employeeName
+        },
+          cache:false
+        }).then(function(res){
+          if(res.data.code==10000 || res.data.data==null){
+            that.employeeList = res.data.data
+          }else{
+          that.$message.error(res.data.msg);
+          }
+        });
+      }, 
+    	click_del(id){//删除
     		let that=this;
-    		that.details_model=true;
         that.$http({
-	  			method:"get",
-	  			url:api.hr_details+id,
-	  			headers:headers('application/json;charset=utf-8'),
+	  			method:"post",
+	  			url:api.admindel+id,
+	  			headers:headers(),
 	  		}).then(function(res){
 	  			if(res.data.code==10000 || res.data.data==null){
-             that.hrdetails=res.data.data;
-             that.annexInfoList=res.data.data.annexInfoList;
+             that.$message({
+				      message: '恭喜你，操作成功',
+				      type: 'success'
+				    });
+				    that.getadminList();
 	  			}else{
 	  				that.$message.error(res.data.msg);
 	  			}
 		    });
     	},
-    	options_revoke(id){//撤销
-    		let that=this;
-    		that.Revoke_model=true;
-    		that.hrListId=id;
-    		that.Revokeform.desc="";
-    	},
-    	enter(index){
-        this.seen = true;
-        this.current = index;
-      },
-      leave(){
-        this.seen = false;
-        this.current = null;
-      },
       changePage(newPage) {
       	let that=this;
 				if(that.pageIndex === newPage) {
@@ -326,24 +286,17 @@ export default {
 				that.pageSize = newSize;
 				that.gethrList();
 			},
-			gethrList(){
+			getadminList(){
 				let that=this;
 	      let currentPage=that.pageIndex || 1;
 	      let pageSize=that.pageSize || 5;
         that.$http({
 	  			method:"post",
-	  			url:api.hr_list,
+	  			url:api.adminList+"/"+currentPage+"/"+pageSize,
 	  			headers:headers('application/json;charset=utf-8'),
-	  			data:{
-				    "currPage":currentPage,
-				    "pageSize":pageSize,
-				    'searchContent':that.searchContent,
-				    'type':that.select_process,
-				    'status':that.select_state
-	  			}
 	  		}).then(function(res){
 	  			if(res.data.code==10000){
-             that.hrList=res.data.data;
+             that.adminList=res.data.data;
              that.totalCount=res.data.count;
 	  			}else{
 	  				that.$message.error(res.data.msg);
@@ -353,19 +306,22 @@ export default {
     },
     mounted(){
     	let that=this;
-			if(that.$route.query.employeePhone){
-				that.searchContent=that.$route.query.employeePhone;
-			}else{
-				that.searchContent='';
-			}
-    	that.gethrList();
+    	that.getadminList();
     }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.searchdiv{
+	text-align: right;
+}
+.buleSpan{
+  color: #66ADFF;
+	border: 1px solid #66ADFF;
+	padding: 0 5px;
+	border-radius: 4px;
+}
 .main .right-content .content .headline_title{
     height: 50px;
     line-height: 50px;
@@ -538,5 +494,113 @@ display: inline-block;
 float: left;
 margin-left: 20px;
 cursor: pointer;
+}
+.create-trees  ul li .name_f{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color:#66ADFF ;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    color: #fff;
+    float: left;
+    margin-right: 10px;
+    margin-left:20px;
+}
+.create-trees  ul {
+    padding-top:55px;
+}
+.create-trees  ul li  p {
+    height: 30px;
+    text-align: left;
+    line-height: 30px;
+}
+.create-trees ul li {
+    height: 60px;
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+    line-height: 50px;
+}
+.creat-tree {
+    width:300px;
+    height:280px;
+    border: 1px solid #E5E5E5;
+    text-align:center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 44;
+    position: absolute;
+    background-color: #fff;
+}
+.manage_se  ul li .name_f{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color:#66ADFF ;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    color: #fff;
+    float: left;
+    margin-right: 10px;
+    margin-left:30px;
+}
+.manage_se ul li  p {
+    height: 30px;
+    text-align: left;
+    line-height: 30px;
+}
+.manage_se ul li {
+    height: 60px;
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+    line-height: 50px;
+} 
+.create_dialog .el-icon-arrow-down:before {
+    content: "\E603";
+    position: absolute;
+    top: 15px;
+    left: 253px;
+    color: #AAADB5;
+    cursor: pointer;
+}
+.create_dialog .create-trees {
+    left: 22%;
+    width: 280px; 
+}
+.create-trees .search {
+  float: right;
+  width: 400px;
+  height: 40px;
+  margin-top: 30px;
+  position: relative;
+  left: -70px;
+
+}
+.create-trees .search .input_search {
+  width: 260px;
+  position: absolute;
+  top:-21px;
+  /* width: 260px; */
+  
+}
+.create-trees .search .input_search .se_icon {
+  position: absolute;
+  right:-244px;
+  height: 30px;
+  top:8px;
+  font-size: 18px;
+  font-weight: 700;
+  border-left: 1px solid #E5E5E5;
+  color: #F95714;
+}
+.create-trees .search .el-icon-search:before {
+    content: "\E619";
+    margin-left: 5px;
 }
 </style>
