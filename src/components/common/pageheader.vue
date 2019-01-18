@@ -16,7 +16,7 @@
 							<ul v-if="topLine" class="selece_option">
 								<li @click="detail_click(1)">企业资料</li>
 								<li @click="detail_click(2)">企业认证</li>
-								<li v-if="loginType==1">管理员权限设置</li>
+								<li v-if="loginType==0" @click="$router.push('/admin')">管理员权限设置</li>
 							</ul>
 					</div>
 				</ul>
