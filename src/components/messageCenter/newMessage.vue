@@ -31,7 +31,7 @@
                                 <el-pagination @current-change="changePage" @size-change="changeSize" :current-page="pageIndex" :page-size="pageSize" :page-sizes="[10, 25, 50, 100]" layout="total, prev, pager, next, sizes, jumper" :total="totalCount">
                                 </el-pagination>
                             </div>
-                        <!-- 分页 end -->	
+                        <!-- 分页 end -->
             </el-tab-pane>
             <el-tab-pane label="面试相关" name="4">
                   <!-- <ul class="nav-tabs nav" id="uploadTabs">
@@ -47,7 +47,7 @@
                             <span class="date_sty">{{item.createTimeStr}}</span>
                           </li>
                       </ul>
-                      <span style="margin:0 45%;" v-else> 
+                      <span style="margin:0 45%;" v-else>
                           <img  class="img_sty" src="../../assets/111.png" alt="">
                           <i class="tit">很抱歉！暂无消息</i>
                       </span>
@@ -67,7 +67,7 @@
                             <span class="date_sty">{{item.createTimeStr}}</span>
                           </li>
                       </ul>
-                      <span style="margin:0 45%;" v-else> 
+                      <span style="margin:0 45%;" v-else>
                           <img  class="img_sty" src="../../assets/111.png" alt="">
                           <i class="tit">很抱歉！暂无消息</i>
                       </span>
@@ -85,19 +85,19 @@
                             <span class="date_sty">{{item.createTimeStr}}</span>
                           </li>
                       </ul>
-                      <span style="margin:0 45%;" v-else> 
+                      <span style="margin:0 45%;" v-else>
                           <img class="img_sty" src="../../assets/111.png" alt="">
                           <i class="tit">很抱歉！暂无消息</i>
                       </span>
                   </div>
             </el-tab-pane>
-  </el-tabs>	
-	
+  </el-tabs>
+
 </div>
   	</div>
   </div>
 </div>
-  	
+
   </div>
 </template>
 
@@ -107,9 +107,9 @@
 	import {headers} from '@/assets/js/common/lp.js'
   import pageheader from '@/components/common/pageheader';
   import pageaside from '@/components/common/pageaside';
-  
+
 export default {
-  name: 'Newmessage',
+  name: 'newMessage',
 	components: {
 	  pageheader,
 	  pageaside
@@ -187,13 +187,13 @@ export default {
 		  			}
 	  		  });
       	}).catch(() => {});
-      	
+
       },
       uploadTabs(a) {//切换样式
       	let that=this;
         that.flag=a;
       },
-    // 表格标签页切换  
+    // 表格标签页切换
       changePage(newPage) {
         if(this.pageIndex === newPage) {
             return;
@@ -212,14 +212,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-	
+
 #uploadTabs{
 	padding: 0 0 20px 20px;
 	border-bottom: none;
 	margin-bottom: 0;
-	list-style: none;	
+	list-style: none;
 	height: 54px;
-}	
+}
 #uploadTabs .active span{
     color: #FFFFFF;
     background: #F95714;
@@ -243,7 +243,7 @@ export default {
 .nav > li {
     position: relative;
     display: block;
- 
+
 }
 #uploadTabs li span {
     height: 34px;
@@ -271,7 +271,7 @@ export default {
     position: relative;
     display: block;
 }
-.nav-tabs > li{    
+.nav-tabs > li{
 	float: left;
 }
 #msgTabs{
@@ -388,9 +388,9 @@ export default {
 .content_msg {
     border:1px solid #D8D8D8;
     width:100%;
-    min-height:300px;   
+    min-height:300px;
     background-color: #fff;
-    
+
 }
 
 .list_sty {
@@ -400,37 +400,37 @@ export default {
   /* list-style: */
   height: 70px;
   background: #FFFFFF;
-  border-bottom: 1px solid #D8D8D8;  
+  border-bottom: 1px solid #D8D8D8;
   line-height:70px;
   font-family: MicrosoftYaHei;
- font-size: 16px; 
+ font-size: 16px;
  color: #97A2B3;
  letter-spacing: 0;
 }
 .sty_icon {
-  display: inline-block;  
+  display: inline-block;
   width: 8px;
   height: 8px;
   border-radius:50%;
-  background-color: #FF7F7F;  
+  background-color: #FF7F7F;
   margin-right:10px;
 }
 .sty_icons {
-  display: inline-block;  
+  display: inline-block;
   width: 8px;
   height: 8px;
   border-radius:50%;
-  background-color:#7BFF42;  
+  background-color:#7BFF42;
   margin-right:10px;
 }
 .sty_icon span {
   font-family: MicrosoftYaHei;
   font-size: 16px;
   color: #1B002A;
-  letter-spacing: 0;  
+  letter-spacing: 0;
 }
 .date_sty {
-  float: right;  
+  float: right;
 }
 .tit {
     position: absolute;

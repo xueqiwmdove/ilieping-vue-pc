@@ -433,12 +433,12 @@
           that.$message.error('docNumber不能为空');
           return false;
         }else{
-          const loading = this.$loading({
-            lock: true,
-            text: 'Loading',
-            spinner: 'el-icon-loading',
-            background: 'rgba(0, 0, 0, 0.7)'
-          });
+          // const loading = this.$loading({
+          //   lock: true,
+          //   text: 'Loading',
+          //   spinner: 'el-icon-loading',
+          //   background: 'rgba(0, 0, 0, 0.7)'
+          // });
           let that=this;
           that.IsList=false;
           that.IsDetails=true;
@@ -447,7 +447,7 @@
             url:api.detailContract+id+"/"+docNumber,
             headers:headers('application/json;charset=utf-8'),
           }).then(function(res){
-            loading.close();
+            // loading.close();
             if(res.data.code==10000){
               that.dataDetail=res.data.data;
               that.DatapdfImgUrl=res.data.data.pdfImg;
@@ -494,19 +494,19 @@
           that.$message.error('合同id不能为空');
           return false;
         }else{
-          const loading = this.$loading({
-            lock: true,
-            text: 'Loading',
-            spinner: 'el-icon-loading',
-            background: 'rgba(0, 0, 0, 0.7)'
-          });
+          // const loading = this.$loading({
+          //   lock: true,
+          //   text: 'Loading',
+          //   spinner: 'el-icon-loading',
+          //   background: 'rgba(0, 0, 0, 0.7)'
+          // });
           that.$http({
             method:"get",
             url:api.exportContract+'/'+agreementId+'/'+docNumber,
             headers:headers('application/x-download'),
             responseType: 'blob',
           }).then(function(res){
-            loading.close();
+            // loading.close();
             let url = window.URL.createObjectURL(new Blob([res.data]));  // new Blob([data])用来创建URL的file对象或者blob对象
             let link = document.createElement('a');
             link.style.display = 'none';
@@ -867,19 +867,19 @@
           isArchive:that.isFile,
           deadlineStr:deadlineStrTime
         };
-        const loading = this.$loading({
-          lock: true,
-          text: 'Loading',
-          spinner: 'el-icon-loading',
-          background: 'rgba(0, 0, 0, 0.7)'
-        });
+        // const loading = this.$loading({
+        //   lock: true,
+        //   text: 'Loading',
+        //   spinner: 'el-icon-loading',
+        //   background: 'rgba(0, 0, 0, 0.7)'
+        // });
         that.$http({
           method:"post",
           url:api.searchAgreementList+currentPage+'/'+pageSize,
           headers:headers('application/json;charset=utf-8'),
           data:params
         }).then(function(res){
-          loading.close();
+          // loading.close();
           if(res.data.code==10000){
             if(res.data.data.archivedFolderResponse=="" || res.data.data.listSign=="" || res.data.data.listSign==null){
               that.Isdatanull=true;

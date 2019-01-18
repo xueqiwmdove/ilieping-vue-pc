@@ -124,34 +124,34 @@
           <div v-if="flag==2" class="standard_resume">
             <el-row>
               <el-col  :span="24">
-                <el-form :rules="rules">
+                <el-form :rules="rules" :model="form" ref="form">
                   <p class="headLine">基本信息</p>
                   <div class="personInfo">
                     <el-row :gutter="80">
                       <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="姓名" required prop="name">
-                          <el-input v-model="name" placeholder="请输入候选人姓名"></el-input>
+                        <el-form-item label="姓名"  prop="name">
+                          <el-input v-model.trim="form.name" placeholder="请输入候选人姓名"></el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="岗位" required prop="post1">
-                          <el-select v-model="post1" placeholder="选择岗位">
+                        <el-form-item label="岗位"  prop="post1">
+                          <el-select v-model="form.post1" placeholder="选择岗位">
                             <el-option v-for="item in post1Data" :key="item.name" :label="item.name" :value="item.id"></el-option>
                           </el-select>
                         </el-form-item>
                       </el-col>
 
                       <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="手机号码"  required prop="phone">
-                          <el-input v-model="phone" placeholder="请输入手机号"></el-input>
+                        <el-form-item label="手机号码"   prop="phone">
+                          <el-input v-model.trim="form.phone" placeholder="请输入手机号" maxlength="11"></el-input>
                         </el-form-item>
                       </el-col>
                     </el-row>
 
                     <el-row :gutter="80">
                       <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="邮箱号码" required prop="email">
-                          <el-input v-model="email" placeholder="请输入邮箱号码"></el-input>
+                        <el-form-item label="邮箱号码"  prop="email">
+                          <el-input v-model.trim="form.email" placeholder="请输入邮箱号码"></el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :lg="8" :md="8" :sm="8">
@@ -180,8 +180,8 @@
                           </el-form-item>
                       </el-col>
                       <el-col :lg="8" :md="8" :sm="8">
-                        <el-form-item label="年龄">
-                          <el-input v-model="age" placeholder="请输入年龄"></el-input>
+                        <el-form-item label="年龄"  prop="age">
+                          <el-input v-model.trim="form.age"  placeholder="请输入年龄"></el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :lg="8" :md="8" :sm="8">
@@ -193,7 +193,7 @@
                       </el-col>
                       <el-col :lg="8" :md="8" :sm="8">
                         <el-form-item label="所在地">
-                          <el-input v-model="address" placeholder="所在地"></el-input>
+                          <el-input v-model.trim="address" placeholder="所在地"></el-input>
                         </el-form-item>
                       </el-col>
                     </el-row>
@@ -201,7 +201,7 @@
                     <el-row>
                       <el-col :lg="24" :md="24" :sm="24">
                         <el-form-item label="兴趣爱好">
-                          <el-input type="textarea" v-model="hobby" placeholder="请输入兴趣爱好"></el-input>
+                          <el-input type="textarea" v-model.trim="hobby" placeholder="请输入兴趣爱好"></el-input>
                         </el-form-item>
                       </el-col>
                     </el-row>
@@ -212,7 +212,7 @@
                     <el-row :gutter="80">
                       <el-col :lg="8" :md="8" :sm="8">
                         <el-form-item label="工作城市">
-                          <el-input v-model="workAddress" placeholder="请输入工作城市"></el-input>
+                          <el-input v-model.trim="workAddress" placeholder="请输入工作城市"></el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :lg="8" :md="8" :sm="8">
@@ -225,7 +225,7 @@
 
                       <el-col :lg="8" :md="8" :sm="8">
                         <el-form-item label="所在行业">
-                          <el-input v-model="industry" placeholder="请输入所在行业"></el-input>
+                          <el-input v-model.trim="industry" placeholder="请输入所在行业"></el-input>
                         </el-form-item>
                       </el-col>
                     </el-row>
@@ -233,18 +233,18 @@
                     <el-row :gutter="80">
                       <el-col :lg="8" :md="8" :sm="8">
                         <el-form-item label="期望行业">
-                          <el-input v-model="expected_industry" placeholder="请输入期望行业"></el-input>
+                          <el-input v-model.trim="expected_industry" placeholder="请输入期望行业"></el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :lg="8" :md="8" :sm="8">
                         <el-form-item label="到岗时间">
-                          <el-date-picker v-model="arrival_time"  value-format="yyyy-MM-dd" style="width: 280px;" type="date" placeholder="请选择到岗时间"></el-date-picker>
+                          <el-date-picker v-model.trim="arrival_time"  value-format="yyyy-MM-dd" style="width: 280px;" type="date" placeholder="请选择到岗时间"></el-date-picker>
                         </el-form-item>
                       </el-col>
 
                       <el-col :lg="8" :md="8" :sm="8">
                         <el-form-item label="是否有亲友在本公司工作">
-                          <el-select v-model="isHave" placeholder="请选择">
+                          <el-select v-model.trim="isHave" placeholder="请选择">
                             <el-option v-for="item in isHaveData" :key="item.value" :label="item.label" :value="item.value"></el-option>
                           </el-select>
                         </el-form-item>
@@ -260,11 +260,11 @@
                           <el-form-item label="期望薪资">
                             <el-row>
                               <el-col :span="11">
-                                <el-input v-model="salary_start" class="salary_start" ></el-input>
+                                <el-input v-model.trim="salary_start" class="salary_start" ></el-input>
                               </el-col>
                               <el-col class="line" :span="2" style="color:#E5E5E5;">-</el-col>
                               <el-col :span="11">
-                                <el-input v-model="salary_end" class="salary_end" ></el-input>
+                                <el-input v-model.trim="salary_end" class="salary_end" ></el-input>
                               </el-col>
                             </el-row>
                           </el-form-item>
@@ -273,7 +273,7 @@
                       </el-col>
                       <el-col :lg="16" :md="16" :sm="16">
                         <el-form-item label="技能">
-                          <el-input v-model="skill" placeholder="请输入技能（例如英语/计算机语言等）" class="skillInput"></el-input>
+                          <el-input v-model.trim="skill" placeholder="请输入技能（例如英语/计算机语言等）" class="skillInput"></el-input>
                         </el-form-item>
                       </el-col>
                     </el-row>
@@ -281,7 +281,7 @@
                     <el-row>
                       <el-col :lg="24" :md="24" :sm="24">
                         <el-form-item label="兴趣爱好">
-                          <el-input type="textarea" v-model="hobby" placeholder="请输入兴趣爱好"></el-input>
+                          <el-input type="textarea" v-model.trim="hobby" placeholder="请输入兴趣爱好"></el-input>
                         </el-form-item>
                       </el-col>
                     </el-row>
@@ -387,13 +387,13 @@
                         </el-col>
                         <el-col :lg="8" :md="8" :sm="8">
                           <el-form-item label="学校名称" >
-                            <el-input v-model="item.schoolName" placeholder="请输入就读学校名称"></el-input>
+                            <el-input v-model.trim="item.schoolName" placeholder="请输入就读学校名称"></el-input>
                           </el-form-item>
                         </el-col>
 
                         <el-col :lg="8" :md="8" :sm="8">
                           <el-form-item label="专业" >
-                            <el-input v-model="item.major" placeholder="请输入所学的专业"></el-input><!--specialty-->
+                            <el-input v-model.trim="item.major" placeholder="请输入所学的专业"></el-input><!--specialty-->
                           </el-form-item>
                         </el-col>
                       </el-row>
@@ -407,7 +407,7 @@
                           </el-form-item>
                         </el-col>
                         <el-col :lg="8" :md="8" :sm="8">
-                          <el-form-item label="学位">
+                          <el-form-item label.trim="学位">
                             <el-input v-model="item.degree " placeholder="请输入您的学位"></el-input>
                           </el-form-item>
                         </el-col>
@@ -423,7 +423,7 @@
                       <el-row>
                         <el-col :lg="24" :md="24" :sm="24">
                           <el-form-item label="其他">
-                            <el-input type="textarea" v-model="item.other" placeholder="其他说明"></el-input>
+                            <el-input type="textarea" v-model.trim="item.other" placeholder="其他说明"></el-input>
                           </el-form-item>
                         </el-col>
                       </el-row>
@@ -435,7 +435,7 @@
                       <el-row>
                         <el-col :lg="24" :md="24" :sm="24">
                           <el-form-item label="自我描述">
-                            <el-input type="textarea" v-model="self_description" placeholder="候选简介"></el-input>
+                            <el-input type="textarea" v-model.trim="self_description" placeholder="候选简介"></el-input>
                           </el-form-item>
                         </el-col>
                       </el-row>
@@ -449,7 +449,7 @@
         </div>
         <div class="addCandidate_right" v-if="flag==2">
           <!--<el-button class="uploadButton" v-if="flag==1">上传简历</el-button>-->
-          <el-button class="uploadButton" v-if="flag==2" @click="insertResume" :disabled="resumeDisbaled">保存简历</el-button>
+          <el-button class="uploadButton" v-if="flag==2" @click="insertResume('form')" :disabled="resumeDisbaled">保存简历</el-button>
           <div class="selectedBox" v-if="flag==2">
             <!--选择内推人-->
             <p>选择内推人</p>
@@ -545,6 +545,19 @@
           // standardBasic
         },
       data(){
+        let checkPhone = (rule, value, callback) => {
+          if (!value) {
+            return callback(new Error('手机号不能为空'));
+          } else {
+            const reg = /^1\d{10}$/;
+            console.log(reg.test(value));
+            if (reg.test(value)) {
+              callback();
+            } else {
+              return callback(new Error('请输入正确的手机号'));
+            }
+          }
+        };
           return{
             selectResume:true,//选择简历弹窗
             // addVisible:false,
@@ -672,8 +685,13 @@
             other:'',
             self_description:'',
 
-            name:'',
-            post1:'',//选择岗位
+            form:{
+              name:'',
+              post1:'',//选择岗位
+              email:'',
+              phone:'',
+            },
+
             post1Data:[],
             channels:'',
             channelsData:[
@@ -702,8 +720,6 @@
               {value:'0',label:'女'}
             ],
             age:'',
-            email:'',
-            phone:'',
             experience:'',
             experienceData:[
               {
@@ -772,11 +788,16 @@
                 { required: true, message: '请选择岗位', trigger: 'change' }
               ],
               phone: [
-                { type: 'phone', required: true, message: '请输入手机号', trigger: 'blur' }
+                {  required: true,  message: '请输入手机号', trigger: 'blur' },
+                { validator: checkPhone, message: '请输入正确手机号', trigger: 'blur'}
               ],
               email: [
                 { type: 'email', required: true, message: '请输入邮箱号码', trigger: 'blur' }
               ],
+              age: [
+                { type: 'number', required: true, message: '请输入数字，如：18', trigger: 'blur' },
+                { min:'2',max:'3',trigger:'blur'}
+              ]
 
             }
           }
@@ -940,10 +961,6 @@
           that.$emit('hideModel',that.add);//向父组件派发事件
         },
 
-        //上传头像
-        getHeadImg(){
-
-        },
 
         //原始简历上传文件前的校验
         beforeAvatarUpload (file) {
@@ -1124,7 +1141,7 @@
           });
         },
         //标准简历
-        insertResume(){
+        insertResume(formName){
           let that=this;
           let sex,experience;
           if(that.sex=='男'){
@@ -1168,14 +1185,14 @@
                 description:that.self_description,
               }};
           that.insertResumeData={
-                candidateName:that.name,// //候选人姓名
-                postId:that.post1, //岗位
+                candidateName:that.form.name,// //候选人姓名
+                postId:that.form.post1, //岗位
                 resumeChannel:that.channels,//渠道
                 resumeSource:that.resoure, //选择来源
                 candidateSex:sex,//候选人性别
-                candidateAge:that.age, //候选人年龄
-                candidatePhone:that.phone,//候选人手机号
-                candidateEmail:that.email,//候选人邮箱
+                candidateAge:that.form.age, //候选人年龄
+                candidatePhone:that.form.phone,//候选人手机号
+                candidateEmail:that.form.email,//候选人邮箱
                 candidateExperience:experience,//工作经验
                 candidateEducation:that.education1,//候选人学历
                 candidateLocation:that.address,//所在地
@@ -1183,40 +1200,49 @@
                 standardResume:JSON.stringify(that.standardResume),
                 annexId:that.annexId
               };
-          that.$http({
-            method:"post",
-            headers:headers(),
-            url:api.handAddCandidate,
-            data:{
-              candidateName:that.name,// //候选人姓名
-              postId:that.post1, //岗位
-              resumeChannel:that.channels,//渠道
-              resumeSource:that.resoure, //选择来源
-              candidateSex:sex,//候选人性别
-              candidateAge:that.age, //候选人年龄
-              candidatePhone:that.phone,//候选人手机号
-              candidateEmail:that.email,//候选人邮箱
-              candidateExperience:experience,//工作经验
-              candidateEducation:that.education1,//候选人学历
-              candidateLocation:that.address,//所在地
-              originalResumeAddress:that.resumeUrl, //原简历地址
-              commendEmployeeId:that.commendEmployeeId,//TODO 推荐人id
-              standardResume:JSON.stringify(that.standardResume),
-              annexId:that.annexId,
+
+          this.$refs[formName].validate((valid) => {
+            if (valid) {
+              that.$http({
+                method:"post",
+                headers:headers(),
+                url:api.handAddCandidate,
+                data:{
+                  candidateName:that.form.name,// //候选人姓名
+                  postId:that.form.post1, //岗位
+                  resumeChannel:that.channels,//渠道
+                  resumeSource:that.resoure, //选择来源
+                  candidateSex:sex,//候选人性别
+                  candidateAge:that.form.age, //候选人年龄
+                  candidatePhone:that.form.phone,//候选人手机号
+                  candidateEmail:that.form.email,//候选人邮箱
+                  candidateExperience:experience,//工作经验
+                  candidateEducation:that.education1,//候选人学历
+                  candidateLocation:that.address,//所在地
+                  originalResumeAddress:that.resumeUrl, //原简历地址
+                  commendEmployeeId:that.commendEmployeeId,//TODO 推荐人id
+                  standardResume:JSON.stringify(that.standardResume),
+                  annexId:that.annexId,
+                }
+              }).then(function (res) {
+                if(res.data.code==10000){
+                  that.$message.success("候选人信息插入成功！");
+                  that.hideModel();
+                  setTimeout(function () {
+                    window.location.reload();
+                  },3000)
+                }else if(res.data.code==40001 && res.data.data==true){
+                  that.dialogVisible = true;
+                }else{
+                  that.$message.error(res.data.msg);
+                }
+              })
+            } else {
+              console.log('error submit!!');
+              return false;
             }
-          }).then(function (res) {
-            if(res.data.code==10000){
-              that.$message.success("候选人信息插入成功！");
-              that.hideModel();
-              setTimeout(function () {
-                window.location.reload();
-              },3000)
-            }else if(res.data.code==40001 && res.data.data==true){
-              that.dialogVisible = true;
-            }else{
-              that.$message.error(res.data.msg);
-            }
-          })
+          });
+
 
         },
         // 更新候选人简历 updateResume

@@ -9,14 +9,14 @@
 				<ul style="height:100%;"  v-clickoutside="handleClose2">
 					<li><img src="../../assets/img/1.5.1/lou.png" alt=""></li>
 					<li class="conpany_1">{{message_title}}</li>
-					<li @click="detail_click(2)" v-if="status!=3"><span class="status_ren">请去验证</span> </li>
+					<li @click="detail_click(2)" v-if="status!=3" style="border-radius: 2px;"><span class="status_ren">请去验证</span> </li>
 					<li  v-else><span class="status_ren2">已验证</span> <img src="../../assets/img/1.5.1/peizhi.png" alt=""></li>
 					<li @click="checkpoint" :class="{topLine:topLine}" class="setting" ><img src="../../assets/img/1.5.1/set.png" alt=""></li>
 					<div class="selece_option">
 							<ul v-if="topLine" class="selece_option">
 								<li @click="detail_click(1)">企业资料</li>
 								<li @click="detail_click(2)">企业认证</li>
-								<li>管理员权限设置</li>
+								<li v-if="loginType==0" @click="$router.push('/admin')">管理员权限设置</li>
 							</ul>
 					</div>
 				</ul>
@@ -24,14 +24,14 @@
 	    <div class="pull-right" >
 				<ul style="height:100%;width:300px" v-clickoutside="handleClose">
 						<li @click="click_phone(0)" :class="seen == '0'? 'topLine':''"  ><img src="../../assets/img/1.5.1/ipone.png" alt=""></li>
-					 	<li @click="click_msg(1)" :class="seen == '1'? 'topLine':''" ><img src="../../assets/img/1.5.1/message.png" alt=""></li>
-						<li style="	width: 160px;" @click="checkpoint1(2)" :class="seen == '2'? 'topLine':''"><img style="margin-right:5px" src="../../assets/img/1.5.1/person.png" alt=""><span class="names">你好，马德华</span></li>
+					 	<li @click="click_msg(1);$router.push('/newMessage')" :class="seen == '1'? 'topLine':''" ><img src="../../assets/img/1.5.1/message.png" alt=""></li>
+						<li style="	width: 160px;" @click="checkpoint1(2)" :class="seen == '2'? 'topLine':''"><img style="margin-right:5px" src="../../assets/img/1.5.1/person.png" alt=""><span class="names">你好，{{loginUserName}}</span></li>
 					    <!-- 手机二维码 -->
-						<div v-if="topPhone" class="phoneicon">
-						  <img src="../../assets/img/1.5.1/erwei.png" alt="">
+						<div v-if="topPhone" class="phoneicon" >
+						  <img src="../../assets/img/1.5.1/erwei.png" alt="" >
 						</div>
 						<!-- 消息展示 -->
-							<div v-if="topLines1"  class="msg_sty" >
+							<!--<div v-if="topLines1"  class="msg_sty" >
 								<ul  v-if="tableData !=''">
 									<li v-for="(item,index) in tableData" :key="index">
 										<span><i v-if="item.status =='0'" class="sty_icons"></i><i v-if="item.status =='1'" class="sty_icons"></i>{{item.content}}</span>
@@ -41,12 +41,12 @@
 								<ul v-else>
 									<li style="text-align:center;width:100%;">暂无消息</li>
 								</ul>
-							</div>
+							</div>-->
 						<!--个人信息安全  -->
 							<div class="selece_option1">
 								<ul v-if="topLines" class="selece_option1">
 									<li @click="account(1)">账号安全</li>
-									<li @click="account(2)">放弃管理员身份</li>
+									<li @click="account(2)" v-if="loginType==1">放弃管理员身份</li>
 									<li @click="exit" >退出</li>
 								</ul>
 							</div>
@@ -106,6 +106,8 @@ export default {
   name: 'pageheader',
    data() {
       return {
+        loginType:1,//1子账号 0 主账号
+        loginUserName:'',
         message_title:"",
         tableData: [],
         seen:'',
@@ -159,6 +161,8 @@ export default {
             if(res.data.code==10000 && res.data!=""){
                 that.message_title=res.data.data.enterpriseName;
                 that.status=res.data.data.isAuthentication;
+                that.loginType=res.data.data.loginType;
+                that.loginUserName=res.data.data.loginUserName;
                 let companyTit = window.localStorage.setItem('title',that.message_title)
             }
           });
@@ -186,6 +190,17 @@ export default {
               type: 'warning',
               center: true
             }).then(() => {
+
+              that.$http({
+                method:"post",
+                url:api.abandonAuth,
+                headers:headers(),
+                cache:false
+              }).then(function(res){
+                that.$message.success(res.data.msg)
+              }).catch(function (res) {
+                that.$message.error(res.data.msg)
+              })
 
             }).catch(() => {
 
@@ -320,6 +335,9 @@ export default {
   height: 48px;
 	text-align: center;
   border-top: 2px solid transparent;
+}
+.setting img,.pull-right ul li:nth-child(3) img,.pull-right ul li:nth-child(3) span{
+  margin-top: -2px;
 }
 .pull-right {
 	float: right !important;
