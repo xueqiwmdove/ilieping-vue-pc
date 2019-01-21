@@ -56,7 +56,7 @@
                     <a href="javascript:void(0)" @click="modalVisable('del')">删除员工</a>
 
                     <router-link :to="{path:'/contractManagement',query: { id: id }}" v-if='isSign == 1 && status== 0'>查看合同</router-link>
-                    <router-link :to="{path:'/bySinging',query: { id: id }}" v-if='isSign == 0 && status== 0'>签署合同</router-link>
+                    <a v-if='isSign == 0 && status== 0' @click="goToNewStand(id,employeeInfoDetail.employeeName)" type="javascript:void(0)">签署合同</a>
 
                   <router-link :to="{path:'/quickUpload/0'}" v-if='status== 1'>快速评价离职</router-link>
                   <router-link :to="{path:'/uploadOne/0'}" v-if='status== 1'>多维度离职评价</router-link>
@@ -114,7 +114,7 @@
                     <div class="staff-process">
                         <p class="staff-tit">
                             <span>人事流程</span>
-                            <router-link :to="{path:'/hr',query: { employeePhone: employeeInfoDetail.employeePhone }}">查看详情</router-link>
+                            <router-link :to="{path:'/personnelTransaction',query: { employeePhone: employeeInfoDetail.employeePhone }}">查看详情</router-link>
                         </p>
 
                         <div class="info-contents">
@@ -192,6 +192,12 @@
             this.getPersonProcessData(that, employeeId);
         },
         methods: {
+          goToNewStand(id,employeeName){
+            let that=this;
+             that.$router.push('/newContract');
+             localStorage.setItem('employeeId',id);
+             localStorage.setItem('employeeName',employeeName);
+          },
             setIsTurn(){
                 let nowTime = new Date().getTime();
                 let turnTime = new Date(this.employeeInfo.turnPositiveTime).getTime();
