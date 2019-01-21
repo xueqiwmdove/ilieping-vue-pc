@@ -18,7 +18,7 @@
     <div class="account-content">
         <p>账户信息</p>
         <div class="account-info first">
-            <p style="margin-bottom: 20px;">手机号码：{{phoneUser}} <span class="span_right" @click="updatePhone">修改手机</span></p>
+            <p style="margin-bottom: 20px;">手机号码：{{phoneUser}} <span class="span_right" @click="updatePhone" v-if="loginType==0">修改手机</span></p>
         </div>
         <p>设置密码</p>
         <div class="account-info">
@@ -54,13 +54,21 @@ export default {
    data() {
       return {
 				phoneUser:'',
+        loginType:0,
       };
     },
     methods: {
 
     	updatePsd(){
     		let that=this;
-	      that.$http({
+        let mobile=localStorage.getItem('loginAccount');
+        that.loginType=localStorage.getItem('loginType');//1子账号；0主账号
+        window.localStorage.setItem("oldPhone",mobile);
+        //前3后4，中间用*代替
+        let num=mobile.substr(0,3)+"****"+mobile.substr(7,4);
+        that.phoneUser=num;
+
+	  /*    that.$http({
 	  			method:"get",
 	  			url:api.getphone,
 	  			headers:headers("application/json;charset=utf-8"),
@@ -74,7 +82,7 @@ export default {
 	  				let num=mobile.substr(0,3)+"****"+mobile.substr(7,4);
 	  				that.phoneUser=num;
 	  			}
-		    });
+		    });*/
     	},
     	updatePhone(){
     		this.$router.push('updateMobile');

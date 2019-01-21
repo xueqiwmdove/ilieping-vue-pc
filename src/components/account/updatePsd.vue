@@ -179,20 +179,24 @@ export default {
 
     	updateMobile(){
     		let that=this;
-	      that.$http({
-	  			method:"get",
-	  			url:api.user,
-	  			headers:headers("application/json;charset=utf-8"),
-	  			cache:false
-	  		}).then(function(res){
-	  			if(res.data.code==10000 && res.data!=""){
-	  				let mobile=res.data.data.enterprisePhone;
-	  				that.phoneMobile=res.data.data.enterprisePhone;
-	  				//前3后4，中间用*代替
-	  				let num=mobile.substr(0,3)+"****"+mobile.substr(7,4);
-	  				that.phoneUser=num;
-	  			}
-		    });
+        that.phoneMobile=localStorage.getItem('loginAccount');
+        //前3后4，中间用*代替
+        let num=that.phoneMobile.substr(0,3)+"****"+that.phoneMobile.substr(7,4);
+        that.phoneUser=num;
+	      // that.$http({
+	  		// 	method:"get",
+	  		// 	url:api.user,
+	  		// 	headers:headers("application/json;charset=utf-8"),
+	  		// 	cache:false
+	  		// }).then(function(res){
+	  		// 	if(res.data.code==10000 && res.data!=""){
+	  		// 		let mobile=res.data.data.enterprisePhone;
+	  		// 		that.phoneMobile=res.data.data.enterprisePhone;
+	  		// 		//前3后4，中间用*代替
+	  		// 		let num=mobile.substr(0,3)+"****"+mobile.substr(7,4);
+	  		// 		that.phoneUser=num;
+	  		// 	}
+		   //  });
     	},
     	updateMobile_sms(){
     		let that=this;

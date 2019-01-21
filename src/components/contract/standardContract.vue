@@ -60,7 +60,7 @@
                       <label>员工姓名<span class="class_required">*</span></label>
                       <!--<input type="text" autocomplete="off" v-model="employee" placeholder="请选择员工姓名"/>-->
                     <div class="input_group" v-clickOutSide="handleClose">
-                      <input type="text" placeholder="请选择员工姓名" class="selectDepartment" v-model="employee" @click.stop="isShow2=true;" ><!--@click="isShow2=!isShow2"-->
+                      <input type="text" placeholder="请选择员工姓名" class="selectDepartment" v-model="employee" @click.stop="isShow2=true;" readonly><!--@click="isShow2=!isShow2"-->
                       <div class="treePullDown" v-show="isShow2">
                         <!--<el-input
                           placeholder="输入关键字进行过滤"
@@ -731,6 +731,7 @@
     -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
     z-index: 2;
+    overflow: auto;
   }
 
 </style>

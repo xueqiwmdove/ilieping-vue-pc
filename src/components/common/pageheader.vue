@@ -163,7 +163,9 @@ export default {
                 that.status=res.data.data.isAuthentication;
                 that.loginType=res.data.data.loginType;
                 that.loginUserName=res.data.data.loginUserName;
-                let companyTit = window.localStorage.setItem('title',that.message_title)
+                let companyTit = window.localStorage.setItem('title',that.message_title);
+                window.localStorage.setItem('loginAccount',res.data.data.loginAccount);
+                window.localStorage.setItem('loginType',that.loginType);
             }
           });
         },
