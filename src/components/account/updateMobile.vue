@@ -215,7 +215,11 @@ export default {
       },
     	updateMobile(){
     		let that=this;
-	      that.$http({
+        that.phoneMobile=localStorage.getItem('loginAccount');
+        //前3后4，中间用*代替
+        let num=that.phoneMobile.substr(0,3)+"****"+that.phoneMobile.substr(7,4);
+        that.phoneUser=num;
+	     /* that.$http({
 	  			method:"get",
 	  			url:api.user,
 	  			headers:headers("application/json;charset=utf-8"),
@@ -228,7 +232,7 @@ export default {
 	  				let num=mobile.substr(0,3)+"****"+mobile.substr(7,4);
 	  				that.phoneUser=num;
 	  			}
-		    });
+		    });*/
     	},
     	updateMobile_sms(){
     		let that=this;
