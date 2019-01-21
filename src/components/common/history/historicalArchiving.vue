@@ -1,4 +1,4 @@
-<template>  
+<template>
   <div >
    <div class="mainCon el-col-24">
           <!--顶部导航-->
@@ -10,18 +10,18 @@
           <!--右侧内容栏-->
         <div class="right-content pull-right">
             <div class="content content_sty">
-                
+
                 <!-- 搜索栏 -->
                  <div class='content_pad del_icon'>
                     <div class="search" >
                         <el-input maxlength="11" @keyup.enter.native="searchPage"  v-model="searchName1" class="input_search" placeholder="输入姓名手机号" >
                         <i @click="searchPage"  slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
-                       </el-input> 
-                    </div> 
+                       </el-input>
+                    </div>
                      <br>
-                </div>  
+                </div>
                <!--表格  -->
-                <div class="div_table_infor">   
+                <div class="div_table_infor">
                     <el-table :data="tableData" style="width: 100%; min-width:756px;">
                           <el-table-column prop="employeeName" label="员工" header-align='center' align='center'>
                              <template slot-scope="scope" >
@@ -62,9 +62,9 @@
 																  <el-dropdown-item v-if="scope.row.status=='0'" @click.native="makeQuit(scope.row)">办理离职</el-dropdown-item>
 																  <el-dropdown-item v-if="scope.row.status=='0'"  @click.native="personChanges(scope.row)">人事变更</el-dropdown-item>-->
 																  <el-dropdown-item @click.native="personDelete(scope.row)">删除员工</el-dropdown-item>
-																  <el-dropdown-item v-if="scope.row.status=='1'" @click.native="quitDiscredit(scope.row)">离职失信曝光</el-dropdown-item>
-																  <el-dropdown-item v-if="scope.row.status=='1'" @click.native="quitAssess(scope.row)">快速离职评价</el-dropdown-item>
-																  <el-dropdown-item v-if="scope.row.status=='1'" @click.native="multidimensional(scope.row)">多维度离职评价</el-dropdown-item>
+																  <el-dropdown-item v-if="scope.row.status=='1'" @click.native="quitDiscredit(scope.row.id)">离职失信曝光</el-dropdown-item>
+																  <el-dropdown-item v-if="scope.row.status=='1'" @click.native="quitAssess(scope.row.id)">快速离职评价</el-dropdown-item>
+																  <el-dropdown-item v-if="scope.row.status=='1'" @click.native="multidimensional(scope.row.id)">多维度离职评价</el-dropdown-item>
 																</el-dropdown-menu>
 															</el-dropdown>
                             </template>
@@ -75,10 +75,10 @@
                     <div class="bottom-pagination" v-if="totalCount > 5">
                         <el-pagination @current-change="changePage" @size-change="changeSize" :current-page="pageIndex" :page-size="pageSize" :page-sizes="[5,10, 25, 50, 100]" layout="total, prev, pager, next, sizes, jumper" :total="totalCount">
                         </el-pagination>
-                    </div> 
+                    </div>
             </div>
-        </div>      
-    </div>        
+        </div>
+    </div>
   </div>
 </template>
 
@@ -107,7 +107,7 @@ export default {
       };
     },
     watch:{
-       
+
       },
     methods: {
       personDetail(val) {//员工资料跳转
@@ -117,16 +117,16 @@ export default {
       	this.$router.push({path:'/contractManagement',query:{id:val.id}})
       },
       makeSign(val){//签署合同
-      	
+
       },
       personRegular(val){//提前转正
-      	
+
       },
       makeQuit(val){//办理离职
-      	
+
       },
       personChanges(val){//人事变更
-      	
+
       },
       personDelete(val){//删除员工
       	let that=this;
@@ -147,13 +147,13 @@ export default {
 		    });
       },
       quitDiscredit(val){//离职失信曝光
-      	
+        this.$router.push({path:'/exposure/'+val})
       },
       quitAssess(val){//快速离职评价
-      	
+        this.$router.push({path:'/quickUpload/'+val})
       },
       multidimensional(val){//多维度离职评价
-      	
+        this.$router.push({path:'/uploadOne/'+val})
       },
       changePage(newPage) {
           let that=this;
@@ -212,7 +212,7 @@ export default {
      this.getList();
     },
     created() {
-       
+
     }
 }
 </script>
@@ -220,17 +220,17 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped >
 .content_sty {
-  padding: 30px 0;  
+  padding: 30px 0;
 }
 .content_sty .div_table_infor .el-table {
-  border:none;  
+  border:none;
 }
 .content_pad {
-  margin:20px;  
+  margin:20px;
   height:80px;
-  line-height:80px; 
+  line-height:80px;
   margin-top: -25px;;
-} 
+}
 .content_pad .end_msg {
   height: 20px;
   position: absolute;
@@ -273,16 +273,16 @@ export default {
 }
 .basic_sty .name_s {
    font-size: 15px;
-   color:#394A66; 
+   color:#394A66;
 }
 .basic_sty .name_s em {
   font-size: 12px;
-  color: #748093;  
+  color: #748093;
 }
 .bom_sty {
   width: 2px;
   height: 2px;
-  background-color: #748093;  
+  background-color: #748093;
   border-radius: 50%;
   display: inline-block;
   margin: 0 4px;
@@ -302,7 +302,7 @@ export default {
  .search .input_search {
   width: 260px;
   position: absolute;
-  
+
 }
 .search .input_search .se_icon {
   position: absolute;
@@ -331,7 +331,7 @@ export default {
 </style>
 <style>
  .content_pad .el-input--suffix .el-input__inner {
-    padding-left:0px;  
+    padding-left:0px;
  }
  .case_sty  .el-icon-close:before {
     content: "\E60F";
@@ -341,7 +341,7 @@ export default {
     padding-left: 1px;
 }
 .el-icon-circle-close:before {
-    display:none; 
+    display:none;
 }
 </style>
 
