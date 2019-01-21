@@ -433,12 +433,6 @@
           that.$message.error('docNumber不能为空');
           return false;
         }else{
-          // const loading = this.$loading({
-          //   lock: true,
-          //   text: 'Loading',
-          //   spinner: 'el-icon-loading',
-          //   background: 'rgba(0, 0, 0, 0.7)'
-          // });
           let that=this;
           that.IsList=false;
           that.IsDetails=true;
@@ -1428,5 +1422,8 @@
   .contractManagement_con .search_div .search_right .right_history{float:left; display: inline-block; margin: 0 20px; cursor: pointer;}
   .contractManagement_con .search_div .search_right .right_history img{margin-right: 10px;}
   .contractManagement_con .search_div .search_right .right_btn{float:left; display: inline-block;}
+  
+  .headline_title{height: 40px;}
+  .headline_title .active{height: 40px; line-height: 40px;}
 </style>
 

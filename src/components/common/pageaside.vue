@@ -4,7 +4,7 @@
 <el-menu :default-active="isactive" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
   <el-menu-item index="0">
     <i class="icon_set" @click.prevent="collapse"></i>
-    <span slot="title">工作台</span>
+    <span slot="title" @click="click_admin(0)">工作台</span>
   </el-menu-item>
   <el-submenu index="1">
     <template slot="title">
@@ -67,6 +67,10 @@
 			//折叠导航栏
 			collapse:function(){
 				this.isCollapse=!this.isCollapse;
+			},
+			click_admin(a){
+				this.isactive=a;
+    		this.$router.push('/admin');
 			},
 			click_searchbefore1(a){
 				 this.isactive=a;

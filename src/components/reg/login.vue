@@ -310,7 +310,7 @@ export default {
       				window.localStorage.setItem('jingjing_login_token',res.data.data.token);
       			    //密码登录
                       // that.$router.push('account_alliancevip');
-              that.$router.push('searchbefore');
+              that.$router.push('admin');
       			}else{
       				that.$message.error(res.message || res.data.msg);
       			}
@@ -353,7 +353,7 @@ export default {
       			if(res.data.code===10000){
                  window.localStorage.setItem('jingjing_login_token',res.data.data.token);
                  // that.$router.push('account_alliancevip');
-								 that.$router.push('searchbefore');
+								 that.$router.push('admin');
       			}else{
       				that.$message.error(res.message || res.data.msg);
       			}

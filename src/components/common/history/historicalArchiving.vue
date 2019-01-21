@@ -1,12 +1,12 @@
 <template>  
   <div >
-   <div class="main">
+   <div class="mainCon el-col-24">
           <!--顶部导航-->
         <pageheader class="pageheader"></pageheader>
           <!--侧边栏-->
-          <div class="aside">
+          <!--<div class="aside">-->
             <pageaside></pageaside>
-          </div>
+          <!--</div>-->
           <!--右侧内容栏-->
         <div class="right-content pull-right">
             <div class="content content_sty">
@@ -56,11 +56,11 @@
 															 </span>
 																<el-dropdown-menu slot="dropdown" class="options_div">
 																  <el-dropdown-item  @click.native="personDetail(scope.row)">员工资料</el-dropdown-item>
-																  <el-dropdown-item v-if="(scope.row.isSign=='1')&&(scope.row.status =='0')" @click.native="checkSign(scope.row)">查看合同</el-dropdown-item>
+																  <!--<el-dropdown-item v-if="(scope.row.isSign=='1')&&(scope.row.status =='0')" @click.native="checkSign(scope.row)">查看合同</el-dropdown-item>
 																  <el-dropdown-item v-if="scope.row.isSign=='0'&&(scope.row.status =='0')"  @click.native="makeSign(scope.row)">签署合同</el-dropdown-item>
 																  <el-dropdown-item v-if="(scope.row.serviceSituation =='0')&& (scope.row.status =='0') &&(scope.row.workType=='0')" @click.native="personRegular(scope.row)">提前转正</el-dropdown-item>
 																  <el-dropdown-item v-if="scope.row.status=='0'" @click.native="makeQuit(scope.row)">办理离职</el-dropdown-item>
-																  <el-dropdown-item v-if="scope.row.status=='0'"  @click.native="personChanges(scope.row)">人事变更</el-dropdown-item>
+																  <el-dropdown-item v-if="scope.row.status=='0'"  @click.native="personChanges(scope.row)">人事变更</el-dropdown-item>-->
 																  <el-dropdown-item @click.native="personDelete(scope.row)">删除员工</el-dropdown-item>
 																  <el-dropdown-item v-if="scope.row.status=='1'" @click.native="quitDiscredit(scope.row)">离职失信曝光</el-dropdown-item>
 																  <el-dropdown-item v-if="scope.row.status=='1'" @click.native="quitAssess(scope.row)">快速离职评价</el-dropdown-item>
@@ -112,6 +112,48 @@ export default {
     methods: {
       personDetail(val) {//员工资料跳转
         this.$router.push({path:'/staffInfo',query:{id:val.id}})
+      },
+      checkSign(val){//查看合同
+      	this.$router.push({path:'/contractManagement',query:{id:val.id}})
+      },
+      makeSign(val){//签署合同
+      	
+      },
+      personRegular(val){//提前转正
+      	
+      },
+      makeQuit(val){//办理离职
+      	
+      },
+      personChanges(val){//人事变更
+      	
+      },
+      personDelete(val){//删除员工
+      	let that=this;
+      	that.$http({
+	  			method:"delete",
+	  			url:api.deleteEmployee+"/"+val.id,
+	  			headers:headers('application/json;charset=utf-8'),
+	  		}).then(function(res){
+	  			if(res.data.code==10000){
+            that.$message({
+				      message: '恭喜你，删除成功！',
+				      type: 'success'
+				    });
+				    that.getList();
+	  			}else{
+	  				that.$message.error(res.data.msg);
+	  			}
+		    });
+      },
+      quitDiscredit(val){//离职失信曝光
+      	
+      },
+      quitAssess(val){//快速离职评价
+      	
+      },
+      multidimensional(val){//多维度离职评价
+      	
       },
       changePage(newPage) {
           let that=this;
