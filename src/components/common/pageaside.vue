@@ -1,7 +1,7 @@
 <template>
   <div :class="isCollapse?'aside_collapsed':'aside'">
    <!--侧边栏-->
-<el-menu :default-active="isactive" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+<el-menu :default-active="isactive" :unique-opened="true" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
   <el-menu-item index="0">
     <i class="icon iconfont icon-gongzuotaisvg" @click.prevent="collapse"></i>
     <span slot="title" @click="click_admin(0)">工作台</span>
