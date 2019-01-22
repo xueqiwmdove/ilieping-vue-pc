@@ -4,11 +4,13 @@
 -->
 <template>
     <div>
-        <div class="main">
+        <div class="mainCon el-col-24">
             <!--顶部导航-->
             <pageheader class="pageheader"></pageheader>
             <!--侧边栏-->
-            <div class="aside"><pageaside></pageaside></div>
+            <!--<div class="aside">-->
+            	<pageaside></pageaside>
+            <!--</div>-->
             <!--右侧内容栏-->
             <div class="right-content pull-right">
                 <div class="content">
