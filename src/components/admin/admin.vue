@@ -19,7 +19,7 @@
           <el-input v-model="form.name" readonly placeholder="请选择员工" @click.native="ldClick" class="el-icon-arrow-down"></el-input>
           <input type="hidden" v-model="form.employeeId" />
            <div v-if="ldVisabled" class="creat-tree create-trees " >
-            <el-scrollbar style="height:100%" >   
+            <el-scrollbar style="height:100%" >
                 <div style="height:100%">
                 <div class="search">
                     <el-input  class="input_search" v-model="names" placeholder="输入你想搜索的内容" >
@@ -28,15 +28,15 @@
                 </div>
                 <ul>
                     <li @click="selectItem(item)" v-for="(item,index) in employeeList" :key='index'>
-                        <span class="name_f">{{item.employeeName.substr(0, 1)}}</span> 
+                        <span class="name_f">{{item.employeeName.substr(0, 1)}}</span>
                         <span style="float:left;">
-                            <p>{{item.employeeName}}</p> 
-                            <p>{{item.deptName}}-{{item.position}}</p>    
+                            <p>{{item.employeeName}}</p>
+                            <p>{{item.deptName}}-{{item.position}}</p>
                         </span>
                     </li>
                 </ul>
-                </div>  
-            </el-scrollbar> 
+                </div>
+            </el-scrollbar>
             </div>
 				  </el-form-item>
 				  <el-form-item label="手机号码">
@@ -218,10 +218,10 @@ export default {
     		}
 
     	},
-    	     
+
       searchName() {//搜索
         this.getEmployeeList()
-      }, 
+      },
     	selectItem(val) {
         this.ldVisabled=false;
         this.form.name = val.employeeName;
@@ -231,8 +231,8 @@ export default {
     	ldClick() {
         this.getEmployeeList();
         this.ldVisabled = !this.ldVisabled
-      },     
-      getEmployeeList() {//获取面试官，负责人列表  
+      },
+      getEmployeeList() {//获取面试官，负责人列表
         let that = this
         let currPage=that.pageIndex || 1;
         let pageSize=10;
@@ -254,7 +254,7 @@ export default {
           that.$message.error(res.data.msg);
           }
         });
-      }, 
+      },
     	click_del(id){//删除
     		let that=this;
         that.$http({
@@ -262,7 +262,7 @@ export default {
 	  			url:api.admindel+id,
 	  			headers:headers(),
 	  		}).then(function(res){
-	  			if(res.data.code==10000 || res.data.data==null){
+	  			if(res.data.code==10000){
              that.$message({
 				      message: '恭喜你，操作成功',
 				      type: 'success'
@@ -560,7 +560,7 @@ cursor: pointer;
     margin-top: 10px;
     cursor: pointer;
     line-height: 50px;
-} 
+}
 .create_dialog .el-icon-arrow-down:before {
     content: "\E603";
     position: absolute;
@@ -571,7 +571,7 @@ cursor: pointer;
 }
 .create_dialog .create-trees {
     left: 22%;
-    width: 280px; 
+    width: 280px;
 }
 .create-trees .search {
   float: right;
@@ -587,7 +587,7 @@ cursor: pointer;
   position: absolute;
   top:-21px;
   /* width: 260px; */
-  
+
 }
 .create-trees .search .input_search .se_icon {
   position: absolute;
