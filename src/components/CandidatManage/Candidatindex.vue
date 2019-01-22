@@ -615,8 +615,8 @@ export default {
   padding: 20px 25px;
   min-width: 729px;
   padding-left: 0px;
-  height:800px;
-  overflow: hidden;
+  /*height:800px;*/
+  /*overflow: hidden;*/
 }
 /* 右侧顶部样式开始 */
 .content_pad {

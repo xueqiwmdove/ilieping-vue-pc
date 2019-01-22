@@ -149,15 +149,15 @@
 			}else if(loginUrl=='twoUpload'){
 				that.isactive="2-1";
 			}else if(loginUrl=='exposure'){
-				that.isactive="2-2";	
+				that.isactive="2-2";
 			}else if(loginUrl=='myupload'){
-				that.isactive="2-3";		
+				that.isactive="2-3";
 			}else if(loginUrl=='indexList'){
-				that.isactive="3-1";	
+				that.isactive="3-1";
 			}else if(loginUrl=='personnelTransaction'){
-				that.isactive="3-2";	
+				that.isactive="3-2";
 			}else if(loginUrl=='contractManagement'){
-				that.isactive="3-3";	
+				that.isactive="3-3";
 			}else if(loginUrl=='InterviewManagement'){
 				that.isactive="4-1";
 			}else if(loginUrl=='jobmanageindex'){

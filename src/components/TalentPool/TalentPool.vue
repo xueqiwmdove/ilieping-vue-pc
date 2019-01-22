@@ -106,28 +106,28 @@
           </div>
     </div>
       <!-- 弹窗-新增人才库  -->
-     <el-dialog title="新建人才库" :visible.sync="addVisible" class="add_dialog" custom-class="sty_dialogs" >
+     <el-dialog title="新建人才库" :visible.sync="addVisible" class="add_dialog" custom-class="sty_dialogs" @close="addVisible=false;form1.deptName=''">
         <el-form style="margin-left:50px;" :model="form1" :rules="rules"  ref="form1" @submit.native.prevent="addSubmit">
           <el-form-item label="人才库名称"  prop="deptName">
-            <el-input style="width:280px;" v-model="form1.deptName" maxlength="32"  placeholder="请输入名称"  @keyup.enter.native="addSubmit"></el-input>
+            <el-input style="width:280px;" v-model.trim="form1.deptName" maxlength="32"  placeholder="请输入名称"  @keyup.enter.native="addSubmit"></el-input>
           </el-form-item>
         </el-form>
          <div slot="footer" class="dialog-footer">
          <el-button type="primary"  :class="searchBtnClass" :disabled="searchDisabled" style="height:36px;background: #F95714;" @click="addSubmit">提交</el-button>
-            <el-button style="height:36px" @click="addVisible=false">取 消</el-button>
+            <el-button style="height:36px" @click="addVisible=false;form1.deptName=''">取 消</el-button>
         </div>
       </el-dialog>
 
     <!--编辑人才库-->
-    <el-dialog title="编辑人才库" :visible.sync="updateVisible" class="add_dialog" custom-class="sty_dialogs" >
+    <el-dialog title="编辑人才库" :visible.sync="updateVisible" class="add_dialog" custom-class="sty_dialogs"  @close="updateVisible=false;form2.updateDeptName=''">
       <el-form style="margin-left:50px;" :model="form1" :rules="rule"  ref="form2"  @submit.native.prevent="updateSubmit">
         <el-form-item label="人才库名称"  prop="updateDeptName">
-          <el-input style="width:280px;" v-model="form2.updateDeptName" maxlength="32"  placeholder="请输入名称"  @keyup.enter.native="updateSubmit"></el-input>
+          <el-input style="width:280px;" v-model.tirm="form2.updateDeptName" maxlength="32"  placeholder="请输入名称"  @keyup.enter.native="updateSubmit"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary"   style="height:36px;background: #F95714;" :class="searchBtnClass2" :disabled="searchDisabled2" @click="updateSubmit">提交</el-button>
-        <el-button style="height:36px"  @click="updateVisible=false">取 消</el-button>
+        <el-button style="height:36px"  @click="updateVisible=false;form2.updateDeptName=''">取 消</el-button>
       </div>
     </el-dialog>
 
@@ -618,8 +618,8 @@ export default {
   padding-top: 24px;
   min-width: 729px;
   padding-left: 0px;
-  height:800px;
-  overflow: hidden;
+  /*height:800px;*/
+  /*overflow: hidden;*/
 }
 /* 右侧顶部样式开始 */
 .content_pad {
