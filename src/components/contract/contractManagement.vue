@@ -104,7 +104,8 @@
               </div>
             </div>
             <div class="search_con">
-              <el-row :gutter="20" v-if="IsTab" class="tab_title">
+              <el-row :gutter="20" >
+              	<div class="tab_title" v-if="IsTab">
                 <ul>
                   <li @click="clickTab(10)" :class="flag==10?'active':''"><div><i class="icon_quanbu"></i>全部({{datacountContract.total}})</div></li>
                   <li @click="clickTab(2)" :class="flag==2?'active':''"><div><i class="icon_daiwoqian"></i>待我签({{datacountContract.companySignLength}})</div></li>
@@ -116,6 +117,7 @@
                   <li @click="clickTab(12)" :class="flag==12?'active':''"><div><i class="icon_yidaoqi"></i>已到期({{datacountContract.endTimeLength}})</div></li>
                   <li @click="clickTab(13)" :class="flag==13?'active':''"><div><i class="icon_jijiangjiezhi"></i>即将截止签定合同({{datacountContract.expectedDealTimeLength}})</div></li>
                 </ul>
+                </div>
               </el-row>
               <el-row :gutter="20" v-if="IsFiolder">
                 <ul class="file_ul">
@@ -1255,17 +1257,18 @@
     padding-top: 20px;
   }
   .tab_title{
-    /* background: #F9F9F9; */
-    /* border-bottom: #E5E5E5; */
+  	height: 40px;
+  	line-height: 40px;
     margin: 0;
+    border-bottom: 1px solid #E5E5E5;
   }
   .tab_title ul li{
     float: left;
     display: inline-block;
     text-align: center;
     cursor: pointer;
-    line-height: 34px;
-    height: 34px;
+    line-height: 40px;
+    height: 40px;
     border-bottom: #E5E5E5;
     padding: 0 10px;
   }
@@ -1275,6 +1278,7 @@
   }
   .table_con_div{
     border-top:1px solid #E5E5E5;
+    margin-top: 40px;
   }
   .btn_default{
     background: #FAFBFC;
