@@ -59,7 +59,7 @@
   export default {
    data() {
       return {
-        isCollapse: false,
+        isCollapse: true,
         isactive:'0'
       };
     },
@@ -177,7 +177,7 @@
 
 <style scoped>
   .el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
+    width: 210px;
     min-height: 400px;
   }
 	.icon_select{/* 猎评查询 icon */
