@@ -181,7 +181,7 @@
                       </el-col>
                       <el-col :lg="8" :md="8" :sm="8">
                         <el-form-item label="年龄"  prop="age">
-                          <el-input v-model.trim="form.age"  placeholder="请输入年龄"></el-input>
+                          <el-input  v-model="form.age"  placeholder="请输入年龄" maxlength="2"></el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :lg="8" :md="8" :sm="8">
@@ -545,6 +545,18 @@
           // standardBasic
         },
       data(){
+        let  checkAge = (rule, value, callback) => {
+          if (!value) {
+            return callback(new Error('年龄不能为空'));
+          }
+          const reg = /^\d{2}$/;
+          console.log(reg.test(value));
+          if (reg.test(value)) {
+            callback();
+          } else {
+            return callback(new Error('请输2位数字值'));
+          }
+        };
         let checkPhone = (rule, value, callback) => {
           if (!value) {
             return callback(new Error('手机号不能为空'));
@@ -795,8 +807,9 @@
                 { type: 'email', required: true, message: '请输入邮箱号码', trigger: 'blur' }
               ],
               age: [
-                { type: 'number', required: true, message: '请输入数字，如：18', trigger: 'blur' },
-                { min:'2',max:'3',trigger:'blur'}
+                // {  validator: checkAge, required: true,trigger: 'blur'},
+                { required: true, message: '年龄不能为空',trigger: 'blur'},
+                { validator: checkAge,trigger: 'blur'}
               ]
 
             }
