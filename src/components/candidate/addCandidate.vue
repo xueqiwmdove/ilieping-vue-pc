@@ -407,8 +407,8 @@
                           </el-form-item>
                         </el-col>
                         <el-col :lg="8" :md="8" :sm="8">
-                          <el-form-item label.trim="学位">
-                            <el-input v-model="item.degree " placeholder="请输入您的学位"></el-input>
+                          <el-form-item label="学位">
+                            <el-input v-model.trim="item.degree " placeholder="请输入您的学位"></el-input>
                           </el-form-item>
                         </el-col>
                         <el-col :lg="8" :md="8" :sm="8">
@@ -690,6 +690,7 @@
               post1:'',//选择岗位
               email:'',
               phone:'',
+              age:'',
             },
 
             post1Data:[],
@@ -719,7 +720,6 @@
               {value:'1',label:'男'},
               {value:'0',label:'女'}
             ],
-            age:'',
             experience:'',
             experienceData:[
               {
@@ -804,7 +804,7 @@
       },
       computed:{
         resumeDisbaled:function() {
-          if(this.name!="" && this.post1 !="" && this.phone !="" && this.email !="" ){
+          if(this.form.name!="" && this.form.post1 !="" && this.form.phone !="" && this.form.email !="" && this.form.age !="" ){
             return false
           }else{
             return true
@@ -868,14 +868,14 @@
                 let data=res.data.data;
                 that.candidateEducationExperienceDTOList=data.educationalExperienceList;
                 that.candidateWorkExperienceDTOList= data.workExpericeList;
-                that.name=data.name;
+                that.form.name=data.name;
                 that.sex=data.gender;
                 that.description=data.selfEvaluation;
                 that.workAddress=data.workingCity;
                 that.arrival_time=data.dutyTime;
-                that.age=data.age;
-                that.phone=data.phone;
-                that.email=data.email;
+                that.form.age=data.age;
+                that.form.phone=data.phone;
+                that.form.email=data.email;
                 that.hobby=data.hobby;
                 that.province=data.birthPlace;
                 that.skill=data.skill;
@@ -942,14 +942,14 @@
             }
           ];
 
-          that.name="";
+          that.form.name="";
           that.sex="";
           that.description="";
           that.workAddress="";
           that.arrival_time="";
-          that.age="";
-          that.phone="";
-          that.email="";
+          that.form.age="";
+          that.form.phone="";
+          that.form.email="";
           that.hobby="";
           that.province="";
           that.skill="";

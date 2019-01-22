@@ -623,7 +623,7 @@ nav .pull-right .exit:before {
     -ms-flex: 1;
     flex: 1;
     overflow-y: scroll;
-    padding: 20px;
+    padding: 10px;
 }
 .mainCon .right-content .content {
   width: 100%;
@@ -637,7 +637,7 @@ nav .pull-right .exit:before {
   line-height: 50px;
   text-indent: 23px;
   /*margin-bottom: 20px;*/
-  font-size: 16px;
+  font-size: 14px;
   color: #21324E;
   letter-spacing: 0;
   /*border-bottom: 1px solid #E5E5E5;*/
