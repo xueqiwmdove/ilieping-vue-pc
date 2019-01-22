@@ -112,6 +112,7 @@ export function tryHideFullScreenLoading() {
 
 
 axios.interceptors.request.use(function(config){
+
   showFullScreenLoading();
   return config
 },function(err){
@@ -129,8 +130,12 @@ axios.interceptors.response.use(function(response){
     return response;
   }
 },function(err) {
+    if(error.message.includes('timeout')){   // 判断请求异常信息中是否含有超时timeout字符串
+    console.log("错误回调", error);//     alert("网络超时");
+    return Promise.reject(error);          // reject这个错误信息
+  }
   return Promise.reject(err)
-})
+});
 
 
 Vue.use(Vuex)
