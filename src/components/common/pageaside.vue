@@ -3,12 +3,12 @@
    <!--侧边栏-->
 <el-menu :default-active="isactive" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
   <el-menu-item index="0">
-    <i class="icon_set" @click.prevent="collapse"></i>
+    <i class="icon iconfont icon-gongzuotaisvg" @click.prevent="collapse"></i>
     <span slot="title" @click="click_admin(0)">工作台</span>
   </el-menu-item>
   <el-submenu index="1">
     <template slot="title">
-      <i class="icon_select"></i>
+      <i class="icon iconfont icon-liepingchaxun"></i>
       <span slot="title">猎评查询</span>
     </template>
       <el-menu-item index="1-1" @click="click_searchbefore1(1-1)">离职评价查询</el-menu-item>
@@ -16,7 +16,7 @@
   </el-submenu>
 	<el-submenu index="2">
 		<template slot="title">
-			<i class="icon_exposure"></i>
+			<i class="icon iconfont icon-liepingpuguangsvg"></i>
 			<span slot="title">猎评曝光</span>
 		</template>
 			<el-menu-item index="2-1" @click="click_twoUpload(2-1)">离职评价上传</el-menu-item>
@@ -25,7 +25,7 @@
 	</el-submenu>
 	<el-submenu index="3">
 		<template slot="title">
-			<i class="icon_staff"></i>
+			<i class="icon iconfont icon-yuangongguanli"></i>
 			<span slot="title">员工管理</span>
 		</template>
 			<el-menu-item index="3-1" @click="click_list(3-1)">员工列表</el-menu-item>
@@ -34,7 +34,7 @@
 	</el-submenu>
 	<el-submenu index="4">
 		<template slot="title">
-			<i class="icon_recruit"></i>
+			<i class="icon iconfont icon-zhaopinguanli"></i>
 			<span slot="title">招聘管理</span>
 		</template>
 			<el-menu-item index="4-1" @click="click_interviewMmanagement(4-1)">面试日程</el-menu-item>
@@ -44,7 +44,7 @@
 	</el-submenu>
 	<el-submenu index="5">
 		<template slot="title">
-			<i class="icon_template"></i>
+			<i class="icon iconfont icon-mobanshezhi"></i>
 			<span slot="title">模版配置</span>
 		</template>
 			<el-menu-item index="5-1" @click="click_potion26(5-1)">面试模板</el-menu-item>
@@ -176,6 +176,8 @@
 </script>
 
 <style scoped>
+	@import url("../../assets/css/asideiconfont/demo.css");
+	@import url("../../assets/css/asideiconfont/iconfont.css");
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 210px;
     min-height: 400px;

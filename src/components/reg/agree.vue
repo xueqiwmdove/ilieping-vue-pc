@@ -2,7 +2,7 @@
   <div>
   	<!--顶部导航-->
   	<pageheader class="pageheader"></pageheader>
-  	<div class="main">
+  	<div class="mainCon el-col-24">
   <div class="content">
 
     <div class="agreePage">
