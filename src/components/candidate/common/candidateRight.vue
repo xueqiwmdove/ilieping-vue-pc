@@ -209,7 +209,7 @@
       //
       // },
       updated(){
-        if(this.StepsDataStatus!=undefined && this.StepsDataStatus>2){
+        if(this.candidateStepsData[0].status!=undefined && this.candidateStepsData[0].status>2){
           this.flag= this.candidateStepsData[0].status-1;
         }
 
