@@ -70,7 +70,8 @@
 			},
 			click_admin(a){
 				this.isactive=a;
-    		this.$router.push('/admin');
+    		// this.$router.push('/admin');
+        this.$router.push('/account_alliancevip');
 			},
 			click_searchbefore1(a){
 				 this.isactive=a;
