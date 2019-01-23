@@ -259,9 +259,9 @@ export default {
       },
     },
     methods: {
-    	look_exposure(){//查看我的曝光
+    	look_exposure(){//
     		let that=this;
-    		that.$router.push('exposureReport/'+that.reprotId);
+    		that.$router.push('/exposureReport/'+that.reprotId);
     	},
     	next_exposure(){//继续曝光
     		let that=this;
