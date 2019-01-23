@@ -11,25 +11,39 @@
 					<li class="conpany_1">{{message_title}}</li>
 					<li @click="detail_click(2)" v-if="status!=3" style="border-radius: 2px;"><span class="status_ren">请去验证</span> </li>
 					<li  v-else><span class="status_ren2">已验证</span> <img src="../../assets/img/1.5.1/peizhi.png" alt=""></li>
-					<li @click="checkpoint" @mouseenter="topLine=true" @mouseover="topLine=false;" :class="{topLine:topLine}" class="setting" ><img src="../../assets/img/1.5.1/set.png" alt=""></li>
-					<div class="selece_option">
-							<ul v-if="topLine" class="selece_option">
+					<li @click="checkpoint" @mouseover="topLine=true"   :class="{topLine:topLine}" class="setting" ><img src="../../assets/img/1.5.1/set.png" alt="">
+            <ul v-if="topLine" class="selece_option" @mouseout="topLine=false;">
+              <li @click="detail_click(1)">企业资料</li>
+              <li @click="detail_click(2)">企业认证</li>
+              <li v-if="loginType==0" @click="$router.push('/admin')">管理员权限设置</li>
+            </ul>
+          </li>
+					<!--<div class="selece_option" >
+							<ul v-if="topLine" class="selece_option" @mouseover="topLine=true" @mouseout="topLine=false;">
 								<li @click="detail_click(1)">企业资料</li>
 								<li @click="detail_click(2)">企业认证</li>
 								<li v-if="loginType==0" @click="$router.push('/admin')">管理员权限设置</li>
 							</ul>
-					</div>
+					</div>-->
 				</ul>
 	    </div>
 	    <div class="pull-right" >
 				<ul style="height:100%;width:300px" v-clickoutside="handleClose">
-						<li @click="click_phone(0)" :class="seen == '0'? 'topLine':''"  ><img src="../../assets/img/1.5.1/ipone.png" alt=""></li>
-					 	<li @click="click_msg(1);$router.push('/newMessage')" :class="seen == '1'? 'topLine':''" ><img src="../../assets/img/1.5.1/message.png" alt=""></li>
-						<li style="	width: 160px;" @click="checkpoint1(2)" :class="seen == '2'? 'topLine':''"><img style="margin-right:5px" src="../../assets/img/1.5.1/person.png" alt=""><span class="names">你好，{{loginUserName}}</span></li>
-					    <!-- 手机二维码 -->
-						<div v-if="topPhone" class="phoneicon" >
-						  <img src="../../assets/img/1.5.1/erwei.png" alt="" >
-						</div>
+						<li @click="click_phone(0)" :class="seen == '0'? 'topLine':''"  @mouseover="topPhone=true;seen=0" @mouseout="topPhone=false;seen=''"><img src="../../assets/img/1.5.1/ipone.png" alt="">
+              <!-- 手机二维码 -->
+              <div v-if="topPhone" class="phoneicon" >
+                <img src="../../assets/img/1.5.1/erwei.png" alt="" >
+              </div>
+            </li>
+					 	<li @click="click_msg(1);$router.push('/newMessage')" :class="seen == '1'? 'topLine':''" @mouseover="seen=1"  @mouseout="seen=''"  ><img src="../../assets/img/1.5.1/message.png" alt=""></li>
+						<li style="	width: 160px;" @click="checkpoint1(2)"  @mouseover="topLines=true;seen=2" @mouseout="topLines=false;seen=''" :class="seen == '2'? 'topLine':''"><img style="margin-right:5px" src="../../assets/img/1.5.1/person.png" alt=""><span class="names">你好，{{loginUserName}}</span>
+              <ul v-if="topLines" class="selece_option1"  @mouseover="topLines=true;seen=2" @mouseout="topLines=false;seen=''">
+                <li @click="account(1)">账号安全</li>
+                <li @click="account(2)" v-if="loginType==1">放弃管理员身份</li>
+                <li @click="exit" >退出</li>
+              </ul>
+            </li>
+
 						<!-- 消息展示 -->
 							<!--<div v-if="topLines1"  class="msg_sty" >
 								<ul  v-if="tableData !=''">
@@ -43,13 +57,13 @@
 								</ul>
 							</div>-->
 						<!--个人信息安全  -->
-							<div class="selece_option1">
+							<!--<div class="selece_option1">
 								<ul v-if="topLines" class="selece_option1">
 									<li @click="account(1)">账号安全</li>
 									<li @click="account(2)" v-if="loginType==1">放弃管理员身份</li>
 									<li @click="exit" >退出</li>
 								</ul>
-							</div>
+							</div>-->
 					</ul>
 	       <!-- <span @mouseenter="enter()">
 					  <el-badge v-if="flag" class="info-center" is-dot  @click.native="click_msg">消息中心</el-badge>
@@ -338,6 +352,15 @@ export default {
 	text-align: center;
   border-top: 2px solid transparent;
 }
+.setting:hover+.selece_option{
+  display: inline-block;
+}
+.setting+.selece_option{
+  display: none;
+}
+.setting.topLine:hover+.selece_option{
+  display: inline-block;
+}
 .setting img,.pull-right ul li:nth-child(3) img,.pull-right ul li:nth-child(3) span{
   margin-top: -2px;
 }
@@ -370,16 +393,16 @@ export default {
 .pull-right ul li.topLine,.pull-left ul li.setting.topLine{
   border-top:2px solid rgba(249,87,20,1);
 }
-.selece_option ul{
+.selece_option {
 	width:160px;
 	background:rgba(255,255,255,1);
 	box-shadow:0px 2px 2px 0px rgba(170,170,170,0.12);
 	text-align: center;
 	position: absolute;
 	left: 240px;
-	top:48px;
+	top:49px;
 }
-.selece_option ul li {
+.selece_option  li {
  height: 45px;
  width: 100%;
  text-indent: 30px;
@@ -390,19 +413,19 @@ export default {
  color:rgba(51,51,51,1);
  cursor: pointer;
 }
-.selece_option ul li:hover {
+.selece_option  li:hover {
 	background-color: rgba(249,87,20,0.05);
 }
-.selece_option1 ul{
+ul.selece_option1 {
 	width:160px;
 	background:rgba(255,255,255,1);
 	box-shadow:0px 2px 2px 0px rgba(170,170,170,0.12);
 	text-align: center;
 	position: absolute;
 	right: 80px;
-	top:48px;
+	top:49px;
 }
-.selece_option1 ul li  {
+ul.selece_option1  li  {
  height: 45px;
  width: 100%;
  text-align: center;
@@ -412,7 +435,7 @@ export default {
  color:rgba(51,51,51,1);
  cursor: pointer;
 }
-.selece_option1 ul li:hover  {
+ul.selece_option1  li:hover  {
 	background-color: rgba(249,87,20,0.05);
 }
 .selece_option2 ul{
@@ -486,7 +509,7 @@ export default {
  box-shadow:0px 2px 2px 0px rgba(170,170,170,0.12);
  position: absolute;
  right: 282px;
- top:48px;
+ top:49px;
  text-align: center;
  cursor: pointer;
 }

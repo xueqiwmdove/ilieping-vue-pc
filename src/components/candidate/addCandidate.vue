@@ -87,7 +87,7 @@
             </ul>
             <div class="headImg" v-if="flag==2">
               <!--<fileUploadHeadImg @getfile="getHeadImg" ref="headImg" ></fileUploadHeadImg>-->
-              <img v-if="imgcode ==''"src="../../assets/img/candidate/tanchuang_ic_head.png" >
+              <img v-if="imgcode ==''" src="../../assets/img/candidate/tanchuang_ic_head.png" >
               <img v-if="imgcode !=''" :src="imgcode"  style="width: 80px;height: 80px;border-radius: 50%;">
               <input  type="file" accept="image/*"  @change="uploadPhoto($event)"/>
               <p class="el-upload__tip">点击头像可上传照片，支持JPG/PNG等图片格式，最大不超过2M</p>
@@ -194,14 +194,6 @@
                       <el-col :lg="8" :md="8" :sm="8">
                         <el-form-item label="所在地">
                           <el-input v-model.trim="address" placeholder="所在地"></el-input>
-                        </el-form-item>
-                      </el-col>
-                    </el-row>
-
-                    <el-row>
-                      <el-col :lg="24" :md="24" :sm="24">
-                        <el-form-item label="兴趣爱好">
-                          <el-input type="textarea" v-model.trim="hobby" placeholder="请输入兴趣爱好"></el-input>
                         </el-form-item>
                       </el-col>
                     </el-row>
@@ -914,10 +906,10 @@
                 that.$message.error(res.data.msg);
                 setTimeout(function () {
                   that.$emit('hideModel',that.add);//向父组件派发事件
-                  that.resumeType='';
-                  that.resumeUrl="";
-                  that.changeTab(1);
-                  that.$parent.closeResume();
+                  // that.resumeType='';
+                  // that.resumeUrl="";
+                  // that.changeTab(1);
+                  // that.$parent.closeResume();
 
                 },2000);
               }
@@ -956,6 +948,7 @@
           ];
 
           that.form.name="";
+          that.form.post1="";
           that.sex="";
           that.description="";
           that.workAddress="";
@@ -970,7 +963,16 @@
           that.address="";
           that.industry="";
           that.expected_industry="";
+          that.imgcode='';
+          that.channels='';
+          that.resoure='';
+          that.experience='';
+          that.resumeType='';
+          that.resumeUrl="";
+          that.$parent.closeResume();
 
+          that.flag=1;
+          // that.changeTab(1);
           that.$emit('hideModel',that.add);//向父组件派发事件
         },
 
