@@ -58,7 +58,7 @@
   			 <div class="conHr">
   			 	 <div class="txt_div">
 						<el-row class="searchdiv">
-              <el-button class="primary_btn" @click="Revoke_model = true">添加管理员</el-button>
+              <el-button class="primary_btn" @click="click_addAdmin">添加管理员</el-button>
 						</el-row>
   			 	 </div>
 			      <div>
@@ -148,6 +148,11 @@ export default {
       };
     },
     methods: {
+    	click_addAdmin(){
+    		this.form.name="";
+			  this.form.phone="";
+    		this.Revoke_model=true;
+    	},
     	expDoc(employeeId,annexId,fileName){
       let that=this;
   		if(employeeId==''){
@@ -210,6 +215,8 @@ export default {
 			          message: '恭喜你，提交成功',
 			          type: 'success'
 			        });
+			       that.form.name="";
+			       that.form.phone="";
 			        that.getadminList();
 		  			}else{
 		  				that.$message.error(res.data.msg);
