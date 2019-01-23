@@ -5,152 +5,79 @@
         <ul id="accordion" class="accordion">
             <li>
                 <div class="link" @click="toggle1" >
-                    <i class="fa fa-paint-brush">
-                        <img src="../../assets/img/dismission/index_dimission.svg" alt="" class="click-before" v-if="before1">
-                        <img src="../../assets/img/dismission/ic_dimission_cb.svg" alt="" class="click-after" v-if="after1">
-                    </i>
-                    <!--评价与失信查询-->
-                             离职查询
-                    <i class="fa fa-chevron-down">
-                        <img src="../../assets/img/dismission/ic_top.svg" alt="" class="click-before" v-if="before1">
-                        <img src="../../assets/img/dismission/ic_down.svg" alt="" class="click-after fa_down" v-if="after1">
-                    </i>
+                	<i class="icon iconfont icon-liepingchaxun"></i>猎评查询
+              <i class="fa fa-chevron-down">
+                <img src="../../assets/img/dismission/ic_top.svg" alt="" class="click-before" v-if="before1">
+                <img src="../../assets/img/dismission/ic_down.svg" alt="" class="click-after fa_down" v-if="after1">
+              </i>                                  
                 </div>
                 <ul class="submenu" v-if="isShow1">
                    <li @click="click_searchbefore1(1)" :class="flag==1?'active':''"><span>离职评价查询</span></li>
-                   <li @click="click_searchbefore2(2)" :class="flag==2?'active':''"><span>失信曝光查询</span></li>
+                   <li @click="click_searchbefore2(2)" :class="flag==2?'active':''"><span>失信行为查询</span></li>
                 </ul>
             </li>
             <li>
             <div class="link" @click="toggle5">
-              <i class="fa fa-globe">
-                <img src="../../assets/img/staff/ic_yuangongguanli.svg" alt="" class="click-before"  v-if="before5">
-                <img src="../../assets/img/staff/ic_yuangongguanli2.svg" alt="" class="click-after" v-if="after5">
-              </i>
-            员工管理
+              <i class="icon iconfont icon-liepingpuguangsvg"></i>
+            猎评曝光
               <i class="fa fa-chevron-down">
                 <img src="../../assets/img/dismission/ic_top.svg" alt="" class="click-before" v-if="before5">
                 <img src="../../assets/img/dismission/ic_down.svg" alt="" class="click-after fa_down" v-if="after5">
               </i>
             </div>
             <ul class="submenu" v-if="isShow5">
-              <li @click="click_list(13)" :class="flag==13?'active':''"><span>员工列表</span></li>
-              <li @click="click_employee(12)" :class="flag==12?'active':''"><span>录入新员工</span></li>
+              <li @click="click_twoUpload(3)" :class="flag==3?'active':''"><span>离职评价上传</span></li>
+              <li @click="click_exposure(4)" :class="flag==4?'active':''"><span>失信行为上传</span></li>
+              <li @click="click_myupload(5)" :class="flag==5?'active':''"><span>上传记录</span></li>
             </ul>
           </li>
           <li>
             <div class="link" @click="toggle4">
-              <i class="fa fa-globe">
-                <img src="../../assets/img/contract/ic_hetong.svg" alt="" class="click-before"  v-if="before4">
-                <img src="../../assets/img/contract/ic_hetong2.svg" alt="" class="click-after" v-if="after4">
-              </i>
-              合同管理
+              <i class="icon iconfont icon-yuangongguanli"></i>
+              员工管理
               <i class="fa fa-chevron-down">
                 <img src="../../assets/img/dismission/ic_top.svg" alt="" class="click-before" v-if="before4">
                 <img src="../../assets/img/dismission/ic_down.svg" alt="" class="click-after fa_down" v-if="after4">
               </i>
             </div>
             <ul class="submenu" v-if="isShow4">
-              <li @click="click_bySinging(9)" :class="flag==9?'active':''"><span>发起签约</span></li>
-              <li @click="click_contractManagement(10)" :class="flag==10?'active':''"><span>员工合同管理</span></li>
-              <li @click="click_contractTemplate(11)" :class="flag==11?'active':''"><span>合同模板</span></li>
+              <li @click="click_list(7)" :class="flag==7?'active':''"><span>员工列表</span></li>
+              <li @click="click_personnelTransaction(8)" :class="flag==8?'active':''"><span>人事异动</span></li>
+              <li @click="click_contractManagement(9)" :class="flag==9?'active':''"><span>合同管理</span></li>
             </ul>
           </li>
           <li>
             <div class="link" @click="toggle8">
-              <i class="fa fa-globe">
-                <img src="../../assets/img/dismission/ic_personnel_process.svg" alt="" class="click-before"  v-if="before8">
-                <img src="../../assets/img/dismission/ic_personnel_process_pre.svg" alt="" class="click-after" v-if="after8">
-              </i>
-              人事异动
+              <i class="icon iconfont icon-zhaopinguanli"></i>
+              招聘管理
               <i class="fa fa-chevron-down">
                 <img src="../../assets/img/dismission/ic_top.svg" alt="" class="click-before" v-if="before8">
                 <img src="../../assets/img/dismission/ic_down.svg" alt="" class="click-after fa_down" v-if="after8">
               </i>
             </div>
             <ul class="submenu" v-if="isShow8">
-              <li @click="click_personnelTransaction(25)" :class="flag==25?'active':''"><span>人事异动</span></li>
+              <li @click="click_interviewMmanagement(10)" :class="flag==10?'active':''"><span>面试日程</span></li>
+              <li @click="click_potion(11)" :class="flag==11?'active':''"><span>岗位管理</span></li>
+              <li @click="click_candidate(12)" :class="flag==12?'active':''"><span>候选人管理</span></li>
+              <li @click="click_potion25(13)" :class="flag==13?'active':''"><span>人才库</span></li>
+              
             </ul>
           </li>
             <li>
                 <div class="link" @click="toggle2">
-                    <i class="fa fa-globe">
-                        <img src="../../assets/img/dismission/ic_upload.svg" alt="" class="click-before" v-if="before2">
-                        <img src="../../assets/img/dismission/ic_upload_cb.svg" alt="" class="click-after" v-if="after2">
-                    </i>
-                    上传离职
+                    <i class="icon iconfont icon-mobanshezhi"></i>
+                    模版配置
                     <i class="fa fa-chevron-down">
                         <img src="../../assets/img/dismission/ic_top.svg" alt="" class="click-before" v-if="before2">
                         <img src="../../assets/img/dismission/ic_down.svg" alt="" class="click-after fa_down" v-if="after2">
                     </i>
                 </div>
                 <ul class="submenu" v-if="isShow2">
-                    <li @click="click_twoUpload(3)" :class="flag==3?'active':''"><span>上传离职评价</span></li>
-                    <li @click="click_exposure(4)" :class="flag==4?'active':''"><span>曝光失信人员</span></li>
-                    <li @click="click_myupload(5)" :class="flag==5?'active':''"><span>上传记录</span></li>
+                    <li @click="click_potion26(14)" :class="flag==14?'active':''"><span>面试模板</span></li>
+                    <li @click="click_contractTemplate(15)" :class="flag==15?'active':''"><span>合同模板</span></li>
                 </ul>
             </li>
-            <li>
-                <div class="link" @click="toggle3">
-                    <i class="fa fa-globe">
-                        <img src="../../assets/img/dismission/ic_account_number.svg" alt="" class="click-before"  v-if="before3">
-                        <img src="../../assets/img/dismission/ic_account_number_orange.svg" alt="" class="click-after" v-if="after3">
-                    </i>
-                    账号管理
-                    <i class="fa fa-chevron-down">
-                        <img src="../../assets/img/dismission/ic_top.svg" alt="" class="click-before" v-if="before3">
-                        <img src="../../assets/img/dismission/ic_down.svg" alt="" class="click-after fa_down" v-if="after3">
-                    </i>
-                </div>
-                <ul class="submenu" v-if="isShow3">
-                    <li @click="click_account(6)" :class="flag==6?'active':''"><span>账号安全</span></li>
-                    <li @click="toBusinessCert(111)" :class="flag==111?'active':''"><span>企业认证</span></li>
-                    <li @click="click_company(7)" :class="flag==7?'active':''"><span>企业资料</span></li>
-                    <!-- <li @click="click_alliancevip(8)" :class="flag==8?'active':''"><span>联盟会员</span></li> -->
-                </ul>
-            </li>
-              <li>
-                <div class="link" @click="toggle9">
-                    <i class="fa fa-globe">
-                        <img src="../../assets/img/edition_1.5/houxuan_ic_recruitment.png" alt="" class="click-before"  v-if="before9">
-                        <img src="../../assets/img/edition_1.5/houxuan_ic_recruitment_pre.png" alt="" class="click-after" v-if="after9">
-                    </i>
-                   招聘管理
-                    <i class="fa fa-chevron-down">
-                        <img src="../../assets/img/dismission/ic_top.svg" alt="" class="click-before" v-if="before9">
-                        <img src="../../assets/img/dismission/ic_down.svg" alt="" class="click-after fa_down" v-if="after9">
-                    </i>
-                </div>
-                <ul class="submenu" v-if="isShow9">
-                    <li @click="click_potion(21)" :class="flag==21?'active':''"><span>岗位管理</span></li>
-                    <li @click="click_candidate(22)" :class="flag==22?'active':''"><span>候选人管理</span></li>
-                     <li @click="click_interviewMmanagement(30)" :class="flag==30?'active':''"><span>面试日程</span></li>
-                     <!-- <li @click="click_option(31)" :class="flag==31?'active':''"><span>设置</span></li> -->
-                    <li @click="click_potion25(25)" :class="flag==25?'active':''"><span>人才库</span></li>
-                    <!--<li @click="click_potion26(26)" :class="flag==26?'active':''"><span>设置</span></li>-->
-                </ul>
-            </li>
-
-
-          <!-- <li>
-            <div class="link" @click="toggle7">
-              <i class="fa fa-globe">
-                <img src="../../assets/img/entryManagement/ic_ruzhiguanli.svg" alt="" class="click-before"  v-if="before7">
-                <img src="../../assets/img/entryManagement/ic_ruzhiguanli2.svg" alt="" class="click-after" v-if="after7">
-              </i>
-              入职管理
-              <i class="fa fa-chevron-down">
-                <img src="../../assets/img/dismission/ic_top.svg" alt="" class="click-before" v-if="before7">
-                <img src="../../assets/img/dismission/ic_down.svg" alt="" class="click-after fa_down" v-if="after7">
-              </i>
-            </div>
-            <ul class="submenu" v-if="isShow7">
-              <li @click="click_sendOffer(18)" :class="flag==18?'active':''"><span>发起offer</span></li>
-              <li @click="click_offerManage(19)" :class="flag==19?'active':''"><span>offer管理</span></li>
-              <li @click="click_setupTemplate(20)" :class="flag==20?'active':''"><span>offer模板设置</span></li>
-            </ul>
-          </li> -->
-
+           
         </ul>
     </div>
   </div>
@@ -339,7 +266,7 @@ routerLink(index) {
         this.flag=a;
         this.$router.push('/insertEmployee');
       },
-      click_personnelTransaction(a){//人事流程
+      click_personnelTransaction(a){//人事异动
         this.flag=a;
         this.$router.push('/personnelTransaction');
       },
@@ -374,21 +301,21 @@ routerLink(index) {
     		that.flag=2;
 			}else if(loginUrl=='twoUpload'){
     		let that=this;
-				that.isShow2=true;
-				that.before2=false;
-				that.after2=true;
+				that.isShow5=true;
+				that.before5=false;
+				that.after5=true;
     		that.flag=3;
-			}else if(loginUrl=='exposure'){
+			}else if(loginUrl=='exposure/0'){
     		let that=this;
-				that.isShow2=true;
-				that.before2=false;
-				that.after2=true;
+				that.isShow5=true;
+				that.before5=false;
+				that.after5=true;
     		that.flag=4;
 			}else if(loginUrl=='myupload'){
     		let that=this;
-				that.isShow2=true;
-				that.before2=false;
-				that.after2=true;
+				that.isShow5=true;
+				that.before5=false;
+				that.after5=true;
     		that.flag=5;
 			}else if(loginUrl=='account'){
     		let that=this;
@@ -419,13 +346,13 @@ routerLink(index) {
 				that.isShow4=true;
 				that.before4=false;
 				that.after4=true;
-    		that.flag=10;
+    		that.flag=9;
 			}else if(loginUrl=='contractTemplate'){
     		let that=this;
-				that.isShow4=true;
-				that.before4=false;
-				that.after4=true;
-    		that.flag=11;
+				that.isShow2=true;
+				that.before2=false;
+				that.after2=true;
+    		that.flag=15;
 			}else if(loginUrl == 'insertEmployee'){
         let that=this;
 				that.isShow5=true;
@@ -434,16 +361,16 @@ routerLink(index) {
     		that.flag=12;
 			}else if(loginUrl == 'indexList'){
     		let that=this;
-				that.isShow5=true;
-				that.before5=false;
-				that.after5=true;
-    		that.flag=13;
+				that.isShow4=true;
+				that.before4=false;
+				that.after4=true;
+    		that.flag=7;
 			}else if(loginUrl == 'personnelTransaction'){
     		let that=this;
-				that.isShow8=true;
-				that.before8=false;
-				that.after8=true;
-    		that.flag=25;
+				that.isShow4=true;
+				that.before4=false;
+				that.after4=true;
+    		that.flag=8;
       }else if(loginUrl=='sendOffer/null'){
 				let that=this;
 				that.isShow7=true;
@@ -470,35 +397,35 @@ routerLink(index) {
 				that.after3=true;
       }else if(loginUrl=='jobmanageindex'){
 				let that=this;
-        that.flag=21;
-				that.isShow9=true;
-				that.before9=false;
-				that.after9=true;
+        that.flag=11;
+				that.isShow8=true;
+				that.before8=false;
+				that.after8=true;
        }else if(loginUrl=='InterviewManagement'){
 				let that=this;
-				that.flag=30;
-				that.isShow9=true;
-				that.before9=false;
-				that.after9=true;
+				that.flag=10;
+				that.isShow8=true;
+				that.before8=false;
+				that.after8=true;
 			}
 			else if(loginUrl=='candidatindex') {
         let that=this;
-				that.flag=22;
-				that.isShow9=true;
-				that.before9=false;
-				that.after9=true;
+				that.flag=12;
+				that.isShow8=true;
+				that.before8=false;
+				that.after8=true;
       }else if(loginUrl=='talentPool') {
         let that=this;
-        that.flag=25;
-        that.isShow9=true;
-        that.before9=false;
-        that.after9=true;
+        that.flag=13;
+        that.isShow8=true;
+        that.before8=false;
+        that.after8=true;
       }else if(loginUrl=='option'){
         let that=this;
-				that.flag=31;
-				that.isShow9=true;
-				that.before9=false;
-				that.after9=true;
+				that.flag=14;
+				that.isShow2=true;
+				that.before2=false;
+				that.after2=true;
       }
 	},
 }
@@ -506,6 +433,8 @@ routerLink(index) {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import url("../../assets/css/asideiconfont/demo.css");
+@import url("../../assets/css/asideiconfont/iconfont.css");
 .main .aside{
 	height: 100%;
 	overflow-x: auto;
