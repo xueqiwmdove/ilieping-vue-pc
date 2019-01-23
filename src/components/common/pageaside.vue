@@ -199,7 +199,7 @@ export default {
    };
     },
     methods: {
-      routerLink(index) {
+routerLink(index) {
         // 点击哪个路由就赋值给自定义的下下标
         this.navIndex = index;
         // 路由跳转
@@ -252,8 +252,7 @@ export default {
       },
       click_searchbefore1(a){
          this.isActive=true;
-         this.flag=a;
-    		 this.$router.push('/searchbefore');
+         this.flag=a;    		 this.$router.push('/searchbefore');
     	},
       click_searchbefore2(a){
       	this.flag=a;
