@@ -1,12 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="8px" height="5px" viewBox="0 0 8 5" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
-    <title>ic_down</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="ic_down" fill="#F95714">
-            <path d="M3.78008211,4.604719 C3.78933191,4.60926276 3.79841942,4.61851255 3.80750694,4.62305631 C3.99948071,4.7144183 4.23267287,4.68244972 4.38342827,4.52244452 L7.85729354,0.852061711 C8.04472356,0.651000419 8.03563604,0.335533792 7.83911851,0.148103774 C7.63789494,-0.0393262443 7.32259059,-0.0347824863 7.13516057,0.166278806 L4.01781802,3.46196386 L0.854713338,0.180072357 C0.662739562,-0.0164451772 0.347435211,-0.0255326932 0.1507554,0.166278806 C0.0503058923,0.262346832 0,0.395089477 0,0.527507568 C0,0.651000419 0.0455998572,0.778874752 0.141667884,0.874942779 L3.64750174,4.51335701 C3.65658926,4.52244452 3.66583905,4.52244452 3.67038281,4.53169432 C3.67508885,4.53623807 3.67947033,4.54061956 3.68401409,4.54986935 C3.71143891,4.57275042 3.74340749,4.58654397 3.78008211,4.604719 Z"></path>
-        </g>
-    </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 8 5" style="enable-background:new 0 0 8 5;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+</style>
+<title>ic_down</title>
+<desc>Created with Sketch.</desc>
+<g id="Symbols">
+	<g id="ic_down">
+		<path class="st0" d="M3.8,4.6C3.8,4.6,3.8,4.6,3.8,4.6C4,4.7,4.2,4.7,4.4,4.5l3.5-3.7C8,0.7,8,0.3,7.8,0.1C7.6,0,7.3,0,7.1,0.2
+			L4,3.5L0.9,0.2C0.7,0,0.3,0,0.2,0.2C0.1,0.3,0,0.4,0,0.5c0,0.1,0,0.3,0.1,0.3l3.5,3.6c0,0,0,0,0,0C3.7,4.5,3.7,4.5,3.8,4.6
+			C3.7,4.6,3.7,4.6,3.8,4.6z"/>
+	</g>
+</g>
 </svg>
