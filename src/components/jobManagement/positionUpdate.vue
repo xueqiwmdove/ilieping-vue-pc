@@ -1,12 +1,12 @@
 <template>  
   <div >
-   <div class="mainCon el-col-24">
+   <div class="main">
           <!--顶部导航-->
         <pageheader class="pageheader"></pageheader>
           <!--侧边栏-->
-          <!--<div class="aside">-->
+          <div class="aside">
             <pageaside></pageaside>
-          <!--</div>-->
+          </div>
            <!-- 弹窗-添加招聘负责人 -->
             <createLd   @dataList ="getPageList" :createVisible.sync="dialog.cteate" @hideModel="hideChildModal"></createLd>
           <!-- 弹窗-添加面试官 -->

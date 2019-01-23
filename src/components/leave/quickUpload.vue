@@ -1,13 +1,13 @@
 
 <template xmlns="http://www.w3.org/1999/html">
   <div>
-    <div class="mainCon el-col-24">
+    <div class="main">
   		<!--顶部导航-->
   	<pageheader class="pageheader"></pageheader>
       <!--侧边栏-->
-      <!--<div class="aside">-->
+      <div class="aside">
         <pageaside></pageaside>
-      <!--</div>-->
+      </div>
       <!--右侧内容栏-->
       <div class="right-content pull-right">
         <div class="content">

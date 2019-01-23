@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="mainCon el-col-24">
+    <div class="main">
       <!--顶部导航-->
       <nav @click="goToSelectTemplates">
         <img src="../../assets/img/contract/ic_fanhui.svg" alt="">返回
