@@ -109,16 +109,19 @@
                                         <img v-else src="../../assets/img/zhiwei/houxuan_ic_pass.png" alt="">
                                     </em>
                                 </div>-->
-                                  <div  class="history_s">
-                                    <i @click="$router.push('/talentPool');fileshow=false"  @mouseenter="fileshow=false"  v-if="fileshow"><img src="../../assets/img/1.5.1/file.png" alt="">历史归档</i>
-                                    <i @click="$router.push('/talentPool');fileshow=true;"  @mouseleave="fileshow=true;" v-else style="color:#F95714;"><img src="../../assets/img/1.5.1/file2.png" alt="">历史归档</i>
-                                  </div>
-                                  <div class="search">
+                                  <div  style="float: right">
+                                    <div  class="history_s">
+                                      <i @click="$router.push('/talentPool');fileshow=false"  @mouseenter="fileshow=false"  v-if="fileshow"><img src="../../assets/img/1.5.1/file.png" alt="">历史归档</i>
+                                      <i @click="$router.push('/talentPool');fileshow=true;"  @mouseleave="fileshow=true;" v-else style="color:#F95714;"><img src="../../assets/img/1.5.1/file2.png" alt="">历史归档</i>
+                                    </div>
+                                    <div class="search">
                                       <el-input v-model="searchname"  class="input_search" placeholder="输入你想搜索的内容" >
-                                      <i @click="searchList" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
+                                        <i @click="searchList" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                                       </el-input>
                                       <el-button class="add_btn" @click="addCandidateShow('add');">添加候选人</el-button>
+                                    </div>
                                   </div>
+
                                 </el-col>
                               </el-row>
                             </div>
@@ -667,9 +670,10 @@ export default {
 }
 .history_s {
   display: inline-block;
-  margin-left:40px;
-  position: absolute;
+  /*margin-left:40px;*/
+  /*position: absolute;*/
   cursor: pointer;
+  margin-right: 10px;
 }
 .history_s i img {
   display: inline-block;
@@ -743,11 +747,6 @@ export default {
 .heightlight {
   color:#F95714 !important;
 }
-  .history_s {
-    display: inline-block;
-    cursor: pointer;
-    /*margin-top: 10px;*/
-  }
  .history_s i {
    display: inline-block;
    height: 30px;

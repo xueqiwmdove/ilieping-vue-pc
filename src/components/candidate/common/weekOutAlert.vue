@@ -137,9 +137,12 @@ export default {
                 that.$message.success(res.data.msg);
                 that.conShow = false;
                 that.cerateList.text = '';
-               setTimeout(function () {
-                 window.location.reload();
-               },3000)
+
+                that.$parent.$parent.$parent.hideModel();
+                that.$parent.$parent.$parent.$parent.getCandidate();
+                that.$parent.$parent.$parent.$parent.getCount();
+
+
             }else{
                 that.$message.error(res.data.msg);
             }

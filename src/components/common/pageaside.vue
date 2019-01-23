@@ -77,7 +77,6 @@
                     <li @click="click_contractTemplate(15)" :class="flag==15?'active':''"><span>合同模板</span></li>
                 </ul>
             </li>
-           
         </ul>
     </div>
   </div>
@@ -235,7 +234,7 @@ routerLink(index) {
       },
       click_bySinging(a){//发起签约
       	this.flag=a;
-        this.$router.push('/bySinging');
+        this.$router.push('/newContract');
       },
       click_contractManagement(a){//合同管理
       	this.flag=a;

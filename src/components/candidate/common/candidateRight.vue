@@ -183,9 +183,12 @@
           }).then(function(res){
             if(res.data.code==10000 ){
               that.$message.success(res.data.msg);
-              setTimeout(function () {
-                window.location.reload();
-              },3000)
+
+              that.$parent.$parent.hideModel();
+              that.$parent.$parent.$parent.getTalentList();
+              that.$parent.$parent.$parent.getTalent();
+              that.$parent.$parent.$parent.talentCounts();
+
             }else{
               that.$message.error(res.data.msg);
             }
