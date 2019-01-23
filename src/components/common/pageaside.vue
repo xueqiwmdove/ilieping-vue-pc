@@ -9,12 +9,9 @@
                 </div>
             </li>
             <li :class="flagli==1?'activeLi':''">
-              <div class="link" @click="toggle1" >
+              <div class="link" @click="toggle1(1)" >
               <i class="icon iconfont icon-liepingchaxun"></i>猎评查询
-              <i class="fa fa-chevron-down">
-                <img src="../../assets/img/dismission/ic_top.svg" alt="" class="click-before" v-if="before1">
-                <img src="../../assets/img/dismission/ic_down.svg" alt="" class="click-after fa_down" v-if="after1">
-              </i>                                  
+              <i :class="classA==1 ? 'addClass' : ''" class="el-icon-arrow-right elIcon"></i>
                </div>
                 <ul class="submenu" v-if="isShow1">
                    <li @click="click_searchbefore1(1)" :class="flag==1?'active':''"><span>离职评价查询</span></li>
@@ -22,13 +19,10 @@
                 </ul>
             </li>
             <li :class="flagli==2?'activeLi':''">
-            <div class="link" @click="toggle5">
+            <div class="link" @click="toggle5(5)">
               <i class="icon iconfont icon-liepingpuguangsvg"></i>
             猎评曝光
-              <i class="fa fa-chevron-down">
-                <img src="../../assets/img/dismission/ic_top.svg" alt="" class="click-before" v-if="before5">
-                <img src="../../assets/img/dismission/ic_down.svg" alt="" class="click-after fa_down" v-if="after5">
-              </i>
+<i :class="classA==5 ? 'addClass' : ''" class="el-icon-arrow-right elIcon"></i>
             </div>
             <ul class="submenu" v-if="isShow5">
               <li @click="click_twoUpload(3)" :class="flag==3?'active':''"><span>离职评价上传</span></li>
@@ -37,13 +31,10 @@
             </ul>
           </li>
           <li :class="flagli==3?'activeLi':''">
-            <div class="link" @click="toggle4">
+            <div class="link" @click="toggle4(4)">
               <i class="icon iconfont icon-yuangongguanli"></i>
               员工管理
-              <i class="fa fa-chevron-down">
-                <img src="../../assets/img/dismission/ic_top.svg" alt="" class="click-before" v-if="before4">
-                <img src="../../assets/img/dismission/ic_down.svg" alt="" class="click-after fa_down" v-if="after4">
-              </i>
+<i :class="classA==4 ? 'addClass' : ''" class="el-icon-arrow-right elIcon"></i>
             </div>
             <ul class="submenu" v-if="isShow4">
               <li @click="click_list(7)" :class="flag==7?'active':''"><span>员工列表</span></li>
@@ -52,13 +43,10 @@
             </ul>
           </li>
           <li :class="flagli==4?'activeLi':''">
-            <div class="link" @click="toggle8">
+            <div class="link" @click="toggle8(8)">
               <i class="icon iconfont icon-zhaopinguanli"></i>
               招聘管理
-              <i class="fa fa-chevron-down">
-                <img src="../../assets/img/dismission/ic_top.svg" alt="" class="click-before" v-if="before8">
-                <img src="../../assets/img/dismission/ic_down.svg" alt="" class="click-after fa_down" v-if="after8">
-              </i>
+<i :class="classA==8 ? 'addClass' : ''" class="el-icon-arrow-right elIcon"></i>
             </div>
             <ul class="submenu" v-if="isShow8">
               <li @click="click_interviewMmanagement(10)" :class="flag==10?'active':''"><span>面试日程</span></li>
@@ -72,10 +60,7 @@
                 <div class="link" @click="toggle2">
                     <i class="icon iconfont icon-mobanshezhi"></i>
                     模版配置
-                    <i class="fa fa-chevron-down">
-                        <img src="../../assets/img/dismission/ic_top.svg" alt="" class="click-before" v-if="before2">
-                        <img src="../../assets/img/dismission/ic_down.svg" alt="" class="click-after fa_down" v-if="after2">
-                    </i>
+<i :class="classA==2 ? 'addClass' : ''" class="el-icon-arrow-right elIcon"></i>
                 </div>
                 <ul class="submenu" v-if="isShow2">
                     <li @click="click_potion26(14)" :class="flag==14?'active':''"><span>面试模板</span></li>
@@ -92,6 +77,7 @@ export default {
   name: 'pageaside',
    data() {
       return {
+      classA: '',
       	flagli:'',
        isShow1:false,
        isShow2:false,
@@ -132,7 +118,7 @@ export default {
     methods: {
     	click_admin(a){
     		this.flagli=a;
-    		this.$router.push('/admin');
+    		this.$router.push('/account_alliancevip');
     	},
       routerLink(index) {
         // 点击哪个路由就赋值给自定义的下下标
@@ -142,28 +128,43 @@ export default {
       },
       toggle1:function(){
         this.isShow1 = !this.isShow1;
-        this.before1 = !this.before1;
-        this.after1 = !this.after1;
+//      this.before1 = !this.before1;
+//      this.after1 = !this.after1;
+        if(this.isShow1==true){
+        	this.classA=1;
+        }else{
+        	this.classA="";
+        }
       },
       toggle2:function(){
         this.isShow2 = !this.isShow2;
-        this.before2 = !this.before2;
-        this.after2= !this.after2;
+        if(this.isShow2==true){
+        	this.classA=2;
+        }else{
+        	this.classA="";
+        }
       },
       toggle3:function(){
         this.isShow3 = !this.isShow3;
-        this.before3 = !this.before3;
-        this.after3= !this.after3;
+//      this.before3 = !this.before3;
+//      this.after3= !this.after3;
+this.classA=!this.classA;
       },
       toggle4:function(){
         this.isShow4 = !this.isShow4;
-        this.before4 = !this.before4;
-        this.after4= !this.after4;
+        if(this.isShow4==true){
+        	this.classA=4;
+        }else{
+        	this.classA="";
+        }
       },
       toggle5:function(){
         this.isShow5 = !this.isShow5;
-        this.before5 = !this.before5;
-        this.after5= !this.after5;
+        if(this.isShow5==true){
+        	this.classA=5;
+        }else{
+        	this.classA="";
+        }
       },
       toggle6:function(){
         this.isShow6 = !this.isShow6;
@@ -177,8 +178,11 @@ export default {
       },
       toggle8:function(){
         this.isShow8 = !this.isShow8;
-        this.before8 = !this.before8;
-        this.after8= !this.after8;
+        if(this.isShow8==true){
+        	this.classA=8;
+        }else{
+        	this.classA="";
+        }
       },
       toggle9:function(){
         this.isShow9 = !this.isShow9;
@@ -498,6 +502,15 @@ export default {
 }
 .activeLi{background: linear-gradient(135deg,rgba(254,147,56,1) 0%,rgba(249,117,55,1) 99%,rgba(249,87,20,1) 100%);}
 .activeLi .link i,.activeLi .link{color: #fff !important;}
+.elIcon{
+	  right: 10px;
+    left: auto !important;
+    font-size: 14px;
+    top: 14px;
+}
+.addClass{
+	transform: rotate(90deg);
+}
 </style>
 
 
