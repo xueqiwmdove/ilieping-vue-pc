@@ -11,7 +11,7 @@
 					<li class="conpany_1">{{message_title}}</li>
 					<li @click="detail_click(2)" v-if="status!=3" style="border-radius: 2px;"><span class="status_ren">请去验证</span> </li>
 					<li  v-else><span class="status_ren2">已验证</span> <img src="../../assets/img/1.5.1/peizhi.png" alt=""></li>
-					<li @click="checkpoint" :class="{topLine:topLine}" class="setting" ><img src="../../assets/img/1.5.1/set.png" alt=""></li>
+					<li @click="checkpoint" @mouseenter="topLine=true" @mouseover="topLine=false;" :class="{topLine:topLine}" class="setting" ><img src="../../assets/img/1.5.1/set.png" alt=""></li>
 					<div class="selece_option">
 							<ul v-if="topLine" class="selece_option">
 								<li @click="detail_click(1)">企业资料</li>
