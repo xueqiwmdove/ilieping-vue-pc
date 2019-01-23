@@ -3,20 +3,25 @@
    <!--侧边栏-->
     <div class="aside">
         <ul id="accordion" class="accordion">
-            <li>
-                <div class="link" @click="toggle1" >
-                	<i class="icon iconfont icon-liepingchaxun"></i>猎评查询
+        	  <li @click="click_admin(0)" :class="flagli==0?'activeLi':''">
+                <div class="link">
+                	<i class="icon iconfont icon-gongzuotaisvg"></i>工作台                                 
+                </div>
+            </li>
+            <li :class="flagli==1?'activeLi':''">
+              <div class="link" @click="toggle1" >
+              <i class="icon iconfont icon-liepingchaxun"></i>猎评查询
               <i class="fa fa-chevron-down">
                 <img src="../../assets/img/dismission/ic_top.svg" alt="" class="click-before" v-if="before1">
                 <img src="../../assets/img/dismission/ic_down.svg" alt="" class="click-after fa_down" v-if="after1">
               </i>                                  
-                </div>
+               </div>
                 <ul class="submenu" v-if="isShow1">
                    <li @click="click_searchbefore1(1)" :class="flag==1?'active':''"><span>离职评价查询</span></li>
                    <li @click="click_searchbefore2(2)" :class="flag==2?'active':''"><span>失信行为查询</span></li>
                 </ul>
             </li>
-            <li>
+            <li :class="flagli==2?'activeLi':''">
             <div class="link" @click="toggle5">
               <i class="icon iconfont icon-liepingpuguangsvg"></i>
             猎评曝光
@@ -31,7 +36,7 @@
               <li @click="click_myupload(5)" :class="flag==5?'active':''"><span>上传记录</span></li>
             </ul>
           </li>
-          <li>
+          <li :class="flagli==3?'activeLi':''">
             <div class="link" @click="toggle4">
               <i class="icon iconfont icon-yuangongguanli"></i>
               员工管理
@@ -46,7 +51,7 @@
               <li @click="click_contractManagement(9)" :class="flag==9?'active':''"><span>合同管理</span></li>
             </ul>
           </li>
-          <li>
+          <li :class="flagli==4?'activeLi':''">
             <div class="link" @click="toggle8">
               <i class="icon iconfont icon-zhaopinguanli"></i>
               招聘管理
@@ -63,7 +68,7 @@
               
             </ul>
           </li>
-            <li>
+            <li :class="flagli==5?'activeLi':''">
                 <div class="link" @click="toggle2">
                     <i class="icon iconfont icon-mobanshezhi"></i>
                     模版配置
@@ -87,6 +92,7 @@ export default {
   name: 'pageaside',
    data() {
       return {
+      	flagli:'',
        isShow1:false,
        isShow2:false,
        isShow3:false,
@@ -108,7 +114,6 @@ export default {
        after5:false,
        before6:true,
        after6:false,
-       isActive:true,
        before7:true,
        after7:false,
        before8:true,
@@ -125,7 +130,11 @@ export default {
    };
     },
     methods: {
-routerLink(index) {
+    	click_admin(a){
+    		this.flagli=a;
+    		this.$router.push('/admin');
+    	},
+      routerLink(index) {
         // 点击哪个路由就赋值给自定义的下下标
         this.navIndex = index;
         // 路由跳转
@@ -177,11 +186,13 @@ routerLink(index) {
         this.after9= !this.after9;
       },
       click_searchbefore1(a){
-         this.isActive=true;
-         this.flag=a;    		 this.$router.push('/searchbefore');
+         this.flag=a;  
+         this.flagli=1; 
+         this.$router.push('/searchbefore');
     	},
       click_searchbefore2(a){
       	this.flag=a;
+      	this.flagli=1;
     			this.$router.push('/searchbefore2');
     	},
     	click_searchrecord(a){
@@ -190,14 +201,17 @@ routerLink(index) {
     	},
     	click_twoUpload(a){
     		this.flag=a;
+    		this.flagli=2;
     		this.$router.push('/twoUpload');
     	},
     	click_exposure(a){
     		this.flag=a;
+    		this.flagli=2;
     		this.$router.push('/exposure/0');
     	},
     	click_myupload(a){
     		this.flag=a;
+        this.flagli=2;
     		this.$router.push('/myupload');
     	},
     	click_exposureUpload(a){
@@ -210,18 +224,22 @@ routerLink(index) {
       },
       click_potion(a){//职位管理
         this.flag=a;
+        this.flagli=4;
     		this.$router.push('/jobmanageindex');
       },
        click_potion25(a){//人才库
         this.flag=a;
+        this.flagli=4;
     		this.$router.push('/talentPool');
       },
        click_potion26(a){//设置
         this.flag=a;
+        this.flagli=5;
     		this.$router.push('/option');
       },
        click_candidate(a){//候选人管理
         this.flag=a;
+        this.flagli=4;
     		this.$router.push('/candidatindex');
       },
       click_company(a) {//企业资料
@@ -238,10 +256,12 @@ routerLink(index) {
       },
       click_contractManagement(a){//合同管理
       	this.flag=a;
+      	this.flagli=3;
         this.$router.push('/contractManagement');
       },
       click_contractTemplate(a){//合同模板
       	this.flag=a;
+      	this.flagli=5;
         this.$router.push('/contractTemplate');
       },
       click_sendOffer(a){//发送offer
@@ -259,6 +279,7 @@ routerLink(index) {
       },
       click_list(a){//员工列表
         this.flag=a;
+        this.flagli=3;
         this.$router.push('/indexList');
       },
       click_employee(a){//新增员工
@@ -267,6 +288,7 @@ routerLink(index) {
       },
       click_personnelTransaction(a){//人事异动
         this.flag=a;
+        this.flagli=3;
         this.$router.push('/personnelTransaction');
       },
       toBusinessCert(a){//企业认证
@@ -275,6 +297,7 @@ routerLink(index) {
       },
 			click_interviewMmanagement(a){
         this.flag=a;
+        this.flagli=4;
         this.$router.push('/InterviewManagement');
       },
       click_option(a){
@@ -292,30 +315,35 @@ routerLink(index) {
 				that.before1=false;
 				that.after1=true;
     		that.flag=1;
+    		that.flagli=1;
 			}else if(loginUrl=='searchbefore2'){
     		let that=this;
 				that.isShow1=true;
 				that.before1=false;
 				that.after1=true;
     		that.flag=2;
+    		that.flagli=1;
 			}else if(loginUrl=='twoUpload'){
     		let that=this;
 				that.isShow5=true;
 				that.before5=false;
 				that.after5=true;
     		that.flag=3;
+    		this.flagli=2;
 			}else if(loginUrl=='exposure/0'){
     		let that=this;
 				that.isShow5=true;
 				that.before5=false;
 				that.after5=true;
     		that.flag=4;
+    		this.flagli=2;
 			}else if(loginUrl=='myupload'){
     		let that=this;
 				that.isShow5=true;
 				that.before5=false;
 				that.after5=true;
     		that.flag=5;
+    		that.flagli=2;
 			}else if(loginUrl=='account'){
     		let that=this;
 				that.isShow3=true;
@@ -346,12 +374,14 @@ routerLink(index) {
 				that.before4=false;
 				that.after4=true;
     		that.flag=9;
+    		this.flagli=3;
 			}else if(loginUrl=='contractTemplate'){
     		let that=this;
 				that.isShow2=true;
 				that.before2=false;
 				that.after2=true;
     		that.flag=15;
+    		this.flagli=5;
 			}else if(loginUrl == 'insertEmployee'){
         let that=this;
 				that.isShow5=true;
@@ -364,12 +394,14 @@ routerLink(index) {
 				that.before4=false;
 				that.after4=true;
     		that.flag=7;
+    		that.flagli=3;
 			}else if(loginUrl == 'personnelTransaction'){
     		let that=this;
 				that.isShow4=true;
 				that.before4=false;
 				that.after4=true;
     		that.flag=8;
+    		that.flagli=3;
       }else if(loginUrl=='sendOffer/null'){
 				let that=this;
 				that.isShow7=true;
@@ -400,12 +432,14 @@ routerLink(index) {
 				that.isShow8=true;
 				that.before8=false;
 				that.after8=true;
+				this.flagli=4;
        }else if(loginUrl=='InterviewManagement'){
 				let that=this;
 				that.flag=10;
 				that.isShow8=true;
 				that.before8=false;
 				that.after8=true;
+				this.flagli=4;
 			}
 			else if(loginUrl=='candidatindex') {
         let that=this;
@@ -413,18 +447,23 @@ routerLink(index) {
 				that.isShow8=true;
 				that.before8=false;
 				that.after8=true;
+				this.flagli=4;
       }else if(loginUrl=='talentPool') {
         let that=this;
         that.flag=13;
         that.isShow8=true;
         that.before8=false;
         that.after8=true;
+        this.flagli=4;
       }else if(loginUrl=='option'){
         let that=this;
 				that.flag=14;
 				that.isShow2=true;
 				that.before2=false;
 				that.after2=true;
+				this.flagli=5;
+      }else if(loginUrl=='admin'){
+      	that.flagli=0;
       }
 	},
 }
@@ -457,6 +496,8 @@ routerLink(index) {
 .main .aside .accordion .submenu li.active span{
   color: #F95714;
 }
+.activeLi{background: linear-gradient(135deg,rgba(254,147,56,1) 0%,rgba(249,117,55,1) 99%,rgba(249,87,20,1) 100%);}
+.activeLi .link i,.activeLi .link{color: #fff !important;}
 </style>
 
 
