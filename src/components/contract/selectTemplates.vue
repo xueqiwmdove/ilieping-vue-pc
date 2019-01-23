@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="mainCon el-col-24">
+    <div class="main">
       <!--顶部导航-->
       <nav @click="goTOBySinging">
         <img src="../../assets/img/contract/ic_fanhui.svg" alt=""> 选择文件和签约方
