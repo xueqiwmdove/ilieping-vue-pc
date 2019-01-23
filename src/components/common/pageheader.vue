@@ -213,7 +213,8 @@ export default {
                 headers:headers(),
                 cache:false
               }).then(function(res){
-                that.$message.success(res.data.msg)
+                that.$message.success(res.data.msg);
+                that.$router.push({path:'/login'});
               }).catch(function (res) {
                 that.$message.error(res.data.msg)
               })
