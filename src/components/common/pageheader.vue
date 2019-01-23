@@ -214,7 +214,17 @@ export default {
                 cache:false
               }).then(function(res){
                 that.$message.success(res.data.msg);
-                that.$router.push({path:'/login'});
+
+                that.$http({
+                  method:"post",
+                  url:api.logout,
+                  headers:headers(),
+                  cache:false
+                }).then(function(res){
+                  localStorage.clear();
+                  that.$router.push('/login');
+                });
+
               }).catch(function (res) {
                 that.$message.error(res.data.msg)
               })
