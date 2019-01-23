@@ -4,7 +4,7 @@
      <!--候选人弹窗 addCandidateStatus(候选人页面显示与否） -->
      <addCandidate :addVisible.sync="visables.add" @hideModel="hideChildModal"  :addCandidateStatus="addCandidateStatus"></addCandidate>
      <!--候选人信息  父组件传值-->
-     <candidateSteps  :addVisible.sync="visables.steps"  @hideModel="hideChildModal" :candidateStepsData="candidateStepsData"  :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList" :signs="signs" ></candidateSteps>
+     <candidateSteps  :addVisible.sync="visables.steps"  @hideModel="hideChildModal" :candidateStepsData="candidateStepsData" :StepsDataStatus="StepsDataStatus" :standardResume="standardResume" :candidateWorkExperienceDTOList="candidateWorkExperienceDTOList" :candidateEducationExperienceDTOList="candidateEducationExperienceDTOList" :signs="signs" ></candidateSteps>
 
      <!--顶部导航-->
         <pageheader class="pageheader"></pageheader>
@@ -276,7 +276,8 @@ export default {
         candidateStepsData:[],//候选人基本信息
         standardResume:[],//候选人个人信息之外的内容,
         candidateWorkExperienceDTOList:'',//工作经历
-        candidateEducationExperienceDTOList:''//教育经历
+        candidateEducationExperienceDTOList:'',//教育经历
+        StepsDataStatus:'',
       };
     },
    directives: {clickoutside},
@@ -455,6 +456,7 @@ export default {
             that.candidateWorkExperienceDTOList=JSON.parse(res.data.data.standardResume).candidateWorkExperienceDTOList;
             that.candidateEducationExperienceDTOList=JSON.parse(res.data.data.standardResume).candidateEducationExperienceDTOList;
             console.log( that.candidateStepsData[0].status)
+            that.StepsDataStatus=that.candidateStepsData[0].status;
           }
         })
       },

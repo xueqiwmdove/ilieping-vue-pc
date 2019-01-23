@@ -4,12 +4,12 @@
       <div v-if="beizhu" class="noOps">
         <img src="../../../assets/img/candidate/tanchuang_pic_note.png" alt="">
         <p>尚无备注</p>
-        <button @click="addMack" v-show="candidateStepsData[0].status!=0" >添加备注</button>
+        <button @click="addMack" v-show="StepsDataStatus!=0" >添加备注</button>
       </div>
 
       <!--备注列表-->
       <div v-else class="remarkList" >
-        <button @click="addMack" v-show="candidateStepsData[0].status!=0">添加备注</button>
+        <button @click="addMack" v-show="StepsDataStatus!=0">添加备注</button>
         <!-- 用来让父组件触发 -->
         <div class="remark_box" >
           <div class="remark" v-for="(item,index ) in dataList" :key="index" >
@@ -38,7 +38,7 @@
 
  export default {
       name: "remarkForth",
-      props:['candidateStepsData'],
+      props:['candidateStepsData','StepsDataStatus'],
       components:{
         remarkAlert,
       },

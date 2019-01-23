@@ -54,7 +54,7 @@
 
     export default {
         name: "candidateRight",
-        props:['step','signs','candidateStepsData' ],
+        props:['step','signs','candidateStepsData','StepsDataStatus' ],
         components:{
           weekOutAlert,
           remarkAlert,
@@ -209,7 +209,7 @@
       //
       // },
       updated(){
-        if(this.candidateStepsData[0].status!=undefined && this.candidateStepsData[0].status>2){
+        if(this.StepsDataStatus!=undefined && this.StepsDataStatus>2){
           this.flag= this.candidateStepsData[0].status-1;
         }
 

@@ -9,7 +9,7 @@
     <div class="noInterviews" v-show="noInterviews"><!--!interview_basic && interviewList == ''-->
       <img src="../../../assets/img/candidate/tanchuang_pic_interview1.png" alt="">
       <p>暂未添加面试</p>
-      <button @click="interview_basic=true;noInterviews=false" v-show="candidateStepsData[0].status!=0">添加面试</button>
+      <button @click="interview_basic=true;noInterviews=false" v-show="StepsDataStatus!=0">添加面试</button>
     </div>
 
     <!--面试基本信息-->
@@ -151,7 +151,7 @@
 
     <!--面试列表以及状态-->
     <div class="interview_list_status" v-show=" interview_list_status"><!--&& interviewList != ''-->
-      <button @click="continueInterview();interview_basic=true;interview_list_status=false;" v-show="candidateStepsData[0].status!=0">继续添加面试</button>
+      <button @click="continueInterview();interview_basic=true;interview_list_status=false;" v-show="StepsDataStatus!=0">继续添加面试</button>
       <div class="interview_list" >
         <div class="interview" v-for="(item,index) in interviewList" :key="index">
           <img src="../../../assets/img/candidate/tanhcuang_ic_tag.png" alt="" class="img_status">
@@ -171,7 +171,7 @@
                 <!--<el-dropdown-item @click.native="updateInterview(item.id)">修改面试</el-dropdown-item>-->
               </el-dropdown-menu>
               <el-dropdown-menu slot="dropdown" v-if="item.status!=0">
-                <el-dropdown-item @click.native="cancelInterview(item.id)" :disabled="candidateStepsData[0].status==0">取消面试</el-dropdown-item>
+                <el-dropdown-item @click.native="cancelInterview(item.id)" :disabled="StepsDataStatus==0">取消面试</el-dropdown-item>
                 <!--<el-dropdown-item @click.native="updateInterview(item.id)">修改面试</el-dropdown-item>-->
               </el-dropdown-menu>
             </el-dropdown>
@@ -247,7 +247,7 @@
 
     export default {
         name: "interview_second",
-        props:['candidateStepsData','addressList','commendEmployeeIdData'],
+        props:['candidateStepsData','addressList','commendEmployeeIdData','StepsDataStatus'],
         components:{
           cancelInterview
         },
