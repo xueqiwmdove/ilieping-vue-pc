@@ -122,7 +122,7 @@
     <el-dialog title="编辑人才库" :visible.sync="updateVisible" class="add_dialog" custom-class="sty_dialogs"  @close="updateVisible=false;form2.updateDeptName=''">
       <el-form style="margin-left:50px;" :model="form1" :rules="rule"  ref="form2"  @submit.native.prevent="updateSubmit">
         <el-form-item label="人才库名称"  prop="updateDeptName">
-          <el-input style="width:280px;" v-model.tirm="form2.updateDeptName" maxlength="32"  placeholder="请输入名称"  @keyup.enter.native="updateSubmit"></el-input>
+          <el-input style="width:280px;" v-model.trim="form2.updateDeptName" maxlength="32"  placeholder="请输入名称"  @keyup.enter.native="updateSubmit"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
