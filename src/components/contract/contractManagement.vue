@@ -100,7 +100,7 @@
               </div>
               <div class="search_right">
                 <div class="right_history" @click="Archive_folder = true"><img src="../../assets/img/1.5.1/file.png" alt="">历史归档</div>
-                <div class="right_btn" @click="click_contractTemplate"><el-button class="primary_btn">新增合同</el-button></div>
+                <div class="right_btn" @click="clickSign"><el-button class="primary_btn">新增合同</el-button></div>
               </div>
             </div>
             <div class="search_con">
@@ -939,6 +939,53 @@
           }
         });
       },
+      //发起签约调接口,判断其企业是否验证通过
+      clickSign(){
+        let that=this;
+        that.$http({
+          url:api.clickSign,
+          method:"post",
+          headers:headers(),
+        }).then(function (result) {
+          // console.log(result);
+          if(result.data.code==10000){
+            this.$router.push('/newContract');
+            // that.signAlert = true;
+            // that.templateData=result.data.data;
+            // console.log(that.templateData);
+          }else if(result.data.code==40007){
+            let isAuthentication=result.data.data.isAuthentication;
+            //TODO 审核中 您的企业正在审核中，审核通过后即可使用合同签约功能
+
+            if(isAuthentication==1||isAuthentication==0){
+              // that.$confirm('您的账号暂未企业认证，认证成功后即可使用合同签约功能！', '提示', {
+              //   confirmButtonText: '确定',
+              //   cancelButtonText: '取消',
+              //   center:'true',
+              // });
+              that.$confirm('需要通过企业认证才能发起签署', '提示', {
+                confirmButtonText: '去认证',
+                cancelButtonText: '稍后再说',
+                center:'true',
+              }).then(() => {
+                that.$router.push("/businessCert");
+              }).catch(()=>{
+
+              })
+            }else if(isAuthentication==2){
+              that.$confirm('您的企业正在审核中，审核通过后即可使用合同签约功能！', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                center:'true',
+              });
+
+            }
+
+          }else{
+            that.$message.error(result.message || result.data.msg)
+          }
+        })
+      },
     },
     mounted(){
       let that=this;
@@ -1426,7 +1473,7 @@
   .contractManagement_con .search_div .search_right .right_history{float:left; display: inline-block; margin: 0 20px; cursor: pointer;}
   .contractManagement_con .search_div .search_right .right_history img{margin-right: 10px;}
   .contractManagement_con .search_div .search_right .right_btn{float:left; display: inline-block;}
-  
+
   .headline_title{height: 40px;}
   .headline_title .active{height: 40px; line-height: 40px;}
 </style>
