@@ -450,7 +450,7 @@ this.classA=!this.classA;
 				that.isShow3=true;
 				that.before3=false;
 				that.after3=true;
-      }else if(loginUrl=='jobmanageindex'){
+      }else if(loginUrl=='jobmanageindex' || loginUrl=='createposition'){
 				let that=this;
         that.flag=11;
 				that.isShow8=true;
