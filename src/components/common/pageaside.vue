@@ -399,6 +399,13 @@ this.classA=!this.classA;
 				that.after4=true;
     		that.flag=7;
     		that.flagli=3;
+    	}else if(loginUrl == 'historicalArchiving'){
+    		let that=this;
+				that.isShow4=true;
+				that.before4=false;
+				that.after4=true;
+    		that.flag=7;
+    		that.flagli=3;
 			}else if(loginUrl == 'personnelTransaction'){
     		let that=this;
 				that.isShow4=true;

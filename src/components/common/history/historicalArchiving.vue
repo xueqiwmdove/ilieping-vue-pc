@@ -1,16 +1,19 @@
 <template>
   <div >
-   <div class="mainCon el-col-24">
+   <div class="main">
           <!--顶部导航-->
         <pageheader class="pageheader"></pageheader>
           <!--侧边栏-->
-          <!--<div class="aside">-->
+          <div class="aside">
             <pageaside></pageaside>
-          <!--</div>-->
+          </div>
           <!--右侧内容栏-->
         <div class="right-content pull-right">
-            <div class="content content_sty">
-
+            <div class="content">
+              <p class="headline">
+                <span><i>员工管理</i> <i>/员工列表</i>/历史资料</span>
+              </p>
+              <div class="content_sty">
                 <!-- 搜索栏 -->
                  <div class='content_pad del_icon'>
                     <div class="search" >
@@ -76,6 +79,7 @@
                         <el-pagination @current-change="changePage" @size-change="changeSize" :current-page="pageIndex" :page-size="pageSize" :page-sizes="[5,10, 25, 50, 100]" layout="total, prev, pager, next, sizes, jumper" :total="totalCount">
                         </el-pagination>
                     </div>
+            </div>
             </div>
         </div>
     </div>
