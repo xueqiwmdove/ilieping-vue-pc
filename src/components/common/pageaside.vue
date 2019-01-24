@@ -313,6 +313,12 @@ this.classA=!this.classA;
       let a = window.location.href;
       let b = a.indexOf("#");
       let loginUrl = a.substring(b+2);
+
+			if(loginUrl.indexOf("/") != -1){//判断字符串是否存在/ true
+				let index = loginUrl.lastIndexOf("\/");
+				loginUrl  = loginUrl.substring(0, index+1);
+			}
+			
 			if(loginUrl=='searchbefore'){
     		let that=this;
 				that.isShow1=true;
@@ -320,7 +326,7 @@ this.classA=!this.classA;
 				that.after1=true;
     		that.flag=1;
     		that.flagli=1;
-			}else if(loginUrl=='searchbefore2'){
+			}else if(loginUrl=='searchbefore2' || loginUrl=='exposureReport/'){
     		let that=this;
 				that.isShow1=true;
 				that.before1=false;
@@ -334,7 +340,14 @@ this.classA=!this.classA;
 				that.after5=true;
     		that.flag=3;
     		this.flagli=2;
-			}else if(loginUrl=='exposure/0'){
+			}else if(loginUrl=='uploadOne/'){
+    		let that=this;
+				that.isShow5=true;
+				that.before5=false;
+				that.after5=true;
+    		that.flag=3;
+    		this.flagli=2;
+			}else if(loginUrl=='exposure/' || loginUrl=='quickUpload/'){
     		let that=this;
 				that.isShow5=true;
 				that.before5=false;
@@ -372,7 +385,7 @@ this.classA=!this.classA;
 				that.before4=false;
 				that.after4=true;
     		that.flag=9;
-			}else if(loginUrl=='contractManagement'){
+			}else if(loginUrl=='contractManagement' || loginUrl=='standardContract' || loginUrl=='newContract'){
     		let that=this;
 				that.isShow4=true;
 				that.before4=false;
@@ -393,6 +406,13 @@ this.classA=!this.classA;
 				that.after5=true;
     		that.flag=12;
 			}else if(loginUrl == 'indexList'){
+    		let that=this;
+				that.isShow4=true;
+				that.before4=false;
+				that.after4=true;
+    		that.flag=7;
+    		that.flagli=3;
+    	}else if(loginUrl == 'historicalArchiving'){
     		let that=this;
 				that.isShow4=true;
 				that.before4=false;
@@ -489,6 +509,7 @@ this.classA=!this.classA;
 	-webkit-transition: all 0.25s ease;
 	transition: all 0.25s ease;
 	cursor: pointer;
+	padding-left: 60px;
 }
 .main .aside .accordion .submenu li:hover span{
 	color: #F95714;
