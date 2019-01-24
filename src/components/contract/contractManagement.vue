@@ -949,7 +949,7 @@
         }).then(function (result) {
           // console.log(result);
           if(result.data.code==10000){
-            this.$router.push('/newContract');
+            that.$router.push('/newContract');
             // that.signAlert = true;
             // that.templateData=result.data.data;
             // console.log(that.templateData);
