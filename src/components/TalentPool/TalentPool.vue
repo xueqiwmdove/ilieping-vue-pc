@@ -25,8 +25,8 @@
                               </el-input>
                               <i  @click="getTalent" slot="prefix" class="el-input__icon se_icon el-icon-search"></i>
                           </div>
-                          <p  @click="getItems" v-if="flags"> 全部人才 <i ><img  src="../../assets/img/zhiwei/ic_chose.png" alt="" style="cursor: pointer;"></i></p>
-                          <p style="color:#748093 ;" @click="getItems" v-else>全部人才  <i  ><img src="../../assets/img/zhiwei/3.png" alt="" style="cursor: pointer;"></i></p>
+                          <p  @click="getItems" v-if="flags" style="cursor: pointer"> 全部人才 </p><!--<i ><img  src="../../assets/img/zhiwei/ic_chose.png" alt="" style="cursor: pointer;"></i>-->
+                          <p style="color:#748093 ;cursor: pointer;" @click="getItems" v-else>全部人才  </p><!--<i  ><img src="../../assets/img/zhiwei/3.png" alt="" style="cursor: pointer;"></i>-->
                           <div class="position_list">
                               <el-scrollbar style="height:100%" >
                                   <ul>
@@ -574,6 +574,7 @@ export default {
   margin-top:20px;
   width: 100%;
   position: relative;
+  padding-left: 10px;
 }
 .ad_input p i {
   position: absolute;
