@@ -906,10 +906,11 @@
                 that.$message.error(res.data.msg);
                 setTimeout(function () {
                   that.$emit('hideModel',that.add);//向父组件派发事件
-                  // that.resumeType='';
-                  // that.resumeUrl="";
+                  that.$parent.addCandidateShow('add');
+                  that.$parent.closeResume();
+                  that.resumeType='';
+                  that.resumeUrl="";
                   // that.changeTab(1);
-                  // that.$parent.closeResume();
 
                 },2000);
               }
@@ -969,7 +970,7 @@
           that.experience='';
           that.resumeType='';
           that.resumeUrl="";
-          that.$parent.closeResume();
+
 
           that.flag=1;
           // that.changeTab(1);
@@ -1242,6 +1243,9 @@
               }).then(function (res) {
                 if(res.data.code==10000){
                   that.$message.success("候选人信息插入成功！");
+
+                  that.changeTab(1);
+                  that.$parent.closeResume();
                   that.hideModel();
 
                   that.$parent.getCandidate();
@@ -1274,6 +1278,8 @@
               that.$message.success(res.data.msg);
               that.dialogVisible = false;
               that.hideModel();
+              that.changeTab(1);
+              that.$parent.closeResume();
 
               that.$parent.getCandidate();
               that.$parent.getCount();

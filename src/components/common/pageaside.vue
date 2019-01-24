@@ -5,7 +5,7 @@
         <ul id="accordion" class="accordion">
         	  <li @click="click_admin(0)" :class="flagli==0?'activeLi':''">
                 <div class="link">
-                	<i class="icon iconfont icon-gongzuotaisvg"></i>工作台                                 
+                	<i class="icon iconfont icon-gongzuotaisvg"></i>工作台
                 </div>
             </li>
             <li :class="flagli==1?'activeLi':''">
@@ -53,7 +53,7 @@
               <li @click="click_potion(11)" :class="flag==11?'active':''"><span>岗位管理</span></li>
               <li @click="click_candidate(12)" :class="flag==12?'active':''"><span>候选人管理</span></li>
               <li @click="click_potion25(13)" :class="flag==13?'active':''"><span>人才库</span></li>
-              
+
             </ul>
           </li>
             <li :class="flagli==5?'activeLi':''">
@@ -64,7 +64,7 @@
                 </div>
                 <ul class="submenu" v-if="isShow2">
                     <li @click="click_potion26(14)" :class="flag==14?'active':''"><span>面试模板</span></li>
-                    <li @click="click_contractTemplate(15)" :class="flag==15?'active':''"><span>合同模板</span></li>
+                    <!--<li @click="click_contractTemplate(15)" :class="flag==15?'active':''"><span>合同模板</span></li>-->
                 </ul>
             </li>
         </ul>
@@ -190,8 +190,8 @@ this.classA=!this.classA;
         this.after9= !this.after9;
       },
       click_searchbefore1(a){
-         this.flag=a;  
-         this.flagli=1; 
+         this.flag=a;
+         this.flagli=1;
          this.$router.push('/searchbefore');
     	},
       click_searchbefore2(a){

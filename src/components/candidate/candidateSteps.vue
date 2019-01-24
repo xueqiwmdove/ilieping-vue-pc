@@ -89,7 +89,7 @@
   import {formatDate} from '@/assets/js/common/date_year.js';
     export default {
         name: "candidateSteps",
-        props:['addVisible','candidateStepsData','standardResume','candidateEducationExperienceDTOList','candidateWorkExperienceDTOList','signs'],
+        props:['addVisible','candidateStepsData','StepsDataStatus','standardResume','candidateEducationExperienceDTOList','candidateWorkExperienceDTOList','signs'],
         components:{
           candidateContent,
           basicFirst,
@@ -229,6 +229,12 @@
       //   this.step= this.interviewStatus;
       //   console.log( this.step)
       // }
+      updated(){
+        if(this.StepsDataStatus!=undefined && this.StepsDataStatus>2){
+          this.status1= this.StepsDataStatus-1;
+        }
+
+      }
     }
 </script>
 
