@@ -72,7 +72,7 @@ export default {
     computed:{
         // 备注提交按钮样式
         searchBtnClass3:function () {
-        if(this.cerateList.text !='' ){
+        if(this.cerateList.type !=''&& this.cerateList.radio !='' ){
             return{
                 click_opacity:false
             }
@@ -84,7 +84,7 @@ export default {
         },
         // 备注提交禁用 true
         searchDisabled3:function () {
-            if(this.cerateList.text !='' ){
+            if(this.cerateList.type !=''&& this.cerateList.radio !='' ){
                 return false
             }else{
                 return true
