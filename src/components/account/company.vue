@@ -26,7 +26,7 @@
                 <span v-if="companyData.isAuthentication=='1'">
                     <img src="../../assets/images/account/authentication.png">
                     <span class="span_color">未认证</span>
-                    <span class="pull-right" @click="certificate">企业认证</span>
+                    <span class="pull-right" @click="certificate" v-if="loginType!=1">企业认证</span>
                 </span>
                 <span class="activing" v-if="companyData.isAuthentication=='2'">
                     <img src="../../assets/images/account/审核中.png" >
@@ -35,7 +35,7 @@
                 <span class="active_error" v-if="companyData.isAuthentication=='0'">
                     <img src="../../assets/img/account/icon_reject.svg">
                    审核失败
-                      <span class="pull-right" @click="certificate">企业认证</span>
+                      <span class="pull-right" @click="certificate" v-if="loginType!=1">企业认证</span>
                 </span>
             </p>
         </div>
@@ -43,32 +43,32 @@
             <p class="module-title">所属行业</p>
             <p class="module-content no-result" v-if="companyData.enterpriseIndustry==null">
                 未设置
-                <span class="pull-right" @click="updateIndustry">立即设置</span>
+                <span class="pull-right" @click="updateIndustry" v-if="loginType!=1">立即设置</span>
             </p>
             <p class="module-content " v-if="companyData.enterpriseIndustry!=null">
                 {{companyData.enterpriseIndustry}}
-                <span class="pull-right" @click="updateIndustry">修改</span>
+                <span class="pull-right" @click="updateIndustry" v-if="loginType!=1">修改</span>
             </p>
         </div>
         <div class="module">
             <p class="module-title">企业规模</p>
             <p class="module-content  no-result" v-if="companyData.enterpriseScale==null">
                 未设置
-                <span class="pull-right" @click="updateScale">立即设置</span>
+                <span class="pull-right" @click="updateScale" v-if="loginType!=1">立即设置</span>
             </p>
             <p class="module-content" v-if="companyData.enterpriseScale!=null">
                {{companyData.enterpriseScale}}
-                <span class="pull-right" @click="updateScale">修改</span>
+                <span class="pull-right" @click="updateScale" v-if="loginType!=1">修改</span>
             </p>
         </div>
         <div class="module ">
             <p class="module-title">企业地址</p>
             <p class="module-content no-result" v-if="companyData.enterpriseAddressList==null">
                 未设置
-                <span class="pull-right" @click="updateAddress">立即设置</span>
+                <span class="pull-right" @click="updateAddress" v-if="loginType!=1">立即设置</span>
             </p>
             <p class="module-content" v-if="companyData.enterpriseAddressList!=null">
-                 <span class="pull-right" @click="updateAddress">修改/添加</span>
+                 <span class="pull-right" @click="updateAddress" v-if="loginType!=1">修改/添加</span>
                 <!-- <span class="pull-right" @click="updateAddress">修改</span> -->
             </p>
             <div class="adress_sty">
@@ -104,7 +104,8 @@ export default {
 	},
    data() {
       return {
-      	companyData:[{
+        loginType:'',
+        companyData:[{
 	      	enterpriseName:"",
 	        enterpriseIndustry:"",
 	        enterpriseScale:"",
@@ -115,6 +116,10 @@ export default {
       };
     },
     methods: {
+      loginTypeFun(){
+        let that=this;
+        that.loginType=localStorage.getItem('loginType');//1子账号；0主账号
+      },
     	company_detail(){
     		let that=this;
 	      that.$http({
@@ -147,6 +152,7 @@ export default {
 	 mounted(){
 	 	let that=this;
 	 	that.company_detail();
+	 	that.loginTypeFun();
 	 }
 }
 </script>

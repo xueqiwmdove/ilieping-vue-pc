@@ -30,7 +30,7 @@
 												<p @click="click_optioncancel()">面试取消通知模版<i></i></p>
 									  		<p @click="click_optionrefuse()">拒信模版<i></i></p>
 										</div>
-					<div class="option-left">
+					          <div class="option-left">
 						<div class="optionofferTop">
 							<ul>
                     <li>offer邮件模板</li>
@@ -51,7 +51,7 @@
                     <span>试用期：</span>
                     <span style="margin-bottom:40px;">入职地点：</span>
                     <span>入职所需的材料和证件</span>
-                    <span>1. 原单位离职证明（加盖原单位公章）1份 </span> 
+                    <span>1. 原单位离职证明（加盖原单位公章）1份 </span>
                     <span>2. 身份证原件 </span>
                     <span>3. 学位证、毕业证原件 </span>
                     <span>4. 相关资格证书原件</span>
@@ -85,7 +85,7 @@
   import addCandidate from '@/components/candidate/addCandidate';
   import candidateSteps from '@/components/candidate/candidateSteps';
   import recommend_depart from '@/components/candidate/common/recommend_depart';
-  
+
   export default {
   name: 'jobmanageindex',
 	components: {
@@ -125,6 +125,12 @@
 /* .content {
 	 min-width: 1520px;
  } */
+.main .right-content .content{
+  /*background: none;*/
+}
+.option-left{
+  /*clear: both;*/
+}
   .topBorder{
         background: url("../../assets/img/muban/topborder.jpg") no-repeat;
         background-size: contain;
@@ -137,7 +143,7 @@
         background-size: contain;
         width: 77.5%;
         min-width: 500px;
-        height: 30px !important; 
+        height: 30px !important;
         margin-top: 30px !important;
     }
  .optionofferBottom{
@@ -171,7 +177,7 @@
    padding-bottom: 0;
  }
  .optionofferBottom .content i{
-    background:rgba(242,243,245,1); 
+    background:rgba(242,243,245,1);
     font-size: 14px;
     color: #394a66;
     font-weight: bold;
@@ -183,7 +189,7 @@
 	 line-height: 35px;
 	 font-size: 26px;
 	 text-align: left;
-   padding-left:37px; 
+   padding-left:37px;
 	 display: inline-block;
 	 width: 100%;
    margin: 0 0 20px 0;
@@ -284,7 +290,7 @@
 	 top: 50%;
 	 transform: translateY(-50%)
  }
- 
+
 .asidePosition {
     width: 240px;
     min-width: 240px;;
@@ -292,7 +298,7 @@
 	background: #fff;
 	float: left;
     /* margin-right: 15px; */
-    padding: 0px 25px;
+    padding: 20px 25px;
     /* border-right: 1px solid #eee; */
 }
 .asidePosition h4 {
@@ -336,7 +342,7 @@ color: #F95714;
     margin-left: 5px;
 }
 .ad_change{
-color: #F95714;	
+color: #F95714;
 }
 .ad_input p {
   width: 220px;

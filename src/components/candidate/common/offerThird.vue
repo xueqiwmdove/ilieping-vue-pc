@@ -13,11 +13,11 @@
             <div class="noOffer">
               <img src="../../../assets/img/candidate/tanchuang_pic_offer1.png" alt="">
               <p>尚无offer</p>
-              <button @click="isshow = false" v-show="StepsDataStatus!=0">创建offer</button>
+              <button @click="isshow = false" v-show="candidateStepsData[0].status!=0">创建offer</button>
             </div>
          </div>
          <!-- 创建offer -->
-        <div v-if="!isshow" class="addCandidate_content" v-loading="loading">
+        <div v-if="!isshow" class="addCandidate_content" ><!--v-loading="loading"-->
             <div class="standard_resume">
               <el-row style="overflow-x: hidden;">
                 <el-col  :span="24">
@@ -172,7 +172,7 @@
           <div class="offer_modal2">
               <p class="title2">
                 <span class="methods"><span v-html="formatDate(createTime)"></span>({{week}}) 发送offer</span>
-                <span class="removes" @click="removeOffer" style="cursor: pointer" v-show="StepsDataStatus!=0">删除offer</span>
+                <span class="removes" @click="removeOffer" style="cursor: pointer" v-show="candidateStepsData[0].status!=0">删除offer</span>
               </p>
               <div class="content_offer" v-html="html">
               <!--<img class="up_img" src="../../../assets/img/candidate/777.png" alt="">-->
@@ -273,7 +273,7 @@
         //发送创建offer
         submit() {
           let that=this;
-          that.loading=true;
+          // that.loading=true;
           that.candidateID=localStorage.getItem('candidateID');
           that.$http({
             method:'post',
@@ -294,7 +294,7 @@
             // console.log(res)
 
             setTimeout(function(){
-              that.loading=false;
+              // that.loading=false;
               if(res.data.code==10000){
                 that.flag1 = false;
                 that.offerIsExist();

@@ -30,7 +30,7 @@
 												<p @click="click_optioncancel()">面试取消通知模版<i></i></p>
 									  		<p @click="click_optionrefuse()">拒信模版<i></i></p>
 										 </div>
-					<div class="option-left">
+					          <div class="option-left">
 						<div class="optioninterviewTop">
 							<ul>
                 <li>面试邀约邮件模板</li>
@@ -87,7 +87,7 @@
   import {format} from '@/assets/js/date.js'
   import pageheader from '@/components/common/pageheader';
   import pageaside from '@/components/common/pageaside';
-  
+
   export default {
   name: 'jobmanageindex',
 	components: {
@@ -144,7 +144,7 @@
         background-size: contain;
         width: 77.5%;
         min-width: 500px;
-        height: 30px !important; 
+        height: 30px !important;
         margin-top: 30px !important;
     }
  .optioninterviewBottom{
@@ -174,7 +174,7 @@
    padding-bottom: 0;
  }
  .optioninterviewBottom .content i{
-    background:rgba(242,243,245,1); 
+    background:rgba(242,243,245,1);
     font-size: 14px;
     color: #394a66;
     font-weight: bold;
@@ -295,7 +295,7 @@
 	background: #fff;
 	float: left;
     /* margin-right: 15px; */
-    padding: 0px 25px;
+    padding: 20px 25px;
     /* border-right: 1px solid #eee; */
 }
 .asidePosition h4 {
@@ -339,7 +339,7 @@ color: #F95714;
     margin-left: 5px;
 }
 .ad_change{
-color: #F95714;	
+color: #F95714;
 }
 .ad_input p {
   width: 220px;

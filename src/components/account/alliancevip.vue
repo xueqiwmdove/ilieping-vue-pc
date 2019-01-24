@@ -41,7 +41,7 @@
 <!--        <span>免费曝光失信人员</span>-->
         <span>免费查询<i>100次</i>／天</span>
     </p>
-    <input type="button" value="立即加入" @click="click_add">
+    <!--<input type="button" value="立即加入" @click="click_add">-->
 </div>
 <div class="allianceBox">
     <div class="headLine">

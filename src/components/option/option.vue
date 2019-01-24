@@ -386,7 +386,7 @@ export default {
 	background: #fff;
 	float: left; display: inline-block;
     margin-right: 15px;
-    padding: 0px 25px;
+    padding: 20px 25px;
     /* border-right: 1px solid #eee; */
 }
 .asidePosition h4 {
